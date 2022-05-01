@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>일러스트상세보기 페이지</title>
+</head>
+<style>
+
+
+    .mainBox{
+        width: 70%;
+        margin:0 auto;
+    }
+
+
+    img {
+       /* //가로세로 비율은 유지하면서 컨테이너에 꽉 차도록 설정*/
+        line-height: 0;
+        vertical-align: middle;
+        object-fit: cover;
+        max-width: 100%;
+        display: block;
+        /*max-height: 700px;*/
+        cursor: pointer;
+    }
+    p.p {
+        margin: 0;
+    }
+
+    .userId2{
+        color: black;
+        font-size: 14px;
+    }
+    .postText{
+        color: #929191;
+        font-size: 14px;
+        font-weight: bold;
+        padding-left: 15px;
+        margin-top: 40px !important;
+    }
+    .postingBox{
+        width: 78%;
+        margin:0 auto;
+        margin-top: 100px;
+        /*text-align: center;*/
+    }
+    .post{
+        width: 300px;
+        height: 280px;
+        margin:13px;
+        cursor: pointer;
+        position: relative;
+    }
+    .posts{
+        display: flex;
+    }
+    .profileBox{
+        display: flex;
+        align-items: center;
+    }
+    .profilepic{
+        width: 78px;
+        height: 78px;
+        border-radius: 42px;
+        overflow: hidden;
+        margin: 24px 19px;
+    }
+    .title{
+        font-size: 25px;
+        font-weight: bold;
+    }
+    .titleInfo{
+        color:gray;
+    }
+    .titleBox{
+        margin-bottom: 30px;
+    }
+    .icons{
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+    }
+    .chatBtn{
+
+        background-color: #ef6e73eb;
+
+
+        width: 100px;
+        height: 33px;
+        margin-top: 10px;
+        color: white;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .lookBtn{
+        width: 100px;
+        height: 33px;
+        font-weight: bold;
+        margin-top: 10px;
+        background-color: white;
+        border: 1px solid #acacac;
+        color: #818181;
+        cursor: pointer;
+    }
+
+    .lookBtn:hover{
+        border-color:  #ef6e73eb;
+        color:  #ef6e73eb;
+    }
+    .userNick{
+        font-size: 21px;
+        margin-bottom: 6px !important;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .userNick:hover{
+        color:  #ef6e73eb;
+    }
+
+    .profiles{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background-color: white;
+        height: 174px;
+        border-radius: 13px;
+        margin-bottom: 44px;
+    }
+    .postSpan{
+        font-weight: bold;
+        color: gray;
+    }
+    .postSpan2{
+        font-size: 15px;
+        color: gray;
+    }
+
+    .heart{
+         opacity: 0;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        display: block;
+        background-color: #00000073;
+        width: 286px;
+        height: 160px;
+        color: white;
+        font-size: 22px;
+        text-align: center;
+        padding-top: 120px;
+    }
+    .post:hover, .heart:hover{
+        opacity: 1;
+    }
+
+    /*------------------------------이미지 모달------------------------------------*/
+    .modal {
+        display: none;
+        z-index: 500;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        backdrop-filter: blur(12px);
+        background-color: #4c4c4cb3;
+    }
+    .modalBox {
+        position: relative !important;
+        text-align: center;
+        top: 11%;
+        left: 30% !important;
+        position: sticky;
+    }
+     .firstBox img:hover{
+        cursor: zoom-in;
+    }
+    .iconImages{
+        margin:0 auto;
+        height: 30px;
+        width: 30px;
+    }
+    .tagBtn{
+        background-color: #ef6e73ab;
+
+        border-radius: 19px;
+        padding: 4px 11px;
+        border: none;
+        color: white;
+    }
+
+</style>
+<body>
+
+<div style="width : 100%;   max-width:1200px ; margin:0 auto; background-color: #fafafa; padding-top: 100px; padding-bottom: 100px;">
+
+
+    <!--이미지 상세보기---------------------------------------------------------------------------------- -->
+    <div class="mainBox titleBox">
+        <p class="p title">relax time</p>
+        <p class="p titleInfo">
+            <span style="font-style: italic">by </span>
+            <span style="font-weight: bold">yewon_seo</span> &nbsp;
+            <span style="font-size: 13px">2022년 04월 30일</span>
+            <span></span>
+        </p>
+    </div>
+    <div class="mainBox">
+
+
+<!--        <img src="../../static/images/illustDetail/일러스트 상세 1.jpg" width="100%"/>-->
+
+        <img src="../../static/images/illustDetail/일러스트 상세보기.jpg" width="100%"/>
+
+<!--        <img src="../../static/images/illustDetail/일러스트 상세2.jpg" width="100%"/>-->
+</div>
+
+
+    <div class="mainBox icons">
+        <div style="margin-right: 30px;">
+
+            <img src="../../static/images/icon/하트.png"  class="iconImages emptyheart"/>
+            <span>1,230</span>
+        </div>
+        <div style="margin-right: 5px">
+
+            <img src="../../static/images/icon/눈.png" class="iconImages"/>
+            <span>2,342</span>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="postingBox">
+
+        <!--작가 프로필 ----------------------------------------------------------------------------------- -->
+        <div class="profiles">
+        <div class="profileBox">
+            <div class="profilepic">
+
+                <img src="../../static/images/프사.jpg" width="100%" height="100%"/>
+            </div>
+            <div>
+            <span class="userNick">yewon_s</span>
+                <p class="p" style="margin: 8px 0px;">
+                    <span class="postSpan">Total Posts:</span>
+                    <span class="postSpan2">11개</span></p>
+                <div class="tagBtns">
+                    <button class="tagBtn">#힐링</button>
+                    <button class="tagBtn">#자연</button>
+                    <button class="tagBtn">#mood</button>
+                    <button class="tagBtn">#relax</button>
+                </div>
+
+            </div>
+        </div>
+            <div style="margin-right: 25px;">
+                <button class="chatBtn">CHAT</button>
+                <button class="lookBtn">LOOK</button>
+            </div>
+        </div>
+        <hr>
+        <!--게시물 더보기란------------------------------------------------------------------------------- -->
+
+        <p class="p postText"><span class="userId2">yewon_seo</span>님의 게시물 더 보기</p>
+
+        <div class="posts">
+        <div class="post">
+
+            <img src="../../static/images/illustDetail/일러스트 상세 1.jpg" width="100%" height="100%"/>
+            <div class="heart">❤ <p style="font-size: 12px;" class="p">1,213</p></div>
+        </div>
+        <div class="post">
+
+            <img src="../../static/images/illustDetail/일러스트 상세2.jpg" width="100%" height="100%"/>
+            <div class="heart">❤ <p style="font-size: 12px;" class="p">543</p></div>
+        </div>
+        <div class="post">
+
+            <img src="../../static/images/illustDetail/일러스트 상세 3.jpg" width="100%" height="100%"/>
+            <div class="heart">❤ <p style="font-size: 12px;" class="p">1,011</p></div>
+        </div>
+
+
+        </div>
+
+        <div class="posts">
+
+            <div class="post">
+
+                <img src="../../static/images/illustDetail/일러스트 상세4.jpg" width="100%" height="100%"/>
+                <div class="heart">❤ <p style="font-size: 12px;" class="p">23</p></div>
+            </div>
+            <div class="post">
+
+                <img src="../../static/images/illustDetail/일러스트 상세5.jpg" width="100%" height="100%"/>
+                <div class="heart">❤ <p style="font-size: 12px;" class="p">192</p></div>
+            </div>
+            <div class="post">
+
+                <img src="../../static/images/illustDetail/일러스트 상세6.jpg" width="100%" height="100%"/>
+                <div class="heart">❤ <p style="font-size: 12px;" class="p">0</p></div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+   <!--이미지 클릭시 모달로 원본크기 보여주기 -->
+    <div class="modal">
+        <div class="modalBox">
+            <img src="../../static/images/illustDetail/일러스트 상세보기.jpg" />
+        </div>
+    </div>
+
+
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $emptyHeart = $('.emptyheart');
+    $emptyHeart.on("click", function () {
+        if($emptyHeart.attr("src")=="../../static/images/icon/하트.png"){
+
+            $emptyHeart.attr("src","../../static/images/icon/색칠 된 하트.png");
+        }else{
+            $emptyHeart.attr("src","../../static/images/icon/하트.png");
+        }
+    });
+</script>
+</html>

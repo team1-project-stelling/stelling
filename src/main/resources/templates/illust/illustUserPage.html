@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>일러스트 작가 페이지</title>
+
+</head>
+<style>
+    @font-face {
+        font-family: 'GmarketSansMedium';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'GmarketSansLight';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    .p{
+        margin:0px;
+        padding: 0px;
+    }
+    .box{
+    flex-direction: column;
+        width: 270px;
+    height: fit-content;
+}
+.column{
+
+    flex-direction: column;
+}
+.cellCss{
+    /*width: 91%;*/
+    /*height: 100%;*/
+    text-align: center;
+    margin: 34px 28px 16px 13px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.flex2{
+    display: flex;
+    /*align-items: center; */
+    justify-content: center;
+    padding-bottom: 100px;
+}
+.testWidth{
+    width: 100%;
+    border-radius: 16px;
+    cursor: pointer;
+    display: block;
+}
+.testWidth:hover, .heart:hover{
+    cursor: pointer;
+    opacity: 1;
+}
+.heart{
+    opacity: 0;
+    position: absolute;
+    left: 0px;
+    top: 0;
+    display: block;
+    background-color: #00000073;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 22px;
+    text-align: left;
+    padding-top: 8px;
+    padding-left: 15px;
+}
+
+    .firstBox{
+        width: 26%;
+        border: 1px solid #dbdbdb;
+    }
+    .secBox{
+        width: 74%;
+        background-color: #ececec80;;
+    }
+
+    .profilePicture{
+
+        border-radius: 50px;
+        overflow: hidden;
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+        overflow: hidden;
+    }
+    .userNick{
+        font-size: 23px;
+        font-weight: 600;
+        margin-bottom: 5px !important;
+        text-align: center;
+    }
+    .postInfo{
+        color: gray;
+        margin-bottom: 10px;
+        font-family: 'GmarketSansMedium';
+    }
+
+    .profile1{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 41px;
+    }
+    .chatBtn{
+        width: 100px;
+        height: 36px;
+        background-color: #ef6e73ab;
+        border: none;
+        color: white;
+        font-weight: 600;
+        border-radius: 4px;
+        line-height: 2.4;
+        cursor: pointer;
+    }
+    .listBtn{
+        width: 100px;
+        height: 36px;
+        background-color: white;
+        border: 1.5px solid #ef6e73ab;
+        color: #ef6e73ab;
+        font-weight: 600;
+        border-radius: 4px;
+        line-height: 2.4;
+        cursor: pointer;
+    }
+    .hr{
+        margin: 30px auto;
+        border-color: #e0e0e0;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        width: 80%;
+    }
+    .p{
+        margin: 0px;
+    }
+    .intro{
+        color: #c9c9c9;
+        font-size: 16px;
+        font-family: 'GmarketSansMedium';
+    }
+    .text1{
+        margin-top: 5px;
+        font-size: 13px;
+        margin-bottom: 30px;
+        font-family: 'GmarketSansLight';
+    }
+    .text2{
+        margin-top: 5px;
+        font-size: 13px;
+        font-family: 'GmarketSansLight';
+    }
+    .worklist{
+        margin-left: 55px;
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 43px;
+        /*margin-bottom: -16px;*/
+        color: #5a5a5a;
+    }
+    .hr2{
+        width: 86%;
+        margin-left: 52px;
+        margin-bottom: -17px;
+        margin-top: 6px;
+        height: 0.5px;
+        background-color: #808080c2;
+    }
+    .cateBtn{
+        background-color: #969696;
+        border: 1px solid gray;
+        font-size: 13px;
+        padding: 3px 8px;
+        border-radius: 15px;
+        margin-top: 10px;
+        color: white;
+        font-weight: bold;
+    }
+    a{
+        text-decoration: none;
+
+    }
+
+</style>
+<body>
+
+<div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 100px; padding-bottom: 100px;">
+
+
+    <div style="display: flex;">
+        <div class="firstBox">
+                <div class="profile1">
+                    <div class="profilePicture">
+                        <img src="../../static/images/프사.jpg" width="100%" height="100%"/>
+                    </div>
+                    <div>
+                        <div><p class="p userNick">yewon_seo</p></div>
+                        <div style="display: flex;">
+                            <p class="p postInfo">게시물 <span>6</span></p>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <p class="p postInfo">완료한 작업 <span>3</span></p>
+                        </div>
+
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <button class="chatBtn">CHAT</button>&nbsp;
+                        <button class="listBtn">LIST</button>
+                    </div>
+                </div>
+
+            <hr class="hr">
+                <div style="width: 80%; margin: 0 auto;">
+                    <p class="p intro">Introduce</p>
+                    <p class="p text1">끄어어어ㅓ...졸려죽겠다..🦉</p>
+                </div>
+            <hr class="hr">
+            <div style="width: 80%; margin: 0 auto;">
+                <p class="p intro">Website</p>
+                <p class="p text1">
+                    <a href="https://www.instagram.com/yewon.seo_/" style="font-size: 13px;">www.instagram.com/yewon.seo_/</a>
+                </p>
+            </div>
+            <hr class="hr">
+                <div style="width: 80%; margin: 0 auto;">
+                    <p class="p intro">주 활동영역</p>
+                    <button class="cateBtn">디즈니 감성</button>
+<!--                    <p class="p text1">디즈니 감성</p>-->
+
+                </div>
+            <hr class="hr">
+            <div style="width: 80%; margin: 0 auto;">
+                <p class="p intro">Profile</p>
+                <p class="p intro"></p>
+                <p class="p text2">
+                    2020년 5월 TMG 의류 삽화
+                    <br>
+                    2021년 2월 소르르 Sweater 음원 삽화
+                    <br>
+                    2021년 7월 KB 손해보험 ESG 지원사업 일러스트 협업
+                    <br>
+                    2021년 8월 한국 공항 공사 일러스트 제작</p>
+            </div>
+
+
+
+
+
+
+        </div>
+
+        <div class="secBox">
+            <div class="worklist">
+                WorkList
+            </div>
+            <hr class="hr2">
+            <div class="flex2 wrap" >
+                <div class="box">
+                    <div class="column cellCss" >
+                        <img src="../../static/images/일러스트 1.jpg" class="testWidth" />
+                        <span class="heart">❤<span style="font-size: 12px;">1,213</span></span>
+
+                    </div>
+                    <div class="column cellCss">
+                        <img src="../../static/images/illustDetail/일러스트 상세2.jpg" class="testWidth">
+                        <span class="heart">❤<span style="font-size: 12px;">1,043</span></span>
+                    </div>
+                    <div class="column cellCss">
+                        <img src="../../static/images/일러스트 3.jpg" class="testWidth">
+                        <span class="heart">❤<span style="font-size: 12px;">987</span></span>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="column cellCss">
+                        <img src="../../static/images/일러스트 2.jpg" class="testWidth">
+                        <span class="heart">❤<span style="font-size: 12px;">1,002</span></span>
+                    </div>
+                    <div class="column cellCss">
+                        <img src="../../static/images/illustDetail/일러스트 상세보기.jpg" class="testWidth">
+                        <span class="heart">❤<span style="font-size: 12px;">23</span></span>
+                    </div>
+                    <div class="column cellCss">
+                        <img src="../../static/images/illustDetail/일러스트 상세4.jpg" class="testWidth">
+                        <span class="heart">❤<span style="font-size: 12px;">101</span></span>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="column cellCss">
+                        <img src="../../static/images/일러스트 7.jpg" class="testWidth">
+                        <span class="heart">❤<span style="font-size: 12px;">42</span></span>
+                    </div>
+                    <div class="column cellCss">
+                        <img src="../../static/images/일러스트 6.jpg" class="testWidth">
+                        <span class="heart">❤<span style="font-size: 12px;">1,231</span></span>
+                    </div>
+                    <div class="column cellCss">
+                        <img src="../../static/images/일러스트 9.jpg" class="testWidth">
+                        <span class="heart">❤<span style="font-size: 12px;">22</span></span>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</body>
+</html>
