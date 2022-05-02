@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>프로필 수정</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/editProfile.css}">
-    <link rel="stylesheet" href="css/editProfile.css" type="text/css"/>
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/editProfile.css}">-->
+<!--    <link rel="stylesheet" href="css/editProfile.css" type="text/css"/>-->
+
     <style>
         ul{
             list-style: none;
@@ -54,6 +55,8 @@
         }
         .right_block{
             float: left;
+            width: 880px;
+
         }
         .profile_text{
             font-size: 32px;
@@ -78,7 +81,6 @@
         .set_myInfo{
             padding: 31px 0 47px 5px;
             border-bottom: 1px solid #e8e9ed;
-            width: 600px;
         }
         .set_myInfo.top{
             border-bottom: 1px solid #e8e9ed;
@@ -179,7 +181,7 @@
                             <div class="set_myInfo photo">
                                 <strong class="profile picture">이미지</strong>
                                 <div class="profile_show">
-                                    <img class="imagePreview1" src="../../static/images/default.png" height="100" width="100"/>
+                                    <img class="imagePreview1 test" src="../../static/images/default.png" height="100" width="100"/>
                                         <ul class="imagePreview"></ul>
                                     <div class="btns_wrap">
                                         <input type="file" class="realUpload" accept="image/*" required multiple style="display: none;">
@@ -261,10 +263,14 @@
     upload.addEventListener('click', () => realUpload.click());
     realUpload.addEventListener('change', getImageFiles);
 
-    // const photoDelete = document.querySelector('.photoDelete');
-    //
-    // photoDelete.addEventListener('click', function (e, file) {
-    //     const img = document.createElement('img')
+
+    const photoDelete = document.querySelector('.photoDelete');
+    const imagePreview = document.querySelector('.imagePreview1');
+    const test = document.querySelector('.test');
+
+    // photoDelete.addEventListener('click', function () {
+    //     test.classList.remove('imagePreview');
+
     //
     //
     // })
