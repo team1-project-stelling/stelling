@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Strlling</title>
@@ -69,6 +69,8 @@
             text-decoration-line:none;
 
         }
+        #categoryMenu table tbody tr td a:hover{color: #ff8b77}
+
         #categoryMenu a:visited,#categoryMenu a:link , .resultItem a:visited, .resultItem a:link {color: black}
         a.writeButton:visited, a.writeButton:link{color: white}
         ul#tagSearchList li a:visited, ul#tagSearchList li a:link{color:#343a40; }
@@ -78,7 +80,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid black;
+            border-bottom: 2px solid  #a2a2a2;
         }
         .totalWordWork{
             width: 13%;
@@ -206,7 +208,7 @@
             padding: 0px 15px ;
             width: 84%;
             float: left;
-            font-size: 12px;
+            font-size: 13px;
             display: flex;
             gap: 11px;
             flex-direction: column;
@@ -225,14 +227,15 @@
             gap: 5px;
         }
         div.info_tag ul li{
-            border: 2px solid #ff8b77;
+        /*    border: 2px solid #ff8b77;*/
             border-radius: 20px;
             padding: 3px 10px;
             line-height: 20px;
             user-select: none;
         }
         div.info_tag ul li a{
-            color: #ff8b77 !important;
+            /*color: #ff8b77 !important;*/
+            color: #00AAFF !important;
             font-weight: bold;
         }
         div.updateTimeBox{
@@ -351,6 +354,12 @@
     </style>
 </head>
 <body>
+
+    <th:block th:insert="/fix/header.html :: headFragment"/>
+
+    <!--배너 들어갈 자리 보고용 코드-->
+    <div style="width: 100%; height: 159px; background: midnightblue;"></div>
+
     <div id="categoryWrap" class="giveMaxWidth">
         <section id="categorySection" class="giveMaxWidth">
             <div id="categoryMenu" class="giveMaxWidth">
@@ -416,7 +425,7 @@
                      <div class="coverBox"><img src="/images/category/test.png" alt="표지사진"><img src="/images/category/updateIcon.png" alt="업데이트아이콘"></div>
                      <div class="pieceInfo">
                          <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">독점</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -442,7 +451,7 @@
                     <div class="coverBox"><img src="/images/category/dumi1.jpg" alt="표지사진"><img src="/images/category/updateIcon.png" alt="업데이트아이콘"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">독점</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -462,7 +471,7 @@
                     <div class="coverBox"><img src="/images/category/dumi2.jpg" alt="표지사진"><img src="/images/category/updateIcon.png" alt="업데이트아이콘"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">독점</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -487,7 +496,7 @@
                     <div class="coverBox"><img src="/images/category/dumi3.jpg" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">독점</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -512,7 +521,7 @@
                     <div class="coverBox"><img src="/images/category/dumi4.png" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">독점</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -537,7 +546,7 @@
                     <div class="coverBox"><img src="/images/category/dumi5.jpg" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">독점</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -562,7 +571,7 @@
                     <div class="coverBox"><img src="/images/category/dumi6.jpg" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">독점</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -587,7 +596,7 @@
                     <div class="coverBox"><img src="/images/category/test.png" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">독점</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -612,7 +621,7 @@
                     <div class="coverBox"><img src="/images/category/test.png" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">독점</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -637,7 +646,7 @@
                     <div class="coverBox"><img src="/images/category/test.png" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">독점</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -662,7 +671,7 @@
                     <div class="coverBox"><img src="/images/category/test.png" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">독점</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -687,7 +696,7 @@
                     <div class="coverBox"><img src="/images/category/test.png" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">독점</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
