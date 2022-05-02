@@ -342,6 +342,9 @@
 #fourList{
     display: inline-flex;;
     overflow: hidden ;
+    
+    
+
 }
 
     .M_new_novel2{
@@ -353,3 +356,17 @@
         height: 400px;
     }
 }
+.movemove{
+    animation: rotate;
+    animation-duration: 20s; 
+    animation-iteration-count: infinite;
+    animation-fill-mode:none;
+    animation-timing-function: linear;
+
+    }
+
+@keyframes rotate {
+    
+   to {transform:translateX(-50.5%);}
+}
+#fourList:hover{animation-play-state: paused;}
