@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>내문의내역</title>
+<!--    <link rel="stylesheet" href="../../static/css/editProfile.css">-->
+    <style>
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        ul li{
+            font-size: 15px;
+            font-weight: 400;
+            color: inherit;
+            display: block;
+            word-break: break-all;
+            letter-spacing: -0.2px;
+            border-bottom: 1px solid #e8e9ed;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+        body{
+            width : 100%;
+            max-width: 1200px;
+            margin:0 auto;
+        }
+        #allWrap{
+            display: inline-block;
+            margin: 30px 0 auto;
+            /*border-top: 1px solid #e8e9ed;*/
+            width : 100%;
+            max-width: 1200px;
+        }
+        .li_top{
+            border-top: 1px solid #e8e9ed;
+        }
+        .left_block{
+            float: left;
+            box-sizing: border-box;
+            width: 230px;
+            margin-right: 90px;
+        }
+        .right_block{
+            float: left;
+            width: 880px;
+        }
+        .profile_text{
+            font-size: 32px;
+            padding-bottom: 30px;
+        }
+        .questions_table{
+            border-top: 2px solid black;
+            text-align: center;
+            width: 880px;
+            margin: 0;
+            padding: 0;
+
+        }
+
+        td{
+            border-top: 1px solid #e8e9ed;
+            border-bottom: 1px solid #e8e9ed;
+            border-right: 1px solid #e8e9ed;
+            height: 40px;
+            margin: 0;
+            padding: 0;
+        }
+        th{
+            border-right: 1px solid #e8e9ed;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+            height: 30px;
+        }
+        .td_end, .th_end{
+            border-right: none;
+        }
+        .current{
+            padding-top: 20px;
+            text-align: center;
+        }
+        code{
+            border-radius: 4px;
+            border: solid 1px #ef6e73;
+            font-size: 0.9rem;
+            margin: 0 0.25rem;
+            padding: 0.25rem 0.65rem;
+        }
+        /*.left_block ul li.li_top>a{*/
+        /*    background:  #ef6e73;*/
+        /*    color: white;*/
+        /*}*/
+        .left_block ul li:hover>a{
+            background:  #ef6e73;
+            color: white;
+            text-decoration: none;
+        }
+        .left_block ul li>a{
+            font-size: 15px;
+            font-weight: 400;
+            color: inherit;
+            display: block;
+            padding: 16px 30px 16px 15px;
+            word-break: break-all;
+            letter-spacing: -0.2px;
+        }
+        a{
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="allWrap">
+    <div class="profileWrap">
+        <div class="group">
+            <div class="left_block">
+                <ul class="liWrap">
+                    <li class="li_top">
+                        <a href="내 프로필">프로필 수정</a>
+                    </li>
+                    <li>
+                        <a href="내 작품 관리">내 작품 관리</a>
+                    </li>
+                    <li>
+                        <a href="/templates/mypage/changPw.html">비밀번호 변경</a>
+                    </li>
+                    <li>
+                        <a href="내 문의 내역">내 문의 내역</a>
+                    </li>
+                    <li>
+                        <a href="탈퇴 하기">탈퇴 하기</a>
+                    </li>
+                    <li>
+                        <a href="결제">결제</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="right_block">
+                <div class="">
+                    <div class="profile_text"><strong>내 문의내역</strong></div>
+                    <table class="questions_table">
+                        <thead>
+                            <th>번호</th>
+                            <th width="463px">제목</th>
+                            <th>작성일</th>
+                            <th class="th_end">답변상태</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><a href="">쉽지 않네</a></td>
+                                <td>2022-04-30</td>
+                                <td class="td_end">진행중</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="current">
+                        <a class="question_paging" href="1">
+                            <code>1</code>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+
+</script>
+</html>

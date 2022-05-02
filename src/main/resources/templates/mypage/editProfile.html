@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>프로필 수정</title>
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/editProfile.css}">-->
+<!--    <link rel="stylesheet" href="css/editProfile.css" type="text/css"/>-->
+    <style>
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        ul li{
+            font-size: 15px;
+            font-weight: 400;
+            color: inherit;
+            display: block;
+            word-break: break-all;
+            letter-spacing: -0.2px;
+            border-bottom: 1px solid #e8e9ed;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+        body{
+            width : 100%;
+            max-width: 1200px;
+            margin:0 auto;
+        }
+        #allWrap{
+            display: inline-block;
+            margin: 30px 0 auto;
+            /*border-top: 1px solid #e8e9ed;*/
+            width : 100%;
+            max-width: 1200px;
+        }
+        .li_top{
+            border-top: 1px solid #e8e9ed;
+            padding: 0;
+        }
+        .main{
+            border-bottom: 1px solid #e8e9ed;
+        }
+        .left_block{
+            float: left;
+            box-sizing: border-box;
+            width: 230px;
+            margin-right: 90px;
+        }
+        .right_block{
+            float: left;
+            width: 880px;
+        }
+        .profile_text{
+            font-size: 32px;
+            padding-bottom: 30px;
+        }
+        .profile{
+            float: left;
+        }
+
+        .profile_show{
+            float: left;
+            word-spacing: -6px;
+            position: relative;
+        }
+        .emailChange, .nickChange{
+            height: 26px;
+            border: 1px solid #dfdfdf;
+            position: absolute;
+            width: 41px;
+            cursor: pointer;
+        }
+        .set_myInfo{
+            padding: 31px 0 47px 5px;
+            border-bottom: 1px solid #e8e9ed;
+        }
+        .set_myInfo.top{
+            border-bottom: 1px solid #e8e9ed;
+            border-top: 2px solid black;
+        }
+        .profile.id, .picture, .email, .nick{
+            display: inline;
+            width: 180px;
+        }
+        .photo{
+            height: 100px;
+            border-radius: 10px;
+        }
+        /*.left_block ul li.li_top>a{*/
+        /*    background:  #ef6e73;*/
+        /*    color: white;*/
+        /*}*/
+        .left_block ul li:hover>a{
+            background:  #ef6e73;
+            color: white;
+            text-decoration: none;
+        }
+        .left_block ul li>a{
+            font-size: 15px;
+            font-weight: 400;
+            color: inherit;
+            display: block;
+            padding: 16px 30px 16px 15px;
+            word-break: break-all;
+            letter-spacing: -0.2px;
+        }
+        a{
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btns_wrap{
+            padding-top: 10px;
+        }
+        .photoChange, .photoDelete{
+            /*border: 1px solid #ef6e73;*/
+            background: white;
+            /*color: #ef6e73;*/
+            padding: 1px;
+            cursor: pointer;
+        }
+        input.email, input.nick{
+            width: 227px;
+            height: 22px;
+            border: 1px solid #e8e9ed;
+        }
+        input.email:focus, input.nick:focus{
+            border-color: #ef6e73;
+            outline: none;
+        }
+        img{
+            width: 110px;
+            height: 110px;
+            border-radius: 10px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="allWrap">
+        <div class="profileWrap">
+            <div class="group">
+                <div class="left_block">
+                    <ul class="liWrap">
+                        <li class="li_top">
+                            <a href="">프로필 수정</a>
+                        </li>
+                        <li>
+                            <a href="">내 작품 관리</a>
+                        </li>
+                        <li>
+                            <a href="">비밀번호 변경</a>
+                        </li>
+                        <li>
+                            <a href="">내 문의 내역</a>
+                        </li>
+                        <li>
+                            <a href="">탈퇴 하기</a>
+                        </li>
+                        <li>
+                            <a href="">결제</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right_block">
+                    <div class="">
+                        <div class="profile_text"><strong>프로필 수정</strong></div>
+                        <div class="main">
+                            <div class="set_myInfo top">
+                                <strong class="profile id">아이디</strong>
+                                <div class="profile_show">(아이디 자리)</div>
+                            </div>
+                            <div class="set_myInfo photo">
+                                <strong class="profile picture">이미지</strong>
+                                <div class="profile_show">
+                                    <img class="imagePreview1 test" src="../../static/images/default.png" height="100" width="100"/>
+                                        <ul class="imagePreview"></ul>
+                                    <div class="btns_wrap">
+                                        <input type="file" class="realUpload" accept="image/*" required multiple style="display: none;">
+                                        <span class="photoChange" onclick="">사진변경</span>
+                                        <span class="photoDelete" onclick="">삭제</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="set_myInfo ">
+                                <strong class="profile email">이메일</strong>
+                                <div class="profile_show"><input class="email" type="text" placeholder="이메일">
+                                    <button type="button" class="btn emailChange">변경</button></div>
+                            </div>
+                            <div class="set_myInfo ">
+                                <strong class="profile nick">닉네임</strong>
+                                <div class="profile_show"><input class="nick" type="text" placeholder="닉네임">
+                                <button type="button" class="btn nickChange">변경</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function getImageFiles(e) {
+        const uploadFiles = [];
+        const files = e.currentTarget.files;
+        const imagePreview = document.querySelector('.imagePreview');
+        console.log(typeof files, files);
+
+        //FileList를 Array로 변환하여 length로 길이를 체크
+        if ([...files].length >= 2) {
+            alert('이미지는 최대 1개까지 업로드 가능합니다.');
+            return;
+        }
+
+        //파일 타입 검사
+        [...files].forEach(file => {
+            //이미지인지 체크
+            if (!file.type.match('image/*')) {
+                alert('이미지 파일만 업로드 가능합니다.');
+                return;
+            }
+
+    // 파일 갯수 검사
+        if ([...files].length < 7) {
+            uploadFiles.push(file);
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const preview = createElement(e, file);
+                imagePreview.appendChild(preview);
+            };
+            reader.readAsDataURL(file);
+        }
+        });
+    }
+
+
+    function createElement(e, file) {
+        const li = document.createElement('li');
+        const img = document.createElement('img');
+
+
+        img.setAttribute('src', e.target.result);
+        img.setAttribute('data-file', file.name);
+        li.appendChild(img);
+
+        document.querySelector('.imagePreview1').remove();
+        return li;
+    }
+
+    const realUpload = document.querySelector('.realUpload');
+    const upload = document.querySelector('.photoChange');
+
+    upload.addEventListener('click', () => realUpload.click());
+    realUpload.addEventListener('change', getImageFiles);
+
+    const photoDelete = document.querySelector('.photoDelete');
+    const imagePreview = document.querySelector('.imagePreview1');
+    const test = document.querySelector('.test');
+
+    // photoDelete.addEventListener('click', function () {
+    //     test.classList.remove('imagePreview');
+    //
+    //
+    // })
+</script>
+</html>

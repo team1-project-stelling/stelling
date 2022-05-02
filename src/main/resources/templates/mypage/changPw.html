@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>프로필 수정</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/editProfile.css}">
+    <link rel="stylesheet" href="css/editProfile.css" type="text/css"/>
+    <style>
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li{
+            font-size: 15px;
+            font-weight: 400;
+            color: inherit;
+            display: block;
+            word-break: break-all;
+            letter-spacing: -0.2px;
+            border-bottom: 1px solid #e8e9ed;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+        body{
+            width : 100%;
+            max-width: 1200px;
+            margin:0 auto;
+        }
+        #allWrap{
+            display: inline-block;
+            margin: 30px 0 auto;
+            /*border-top: 1px solid #e8e9ed;*/
+            width : 100%;
+            max-width: 1200px;
+        }
+        .main{
+            border-bottom: 1px solid #e8e9ed;
+        }
+        .left_block{
+            float: left;
+            box-sizing: border-box;
+            width: 230px;
+            margin-right: 90px;
+        }
+        .li_top{
+            border-top: 1px solid #e8e9ed;
+        }
+        .right_block{
+            float: left;
+            width: 880px;
+        }
+        .profile_text{
+            font-size: 32px;
+            padding-bottom: 30px;
+        }
+        .profile{
+            float: left;
+        }
+        .set_myInfo{
+            padding: 31px 0 31px 5px;
+            border-bottom: 1px solid #e8e9ed;
+        }
+        .set_myInfo.top{
+            border-bottom: 1px solid #e8e9ed;
+            border-top: 2px solid black;
+        }
+        .profile.pw, .newPw{
+            display: inline;
+            width: 180px;
+        }
+        .wrap_btn{
+            text-align: center;
+            padding: 50px 0 70px;
+        }
+        /*.left_block ul li.li_top>a{*/
+        /*    background:  #ef6e73;*/
+        /*    color: white;*/
+        /*}*/
+        .left_block ul li:hover>a{
+            background:  #ef6e73;
+            color: white;
+            text-decoration: none;
+        }
+        .left_block ul li>a{
+            font-size: 15px;
+            font-weight: 400;
+            color: inherit;
+            display: block;
+            padding: 16px 30px 16px 15px;
+            word-break: break-all;
+            letter-spacing: -0.2px;
+        }
+        a{
+            text-decoration: none;
+            cursor: pointer;
+        }
+        div input{
+            width: 227px;
+            height: 22px;
+            border: 1px solid #e8e9ed;
+        }
+        div input:focus{
+            border-color: #ef6e73;
+            outline: none;
+        }
+        .wrap_btn_save{
+            width: 80px;
+            height: 35px;
+            border: 0;
+            outline: 0;
+            background: #ef6e73;
+            color: white;
+            font-size: 17px;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="allWrap">
+    <div class="profileWrap">
+        <div class="group">
+            <div class="left_block">
+                <ul class="liWrap">
+                    <li class="li_top active">
+                        <a href="">프로필 수정</a>
+                    </li>
+                    <li class="active">
+                        <a href="">내 작품 관리</a>
+                    </li>
+                    <li class="active">
+                        <a href="">비밀번호 변경</a>
+                    </li>
+                    <li class="active">
+                        <a href="">내 문의 내역</a>
+                    </li>
+                    <li class="active">
+                        <a href="">탈퇴 하기</a>
+                    </li>
+                    <li class="active">
+                        <a href="">결제</a>
+                    </li>
+                </ul>
+            </div>
+            <form class="changPw" action="" method="post">
+                <div class="right_block">
+                    <div class="">
+                        <div class="profile_text"><strong>비밀번호 변경</strong></div>
+                        <div class="main">
+                            <div class="set_myInfo top">
+                                <strong class="profile pw">현재 비밀번호</strong>
+                                <input class="userPw" type="text" placeholder="현재 비밀번호를 입력해 주세요.">
+                            </div>
+                            <div class="set_myInfo">
+                                <strong class="profile newPw">새 비밀번호</strong>
+                                <input type="text" placeholder="새 비밀번호를 입력해 주세요.">
+                            </div>
+                            <div class="set_myInfo">
+                                <strong class="profile newPw">새 비밀번호 확인</strong>
+                                <input type="text" placeholder="새 비밀번호를 다시 입력해주세요">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrap_btn">
+                        <button type="button" class="wrap_btn_save" name="저장_버튼">저장</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<script src="/js/editProfile.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+</body>
+<script th:inline="javascript">
+
+</script>
+</html>
