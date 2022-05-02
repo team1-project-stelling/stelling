@@ -6,6 +6,7 @@
     <title>프로필 수정</title>
 <!--    <link rel="stylesheet" type="text/css" th:href="@{/css/editProfile.css}">-->
 <!--    <link rel="stylesheet" href="css/editProfile.css" type="text/css"/>-->
+
     <style>
         ul{
             list-style: none;
@@ -55,6 +56,7 @@
         .right_block{
             float: left;
             width: 880px;
+
         }
         .profile_text{
             font-size: 32px;
@@ -247,7 +249,6 @@
         const li = document.createElement('li');
         const img = document.createElement('img');
 
-
         img.setAttribute('src', e.target.result);
         img.setAttribute('data-file', file.name);
         li.appendChild(img);
@@ -262,12 +263,14 @@
     upload.addEventListener('click', () => realUpload.click());
     realUpload.addEventListener('change', getImageFiles);
 
+
     const photoDelete = document.querySelector('.photoDelete');
     const imagePreview = document.querySelector('.imagePreview1');
     const test = document.querySelector('.test');
 
     // photoDelete.addEventListener('click', function () {
     //     test.classList.remove('imagePreview');
+
     //
     //
     // })

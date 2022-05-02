@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>작가 정보 페이지</title>
+</head>
+<style>
+    .p{
+        margin:0px;
+        padding: 0px;
+    }
+    .profilePicture{
+        width: 141px;
+        height: 141px;
+        border-radius: 79px;
+        overflow: hidden;
+        margin-right: 38px;
+    }
+    .userProfile{
+        /*background-color: yellow;*/
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+
+    }
+    .userNick{
+        font-size: 23px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+    .postInfo{
+        color: gray;
+        margin-bottom: 10px;
+    }
+    .message{
+        padding-right: 30px;
+    }
+    .chatBtn{
+        background-color: white;
+        color: #ef6e73ab;
+        border: 1.5px solid #ef6e73ab;
+        width: 111px;
+        height: 40px;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 2.5;
+        cursor: pointer;
+    }
+    .chatBtn:hover{
+        background-color:#ef6e73ab ;
+        color:white;
+        border: none;
+        font-size: 15px;
+        line-height: 2.75;
+    }
+    .url{
+        display: flex;
+        align-items: center;
+        margin-left: 250px;
+        margin-top: 20px;
+    }
+
+    .post{
+        width: 300px;
+        height: 280px;
+        margin:13px;
+        cursor: pointer;
+        position: relative;
+    }
+    .posts{
+        display: flex;
+        justify-content: center;
+    }
+
+
+    .heart{
+        opacity: 0;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        display: block;
+        background-color: #00000073;
+        width: 300px;
+        height: 160px;
+        color: white;
+        font-size: 22px;
+        text-align: center;
+        padding-top: 120px;
+    }
+    .post:hover, .heart:hover{
+        opacity: 1;
+    }
+
+</style>
+<body>
+<div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 100px; padding-bottom: 100px;">
+
+    <div>
+        <div class="userProfile">
+            <div class="profilePicture">
+
+                <img src="../../static/images/프사.jpg" width="100%" height="100%" />
+            </div>
+            <div style="width: 35%;">
+                <div><p class="p userNick">yewon_seo</p></div>
+                <div style="display: flex;">
+                    <p class="p postInfo">게시물 <span>6</span></p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <p class="p postInfo">완료한 작업 <span>3</span></p>
+                </div>
+                <div class="message">
+                    <!--상태메세지 적는 란 -->
+                    <span>안녕하세요. 일찍자고싶은 서예원입니다🦉</span>
+                </div>
+            </div>
+            <div>
+                <button class="chatBtn">CHAT</button>
+            </div>
+        </div>
+
+        <div>
+            <div class="url">
+                <div><img src="../../static/images/icon/붓.png" width="39px"/></div>
+               <div>https://www.instagram.com/yewon.seo_/</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--게시물 목록 ------------------------------------------------------------------------------------ -->
+
+
+    <div style="margin-top: 80px; background-color: rgba(232,232,232,0.61); padding: 100px 0px;" >
+        <div class="posts">
+            <div class="post">
+
+                <img src="../../static/images/illustDetail/일러스트 상세 1.jpg" width="100%" height="100%"/>
+                <div class="heart">❤ <p style="font-size: 12px;" class="p">1,213</p></div>
+            </div>
+            <div class="post">
+
+                <img src="../../static/images/illustDetail/일러스트 상세2.jpg" width="100%" height="100%"/>
+                <div class="heart">❤ <p style="font-size: 12px;" class="p">543</p></div>
+            </div>
+            <div class="post">
+
+                <img src="../../static/images/illustDetail/일러스트 상세 3.jpg" width="100%" height="100%"/>
+                <div class="heart">❤ <p style="font-size: 12px;" class="p">1,011</p></div>
+            </div>
+
+
+        </div>
+
+        <div class="posts">
+
+            <div class="post">
+
+                <img src="../../static/images/illustDetail/일러스트 상세4.jpg" width="100%" height="100%"/>
+                <div class="heart">❤ <p style="font-size: 12px;" class="p">23</p></div>
+            </div>
+            <div class="post">
+
+                <img src="../../static/images/illustDetail/일러스트 상세5.jpg" width="100%" height="100%"/>
+                <div class="heart">❤ <p style="font-size: 12px;" class="p">192</p></div>
+            </div>
+            <div class="post">
+
+                <img src="../../static/images/illustDetail/일러스트 상세6.jpg" width="100%" height="100%"/>
+                <div class="heart">❤ <p style="font-size: 12px;" class="p">0</p></div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</body>
+</html>

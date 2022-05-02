@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>일러스트레이터 페이지 작성 페이지</title>
+</head>
+<style>
+    .profilePicture{
+        width: 155px;
+        height: 155px;
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 80px;
+
+    }
+    .inputFlex{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        line-height: 2;
+    }
+    .infoText{
+        width: 285px;
+        font-size: 18px;
+        font-weight: 600;
+        height: 35px;
+        color: gray;
+    }
+    .inputCss{
+        font-size: 15px;
+        height: 35px;
+        padding-left: 8px;
+        width: 531px;
+        margin-left: -280px;
+        border: 1px solid #c8c8c8;
+    }
+    .textbox2{
+        margin-top: -30px;
+        font-size: 14px;
+        color: #9f9f9f;
+    }
+    #textBox{
+        height: 55px;
+        resize: none;
+        width: 530px;
+        margin-left: -280px;
+        padding: 7px;
+        border: 1px solid #c8c8c8;
+    }
+    #textBox2{
+        height: 117px;
+        resize: none;
+        width: 530px;
+        padding: 7px;
+        margin:16px 0px 20px -280px;
+        border: 1px solid #c8c8c8;
+    }
+    .webSite{
+        margin-right: 16.4%;
+        background-color: white;
+        border: 1px solid #ef6e73;
+        color: #ef6e73;
+        height: 33px;
+        width: 127px;
+        border-radius: 9px;
+        font-weight: initial;
+        cursor: pointer;
+    }
+    .select{
+        width: 548px;
+        margin-left: -278px;
+        margin-right: 0px;
+        color: #454545;
+        font-weight: initial;
+    }
+    .clearBtn{
+        margin: 100px auto;
+        text-align: center;
+    }
+    .finishBtn{
+        font-size: 17px;
+        height: 50px;
+        width: 200px;
+        background-color: #ef6273;
+        color: white;
+        border: none;
+        border-radius: 16px;
+        font-weight: bold;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    .cancleBtn{
+        width: 200px;
+        height: 50px;
+        font-size: 17px;
+        border: 1.5px solid #ef6273;
+        border-radius: 16px;
+        background-color: white;
+        color: #ef6273;
+        font-weight: bold;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+
+    input:focus, textarea:focus, select:focus{
+        outline:1.5px solid #ef6273 ;
+        border-color: #00ff0000;
+    }
+
+    .hr{
+        width: 65%;
+        margin-top: 70px;
+    }
+    .text3{
+        text-align: center;
+        font-size: 13px;
+        color: gray;
+    }
+
+    .profilePicture:hover > p{
+        opacity: 1;
+    }
+    p.changeImageText{
+        position: absolute;
+        top: 54px;
+        margin-left: -84px;
+        color: #ef6273;
+        font-weight: initial;
+        opacity: 0;
+    }
+    .pinkwrap{
+        margin-top: -55px !important;
+        border: 3px solid #ef627369;
+        width: 81%;
+        margin: 0 auto;
+        border-radius: 70px;
+        padding: 100px 0px;
+    }
+    .ques{
+        position: absolute;
+        position: absolute;
+        left: 103px;
+        top: 6px;
+        opacity: 1;
+    }
+    .position{
+      position: relative;
+    }
+    .chatImg{
+        position: absolute;
+        width: 225px;
+        top: -107px;
+        left: 81px;
+        height: 122px;
+        opacity: 0;
+    }
+    .ques:hover + img, .ques:hover ~ p{
+        opacity: 1;
+    }
+
+    .quesInfo1{
+        position: absolute;
+        color: white;
+        left: 97px;
+        top: -91px;
+        opacity: 0;
+        font-weight: initial;
+
+    }
+    .quesInfo2{
+        position: absolute;
+        top: -65px;
+        left: 96px;
+        color: white;
+        opacity: 0;
+        font-weight: initial;
+
+    }
+    .intpuCss2{
+        width: 538px;
+        margin-left: -278px;
+        margin-right: -1px;
+    }
+</style>
+<body>
+<div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 100px; padding-bottom: 100px;">
+
+    <!--유저 프로필 사진-->
+    <div >
+    <div>
+        <div class="profilePicture">
+            <img src="../../static/images/프사.jpg" height="100%" width="100%"/>
+            <p class="changeImageText">※ 이미지 변경은 마이페이지에서 가능합니다.</p>
+
+        </div>
+    </div>
+    <!--유저 아이디-->
+
+
+    <div style="margin-top: 50px;" >
+        <div class="divs">
+                <div class="inputFlex">
+                    <p class="infoText">로그인 ID</p>
+                    <p><input type="text" value="dodnjs1241" class="inputCss" readonly></p>
+                </div>
+                <div class="inputFlex">
+                    <p class="infoText">닉네임</p>
+                    <p><input type="text" value="예오닝" class="inputCss" readonly></p>
+                </div>
+              <!--  <div class="inputFlex">
+                    <p class="infoText">이메일</p>
+                    <p><input type="text" class="inputCss" placeholder="프로필 페이지에 표시할 이메일을 작성하세요"></p>
+                </div>-->
+                <div class="inputFlex" style="margin-top: 14px; line-height: 0;">
+
+                    <div class="textLengthWrap">
+                        <p class="infoText">*짧은소개</p>
+                        <div class="textbox2">
+                            <span class="textCount">0자</span>
+                            <span class="textTotal">/50자</span>
+                        </div>
+                    </div>
+                    <textarea name="" id="textBox"  maxlength="50" placeholder="50자 내로 입력해주세요"></textarea>
+                </div>
+
+                <div class="inputFlex" style="margin-top: 14px; line-height: 0;">
+                    <div class="textLengthWrap position">
+                        <div class="infoques">
+                        <img src="../../static/images/icon/물음표.png" height="24px" width="24px" class="ques"/>
+
+                            <img src="../../static/images/icon/말풍선.png" class="chatImg"/>
+                            <p class="quesInfo1">작업 내용이나 수상경력</p>
+                            <p class="quesInfo2">을 적어주세요. </p>
+                        </div>
+                        <p class="infoText">자세한 소개
+                        </p>
+                        <div class="textbox2">
+                            <span class="textCount2">0자</span>
+                            <span class="textTotal2">/600자</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                    <textarea name="" id="textBox2"  maxlength="600" placeholder="600자 내로 입력해주세요"></textarea>
+                    </div>
+                </div>
+
+            <div class="inputFlex">
+                <p class="infoText">*주 활동영역</p>
+                <select name="" id="" class="inputCss select">
+                    <option value="" style="color: gray" selected disabled hidden> 카테고리</option>
+                    <option value="">동화</option>
+                    <option value="">시티팝</option>
+                    <option value="">디즈니 감성</option>
+                    <option value="">지브리 감성</option>
+                    <option value="">수채화</option>
+                    <option value="">흑백</option>
+                    <option value="">배경화</option>
+                    <option value="">캐릭터</option>
+                    <option value="">추상화</option>
+                    <option value="">인물화</option>
+                </select>
+            </div>
+
+
+
+            <div class="inputFlex">
+                    <p class="infoText">웹사이트</p>
+                    <p><input type="text" class="inputCss intpuCss2" ></p>
+                </div>
+         </div>
+            <div style="text-align: center;">
+                <button class="webSite">+ 입력 박스 추가</button>
+            </div>
+
+    </div>
+
+        <hr class="hr">
+        <p class="text3">※ 귀하의 프로필 정보는 Stelling서비스 제공을 위해 수집되며, 회원 탈퇴 또는 삭제시까지 보유됩니다.</p>
+
+        <div class="clearBtn">
+        <button class="finishBtn">프로필 작성 완료</button>
+        <button class="cancleBtn">취소</button>
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $('#textBox').keyup(function (e) { let content = $(this).val(); // 글자수 세기
+    if (content.length == 0 || content == '') {
+        $('.textCount').text('0자');
+        } else { $('.textCount').text(content.length + '자'); }; // 글자수 제한
+     if (content.length > 50) { // 200자 부터는 타이핑 되지 않도록
+         $(this).val($(this).val().substring(0, 50)); // 200자 넘으면 알림창 뜨도록
+    alert('글자수는 50자까지 입력 가능합니다.'); };
+    });
+
+    $('#textBox2').keyup(function (e) { let content = $(this).val(); // 글자수 세기
+        if (content.length == 0 || content == '') {
+            $('.textCount2').text('0자');
+        } else { $('.textCount2').text(content.length + '자'); }; // 글자수 제한
+        if (content.length > 600) { // 200자 부터는 타이핑 되지 않도록
+            $(this).val($(this).val().substring(0, 600)); // 200자 넘으면 알림창 뜨도록
+            alert('글자수는 600자까지 입력 가능합니다.'); };
+    });
+
+    /*--------사이트 추가 버튼 클릭시 div추가---------------------*/
+    $('.webSite').on("click", function () {
+        let div ="<div class='inputFlex sitediv'>" +
+            "<p class='infoText'></p>" +
+            "<p><input type='text' class='inputCss intpuCss2' ></p>" +
+            "</div>";
+        $('.divs').append(div);
+    })
+
+
+
+</script>
+</html>

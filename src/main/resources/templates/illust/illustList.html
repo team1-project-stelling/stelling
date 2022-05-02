@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>일러스트 목록</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+</head>
+<style>
+
+
+    *{
+        font-family: 'Architects Daughter', cursive;
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+    .box{
+        flex-direction: column;
+        width: 230px;
+        height: fit-content;
+    }
+    .column{
+
+        flex-direction: column;
+    }
+    .cellCss{
+        width: 91%;
+        /*height: 100%;*/
+        text-align: center;
+        margin: 44px 0px 16px 33px;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+    }
+
+    .flex2{
+        display: flex;
+        /*align-items: center; */
+    }
+    .testWidth{
+        width: 100%;
+        border-radius: 16px;
+        cursor: pointer;
+        display: block;
+    }
+    .testWidth:hover, .heart:hover{
+
+        opacity: 1;
+    }
+    .heart{
+        opacity: 0;
+        position: absolute;
+        left: 0px;
+        top: 0;
+        display: block;
+        background-color: #00000073;
+        width: 100%;
+        height: 100%;
+        color: white;
+        font-size: 22px;
+        text-align: left;
+        padding-top: 8px;
+        padding-left: 15px;
+    }
+
+
+    /*//----------------------------------------------*/
+    .container {
+        width: 950px;
+        height: 300px;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .banner {
+        /*transform:translate(-1000px);*/
+        width: 1900px;
+        height: 100%;
+        margin: 0 auto;
+        transition: transform 0.5s;
+
+    }
+
+    .img {
+        float :left;
+        width: 150px;
+        height: 100%;
+        margin-right: 10px;
+    }
+
+
+    .imageDefaultCss{
+        width:100%;
+        height: 155px;
+
+    }
+
+    .arrow{
+        cursor: pointer;
+    }
+    .prev{
+        position: absolute;
+        font-size: 39px;
+        display: inline-block;
+        left: 70px;
+        top: 74px;
+    }
+    .next{
+        position: absolute;
+        font-size: 39px;
+        display: inline-block;
+        right: 70px;
+        top: 74px;
+    }
+
+    .Title1{
+        width: 950px;
+        margin: 0 auto;
+        text-align: left;
+        margin-top: 180px;
+        font-size: 41px;
+        padding-bottom: 13px;
+        font-weight: bold;
+    }
+    .Title2{
+
+        font-size: 41px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+    .textDiv{
+        width: 100%; height: 50px; margin-top: -5px;
+        text-align: center;
+        line-height: 3.4;
+
+    }
+    .textColor{
+        color: white;
+    }
+    .textColor2{
+        color:dimgray;
+    }
+    .hashtag{
+        background-color: white;
+        border: 1px solid lightgray;
+        border-radius: 6px;
+        height: 36px;
+        font-size: 15px;
+        padding-left: 8px;
+        padding-right: 8px;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+    .hashtag:hover{
+        border-color: #ef6e73ab;
+        color: #ef6e73ab;
+    }
+    .selectBox{
+        background-color: white;
+        /*border: 1px solid #a8a8a8;*/
+        color:gray ;
+        width: 100px;
+        height: 36px;
+        /*border-radius: 8px;*/
+        padding:0px 10px;
+        border: none;
+    }
+    .selectBox:hover{
+        border-color: #ef6e73ab;
+        border: none;
+    }
+    .selectBox:focus{
+        outline-color: #00ff0000;
+        color: #ef6e73ab;
+        border: none;
+    }
+
+
+
+    /*-----------------------------------------------------------*/
+</style>
+<body>
+
+
+
+
+<div style="width : 100%;   max-width:1200px ; margin:0 auto; ">
+
+
+    <div>
+        <div class="Title1">Category</div>
+        <div style="position: relative; margin-bottom: 60px;">
+            <div class="arrow prev">&lt;</div>
+            <div class="arrow next">&gt;</div>
+            <div class="container">
+                <div class="banner">
+                    <div class="img">
+
+                        <img src="../../static/images/illustCategory/디즈니감성.jpg" class="imageDefaultCss"/>
+                        <div style=" background-color: #0F0E38;" class="textDiv textColor">
+                            디즈니 감성
+                        </div>
+                    </div>
+                    <div class="img">
+
+                        <img src="../../static/images/illustCategory/지브리감성.jpg" class="imageDefaultCss"/>
+                        <div style="background-color: #608573;" class="textDiv textColor">
+                            지브리 감성
+                        </div>
+                    </div>
+                    <div class="img">
+
+                        <img src="../../static/images/illustCategory/캐릭터.jpg" class="imageDefaultCss"/>
+                        <div style="background-color: #E6AFAA;"class="textDiv textColor">
+                            캐릭터
+                        </div>
+                    </div>
+                    <div class="img">
+
+                        <img src="../../static/images/illustCategory/배경화.jpg" class="imageDefaultCss"/>
+                        <div style=" background-color: #6060B6; " class="textDiv textColor">
+                            배경화
+                        </div>
+                    </div>
+                    <div class="img">
+
+                        <img src="../../static/images/illustCategory/흑백.jpg" class="imageDefaultCss"/>
+                        <div style=" background-color: #303030;" class="textDiv textColor">
+                            흑백
+                        </div>
+                    </div>
+                    <div class="img">
+
+                        <img src="../../static/images/illustCategory/수채화.jpg" class="imageDefaultCss"/>
+                        <div style="background-color: #FFE972;"class="textDiv textColor">
+                            수채화
+                        </div>
+                    </div>
+                    <div class="img">
+
+                        <img src="../../static/images/illustCategory/사물화.jpg"class="imageDefaultCss"/>
+                        <div style="background-color: #DEDEE0; "class="textDiv textColor2">
+                            사물화
+                        </div>
+                    </div>
+                    <div class="img">
+
+                        <img src="../../static/images/illustCategory/추상화.jpg" class="imageDefaultCss"/>
+                        <div style=" background-color: #508D6B; "class="textDiv textColor">
+                            추상화
+                        </div>
+                    </div>
+                    <div class="img">
+
+                        <img src="../../static/images/illustCategory/음식.jpg"class="imageDefaultCss"/>
+                        <div style=" background-color: #DEA97F;"class="textDiv textColor">
+                            음식
+                        </div>
+                    </div>
+                    <div class="img">
+
+                        <img src="../../static/images/illustCategory/인물화.jpg" class="imageDefaultCss"/>
+                        <div style="background-color: #FBD0C7;"class="textDiv textColor2">
+                            인물화
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <p class="Title2">Art Work</p>
+    <div style="display: flex; justify-content: space-between;">
+        <div>
+            <button class="hashtag">#인물화</button>
+            <button class="hashtag">#food</button>
+            <button class="hashtag">#black&white</button>
+            <button class="hashtag">#character</button>
+        </div>
+
+        <div>
+            <select name="" id="" class="selectBox">
+                <option value="">인기순</option>
+                <option value="">최신순</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="flex2 wrap" style="background-color: #EAEAEA;">
+        <div class="box">
+            <div class="column cellCss" >
+                <img src="../../static/images/일러스트 1.jpg" class="testWidth" />
+                <span class="heart">❤<span style="font-size: 12px;">1,213</span></span>
+
+            </div>
+            <div class="column cellCss">
+                <img src="../../static/images/일러스트 4.jpg" class="testWidth">
+                <span class="heart">❤<span style="font-size: 12px;">1,043</span></span>
+            </div>
+            <div class="column cellCss">
+                <img src="../../static/images/일러스트 3.jpg" class="testWidth">
+                <span class="heart">❤</span>
+            </div>
+        </div>
+        <div class="box">
+            <div class="column cellCss">
+                <img src="../../static/images/일러스트 2.jpg" class="testWidth">
+                <span class="heart">❤</span>
+            </div>
+            <div class="column cellCss">
+                <img src="../../static/images/일러스트 10.jpg" class="testWidth">
+                <span class="heart">❤</span>
+            </div>
+            <div class="column cellCss">
+                <img src="../../static/images/일러스트 11.jpg" class="testWidth">
+                <span class="heart">❤</span>
+            </div>
+        </div>
+        <div class="box">
+            <div class="column cellCss">
+                <img src="../../static/images/일러스트 7.jpg" class="testWidth">
+                <span class="heart">❤</span>
+            </div>
+            <div class="column cellCss">
+                <img src="../../static/images/일러스트 6.jpg" class="testWidth">
+                <span class="heart">❤</span>
+            </div>
+            <div class="column cellCss">
+                <img src="../../static/images/일러스트 9.jpg" class="testWidth">
+                <span class="heart">❤</span>
+            </div>
+        </div>
+        <div class="box">
+            <div class="column cellCss">
+                <img src="../../static/images/일러스트 5.jpg" class="testWidth">
+                <span class="heart">❤</span>
+            </div>
+            <div class="column cellCss">
+                <img src="../../static/images/일러스트 8.jpg" class="testWidth">
+                <span class="heart">❤</span>
+            </div>
+            <div class="column cellCss">
+                <img src="../../static/images/일러스트 12.jpg" class="testWidth">
+                <span class="heart">❤</span>
+            </div>
+        </div>
+        <div class="box">
+            <div class="column cellCss">
+                <img src="../../static/images/일러스트 13.jpg" class="testWidth">
+                <span class="heart">❤</span>
+            </div>
+            <div class="column cellCss">
+                <img src="../../static/images/일러스트 14.jpg" class="testWidth">
+                <span class="heart">❤</span>
+            </div>
+            <div class="column cellCss">
+                <img src="../../static/images/일러스트 15.jpg" class="testWidth">
+                <span class="heart">❤</span>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    const banner= document.querySelector('.banner');
+    const arrows = document.querySelectorAll(".arrow");
+    let count = 0;
+
+    //이전, 다음 버튼 클릭 시 알맞는 배너로 이동
+    arrows.forEach((arrow) => {
+        arrow.addEventListener("click", function(){
+
+            let arrowType = arrow.classList[1];
+            console.log(arrowType);
+            if(arrowType == 'prev' ){
+                count--;
+            }else if(arrowType == 'next' ) {
+                count++;
+
+            }
+
+            banner.style.transform = "translate(-" + count * 160 + "px)";
+        });
+    });
+    // let $images = $("div.banner").children('div');
+    // console.log($images.length);
+
+    /* function nextImg(count){
+         let $images = $("div.banner").children('div');
+         // console.log($images);
+         $images[0].remove();
+         $("div.banner").append($images[0]);
+         // console.log($images[(count-6)%10]);
+         console.log($images.length);
+     }*/
+
+    setInterval(function(){
+        count++;
+
+        if(count == 5){
+            // console.log("들어옴");
+            count= count == 5? 0:count;
+
+
+        }
+        banner.style.transform = "translate(-" + count * 160 + "px)";
+
+
+    },1500);
+
+
+
+
+</script>
+</html>
