@@ -438,3 +438,35 @@
   background-color: #DDD;
   height: 400px;
 }
+
+.movemove {
+  -webkit-animation: rotate;
+          animation: rotate;
+  -webkit-animation-duration: 20s;
+          animation-duration: 20s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-fill-mode: none;
+          animation-fill-mode: none;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+
+@-webkit-keyframes rotate {
+  to {
+    -webkit-transform: translateX(-50.5%);
+            transform: translateX(-50.5%);
+  }
+}
+
+@keyframes rotate {
+  to {
+    -webkit-transform: translateX(-50.5%);
+            transform: translateX(-50.5%);
+  }
+}
+
+#fourList:hover {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}

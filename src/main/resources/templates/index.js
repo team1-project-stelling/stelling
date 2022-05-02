@@ -115,7 +115,7 @@ let tagspan = document.querySelectorAll('.tagspan');
 
 function clickHandler() {  
      for (var i = 0; i < tagspan.length; i++){
-        tagspan[i].classList.remove('clinkadd');
+        tagspan[i].classList.remove('clinkadd');    
      }
      this.classList.add('clinkadd');
 }
@@ -127,7 +127,8 @@ function clickHandler() {
 
 
 
-
+  //클래스 눌렸을때  
+    
 
 
 
@@ -135,8 +136,8 @@ function clickHandler() {
 
 
 
-function makeHot(v,index,List){
-    
+   function makeHot(v,index,List){
+   
    
     const divWrap =document.createElement('div')
     divWrap.className="divWrap"
@@ -188,21 +189,16 @@ function makeHot(v,index,List){
   
     //페이지 이동
 function ff(){
-    location.href=`index.html/${v.id}`
+    location.href=`index.html/pages/${v.id}`
 }
     
 }
-
-
-
-
-
-
+cccc()
 //맵으로 다 가져와버리기
-
+function cccc(){
  img.slice(0,3)?.map((v,index)=>{
     let List = document.querySelector('.tags_left')
-   
+   console.log(v)
     makeHot(v,index,List);}
     )
  
@@ -215,46 +211,48 @@ img.slice(3,6)?.map((v,index)=>{
 img.slice(6,9)?.map((v,index)=>{
     let List = document.querySelector('.tags_right')
     makeHot(v,index,List);})  
+}
 
+
+
+
+function searchs(props) { 
+    let result= [];
+    console.log(props)
+    $.ajax({
+      url : "https://api.themoviedb.org/3/movie/popular?api_key=84681a7022280cff3021d07fe9117b39&language=ko-KR",
+      data: {result : props},
+      dataType: "json",	
+      type: "get",
+      async: false,
+      success: function(data) {
+      result = data.results?.map((v)=>{v.genre_ids})},
   
-    dataseting()
-  function dataseting (){
-    let divWraps = document.querySelectorAll('.divWrap')
-    for(i=0; i<divWraps.length;i++){
-        divWraps[i].setAttribute("data-value",'all ')
-        
-    }
-    let divWrap0 =document.querySelectorAll('#divWrap0')
-    for(i=0; i<divWrap0.length;i++){
-    divWrap0[i].setAttribute("data-value",'all a')
-    }
-    let divWrap1 =document.querySelectorAll('#divWrap1')
-    for(i=0; i<divWrap1.length;i++){
-    divWrap1[i].setAttribute("data-value",'all b')
-    }
-    let divWrap2 =document.querySelectorAll('#divWrap2')
-    for(i=0; i<divWrap2.length;i++){
-     divWrap2[i].setAttribute("data-value",'all b c')
-    }
-
-let AllSpan = document.querySelectorAll('[data-value]')
-let AllGrop = document.querySelectorAll('[data-group]')
-let tagspan = document.querySelectorAll('.tagspan');
-function AfiterHander(){
-for(i=0; i<AllGrop.length;i++){
+        error: function (){alert("실패");}
+    });
+    return result;
     
+ }
+
+
+
+let tags = document.getElementsByClassName('tagspan')
+//let tagspan = document.querySelectorAll('.tagspan')
+for(i=0; i<tags.length;i++){
+    tags[i].addEventListener('click', function(){
+       
+       let props = this.innerHTML
+     
+
+        let result = searchs(props);
+      
+      console.log(result)
+      
+       
+    })
 }
-for(i=0; i<AllSpan.length;i++){
-    console.log(AllSpan[i])
-}
-}
 
 
-
-console.log(tagspan[1])
-
-
-    }
 ///메인컨테이너
 
 function main_sectionList(v,sectionList){
@@ -285,7 +283,7 @@ function main_sectionList(v,sectionList){
     sectionList.appendChild(x_item)
     //페이지 지동
     function ff(){
-        location.href=`index.html/${v.id}`
+        location.href=`index.html/pages/${v.id}&${v}`
     }
         
 
@@ -313,29 +311,24 @@ img.slice(0,6).map((v)=>{
 //일러스트 슬라이드
 function Illustrator(){
     const lisls = document.querySelectorAll('#fourList div.x_item')
-    const lisl = document.querySelector('#fourList')
+    const lisl = document.querySelector('.fourList')
     const lastli = lisl.lastElementChild.cloneNode(true);
-    
+    let M_x= document.querySelectorAll('.M_x_');
     
     //요소복사
     const clone = () =>{
         let cloneslie = lisl.cloneNode(true)
+        let moves = document.querySelector('.movemove')
+        cloneslie.classList.remove('movemove')
         lisl.append(cloneslie)
+       
     }
     
-    
     //요소복사
-    clone();
-    //슬라이드 실행
-    movemove()
+     clone();
+    
 
-//슬라이드 실행
-function movemove(){
- lisl.animate([
- { transform: 'translatex(-50.5%)' }
-  ],
-   {
-    duration: 20000,
-    iterations: Infinity
-   }
-     )}}
+}
+
+
+   

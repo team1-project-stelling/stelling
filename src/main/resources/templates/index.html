@@ -18,6 +18,7 @@
             let result= [];
             $.ajax({
               url : "https://api.themoviedb.org/3/movie/popular?api_key=84681a7022280cff3021d07fe9117b39&language=ko-KR",
+             
               dataType: "json",	
               type: "get",
               async: false,
@@ -63,16 +64,16 @@
     </h2>
     <div class="M_tags_area">
         <div class="M_tags" >
-            <span class="tagspan clinkadd " data-value="all a b c"  > <a class="M_tags" > 전체</a></span>
-            <span class="tagspan " data-value="a b" > <a class="M_tags"> 판타지</a></span>
-            <span class="tagspan " data-value="a c" > <a class="M_tags"> 무협</a></span>
-            <span class="tagspan " data-value="b c" > <a class="M_tags"> 현대</a></span>
-            <span class="tagspan " data-value="a" > <a class="M_tags"> 로멘스</a></span>
-            <span class="tagspan " data-value="b" > <a class="M_tags"> 현대판타지</a></span>
-            <span class="tagspan " data-value="c" > <a class="M_tags"> 라이트노벨</a></span>
-            <span class="tagspan " data-value="all" > <a class="M_tags"> 공포</a></span>
-            <span class="tagspan " data-value="all" > <a class="M_tags"> SF</a></span>
-            <span class="tagspan " data-value="all" > <a class="M_tags"> 스포츠</a></span>
+            <span class="tagspan  clinkadd " value="all"  > <a class="M_tags"  value="28" > 전체</a></span>
+            <span class="tagspan " value="판타지" > <a class="M_tags"> 판타지</a></span>
+            <span class="tagspan " value="무협" > <a class="M_tags"> 무협</a></span>
+            <span class="tagspan " value="현대" > <a class="M_tags"> 현대</a></span>
+            <span class="tagspan " value="로멘스" > <a class="M_tags"> 로멘스</a></span>
+            <span class="tagspan " value="현대판타지" > <a class="M_tags"> 현대판타지</a></span>
+            <span class="tagspan " value="라이트노벨" > <a class="M_tags"> 라이트노벨</a></span>
+            <span class="tagspan " value="공포" > <a class="M_tags"> 공포</a></span>
+            <span class="tagspan " value="SF" > <a class="M_tags"> SF</a></span>
+            <span class="tagspan " value="스포츠" > <a class="M_tags"> 스포츠</a></span>
 
 
 
@@ -139,7 +140,7 @@
         <div>한번쯤은 보게될껄?
         <span>Illustrator</span>
         </div></div>    
-        <div class="x_box fourList" id="fourList" ></div>
+        <div class="x_box fourList movemove" id="fourList" ></div>
         </div>          
         </div>    
 
