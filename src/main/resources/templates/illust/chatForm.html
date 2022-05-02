@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>채팅 폼</title>
+</head>
+<style>
+
+    .chatWrap{
+        display: flex;
+        height: 700px;
+        width: 87%;
+        margin: 0 auto;
+    }
+    .chatWrapFirst{
+        width: 40%;
+        height:100%;
+        border: 1px solid black;
+        border-right: none;
+        border-radius: 14px 0 0 14px;
+    }
+    .chatWrapSecond{
+        /*background-color: yellow;*/
+        width: 70%;
+        height:100%;
+        border: 1px solid black;
+        border-radius: 0px 14px 14px 0px;
+    }
+    .chatList1{
+        /*background-color: white;*/
+        width: 100%;
+        height: 11%;
+        border-bottom: 1px solid gray;
+    }
+    .chatList2{
+        /*background-color: green;*/
+        width: 100%;
+        height: 89%;
+
+    }
+    .chatlist2{
+        width: 100%;
+        height: 75.7%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        margin-bottom: 9px;
+    }
+    .chatList3{
+        width: 100%;
+        height: 9%;
+        position: relative;
+
+        padding-top: 6px;
+    }
+
+    .chatUser{
+        /*background-color: skyblue;*/
+        height: 12%;
+        width:97%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 7px 6px;
+    }
+    .chatUserList{
+        padding-top: 10px;
+        height: 86.9%;
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+    .profilePic{
+        width: 63px;
+        height: 63px;
+        border-radius: 50px;
+        overflow: hidden;
+    }
+    .userInfo{
+        height: 100%;
+        width: 70%;
+        margin-left: 9px;
+    }
+    .userName{
+        width: 100%;
+        height: 50%;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 2.5;
+        /*background-color: gray;*/
+    }
+    .MessageAlarm{
+        width: 100%;
+        height: 50%;
+        color: #aaaaaa;
+        font-size: 14px;
+        /*background-color: #DEA97F;*/
+    }
+    .chatUser:hover{
+        background-color: rgba(231, 226, 226, 0.62);
+    }
+    .ownUser{
+        font-weight: bold;
+        padding: 7px;
+        font-size: 19px;
+    }
+    .headerUserName{
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding-left: 13px;
+    }
+    .profilePic2{
+        width: 45px;
+        height: 45px;
+        border-radius: 50px;
+        overflow: hidden;
+    }
+    p.user{
+        margin-left: 10px;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+
+
+
+    /* 채팅 입력차 스타일 지정 */
+    .main-chat{
+        overflow-y: scroll;
+    }
+    .insert-content{
+        background-color: white;
+        padding: 0.4375rem;
+        position: sticky;
+        bottom: 0;
+        width: 93%;
+        margin: 0 auto;
+    }
+    textarea{
+        resize: none;
+        border: none;
+        height: 1.5rem;
+        border-radius: 20px;
+    }
+
+    /* 채팅 입력창 flex로 정렬 */
+    form[name="chatform"]{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    form[name="chatform"] > textarea{
+        flex-basis: 100%;
+        flex-grow: 1;
+
+        border: 1px solid gray;
+        font-size: 15px;
+        padding: 3px 10px;
+        padding-top: 10px;
+    }
+    .chat-submit{
+        margin-left: 10px;
+        border: 1px solid #ef6273;
+        background-color: rgb(255 255 255);
+        color: #ef6273;
+        padding: 0.1875rem;
+        width: 6.125rem;
+        height: 39px;
+
+        transition-property: background-color, color;
+        transition-duration: 0.5s;
+        transition-timing-function: linear;
+        border-radius: 20px;
+    }
+    .chat-submit:hover{
+        background-color: #ef6273;;
+        color:white;
+    }
+
+    .me-chat{
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-right: 0.625rem;
+        margin-top: 0.3125rem;
+        margin-bottom: 0.3125rem;
+    }
+    .friend-chat{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: stretch;
+        margin-top: 0.3125rem;
+        margin-bottom: 0.3125rem;
+    }
+    .friend-chat-col{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+    }
+    .friend-chat-col, .me-chat-col{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+    .balloon{
+        display: inline-block;
+        width: auto;
+        border: none;
+        border-radius: 20px;
+        padding: 6px 16px;
+        color: #545454;
+        margin: 5px 10px;
+        background-color: #b4b4b4;
+        color: white;
+    }
+
+    .balloon2{
+        background-color: #ef6e73;
+        color: white;
+    }
+
+    .profilePic3{
+        margin-left: 13px;
+    }
+</style>
+<body style="background-color: #f2f2f2;">
+<div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 100px; padding-bottom: 100px; background-color: white;">
+
+    <div class="chatWrap">
+        <div class="chatWrapFirst">
+            <div class="chatList1" style="text-align: center;height: 8.3%;">
+                <p class="ownUser">yewon_seo</p>
+            </div>
+            <div class="chatList2 chatUserList">
+                <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
+                <div class="chatUser">
+                    <div class="profilePic">
+                        <img src="../../static/images/profileSample/프사1.jpg" width="100%" height="100%"/>
+                    </div>
+                    <div class="userInfo">
+                        <div class="userName">zzang_9</div>
+                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
+                    </div>
+                </div>
+                <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
+                <div class="chatUser">
+                    <div class="profilePic">
+                        <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
+                    </div>
+                    <div class="userInfo">
+                        <div class="userName">dangdang</div>
+                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
+                    </div>
+                </div>
+                <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
+                <div class="chatUser">
+                    <div class="profilePic">
+                        <img src="../../static/images/profileSample/프사3.jpg" width="100%" height="100%"/>
+                    </div>
+                    <div class="userInfo">
+                        <div class="userName">cat1234</div>
+                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
+                    </div>
+                </div>
+                <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
+                <div class="chatUser">
+                    <div class="profilePic">
+                        <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
+                    </div>
+                    <div class="userInfo">
+                        <div class="userName">dangdang</div>
+                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
+                    </div>
+                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
+                <div class="chatUser">
+                    <div class="profilePic">
+                        <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
+                    </div>
+                    <div class="userInfo">
+                        <div class="userName">dangdang</div>
+                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
+                    </div>
+                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
+                <div class="chatUser">
+                    <div class="profilePic">
+                        <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
+                    </div>
+                    <div class="userInfo">
+                        <div class="userName">dangdang</div>
+                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
+                    </div>
+                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
+                <div class="chatUser">
+                    <div class="profilePic">
+                        <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
+                    </div>
+                    <div class="userInfo">
+                        <div class="userName">dangdang</div>
+                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
+                    </div>
+                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
+                <div class="chatUser">
+                    <div class="profilePic">
+                        <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
+                    </div>
+                    <div class="userInfo">
+                        <div class="userName">dangdang</div>
+                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
+                    </div>
+                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
+                <div class="chatUser">
+                    <div class="profilePic">
+                        <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
+                    </div>
+                    <div class="userInfo">
+                        <div class="userName">dangdang</div>
+                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
+                    </div>
+                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
+                <div class="chatUser">
+                    <div class="profilePic">
+                        <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
+                    </div>
+                    <div class="userInfo">
+                        <div class="userName">dangdang</div>
+                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
+                    </div>
+                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
+                <div class="chatUser">
+                    <div class="profilePic">
+                        <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
+                    </div>
+                    <div class="userInfo">
+                        <div class="userName">dangdang</div>
+                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
+                    </div>
+                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
+                <div class="chatUser">
+                    <div class="profilePic">
+                        <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
+                    </div>
+                    <div class="userInfo">
+                        <div class="userName">dangdang</div>
+                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
+                    </div>
+                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
+                <div class="chatUser">
+                    <div class="profilePic">
+                        <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
+                    </div>
+                    <div class="userInfo">
+                        <div class="userName">dangdang</div>
+                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
+                    </div>
+                </div>
+                <!---------------------------------------------------------------------------------------- -->
+            </div>
+        </div>
+        <div class="chatWrapSecond">
+            <div class="chatList1" style="margin-bottom: 15px;">
+                <div class="headerUserName">
+                    <div class="profilePic2">
+                        <img src="../../static/images/profileSample/프사1.jpg" width="100%" height="100%"/>
+                    </div>
+                    <p class="user">zzang_9님</p>
+                </div>
+            </div>
+            <div class="chatList2 chatlist2">
+
+                <!--메인 채팅 --------------------------------------------------------------------------  -->
+                <div class="main-chat">
+                    <div class="friend-chat">
+                        <img class="profilePic2 profilePic3" src="../../static/images/profileSample/프사1.jpg"/>
+                        <div class="friend-chat-col">
+                            <span class="balloon">개미는 뚠뚠</span>
+                            <span class="balloon">오늘도 뚠뚠</span>
+                            <span class="balloon">열심히 일을 하네</span>
+                        </div>
+                    </div>
+
+                    <div class="me-chat">
+                        <div class="me-chat-col">
+                            <span class="balloon balloon2">가나다라마바사아자차카타파하</span>
+                        </div>
+                    </div>
+
+
+                    <div class="friend-chat">
+                        <img class="profilePic2 profilePic3" src="../../static/images/profileSample/프사1.jpg"/>
+                        <div class="friend-chat-col">
+                            <span class="balloon">개미는 뚠뚠</span>
+                            <span class="balloon">오늘도 뚠뚠</span>
+                            <span class="balloon">열심히 일을 하네</span>
+                        </div>
+                    </div>
+
+                    <div class="me-chat">
+                        <div class="me-chat-col">
+                            <span class="balloon balloon2">식혜는 잔치집식혜</span>
+                            <span class="balloon balloon2">오늘 점심은</span>
+                            <span class="balloon balloon2">햄버거 떡볶이 마라탕</span>
+                        </div>
+                    </div>
+
+                    <div class="friend-chat">
+                        <img class="profilePic2 profilePic3" src="../../static/images/profileSample/프사1.jpg"/>
+                        <div class="friend-chat-col">
+                            <span class="balloon">개미는 뚠뚠</span>
+                            <span class="balloon">오늘도 뚠뚠</span>
+                            <span class="balloon">열심히 일을 하네</span>
+                        </div>
+                    </div>
+
+                    <div class="me-chat">
+                        <div class="me-chat-col">
+                            <span class="balloon balloon2">식혜는 잔치집식혜</span>
+                            <span class="balloon balloon2">오늘 점심은</span>
+                            <span class="balloon balloon2">햄버거 떡볶이 마라탕</span>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                <!--메인 채팅 끝 ----------------------------------------------------------------------------------------- -->
+            </div>
+            <div class="chatList3">
+                <!-- 채팅 입력창 -->
+                <div class="insert-content">
+                    <form name="chatform" action="#" method="post">
+                        <textarea name="chat-insert" required></textarea>
+                        <input type="submit" class="chat-submit" value="전송">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</body>
+<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    let textarea = document.querySelector("textarea[name='chat-insert']");
+    let mainChat = document.querySelector("div.chatList2");
+
+    (function($) {
+        $.fn.hasScrollBar = function() {
+            return this.get(0).scrollHeight > this.get(0).clientHeight;
+        }
+    })(jQuery);
+
+    let heightDefault = parseInt($(textarea).css("height").split("px")[0]);
+    textarea.addEventListener("keydown", function(){
+        let heightNow = parseInt($(this).css("height").split("px")[0]);
+        if($(this).hasScrollBar() && heightNow < 76){
+            $(this).css("height", heightNow + heightDefault + "px");
+            $(mainChat).scrollTop($(mainChat)[0].scrollHeight);
+        }
+    });
+
+
+
+
+/*const autoResizeTextarea = (e) => {
+    let textarea = document.querySelector('.autoTextarea');
+
+    if (textarea) {
+        textarea.style.height = 'auto';
+        let height = textarea.scrollHeight; // 높이
+        textarea.style.height = `${height + 8}px`;
+    }
+}*/
+</script>-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    let textarea = document.querySelector("textarea[name='chat-insert']");
+    let mainChat = document.querySelector("div.chat-content");
+
+    (function($) {
+        $.fn.hasScrollBar = function() {
+            return this.get(0).scrollHeight > this.get(0).clientHeight;
+        }
+    })(jQuery);
+
+    let heightDefault = parseInt($(textarea).css("height").split("px")[0]);
+    textarea.addEventListener("keydown", function(){
+        let heightNow = parseInt($(this).css("height").split("px")[0]);
+        if($(this).hasScrollBar() && heightNow < 76){
+            $(this).css("height", heightNow + heightDefault + "px");
+            $(mainChat).scrollTop($(mainChat)[0].scrollHeight);
+        }
+    });
+</script>
+
+</html>
