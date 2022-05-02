@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        .title_section {
+            width: 1050px;
+            margin: 0 auto;
+            padding: 50px 0 51px;
+        }
+
+        .title_text {
+            font-weight: 700;
+            font-size: 28px;
+            color: #333;
+            line-height: 35px;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+
+        .mainbox {
+            width: 1050px;
+            margin: 0 auto;
+        }
+
+        .joinForm {
+            width: 640px;
+            margin: 0 auto;
+        }
+
+        .content {
+            width : 100%;   max-witdh:1200px ; margin:0 auto  ;
+        }
+        .tbl_main {
+            width: 100%;
+            border-top: 2px solid #333;
+        }
+
+        .joinForm .first th {
+            padding-top: 29px;
+        }
+
+        .joinForm th {
+            width: 150px;
+            padding: 20px 0 0 4px;
+            font-weight: 700;
+            font-size: 14px;
+            color: #333;
+            line-height: 20px;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        .joinForm .first td {
+            padding-top: 19px;
+        }
+
+        .joinForm td {
+            padding: 4px 0;
+            border-top: 0;
+            font-size: 14px;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        .inputbox {
+            width: 310px;
+            height: 54px;
+            padding: 0 14px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            color: #333;
+            line-height: 20px;
+            border-radius: 3px;
+            background: #fff;
+            outline: none;
+            vertical-align: top;
+        }
+
+        .button {
+            width: 126px;
+            height: 56px;
+            text-align: center;
+            border-radius: 3px;
+            border: 1px solid #ef6e73;
+            background-color: white;
+            color: #ef6e73;
+            margin-left: 2px;
+        }
+
+        .select_sex {
+            display: inline-block;
+            padding: 15px 55px 12px 0;
+            vertical-align: top;
+            width: 25%;
+        }
+
+        .ico {
+            vertical-align: 8px;
+            font-size: 16px;
+            margin-left: 25px;
+        }
+
+        .ico_1 {
+            vertical-align: 8px;
+            font-size: 17px;
+            margin-left: 3px;
+        }
+
+        .ico_2 {
+            vertical-align: 9px;
+            font-size: 13px;
+            margin-left: 3px;
+        }
+
+        .radio-ico {
+            width: 86px;
+            height: 25px;
+            background: #ffb61a;
+            border-color: #ffb61a;
+        }
+
+        .reg_agree th {
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #f4f4f4;
+        }
+
+        .btn_link {
+            font-size: 14px;
+            color: #ef6e73;
+            line-height: 22px;
+            letter-spacing: 0;
+            float: right;
+            text-decoration: none;
+        }
+
+        .re_agree td {
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #f4f4f4;
+        }
+
+        .form_footer {
+            padding-top: 23px;
+            text-align: center;
+        }
+
+        .join_button {
+            width: 327px;
+            height: 56px;
+            font-size: 16px;
+            line-height: 54px;
+            border: 1px solid #ef6e73;
+            background-color: #ef6e73;
+            color: #fff;
+            display: inline-block;
+            vertical-align: top;
+            border-radius: 3px;
+        }
+
+        .check_agree {
+            padding: 12px 0 4px;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 50px;
+            letter-spacing: 0;
+            margin: 0;
+        }
+        .modal.show { display: block; }
+
+        .modal_body {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 400px;
+            height: 600px;
+            padding: 40px;
+            text-align: center;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        .modal {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        input[type="checkbox"] {
+            -webkit-appearance: none;
+            position: relative;
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            outline: none !important;
+            border: 1px solid #eeeeee;
+            border-radius: 2px;
+            background: #fbfbfb;
+        }
+
+        input[type="checkbox"]::before {
+            content: "\2713";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            overflow: hidden;
+            transform: scale(0) translate(-50%, -50%);
+            line-height: 1;
+        }
+
+        input[type="checkbox"]:hover {
+            border-color: rgba(170, 170, 170, 0.5);
+        }
+
+        input[type="checkbox"]:checked {
+            background-color: #ef6e73;
+            border-color: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        input[type="checkbox"]:checked::before {
+            border-radius: 2px;
+            transform: scale(1) translate(-50%, -50%)
+        }
+    </style>
+</head>
+<body>
+
+<!--Main-->
+
+<div class="title_section">
+    <h2 class="title_text">회원가입</h2>
+</div>
+<div class="content">
+    <div class="mainbox">
+        <div class="joinForm">
+            <form action="" name="joinForm">
+                <table class="tbl_main">
+                    <tbody>
+                    <tr class="first">
+                        <th>아이디</th>
+                        <td>
+                            <input class= "inputbox" type="text" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합">
+                            <button class="button">중복확인</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>비밀번호</th>
+                        <td>
+                            <input class= "inputbox" type="password" placeholder="비밀번호를 입력해주세요">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>비밀번호확인</th>
+                        <td>
+                            <input class= "inputbox" type="password" placeholder="비밀번호를 한번 더 입력해주세요">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>닉네임</th>
+                        <td>
+                            <input class= "inputbox" type="text" placeholder="닉네임을 입력해주세요">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>이메일</th>
+                        <td>
+                            <input class= "inputbox" type="text" placeholder="예: stelling@telling.com">
+                            <button class="button">중복확인</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>휴대폰</th>
+                        <td>
+                            <input class= "inputbox" type="number" placeholder="숫자만 입력해주세요">
+                            <button class="button">중복확인</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>성별</th>
+                        <td>
+                            <label class="select_sex" for="">
+                                <input class="radio-ico" type="checkbox">
+                                <span class="ico">남자</span>
+                            </label>
+                            <label class="select_sex" for="">
+                                <input class="radio-ico" type="checkbox">
+                                <span class="ico">여자</span>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr class="reg_agree">
+                        <th>이용약관동의</th>
+                        <td style="border-top: 1px solid #333; border-bottom: 1px solid #f4f4f4;">
+                            <div>
+                                <div>
+                                    <label class="check_agree" for="">
+                                        <input type="checkbox" id="term">
+                                        <span class="ico_1" >전체 동의합니다.</span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label for="">
+                                        <input type="checkbox">
+                                        <span class="ico_2">이용약관 동의</span>
+                                        <a href="" class="btn_link btn-open-popup1">약관보기 ></a>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label for="">
+                                        <input type="checkbox">
+                                        <span class="ico_2">개인정보 수집 및 이용 동의</span>
+                                        <a href="" class="btn_link btn-open-popup2">약관보기 ></a>
+                                    </label>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="form_footer">
+                    <button type="button" class="join_button">가입하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal">
+    <div class="modal_body">
+        <textarea>
+            sdfsdf
+        </textarea>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    //상세보기 모달
+    const modal = document.querySelector('.modal');
+    const btnOpenPopup1 = document.querySelector('.btn-open-popup1');
+    const btnOpenPopup2 = document.querySelector('.btn-open-popup2');
+    btnOpenPopup1.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.style.display = 'block'; });
+    btnOpenPopup2.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.style.display = 'block'; });
+
+
+
+
+
+    //이용약관 클릭
+    const check = false;
+    const form = document.joinForm;
+
+
+
+    // 이용 약관
+    const $all = $("#term");
+    const $inputs = $(".terms");
+
+    $all.on('click', function(){
+        if($(this).is(":checked")){
+            $inputs.prop('checked', true);
+        }else{
+            $inputs.prop('checked', false);
+        }
+    });
+
+    $inputs.on('click', function(){
+        let check = true;
+        if(!$(this).is(":checked")){
+            $all.prop('checked', false);
+        }
+
+        if($inputs.filter(":checked").length == 2){
+            $all.prop('checked', true);
+        }
+    });
+
+
+</script>
+</html>
