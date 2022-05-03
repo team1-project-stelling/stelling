@@ -123,7 +123,7 @@ div.eventMenu div.menuArea{
     position: absolute;
     top: 36px;
     box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px 0px;
-    height: 500px;
+    height: auto;
     display: none;
 }
 .nav_searchForm_btn{
@@ -135,14 +135,91 @@ div.eventMenu div.menuArea{
 }
 div.profileWrap{
     width: 88%;
-    padding: 15px 20px;display: flex;
+    padding: 15px 20px;
+    display: flex;
     align-items: center;
-    gap: 5px;
+    border-bottom: 1px solid #000000;
+    justify-content: space-between;
 }
+div.profileWrap div.profileWrap_sub{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+div.profileWrap .menu_logout{font-size: 12px}
+
+div.profileWrap a,div.header_pay a{ text-decoration-line: none;}
+div.profileWrap a{
+    font-size: 20px;
+    font-weight: bold;
+}
+div.profileWrap a:visited,div.header_pay a:visited{color: #434343;}
+div.profileWrap a:hover , div.header_pay a:hover{color: #ef6e73;}
 div.profileWrap img{
     width: 40px;
     height: 40px;
     border-radius: 50%;
     border-style: none;
 }
-
+div.header_pay{
+    width: 100%;
+    display: flex;
+    width: 88%;
+    padding: 15px 20px;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 9%;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+div.coinImg{
+    width: 26px;
+    height: 26px;
+}
+div.coinWrap{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+div.header_pay a{
+    width: 34px;
+    background-color: #fff;
+    padding: 4px 12px 4px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #434343;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    text-align: center;
+}
+.menu_word,.menu_illust,.menu_my{
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.menu_com{
+    width: 100%;
+    min-height: 50px;
+    padding: 15px 20px;
+    gap: 5px;
+    display: flex;
+    align-items: center;
+}
+.menu_com a{text-decoration: none;}
+ul.menu_illust_list,ul.menu_my_list,ul.menu_word_list{
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    padding: 15px 20px;
+    margin: 0;
+    font-size: 14px;
+    gap: 20px;
+}
+ul.menu_illust_list li a,ul.menu_my_list li a,ul.menu_word_list li a{    text-decoration: none;}
+ul.menu_illust_list li a:visited,ul.menu_my_list li a:visited,ul.menu_word_list li a:visited,.menu_com a:visited{    color: #434343; }
+div.eventMenu img.menu_icon{
+    width: 23px;
+    height: 23px;}
+ul.menu_illust_list li ,ul.menu_my_list li ,ul.menu_word_list li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
