@@ -20,7 +20,7 @@ public class TestController {
     @GetMapping("/header")
     public String header(){
         log.info("======카테고리 드러옴=============");
-        return "fix/header";
+        return "header_word";
     }
 
 }
