@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>새 작품 등록</title>
+</head>
+<style>
+    .h2{
+        margin:10px 0px;
+    }
+
+    .box{
+        border: 1px solid rgba(213, 213, 213, 0.8);
+        margin: 20px 0px;
+        padding: 24px 23px;
+        border-radius: 12px;
+    }
+    .subBox{
+        background-color: #f2f2f2;
+        height: 30px;
+        line-height: 2;
+        padding-left: 13px;
+        margin-bottom: 15px;
+    }
+
+    p{
+        margin: 0px;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+    .flex{
+        display: flex;
+        align-items: stretch;
+    }
+    .btn{
+        background-color: white;
+        border: 1px solid gray;
+        padding: 10px;
+        border-radius: 25px;
+        width: 122px;
+        margin-top: 12px;
+        margin-right: 8px;
+    }
+    .tagInput{
+        width: 1120px;
+        height: 34px;
+        padding-left: 13px;
+        padding-right: 13px;
+        border: 1px solid #dcdcdc;
+        background-color: #f2f2f266;
+
+    }
+    Input:focus, textarea:focus{
+        outline: 1px solid #ef6273;
+    }
+    .titleInput{
+        margin-left: 53.5px;
+        width: 1028.5px;
+        height: 30px;
+        border: 1px solid #dcdcdc;
+        background-color: #f2f2f266;
+    }
+    .textarea{
+
+        width: 1031px;
+        resize: none;
+        height: 144px;
+        border: 1px solid #dcdcdc;
+        background-color: #f2f2f266;
+    }
+    .p{
+        margin: 0px;
+    }
+    .categorySelect{
+        height: 30px;
+        width: 125px;
+    }
+    .insertBtn{
+        width: 254px;
+        height: 58px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        font-weight: bold;
+        font-size: 16px;
+        background-color: white;
+        border: 2px solid #ef6e73;
+        color: #ef6273;
+        border-radius: 12px;
+    }
+
+    .insertBtn:hover{
+        background-color: #ef6e73;
+        color: white;
+
+    }
+
+
+    .rutin{
+        background-color: #ef6e73;
+        color: white;
+        font-weight: bold;
+        border: 1px solid #ef6e73;
+    }
+    .free{
+        border: 1px solid #ef6e73;
+        background-color: white;
+        color: #ef6e73;
+    }
+
+
+/*    커스텀 셀렉트 */
+    .selectBox2 * { box-sizing: border-box; }
+    .selectBox2 {
+        position: relative;
+        width: 141px;
+        height: 35px;
+        border-radius: 4px;
+        border: 1px solid #aaaaaa;
+        background: url("../../static/images/icon/화살표.png") calc(100% - 15px) center no-repeat;
+        background-size: 10px;
+        cursor: pointer;
+    }
+    .selectBox2:hover{
+        border: 1px solid #ef6e73;
+    }
+
+
+    .selectBox2 .label {
+        display: flex;
+        align-items: center;
+        width: inherit;
+        height: inherit;
+        border: 0 none;
+        outline: 0 none;
+        padding-left: 15px;
+        background: transparent;
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+    .selectBox2 .optionList {
+        position: absolute;
+        top: 28px;
+        left: 0;
+        width: 100%;
+        background: rgb(156 156 156);
+        color: #fff;
+        list-style-type: none;
+        padding: 0;
+        border-radius: 6px;
+        overflow: hidden;
+        max-height: 0;
+        transition: .3s ease-in;
+    }
+
+    .selectBox2.active .optionList {
+        max-height: 500px;
+    }
+
+    .selectBox2 .optionItem {
+        border-bottom: 1px dashed white;
+        padding: 5px 15px 5px;
+        transition: .1s;
+    }
+
+    .selectBox2 .optionItem:hover {
+        background: #ef6e73;
+    }
+
+    .selectBox2 .optionItem:last-child {
+        border-bottom: 0 none;
+    }
+
+  /*  // 스크롤 커스텀*/
+       .selectBox2 .optionList::-webkit-scrollbar {width: 6px;}
+    .selectBox2 .optionList::-webkit-scrollbar-track {background: transparent; }
+    .selectBox2 .optionList::-webkit-scrollbar-thumb {background: #303030; border-radius: 45px;}
+    .selectBox2 .optionList::-webkit-scrollbar-thumb:hover {background: #303030;}
+
+/*-------------------------------------------------------------------------------------------------------------------*/
+
+    .thumnail{
+        background-color: pink;
+        width: 180px;
+        height: 220px;
+    }
+    .uploadImg{
+
+    }
+    .exImg{
+
+    }
+</style>
+<body>
+<div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 100px; padding-bottom: 100px;">
+
+    <h2 class="h2">새 작품 등록</h2>
+    <hr>
+
+    <button class="btn rutin">정기 연재</button>
+    <button class="btn free">자유 연재</button>
+    <!--정기연재 버튼 눌렀을때 요일 입력받는 div생성-->
+<!--    <div></div>-->
+
+    <div class="box">
+        <div class="flex" style="justify-content: space-between;">
+        <p>카테고리</p>
+            <div class="selectBox2 categorySelect">
+                <button class="label">카테고리</button>
+                <ul class="optionList">
+                    <li class="optionItem">로맨스</li>
+                    <li class="optionItem">로맨스 판타지</li>
+                    <li class="optionItem">판타지</li>
+                    <li class="optionItem">라이트 노벨</li>
+                    <li class="optionItem">게임</li>
+                    <li class="optionItem">역사</li>
+                    <li class="optionItem">수필</li>
+                    <li class="optionItem">소설</li>
+                    <li class="optionItem">시</li>
+                    <li class="optionItem">공포</li>
+                    <li class="optionItem">무협</li>
+                    <li class="optionItem">추리</li>
+                    <li class="optionItem">서스펜스</li>
+                </ul>
+            </div>
+       <!-- <select name="" id="" class="categorySelect">
+            <option value="">카테고리</option>
+        </select>-->
+        </div>
+
+        <div class="subBox">작품의 장르가 어떤 장르인지 선택하는 메뉴입니다.</div>
+    </div>
+    <div class="box">
+        <p>세부 태그</p>
+        <input type="text" placeholder="작품에 세부태그를 달아주세요" class="tagInput">
+    </div>
+    <div class="box">
+        <div class="flex" style="align-items: center;">
+            <div>
+        <p style="margin-bottom: 0px;">*작품 명</p>
+            </div>
+            <input type="text" class="titleInput">
+        </div>
+    </div>
+    <div class="box">
+        <div class="flex">
+            <div style="margin-right: 1.8px; width: 112px;">
+        <p class="p">작품 소개</p>
+            <p clas="p" style="font-size: 13px; color: gray;font-weight: 400;margin-top: 2px;">(줄거리)</p>
+            </div>
+            <textarea name="" id=""class="textarea"></textarea>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="flex">
+            <div>
+                <p>표지 이미지</p>
+                <p style="font-size: 13px; color: gray;font-weight: 400;margin-top: -20px;">(200 * 305px)</p>
+            </div>
+
+
+            <div class="flex">
+                <div class="thumnail">
+
+                </div>
+                <div>
+                    <div class="uploadImg">
+
+                    </div>
+                    <div class="exImg">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div style="text-align: center;">
+        <button class="insertBtn">등록하기</button>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    let $rutin =$('.rutin');
+    let $free =$('.free');
+
+    $rutin.on("click", function () {
+        $rutin.css('background-color', '#ef6273');
+        $rutin.css('color', 'white');
+        $rutin.css('border', 'none');
+
+        $free.css('background-color', 'white');
+        $free.css('color', '#ef6273');
+        $free.css('border', '1px solid #ef6273');
+
+    });
+
+
+    $free.on("click", function () {
+        $free.css('background-color', '#ef6273');
+        $free.css('color', 'white');
+        $free.css('border', 'none');
+
+        $rutin.css('background-color', 'white');
+        $rutin.css('color', '#ef6273');
+        $rutin.css('border', '1px solid #ef6273');
+    });
+
+
+
+
+</script>
+<script>
+    /* 화살표 함수 */
+    const label = document.querySelector('.label');
+    const options = document.querySelectorAll('.optionItem');
+
+    // 클릭한 옵션의 텍스트를 라벨 안에 넣음
+    const handleSelect = (item) => {
+        label.parentNode.classList.remove('active');
+        label.innerHTML = item.textContent;
+    }
+    // 옵션 클릭시 클릭한 옵션을 넘김
+    options.forEach(option => {
+        option.addEventListener('click', () => handleSelect(option))
+    })
+
+    // 라벨을 클릭시 옵션 목록이 열림/닫힘
+    label.addEventListener('click', () => {
+        if(label.parentNode.classList.contains('active')) {
+            label.parentNode.classList.remove('active');
+        } else {
+            label.parentNode.classList.add('active');
+        }
+    })
+</script>
+</html>
