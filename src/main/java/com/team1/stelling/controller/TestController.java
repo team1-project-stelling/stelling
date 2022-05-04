@@ -14,13 +14,18 @@ public class TestController {
 
     @GetMapping("/category")
     public String category(){
-        log.info("======카테고리 드러옴=============");
+        log.info("======카테고리 들어옴=============");
         return "freeSerialize/category";
     }
     @GetMapping("/header")
     public String header(){
-        log.info("======카테고리 드러옴=============");
-        return "header_word";
+        log.info("======헤더 들어옴=============");
+        return "fix/header_word";
+    }
+    @GetMapping("/illust")
+    public String illust(){
+        log.info("======카테고리 들어옴=============");
+        return "freeSerialize/headerGuide";
     }
 
 }

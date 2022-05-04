@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <th:block th:fragment="headFragment">
+    <th:block th:fragment="headIllustFragment">
 
     <header id="header">
         <nav id="headerWrap">
             <!--헤더 왼쪽-->
             <div id="header_L_Wrap">
-                <a id="logoImg" href="#"><img src="/images/fix/logoIcon.jpg"></a>
+                <a id="logoImg" href="#"><img src="/images/fix/logoIcon_d.png"></a>
                 <ul class="navGroup">
-                    <li><a class="headerActive" href="/test/category">자유연재</a></li>
-                    <li><a class="headerActive" href="/test/category">랭킹</a></li>
-                    <li><a class="headerActive" href="/test/category">내서재</a></li>
-                    <li><a class="headerActive" href="/test/category">일러스트</a></li>
+                    <li><a class="headerActive" href="/test/category">마이포스트 </a></li>
+                    <li><a class="headerActive" href="/test/category">CHAT</a></li>
+                    <li><a class="headerActive" href="/test/category">소설</a></li>
                 </ul>
             </div>
             <!--헤더 오른쪽-->
@@ -19,10 +18,10 @@
                 <div>
                     <form id="nav_searchForm" name="nav_searchForm">
                         <div id="search_all">
-                            <input name="keyword" id="nav_searchInput" maxlength="10" placeholder="소설을 찾아보세요!">
-                            <div class="nav_searchForm_btn"><img src="/images/fix/search_big.png"></div>
+                            <input name="keyword" id="nav_searchInput" class="illustSearchTag" maxlength="10" placeholder="일러스트를 찾아보세요!">
+                            <div class="nav_searchForm_btn"><img src="/images/fix/search_big_d.png"></div>
                            <!-- <div class="nav_searchForm_btn"><img src="/images/fix/search_big_d.png"></div>-->
-                            <button type="button" onclick="hasTag()"></button>
+                            <button id="illustSearchTag" type="button" onclick="hasTag()"></button>
                             <input name="type" type="hidden" value="CTWG"> <!-- 검색 조건을 위한 태그 디폴트가 전체조회 -->
                         </div>
                     </form>

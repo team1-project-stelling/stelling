@@ -74,6 +74,8 @@ ul.navGroup li a:hover{color: #ef6e73 /*!important;*/}
     text-indent: 20px;
 
 }
+
+#nav_searchForm input.illustSearchTag{   border-bottom: 3px solid #333333;}
 #nav_searchForm input:focus{
     outline: none;
 }
@@ -96,6 +98,11 @@ ul.navGroup li a:hover{color: #ef6e73 /*!important;*/}
     border: none;
     cursor: pointer;
     background-size: cover;
+}
+
+#search_all button#illustSearchTag{
+      background: url(/images/fix/search_tag_d.png) no-repeat;
+        background-size: cover;
 }
 
 
@@ -179,6 +186,7 @@ div.coinWrap{
     width: 50%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 div.header_pay a{
     width: 34px;
@@ -223,3 +231,4 @@ ul.menu_illust_list li ,ul.menu_my_list li ,ul.menu_word_list li {
     align-items: center;
     gap: 5px;
 }
+.coinView{font-size: 26px;}

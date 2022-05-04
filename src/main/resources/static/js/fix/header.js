@@ -22,5 +22,16 @@ $('.nav_searchForm_btn').on('click',function () {
     alert( $('#search_all').find("input[name='keyword']").val())
 })
 $('.eventMenu').on('click',function () {
-    $('div.menuArea').toggle();
+    $('div.menuArea').slideToggle(450);
+})
+$('div.menuArea').hover(function () {
+    $('body').on('scroll touchmove mousewheel', function(e) {
+        console.log('123')
+
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    });
+},function () {
+    $('body').off('scroll touchmove mousewheel');
 })
