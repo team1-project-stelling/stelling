@@ -1,5 +1,4 @@
 /* 바디의 길이,넓이 설정 */
-html {height:100%}
 body {
     width: 100%;
     min-height:100%;
@@ -73,9 +72,11 @@ ul#tagSearchList li a:visited, ul#tagSearchList li a:link{color:#343a40; }
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid  #a2a2a2;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 .totalWordWork{
-    width: 13%;
+    width: auto;
     word-spacing: -1px;
     font-weight: bold;
 }
@@ -162,7 +163,8 @@ ul#tagSearchList li.active a{
     color: white !important;
 }
 div#searchResult{
-
+    height: 100%;
+    overflow: hidden;
 }
 div.resultItem{
     width: 100%;
@@ -308,7 +310,9 @@ div.cancelImg img{
 
 /*페이징 css*/
 div.categoryPaging {
+    width: 100%;
     height: 80px;
+    clear: both;
 }
 ul.c_PagingList{
     display: flex;
@@ -316,6 +320,7 @@ ul.c_PagingList{
     justify-content: center;
     gap: 5px;
     height: 100%;
+    padding: 0;
 }
 ul.c_PagingList li{
     list-style: none;
@@ -340,4 +345,55 @@ ul.c_PagingList li a:visited, ul.c_PagingList li a:link{
 ul.c_PagingList li.pageActive{
     background:#007bff;
     color: #fff !important;
+}
+.mobile_updateTimeBox{
+    display: none;
+    border: 1px solid #ddd;
+    padding: 2px 10px;
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+    margin-right: 5px;
+    font-size: 11px;
+    line-height: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    width: max-content;
+}
+
+/* 반응형 */
+@media (max-width: 960px) {
+    .web_updateTimeBox{ display: none;}
+    .mobile_updateTimeBox{ display: block;}
+    div.info_tag{font-size: 10px;}
+    div.info_tag ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    #searchResult{
+        width: 97%;
+        height: auto;
+        margin-left: 3%;
+}
+div.info_summary{display: none;}
+div.resultItem{display: flex;}
+div.info_tag{gap: 0;}
+div.info_tag ul li{
+    padding: 0;
+}
+div.pieceInfo{width: auto;}
+a.writeButton{display: none;}
+div.totalWordWork img {display: none;}
+div#tagSearchWrap .tagInner button{
+    width: 170px;
+}
+ul#tagSearchList{
+    overflow-x: auto;
+    white-space: nowrap;
+    height: 100%;
+}
 }

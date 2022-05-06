@@ -24,8 +24,10 @@ public class TestController {
     }
     @GetMapping("/illust")
     public String illust(){
-        log.info("======카테고리 들어옴=============");
+        log.info("======일러스트 들어옴=============");
         return "freeSerialize/headerGuide";
     }
+
+
 
 }

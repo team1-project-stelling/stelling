@@ -1,10 +1,98 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <th:block th:fragment="headFragment">
+<th:block th:fragment="headFragment">
 
     <header id="header">
-        <nav id="headerWrap">
-            <!--헤더 왼쪽-->
+        <nav id="headerWrap" >
+            <div id="headerInner">
+                <!--헤더 왼쪽-->
+                <div id="header_L_Wrap">
+                    <a id="logoImg" href="#"><img src="/images/fix/logoIcon.jpg"></a>
+                    <ul class="navGroup web_header" >
+                        <li><a class="headerActive" href="/test/category">자유연재</a></li>
+                        <li><a class="headerActive" href="/test/category">랭킹</a></li>
+                        <li><a class="headerActive" href="/test/category">내서재</a></li>
+                        <li><a class="headerActive" href="/test/category">일러스트</a></li>
+                    </ul>
+                </div>
+                <!--헤더 오른쪽-->
+                <div id="header_R_Wrap">
+                    <div class="nav_searchFormWrap">
+                        <form id="nav_searchForm" name="nav_searchForm">
+                            <div id="search_all">
+                                <input name="keyword" id="nav_searchInput" maxlength="10" placeholder="소설을 찾아보세요!">
+                                <div class="nav_searchForm_btn"><img src="/images/fix/search_big.png"></div>
+                               <!-- <div class="nav_searchForm_btn"><img src="/images/fix/search_big_d.png"></div>-->
+                                <button type="button" onclick="hasTag()"></button>
+                                <input name="type" type="hidden" value="CTWG"> <!-- 검색 조건을 위한 태그 디폴트가 전체조회 -->
+                            </div>
+                        </form>
+                    </div>
+    <!--                <div class="eventMenu"><a href="#"><img src="/images/fix/header_book.png"></a></div>
+                    <div class="eventMenu"><a href="#"><img src="/images/fix/header_writeIcon.png"></a></div>-->
+                    <div class="eventMenu">
+                        <img src="/images/fix/mypageLineIcon.png" alt="메뉴">
+                        <div class="menuArea">
+                            <div class="profileWrap">
+                                <div class="profileWrap_sub">
+                                    <img src="/images/fix/img_profile.png" alt="프로필사진">
+                                    <div><a href="#">용의분노</a>님</div>
+                                </div>
+                                <a class="menu_logout"  href="#">로그아웃</a>
+                            </div>
+                            <div class="header_pay">
+                                <div class="coinWrap">
+                                    <div class="coinImg">
+                                         <img src="/images/fix/coin.png" alt="코인">
+                                    </div>
+                                    <div>
+                                        <span class="coinView"> 7,800</span>
+                                    </div>
+                                </div>
+                                <a href="">충전</a>
+                            </div>
+                            <div class="menu_word">
+                                <ul class="menu_word_list">
+                                    <li><img class="menu_icon" src="/images/fix/header_menu_page.png"><a href="#">신규 소설 등록</a></li>
+                                    <li><img class="menu_icon" src="/images/fix/header_menu_pencil.png"><a href="#">소설 작성</a></li>
+                                    <li><img class="menu_icon" src="/images/fix/header_menu_folder.png"><a href="#">내 작품 관리</a></li>
+                                </ul>
+                            </div>
+                            <div class="menu_illust">
+                                <ul class="menu_illust_list">
+                                    <li><img class="menu_icon" src="/images/fix/header_menu_palette.png"><a href="#">일러스트 등록</a></li>
+                                    <li><img class="menu_icon" src="/images/fix/header_menu_gallery.png"><a href="#">마이 포스트</a></li>
+                                </ul>
+                            </div>
+                            <div class="menu_my">
+                                <ul class="menu_my_list">
+                                    <li><img class="menu_icon" src="/images/fix/header_menu_people.png"><a href="#">마이페이지</a></li>
+                                    <li><img class="menu_icon" src="/images/fix/header_menu_graph.png"><a href="#">정산/통계</a></li>
+                                </ul>
+                            </div>
+                            <div class="menu_com">
+                                <img class="menu_icon" src="/images/fix/info_icon.png"><a class="menu_com_in" href="#">공지사항/고객센터</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mobile_header">
+                <ul class="navGroup" >
+                    <li><a class="headerActive" href="/test/category">자유연재</a></li>
+                    <li><a class="headerActive" href="/test/category">랭킹</a></li>
+                    <li><a class="headerActive" href="/test/category">내서재</a></li>
+                    <li><a class="headerActive" href="/test/category">일러스트</a></li>
+                </ul>
+            </div>
+        </nav>
+
+
+<!--
+        <nav id="headerWrap" class="web_header">
+            &lt;!&ndash;헤더 왼쪽&ndash;&gt;
             <div id="header_L_Wrap">
                 <a id="logoImg" href="#"><img src="/images/fix/logoIcon.jpg"></a>
                 <ul class="navGroup">
@@ -14,21 +102,21 @@
                     <li><a class="headerActive" href="/test/category">일러스트</a></li>
                 </ul>
             </div>
-            <!--헤더 오른쪽-->
+            &lt;!&ndash;헤더 오른쪽&ndash;&gt;
             <div id="header_R_Wrap">
                 <div>
                     <form id="nav_searchForm" name="nav_searchForm">
                         <div id="search_all">
                             <input name="keyword" id="nav_searchInput" maxlength="10" placeholder="소설을 찾아보세요!">
                             <div class="nav_searchForm_btn"><img src="/images/fix/search_big.png"></div>
-                           <!-- <div class="nav_searchForm_btn"><img src="/images/fix/search_big_d.png"></div>-->
+                            &lt;!&ndash; <div class="nav_searchForm_btn"><img src="/images/fix/search_big_d.png"></div>&ndash;&gt;
                             <button type="button" onclick="hasTag()"></button>
-                            <input name="type" type="hidden" value="CTWG"> <!-- 검색 조건을 위한 태그 디폴트가 전체조회 -->
+                            <input name="type" type="hidden" value="CTWG"> &lt;!&ndash; 검색 조건을 위한 태그 디폴트가 전체조회 &ndash;&gt;
                         </div>
                     </form>
                 </div>
-<!--                <div class="eventMenu"><a href="#"><img src="/images/fix/header_book.png"></a></div>
-                <div class="eventMenu"><a href="#"><img src="/images/fix/header_writeIcon.png"></a></div>-->
+                &lt;!&ndash;                <div class="eventMenu"><a href="#"><img src="/images/fix/header_book.png"></a></div>
+                                <div class="eventMenu"><a href="#"><img src="/images/fix/header_writeIcon.png"></a></div>&ndash;&gt;
                 <div class="eventMenu">
                     <img src="/images/fix/mypageLineIcon.png" alt="메뉴">
                     <div class="menuArea">
@@ -42,7 +130,7 @@
                         <div class="header_pay">
                             <div class="coinWrap">
                                 <div class="coinImg">
-                                     <img src="/images/fix/coin.png" alt="코인">
+                                    <img src="/images/fix/coin.png" alt="코인">
                                 </div>
                                 <div>
                                     <span class="coinView"> 7,800</span>
@@ -77,6 +165,10 @@
 
             </div>
         </nav>
+-->
+
+
     </header>
+
     </th:block>
 </html>
