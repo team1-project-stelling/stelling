@@ -3,362 +3,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Strlling</title>
-<!--    <link href="/css/freeSerializeCss/catrgoryCss.css" rel="stylesheet" type="text/css">-->
-    <style>
-        /* 바디의 길이,넓이 설정 */
-        html {height:100%}
-        body {
-            width: 100%;
-            min-height:100%;
-            margin: 0px;
-        }
-
-
-        /* 공통 값*/
-        /* 최대크기 설정*/
-        .giveMaxWidth{
-            max-width:1200px ;
-            margin:0 auto  ;
-        }
-
-
-
-        div#categoryWrap{
-            width: 100%;
-            height: 100vh;
-
-        }
-
-
-        section#categorySection{width : 100%; min-height: 100vh;}
-
-        /* 카테고리메뉴 테이블*/
-        div#categoryMenu{
-            width : 100%;
-        }
-        div#categoryMenu table{
-            width : 100%;
-        }
-
-
-        #categoryMenu table tbody{
-            display: flex;
-            width : 100%;
-        }
-        #categoryMenu table tbody tr{
-            display: flex;
-            width: 100%;
-            height: 60px;
-            justify-content: center;
-            align-items: center;
-        }
-        #categoryMenu table tbody tr td {
-            width: 100%;
-            height: 100%;
-        }
-        #categoryMenu table tbody tr td a{
-            width: 100%;
-            height: 100%;
-            display: flex;
-            /*border: 1px #ff8b77 solid;*/
-            text-align: center;
-            /* vertical-align: middle; */
-            align-items: center;
-            justify-content: center;
-            text-decoration-line:none;
-
-        }
-        #categoryMenu table tbody tr td a:hover{color: #ff8b77}
-
-        #categoryMenu a:visited,#categoryMenu a:link , .resultItem a:visited, .resultItem a:link {color: black}
-        a.writeButton:visited, a.writeButton:link{color: white}
-        ul#tagSearchList li a:visited, ul#tagSearchList li a:link{color:#343a40; }
-        #totalWrap{
-            height: 50px;
-            margin-top: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid  #a2a2a2;
-        }
-        .totalWordWork{
-            width: 13%;
-            word-spacing: -1px;
-            font-weight: bold;
-        }
-        .totalWordWork img{
-            width: 16px;
-        }
-        #totalOption div img {
-            width: 12px;
-        }
-        #totalR_side, #totalOption{
-            display: flex;
-            gap: 12px;
-            align-items: center;
-
-        }
-        #totalR_side {
-            height: 40px;
-            font-size: 12px;
-        }
-        #totalOption{
-            height: 100%;
-        }
-
-         a.writeButton{
-            width: 150px;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #333;
-            text-decoration-line:none;
-            color: white;
-        }
-        a.writeButton img{
-            width: 23px;
-            object-fit: cover;
-        }
-        div.OptionChange{
-            cursor: pointer;
-        }
-        div#tagSearchWrap{
-            border-bottom: 1px solid #eee;
-
-        }
-
-        ul#tagSearchList{
-            display: flex;
-            list-style: none;
-            font-size: 12px;
-            align-items: center;
-            padding: 0;
-        }
-        ul#tagSearchList li {
-            color: #495057;
-            padding: 4.8px 12.2px;
-
-        }
-        ul#tagSearchList li  a {
-                text-decoration-line: none;
-
-        }
-
-        .tagInner{
-            display: flex ;
-            gap: 9px;
-            align-items: center;
-            height: 49.59px;
-        }
-       div#tagSearchWrap .tagInner button{
-           width: 75px;
-           height: 28px;
-           color: #000;
-           border: 1px solid #ddd;
-           font-size: 12px;
-           background: url('/images/category/searchIcon.png')no-repeat 4px center;
-           background-size: 16px;
-           padding: 0 0 0 15px;
-        }
-        ul#tagSearchList li.active{
-            background: #ff8b77;
-        }
-        ul#tagSearchList li.active a{
-            background: #ff8b77;
-            color: white !important;
-        }
-        div#searchResult{
-
-        }
-        div.resultItem{
-            width: 100%;
-            padding: 20px 0;
-            border-bottom: 1px solid #eee;
-            height: auto;
-            min-height: 157px;
-            float: left;
-        }
-        /*div.resultItem{*/
-        /*    width: 100px;*/
-        /*    height: 150px;*/
-        /*    float: left;*/
-        /*}*/
-        .coverBox{
-            width: 100px;
-            height: 150px;
-            float: left;
-            position: relative;
-        }
-        div.resultItem .coverBox img:nth-child(1){
-            width: 100%;
-            height: 100%;
-            box-shadow: 2px 0px 10px 0px rgb(0 0 0 / 30%);
-            background-position: center;
-            border-radius: 0px 30px 30px 0px;
-        }
-        div.resultItem .coverBox img:nth-child(2){
-            position: absolute;
-            top: -13px;
-            left: -3px;
-            width: 36px;
-        }
-        div.pieceInfo{
-            padding: 0px 15px ;
-            width: 84%;
-            float: left;
-            font-size: 13px;
-            display: flex;
-            gap: 11px;
-            flex-direction: column;
-        }
-        div.info_counts{
-            display: flex;
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-            gap: 15px;
-        }
-        div.info_tag ul{
-            display: flex;
-            list-style: none;
-            padding: 0;
-            gap: 5px;
-        }
-        div.info_tag ul li{
-        /*    border: 2px solid #ff8b77;*/
-            border-radius: 20px;
-            padding: 3px 10px;
-            line-height: 20px;
-            user-select: none;
-        }
-        div.info_tag ul li a{
-            /*color: #ff8b77 !important;*/
-            color: #00AAFF !important;
-            font-weight: bold;
-        }
-        div.updateTimeBox{
-            float: right;
-            border: 1px solid #ddd;
-            padding: 5px 12px;
-            background-color: #fff;
-            color: #333;
-            width: 100px;
-            text-align: center;
-            margin-right: 5px;
-            font-size: 12px;
-        }
-
-
-        .free_content, .mono_content, .finish_content{
-            font-weight: 400;
-            padding: 1px 4px;
-            border-radius: 3px;
-            font-size: 11px;
-            color: #fff;
-            text-shadow: 0.5px 0.5px black;
-        }
-        .free_content{ background-color: #166d95;}
-        .mono_content{ background-color: #0d60d1;}
-        .finish_content{ background-color: #000;}
-        .info_title{
-            font-size: 20px;
-            font-weight: bold;
-        }
-        .info_head{
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .info_writer {font-size: 14px; color: #666 !important;}
-        .resultItem a{ text-decoration-line:none;}
-        .info_summary{
-            font-size: 14px;
-            color: #666;
-            font-weight: 400;
-        }
-        .info_count{
-            width: auto;
-            display: flex;
-            align-items: center;
-        }
-        .info_count img{
-            width: 18px;
-        }
-
-        #searchForm input{
-            width: 209px;
-            height: 25px;
-            border-top: none;
-            border-left: none;
-            border-right: none;
-        }
-        #searchForm input:focus {outline: 1px solid #ff8b77; border:none;}
-        #searchFormWrap{
-            display: none;
-        }
-        #searchForm{
-            display: flex;
-            align-items: center;
-            gap: 3px;
-        }
-        .tagBtn{
-            cursor: pointer;
-        }
-        div.cancelImg{
-            width: 18px;
-            cursor: pointer;
-        }
-        div.cancelImg img{
-            width: 100%;
-        }
-
-        /*페이징 css*/
-         div.categoryPaging {
-            height: 80px;
-        }
-        ul.c_PagingList{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            height: 100%;
-        }
-        ul.c_PagingList li{
-            list-style: none;
-            width: 30px;
-            height: 40px;
-            text-align: center;
-            background: #e9ecef;
-            color: #343a40;
-            line-height: 2.25;
-        }
-        ul.c_PagingList li a{
-            text-decoration-line: none;
-            border: 0;
-            width: 100%;
-            height: 100%;
-            font-size: 12px;
-
-        }
-        ul.c_PagingList li a:visited, ul.c_PagingList li a:link{
-            color: #343a40;
-        }
-        ul.c_PagingList li.pageActive{
-            background:#007bff;
-            color: #fff !important;
-        }
-
-
-    </style>
+    <link href="/css/freeSerializeCss/category.css" rel="stylesheet" type="text/css">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
-    <th:block th:insert="/fix/header.html :: headFragment"/>
+<!-- 헤더 시작 -->
+    <th:block th:insert="/fix/header_word.html :: headFragment"/>
 
-    <!--배너 들어갈 자리 보고용 코드-->
-    <div style="width: 100%; height: 159px; background: midnightblue;"></div>
+    <!--헤더 이미지-->
+    <div id="headerImgWrap" >
+        <img id="headerImg"src="/images/fix/headerImg_3.png" >
+    </div>
+<!-- 헤더 종료 -->
 
     <div id="categoryWrap" class="giveMaxWidth">
         <section id="categorySection" class="giveMaxWidth">
@@ -425,7 +84,15 @@
                      <div class="coverBox"><img src="/images/category/test.png" alt="표지사진"><img src="/images/category/updateIcon.png" alt="업데이트아이콘"></div>
                      <div class="pieceInfo">
                          <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head">
+                                <div>
+                                    <span class="free_content">자유</span>
+                                    <span class="mono_content">독점</span>
+                                    <span class="finish_content">완결</span>
+                                </div>
+                                <a href="#" class="info_title">권능의 여왕</a>
+                                <a href="#" class="info_writer">거북이</a>
+                            </div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -442,16 +109,25 @@
                                 <li><a href="#">#여주인공</a></li>
                                 <li><a href="#">#여왕</a></li>
                             </ul>
+                    <!--        <div class="mobile_updateTimeBox">1분전 UP</div>-->
                         </div>
                      </div>
-                    <div class="updateTimeBox">1분전 UP</div>
+                    <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
                 </div>
                 <!-- 더미 데이터 시작 -->
                 <div class="resultItem">
                     <div class="coverBox"><img src="/images/category/dumi1.jpg" alt="표지사진"><img src="/images/category/updateIcon.png" alt="업데이트아이콘"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head">
+                                <div>
+                                    <span class="free_content">자유</span>
+                                    <span class="mono_content">독점</span>
+                                    <span class="finish_content">완결</span>
+                                </div>
+                                <a href="#" class="info_title">권능의 여왕</a>
+                                <a href="#" class="info_writer">거북이</a>
+                            </div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -464,14 +140,23 @@
 
                             </ul>
                         </div>
+                        <!--<div class="mobile_updateTimeBox">1분전 UP</div>-->
                     </div>
-                    <div class="updateTimeBox">1분전 UP</div>
+                    <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
                 </div>
                 <div class="resultItem">
                     <div class="coverBox"><img src="/images/category/dumi2.jpg" alt="표지사진"><img src="/images/category/updateIcon.png" alt="업데이트아이콘"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head">
+                                <div>
+                                    <span class="free_content">자유</span>
+                                    <span class="mono_content">독점</span>
+                                    <span class="finish_content">완결</span>
+                                </div>
+                                <a href="#" class="info_title">권능의 여왕</a>
+                                <a href="#" class="info_writer">거북이</a>
+                            </div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -489,14 +174,23 @@
                                 <li><a href="#">#여왕</a></li>
                             </ul>
                         </div>
+                  <!--      <div class="mobile_updateTimeBox">21.01.21 UP</div>-->
                     </div>
-                    <div class="updateTimeBox">21.01.21 UP</div>
+                    <div class="updateTimeBox web_updateTimeBox">21.01.21 UP</div>
                 </div>
                 <div class="resultItem">
                     <div class="coverBox"><img src="/images/category/dumi3.jpg" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head">
+                                <div>
+                                    <span class="free_content">자유</span>
+                                    <span class="mono_content">독점</span>
+                                    <span class="finish_content">완결</span>
+                                </div>
+                                <a href="#" class="info_title">권능의 여왕</a>
+                                <a href="#" class="info_writer">거북이</a>
+                            </div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -514,14 +208,23 @@
                                 <li><a href="#">#여왕</a></li>
                             </ul>
                         </div>
+                        <!--<div class="mobile_updateTimeBox">21.01.21 UP</div>-->
                     </div>
-                    <div class="updateTimeBox">21.01.21 UP</div>
+                    <div class="updateTimeBox web_updateTimeBox">21.01.21 UP</div>
                 </div>
                 <div class="resultItem">
                     <div class="coverBox"><img src="/images/category/dumi4.png" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head">
+                                <div>
+                                    <span class="free_content">자유</span>
+                                    <span class="mono_content">독점</span>
+                                    <span class="finish_content">완결</span>
+                                </div>
+                                <a href="#" class="info_title">권능의 여왕</a>
+                                <a href="#" class="info_writer">거북이</a>
+                            </div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -539,14 +242,23 @@
                                 <li><a href="#">#여왕</a></li>
                             </ul>
                         </div>
+                       <!-- <div class="mobile_updateTimeBox">21.01.21 UP</div>-->
                     </div>
-                    <div class="updateTimeBox">21.01.21 UP</div>
+                    <div class="updateTimeBox web_updateTimeBox">21.01.21 UP</div>
                 </div>
                 <div class="resultItem">
                     <div class="coverBox"><img src="/images/category/dumi5.jpg" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head">
+                                <div>
+                                    <span class="free_content">자유</span>
+                                    <span class="mono_content">독점</span>
+                                    <span class="finish_content">완결</span>
+                                </div>
+                                <a href="#" class="info_title">권능의 여왕</a>
+                                <a href="#" class="info_writer">거북이</a>
+                            </div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -564,14 +276,23 @@
                                 <li><a href="#">#여왕</a></li>
                             </ul>
                         </div>
+                        <!--<div class="mobile_updateTimeBox">21.01.21 UP</div>-->
                     </div>
-                    <div class="updateTimeBox">21.01.21 UP</div>
+                    <div class="updateTimeBox web_updateTimeBox">21.01.21 UP</div>
                 </div>
                 <div class="resultItem">
                     <div class="coverBox"><img src="/images/category/dumi6.jpg" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head">
+                                <div>
+                                    <span class="free_content">자유</span>
+                                    <span class="mono_content">독점</span>
+                                    <span class="finish_content">완결</span>
+                                </div>
+                                <a href="#" class="info_title">권능의 여왕</a>
+                                <a href="#" class="info_writer">거북이</a>
+                            </div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -589,14 +310,23 @@
                                 <li><a href="#">#여왕</a></li>
                             </ul>
                         </div>
+                       <!-- <div class="mobile_updateTimeBox">1분전 UP</div>-->
                     </div>
-                    <div class="updateTimeBox">1분전 UP</div>
+                    <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
                 </div>
                 <div class="resultItem">
                     <div class="coverBox"><img src="/images/category/test.png" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head">
+                                <div>
+                                    <span class="free_content">자유</span>
+                                    <span class="mono_content">독점</span>
+                                    <span class="finish_content">완결</span>
+                                </div>
+                                <a href="#" class="info_title">권능의 여왕</a>
+                                <a href="#" class="info_writer">거북이</a>
+                            </div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -614,14 +344,23 @@
                                 <li><a href="#">#여왕</a></li>
                             </ul>
                         </div>
+                      <!--  <div class="mobile_updateTimeBox">1분전 UP</div>-->
                     </div>
-                    <div class="updateTimeBox">1분전 UP</div>
+                    <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
                 </div>
                 <div class="resultItem">
                     <div class="coverBox"><img src="/images/category/test.png" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head">
+                                <div>
+                                    <span class="free_content">자유</span>
+                                    <span class="mono_content">독점</span>
+                                    <span class="finish_content">완결</span>
+                                </div>
+                                <a href="#" class="info_title">권능의 여왕</a>
+                                <a href="#" class="info_writer">거북이</a>
+                            </div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -639,14 +378,23 @@
                                 <li><a href="#">#여왕</a></li>
                             </ul>
                         </div>
+                      <!--  <div class="mobile_updateTimeBox">1분전 UP</div>-->
                     </div>
-                    <div class="updateTimeBox">1분전 UP</div>
+                    <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
                 </div>
                 <div class="resultItem">
                     <div class="coverBox"><img src="/images/category/test.png" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head">
+                                <div>
+                                    <span class="free_content">자유</span>
+                                    <span class="mono_content">독점</span>
+                                    <span class="finish_content">완결</span>
+                                </div>
+                                <a href="#" class="info_title">권능의 여왕</a>
+                                <a href="#" class="info_writer">거북이</a>
+                            </div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -664,14 +412,23 @@
                                 <li><a href="#">#여왕</a></li>
                             </ul>
                         </div>
+                     <!--   <div class="mobile_updateTimeBox">1분전 UP</div>-->
                     </div>
-                    <div class="updateTimeBox">1분전 UP</div>
+                    <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
                 </div>
                 <div class="resultItem">
                     <div class="coverBox"><img src="/images/category/test.png" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head">
+                                <div>
+                                    <span class="free_content">자유</span>
+                                    <span class="mono_content">독점</span>
+                                    <span class="finish_content">완결</span>
+                                </div>
+                                <a href="#" class="info_title">권능의 여왕</a>
+                                <a href="#" class="info_writer">거북이</a>
+                            </div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -689,14 +446,23 @@
                                 <li><a href="#">#여왕</a></li>
                             </ul>
                         </div>
+                        <!--<div class="mobile_updateTimeBox">1분전 UP</div>-->
                     </div>
-                    <div class="updateTimeBox">1분전 UP</div>
+                    <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
                 </div>
                 <div class="resultItem">
                     <div class="coverBox"><img src="/images/category/test.png" alt="표지사진"></div>
                     <div class="pieceInfo">
                         <div>
-                            <div class="info_head"><span class="free_content">자유</span> <span class="mono_content">독점</span> <span class="finish_content">완결</span>  <a href="#" class="info_title">권능의 여왕</a> <a href="#" class="info_writer">거북이</a></div>
+                            <div class="info_head">
+                                <div>
+                                    <span class="free_content">자유</span>
+                                    <span class="mono_content">독점</span>
+                                    <span class="finish_content">완결</span>
+                                </div>
+                                <a href="#" class="info_title">권능의 여왕</a>
+                                <a href="#" class="info_writer">거북이</a>
+                            </div>
                             <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
                         </div>
                         <div class="info_counts">
@@ -714,15 +480,17 @@
                                 <li><a href="#">#여왕</a></li>
                             </ul>
                         </div>
+                      <!--  <div class="mobile_updateTimeBox">1분전 UP</div>-->
                     </div>
-                    <div class="updateTimeBox">1분전 UP</div>
+                    <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
                 </div>
                 <!-- 더미 데이터 종료 -->
+
             </div>
+
+
             <!-- 페이징 시작-->
             <div class="categoryPaging giveMaxWidth">
-
-
                 <!-- 페이징 -->
                 <ul class="c_PagingList" >
                     <!-- 이전 -->
@@ -738,84 +506,15 @@
                     <!-- 다음 -->
                     <li><a>&gt;</a></li>
                 </ul>
-
-
             </div>
             <!-- 페이징 종료-->
         </section>
     </div>
+
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    let $categoryMenuItem = $('.categoryMenuItem')
-    // 시작은 전체페이지 조회
-    // 추후에 컨트롤러 연동으로 변경 현재 프론트 작업을 위한 임시 소스
-    /* 임시 소스 시작 */
-    // changeBorder($($categoryMenuItem[0]).text())
-    // $($categoryMenuItem[0]).css('border','2px solid #ff8b77')
-    // $($categoryMenuItem[0]).css('border-bottom','none')
-    $($categoryMenuItem[0]).css('border-bottom','2px solid #ff8b77')
-    /* 임시 소스 종료 */
+<script src="/js/fix/header.js"></script>
+<script src="/js/freeSerialize/category.js"></script>
 
-    $('.categoryMenuItem').on('click',function () {
-        categoryMenuReset()
-       // $(this).css('border','2px solid #ff8b77')
-       $(this).css('border-bottom','none')
-        $(this).css('border-bottom','2px solid #ff8b77')
-        // $(this).css('border-bottom','none')
-        // console.log($categoryMenuItem)
-        // changeBorder($(this).text())
-
-    })
-    function categoryMenuReset() {
-        $.each($categoryMenuItem, function (index, item) {
-            $(item).css('border','none')
-            // $(item).css('border','1px solid  #ff8b77 ')
-        });
-    }
-
-
-    function changeBorder(text) {
-        if(text == '전체'){
-            $($categoryMenuItem[1]).css('border-bottom','2px solid #ff8b77')
-            $($categoryMenuItem[2]).css('border-bottom','2px solid #ff8b77')
-        }else if(text == '신작'){
-            $($categoryMenuItem[0]).css('border-bottom','2px solid #ff8b77')
-            $($categoryMenuItem[2]).css('border-bottom','2px solid #ff8b77')
-        }else if(text== '완결'){
-            $($categoryMenuItem[0]).css('border-bottom','2px solid #ff8b77')
-            $($categoryMenuItem[1]).css('border-bottom','2px solid #ff8b77')
-        }
-    }
-
-    $('div.OptionChange').on('click',function () {
-        ResetOptionChange()
-        $(this).find('img').attr('src', '/images/category/checkIcon.png' )
-    })
-
-    function ResetOptionChange() {
-        $.each($('div.OptionChange'),function (index,item) {
-            $(item).find('img').attr('src', '/images/category/optionPointIcon.png');
-        })
-    }
-    $('#tagSearchList li').on('click',function () {
-        resetTagSearchList();
-        $(this).addClass('active')
-    })
-    function resetTagSearchList() {
-        $.each($('#tagSearchList li'),function (index, item) {
-                $(item).removeClass('active')
-        })
-    }
-
-
-    function changeTagSearch(){
-        $('#tagSearchList').toggle()
-        $('#searchFormWrap').toggle()
-    }
-
-
-
-
-</script>
 </html>
