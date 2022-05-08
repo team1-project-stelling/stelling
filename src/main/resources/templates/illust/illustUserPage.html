@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>일러스트 작가 페이지</title>
     <meta name="viewport" content="width=device-width" />
+    <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
+    <link href="/css/footer.css" rel="stylesheet" type="text/css">
 </head>
 <style>
     @font-face {
@@ -393,6 +396,14 @@
     }
 </style>
 <body>
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word_illust.html :: headIllustFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
 
 <div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 100px; padding-bottom: 100px;">
 
@@ -403,7 +414,7 @@
         <div class="firstBox">
                 <div class="profile1">
                     <div class="profilePicture">
-                        <img src="../../static/images/프사.jpg" width="100%" height="100%"/>
+                        <img src="/images/프사.jpg" width="100%" height="100%"/>
                     </div>
                     <div>
                         <div><p class="p userNick">yewon_seo</p></div>
@@ -468,44 +479,44 @@
             <div class="flex2 wrap" >
                 <div class="box">
                     <div class="column cellCss" >
-                        <img src="../../static/images/일러스트 1.jpg" class="testWidth" />
+                        <img src="/images/일러스트 1.jpg" class="testWidth" />
                         <span class="heart">❤<span style="font-size: 12px;">1,213</span></span>
 
                     </div>
                     <div class="column cellCss">
-                        <img src="../../static/images/illustDetail/일러스트 상세2.jpg" class="testWidth">
+                        <img src="/images/illustDetail/일러스트 상세2.jpg" class="testWidth">
                         <span class="heart">❤<span style="font-size: 12px;">1,043</span></span>
                     </div>
                     <div class="column cellCss">
-                        <img src="../../static/images/일러스트 3.jpg" class="testWidth">
+                        <img src="/images/일러스트 3.jpg" class="testWidth">
                         <span class="heart">❤<span style="font-size: 12px;">987</span></span>
                     </div>
                 </div>
                 <div class="box">
                     <div class="column cellCss">
-                        <img src="../../static/images/일러스트 2.jpg" class="testWidth">
+                        <img src="/images/일러스트 2.jpg" class="testWidth">
                         <span class="heart">❤<span style="font-size: 12px;">1,002</span></span>
                     </div>
                     <div class="column cellCss">
-                        <img src="../../static/images/illustDetail/일러스트 상세보기.jpg" class="testWidth">
+                        <img src="/images/illustDetail/일러스트 상세보기.jpg" class="testWidth">
                         <span class="heart">❤<span style="font-size: 12px;">23</span></span>
                     </div>
                     <div class="column cellCss">
-                        <img src="../../static/images/illustDetail/일러스트 상세4.jpg" class="testWidth">
+                        <img src="/images/illustDetail/일러스트 상세4.jpg" class="testWidth">
                         <span class="heart">❤<span style="font-size: 12px;">101</span></span>
                     </div>
                 </div>
                 <div class="box">
                     <div class="column cellCss">
-                        <img src="../../static/images/일러스트 7.jpg" class="testWidth">
+                        <img src="/images/일러스트 7.jpg" class="testWidth">
                         <span class="heart">❤<span style="font-size: 12px;">42</span></span>
                     </div>
                     <div class="column cellCss">
-                        <img src="../../static/images/일러스트 6.jpg" class="testWidth">
+                        <img src="/images/일러스트 6.jpg" class="testWidth">
                         <span class="heart">❤<span style="font-size: 12px;">1,231</span></span>
                     </div>
                     <div class="column cellCss">
-                        <img src="../../static/images/일러스트 9.jpg" class="testWidth">
+                        <img src="/images/일러스트 9.jpg" class="testWidth">
                         <span class="heart">❤<span style="font-size: 12px;">22</span></span>
                     </div>
                 </div>
@@ -565,7 +576,7 @@
             <textarea name="" id='text' class="inputChatarea"></textarea>
             <label for="text">
                 <div style="position: relative;">
-                <img src="../../static/images/icon/전송.png" class="enter"/></div>
+                <img src="/images/icon/전송.png" class="enter"/></div>
             </label>
         </div>
 
@@ -576,18 +587,22 @@
 
 
 </div>
+
+
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/fix/header.js"></script>
 <script>
 
     $('.arrow').on('click', function () {
 
-        if($('.arrow>img').attr('src') == '../../static/images/icon/화살표.png'){
-            $('.arrow>img').attr('src', '../../static/images/icon/위화살표.png')
+        if($('.arrow>img').attr('src') == '/images/icon/화살표.png'){
+            $('.arrow>img').attr('src', '/images/icon/위화살표.png')
             $('.delete').css('display', 'inline-block');
         }else{
             $('.delete').css('display', 'none');
-            $('.arrow>img').attr('src', '../../static/images/icon/화살표.png');
+            $('.arrow>img').attr('src', '/images/icon/화살표.png');
         }
 
     })

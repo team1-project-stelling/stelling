@@ -1,21 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
     <title>일러스트 목록</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
     <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
+    <link href="/css/footer.css" rel="stylesheet" type="text/css">
 </head>
 <style>
 
 
-    *{
-        font-family: 'Architects Daughter', cursive;
-        font-family: 'Noto Sans KR', sans-serif;
-    }
     .box{
         flex-direction: column;
         width: 230px;
@@ -325,6 +321,14 @@
 
 <body>
 
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word_illust.html :: headIllustFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
 
 
 
@@ -338,57 +342,57 @@
         <ul class="slides">
             <li>
                 <div class="imgDiv" style="background-color: #417A97; color: white">
-                    <img src="../../static/images/illustCategory/동화.jpg" class="img" />
+                    <img src="/images/illustCategory/동화.jpg" class="img" />
                     <p>동화</p>
                 </div></li>
             <li><div class="imgDiv" style="background-color: #F1E5B3; color: gray">
-                <img src="../../static/images/illustCategory/디즈니.jpg" class="img" />
+                <img src="/images/illustCategory/디즈니.jpg" class="img" />
                 <p class="categoryName">디즈니</p>
             </div></li>
             <li><div class="imgDiv" style="background-color: #44CEFF; color: white">
-                <img src="../../static/images/illustCategory/배경화.jpg" class="img" />
+                <img src="/images/illustCategory/배경화.jpg" class="img" />
                 <p class="categoryName">배경</p>
             </div>
             </li>
             <li>
                 <div class="imgDiv" style="background-color: #F2E6D8; color: gray">
-                    <img src="../../static/images/illustCategory/수채화.jpg" class="img" />
+                    <img src="/images/illustCategory/수채화.jpg" class="img" />
                     <p class="categoryName">수채화</p>
                 </div>
             </li>
             <li>
                 <div class="imgDiv" style="background-color: #F87DB3; color: white">
-                    <img src="../../static/images/illustCategory/시티팝.jpg" class="img" />
+                    <img src="/images/illustCategory/시티팝.jpg" class="img" />
                     <p class="categoryName">시티팝</p>
                 </div>
             </li>
             <li>
                 <div class="imgDiv" style="background-color: #566D50; color: white">
-                    <img src="../../static/images/illustCategory/인물화.jpg"class="img"  />
+                    <img src="/images/illustCategory/인물화.jpg"class="img"  />
                     <p class="categoryName">인물화</p>
                 </div>
             </li>
             <li>
                 <div class="imgDiv" style="background-color: #90C863; color: white">
-                    <img src="../../static/images/illustCategory/지브리.jpg" class="img" />
+                    <img src="/images/illustCategory/지브리.jpg" class="img" />
                     <p class="categoryName">지브리</p>
                 </div>
             </li>
             <li>
                 <div class="imgDiv" style="background-color: #676886; color: white">
-                    <img src="../../static/images/illustCategory/추상화.jpg" class="img" />
+                    <img src="/images/illustCategory/추상화.jpg" class="img" />
                     <p class="categoryName">추상화</p>
                 </div>
             </li>
             <li>
                 <div class="imgDiv" style="background-color: #E6AFAA; color: white;">
-                    <img src="../../static/images/illustCategory/캐릭터.jpg" class="img" />
+                    <img src="/images/illustCategory/캐릭터.jpg" class="img" />
                     <p class="categoryName">캐릭터</p>
                 </div>
             </li>
             <li>
                 <div class="imgDiv" style="background-color: #303030; color: white;">
-                    <img src="../../static/images/illustCategory/흑백.jpg" class="img" />
+                    <img src="/images/illustCategory/흑백.jpg" class="img" />
                     <p class="categoryName">흑백</p>
                 </div>
             </li>
@@ -410,7 +414,7 @@
 
         <div class="center cre">
             <div class="illustratorProfile">
-                <img src="../../static/images/profileSample/프사1.jpg" />
+                <img src="/images/profileSample/프사1.jpg" />
 
             </div>
             <p>zzang_9</p>
@@ -418,40 +422,40 @@
 
         <div class="center cre">
             <div class="illustratorProfile">
-                <img src="../../static/images/profileSample/프사2.jpg" />
+                <img src="/images/profileSample/프사2.jpg" />
 
             </div>
             <p>ppicka</p>
         </div>
         <div class="center cre">
             <div class="illustratorProfile">
-                <img src="../../static/images/profileSample/프사3.jpg" />
+                <img src="/images/profileSample/프사3.jpg" />
             </div>
             <p>vaccineCat</p>
         </div>
         <div class="center cre">
             <div class="illustratorProfile">
-                <img src="../../static/images/profileSample/프사4.jpg" />
+                <img src="/images/profileSample/프사4.jpg" />
             </div>
             <p>dangdang</p>
         </div>
         <div class="center cre">
             <div class="illustratorProfile">
-                <img src="../../static/images/profileSample/프사5.jpg" />
+                <img src="/images/profileSample/프사5.jpg" />
 
             </div>
             <p>cute_dang</p>
         </div>
         <div class="center cre_x">
             <div class="illustratorProfile">
-                <img src="../../static/images/profileSample/프사1.jpg" />
+                <img src="/images/profileSample/프사1.jpg" />
 
             </div>
             <p>zzang_9</p>
         </div>
         <div class="center cre_x">
             <div class="illustratorProfile">
-                <img src="../../static/images/profileSample/프사5.jpg" />
+                <img src="/images/profileSample/프사5.jpg" />
 
             </div>
             <p>cute_dang</p>
@@ -497,72 +501,72 @@
     <div class="flex2 wrap" style="background-color: #EAEAEA;">
         <div class="box column1">
             <div class="column cellCss" >
-                <img src="../../static/images/일러스트 1.jpg" class="testWidth" />
+                <img src="/images/일러스트 1.jpg" class="testWidth" />
                 <span class="heart">❤<span style="font-size: 12px;">1,213</span></span>
 
             </div>
             <div class="column cellCss">
-                <img src="../../static/images/일러스트 4.jpg" class="testWidth">
+                <img src="/images/일러스트 4.jpg" class="testWidth">
                 <span class="heart">❤<span style="font-size: 12px;">1,043</span></span>
             </div>
             <div class="column cellCss">
-                <img src="../../static/images/일러스트 3.jpg" class="testWidth">
+                <img src="/images/일러스트 3.jpg" class="testWidth">
                 <span class="heart">❤</span>
             </div>
         </div>
         <div class="box column2">
             <div class="column cellCss">
-                <img src="../../static/images/일러스트 2.jpg" class="testWidth">
+                <img src="/images/일러스트 2.jpg" class="testWidth">
                 <span class="heart">❤</span>
             </div>
             <div class="column cellCss">
-                <img src="../../static/images/일러스트 10.jpg" class="testWidth">
+                <img src="/images/일러스트 10.jpg" class="testWidth">
                 <span class="heart">❤</span>
             </div>
             <div class="column cellCss">
-                <img src="../../static/images/일러스트 11.jpg" class="testWidth">
+                <img src="/images/일러스트 11.jpg" class="testWidth">
                 <span class="heart">❤</span>
             </div>
         </div>
         <div class="box column3">
             <div class="column cellCss">
-                <img src="../../static/images/일러스트 7.jpg" class="testWidth">
+                <img src="/images/일러스트 7.jpg" class="testWidth">
                 <span class="heart">❤</span>
             </div>
             <div class="column cellCss">
-                <img src="../../static/images/일러스트 6.jpg" class="testWidth">
+                <img src="/images/일러스트 6.jpg" class="testWidth">
                 <span class="heart">❤</span>
             </div>
             <div class="column cellCss">
-                <img src="../../static/images/일러스트 9.jpg" class="testWidth">
+                <img src="/images/일러스트 9.jpg" class="testWidth">
                 <span class="heart">❤</span>
             </div>
         </div>
         <div class="box column4">
             <div class="column cellCss">
-                <img src="../../static/images/일러스트 5.jpg" class="testWidth">
+                <img src="/images/일러스트 5.jpg" class="testWidth">
                 <span class="heart">❤</span>
             </div>
             <div class="column cellCss">
-                <img src="../../static/images/일러스트 8.jpg" class="testWidth">
+                <img src="/images/일러스트 8.jpg" class="testWidth">
                 <span class="heart">❤</span>
             </div>
             <div class="column cellCss">
-                <img src="../../static/images/일러스트 12.jpg" class="testWidth">
+                <img src="/images/일러스트 12.jpg" class="testWidth">
                 <span class="heart">❤</span>
             </div>
         </div>
         <div class="box column5">
             <div class="column cellCss">
-                <img src="../../static/images/일러스트 13.jpg" class="testWidth">
+                <img src="/images/일러스트 13.jpg" class="testWidth">
                 <span class="heart">❤</span>
             </div>
             <div class="column cellCss">
-                <img src="../../static/images/일러스트 14.jpg" class="testWidth">
+                <img src="/images/일러스트 14.jpg" class="testWidth">
                 <span class="heart">❤</span>
             </div>
             <div class="column cellCss">
-                <img src="../../static/images/일러스트 15.jpg" class="testWidth">
+                <img src="/images/일러스트 15.jpg" class="testWidth">
                 <span class="heart">❤</span>
             </div>
         </div>
@@ -574,7 +578,7 @@
 </div>
 
 
-
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -683,7 +687,5 @@
 
 </script>
 
-<script>
-
-</script>
+<script src="/js/fix/header.js"></script>
 </html>
