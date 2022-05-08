@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>내 작품 관리</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/editProfile.css}">
+    <link rel="stylesheet" href="css/editProfile.css" type="text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/css/main.css" type="text/css"/>
+    <link href="/css/footer.css" rel="stylesheet" type="text/css">
+    <style>
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li{
+            font-size: 15px;
+            font-weight: 400;
+            color: inherit;
+            display: block;
+            word-break: break-all;
+            letter-spacing: -0.2px;
+            border-bottom: 1px solid #e8e9ed;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+        body{
+            width : 100%;
+            max-width: 1200px;
+            margin:0 auto;
+        }
+        #allWrap{
+            display: inline-block;
+            margin: 30px 0 auto;
+            /*border-top: 1px solid #e8e9ed;*/
+            width : 100%;
+            max-width: 1200px;
+        }
+        .main{
+            border-bottom: 1px solid #e8e9ed;
+        }
+        .left_block{
+            float: left;
+            box-sizing: border-box;
+            width: 230px;
+            margin-right: 90px;
+        }
+        .li_top{
+            border-top: 1px solid #e8e9ed;
+        }
+        .right_block{
+            float: left;
+            width: 880px;
+        }
+        .profile_text{
+            font-size: 32px;
+            padding-bottom: 30px;
+        }
+
+        /*.left_block ul li.li_top>a{*/
+        /*    background:  #ef6e73;*/
+        /*    color: white;*/
+        /*}*/
+        .left_block ul li:hover>a{
+            background:  #ef6e73;
+            color: white;
+            text-decoration: none;
+        }
+        .left_block ul li>a{
+            font-size: 15px;
+            font-weight: 400;
+            color: inherit;
+            display: block;
+            padding: 16px 30px 16px 15px;
+            word-break: break-all;
+            letter-spacing: -0.2px;
+        }
+        a{
+            text-decoration: none;
+            cursor: pointer;
+        }
+        div input{
+            width: 227px;
+            height: 22px;
+            border: 1px solid #e8e9ed;
+        }
+        div input:focus{
+            border-color: #ef6e73;
+            outline: none;
+        }
+        /*.navBar{*/
+        /*    display: flex;*/
+        /*}*/
+        .listWrap{
+            width: 100%;
+            height: 100%;
+            margin-bottom: 80px;
+        }
+        .listWrap a{
+            color: #000;
+            font-size: 16px;
+            letter-spacing: -1px;
+            text-align: center;
+            width: 100%;
+            height: 60px;
+            display: block;
+            line-height: 60px;
+
+        }
+        .active {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clicked {
+            /*background: #ef6e73;*/
+            border-bottom: 2px solid #ef6e73;
+        }
+        .active1{
+            border-right: 1px solid #ddd;
+        }
+        .oned {
+            background: #ef6e73;
+            border-bottom: 1px solid #ef6e73;
+            color: white;
+        }
+
+        th{
+            border-top: 1px solid #e8e9ed;
+            border-right: 1px solid #e8e9ed;
+            border-bottom: 1px solid #adb5bd;
+            height: 40px;
+        }
+
+        /*소설 통계*/
+
+       div.item-button li{
+            border-bottom: 0px solid black;
+        }
+
+        .td1{
+            border-right: 1px solid #e8e9ed;
+            border-bottom: 1px solid #e8e9ed;
+            padding-right: 10px;
+            text-align: right;
+        }
+
+        .title1{
+            text-align: center;
+        }
+
+        /*테이블 css*/
+        div.minimalistBlack {
+            border: 1px solid #00000038;
+            width: 100%;
+            text-align: left;
+            border-collapse: collapse;
+        }
+        .divTable.minimalistBlack .divTableCell, .divTable.minimalistBlack .divTableHead {
+            border: 1px solid #00000038;
+            padding: 5px 4px;
+        }
+        .divTable.minimalistBlack .divTableBody .divTableCell {
+            font-size: 15px;
+        }
+        .divTable.minimalistBlack .divTableHeading {
+            background: #ef6e73b3;
+            /*background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);*/
+            /*background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);*/
+            /*background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);*/
+            border-bottom: 1px solid #f2f2f2;
+            color: #fff !important;
+        }
+        .divTable.minimalistBlack .divTableHeading .divTableHead {
+            font-size: 15px;
+            font-weight: bold;
+            color: #FFF;
+        }
+        .minimalistBlack .tableFootStyle {
+            font-size: 14px;
+            font-weight: bold;
+            color: #000000;
+            border-top: 1px solid #f2f2f2;
+        }
+        .minimalistBlack .tableFootStyle {
+            font-size: 14px;
+        }
+        /* DivTable.com */
+        .divTable{ display: table;}
+        .divTableRow { display: table-row; text-align: center;}
+        .divTableHeading { display: table-header-group;}
+        .divTableCell, .divTableHead { display: table-cell;}
+        .divTableHeading { display: table-header-group;}
+        .divTableBody { display: table-row-group;}
+
+        img {
+            width: 20px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        /*페이징 css*/
+        div.categoryPaging {
+            width: 100%;
+            height: 80px;
+            clear: both;
+        }
+        ul.c_PagingList{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            height: 100%;
+            padding: 0;
+        }
+        ul.c_PagingList li{
+            list-style: none;
+            width: 30px;
+            height: 40px;
+            text-align: center;
+            background: #e9ecef;
+            color: #343a40;
+            line-height: 2.25;
+        }
+        ul.c_PagingList li a{
+            text-decoration-line: none;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 12px;
+
+        }
+        ul.c_PagingList li a:visited, ul.c_PagingList li a:link{
+            color: #343a40;
+        }
+        ul.c_PagingList li.pageActive{
+            background:#00AAFF;
+            color: #fff !important;
+        }
+
+        .novel-detail{
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="allWrap">
+    <div class="profileWrap">
+        <div class="group">
+            <div class="left_block">
+                <ul class="liWrap">
+                    <li class="li_top left">
+                        <a href="">프로필 수정</a>
+                    </li>
+                    <li class="left oned">
+                        <a href="">내 작품 관리</a>
+                    </li>
+                    <li class="left">
+                        <a href="">비밀번호 변경</a>
+                    </li>
+                    <li class="left">
+                        <a href="">내 문의 내역</a>
+                    </li>
+                    <li class="left">
+                        <a href="">탈퇴 하기</a>
+                    </li>
+                    <li class="left">
+                        <a href="">결제</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="right_block">
+                <div class="">
+                    <div class="profile_text"><strong>내 작품 관리</strong></div>
+                    <table class="listWrap">
+                        <tbody>
+                        <tr>
+                            <td class="active1 one" style="width: 25%">
+                                <div class=""><a href="illust.html">내그림</a></div>
+                            </td>
+                            <td class="active1 one" style="width: 25%">
+                                <div class="active">내 소설</div>
+                            </td>
+                            <td class="active2" style="width: 25%">
+                                <div class="active">소설 통계</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- 통계 테이블-->
+                    <div class="divTable minimalistBlack">
+                        <div class="divTableHeading">
+                            <div class="divTableRow">
+                                <div class="divTableHead" style="width: 252px;">소설명</div>
+                                <div class="divTableHead" style="width: 135px;">작가</div>
+                                <div class="divTableHead" style="width: 120px;">회차 수</div>
+                                <div class="divTableHead">총 결제 코인</div>
+                                <div class="divTableHead">총 후원 코인</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--리스트 테이블-->
+                    <div class="list">
+                        <!--소설 정보 테이블-->
+                        <div class="divTable minimalistBlack">
+                            <div class="divTableBody">
+                                <div class="divTableRow">
+                                    <div><img src="../../static/images/close.png" class="close"><img src="../../static/images/open.png" class="open" style="display: none"></div>
+                                    <div class="divTableCell" style="width: 207px;">로맨스로맨스몲</div>
+                                    <div class="divTableCell" style="width: 135px;">나나나</div>
+                                    <div class="divTableCell" style="width: 120px;">308회</div>
+                                    <div class="divTableCell">2,500,000c</div>
+                                    <div class="divTableCell">4,000,000c</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--소설 정보 테이블 끝-->
+
+                        <!--디테일 테이블-->
+                        <div class="divTable minimalistBlack novel-detail" style="display: none;">
+                            <div class="divTableHeading">
+                                <div class="divTableRow">
+                                    <div class="divTableHead">회차</div>
+                                    <div class="divTableHead">조회수</div>
+                                    <div class="divTableHead">결제 코인</div>
+                                    <div class="divTableHead">후원 코인</div>
+                                </div>
+                            </div>
+                            <div class="divTableBody">
+                                <div class="divTableRow">
+                                    <div class="divTableCell">308회</div>
+                                    <div class="divTableCell">3,000,000회</div>
+                                    <div class="divTableCell">1,000,000c</div>
+                                    <div class="divTableCell">1,000,000c</div>
+                                </div>
+                            </div>
+                            <div class="divTableBody">
+                                <div class="divTableRow">
+                                    <div class="divTableCell">307회</div>
+                                    <div class="divTableCell">3,000,000회</div>
+                                    <div class="divTableCell">1,000,000c</div>
+                                    <div class="divTableCell">1,000,000c</div>
+                                </div>
+                            </div>
+                            <div class="divTableBody">
+                                <div class="divTableRow">
+                                    <div class="divTableCell">306회</div>
+                                    <div class="divTableCell">3,000,000회</div>
+                                    <div class="divTableCell">1,000,000c</div>
+                                    <div class="divTableCell">1,000,000c</div>
+                                </div>
+                            </div>
+                            <div class="divTableBody">
+                                <div class="divTableRow">
+                                    <div class="divTableCell">305회</div>
+                                    <div class="divTableCell">3,000,000회</div>
+                                    <div class="divTableCell">1,000,000c</div>
+                                    <div class="divTableCell">1,000,000c</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--디테일 테이블 끝-->
+                    </div>
+                    <!-- 리스트 테이블 끝-->
+
+                    <!--리스트 테이블-->
+                    <div class="list">
+                        <!--소설 정보 테이블-->
+                        <div class="divTable minimalistBlack">
+                            <div class="divTableBody">
+                                <div class="divTableRow">
+                                    <div><img src="../../static/images/close.png" class="close"><img src="../../static/images/open.png" class="open" style="display: none"></div>
+                                    <div class="divTableCell" style="width: 207px;">로맨스로맨스몲</div>
+                                    <div class="divTableCell" style="width: 135px;">나나나</div>
+                                    <div class="divTableCell" style="width: 120px;">308회</div>
+                                    <div class="divTableCell">2,500,000c</div>
+                                    <div class="divTableCell">4,000,000c</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--소설 정보 테이블 끝-->
+
+                        <!--디테일 테이블-->
+                        <div class="divTable minimalistBlack novel-detail" style="display: none;">
+                            <div class="divTableHeading">
+                                <div class="divTableRow">
+                                    <div class="divTableHead">회차</div>
+                                    <div class="divTableHead">조회수</div>
+                                    <div class="divTableHead">결제 코인</div>
+                                    <div class="divTableHead">후원 코인</div>
+                                </div>
+                            </div>
+                            <div class="divTableBody">
+                                <div class="divTableRow">
+                                    <div class="divTableCell">308회</div>
+                                    <div class="divTableCell">3,000,000회</div>
+                                    <div class="divTableCell">1,000,000c</div>
+                                    <div class="divTableCell">1,000,000c</div>
+                                </div>
+                            </div>
+                            <div class="divTableBody">
+                                <div class="divTableRow">
+                                    <div class="divTableCell">307회</div>
+                                    <div class="divTableCell">3,000,000회</div>
+                                    <div class="divTableCell">1,000,000c</div>
+                                    <div class="divTableCell">1,000,000c</div>
+                                </div>
+                            </div>
+                            <div class="divTableBody">
+                                <div class="divTableRow">
+                                    <div class="divTableCell">306회</div>
+                                    <div class="divTableCell">3,000,000회</div>
+                                    <div class="divTableCell">1,000,000c</div>
+                                    <div class="divTableCell">1,000,000c</div>
+                                </div>
+                            </div>
+                            <div class="divTableBody">
+                                <div class="divTableRow">
+                                    <div class="divTableCell">305회</div>
+                                    <div class="divTableCell">3,000,000회</div>
+                                    <div class="divTableCell">1,000,000c</div>
+                                    <div class="divTableCell">1,000,000c</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--디테일 테이블 끝-->
+                    </div>
+                    <!-- 리스트 테이블 끝-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
+</body>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    var active = document.getElementsByClassName("active");
+
+    function handleClick(event) {
+        console.log(event.target);
+        console.log(event.target.classList);
+
+        active[0].classList.remove("clicked");
+        if (event.target.classList[1] === "clicked") {
+            event.target.classList.remove("clicked");
+        } else {
+            for (var i = 0; i < active.length; i++) {
+                active[i].classList.remove("clicked");
+            }
+
+            event.target.classList.add("clicked");
+        }
+    }
+    function init() {
+        active[0].classList.add("clicked");
+        for (var i = 0; i < active.length; i++) {
+            active[i].addEventListener("click", handleClick);
+        }
+    }
+    init();
+
+    //소설 통계 상세보기
+
+    $(".list").on("click", function () {
+       if($(this).find(".novel-detail").is(":visible")){
+           $(this).find(".novel-detail").css("display", "none")
+           $(this).find(".open").css("display", "none")
+           $(this).find(".close").css("display", "block")
+       }else{
+           $(this).find(".novel-detail").css("display", "table")
+           $(this).find(".open").css("display", "block")
+           $(this).find(".close").css("display", "none")
+       }
+    });
+
+    /*상단 바*/
+
+
+
+</script>
+</html>

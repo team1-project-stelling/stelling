@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>파일텍스트추출테스트</title>
+</head>
+
+<body>
+<form id="fileForm" action="/test/uploadTest/" method="POST" enctype="multipart/form-data">
+    <input type="file" id="FILE_TAG" th:name="file">
+    <a href="javascript:void(0)" class="send">확인</a>
+<!--    <input th:type="submit" value="제출" />-->
+    <textarea class="result">
+
+    </textarea>
+</form>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(".send").on("click", function(e){
+        e.preventDefault();
+        console.log('test1')
+        var formData = new FormData()
+        console.log('test2')
+        console.log($("input[name='file']")[0].files[0])
+        formData.append("file", $("input[name='file']")[0].files[0]);
+        console.log('test3')
+/*        formData.append($("textarea[name='file']").files[0]);*/
+        $.ajax({
+            type: "POST",
+            url: "/file/uploadTest",
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: function(result, status, xhr){
+                $('.result').val(result)
+            },
+            error: function(xhr, status, er){
+                if(error){
+                    console.log(error)
+                }
+            }
+        });
+
+    })
+</script>
+
+</html>
