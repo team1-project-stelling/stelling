@@ -2,9 +2,15 @@
   margin-top: 91px;
 }
 
+* {
+  list-style: none;
+}
+
 .MainContain {
   width: 100%;
   margin: 0px auto;
+  position: relative;
+  max-width: 1200px;
 }
 
 .MainContain .Contain {
@@ -18,6 +24,7 @@
           box-sizing: border-box;
   min-width: 0px;
   margin: 0px auto;
+  padding: 70px;
 }
 
 .MainContain .Contain .content .x_x {
@@ -29,7 +36,6 @@
   position: relative;
   padding: 20px;
   min-height: 158px;
-  background-color: white;
 }
 
 .MainContain .Contain .content .x_x .x_xH {
@@ -48,10 +54,9 @@
           box-sizing: border-box;
   margin: 0px;
   min-width: 0px;
-  border: 1px solid #f8f8f8;
   border-radius: 6px;
   width: 116px;
-  height: 156px;
+  height: 175px;
   overflow: hidden;
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
@@ -120,7 +125,7 @@
   min-width: 0px;
   color: #151515;
   margin: 0px;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 600;
 }
 
@@ -161,7 +166,7 @@
   min-width: 0px;
   max-width: 100%;
   height: auto;
-  width: 13px;
+  width: 18px;
 }
 
 .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_Desc_pepole :first-child div {
@@ -229,44 +234,15 @@
   display: flex;
 }
 
-.MainContain .Contain .content .x_x .x_xH .x_xDesc .x_Desc_writer div {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  margin: 0px;
-  min-width: 0px;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 0%;
-          flex: 1 1 0%;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
-  color: #9c9c9c;
-  overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.MainContain .Contain .content .x_x .x_xH .x_xDesc .x_Desc_writer div span {
+  border: 1px solid black;
+  width: 50px;
+  padding: 5px;
+  border-radius: 20px;
 }
 
-.MainContain .Contain .content .x_x .x_xH .x_xDesc .x_Desc_writer div :first-child {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  margin: 0px;
-  min-width: 0px;
-  line-height: 1.15;
-  font-size: 16px;
-}
-
-.MainContain .Contain .content .x_x .x_xH .x_xDesc .x_Desc_writer div :last-child {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  margin: 0px;
-  min-width: 0px;
-  line-height: 1.15;
-  font-size: 16px;
+.MainContain .Contain .content .x_x .x_xH .x_xDesc .x_Desc_writer div div {
+  margin-top: 20px;
 }
 
 .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_xBtn {
@@ -376,24 +352,45 @@
   height: 54px;
   padding: 12px 20px;
   background-color: #f3f3f3;
+  max-width: 1200px;
+  overflow: hidden;
 }
 
-.x_xF button :first-child {
+.x_xF button .ResRank {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   margin: 0;
   min-width: 0;
-  -ms-flex: 1 1 0px;
-  -webkit-box-flex: 1;
-          flex: 1 1 0px;
+  width: 1000px;
   font-weight: 500;
   font-size: 16px;
   text-align: left;
-  color: #333333;
   height: 20px;
+  color: #333;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-.x_xF button :last-child {
+.x_xF button .ResRank :first-child {
+  color: red;
+}
+
+.x_xF button .ResRank :nth-child(2) {
+  color: #ef6e73;
+}
+
+.x_xF button .ResRank :nth-child(3) {
+  color: #ef6e73;
+}
+
+.x_xF button .ResRank span {
+  display: -ms-grid;
+  display: grid;
+  width: 150px;
+}
+
+.x_xF .modaldiv {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   margin: 0;
@@ -404,16 +401,19 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: absolute;
+  right: -20px;
 }
 
-.x_xF button :last-child img {
-  width: 30px;
+.x_xF .modaldiv img {
+  width: 40px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   margin: 0;
   min-width: 0;
   max-width: 100%;
   height: auto;
+  z-index: 2;
 }
 
 .x_xx {
@@ -423,23 +423,22 @@
   overflow: hidden;
 }
 
-.modalwrap {
+.Sponmodalwrap, .intromodalwrap {
   display: none;
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  width: 100%;
-  min-width: 1200px;
-  height: 100vh;
-  background-color: rgba(51, 51, 51, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.4);
 }
 
-.SponModal {
-  width: 800px;
+.SponModal, .introModal {
+  width: 600px;
   height: 800px;
   position: absolute;
   top: 10%;
-  left: 30%;
+  left: 35%;
   background-color: #fff;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -452,27 +451,517 @@
   border-radius: 20px;
 }
 
-.SponModal :first-child {
-  text-align: center;
+.SponModal :last-child, .introModal :last-child {
+  padding: 0px;
+  position: relative;
+  overflow: auto;
+  max-height: 581.4px;
+}
+
+.introHead {
+  font-weight: 700;
+  color: #333;
+  font-size: 35px;
+}
+
+.introbody {
+  font-weight: 600;
+  color: #333;
+  font-size: 25px;
+  margin: 50px;
+  line-height: 70px;
+  text-align: left;
+}
+
+.sponheadWrap {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 20px 20px 18px;
-  border-bottom: 1px solid #f1f1f1;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-      align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 50px;
+  font-size: 50px;
 }
 
-.SponModal :first-child :first-child {
+.sponheadWrap button {
+  border: none;
+  background-color: inherit;
+}
+
+.sponbody {
+  line-height: 40px;
+}
+
+.backcolor {
+  width: 100%;
+  max-width: 1200px;
+  min-width: 1200px;
+  background-color: pink;
+  height: 200px;
+  margin: 0 auto;
+  position: absolute;
+  top: -30px;
+  left: 0%;
+}
+
+.hashtag {
+  margin-top: 20px;
+}
+
+.NovelList {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  border-top: 1px solid #f4f4f4;
+  border-bottom: 1px solid #d9d9d9;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.NovelList .Noveltotal {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  position: relative;
+  border-bottom: 1px solid #f3f3f3;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  padding: 20px;
+  color: #9c9c9c;
+  font-size: 17px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 40px;
+}
+
+.NovelList .Novel {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-width: 0px;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.NovelList .Novel li {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  cursor: pointer;
+  padding: 10px 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.NovelList .Novel li :first-child {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px 20px 0px 0px;
+  min-width: 0px;
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 100px;
+}
+
+.NovelList .Novel li :first-child img {
+  width: 62.2657px;
+  height: 100%;
+  margin-left: -1.13287px;
+  margin-top: 0px;
+}
+
+.NovelList .Novel li .NovelDEC {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0%;
+          flex: 1 1 0%;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.NovelList .Novel li .NovelDEC .NovelDECS {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0%;
+          flex: 1 1 0%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.NovelList .Novel li .NovelDEC .NovelDECS .Noveltt {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  font-size: 30px;
+  color: #333333;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 0%;
           flex: 1 1 0%;
 }
 
-.SponModal :last-child {
-  padding: 0px;
+.NovelList .Novel li .NovelDEC .NovelDECS .Novelday {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  font-size: 15px;
+  color: #9e9e9e;
+}
+
+.NovelNum {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-width: 0px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+      align-items: center;
+  margin: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ListReply {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  background-color: white;
+}
+
+.ListReply .ReplyHeader {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  padding: 23px 21px 23px 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.ListReply .ReplyHeader :last-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.hashtag :first-child {
+  font-weight: bolder;
+}
+
+.hashtagSpan {
+  border: 1px solid #ef6e73;
+  border-radius: 10px;
+  padding: 5px;
+  color: #ef6e73;
+}
+
+.ResRank {
+  color: red;
+}
+
+.ResRank {
+  -webkit-animation: rotate;
+          animation: rotate;
+  -webkit-animation-duration: 20s;
+          animation-duration: 20s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-fill-mode: none;
+          animation-fill-mode: none;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+
+@-webkit-keyframes rotate {
+  to {
+    -webkit-transform: translateX(-60%);
+            transform: translateX(-60%);
+  }
+  from {
+    -webkit-transform: translateX(40%);
+            transform: translateX(40%);
+  }
+}
+
+@keyframes rotate {
+  to {
+    -webkit-transform: translateX(-60%);
+            transform: translateX(-60%);
+  }
+  from {
+    -webkit-transform: translateX(40%);
+            transform: translateX(40%);
+  }
+}
+
+.ResRank:hover {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+
+.ReplyCmt {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ReplyCmtWrap {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  min-height: 160px;
+}
+
+.ReplyCmtDtail {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
   position: relative;
-  overflow: auto;
-  max-height: 581.4px;
+  padding-left: 21px;
+  padding-top: 30px;
+  padding-bottom: 23px;
+  background-color: white;
+  min-height: inherit;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ReplyImg {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  border-radius: 42%;
+  width: 60px;
+  height: 60px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.ReplyImg img {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  max-width: 100%;
+  width: 60px;
+  height: 60px;
+}
+
+.ReplyDEC {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px 0px 0px 20px;
+  min-width: 0px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0%;
+          flex: 1 1 0%;
+}
+
+.ReplyDEC .ReplyIds {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ReplyDEC .ReplyIds .ReplyId {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-box-flex: initial;
+      -ms-flex: initial;
+          flex: initial;
+  font-size: 18px;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.ReplyDEC .ReplyIds .ReplyDateWrap {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ReplyDEC .ReplyIds .ReplyDateWrap .ReplyDate {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  color: #999999;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  font-size: 14px;
+}
+
+.ReplyDEC .ReplyText {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 18px 0px 0px;
+  min-width: 0px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  width: 100%;
+  font-size: 16px;
+}
+
+.ReplyDEC .ReplyLikeWrap {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 24px 0px 0px;
+  min-width: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ReplyDEC .ReplyLikeWrap .ReplyLike {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  cursor: pointer;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+      align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ReplyDEC .ReplyLikeWrap .ReplyLike img {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px 5px 0px 0px;
+  min-width: 0px;
+  max-width: 100%;
+  width: 20px;
+  height: 18px;
+}
+
+.ReplyDEC .ReplyLikeWrap .ReplyLikeCnt {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px 20px 0px 0px;
+  min-width: 0px;
+  font-size: 16px;
+  color: #999999;
+  height: 18px;
+  line-height: 18px;
+}
+
+.ReplyDeclarWrap {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px 20px 0px 0px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  min-width: 31px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ReplyDeclarWrap .ReplyDeclar {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  cursor: pointer;
+  font-size: 14px;
+  height: 14px;
+  color: #999999;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.choose {
+  color: red;
+}
+
+.bb {
+  cursor: pointer;
+  font-weight: 700;
 }
