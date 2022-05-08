@@ -1,10 +1,13 @@
-
+/*@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');*/
+@import url(//font.elice.io/EliceDigitalBaeum.css);
 
 body {
     width: 100%;
     min-height:100%;
     margin: 0px;
     padding-top:106px !important;
+/*    font-family: 'Noto Sans KR', sans-serif;*/
+    font-family: "Elice Digital Baeum",sans-serif;
 }
 header#header{
     position: fixed;
