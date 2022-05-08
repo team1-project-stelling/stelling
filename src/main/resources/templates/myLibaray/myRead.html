@@ -10,11 +10,9 @@
     <style>
 
 
-        /* 바디의 길이,넓이 설정 */
-        html {height:100%}
+        html {}
         body {
             width: 100%;
-            min-height:100%;
             margin: 0px;
         }
 
@@ -30,12 +28,11 @@
 
         div#categoryWrap{
             width: 100%;
-            height: 100vh;
 
         }
 
 
-        section#categorySection{width : 100%; min-height: 100vh;}
+        section#categorySection{width : 100%;}
 
         /* 카테고리메뉴 테이블*/
         div#categoryMenu{
@@ -255,11 +252,12 @@
             border: 1px solid #ff8b77;
             width: 80px;
             margin-right: 7px;
-            font-size: 12px;
+            font-size: 13px;
             padding: 7px 0.7em 7px 0.7em;
             border-radius: 30px;
             font-weight: bold;
         }
+
         div.item-img.btn-num{
             max-width: 120px; height: 160px; position: relative;
             border-radius: 4px;
@@ -336,9 +334,57 @@
             gap: 3px;
         }
 
+        /*페이징 css*/
+        div.categoryPaging {
+            width: 100%;
+            height: 80px;
+            clear: both;
+        }
+        ul.c_PagingList{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            height: 100%;
+            padding: 0;
+        }
+        ul.c_PagingList li{
+            list-style: none;
+            width: 30px;
+            height: 40px;
+            text-align: center;
+            background: #e9ecef;
+            color: #343a40;
+            line-height: 2.25;
+        }
+        ul.c_PagingList li a{
+            text-decoration-line: none;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 12px;
+
+        }
+        ul.c_PagingList li a:visited, ul.c_PagingList li a:link{
+            color: #343a40;
+        }
+        ul.c_PagingList li.pageActive{
+            background:#00AAFF;
+            color: #fff !important;
+        }
+
+
     </style>
 </head>
 <body class="is-preload">
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word.html :: headFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
 
 <!-- Main -->
 <div id="main">
@@ -442,7 +488,7 @@
                     <!-- //item-img -->
                     <div class="item-info" style="margin-left: 12px;padding: 8px;">
                         <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
-                            <span class="genre" style="color: #ef6e73">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 티끌 모아 대박
+                            <span class="genre" style="color: #ef6e73">[판타지]</span> 티끌 모아 대박
                         </p>
                         <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
                             <img class="people" src="/images/people.png">
@@ -453,16 +499,9 @@
                             <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">총 편수 : 275</span>
                             <span>최근 등록일 : 2022-04-30</span>
                         </div>
-                        <div style="margin-top: 1em;position: absolute;font-weight: bold;font-size: 14px;color: #00AAFF;">
-                            <span>#로맨스</span>&nbsp;&nbsp;
-                            <span>#판타지</span>&nbsp;&nbsp;
-                            <span>#라이트노벨</span>&nbsp;&nbsp;
-                        </div>
                         <div class="item-button" style="margin-top: 3em;">
                             <ul class="tag-title">
-                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
-                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
-                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                                <li><a href="#" class="btn-view tag-list">보러가기</a></li>
                             </ul>
                         </div>
                     </div>
@@ -490,9 +529,7 @@
                         </div>
                         <div class="item-button" style="margin-top: 3em;">
                             <ul class="tag-title">
-                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
-                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
-                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                                <li><a href="#" class="btn-view tag-list">보러가기</a></li>
                             </ul>
                         </div>
                     </div>
@@ -520,9 +557,7 @@
                         </div>
                         <div class="item-button" style="margin-top: 3em;">
                             <ul class="tag-title">
-                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
-                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
-                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                                <li><a href="#" class="btn-view tag-list">보러가기</a></li>
                             </ul>
                         </div>
                     </div>
@@ -550,9 +585,7 @@
                         </div>
                         <div class="item-button" style="margin-top: 3em;">
                             <ul class="tag-title">
-                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
-                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
-                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                                <li><a href="#" class="btn-view tag-list">보러가기</a></li>
                             </ul>
                         </div>
                     </div>
@@ -580,9 +613,7 @@
                         </div>
                         <div class="item-button" style="margin-top: 3em;">
                             <ul class="tag-title">
-                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
-                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
-                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                                <li><a href="#" class="btn-view tag-list">보러가기</a></li>
                             </ul>
                         </div>
                     </div>
@@ -610,17 +641,35 @@
                         </div>
                         <div class="item-button" style="margin-top: 3em;">
                             <ul class="tag-title">
-                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
-                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
-                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                                <li><a href="#" class="btn-view tag-list">보러가기</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- 페이징 시작-->
+            <div class="categoryPaging giveMaxWidth">
+                <!-- 페이징 -->
+                <ul class="c_PagingList" >
+                    <!-- 이전 -->
+                    <li><a>&lt;</a></li>
+
+                    <li class="pageActive"><a>1</a></li>
+                    <li><a>2</a></li>
+                    <li><a>3</a></li>
+                    <li><a>4</a></li>
+                    <li><a>5</a></li>
+                    <li><a>6</a></li>
+
+                    <!-- 다음 -->
+                    <li><a>&gt;</a></li>
+                </ul>
+            </div>
+            <!-- 페이징 종료-->
         </section>
     </div>
 </div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
 
 
 
