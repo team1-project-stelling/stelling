@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>detailInquiry</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+        @media(max-width : 390px){
+            .mainbox {
+                width: 370px !important;
+                margin: 0 auto !important;
+            }
+
+            .td_left {
+                width: 14% !important;
+            }
+
+            .td_center {
+                width: 35% !important;
+            }
+
+            .td_right {
+                width: 18% !important;
+            }
+
+            .text_position_1 {
+                margin-top: 14px !important;
+                margin-bottom: 10px !important;
+                font-size: 12px !important;
+            }
+
+
+            .head_text {
+                text-align: center !important;
+                width: 370px !important;
+                font-size: 30px !important;
+                font-weight: bolder !important;
+                margin-bottom: 50px !important;
+            }
+        }
+
+
+
+        /*미디어쿼리 끝*/
+
+
+
+        .mainbox {
+            width: 888px;
+            margin: 0 auto;
+        }
+
+        .head_text {
+            text-align: left;
+            width: 525px;
+            font-size: 30px;
+            font-weight: bolder;
+            margin-bottom: 50px;
+        }
+
+        .text_position_1 {
+            margin-top: 14px;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+
+        .table {
+            border-top: 3px solid black;
+            border-bottom: 3px solid black;
+            width: 100%;
+        }
+
+        .td_left {
+            width: 8%;
+        }
+
+        .td_center {
+            width: 67%;
+        }
+        .td_right {
+            width: 8%;
+        }
+
+        tr.tr {
+            height: 50px;
+            font-weight: bolder;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        table tbody tr {
+            border: solid 1px #e2eaec;
+            border-left: 0;
+            border-right: 0;
+        }
+
+        .ask_again_button {
+            background-color: black;
+            color: white;
+            height: 50px;
+            width: 112px;
+            border: hidden;
+            border-radius: 7px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .list_button {
+            background-color: #ef6e73;
+            color: white;
+            height: 50px;
+            width: 112px;
+            border: hidden;
+            border-radius: 7px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .button_position {
+            text-align: center;
+            margin-top: 41px;
+            margin-bottom: 41px;
+        }
+    </style>
+</head>
+<body style="max-witdh:1200px ;">
+
+    <!--Main-->
+        <div class="mainbox">
+            <div style="margin-top: 250px;">
+                <header class="head_text">내 문의내역</header>
+            </div>
+            <div>
+                <p class="text_position_1">
+                    문의 내용 중 욕설, 폭언, 위협, 허위사실 등이 포함되었거나 중복된 문의인 경우 삭제될 수 있습니다.
+                </p>
+                <table class="table">
+                    <tbody>
+                        <tr class="tr">
+                            <td class="td_left">닉네임</td>
+                            <td class="td_center"></td>
+                            <td class="td_right">처리상태</td>
+                            <td class="td_rightright"></td>
+                        </tr>
+                        <tr class="tr">
+                            <td class="td_left">제목</td>
+                            <td class="td_center"></td>
+                            <td class="td_right">등록일</td>
+                            <td class="td_rightright"></td>
+                        </tr>
+                        <tr class="tr">
+                            <td class="td_left" style="height: 200px">내용</td>
+                            <td class="td_center"></td>
+                            <td class="td_right"></td>
+                        </tr>
+                        <tr class="tr">
+                            <td class="td_left" style="height: 200px">답변</td>
+                            <td class="td_center"></td>
+                            <td class="td_right"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="text_position_1">답변이 만족스럽지 않으셨거나 이 외 다른 문의사항이 있으신 경우 다시 문의주시면 최대한 빠르게 답변 드리겠습니다.</p>
+                <div class="button_position">
+                    <a href=""><button class="ask_again_button">다시 문의하기</button></a>
+                    <a href=""><button class="list_button">목록</button></a>
+                    
+                </div>
+            </div>
+        </div>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>writeInquiry</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<style>
+    @media(max-width : 390px){
+        .mainbox {
+            margin-top: 100px !important;
+            width: 375px !important;
+            height: 1000px !important;
+            margin: 0 auto !important;
+        }
+
+        .mainForm {
+            width: 375px !important;
+            margin: 0 auto !important;
+        }
+
+        .head_text {
+            text-align: center !important;
+            width: 375px !important;
+            font-size: 30px !important;
+            font-weight: bolder !important;
+            margin-bottom: 50px !important;
+        }
+
+        .p_text {
+            font-size: 12px !important;
+        }
+
+        .content_input {
+            width: 260px !important;
+            height: 400px !important;
+            border: 1px solid #e2eaec !important;
+            background: white !important;
+            resize: none !important;
+            padding: 9px !important;
+            overflow: scroll !important;
+            -ms-overflow-style: none !important;
+        }
+
+        input.title_input {
+            width: 260px !important;
+        }
+
+        input {
+            width: 260px !important;
+            height: 23px !important;
+            border: 1px solid #e2eaec !important;
+            padding: 9px !important;
+        }
+
+        th {
+            width: 77px !important;
+            height: 90px !important;
+            text-align: left !important;
+        }
+
+        .button_style {
+            width: 360px !important;
+            height: 60px !important;
+            font-size: 18px !important;
+            background: #ef6273 !important;
+            border: none !important;
+            border-radius: 5px !important;
+            color: white !important;
+            cursor: pointer !important;
+        }
+    }
+    /*미디어쿼리 끝*/
+    .mainbox {
+        margin-top: 100px;
+        width: 888px;
+        height: 930px;
+        margin: 0 auto;
+    }
+
+    .mainForm {
+
+        width: 888px;
+        margin: 0 auto;
+    }
+
+    .p_text {
+        font-size: 13px;
+    }
+
+    th {
+        width: 127px;
+        height: 90px;
+        text-align: left;
+    }
+
+    input {
+        height: 23px;
+        border: 1px solid #e2eaec;
+        padding: 9px;
+    }
+
+    input.title_input {
+        width: 734px;
+    }
+
+    .content_input {
+        width: 734px;
+        height: 400px;
+        border: 1px solid #e2eaec;
+        background: white;
+        resize: none;
+        padding: 9px;
+        overflow: scroll;
+        /* IE scroll 숨김 */
+        -ms-overflow-style: none;
+    }
+
+    .content_input::-webkit-scrollbar {
+        width: 0 !important;
+        display: none;
+    }
+
+
+    .button_position {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .button_style {
+        width: 300px;
+        height: 60px;
+        font-size: 18px;
+        background: #ef6273;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+    }
+
+    .head_text {
+        text-align: left;
+        width: 525px;
+        font-size: 30px;
+        font-weight: bolder;
+        margin-bottom: 50px;
+    }
+</style>
+<body style="max-witdh:1200px ;">
+
+    <!--Main-->
+    <div class="mainbox">
+
+        <div class="mainForm">
+            <div style="margin-top: 250px;">
+                <header class="head_text">1:1 문의하기</header>
+            </div>
+            <p class="p_text">
+                1:1 문의를 통한 전화상담 요청을 불가하오니 이 점 양해하여 주시기 바랍니다.
+            </p>
+            <p class="p_text">
+                문의 내용 중 욕설, 폭언, 위협, 허위사실 등이 포함될 경우 모욕, 협박, 명예훼손 등으로 간주하여 답변이 제외될 수 있으며, 관련 법규에 의거 처벌될 수 있습니다.
+            </p>
+            <hr style="border: 1px solid black">
+            <form action="">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>닉네임</th>
+                            <td>
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>제목</th>
+                            <td>
+                                <input type="text" class="title_input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="display: block">문의 내용</th>
+                            <td>
+                                <textarea class="content_input"></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="button_position">
+                    <button type="button" class="button_style">문의하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
