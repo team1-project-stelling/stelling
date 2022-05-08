@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
     <title>내문의내역</title>
-<!--    <link rel="stylesheet" href="../../static/css/editProfile.css">-->
     <style>
+        html, body {
+            font-family: "Elice Digital Baeum",sans-serif;
+        }
         ul{
             list-style: none;
             margin: 0;
@@ -49,7 +52,6 @@
         .right_block{
             float: left;
             width: 880px;
-
         }
         .profile_text{
             font-size: 32px;
@@ -59,7 +61,6 @@
             border-top: 2px solid black;
             text-align: center;
             width: 880px;
-
             margin: 0;
             padding: 0;
 
@@ -116,6 +117,23 @@
             text-decoration: none;
             cursor: pointer;
         }
+        .clicked {
+            background: #ef6e73;
+            border-bottom: 1px solid #ef6e73;
+            color: white;
+        }
+        .writingWrap{
+            text-align: end;
+            margin-bottom: 10px;
+        }
+        .writingBtn{
+            border: 1px solid #ef6e73;
+            border-radius: 4px;
+            background: #ef6e73;
+            color: white;
+            font-weight: 600;
+            padding: 2px;
+        }
 
     </style>
 
@@ -126,29 +144,32 @@
         <div class="group">
             <div class="left_block">
                 <ul class="liWrap">
-                    <li class="li_top">
-                        <a href="내 프로필">프로필 수정</a>
+                    <li class="li_top letf">
+                        <a href="editProfile.html">프로필 수정</a>
                     </li>
-                    <li>
-                        <a href="내 작품 관리">내 작품 관리</a>
+                    <li class="left">
+                        <a href="">내 작품 관리</a>
                     </li>
-                    <li>
-                        <a href="/templates/mypage/changPw.html">비밀번호 변경</a>
+                    <li class="left">
+                        <a href="changPw.html">비밀번호 변경</a>
                     </li>
-                    <li>
-                        <a href="내 문의 내역">내 문의 내역</a>
+                    <li class="left">
+                        <a href="questions.html">내 문의 내역</a>
                     </li>
-                    <li>
-                        <a href="탈퇴 하기">탈퇴 하기</a>
+                    <li class="left">
+                        <a href="withdraw.html">탈퇴 하기</a>
                     </li>
-                    <li>
-                        <a href="결제">결제</a>
+                    <li class="left">
+                        <a href="payment.html">결제</a>
                     </li>
                 </ul>
             </div>
             <div class="right_block">
                 <div class="">
                     <div class="profile_text"><strong>내 문의내역</strong></div>
+                    <div class="writingWrap">
+                        <a href="" class="writingBtn">글쓰기</a>
+                    </div>
                     <table class="questions_table">
                         <thead>
                             <th>번호</th>
@@ -180,7 +201,30 @@
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    var left = document.getElementsByClassName("left");
 
+    function handleClick(event) {
+        console.log(event.target);
+        console.log(event.target.classList);
+
+        left[0].classList.remove("clicked");
+        if (event.target.classList[1] === "clicked") {
+            event.target.classList.remove("clicked");
+        } else {
+            for (var i = 0; i < active.length; i++) {
+                left[i].classList.remove("clicked");
+            }
+
+            event.target.classList.add("clicked");
+        }
+    }
+    function init() {
+        left[2].classList.add("clicked");
+        for (var i = 0; i < active.length; i++) {
+            left[i].addEventListener("click", handleClick);
+        }
+    }
+    init();
 
 </script>
 </html>

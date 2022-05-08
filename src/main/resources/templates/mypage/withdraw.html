@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
     <title>탈퇴</title>
     <style>
+        html, body {
+            font-family: "Elice Digital Baeum",sans-serif;
+        }
         ul{
             list-style: none;
             margin: 0;
@@ -48,7 +52,6 @@
             box-sizing: border-box;
             width: 230px;
             margin-right: 90px;
-
         }
         .right_block{
             float: left;
@@ -79,7 +82,7 @@
            overflow: hidden;
            text-align: center;
        }
-        #idAgree{
+        #idAgree1, #idAgree2{
             zoom: 1.5;
             display: block;
         }
@@ -165,6 +168,15 @@
             border-radius: 2px;
             transform: scale(1) translate(-50%, -50%)
         }
+        /*------------------------------*/
+        .clicked {
+            background: #ef6e73;
+            border-bottom: 1px solid #ef6e73;
+            color: white;
+        }
+        .emphasis{
+            color: #ef6e73;
+        }
     </style>
 </head>
 <body>
@@ -173,23 +185,23 @@
         <div class="group">
             <div class="left_block">
                 <ul class="liWrap">
-                    <li class="li_top">
-                        <a href="내 프로필">프로필 수정</a>
+                    <li class="li_top left">
+                        <a href="editProfile.html">프로필 수정</a>
                     </li>
-                    <li>
-                        <a href="내 작품 관리">내 작품 관리</a>
+                    <li class="left">
+                        <a href="">내 작품 관리</a>
                     </li>
-                    <li>
-                        <a href="/templates/mypage/changPw.html">비밀번호 변경</a>
+                    <li class="left">
+                        <a href="changPw.html">비밀번호 변경</a>
                     </li>
-                    <li>
-                        <a href="내 문의 내역">내 문의 내역</a>
+                    <li class="left">
+                        <a href="questions.html">내 문의 내역</a>
                     </li>
-                    <li>
-                        <a href="탈퇴 하기">탈퇴 하기</a>
+                    <li class="left">
+                        <a href="withdraw.html">탈퇴 하기</a>
                     </li>
-                    <li>
-                        <a href="결제">결제</a>
+                    <li class="left">
+                        <a href="payment.html">결제</a>
                     </li>
                 </ul>
             </div>
@@ -207,12 +219,13 @@
                                 <div class="info_user">
                                     <strong class="tit_agree">아이디는 재사용 및 복구 불가</strong>
                                     <br>
-                                    <strong>회원탈퇴 진행 시 본인을 포함한 타인 모두 아이디 재사용이나 복구가 불가능합니다.
+                                    <strong>회원탈퇴 진행 시 본인을 포함한 타인 모두
+                                        <span class="emphasis">아이디 재사용이나 복구가 불가능합니다.</span>
                                         <br>신중히 선택하신 후 결정해주세요.
                                     </strong>
                                     <span class="check_notice">
-                                        <input type="checkbox" id="idAgree" name="idAgree">
-                                        <label for="idAgree" class="lab_check">
+                                        <input type="checkbox" id="idAgree1" name="idAgree">
+                                        <label for="idAgree1" class="lab_check">
                                             <span class="icon_check">동의</span>
                                         </label>
                                     </span>
@@ -222,12 +235,13 @@
                                 <div class="info_user">
                                     <strong class="tit_agree">내정보 및 개인형 서비스 이용 기록 삭제 안내</strong>
                                     <br>
-                                    <strong>내정보 및 개인형 서비스 이용기록이 모두 삭제되며,삭제된 데이터는 복구되지 않습니다.
+                                    <strong>내정보 및 개인형 서비스 이용기록이 모두 삭제되며,
+                                        <span class="emphasis">삭제된 데이터는 복구되지 않습니다.</span>
                                         <br>필요한 데이터는 미리 백업을 해주세요.
                                     </strong>
                                     <span class="check_notice">
-                                        <input type="checkbox" id="idAgree" name="idAgree">
-                                        <label for="idAgree" class="lab_check">
+                                        <input type="checkbox" id="idAgree2" name="idAgree">
+                                        <label for="idAgree2" class="lab_check">
                                             <span class="icon_check">동의</span>
                                         </label>
                                     </span>
@@ -248,6 +262,29 @@
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    console.log($(".btn"))
+    var left = document.getElementsByClassName("left");
+
+    function handleClick(event) {
+        console.log(event.target);
+        console.log(event.target.classList);
+
+        left[0].classList.remove("clicked");
+        if (event.target.classList[1] === "clicked") {
+            event.target.classList.remove("clicked");
+        } else {
+            for (var i = 0; i < active.length; i++) {
+                left[i].classList.remove("clicked");
+            }
+
+            event.target.classList.add("clicked");
+        }
+    }
+    function init() {
+        left[4].classList.add("clicked");
+        for (var i = 0; i < active.length; i++) {
+            left[i].addEventListener("click", handleClick);
+        }
+    }
+    init();
 </script>
 </html>

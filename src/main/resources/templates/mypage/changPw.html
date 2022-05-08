@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>프로필 수정</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/editProfile.css}">
-    <link rel="stylesheet" href="css/editProfile.css" type="text/css"/>
+    <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
+    <title>비밀번호 변경</title>
     <style>
+        html, body {
+            font-family: "Elice Digital Baeum",sans-serif;
+        }
         ul{
             list-style: none;
             margin: 0;
@@ -46,19 +48,14 @@
             float: left;
             box-sizing: border-box;
             width: 230px;
-
             margin-right: 90px;
-
-
         }
         .li_top{
             border-top: 1px solid #e8e9ed;
         }
         .right_block{
             float: left;
-
             width: 880px;
-
         }
         .profile_text{
             font-size: 32px;
@@ -70,8 +67,6 @@
         .set_myInfo{
             padding: 31px 0 31px 5px;
             border-bottom: 1px solid #e8e9ed;
-
-
         }
         .set_myInfo.top{
             border-bottom: 1px solid #e8e9ed;
@@ -80,6 +75,7 @@
         .profile.pw, .newPw{
             display: inline;
             width: 180px;
+            height: 27px;
         }
         .wrap_btn{
             text-align: center;
@@ -126,6 +122,16 @@
             font-size: 17px;
             border-radius: 10px;
         }
+        .clicked {
+            background: #ef6e73;
+            border-bottom: 1px solid #ef6e73;
+            color: white;
+        }
+        #result_NewPw, #result_reNewPw{
+            font-size: 13px;
+            margin: 0;
+        }
+
 
     </style>
 </head>
@@ -135,26 +141,23 @@
         <div class="group">
             <div class="left_block">
                 <ul class="liWrap">
-
-                    <li class="li_top active">
-                        <a href="">프로필 수정</a>
+                    <li class="li_top left">
+                        <a href="editProfile.html">프로필 수정</a>
                     </li>
-                    <li class="active">
+                    <li class="left">
                         <a href="">내 작품 관리</a>
                     </li>
-                    <li class="active">
-                        <a href="">비밀번호 변경</a>
+                    <li class="left">
+                        <a href="changPw.html">비밀번호 변경</a>
                     </li>
-                    <li class="active">
-                        <a href="">내 문의 내역</a>
+                    <li class="left">
+                        <a href="questions.html">내 문의 내역</a>
                     </li>
-                    <li class="active">
-                        <a href="">탈퇴 하기</a>
+                    <li class="left">
+                        <a href="withdraw.html">탈퇴 하기</a>
                     </li>
-                    <li class="active">
-                        <a href="">결제</a>
-
-
+                    <li class="left">
+                        <a href="payment.html">결제</a>
                     </li>
                 </ul>
             </div>
@@ -165,18 +168,20 @@
                         <div class="main">
                             <div class="set_myInfo top">
                                 <strong class="profile pw">현재 비밀번호</strong>
-                                <input class="userPw" type="text" placeholder="현재 비밀번호를 입력해 주세요.">
+                                <input class="userPw" type="password" placeholder="현재 비밀번호를 입력해 주세요.">
                             </div>
                             <div class="set_myInfo">
                                 <strong class="profile newPw">새 비밀번호</strong>
-                                <input type="text" placeholder="새 비밀번호를 입력해 주세요.">
+                                <div class="test">
+                                    <input class="new" type="password" onchange="validNewPw(this)" placeholder="새 비밀번호를 입력해 주세요.">
+                                    <p class ="p" id="result_NewPw"></p>
+                                </div>
                             </div>
-
                             <div class="set_myInfo">
                                 <strong class="profile newPw">새 비밀번호 확인</strong>
-                                <input type="text" placeholder="새 비밀번호를 다시 입력해주세요">
+                                <input class="rePw" type="password" onchange="sameNewPw(this)" placeholder="새 비밀번호를 다시 입력해주세요">
+                                <p class ="p" id="result_reNewPw"></p>
                             </div>
-
                         </div>
                     </div>
                     <div class="wrap_btn">
@@ -190,17 +195,72 @@
 </div>
 
 <!-- Scripts -->
-<script src="/js/editProfile.js"></script>
-<script src="/js/jquery.min.js"></script>
-<script src="/js/jquery.dropotron.min.js"></script>
-<script src="/js/browser.min.js"></script>
-<script src="/js/breakpoints.min.js"></script>
 </body>
-<script th:inline="javascript">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    var active = document.getElementsByClassName("left");
+
+    function handleClick(event) {
+        console.log(event.target);
+        console.log(event.target.classList);
+
+        active[0].classList.remove("clicked");
+        if (event.target.classList[1] === "clicked") {
+            event.target.classList.remove("clicked");
+        } else {
+            for (var i = 0; i < active.length; i++) {
+                active[i].classList.remove("clicked");
+            }
+
+            event.target.classList.add("clicked");
+        }
+    }
+    function init() {
+        active[2].classList.add("clicked");
+        for (var i = 0; i < active.length; i++) {
+            active[i].addEventListener("click", handleClick);
+        }
+    }
+    init();
 
 
+    //비밀번호 정규식
+    function validNewPw(obj){
+        if(validNewPwCheck(obj)==false){
+            $('#result_NewPw').text("최소8자, 하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자가 포함 되어야 합니다.");
+            $('#result_NewPw').css('color', 'red');
+            obj.value='';
+            obj.focus();
+            return false;
+        }else {
+            $('#result_NewPw').text("사용 가능한 비밀 번호 입니다..");
+            $('#result_NewPw').css('color', '#19ce60');
+        }
+    }
+
+    function validNewPwCheck(obj){
+        // 최소 8 자, 하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자 정규식
+        var pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+        return (obj.value.match(pattern)!=null)
+    }
+
+    //새 비밀번호 확인
+    function sameNewPw(obj) {
+        var newPw = document.querySelector('.new').value;
+        var rePw = document.querySelector('.rePw').value;
+        var result_reNewPw = document.getElementById('result_reNewPw');
 
 
-
+        if(newPw != rePw){
+            result_reNewPw.innerText = '비밀번호가 일치하지 않습니다.';
+            result_reNewPw.style.color = 'red';
+            obj.value ='';
+            obj.focus();
+            return false;
+        }else {
+            result_reNewPw.innerText = '비밀번호가 일치합니다.';
+            result_reNewPw.style.color = '#19ce60';
+        }
+    }
 </script>
 </html>
