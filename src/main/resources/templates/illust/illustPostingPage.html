@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>일러스트 그림 업로드 페이지</title>
+    <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
 </head>
 <style>
     /*-----------------이미지 드롭--------------------------------------------------------------------------*/
@@ -175,8 +176,8 @@
                 updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
             }
 
-            dropZoneElement.classList.remove("drop-zone--over");
             dropZoneElement.classList.add("drop-zone--over2");
+            dropZoneElement.classList.remove("drop-zone--over");
         });
     });
 
