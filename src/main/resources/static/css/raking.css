@@ -304,3 +304,92 @@ a{
 a.click-menu.menu-select{
     border-bottom: 2px solid #ef6e73;
 }
+
+.category_ul{
+    padding-left: 0px;
+}
+
+@media (max-width: 400px){
+    .flex-md-row{
+        flex-direction: row!important;
+        display: flex;
+        flex-wrap: wrap;
+        /* justify-content: center; */
+    }
+
+    .mobile_hidden{
+        display: none;
+    }
+
+    .novelBox{
+        position: relative;
+        float: left;
+        width: 115px;
+    }
+
+    .scale{
+        height: 170px !important;
+        width: 115px !important;
+        background-position: center;
+    }
+
+    .mobile_category{
+        position: relative;
+        padding: 0px 5px !important;
+        border-bottom: 1px solid #eee;
+        width: 377px;
+    }
+
+    .nav-link{
+        display: block;
+        width: fit-content;
+        padding: 3px;
+    }
+
+    .row{
+        padding: 5px;
+        margin-left: 10px;
+    }
+
+    .btn_genre_search{
+        display: block;
+        margin-left: 11px;
+        width: 330px;
+    }
+    
+    .novel{
+        padding: 0 !important;
+    }
+
+    tr.border-bottom{
+        border: none;
+    }
+
+    .thumb_s1{
+        top: 1px;
+        line-height: 21px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .writer{
+        margin-top: 0px;
+        border-bottom: 1px solid #ddd;
+        font-size: 10px !important;
+    }
+
+    .cut_line_one{
+        font-size: 10px !important;
+    }
+
+    .border-bottom > td{
+        display: inline-block;
+        margin-top: -5px;
+        width: 100%;
+    }
+
+    .category_ul{
+        flex-wrap: wrap;
+        padding: 11px;
+    }
+}
