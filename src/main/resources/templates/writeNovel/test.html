@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<input type="file" class="file">
+<button class="delete">
+    삭제
+</button>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+ $('.delete').on("click", function(){
+     $('.file').val('');
+ })
+</script>
+</html>

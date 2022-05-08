@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
     <title>일러스트 목록</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+    <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
 </head>
 <style>
 
@@ -66,22 +68,7 @@
 
 
     /*//----------------------------------------------*/
-    .container {
-        width: 950px;
-        height: 300px;
-        margin: 0 auto;
-        overflow: hidden;
-        position: relative;
-    }
 
-    .banner {
-        /*transform:translate(-1000px);*/
-        width: 1900px;
-        height: 100%;
-        margin: 0 auto;
-        transition: transform 0.5s;
-
-    }
 
     .img {
         float :left;
@@ -91,57 +78,41 @@
     }
 
 
-    .imageDefaultCss{
-        width:100%;
-        height: 155px;
-
-    }
-
-    .arrow{
-        cursor: pointer;
-    }
     .prev{
         position: absolute;
-        font-size: 39px;
+        font-size: 23px;
         display: inline-block;
-        left: 70px;
-        top: 74px;
+        left: -76px;
+        top: -240px;
+        width: 16px;
+        height: 36px;
+        cursor: pointer;
+        line-height: 1.4;
+        background-color: #4949494d;
+        border-radius: 48px;
+
     }
     .next{
         position: absolute;
-        font-size: 39px;
+        font-size: 23px;
         display: inline-block;
-        right: 70px;
-        top: 74px;
+        right: -76px;
+        top: -240px;
+        width: 16px;
+        height: 36px;
+        cursor: pointer;
+        line-height: 1.4;
+        background-color: #4949494d;
+        border-radius: 48px;
     }
 
-    .Title1{
-        width: 950px;
-        margin: 0 auto;
-        text-align: left;
-        margin-top: 180px;
-        font-size: 41px;
-        padding-bottom: 13px;
-        font-weight: bold;
-    }
     .Title2{
 
-        font-size: 41px;
+        font-size: 30px;
         font-weight: bold;
         margin-bottom: 15px;
     }
-    .textDiv{
-        width: 100%; height: 50px; margin-top: -5px;
-        text-align: center;
-        line-height: 3.4;
 
-    }
-    .textColor{
-        color: white;
-    }
-    .textColor2{
-        color:dimgray;
-    }
     .hashtag{
         background-color: white;
         border: 1px solid lightgray;
@@ -179,99 +150,330 @@
 
 
 
-    /*-----------------------------------------------------------*/
+    /*----------------------------------------------------------*/
+
+    li{list-style:none;}
+
+    .slide_wrapper{
+        position: relative;
+        width: 1200px;
+        margin: 0 auto;
+        height: 300px;
+        overflow:hidden;
+        margin-top: 37px;
+    }
+    .slides{
+        position: absolute;
+        left:0; top:0;
+    }
+    .slides.animated{
+        transition: 0.5s ease-out;
+    }
+    .slides li{
+        width: 200px;
+        height: 200px;
+        /*background:#ccc;*/
+        float:left;
+    }
+    .slides li:not(:last-child){
+        margin-right: 2px;
+    }
+    .controls{
+        text-align: center;
+        margin-top: 50px;
+        position: relative;
+        opacity: 0;
+    }
+
+    .controls span{
+
+        color: white;
+        padding: 10px 20px;
+        margin: 0 10px;
+        font-weight: bold;
+
+    }
+    *{margin:0; padding:0;}
+
+    .img{
+        width: 100%;
+        height: 200px;
+        display: block;
+    }
+    .imgDiv{
+        width: 196px;
+        height: 240px;
+        text-align: center;
+        line-height: 2;
+        font-size: 19px;
+    }
+   .category:hover > .controls{
+       opacity: 1;
+   }
+    .illustratorDIv{
+        margin-bottom: 72px;
+        display: flex;
+        justify-content: space-around;
+
+    }
+    .illustratorProfile{
+        width: 120px;
+        height: 120px;
+        border-radius: 110px;
+        overflow: hidden;
+
+    }
+    .illustratorProfile>img{
+        width: 100%;
+        height: 100%;
+    }
+    .center{
+        text-align: center;
+        margin-top: 17px;
+        font-weight: bold;
+        font-size: 16px;
+    }
+    
+    
+
+
+    
+    /*----------------미디어쿼리---------------------*/
+    @media(max-width: 400px){
+
+    .wrapper{
+        padding: 20px;
+        overflow: hidden;
+    }
+    .imgDiv{
+        width: 94px;
+        height: 127px;
+        text-align: center;
+        line-height: 2;
+        font-size: 12px;
+    }
+
+    .img{
+        margin-right: 0px;
+        width: 100%;
+        height: 100px;
+        display: block;
+    }
+
+
+    .slides li{
+        width: 98px;
+        height: 184px;
+    }
+
+    .slide_wrapper{
+        position: relative;
+        width: 1200px;
+        margin: 0 auto;
+        height: 160px;
+        overflow: hidden;
+        margin-top: 37px;
+        margin-left: -26px;
+    }
+
+    .controls{
+        display: none;
+    }
+
+    .Title2{
+        font-size: 22px;
+    }
+
+   .cre{
+       font-size: 12px;
+   }
+
+   .cre_x{
+       display: none;
+   }
+
+   .illustratorDIv{
+       margin-bottom: 40px;
+   }
+
+   .illustratorProfile{
+        width: 60px;
+       height: 60px;
+   }
+
+
+
+    .cellCss{
+        margin-top: 14px;
+        margin-left: 4px;
+        margin-bottom: 21px;
+    }
+    .hashtag{
+        height: 23px;
+        font-size: 8px;
+    }
+    .selectBox{
+        width: 81px;
+        height: 23px;
+    }
+
+
+
+    }
+
 </style>
+
 <body>
 
 
 
 
-<div style="width : 100%;   max-width:1200px ; margin:0 auto; ">
+<div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 100px" class="wrapper">
 
 
-    <div>
-        <div class="Title1">Category</div>
-        <div style="position: relative; margin-bottom: 60px;">
-            <div class="arrow prev">&lt;</div>
-            <div class="arrow next">&gt;</div>
-            <div class="container">
-                <div class="banner">
-                    <div class="img">
 
-                        <img src="../../static/images/illustCategory/디즈니감성.jpg" class="imageDefaultCss"/>
-                        <div style=" background-color: #0F0E38;" class="textDiv textColor">
-                            디즈니 감성
-                        </div>
-                    </div>
-                    <div class="img">
-
-                        <img src="../../static/images/illustCategory/지브리감성.jpg" class="imageDefaultCss"/>
-                        <div style="background-color: #608573;" class="textDiv textColor">
-                            지브리 감성
-                        </div>
-                    </div>
-                    <div class="img">
-
-                        <img src="../../static/images/illustCategory/캐릭터.jpg" class="imageDefaultCss"/>
-                        <div style="background-color: #E6AFAA;"class="textDiv textColor">
-                            캐릭터
-                        </div>
-                    </div>
-                    <div class="img">
-
-                        <img src="../../static/images/illustCategory/배경화.jpg" class="imageDefaultCss"/>
-                        <div style=" background-color: #6060B6; " class="textDiv textColor">
-                            배경화
-                        </div>
-                    </div>
-                    <div class="img">
-
-                        <img src="../../static/images/illustCategory/흑백.jpg" class="imageDefaultCss"/>
-                        <div style=" background-color: #303030;" class="textDiv textColor">
-                            흑백
-                        </div>
-                    </div>
-                    <div class="img">
-
-                        <img src="../../static/images/illustCategory/수채화.jpg" class="imageDefaultCss"/>
-                        <div style="background-color: #FFE972;"class="textDiv textColor">
-                            수채화
-                        </div>
-                    </div>
-                    <div class="img">
-
-                        <img src="../../static/images/illustCategory/사물화.jpg"class="imageDefaultCss"/>
-                        <div style="background-color: #DEDEE0; "class="textDiv textColor2">
-                            사물화
-                        </div>
-                    </div>
-                    <div class="img">
-
-                        <img src="../../static/images/illustCategory/추상화.jpg" class="imageDefaultCss"/>
-                        <div style=" background-color: #508D6B; "class="textDiv textColor">
-                            추상화
-                        </div>
-                    </div>
-                    <div class="img">
-
-                        <img src="../../static/images/illustCategory/음식.jpg"class="imageDefaultCss"/>
-                        <div style=" background-color: #DEA97F;"class="textDiv textColor">
-                            음식
-                        </div>
-                    </div>
-                    <div class="img">
-
-                        <img src="../../static/images/illustCategory/인물화.jpg" class="imageDefaultCss"/>
-                        <div style="background-color: #FBD0C7;"class="textDiv textColor2">
-                            인물화
-                        </div>
-                    </div>
-
+    <p class="Title2">Category</p>
+    <div class="category">
+    <div class="slide_wrapper">
+        <ul class="slides">
+            <li>
+                <div class="imgDiv" style="background-color: #417A97; color: white">
+                    <img src="../../static/images/illustCategory/동화.jpg" class="img" />
+                    <p>동화</p>
+                </div></li>
+            <li><div class="imgDiv" style="background-color: #F1E5B3; color: gray">
+                <img src="../../static/images/illustCategory/디즈니.jpg" class="img" />
+                <p class="categoryName">디즈니</p>
+            </div></li>
+            <li><div class="imgDiv" style="background-color: #44CEFF; color: white">
+                <img src="../../static/images/illustCategory/배경화.jpg" class="img" />
+                <p class="categoryName">배경</p>
+            </div>
+            </li>
+            <li>
+                <div class="imgDiv" style="background-color: #F2E6D8; color: gray">
+                    <img src="../../static/images/illustCategory/수채화.jpg" class="img" />
+                    <p class="categoryName">수채화</p>
                 </div>
+            </li>
+            <li>
+                <div class="imgDiv" style="background-color: #F87DB3; color: white">
+                    <img src="../../static/images/illustCategory/시티팝.jpg" class="img" />
+                    <p class="categoryName">시티팝</p>
+                </div>
+            </li>
+            <li>
+                <div class="imgDiv" style="background-color: #566D50; color: white">
+                    <img src="../../static/images/illustCategory/인물화.jpg"class="img"  />
+                    <p class="categoryName">인물화</p>
+                </div>
+            </li>
+            <li>
+                <div class="imgDiv" style="background-color: #90C863; color: white">
+                    <img src="../../static/images/illustCategory/지브리.jpg" class="img" />
+                    <p class="categoryName">지브리</p>
+                </div>
+            </li>
+            <li>
+                <div class="imgDiv" style="background-color: #676886; color: white">
+                    <img src="../../static/images/illustCategory/추상화.jpg" class="img" />
+                    <p class="categoryName">추상화</p>
+                </div>
+            </li>
+            <li>
+                <div class="imgDiv" style="background-color: #E6AFAA; color: white;">
+                    <img src="../../static/images/illustCategory/캐릭터.jpg" class="img" />
+                    <p class="categoryName">캐릭터</p>
+                </div>
+            </li>
+            <li>
+                <div class="imgDiv" style="background-color: #303030; color: white;">
+                    <img src="../../static/images/illustCategory/흑백.jpg" class="img" />
+                    <p class="categoryName">흑백</p>
+                </div>
+            </li>
+
+
+        </ul>
+
+    </div>
+    <p class="controls">
+        <span class="prev">&lang;</span>
+        <span class="next">&rang;</span>
+    </p>
+    </div>
+
+
+    <p class="Title2 creatorarea">Best Creator</p>
+    <div class="illustratorDIv">
+
+
+        <div class="center cre">
+            <div class="illustratorProfile">
+                <img src="../../static/images/profileSample/프사1.jpg" />
 
             </div>
+            <p>zzang_9</p>
         </div>
+
+        <div class="center cre">
+            <div class="illustratorProfile">
+                <img src="../../static/images/profileSample/프사2.jpg" />
+
+            </div>
+            <p>ppicka</p>
+        </div>
+        <div class="center cre">
+            <div class="illustratorProfile">
+                <img src="../../static/images/profileSample/프사3.jpg" />
+            </div>
+            <p>vaccineCat</p>
+        </div>
+        <div class="center cre">
+            <div class="illustratorProfile">
+                <img src="../../static/images/profileSample/프사4.jpg" />
+            </div>
+            <p>dangdang</p>
+        </div>
+        <div class="center cre">
+            <div class="illustratorProfile">
+                <img src="../../static/images/profileSample/프사5.jpg" />
+
+            </div>
+            <p>cute_dang</p>
+        </div>
+        <div class="center cre_x">
+            <div class="illustratorProfile">
+                <img src="../../static/images/profileSample/프사1.jpg" />
+
+            </div>
+            <p>zzang_9</p>
+        </div>
+        <div class="center cre_x">
+            <div class="illustratorProfile">
+                <img src="../../static/images/profileSample/프사5.jpg" />
+
+            </div>
+            <p>cute_dang</p>
+        </div>
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -293,7 +495,7 @@
     </div>
 
     <div class="flex2 wrap" style="background-color: #EAEAEA;">
-        <div class="box">
+        <div class="box column1">
             <div class="column cellCss" >
                 <img src="../../static/images/일러스트 1.jpg" class="testWidth" />
                 <span class="heart">❤<span style="font-size: 12px;">1,213</span></span>
@@ -308,7 +510,7 @@
                 <span class="heart">❤</span>
             </div>
         </div>
-        <div class="box">
+        <div class="box column2">
             <div class="column cellCss">
                 <img src="../../static/images/일러스트 2.jpg" class="testWidth">
                 <span class="heart">❤</span>
@@ -322,7 +524,7 @@
                 <span class="heart">❤</span>
             </div>
         </div>
-        <div class="box">
+        <div class="box column3">
             <div class="column cellCss">
                 <img src="../../static/images/일러스트 7.jpg" class="testWidth">
                 <span class="heart">❤</span>
@@ -336,7 +538,7 @@
                 <span class="heart">❤</span>
             </div>
         </div>
-        <div class="box">
+        <div class="box column4">
             <div class="column cellCss">
                 <img src="../../static/images/일러스트 5.jpg" class="testWidth">
                 <span class="heart">❤</span>
@@ -350,7 +552,7 @@
                 <span class="heart">❤</span>
             </div>
         </div>
-        <div class="box">
+        <div class="box column5">
             <div class="column cellCss">
                 <img src="../../static/images/일러스트 13.jpg" class="testWidth">
                 <span class="heart">❤</span>
@@ -377,55 +579,111 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
-    const banner= document.querySelector('.banner');
-    const arrows = document.querySelectorAll(".arrow");
-    let count = 0;
-
-    //이전, 다음 버튼 클릭 시 알맞는 배너로 이동
-    arrows.forEach((arrow) => {
-        arrow.addEventListener("click", function(){
-
-            let arrowType = arrow.classList[1];
-            console.log(arrowType);
-            if(arrowType == 'prev' ){
-                count--;
-            }else if(arrowType == 'next' ) {
-                count++;
-
-            }
-
-            banner.style.transform = "translate(-" + count * 160 + "px)";
-        });
-    });
-    // let $images = $("div.banner").children('div');
-    // console.log($images.length);
-
-    /* function nextImg(count){
-         let $images = $("div.banner").children('div');
-         // console.log($images);
-         $images[0].remove();
-         $("div.banner").append($images[0]);
-         // console.log($images[(count-6)%10]);
-         console.log($images.length);
-     }*/
-
-    setInterval(function(){
-        count++;
-
-        if(count == 5){
-            // console.log("들어옴");
-            count= count == 5? 0:count;
+    let slides = document.querySelector('.slides'),
+        slide = document.querySelectorAll('.slides li'),
+        currentIdx= 0,
+        slideCount = slide.length,
 
 
+        slideWidth =196,
+        slideMargin = 6;
+
+        if (window.matchMedia('(max-width: 400px)').matches) {
+
+        slideMargin=1;
+        slideWidth=97.9;
+    }
+      let  prevBtn = document.querySelector('.prev'),
+          nextBtn = document.querySelector('.next');
+
+    makeClone();
+
+    console.log(slideWidth);
+
+    function makeClone() {
+        for (let i=0; i<slideCount; i++){
+            let cloneSlide = slide[i].cloneNode(true);
+            slides.appendChild(cloneSlide);
         }
-        banner.style.transform = "translate(-" + count * 160 + "px)";
+        for(let i=slideCount-1; i>=0; i--){
+            let cloneSlide = slide[i].cloneNode(true);
+            cloneSlide.classList.add('clone');
+            slides.prepend(cloneSlide);
+        }
+        updateWidth();
+        setInitialPos();
+        setTimeout(function () {
+            slides.classList.add('animated');
+        }, 100);
+
+    }
+
+    function updateWidth() {
+        let currentSlides = document.querySelectorAll('.slides li');
+        let newSlideCount = currentSlides.length;
+        let newWidth= (slideWidth+slideMargin)*newSlideCount - slideMargin+'px';
+        slides.style.width = newWidth;
+    }
+    function setInitialPos() {
+        let initialTranslateValue = -(slideWidth+slideMargin)*slideCount;
+        slides.style.transform='translateX('+initialTranslateValue+'px)';
 
 
-    },1500);
+    }
 
+    nextBtn.addEventListener('click', function () {
+        moveSlide(currentIdx+1);
+    })
+    prevBtn.addEventListener('click',function () {
+        moveSlide(currentIdx-1);
+    })
 
+    function moveSlide(num) {
+        slides.style.left = -num * (slideWidth+slideMargin)+'px';
+        currentIdx = num;
+        // console.log(currentIdx, slideCount);
+        if(currentIdx==slideCount || currentIdx== -slideCount){
 
+            setTimeout(function () {
+                slides.classList.remove('animated');
+                slides.style.left='0px';
+                currentIdx=0;
+            },500);
+            setTimeout(function () {
+                slides.classList.add('animated');
+            },600)
+        }
+    }
+
+    let timer =undefined;
+
+    function autoSlide() {
+        if(timer ==undefined){
+            timer = setInterval(function () {
+                moveSlide(currentIdx+1);
+            },2000)
+        }
+    }
+
+    autoSlide();
+
+    function stopSlide() {
+        clearInterval(timer);
+
+        timer =undefined;
+        // console.log(timer);
+    }
+
+    slides.addEventListener('mouseenter',function () {
+        stopSlide();
+    })
+    slides.addEventListener('mouseleave',function () {
+        autoSlide();
+    })
+
+</script>
+
+<script>
 
 </script>
 </html>

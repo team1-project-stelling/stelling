@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>일러스트 작가 페이지</title>
-
+    <meta name="viewport" content="width=device-width" />
 </head>
 <style>
     @font-face {
@@ -190,13 +190,216 @@
 
     }
 
+    /*-------------채팅 ------------------*/
+    .chat{
+        width: 312px;
+        height: 471px;
+        position: fixed;
+        bottom: 0;
+        background-color: white;
+        border: 2px solid #ef6e73;
+        border-radius: 20px;
+        overflow: hidden;
+        display: none;
+    }
+
+    .chat-top{
+        width: 100%;
+        height: 47px;
+        text-align: center;
+        line-height: 2.8;
+        background-color: #ef6e73c2;
+        color: white;
+        font-weight: bold;
+    }
+    .chat-middle{
+        width: 106%;
+        height: 310px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    .chat-row{
+        width: 100%;
+        height: 114px;
+
+    }
+    .inputChatarea{
+        resize: none;
+        padding: 10px;
+        width: 65%;
+        margin-top: 15px;
+        height: 63px;
+        margin-left: 16px;
+        border-radius: 16px;
+        border: 1px solid #9f9f9f;;
+    }
+    .inputChatarea:focus{
+        outline: none;
+    }
+
+    .me-chat{
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-right: 1px;
+        margin-top: 0.3125rem;
+        margin-bottom: 0.3125rem;
+        font-size: 12px;
+    }
+    .friend-chat{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: stretch;
+        margin-top: 0.3125rem;
+        margin-bottom: 0.3125rem;
+        font-size: 12px;
+    }
+    .friend-chat-col{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+    }
+    .friend-chat-col, .me-chat-col{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+    .balloon{
+        display: inline-block;
+        width: auto;
+        border: 1px solid #a3a3a3;
+        border-radius: 20px;
+        padding: 6px 16px;
+        color: #545454;
+        margin: 5px 10px;
+        background-color: #ffffff;
+        color: #5f5f5f;
+    }
+
+    .balloon2{
+        background-color: #9f9f9fa1;
+        color: white;
+        border: 1px solid #9f9f9fa1;
+    }
+    .enter{
+        width: 42px;
+        height: 46px;
+        position: absolute;
+        top: 39px;
+        left: 12px;
+        cursor: pointer;
+    }
+    .x{
+        position: absolute;
+        top: 0px;
+        right: 5px;
+        display: inline-block;
+        width: 42px;
+        cursor: pointer;
+    }
+
+
+    /*----------------미디어쿼리---------------------*/
+    @media(max-width: 400px){
+     .userInfo{
+         display: block !important;
+     }
+
+     .firstBox{
+         width: 100%;
+         border-radius: 12px;
+         padding-bottom: 18px;
+     }
+     .profilePicture{
+         width: 60px;
+         height: 60px;
+     }
+    .userNick{
+        font-size: 18px;
+    }
+    .postInfo{
+        font-size: 12px;
+    }
+    .profile1{
+        margin-top: 14px;
+    }
+    .hr{
+        margin:11px auto;
+    }
+    .chatBtn{
+        width: 79px;
+        height: 28px;
+        line-height: 1.2;
+    }
+    .listBtn{
+        width: 79px;
+        height: 28px;
+        line-height: 1.2;
+    }
+
+    .introduceDiv{
+        display: flex;
+    }
+
+    .webSiteDiv{
+        display: flex;
+    }
+
+    .activeDiv{
+        display: flex;
+    }
+
+    .intro{
+        font-size: 13px;
+        margin-right: 10px;
+    }
+    .text1{
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    .cateBtn{
+        font-size: 10px;
+        margin-top: 0px;
+    }
+    .secBox{
+        width: 100%;
+        padding-top: 8px;
+        margin-top: 13px;
+    }
+    .worklist{
+        margin-left: 14px;
+        margin-top: 0px;
+    }
+
+    .hr2{
+        width: 94%;
+        margin-left: 7px;
+    }
+    .cellCss{
+        margin: 27px 11px 16px 6px;
+    }
+
+    .chat{
+        bottom: 88px;
+        left: 37px;
+    }
+    .me-chat{
+        margin-right: 15px;
+    }
+    }
 </style>
 <body>
 
 <div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 100px; padding-bottom: 100px;">
 
 
-    <div style="display: flex;">
+
+<div class="userPage">
+    <div style="display: flex;" class="userInfo">
         <div class="firstBox">
                 <div class="profile1">
                     <div class="profilePicture">
@@ -218,19 +421,19 @@
                 </div>
 
             <hr class="hr">
-                <div style="width: 80%; margin: 0 auto;">
+                <div style="width: 80%; margin: 0 auto;  " class="introduceDiv">
                     <p class="p intro">Introduce</p>
                     <p class="p text1">끄어어어ㅓ...졸려죽겠다..🦉</p>
                 </div>
             <hr class="hr">
-            <div style="width: 80%; margin: 0 auto;">
+            <div style="width: 80%; margin: 0 auto;" class="webSiteDiv">
                 <p class="p intro">Website</p>
                 <p class="p text1">
                     <a href="https://www.instagram.com/yewon.seo_/" style="font-size: 13px;">www.instagram.com/yewon.seo_/</a>
                 </p>
             </div>
             <hr class="hr">
-                <div style="width: 80%; margin: 0 auto;">
+                <div style="width: 80%; margin: 0 auto;" class="activeDiv">
                     <p class="p intro">주 활동영역</p>
                     <button class="cateBtn">디즈니 감성</button>
 <!--                    <p class="p text1">디즈니 감성</p>-->
@@ -316,10 +519,57 @@
     </div>
 
 
+</div>
 
 
 
 
+
+    <div class="chat">
+        <div class="chat-top" style="position: relative">
+            <p class="p">yewon_seo님 에게</p>
+            <span class="x">X</span>
+
+        </div>
+        <div class="chat-middle">
+            <div class="friend-chat">
+                <div class="friend-chat-col">
+                    <span class="balloon">개미는 뚠뚠</span>
+                    <span class="balloon">오늘도 뚠뚠</span>
+                    <span class="balloon">열심히 일을 하네</span>
+                </div>
+            </div>
+
+            <div class="me-chat">
+                <div class="me-chat-col">
+                    <span class="balloon balloon2">가나다라마바사아자차카</span>
+                </div>
+            </div>
+
+            <div class="friend-chat">
+                <div class="friend-chat-col">
+                    <span class="balloon">개미는 뚠뚠</span>
+                    <span class="balloon">오늘도 뚠뚠</span>
+                    <span class="balloon">열심히 일을 하네</span>
+                </div>
+            </div>
+
+            <div class="me-chat">
+                <div class="me-chat-col">
+                    <span class="balloon balloon2">가나다라마바사아자차카타파하</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="chat-row" style="display: flex;">
+            <textarea name="" id='text' class="inputChatarea"></textarea>
+            <label for="text">
+                <div style="position: relative;">
+                <img src="../../static/images/icon/전송.png" class="enter"/></div>
+            </label>
+        </div>
+
+    </div>
 
 
 
@@ -327,4 +577,27 @@
 
 </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    $('.arrow').on('click', function () {
+
+        if($('.arrow>img').attr('src') == '../../static/images/icon/화살표.png'){
+            $('.arrow>img').attr('src', '../../static/images/icon/위화살표.png')
+            $('.delete').css('display', 'inline-block');
+        }else{
+            $('.delete').css('display', 'none');
+            $('.arrow>img').attr('src', '../../static/images/icon/화살표.png');
+        }
+
+    })
+    $('.chatBtn').on('click',function () {
+        $('.chat').slideToggle();
+
+    })
+
+    $('.x').on('click', function () {
+        $('.chat').slideToggle();
+    });
+</script>
 </html>

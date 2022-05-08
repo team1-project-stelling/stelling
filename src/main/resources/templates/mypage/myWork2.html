@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>내 작품 관리</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/editProfile.css}">
+    <link rel="stylesheet" href="css/editProfile.css" type="text/css"/>
+    <style>
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li{
+            font-size: 15px;
+            font-weight: 400;
+            color: inherit;
+            display: block;
+            word-break: break-all;
+            letter-spacing: -0.2px;
+            border-bottom: 1px solid #e8e9ed;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+        body{
+            width : 100%;
+            max-width: 1200px;
+            margin:0 auto;
+        }
+        #allWrap{
+            display: inline-block;
+            margin: 30px 0 auto;
+            /*border-top: 1px solid #e8e9ed;*/
+            width : 100%;
+            max-width: 1200px;
+        }
+        .main{
+            border-bottom: 1px solid #e8e9ed;
+        }
+        .left_block{
+            float: left;
+            box-sizing: border-box;
+            width: 230px;
+            margin-right: 90px;
+        }
+        .li_top{
+            border-top: 1px solid #e8e9ed;
+        }
+        .right_block{
+            float: left;
+            width: 880px;
+        }
+        .profile_text{
+            font-size: 32px;
+            padding-bottom: 30px;
+        }
+
+        /*.left_block ul li.li_top>a{*/
+        /*    background:  #ef6e73;*/
+        /*    color: white;*/
+        /*}*/
+        .left_block ul li:hover>a{
+            background:  #ef6e73;
+            color: white;
+            text-decoration: none;
+        }
+        .left_block ul li>a{
+            font-size: 15px;
+            font-weight: 400;
+            color: inherit;
+            display: block;
+            padding: 16px 30px 16px 15px;
+            word-break: break-all;
+            letter-spacing: -0.2px;
+        }
+        a{
+            text-decoration: none;
+            cursor: pointer;
+        }
+        div input{
+            width: 227px;
+            height: 22px;
+            border: 1px solid #e8e9ed;
+        }
+        div input:focus{
+            border-color: #ef6e73;
+            outline: none;
+        }
+        /*.navBar{*/
+        /*    display: flex;*/
+        /*}*/
+        .listWrap{
+            width: 100%;
+            height: 100%;
+            margin-bottom: 80px;
+        }
+        .listWrap a{
+            color: #000;
+            font-size: 16px;
+            letter-spacing: -1px;
+            text-align: center;
+            width: 100%;
+            height: 60px;
+            display: block;
+            line-height: 60px;
+
+        }
+        .active {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clicked {
+            background: #ef6e73;
+            border-bottom: 1px solid #ef6e73;
+            color: white;
+        }
+        .active1{
+            border-right: 1px solid #ddd;
+        }
+        .pointTable{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            text-align: center;
+        }
+        .paymentWrap{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        th{
+            border-top: 1px solid #e8e9ed;
+            border-right: 1px solid #e8e9ed;
+            border-bottom: 1px solid #adb5bd;
+            height: 40px;
+        }
+        /*내 소설*/
+
+        a.btn-view{
+            text-decoration: none;
+            color: #fff;
+            background: #ff8b77;
+            border: 1px solid #ff8b77;
+            width: 80px;
+            margin-right: 7px;
+            font-size: 15px;
+            padding: 7px 0.7em 7px 0.7em;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-left: 13.4em;
+        }
+        .my-item{
+            position: relative;
+            display: flex;
+            padding: 18px 0px 10px 12px;
+            border-bottom: 1px solid #eee;
+            float: left;
+        }
+
+        span.tag-update{
+            position: absolute;
+            margin-left: 24.8em;
+            background: #00AAFF;
+            color: #fff;
+            width: 36px;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 15px;
+            margin-top: 0.8em;
+        }
+
+        div.item-img.btn-num{
+            max-width: 120px; height: 160px; position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            width: fit-content;
+            margin-bottom: 0.7em;
+        }
+
+        img.like-img{
+            width: 32px;
+            margin-left: 15em;
+            position: absolute;
+        }
+
+        div.item-button li{
+            border-bottom: 0px solid black;
+        }
+    </style>
+
+</head>
+<body>
+<div id="allWrap">
+    <div class="profileWrap">
+        <div class="group">
+            <div class="left_block">
+                <ul class="liWrap">
+                    <li class="li_top left">
+                        <a href="">프로필 수정</a>
+                    </li>
+                    <li class="left clicked">
+                        <a href="">내 작품 관리</a>
+                    </li>
+                    <li class="left">
+                        <a href="">비밀번호 변경</a>
+                    </li>
+                    <li class="left">
+                        <a href="">내 문의 내역</a>
+                    </li>
+                    <li class="left">
+                        <a href="">탈퇴 하기</a>
+                    </li>
+                    <li class="left">
+                        <a href="">결제</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="right_block">
+                <div class="">
+                    <div class="profile_text"><strong>내 작품 관리</strong></div>
+                    <table class="listWrap">
+                        <tbody>
+                        <tr>
+                            <td class="active1 one" style="width: 25%">
+                                <div class="active"><a href="illust/illustUserPage.html">내 그림</a></div>
+                            </td>
+                            <td class="active1" style="width: 25%">
+                                <div class="active"> 내 소설</div>
+                            </td>
+                            <td class="active1" style="width: 25%">
+                                <div class="active">소설 통계</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="my-item-list">
+                        <div class="my-item">
+                            <span class="tag-update">UP</span>
+                            <div class="item-img btn-num">
+                                <picture class="">
+                                    <img data-srcset="https://cdn.anytoon.co.kr/novel/epub/1/%EB%AC%B4%EC%8A%A8%EC%82%AC%EC%9D%B4/20211101054333-1.jpg" alt="대표님 살살해요" src="/images/loading_290x391.png" srcset="https://cdn.anytoon.co.kr/novel/epub/1/%EB%AC%B4%EC%8A%A8%EC%82%AC%EC%9D%B4/20211101054333-1.jpg" class="fade-in" style="    max-width: 95%;">
+                                </picture>
+                            </div>
+                            <!-- //item-img -->
+                            <div class="item-info" style="margin-left: 7px;padding: 8px;max-width: 276.36px;">
+                                <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
+                                    <span class="genre" style="color: #ef6e73">[로맨스]</span> 로맨스
+                                </p>
+                                <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
+                                    <img class="people" src="/images/people.png">
+                                    <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">90만+</span>
+                                    <span class="writer">웹티, 올코</span>
+                                </div>
+                                <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
+                                    <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">총 편수 : 308</span>
+                                    <span>최근 등록일 : 2022-05-01</span>
+                                </div>
+                                <div class="item-button" style="margin-top: 3em;">
+                                    <ul class="tag-title">
+                                        <li><a href="#" class="btn-view tag-list">업로드</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-item">
+                            <span class="tag-update">UP</span>
+                            <div class="item-img btn-num">
+                                <picture class="">
+                                    <img data-srcset="https://cdn.anytoon.co.kr/novel/epub/1/%EB%AC%B4%EC%8A%A8%EC%82%AC%EC%9D%B4/20211101054333-1.jpg" alt="대표님 살살해요" src="/images/loading_290x391.png" srcset="https://cdn.anytoon.co.kr/novel/epub/1/%EB%AC%B4%EC%8A%A8%EC%82%AC%EC%9D%B4/20211101054333-1.jpg" class="fade-in" style="    max-width: 95%;">
+                                </picture>
+                            </div>
+                            <!-- //item-img -->
+                            <div class="item-info" style="margin-left: 7px;padding: 8px;max-width: 276.36px;">
+                                <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
+                                    <span class="genre" style="color: #ef6e73">[로맨스]</span> 로맨스
+                                </p>
+                                <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
+                                    <img class="people" src="/images/people.png">
+                                    <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">90만+</span>
+                                    <span class="writer">웹티, 올코</span>
+                                </div>
+                                <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
+                                    <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">총 편수 : 308</span>
+                                    <span>최근 등록일 : 2022-05-01</span>
+                                </div>
+                                <div class="item-button" style="margin-top: 3em;">
+                                    <ul class="tag-title">
+                                        <li><a href="#" class="btn-view tag-list">업로드</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    //left_block 색변경
+    var active = document.getElementsByClassName("left");
+
+    function handleClick(event) {
+        console.log(event.target);
+        console.log(event.target.classList);
+
+        active[0].classList.remove("clicked");
+        if (event.target.classList[1] === "clicked") {
+            event.target.classList.remove("clicked");
+        } else {
+            for (var i = 0; i < active.length; i++) {
+                active[i].classList.remove("clicked");
+            }
+
+            event.target.classList.add("clicked");
+        }
+    }
+    function init() {
+        active[1].classList.add("clicked");
+        for (var i = 0; i < active.length; i++) {
+            active[i].addEventListener("click", handleClick);
+        }
+    }
+    init();
+</script>
+</html>
