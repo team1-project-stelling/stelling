@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>채팅 폼</title>
+    <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
 </head>
 <style>
 
@@ -15,7 +16,7 @@
     .chatWrapFirst{
         width: 40%;
         height:100%;
-        border: 1px solid black;
+        border: 1px solid #cccccc;
         border-right: none;
         border-radius: 14px 0 0 14px;
     }
@@ -23,7 +24,7 @@
         /*background-color: yellow;*/
         width: 70%;
         height:100%;
-        border: 1px solid black;
+        border: 1px solid #cccccc;
         border-radius: 0px 14px 14px 0px;
         position: relative;
     }
@@ -31,7 +32,7 @@
         /*background-color: white;*/
         width: 100%;
         height: 11%;
-        border-bottom: 1px solid gray;
+        border-bottom: 1px solid #cccccc;
     }
     .chatList2{
         /*background-color: green;*/
@@ -41,7 +42,7 @@
     }
     .chatlist2{
         width: 100%;
-        height: 76.7%;
+        height: 71.7%;
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
@@ -51,7 +52,7 @@
         width: 100%;
         position: absolute;
         bottom: 0;
-        height: 71px;
+        height: 110px;
 
     }
 
@@ -87,6 +88,7 @@
         font-weight: bold;
         font-size: 14px;
         line-height: 2.5;
+        display: inline-block;
         /*background-color: gray;*/
     }
     .MessageAlarm{
@@ -139,16 +141,21 @@
     }
     textarea{
         resize: none;
-        border: none;
-        height: 2.1rem;
         min-height: 2.1rem;
         border-radius: 20px;
         position: absolute;
-        bottom: -1px;
         width: 78%;
-        border: 1px solid gray;
+        border: 1px solid #c7c7c7;
+        font-size: 17px;
+        line-height: 1;
+        overflow-y: hidden;
+        padding: 10px;
+        height: 63px;
     }
 
+    textarea:focus{
+        outline: none;
+    }
     /* 채팅 입력창 flex로 정렬 */
     form[name="chatform"]{
         display: flex;
@@ -156,15 +163,7 @@
         justify-content: flex-start;
         align-items: flex-start;
     }
-    form[name="chatform"] > textarea{
-        flex-basis: 100%;
-        flex-grow: 1;
 
-        border: 1px solid gray;
-        font-size: 15px;
-        padding: 3px 10px;
-        padding-top: 10px;
-    }
     .chat-submit{
         margin-left: 84%;
         border: 1px solid #ef6273;
@@ -246,8 +245,19 @@
         align-items: center;
         justify-content: center;
     }
+    .delete{
+        width: 20px;
+        display: inline-block;
+        width: 23px;
+        display: inline-block;
+        height: 22px;
+        padding-top: 3px;
+        display: none;
+    }
+
+
 </style>
-<body style="background-color: #f2f2f2;">
+<body >
 <div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 100px; padding-bottom: 100px; background-color: white;">
 
     <div class="chatWrap">
@@ -255,9 +265,9 @@
             <div class="chatList1 chatlist1" style="text-align: center;height:11%;">
                 <p class="ownUser">
                     yewon_seo
-                    <div style="padding-top: 10px;">
+                <div style="padding-top: 10px;" class="arrow">
                     <img src="../../static/images/icon/화살표.png" height="18" width="18"/>
-                    </div>
+                </div>
                 </p>
             </div>
             <div class="chatList2 chatUserList">
@@ -267,7 +277,11 @@
                         <img src="../../static/images/profileSample/프사1.jpg" width="100%" height="100%"/>
                     </div>
                     <div class="userInfo">
-                        <div class="userName">zzang_9</div>
+                        <div style="display: flex">
+                            <div class="userName">zzang_9</div>
+                            <img src="../../static/images/icon/삭제.png" class="delete"/>
+                        </div>
+
                         <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
                     </div>
                 </div>
@@ -277,8 +291,12 @@
                         <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
                     </div>
                     <div class="userInfo">
-                        <div class="userName">dangdang</div>
+                        <div style="display: flex">
+                            <div class="userName">dangdang</div>
+                            <img src="../../static/images/icon/삭제.png" class="delete"/>
+                        </div>
                         <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
+
                     </div>
                 </div>
                 <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
@@ -287,7 +305,10 @@
                         <img src="../../static/images/profileSample/프사3.jpg" width="100%" height="100%"/>
                     </div>
                     <div class="userInfo">
-                        <div class="userName">cat1234</div>
+                        <div style="display: flex">
+                            <div class="userName">cat1234</div>
+                            <img src="../../static/images/icon/삭제.png" class="delete"/>
+                        </div>
                         <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
                     </div>
                 </div>
@@ -297,7 +318,11 @@
                         <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
                     </div>
                     <div class="userInfo">
-                        <div class="userName">dangdang</div>
+                        <div style="display: flex">
+                            <div class="userName">dangdang</div>
+                            <img src="../../static/images/icon/삭제.png" class="delete"/>
+                        </div>
+
                         <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
                     </div>
                 </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
@@ -306,7 +331,10 @@
                         <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
                     </div>
                     <div class="userInfo">
-                        <div class="userName">dangdang</div>
+                        <div style="display: flex">
+                            <div class="userName">dangdang</div>
+                            <img src="../../static/images/icon/삭제.png" class="delete"/>
+                        </div>
                         <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
                     </div>
                 </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
@@ -315,7 +343,11 @@
                         <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
                     </div>
                     <div class="userInfo">
-                        <div class="userName">dangdang</div>
+
+                        <div style="display: flex">
+                            <div class="userName">dangdang</div>
+                            <img src="../../static/images/icon/삭제.png" class="delete"/>
+                        </div>
                         <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
                     </div>
                 </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
@@ -324,7 +356,10 @@
                         <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
                     </div>
                     <div class="userInfo">
-                        <div class="userName">dangdang</div>
+                        <div style="display: flex">
+                            <div class="userName">dangdang</div>
+                            <img src="../../static/images/icon/삭제.png" class="delete"/>
+                        </div>
                         <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
                     </div>
                 </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
@@ -333,7 +368,10 @@
                         <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
                     </div>
                     <div class="userInfo">
-                        <div class="userName">dangdang</div>
+                        <div style="display: flex">
+                            <div class="userName">dangdang</div>
+                            <img src="../../static/images/icon/삭제.png" class="delete"/>
+                        </div>
                         <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
                     </div>
                 </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
@@ -342,7 +380,10 @@
                         <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
                     </div>
                     <div class="userInfo">
-                        <div class="userName">dangdang</div>
+                        <div style="display: flex">
+                            <div class="userName">dangdang</div>
+                            <img src="../../static/images/icon/삭제.png" class="delete"/>
+                        </div>
                         <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
                     </div>
                 </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
@@ -351,7 +392,10 @@
                         <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
                     </div>
                     <div class="userInfo">
-                        <div class="userName">dangdang</div>
+                        <div style="display: flex">
+                            <div class="userName">dangdang</div>
+                            <img src="../../static/images/icon/삭제.png" class="delete"/>
+                        </div>
                         <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
                     </div>
                 </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
@@ -360,7 +404,10 @@
                         <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
                     </div>
                     <div class="userInfo">
-                        <div class="userName">dangdang</div>
+                        <div style="display: flex">
+                            <div class="userName">dangdang</div>
+                            <img src="../../static/images/icon/삭제.png" class="delete"/>
+                        </div>
                         <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
                     </div>
                 </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
@@ -369,7 +416,10 @@
                         <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
                     </div>
                     <div class="userInfo">
-                        <div class="userName">dangdang</div>
+                        <div style="display: flex">
+                            <div class="userName">dangdang</div>
+                            <img src="../../static/images/icon/삭제.png" class="delete"/>
+                        </div>
                         <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
                     </div>
                 </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
@@ -378,7 +428,10 @@
                         <img src="../../static/images/profileSample/프사4.jpg" width="100%" height="100%"/>
                     </div>
                     <div class="userInfo">
-                        <div class="userName">dangdang</div>
+                        <div style="display: flex">
+                            <div class="userName">dangdang</div>
+                            <img src="../../static/images/icon/삭제.png" class="delete"/>
+                        </div>
                         <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
                     </div>
                 </div>
@@ -459,9 +512,10 @@
                 <div class="insert-content">
                     <form name="chatform" action="#" method="post">
                         <div class="textwrap">
-                        <textarea name="chat-insert" required></textarea>
-                        <input type="submit" class="chat-submit" value="전송">
-                        </div>
+                            <textarea name="chat-insert" required></textarea>
+                            <input type="submit" class="chat-submit" value="전송">
+
+
                     </form>
                 </div>
             </div>
@@ -483,78 +537,21 @@
 
 </div>
 </body>
-<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    let textarea = document.querySelector("textarea[name='chat-insert']");
-    let mainChat = document.querySelector("div.chatList2");
-
-    (function($) {
-        $.fn.hasScrollBar = function() {
-            return this.get(0).scrollHeight > this.get(0).clientHeight;
-        }
-    })(jQuery);
-
-    let heightDefault = parseInt($(textarea).css("height").split("px")[0]);
-    textarea.addEventListener("keydown", function(){
-        let heightNow = parseInt($(this).css("height").split("px")[0]);
-        if($(this).hasScrollBar() && heightNow < 76){
-            $(this).css("height", heightNow + heightDefault + "px");
-            $(mainChat).scrollTop($(mainChat)[0].scrollHeight);
-        }
-    });
-
-
-
-
-/*const autoResizeTextarea = (e) => {
-    let textarea = document.querySelector('.autoTextarea');
-
-    if (textarea) {
-        textarea.style.height = 'auto';
-        let height = textarea.scrollHeight; // 높이
-        textarea.style.height = `${height + 8}px`;
-    }
-}*/
-</script>-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  /*  let textarea = document.querySelector("textarea[name='chat-insert']");
-    let mainChat = document.querySelector("div.chat-content");
-    let inputwrapBox= $('.chatList3');
 
-    (function($) {
-        $.fn.hasScrollBar = function() {
-            return this.get(0).scrollHeight > this.get(0).clientHeight;
+    $('.arrow').on('click', function () {
+
+        if($('.arrow>img').attr('src') == '../../static/images/icon/화살표.png'){
+            $('.arrow>img').attr('src', '../../static/images/icon/위화살표.png')
+            $('.delete').css('display', 'inline-block');
+        }else{
+            $('.delete').css('display', 'none');
+            $('.arrow>img').attr('src', '../../static/images/icon/화살표.png');
         }
-    })(jQuery);
 
-    let heightDefault = parseInt($(textarea).css("height").split("px")[0]);
-    textarea.addEventListener("keydown", function(){
-        let heightNow = parseInt($(this).css("height").split("px")[0]);
-        if($(this).hasScrollBar() && heightNow < 76){
-            $(this).css("height", heightNow + heightDefault + "px");
-            inputwrapBox.css("height", 12+heightDefault + "px");
-            $(mainChat).scrollTop($(mainChat)[0].scrollHeight);
-        }
-    });*/
-
-    $('document').ready(function(){
-        $('textarea').keyup(function(e){
-            if(this.scrollHeight>85){
-                return;
-            }
-            $(this).css('height', 'auto');
-            $(this).height(this.scrollHeight);
-            let textareaHeight = $('textarea').css('height');
-            let height=textareaHeight+12+"px";
-            $('.chatList3').height(height+12+"px");
-            console.log($('.chatList3').height);
-        });
-
-    });
-
-
-
+    })
 </script>
+
 
 </html>
