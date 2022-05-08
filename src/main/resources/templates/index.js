@@ -174,8 +174,7 @@ function makeHot(v,index,List){
    
    //페이지 이동
 function ff(){
-   location.href=`
-   ../pages/round.html?v=`+v.id;
+   location.href=`../templates/pages/round.html`
 }
    
 }
