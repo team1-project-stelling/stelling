@@ -150,7 +150,7 @@ function writeDum(){
         Novel.innerHTML +=
         ` <li class="Novelli">
         <div class="NovelImg">
-        <img src="./파댕이2.PNG" alt="">
+        <img src="/images/파댕이2.PNG" alt="">
 
         </div>
         
@@ -188,7 +188,7 @@ function replyD(){
         <div class="ReplyCmtWrap">
         <div class="ReplyCmtDtail">
         <div class="ReplyImg">
-        <img src="./파댕이.PNG" alt="">
+        <img src="/images/파댕이.PNG" alt="">
             </div>
             <div class="ReplyDEC">
             <div class="ReplyIds">
