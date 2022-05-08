@@ -1,0 +1,93 @@
+/*footer CSS*/
+
+@import url(//font.elice.io/EliceDigitalBaeum.css);
+
+html{
+    font-family: "Elice Digital Baeum",sans-serif;
+}
+
+footer{
+    z-index: 10000;
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:300px;
+    width:100%;
+}
+
+.footer-menu{
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.footer-menu ul{
+    gap: 40px;
+    list-style: none;
+    display: flex;
+    padding: 1em;
+    margin: 0 auto;
+    width: 1200px;
+    font-weight: bold;
+}
+
+.footer-menu ul li a{
+    text-decoration: none;
+    color: inherit;
+}
+
+div.footer-info{
+    margin: 0 auto;
+
+}
+
+a.footer-logo img{
+    width: 200px;
+    position: absolute;
+    margin-top: 24px;
+    pointer-events: none;
+}
+
+div.footer-detail, div.footer-detail p{
+    display: inline-block;
+}
+
+div.footer-detail{
+    padding: 0px 4px 20px 220px;
+    letter-spacing: -1.2px;
+    width: 580px;
+    line-height: 0px;
+    color: #8e8e8e;
+}
+
+div.footer-detail p{
+    padding-right: 5px;
+    font-size: 14px;
+}
+
+div.footer-detail p.copy{
+    display: block;
+}
+
+.sns-group{
+    position: absolute;
+    margin-top: -14em;
+    margin-left: 56em;
+}
+
+.sns-group img{
+    width: 35px;
+}
+
+.sns-group ul{
+    display: flex;
+    list-style: none;
+}
+
+.sns-group ul li{
+    margin-right: 2em;
+}
+
+.img-copyright{
+    margin-left: 18em;
+    padding-top: -22em;
+    position: absolute;
+}
