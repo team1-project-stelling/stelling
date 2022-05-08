@@ -1,24 +1,24 @@
 function ModalHandler(){
     
+    document.body.classList.add('preventscroll');
     document.querySelector('.Sponmodalwrap').style.display='block'
-    
 }
 
 function ModalHandlerClose(){
     
     document.querySelector('.Sponmodalwrap').style.display='none'
-    
+    document.body.classList.remove('preventscroll');
 }
 
 
 function IntroModalHandler(){
-    
+    document.body.classList.add('preventscroll');
     document.querySelector('.intromodalwrap').style.display='block'
     
 }
 
 function IntroModalHandlerClose(){
-    
+    document.body.classList.remove('preventscroll');
     document.querySelector('.intromodalwrap').style.display='none'
     
 }
@@ -102,18 +102,32 @@ const cnt =ResCnt();
 ResRank()
 function ResRank(){
     ResRank= document.querySelector('.ResRank')
-    sponbody = document.querySelector('.sponbody')
+    table = document.querySelector('.table')
     cnt.slice(0,10)?.map((v,index) =>{
      
       //  sponCnt = document.createTextNode(`${index}${v.id}님 ${v.sponCnt}개`)
 
         ResRank.innerHTML +=
-        ` <span class="rankCnt"> ${index+1}위 ${v.id}님 ${v.sponCnt}개  <span/>  ` 
+        `
+        
+        <span class="rankCnt"> ${index+1}위 ${v.id}님 ${v.sponCnt}개  <span/>  
+        ` 
        })
 
        cnt?.map((v,index)=>{
-        sponbody.innerHTML +=
-        ` <span class=""> ${index+1}위 ${v.id}님 ${v.sponCnt}개  <span/><br>  ` 
+        table.innerHTML +=
+        ` 
+    
+        <tr>
+             <th style="width: 33%">${index+1}위</th>
+             <th style="width: 33%">${v.id}님</th>
+             <th style="width: 33%"> ${v.sponCnt}개</th>
+         </tr>
+
+
+
+
+         ` 
        })
 
 }

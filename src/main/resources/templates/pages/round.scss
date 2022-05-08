@@ -265,13 +265,12 @@ list-style: none
                         box-sizing: border-box;
                         margin: 0;
                         min-width: 0;
-                        -webkit-appearance: none;
-                        -moz-appearance: none;
+                     
                         appearance: none;
                         display: inline-block;
                         text-align: center;
                         line-height: inherit;
-                        -webkit-text-decoration: none;
+                      
                         text-decoration: none;
                         font-size: inherit;
                         padding-left: 16px;
@@ -279,24 +278,20 @@ list-style: none
                         padding-top: 8px;
                         padding-bottom: 8px;
                         color: white;
-                        background-color: primary;
+                         
                         border: 0;
                         border-radius: 4px;
                         border-radius: 4px;
-                        -webkit-align-items: center;
-                        -webkit-box-align: center;
-                        -ms-flex-align: center;
+                       
                         align-items: center;
-                        display: -webkit-box;
-                        display: -webkit-flex;
-                        display: -ms-flexbox;
+                       
                         display: flex;
                         width: 100%;
                         height: 54px;
                         padding: 12px 20px;
                         background-color: #f3f3f3;
                         max-width: 1200px;
-                       overflow: hidden;
+                        overflow: hidden;
 
 
 
@@ -312,18 +307,20 @@ list-style: none
                             color: #333;
                             display: flex;
                             
-                              :first-child{
-                                color: red;
-                              }
-                              :nth-child(2){
-                                color: #ef6e73;
-                              } :nth-child(3){
-                                color: #ef6e73;
-                              }
+                           
                               span{
                                   display: grid;
                                   width: 150px;
                               }
+                              :first-child{
+                                  color: red;
+                              }
+                              :nth-child(2){
+                                  color: #ef6e73;
+                              }
+                              :nth-child(3){
+                                color: #ef6e73;
+                            }
                               
                         }   
                       
@@ -465,7 +462,7 @@ list-style: none
             color: rgb(156, 156, 156);
             font-size: 17px;
             display: flex;
-            margin-top: 40px;
+            
             
         }
         .Novel{
@@ -528,7 +525,7 @@ list-style: none
                     box-sizing: border-box;
                     margin: 0px;
                     min-width: 0px;
-                    font-size: 30px;
+                    font-size: 25px;
                     color: rgb(51, 51, 51);
                     flex: 1 1 0%;
                 }
@@ -570,6 +567,7 @@ list-style: none
         padding: 23px 21px 23px 20px;
         display: flex;
         justify-content: space-between;
+        border-bottom: 1px solid #d9d9d9;
        
      
     :last-child{
@@ -595,9 +593,6 @@ list-style: none
 }
 
 
-.ResRank{
-    color: red;
-}
 
 
 
@@ -772,4 +767,12 @@ list-style: none
 .bb{
     cursor: pointer;
     font-weight: 700;
+}
+
+
+.preventscroll{
+   
+   
+    height: 100%;
+    overflow: hidden;
 }
