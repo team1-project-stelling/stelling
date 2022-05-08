@@ -15,15 +15,21 @@ public class ExampleController {
         log.info("libaray");
     }
 
-    @GetMapping("/index")
-    public String index(){
-        log.info("index");
-        return "/index";
+    @GetMapping("/myBook")
+    public String myBook(){
+        log.info("myBook");
+        return "myLibaray/myBook";
     }
 
-    @GetMapping("/round")
-    public String round(){
-        log.info("round");
-        return "/round";
+    @GetMapping("/myRead")
+    public String myRead(){
+        log.info("myRead");
+        return "myLibaray/myRead";
+    }
+
+    @GetMapping("/coinShop")
+    public String coinShop(){
+        log.info("coinShop");
+        return "/coinShop";
     }
 }
