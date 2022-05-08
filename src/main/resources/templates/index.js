@@ -1,5 +1,7 @@
 //배너
 
+
+
 const slides = document.querySelector('.M_Banner_imgs');  //전체 슬라이드 컨테이너
 const slideImg = document.getElementsByClassName('banner_img');  //모든 슬라이드들
 
@@ -54,9 +56,6 @@ next.addEventListener('click',function(){
    change()
   
 })
-
-
-
 prev.addEventListener('click',function(){
    mcurrentIdx--;
    currentIdx--;
@@ -67,16 +66,13 @@ prev.addEventListener('click',function(){
  
 })
 
-
-
- function change(){
+function change(){
    set ()
    
    mainslide.classList.add('addd');
    Mslide.classList.add('leftadd')
    Pslide.classList.add('rightadd')
-      
-   }
+}
    
    
 //자동 슬라이드
@@ -89,10 +85,9 @@ function auto (){
    change();
 
    setTimeout(auto, 4000);
-
 }
 
-//
+//hot 옆에 시간 
 RealTime()
 function RealTime (){
 let today = new Date()
@@ -110,7 +105,7 @@ RealTime.append(writer)
 document.querySelector('.RealTime').append(RealTime);
 
 }
-
+// 클릭했을때 색입히기
 let tagspan = document.querySelectorAll('.tagspan');
 
 function clickHandler() {  
@@ -124,133 +119,51 @@ function clickHandler() {
     tagspan[i].addEventListener('click', clickHandler);
  }
 
+// 
+makediv()
+function makediv(){
+   
+   
+   let tags_container =document.querySelectorAll('tags_container')
+   for(i=0;i<tags_container.length;i++){
+
+
+    const tags = tags_container
+
+    tags.innerHTML=`<div class="divWrap"> 
+                     <div class="divimg"> <img src=#/> </div>
+                     <div class="divDescRank">${v[i].id}</div>
+                     <div class="Desc">
+                     <div class="DescHead">${v[i].title}</div>
+                     <div class="divDescTitle"></div>
+                     <div class="pwirter"></div>
+                     <div class="divGenre"></div>	
+                     </div>
+                     </div>`
+                  }
+                  
+               }
 
 
 
-  //클래스 눌렸을때  
+// const dom = img.slice(0,3)?.map((v)=>
+// str+= "<div class="divWrap">";
+// str+= `<div class="divimg">`;
+// str "<img src= 
+
+//             </div>
+
+//                 </div>
+
+//    `
+//    );
+//      for(i=0; i<tags_container.length;i++){
+//         tags_container[i].append(str)
+//      }
     
 
 
 
-////////////////////////////
-
-
-
-   function makeHot(v,index,List){
-   
-   
-    const divWrap =document.createElement('div')
-    divWrap.className="divWrap"
-    divWrap.id=`divWrap${index}`
-  
-    divWrap.onclick=ff
-    
-    const divimg =document.createElement('div')
-    divimg.className="divimg"
-    const divDesc =document.createElement('div')
-    divDesc.className="divDesc"
-    const divDescHead =document.createElement('div')
-    divDescHead.className="divDescHead"
-    const divDescRank =document.createElement('div')
-    divDescRank.className="divDescRank" 
-    const divDescTitle =document.createElement('div')
-    divDescTitle.className="divDescTitle"       
-    const pwirter = document.createElement('pwirter')
-    pwirter.className="pwirter"    
-    const divGenre =document.createElement('div')
-    divGenre.className="divGenre"       
-    const img = document.createElement('img')
-    img.src=`https://image.tmdb.org/t/p/w500${v.poster_path}`;
-    img.className  ="tagsimg"
-    const RankSpan = document.createElement('span') 
-    RankSpan.className ="RankSpan"  
-    Ranking = document.createTextNode(`${index+1}위`)
-    TitleSpan = document.createTextNode(`${v.title}`)
-    writer = document.createTextNode(`${v.original_title}`)
-    const GenerSpan = document.createElement('span') 
-    GenerSpan.className="GenerSpan"
-    GenerText =document.createTextNode(`#${index} #${v.vote_count} #${v.genre_ids[0]}`)     
-
-    
-   
-    divWrap.append(divimg,divDesc)        
-    divimg.append(img) 
-    divDesc.append(divDescHead,pwirter,divGenre)
-    divDescHead.append(divDescRank,divDescTitle)
-    divDescRank.append(RankSpan)
-    divDescTitle.append(TitleSpan)
-    RankSpan.append(Ranking)
-    pwirter.append(writer)
-    divGenre.append(GenerSpan)
-    GenerSpan.append(GenerText)
-   
-    List.appendChild(divWrap)
-
-  
-    //페이지 이동
-function ff(){
-    location.href=`index.html/pages/${v.id}`
-}
-    
-}
-cccc()
-//맵으로 다 가져와버리기
-function cccc(){
- img.slice(0,3)?.map((v,index)=>{
-    let List = document.querySelector('.tags_left')
-   console.log(v)
-    makeHot(v,index,List);}
-    )
- 
-
-img.slice(3,6)?.map((v,index)=>{
-    let List = document.querySelector('.tags_middle')
-    makeHot(v,index,List);
-   
-})  
-img.slice(6,9)?.map((v,index)=>{
-    let List = document.querySelector('.tags_right')
-    makeHot(v,index,List);})  
-}
-
-
-
-
-function searchs(props) { 
-    let result= [];
-    console.log(props)
-    $.ajax({
-      url : "https://api.themoviedb.org/3/movie/popular?api_key=84681a7022280cff3021d07fe9117b39&language=ko-KR",
-      data: {result : props},
-      dataType: "json",	
-      type: "get",
-      async: false,
-      success: function(data) {
-      result = data.results?.map((v)=>{v.genre_ids})},
-  
-        error: function (){alert("실패");}
-    });
-    return result;
-    
- }
-
-
-
-let tags = document.getElementsByClassName('tagspan')
-//let tagspan = document.querySelectorAll('.tagspan')
-for(i=0; i<tags.length;i++){
-    tags[i].addEventListener('click', function(){
-       
-       let props = this.innerHTML
-     
-
-        let result = searchs(props);
-      
-      console.log(result)
-      
-       
-    })
-}
 
 
 ///메인컨테이너
@@ -283,7 +196,7 @@ function main_sectionList(v,sectionList){
     sectionList.appendChild(x_item)
     //페이지 지동
     function ff(){
-        location.href=`index.html/pages/${v.id}&${v}`
+        location.href=`index.html/pages/${v.id}&&${v}`
     }
         
 
@@ -330,5 +243,3 @@ function Illustrator(){
 
 }
 
-
-   
