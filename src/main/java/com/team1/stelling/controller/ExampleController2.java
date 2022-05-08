@@ -24,4 +24,10 @@ public class ExampleController2 {
         log.info("myWork3");
         return "mypage/myWork3";
     }
+
+    @GetMapping("/editProfile")
+    public String editProfile(){
+        log.info("editProfile");
+        return "mypage/editProfile";
+    }
 }

@@ -11,13 +11,12 @@
         html, body {
             font-family: "Elice Digital Baeum",sans-serif;
         }
-        ul{
+        ul.liWrap{
             list-style: none;
             margin: 0;
             padding: 0;
         }
-
-        ul li{
+        ul li.left{
             font-size: 15px;
             font-weight: 400;
             color: inherit;
@@ -26,22 +25,19 @@
             letter-spacing: -0.2px;
             border-bottom: 1px solid #e8e9ed;
         }
-        a{
+
+        a.menu{
             text-decoration: none;
             color: black;
             font-size: 16px;
         }
-        body{
-        }
+
         #allWrap{
             display: inline-block;
             margin: 30px 0 auto;
             /*border-top: 1px solid #e8e9ed;*/
             width : 100%;
             max-width: 1200px;
-        }
-        .main{
-            border-bottom: 1px solid #e8e9ed;
         }
         .left_block{
             float: left;
@@ -54,17 +50,13 @@
         }
         .right_block{
             float: left;
-            width: 880px;
+            width: 680px;
         }
         .profile_text{
             font-size: 32px;
             padding-bottom: 30px;
         }
 
-        /*.left_block ul li.li_top>a{*/
-        /*    background:  #ef6e73;*/
-        /*    color: white;*/
-        /*}*/
         .left_block ul li:hover>a{
             background:  #ef6e73;
             color: white;
@@ -175,6 +167,11 @@
         input[type="date"]::-webkit-calendar-picker-indicator {
             color: red;
         }
+        #qwer{
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-bottom: 40px;
+        }
     </style>
 </head>
 <body>
@@ -186,6 +183,7 @@
     <img id="headerImg"src="/images/fix/headerImg_3.png" >
 </div>
 <!-- 헤더 종료 -->
+<div id="qwer">
 <div id="allWrap" style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 20px; padding-bottom: 100px; zoom: 1.2;">
     <div class="profileWrap1">
         <div class="group">
@@ -195,19 +193,19 @@
                         <a href="editProfile.html">프로필 수정</a>
                     </li>
                     <li class="left">
-                        <a href="">내 작품 관리</a>
+                        <a class="menu" href="myWork2.html">내 작품 관리</a>
                     </li>
                     <li class="left">
-                        <a href="changPw.html">비밀번호 변경</a>
+                        <a class="menu" href="changPw.html">비밀번호 변경</a>
                     </li>
                     <li class="left">
-                        <a href="questions.html">내 문의 내역</a>
+                        <a class="menu" href="questions.html">내 문의 내역</a>
                     </li>
                     <li class="left">
-                        <a href="withdraw.html">탈퇴 하기</a>
+                        <a class="menu" href="withdraw.html">탈퇴 하기</a>
                     </li>
                     <li class="left">
-                        <a href="payment.html">결제</a>
+                        <a class="menu" href="payment.html">결제</a>
                     </li>
                 </ul>
             </div>
@@ -261,7 +259,7 @@
                 </div>
         </div>
     </div>
-
+</div>
 </div>
 </body>
 <!-- Scripts -->
