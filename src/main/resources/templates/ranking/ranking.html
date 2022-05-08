@@ -5,8 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>랭킹 페이지</title>
-<link rel="stylesheet" href="../stelling/css/raking.css?after">
+<link rel="stylesheet" href="/src/main/resources/static/css/raking.css">
+<link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
 <script src='http://code.jquery.com/jquery-3.6.0.js'></script>
+<style>
+    @import url(//font.elice.io/EliceDigitalBaeum.css);
+
+    html, body {
+    font-family: "Elice Digital Baeum",sans-serif;
+}
+</style>
 </head>
 <body>
 <div style="max-width: 1200px; margin:0 auto;">
@@ -37,7 +45,7 @@
     <!--카테고리 -->
     <div class="mobile_hidden" style="border-bottom:2px solid #000;height: 50px;  line-height: 50px;">
         <span style="font-size: 16px; font-weight: 600;">
-            <i class="icon ion-document"><img src="../stelling/images/document.png" style="width: 20px;"></i>
+            <i class="icon ion-document"><img src="/src/main/resources/static/images/document.png" style="width: 20px;"></i>
             총 18개 작품
         </span>
         <div class="s_inv" style="float: right; margin-right: 20px;">
@@ -62,11 +70,12 @@
             </select>
         </div>
     </div>
-        <div style="position: relative; padding: 10px 5px; border-bottom: 1px solid #eee;">
+        <div class="mobile_category" style="position: relative; padding: 10px 5px; border-bottom: 1px solid #eee;">
             <ul class="nav nav-pills flex-column flex-md-row genre-box" id="submenu_bar" role="tablist" style="max-width: 100%; overflow-x:auto; white-space: no wrap; -ms-overflow-style:none; scrollbar-width: none; scroll-snap-align: center; font-size: 12px;">
                 <li>
                     <button type="button" class="btn_genre_search" id="genre_search_modal_btn" style="cursor: pointer;">태그검색</button>
                 </li>
+            <ul class="category_ul" style="display: flex; list-style:none; max-width: 100%; overflow-x:auto; white-space: no wrap; -ms-overflow-style:none; scrollbar-width: none; scroll-snap-align: center; font-size: 12px;">
                 <li>
                     <a class="nav-link clicked_menu" href="#" role="tab">전체</a>
                 </li>
@@ -104,6 +113,7 @@
                     <a class="nav-link" href="#" role="tab">기타</a>
                 </li>
             </ul>
+            </ul>
         </div>
     <!--랭킹 목록-->
     <div class="row" style="padding: 5px;">
@@ -123,7 +133,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">히어로가 집착하는 악당이 되었다</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">신재민</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">신재민</p>
                             </td>
                         </tr>
                     </tbody>
@@ -146,7 +156,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">천하제일인의 소꿉친구</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">서은하</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">서은하</p>
                             </td>
                         </tr>
                     </tbody>
@@ -169,7 +179,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">작별을 앞둔 용사 파티가 내게 집착한다</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">서은하</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">서은하</p>
                             </td>
                         </tr>
                     </tbody>
@@ -192,7 +202,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">로판 속 공무원</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">서은하</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">서은하</p>
                             </td>
                         </tr>
                     </tbody>
@@ -215,7 +225,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">병주일기</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">서은하</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">서은하</p>
                             </td>
                         </tr>
                     </tbody>
@@ -238,7 +248,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">판타지 세상에서 작가로 살아가는 법</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">서은하</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">서은하</p>
                             </td>
                         </tr>
                     </tbody>
@@ -261,7 +271,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">북부대공녀의 소꿉친구가 되었다</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">서은하</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">서은하</p>
                             </td>
                         </tr>
                     </tbody>
@@ -284,7 +294,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">북부대공녀의 소꿉친구가 되었다</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">서은하</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">서은하</p>
                             </td>
                         </tr>
                     </tbody>
@@ -307,7 +317,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">북부대공녀의 소꿉친구가 되었다</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">서은하</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">서은하</p>
                             </td>
                         </tr>
                     </tbody>
@@ -330,7 +340,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">북부대공녀의 소꿉친구가 되었다</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">서은하</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">서은하</p>
                             </td>
                         </tr>
                     </tbody>
@@ -353,7 +363,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">북부대공녀의 소꿉친구가 되었다</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">서은하</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">서은하</p>
                             </td>
                         </tr>
                     </tbody>
@@ -376,7 +386,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">북부대공녀의 소꿉친구가 되었다</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">서은하</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">서은하</p>
                             </td>
                         </tr>
                     </tbody>
@@ -398,7 +408,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">북부대공녀의 소꿉친구가 되었다</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">서은하</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">서은하</p>
                             </td>
                         </tr>
                     </tbody>
@@ -420,7 +430,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">북부대공녀의 소꿉친구가 되었다</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">서은하</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">서은하</p>
                             </td>
                         </tr>
                     </tbody>
@@ -442,7 +452,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">북부대공녀의 소꿉친구가 되었다</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">서은하</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">서은하</p>
                             </td>
                         </tr>
                     </tbody>
@@ -464,7 +474,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">북부대공녀의 소꿉친구가 되었다</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">서은하</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">서은하</p>
                             </td>
                         </tr>
                     </tbody>
@@ -486,7 +496,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">북부대공녀의 소꿉친구가 되었다</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">서은하</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">서은하</p>
                             </td>
                         </tr>
                     </tbody>
@@ -508,7 +518,7 @@
                         <tr class="border-bottom">
                             <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
                                 <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;">북부대공녀의 소꿉친구가 되었다</b>
-                                <p style="font-size:12px;color:#666;font-weight:400;">서은하</p>
+                                <p class="writer" style="font-size:12px;color:#666;font-weight:400;">서은하</p>
                             </td>
                         </tr>
                     </tbody>
@@ -551,7 +561,7 @@
     </div>
 </div>
 </body>
-<script src="/stelling/ranking.js"></script>
+<script src="/src/main/resources/static/js/ranking.js"></script>
 <script type="text/javascript">
     // const category = $(".nav-link");
     //     console.log(category);
