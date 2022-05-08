@@ -1,10 +1,14 @@
 .MainHeader{
     margin-top: 91px;
 }
-
+*{
+list-style: none
+;}
 .MainContain{
     width: 100%;
     margin: 0px auto;
+    position: relative;
+    max-width: 1200px;
    .Contain{
         max-width: 1200px;
         min-width: 1200px;
@@ -14,7 +18,11 @@
             box-sizing: border-box;
             min-width: 0px;
             margin: 0px auto; 
+            padding: 70px ;
+            
         .x_x{
+            
+           
             box-sizing: border-box;
             margin: 0px;
             min-width: 0px;
@@ -22,7 +30,7 @@
             position: relative;
             padding: 20px;
             min-height: 158px;
-            background-color: rgb(255, 255, 255);
+         
             .x_xH{
                 box-sizing: border-box;
                 margin: 0px;
@@ -33,10 +41,10 @@
                     box-sizing: border-box;
                     margin: 0px;
                     min-width: 0px;
-                    border: 1px solid rgb(248, 248, 248);
+                   
                     border-radius: 6px;
                     width: 116px;
-                    height: 156px;
+                    height: 175px;
                     overflow: hidden;
                     flex: 0 0 auto;
                     img{
@@ -82,7 +90,7 @@
                         min-width: 0px;
                         color: rgb(21, 21, 21);
                         margin: 0px;
-                        font-size: 20px;
+                        font-size: 30px;
                         font-weight: 600;
                     }
 
@@ -108,7 +116,7 @@
                             min-width: 0px;
                             max-width: 100%;
                             height: auto;
-                            width: 13px;  
+                            width: 18px;  
                         }
                         div{
                             box-sizing: border-box;
@@ -163,31 +171,19 @@
                     min-width: 0px;
                     display: flex;  
                     div{
-                        box-sizing: border-box;
-                        margin: 0px;
-                        min-width: 0px;
-                        flex: 1 1 0%;
-                        flex-direction: column;
-                        -webkit-box-pack: justify;
-                        justify-content: space-between;
-                        color: rgb(156, 156, 156);
-                        overflow: hidden;
-                        display: flex;
-                        :first-child{
-                            box-sizing: border-box;
-                            margin: 0px;
-                            min-width: 0px;
-                            line-height: 1.15;
-                            font-size: 16px;
-                        } 
-                        :last-child{
-                            box-sizing: border-box;
-                            margin: 0px;
-                            min-width: 0px;
-                            line-height: 1.15;
-                            font-size: 16px;
-                        }
+                    span{
+                        border: 1px solid black;
+                        width: 50px;
+                        padding: 5px;
+                        border-radius: 20px;
+                        
                     }
+                    div{
+                        
+                        margin-top: 20px;
+                    }
+                }
+                    
                 }
                 .x_xBtn{
                     box-sizing: border-box;
@@ -299,20 +295,40 @@
                         height: 54px;
                         padding: 12px 20px;
                         background-color: #f3f3f3;
-                        :first-child{
+                        max-width: 1200px;
+                       overflow: hidden;
+
+
+
+                        .ResRank{
                             box-sizing: border-box;
                             margin: 0;
                             min-width: 0;
-                            -webkit-flex: 1 1 0px;
-                            -ms-flex: 1 1 0px;
-                            flex: 1 1 0px;
+                             width: 1000px;                     
                             font-weight: 500;
                             font-size: 16px;
                             text-align: left;
-                            color: #333333;
                             height: 20px;
+                            color: #333;
+                            display: flex;
+                            
+                              :first-child{
+                                color: red;
+                              }
+                              :nth-child(2){
+                                color: #ef6e73;
+                              } :nth-child(3){
+                                color: #ef6e73;
+                              }
+                              span{
+                                  display: grid;
+                                  width: 150px;
+                              }
+                              
                         }   
-                        :last-child{
+                      
+                        }
+                        .modaldiv{
                             box-sizing: border-box;
                             margin: 0;
                             min-width: 0;
@@ -324,17 +340,21 @@
                             display: -webkit-flex;
                             display: -ms-flexbox;
                             display: flex;
+                            position: absolute;
+                            right: -20px;
+                            
                             img{
-                                width: 30px;
+                                width: 40px;
                                 box-sizing: border-box;
                                 margin: 0;
                                 min-width: 0;
                                 max-width: 100%;
                                 height: auto; 
+                                z-index: 2;
                             }
                         }
                     }
-                }
+                
 .x_xx{
     border: 1px solid black;
     width: 90%;
@@ -342,40 +362,25 @@
     overflow:  hidden;
 
 }
-.modalwrap{
-    display: none;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    width: 100%;
-    min-width: 1200px;
-    height: 100vh;
-    background-color: rgba(51, 51, 51,0.3);
+.Sponmodalwrap,.intromodalwrap{
+   display: none;
+    position: fixed;
+    top:0; left: 0; bottom: 0; right: 0;
+    background: rgba(0, 0, 0, 0.4);
+    
    
 }
-.SponModal{
-    width: 800px;
+.SponModal ,.introModal{
+    width: 600px;
     height: 800px;
     position: absolute;
     top: 10%;
-    left: 30%;
+    left: 35%;
     background-color: #fff;
     display: flex;
     flex-direction: column;
     text-align: center;
     border-radius: 20px;
-    :first-child{
-        text-align: center;
-        display: flex;
-    padding: 20px 20px 18px;
-    border-bottom: 1px solid rgb(241, 241, 241);
-    -webkit-box-align: center;
-    
-    align-items: center;
-    :first-child{
-        flex: 1 1 0%;
-    }
-    }
     :last-child{
         padding: 0px;
         position: relative;
@@ -383,4 +388,388 @@
         max-height: 581.4px;
     }
     
+}
+
+.introHead{
+  
+    font-weight: 700;
+    color: #333;
+    
+    font-size: 35px;
+   
+}
+.introbody{
+    font-weight: 600;
+    color: #333;
+    font-size: 25px;
+    margin: 50px;
+    line-height: 70px;
+    text-align: left;
+}
+
+.sponheadWrap{
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+    font-size: 50px;
+    button{
+        border: none;
+        background-color: inherit;
+    }
+}
+.sponbody{
+   line-height: 40px;
+}
+
+
+
+
+
+.backcolor{
+    width: 100%;
+    max-width: 1200px;
+    min-width: 1200px;
+    background-color: pink;
+    height: 200px;
+    margin: 0 auto;
+    position: absolute;
+    top:-30px;
+    left:0%;
+    
+}
+.hashtag{
+    margin-top: 20px;
+    }
+
+
+
+    .NovelList{
+        box-sizing: border-box;
+        margin: 0px;
+        min-width: 0px;
+        border-top: 1px solid rgb(244, 244, 244);
+        border-bottom: 1px solid rgb(217, 217, 217);
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);
+        display: flex;
+    
+        .Noveltotal{
+            box-sizing: border-box;
+            margin: 0px;
+            min-width: 0px;
+            position: relative;
+            border-bottom: 1px solid rgb(243, 243, 243);
+            -webkit-box-pack: justify;
+            justify-content: space-between;
+            padding: 20px;
+            color: rgb(156, 156, 156);
+            font-size: 17px;
+            display: flex;
+            margin-top: 40px;
+            
+        }
+        .Novel{
+            box-sizing: border-box;
+            min-width: 0px;
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+            flex-direction: column;
+            display: flex;
+            
+            li{
+                box-sizing: border-box;
+                margin: 0px;
+                min-width: 0px;
+                cursor: pointer;
+                padding: 10px 20px;
+                display: flex;
+            :first-child{
+                box-sizing: border-box;
+                margin: 0px 20px 0px 0px;
+                min-width: 0px;
+                position: relative;
+              
+                border-radius: 6px;
+                overflow: hidden;
+                flex: 0 0 auto;
+                width:100px;  
+                
+                img{
+                  width: 62.2657px;
+                  height: 100%;
+                  margin-left: -1.13287px;
+                  margin-top: 0px;
+                }
+                
+                
+            } 
+            .NovelDEC{
+                box-sizing: border-box;
+                margin: 0px;
+                min-width: 0px;
+                flex: 1 1 0%;
+                padding-top: 8px;
+                padding-bottom: 8px;
+                overflow: hidden;
+                display: flex;
+             .NovelDECS{
+                box-sizing: border-box;
+                margin: 0px;
+                min-width: 0px;
+                flex: 1 1 0%;
+                flex-direction: column;
+                -webkit-box-pack: center;
+                justify-content: center;
+                overflow: hidden;
+                display: flex;
+                .Noveltt{
+                    width: 100%;
+                    box-sizing: border-box;
+                    margin: 0px;
+                    min-width: 0px;
+                    font-size: 30px;
+                    color: rgb(51, 51, 51);
+                    flex: 1 1 0%;
+                }
+                .Novelday{
+                    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+    font-size: 15px;
+    color: rgb(158, 158, 158);
+                }
+             }
+            }
+        
+        }
+        }
+        }
+.NovelNum{
+    box-sizing: border-box;
+    min-width: 0px;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    margin: 20px;
+    display: flex;
+}
+       
+
+.ListReply{
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+    background-color: white;
+    
+    .ReplyHeader{
+        box-sizing: border-box;
+        margin: 0px;
+        min-width: 0px;
+        padding: 23px 21px 23px 20px;
+        display: flex;
+        justify-content: space-between;
+       
+     
+    :last-child{
+        display: flex;
+    }
+       
+    }
+}
+
+
+
+.hashtag{
+    :first-child{
+        font-weight: bolder;
+    }
+}
+.hashtagSpan{
+    border: 1px solid #ef6e73;
+    border-radius: 10px;
+    padding: 5px;
+    color: #ef6e73;
+
+}
+
+
+.ResRank{
+    color: red;
+}
+
+
+
+
+.ResRank{
+    
+   
+    animation: rotate;
+    animation-duration: 20s; 
+    animation-iteration-count: infinite;
+    animation-fill-mode:none;
+    animation-timing-function: linear;
+
+    }
+
+@keyframes rotate {
+    
+   to {transform:translateX( -60%);}
+   from{
+    transform:translateX( 40%);
+   }
+}
+.ResRank:hover{animation-play-state: paused;}
+
+
+
+.ReplyCmt{
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+    flex-direction: column;
+    display: flex;
+}
+.ReplyCmtWrap{
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+    min-height: 160px;
+}
+.ReplyCmtDtail{
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+    position: relative;
+    padding-left: 21px;
+    padding-top: 30px;
+    padding-bottom: 23px;
+    background-color: rgb(255, 255, 255);
+    min-height: inherit;
+    display: flex;
+}
+.ReplyImg{
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+    border-radius: 42%;
+    width: 60px;
+    height: 60px;
+    flex: 0 0 auto;
+    overflow: hidden;
+    img{
+        box-sizing: border-box;
+        margin: 0px;
+        min-width: 0px;
+        max-width: 100%;
+        width: 60px;
+        height: 60px; 
+    }
+}
+.ReplyDEC{
+    box-sizing: border-box;
+    margin: 0px 0px 0px 20px;
+    min-width: 0px;
+    flex: 1 1 0%;
+    .ReplyIds{
+    box-sizing: border-box;
+    margin: 0;
+    min-width: 0;
+    display: flex;
+    .ReplyId{
+        box-sizing: border-box;
+        margin: 0px;
+        min-width: 0px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex: initial;
+        font-size: 18px;
+        font-weight: bold;
+        overflow: hidden;  
+    }
+    .ReplyDateWrap{
+        box-sizing: border-box;
+        margin: 0px;
+        min-width: 0px;
+        flex-shrink: 0;
+        display: flex;
+        .ReplyDate{
+            box-sizing: border-box;
+            margin: 0px;
+            min-width: 0px;
+            color: rgb(153, 153, 153);
+            align-self: center;
+            font-size: 14px;   
+        }
+    }
+    }
+    .ReplyText{
+        box-sizing: border-box;
+        margin: 18px 0px 0px;
+        min-width: 0px;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        width: 100%;
+        
+        font-size: 16px;  
+    }
+    .ReplyLikeWrap{
+        box-sizing: border-box;
+        margin: 24px 0px 0px;
+        min-width: 0px;
+        display: flex;
+      .ReplyLike{
+        box-sizing: border-box;
+        margin: 0px;
+        min-width: 0px;
+        cursor: pointer;
+        -webkit-box-align: center;
+        align-items: center;
+        display: flex;  
+        img{
+            box-sizing: border-box;
+            margin: 0px 5px 0px 0px;
+            min-width: 0px;
+            max-width: 100%;
+            width: 20px;
+            height: 18px;
+        }
+      } 
+     .ReplyLikeCnt{
+        box-sizing: border-box;
+        margin: 0px 20px 0px 0px;
+        min-width: 0px;
+        font-size: 16px;
+        color: rgb(153, 153, 153);
+        height: 18px;
+        line-height: 18px;  
+     }    
+    }
+}
+.ReplyDeclarWrap{
+    box-sizing: border-box;
+    margin: 0px 20px 0px 0px;
+    flex-direction: row-reverse;
+    min-width: 31px;
+    display: flex;
+    .ReplyDeclar{
+        box-sizing: border-box;
+        margin: 0px;
+        min-width: 0px;
+        cursor: pointer;
+        font-size: 14px;
+        height: 14px;
+        color: rgb(153, 153, 153);
+        display: inline-flex; 
+    }
+}
+
+.choose{
+  color: red;
+}
+
+.bb{
+    cursor: pointer;
+    font-weight: 700;
 }

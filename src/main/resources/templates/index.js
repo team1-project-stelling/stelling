@@ -120,47 +120,86 @@ function clickHandler() {
  }
 
 // 
-makediv()
-function makediv(){
+
+function makeHot(v,index,List){
    
    
-   let tags_container =document.querySelectorAll('tags_container')
-   for(i=0;i<tags_container.length;i++){
+   const divWrap =document.createElement('div')
+   divWrap.className="divWrap"
+   divWrap.id=`divWrap${index}`
+ 
+   divWrap.onclick=ff
+   
+   const divimg =document.createElement('div')
+   divimg.className="divimg"
+   const divDesc =document.createElement('div')
+   divDesc.className="divDesc"
+   const divDescHead =document.createElement('div')
+   divDescHead.className="divDescHead"
+   const divDescRank =document.createElement('div')
+   divDescRank.className="divDescRank" 
+   const divDescTitle =document.createElement('div')
+   divDescTitle.className="divDescTitle"       
+   const pwirter = document.createElement('pwirter')
+   pwirter.className="pwirter"    
+   const divGenre =document.createElement('div')
+   divGenre.className="divGenre"       
+   const img = document.createElement('img')
+   img.src=`https://image.tmdb.org/t/p/w500${v.poster_path}`;
+   img.className  ="tagsimg"
+   const RankSpan = document.createElement('span') 
+   RankSpan.className ="RankSpan"  
+   Ranking = document.createTextNode(`${index+1}위`)
+   TitleSpan = document.createTextNode(`${v.title}`)
+   writer = document.createTextNode(`${v.original_title}`)
+   const GenerSpan = document.createElement('span') 
+   GenerSpan.className="GenerSpan"
+   GenerText =document.createTextNode(`#${index} #${v.vote_count} #${v.genre_ids[0]}`)     
+
+   
+  
+   divWrap.append(divimg,divDesc)        
+   divimg.append(img) 
+   divDesc.append(divDescHead,pwirter,divGenre)
+   divDescHead.append(divDescRank,divDescTitle)
+   divDescRank.append(RankSpan)
+   divDescTitle.append(TitleSpan)
+   RankSpan.append(Ranking)
+   pwirter.append(writer)
+   divGenre.append(GenerSpan)
+   GenerSpan.append(GenerText)
+  
+   List.appendChild(divWrap)
+
+   
+   //페이지 이동
+function ff(){
+   location.href=`
+   ../pages/round.html?v=`+v.id;
+}
+   
+}
+cccc()
+function cccc(){
+   img.slice(0,3)?.map((v,index)=>{
+      let List = document.querySelector('.tags_left')
+     console.log(v)
+      makeHot(v,index,List);}
+      )
+   
+  
+  img.slice(3,6)?.map((v,index)=>{
+      let List = document.querySelector('.tags_middle')
+      makeHot(v,index,List);
+     
+  })  
+  img.slice(6,9)?.map((v,index)=>{
+      let List = document.querySelector('.tags_right')
+      makeHot(v,index,List);})  
+  }
+  
 
 
-    const tags = tags_container
-
-    tags.innerHTML=`<div class="divWrap"> 
-                     <div class="divimg"> <img src=#/> </div>
-                     <div class="divDescRank">${v[i].id}</div>
-                     <div class="Desc">
-                     <div class="DescHead">${v[i].title}</div>
-                     <div class="divDescTitle"></div>
-                     <div class="pwirter"></div>
-                     <div class="divGenre"></div>	
-                     </div>
-                     </div>`
-                  }
-                  
-               }
-
-
-
-// const dom = img.slice(0,3)?.map((v)=>
-// str+= "<div class="divWrap">";
-// str+= `<div class="divimg">`;
-// str "<img src= 
-
-//             </div>
-
-//                 </div>
-
-//    `
-//    );
-//      for(i=0; i<tags_container.length;i++){
-//         tags_container[i].append(str)
-//      }
-    
 
 
 
@@ -196,7 +235,7 @@ function main_sectionList(v,sectionList){
     sectionList.appendChild(x_item)
     //페이지 지동
     function ff(){
-        location.href=`index.html/pages/${v.id}&&${v}`
+        location.href=`./pages/round.html?v=`+v.id;
     }
         
 
@@ -242,4 +281,3 @@ function Illustrator(){
     
 
 }
-
