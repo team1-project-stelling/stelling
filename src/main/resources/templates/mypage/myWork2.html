@@ -6,6 +6,8 @@
     <title>내 작품 관리</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/editProfile.css}">
     <link rel="stylesheet" href="css/editProfile.css" type="text/css"/>
+    <link href="/css/footer.css" rel="stylesheet" type="text/css">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
     <style>
         ul{
             list-style: none;
@@ -28,12 +30,8 @@
             font-size: 16px;
         }
         body{
-            width : 100%;
-            max-width: 1200px;
-            margin:0 auto;
         }
         #allWrap{
-            display: inline-block;
             margin: 30px 0 auto;
             /*border-top: 1px solid #e8e9ed;*/
             width : 100%;
@@ -199,8 +197,16 @@
 
 </head>
 <body>
-<div id="allWrap">
-    <div class="profileWrap">
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word.html :: headFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
+<div id="allWrap" style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 20px; padding-bottom: 100px; zoom: 1.2;">
+    <div class="profileWrap1">
         <div class="group">
             <div class="left_block">
                 <ul class="liWrap">
@@ -256,7 +262,7 @@
                                     <span class="genre" style="color: #ef6e73">[로맨스]</span> 로맨스
                                 </p>
                                 <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
-                                    <img class="people" src="/images/people.png">
+                                    <img class="people" src="/images/people.png" style="width: 12px;">
                                     <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">90만+</span>
                                     <span class="writer">웹티, 올코</span>
                                 </div>
@@ -284,7 +290,7 @@
                                     <span class="genre" style="color: #ef6e73">[로맨스]</span> 로맨스
                                 </p>
                                 <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
-                                    <img class="people" src="/images/people.png">
+                                    <img class="people" src="/images/people.png" style="width: 12px;">
                                     <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">90만+</span>
                                     <span class="writer">웹티, 올코</span>
                                 </div>
