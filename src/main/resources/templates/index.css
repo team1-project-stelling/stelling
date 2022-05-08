@@ -1,0 +1,472 @@
+@import url(./reset.css);
+.M_banner_area {
+  position: relative;
+  margin-top: 0;
+  width: 100%;
+  height: 555px;
+  background-color: #f7f7f7;
+  padding-top: 46px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.M_banner_area .M_banner_list {
+  position: relative;
+  width: 100%;
+  height: 425px;
+  margin-top: 40px;
+}
+
+.M_banner_area .banner_img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transition: all 0.6s ease 0s;
+  transition: all 0.6s ease 0s;
+  width: 1000px;
+  height: 550px;
+  opacity: 0;
+  z-index: 0;
+  -webkit-transform: translate(-50%, -50%) scale(0.8);
+          transform: translate(-50%, -50%) scale(0.8);
+  -webkit-box-shadow: unset;
+          box-shadow: unset;
+  cursor: pointer;
+}
+
+.M_banner_area .addd {
+  opacity: 1;
+  z-index: 3;
+  -webkit-filter: brightness(100%);
+          filter: brightness(100%);
+}
+
+.M_banner_area .rightadd {
+  opacity: 0.8;
+  z-index: 2;
+  -webkit-transform: translate(-5%, -50%) scale(0.6);
+          transform: translate(-5%, -50%) scale(0.6);
+  -webkit-filter: brightness(30%);
+          filter: brightness(30%);
+}
+
+.M_banner_area .leftadd {
+  opacity: 0.8;
+  z-index: 1;
+  -webkit-transform: translate(-100%, -50%) scale(0.6);
+          transform: translate(-100%, -50%) scale(0.6);
+  -webkit-filter: brightness(30%);
+          filter: brightness(30%);
+}
+
+.banner_arrow {
+  width: 840px;
+  height: 100px;
+  position: relative;
+  display: block;
+  margin: auto;
+  top: -45%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.banner_arrow :hover {
+  opacity: 1;
+}
+
+.banner_arrow a {
+  position: absolute;
+  display: block;
+  right: unset;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  z-index: 3;
+  opacity: 0.5;
+}
+
+.banner_arrow a img {
+  width: 100px;
+}
+
+.banner_arrow .right {
+  position: absolute;
+  display: block;
+  right: 0;
+  left: unset;
+}
+
+.M_Hot_area {
+  padding-top: 50px;
+  width: 100%;
+  min-width: 1200px;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 555px;
+}
+
+.M_Hot_area h2 {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 15px;
+  font-weight: 100;
+}
+
+.M_Hot_area h2 .M_Hot_area_tittle span:first-child {
+  font-size: 26px;
+  color: #000;
+  margin-right: 6px;
+  font-weight: 600;
+}
+
+.M_Hot_area h2 .M_Hot_area_tittle span:last-child {
+  font-size: 26px;
+  color: #ef6e73;
+  margin-right: 2px;
+  font-weight: bold;
+}
+
+.M_Hot_area h2 .M_Hot_area_tittle span:last-child a {
+  word-spacing: 10px;
+  font-size: 15px;
+  color: #000;
+}
+
+.M_Hot_area .M_tags_area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  margin-bottom: 40px;
+  margin-bottom: 25px;
+}
+
+.M_Hot_area .M_tags_area .M_tags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 10px;
+  overflow: hidden;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  height: 36px;
+}
+
+.M_Hot_area .M_tags_area .M_tags span {
+  padding: 4px 18px;
+  border-radius: 16px;
+  border: 1px solid #DDD;
+  line-height: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.M_Hot_area .M_tags_area .M_tags .a {
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.clinkadd {
+  background-color: #ef6e73;
+  color: white;
+}
+
+.M_tags_List {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 44px;
+  min-height: 460px;
+}
+
+.M_tags_List .tags_List {
+  width: 400px;
+}
+
+.M_tags_List .tags_List .tags_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 16px;
+}
+
+.M_tags_List .tags_List .tags_header span {
+  color: #000;
+  font-size: 18px;
+}
+
+.M_tags_List .tags_List .tags_header a {
+  color: #999;
+  font-size: 14px;
+}
+
+.tagsimg {
+  width: 80px;
+  height: 120px;
+}
+
+.tags_container {
+  cursor: pointer;
+}
+
+.tags_container .divWrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.tags_container .divWrap .divimg {
+  position: relative;
+}
+
+.tags_container .divWrap .divDesc {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  min-width: 0;
+}
+
+.tags_container .divWrap .divDesc .divDescHead {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+
+.tags_container .divWrap .divDesc .divDescHead .divDescRank {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.tags_container .divWrap .divDesc .divDescHead .divDescRank .RankSpan {
+  font-size: 24px;
+  font-weight: 600;
+  color: #000;
+  white-space: nowrap;
+}
+
+.tags_container .divWrap .divDesc .divDescHead .divDescTitle {
+  color: #000;
+  font-size: 16px;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-align: left;
+  height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+.tags_container .divWrap .divDesc .pwirter {
+  margin-bottom: 13px;
+  font-size: 14px;
+  color: #666;
+}
+
+.tags_container .divWrap .divDesc .divGenre {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  line-height: 1.3;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-top: 20px;
+}
+
+.tags_container .divWrap .divDesc .divGenre .GenerSpan {
+  color: #666;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.main_section {
+  margin-top: 50px;
+  width: 100%;
+  height: auto;
+  min-width: 1200px;
+}
+
+.main_section .M_x_W {
+  background-color: #f7f7f7;
+  opacity: 1;
+  height: 400px;
+}
+
+.main_section .M_x_ {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 0 20px 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+.main_section .M_x_ .x_title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+  white-space: nowrap;
+}
+
+.main_section .M_x_ .x_title div:first-child {
+  font-size: 26px;
+  font-weight: 550;
+  color: #000;
+}
+
+.main_section .M_x_ .x_title div:first-child span {
+  color: #ef6e73;
+  font-weight: 600;
+}
+
+.main_section .M_x_ .x_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 24px;
+  height: 337px;
+  cursor: pointer;
+}
+
+.main_section .M_x_ .x_box .x_item {
+  width: 180px;
+  /* flex: 1; */
+  -ms-flex-preferred-size: 180px;
+      flex-basis: 180px;
+  min-width: 0;
+}
+
+.main_section .M_x_ .x_box .x_item .x_item_img {
+  position: relative;
+}
+
+.main_section .M_x_ .x_box .x_item .x_item_img .ximg {
+  width: 180px;
+  height: 270px;
+  border-radius: 0px 30px 0px 0px;
+}
+
+.main_section .M_x_ .x_box .x_item h3 {
+  font-size: 18px;
+  margin-top: 19px;
+  margin-bottom: 8px;
+  font-weight: 100;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.main_section .M_x_ .x_box .x_item p {
+  font-size: 14px;
+  font-weight: 100;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.main_section #fourList {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  overflow: hidden;
+}
+
+.main_section .M_new_novel2 {
+  background-color: #fff;
+  height: 400px;
+}
+
+.main_section .M_new_novel3 {
+  background-color: #DDD;
+  height: 400px;
+}
+
+.movemove {
+  -webkit-animation: rotate;
+          animation: rotate;
+  -webkit-animation-duration: 20s;
+          animation-duration: 20s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-fill-mode: none;
+          animation-fill-mode: none;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+
+@-webkit-keyframes rotate {
+  to {
+    -webkit-transform: translateX(-50.5%);
+            transform: translateX(-50.5%);
+  }
+}
+
+@keyframes rotate {
+  to {
+    -webkit-transform: translateX(-50.5%);
+            transform: translateX(-50.5%);
+  }
+}
+
+#fourList:hover {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}

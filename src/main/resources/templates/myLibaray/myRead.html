@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>내서재</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/css/main.css" type="text/css"/>
+    <style>
+
+
+        /* 바디의 길이,넓이 설정 */
+        html {height:100%}
+        body {
+            width: 100%;
+            min-height:100%;
+            margin: 0px;
+        }
+
+
+        /* 공통 값*/
+        /* 최대크기 설정*/
+        .giveMaxWidth{
+            max-width:1200px ;
+            margin:0 auto  ;
+        }
+
+
+
+        div#categoryWrap{
+            width: 100%;
+            height: 100vh;
+
+        }
+
+
+        section#categorySection{width : 100%; min-height: 100vh;}
+
+        /* 카테고리메뉴 테이블*/
+        div#categoryMenu{
+            width : 100%;
+        }
+        div#categoryMenu table{
+            width : 100%;
+        }
+
+
+        #categoryMenu table tbody{
+            display: flex;
+            width : 100%;
+        }
+        #categoryMenu table tbody tr{
+            display: flex;
+            width: 100%;
+            height: 60px;
+            justify-content: center;
+            align-items: center;
+        }
+        #categoryMenu table tbody tr td {
+            width: 100%;
+            height: 100%;
+        }
+        #categoryMenu table tbody tr td a{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            /*border: 1px #ff8b77 solid;*/
+            text-align: center;
+            /* vertical-align: middle; */
+            align-items: center;
+            justify-content: center;
+            text-decoration-line:none;
+
+        }
+        #categoryMenu a:visited,#categoryMenu a:link , .resultItem a:visited, .resultItem a:link {color: black}
+        a.writeButton:visited, a.writeButton:link{color: white}
+        ul#tagSearchList li a:visited, ul#tagSearchList li a:link{color:#343a40; }
+        #totalWrap{
+            height: 50px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid black;
+        }
+        .totalWordWork{
+            width: 13%;
+            word-spacing: -1px;
+            font-weight: bold;
+        }
+        .totalWordWork img{
+            width: 16px;
+        }
+        #totalOption div img {
+            width: 12px;
+        }
+        #totalR_side, #totalOption{
+            display: flex;
+            gap: 12px;
+            align-items: center;
+
+        }
+        #totalR_side {
+            height: 40px;
+            font-size: 12px;
+            margin-right: 1em;
+        }
+        #totalOption{
+            height: 100%;
+        }
+
+        a.writeButton{
+            width: 150px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #333;
+            text-decoration-line:none;
+            color: white;
+        }
+        a.writeButton img{
+            width: 23px;
+            object-fit: cover;
+        }
+        div.OptionChange{
+            cursor: pointer;
+        }
+        div#tagSearchWrap{
+            border-bottom: 1px solid #eee;
+
+        }
+
+        ul#tagSearchList{
+            display: flex;
+            list-style: none;
+            font-size: 12px;
+            align-items: center;
+            padding: 0;
+        }
+        ul#tagSearchList li {
+            color: #495057;
+            padding: 4.8px 12.2px;
+
+        }
+        ul#tagSearchList li  a {
+            text-decoration-line: none;
+
+        }
+
+        div.category{
+            width: 100%;
+            height: 75px;
+            background-color: #f2f2f2;
+            margin-bottom: 1em;
+            font-weight: bold;
+        }
+
+        div.category ul{
+            list-style-type: none;
+            padding-inline-start: 0;
+            margin-block-start: 0em;
+            margin-block-end: 0em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            margin: 0 auto;
+            justify-content: space-between;
+            height: 100%;
+            width: 1200px;
+        }
+
+        ul.tag-title{
+            list-style-type: none;
+            display: flex;
+            margin-left: -2.5em;
+            margin-top: 0em;
+            position: absolute;
+        }
+
+        div.category ul li{
+            text-align: center;
+            width: 33%;
+            font-size: 20px;
+        }
+
+        .list-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 405px;
+        }
+        .item-search{
+            border: 1px solid #a9a9a9;
+            border-radius: 30px;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+            font-size: 14px;
+            width: 50%;
+            height: 50px;
+        }
+        input{
+            border:0 solid black;
+            width: 85%;
+            font-size: 16px;
+            margin-left: 1em;
+        }
+
+        input:focus {outline: none;}
+
+        .active{
+            background: #ef6e73;
+            color: #fff;
+            padding: 0.8em 1.5em 0.8em 1.5em;
+            border-radius: 50px;
+        }
+        .btn-search {
+            font-size: 16px;
+            margin-right: 1em;
+        }
+        .my-item{
+            position: relative;
+            display: flex;
+            padding: 18px 0px 10px 12px;
+            border-bottom: 1px solid #eee;
+            width: 49%;
+            float: left;
+        }
+        button{
+            background-color: white;
+            border-color: #ef6e73;
+            color: #ef6e73;
+        }
+
+        span.tag-update{
+            position: absolute;
+            margin-left: 34.8em;
+            background: #00AAFF;
+            color: #fff;
+            width: 36px;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+
+        a.btn-view{
+            text-decoration: none;
+            color: #fff;
+            background: #ff8b77;
+            border: 1px solid #ff8b77;
+            width: 80px;
+            margin-right: 7px;
+            font-size: 12px;
+            padding: 7px 0.7em 7px 0.7em;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+        div.item-img.btn-num{
+            max-width: 120px; height: 160px; position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            width: fit-content;
+            margin-bottom: 0.7em;
+        }
+
+
+        div.item-detail1 img{
+            margin-right: 5px;
+            width:10px;
+        }
+        div.item-button img{
+            width: 35px;
+            position: absolute;
+            margin-left: 19em;
+            margin-top: -0.3em;
+        }
+
+        img.like-img{
+            width: 32px;
+            margin-left: 24em;
+        }
+
+        .tagInner{
+            display: flex ;
+            gap: 9px;
+            align-items: center;
+            height: 49.59px;
+        }
+        div#tagSearchWrap .tagInner button{
+            width: 75px;
+            height: 28px;
+            color: #000;
+            border: 1px solid #ddd;
+            font-size: 12px;
+            background: url('/images/category/searchIcon.png')no-repeat 4px center;
+            background-size: 16px;
+            padding: 0 0 0 15px;
+        }
+        ul#tagSearchList li.active{
+            background: #ff8b77;
+        }
+        ul#tagSearchList li.active a{
+            background: #ff8b77;
+            color: white !important;
+        }
+        div#searchResult{
+
+        }
+        div.resultItem{
+            width: 100%;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            height: auto;
+            min-height: 157px;
+            float: left;
+        }
+        #searchForm input{
+            width: 209px;
+            height: 25px;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+        #searchForm input:focus {outline: 1px solid #ff8b77; border:none;}
+        #searchFormWrap{
+            display: none;
+        }
+        #searchForm{
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+    </style>
+</head>
+<body class="is-preload">
+
+<!-- Main -->
+<div id="main">
+    <div id="categoryWrap" class="giveMaxWidth">
+        <section id="categorySection" class="giveMaxWidth">
+            <div id="categoryMenu" class="giveMaxWidth">
+                <table class="giveMaxWidth">
+                    <tbody>
+                    <tr>
+                        <td><a href="#" class="categoryMenuItem">찜목록</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" class="categoryMenuItem">소장함</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" class="categoryMenuItem">최근 본 작품</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="totalWrap"class="giveMaxWidth">
+                <div class="totalWordWork">
+                    <img src="/images/category/fileIcon.png" alt="파일아이콘">
+                    <span>총 7개 작품</span>
+                </div>
+<!--                <div id="totalR_side" >
+                    <div id="totalOption">
+                        <div class="OptionChange"><img src="/images/category/checkIcon.png" alt="체크아이콘">최신순</div>
+                        <div class="OptionChange"><img src="/images/category/optionPointIcon.png" alt="체크아이콘">조회순</div>
+                        <div class="OptionChange"><img src="/images/category/optionPointIcon.png" alt="체크아이콘">편수 순</div>
+                    </div>
+                </div>-->
+            </div>
+            <div id="tagSearchWrap" class="giveMaxWidth">
+                <div class="tagInner">
+                    <button class="tagBtn" onclick="changeTagSearch()">태그검색</button>
+                    <div id="searchFormWrap">
+                        <form id="searchForm">
+                            <input id="" type="text" placeholder="#검색할 태그를 입력하세요" maxlength="16">
+                            <div class="cancelImg" onclick="changeTagSearch()">
+                                <img src="/images/category/cancelIcon.png" style="width: 25px;margin-top: 0.1em;margin-left: -0.8em;">
+                            </div>
+                        </form>
+                    </div>
+                    <ul id="tagSearchList">
+                        <li class="active"><a>전체</a></li>
+                        <li><a href="#">판타지</a></li>
+                        <li><a href="#">무협</a></li>
+                        <li><a href="#">현대</a></li>
+                        <li><a href="#">로맨스</a></li>
+                        <li><a href="#">현대판타지</a></li>
+                        <li><a href="#">라이트노벨</a></li>
+                        <li><a href="#">공포</a></li>
+                        <li><a href="#">SF</a></li>
+                        <li><a href="#">스포츠</a></li>
+                        <li><a href="#">대체역사</a></li>
+                        <li><a href="#">기타</a></li>
+                        <li><a href="#">패러디</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="my-item-list">
+                <div class="my-item">
+                    <span class="tag-update">UP</span>
+                    <div class="item-img btn-num">
+                        <picture class="">
+                            <img data-srcset="https://cdn.anytoon.co.kr/novel/epub/1/%EB%AC%B4%EC%8A%A8%EC%82%AC%EC%9D%B4/20211101054333-1.jpg" alt="대표님 살살해요" src="/images/loading_290x391.png" srcset="https://cdn.anytoon.co.kr/novel/epub/1/%EB%AC%B4%EC%8A%A8%EC%82%AC%EC%9D%B4/20211101054333-1.jpg" class="fade-in" style="    max-width: 100%;">
+                        </picture>
+                    </div>
+                    <!-- //item-img -->
+                    <div class="item-info" style="margin-left: 12px;padding: 8px;">
+                        <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
+                            <span class="genre" style="color: #ef6e73">[로맨스]</span> 로맨스
+                        </p>
+                        <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
+                            <img class="people" src="/images/people.png">
+                            <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">90만+</span>
+                            <span class="writer">웹티, 올코</span>
+                        </div>
+                        <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
+                            <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">총 편수 : 308</span>
+                            <span>최근 등록일 : 2022-05-01</span>
+                        </div>
+                        <div class="item-button" style="margin-top: 3em;">
+                            <ul class="tag-title">
+                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
+                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
+                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-item">
+                    <span class="tag-update">UP</span>
+                    <div class="item-img btn-num">
+                        <picture class="">
+                            <source src="/images/no_title.png">
+                            <img alt="대표님 살살해요" src="/images/no_title.png" class="fade-in" style="    max-width: 100%;">
+                        </picture>
+                    </div>
+                    <!-- //item-img -->
+                    <div class="item-info" style="margin-left: 12px;padding: 8px;">
+                        <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
+                            <span class="genre" style="color: #ef6e73">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 티끌 모아 대박
+                        </p>
+                        <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
+                            <img class="people" src="/images/people.png">
+                            <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">1만+</span>
+                            <span class="writer">백범</span>
+                        </div>
+                        <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
+                            <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">총 편수 : 275</span>
+                            <span>최근 등록일 : 2022-04-30</span>
+                        </div>
+                        <div style="margin-top: 1em;position: absolute;font-weight: bold;font-size: 14px;color: #00AAFF;">
+                            <span>#로맨스</span>&nbsp;&nbsp;
+                            <span>#판타지</span>&nbsp;&nbsp;
+                            <span>#라이트노벨</span>&nbsp;&nbsp;
+                        </div>
+                        <div class="item-button" style="margin-top: 3em;">
+                            <ul class="tag-title">
+                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
+                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
+                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-item">
+                    <!--<span class="tag-update">UP</span>-->
+                    <div class="item-img btn-num">
+                        <picture class="">
+                            <img src="/images/loading_290x391.png" srcset="https://cdn.anytoon.co.kr/novel/epub/9/%EB%8D%98%EC%A0%84%EB%A6%AC%EC%85%8B/0001/cover.jpg" class="fade-in" style="    max-width: 100%;">
+                        </picture>
+                    </div>
+                    <!-- //item-img -->
+                    <div class="item-info" style="margin-left: 12px;padding: 8px;">
+                        <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
+                            <span class="genre" style="color: #ef6e73">[판타지]</span> 던전리셋
+                        </p>
+                        <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
+                            <img class="people" src="/images/people.png">
+                            <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">5천+</span>
+                            <span class="writer">다울</span>
+                        </div>
+                        <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
+                            <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">총 편수 : 540</span>
+                            <span>최근 등록일 : 2022-04-20</span>
+                        </div>
+                        <div class="item-button" style="margin-top: 3em;">
+                            <ul class="tag-title">
+                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
+                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
+                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-item">
+                    <!--<span class="tag-update">UP</span>-->
+                    <div class="item-img btn-num">
+                        <picture class="">
+                            <img src="/images/loading_290x391.png" srcset="https://cdn.anytoon.co.kr/novel/epub/9/%EB%8D%98%EC%A0%84%EB%A6%AC%EC%85%8B/0001/cover.jpg" class="fade-in" style="    max-width: 100%;">
+                        </picture>
+                    </div>
+                    <!-- //item-img -->
+                    <div class="item-info" style="margin-left: 12px;padding: 8px;">
+                        <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
+                            <span class="genre" style="color: #ef6e73">[판타지]</span> 던전리셋
+                        </p>
+                        <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
+                            <img class="people" src="/images/people.png">
+                            <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">5천+</span>
+                            <span class="writer">다울</span>
+                        </div>
+                        <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
+                            <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">총 편수 : 540</span>
+                            <span>최근 등록일 : 2022-04-20</span>
+                        </div>
+                        <div class="item-button" style="margin-top: 3em;">
+                            <ul class="tag-title">
+                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
+                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
+                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-item">
+                    <!--<span class="tag-update">UP</span>-->
+                    <div class="item-img btn-num">
+                        <picture class="">
+                            <img src="/images/loading_290x391.png" srcset="https://cdn.anytoon.co.kr/novel/epub/9/%EB%8D%98%EC%A0%84%EB%A6%AC%EC%85%8B/0001/cover.jpg" class="fade-in" style="    max-width: 100%;">
+                        </picture>
+                    </div>
+                    <!-- //item-img -->
+                    <div class="item-info" style="margin-left: 12px;padding: 8px;">
+                        <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
+                            <span class="genre" style="color: #ef6e73">[판타지]</span> 던전리셋
+                        </p>
+                        <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
+                            <img class="people" src="/images/people.png">
+                            <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">5천+</span>
+                            <span class="writer">다울</span>
+                        </div>
+                        <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
+                            <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">총 편수 : 540</span>
+                            <span>최근 등록일 : 2022-04-20</span>
+                        </div>
+                        <div class="item-button" style="margin-top: 3em;">
+                            <ul class="tag-title">
+                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
+                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
+                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-item">
+                    <!--<span class="tag-update">UP</span>-->
+                    <div class="item-img btn-num">
+                        <picture class="">
+                            <img src="/images/loading_290x391.png" srcset="https://cdn.anytoon.co.kr/novel/epub/9/%EB%8D%98%EC%A0%84%EB%A6%AC%EC%85%8B/0001/cover.jpg" class="fade-in" style="    max-width: 100%;">
+                        </picture>
+                    </div>
+                    <!-- //item-img -->
+                    <div class="item-info" style="margin-left: 12px;padding: 8px;">
+                        <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
+                            <span class="genre" style="color: #ef6e73">[판타지]</span> 던전리셋
+                        </p>
+                        <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
+                            <img class="people" src="/images/people.png">
+                            <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">5천+</span>
+                            <span class="writer">다울</span>
+                        </div>
+                        <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
+                            <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">총 편수 : 540</span>
+                            <span>최근 등록일 : 2022-04-20</span>
+                        </div>
+                        <div class="item-button" style="margin-top: 3em;">
+                            <ul class="tag-title">
+                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
+                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
+                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-item">
+                    <!--<span class="tag-update">UP</span>-->
+                    <div class="item-img btn-num">
+                        <picture class="">
+                            <img src="/images/loading_290x391.png" srcset="https://cdn.anytoon.co.kr/novel/epub/9/%EB%8D%98%EC%A0%84%EB%A6%AC%EC%85%8B/0001/cover.jpg" class="fade-in" style="    max-width: 100%;">
+                        </picture>
+                    </div>
+                    <!-- //item-img -->
+                    <div class="item-info" style="margin-left: 12px;padding: 8px;">
+                        <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
+                            <span class="genre" style="color: #ef6e73">[판타지]</span> 던전리셋
+                        </p>
+                        <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
+                            <img class="people" src="/images/people.png">
+                            <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">5천+</span>
+                            <span class="writer">다울</span>
+                        </div>
+                        <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
+                            <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">총 편수 : 540</span>
+                            <span>최근 등록일 : 2022-04-20</span>
+                        </div>
+                        <div class="item-button" style="margin-top: 3em;">
+                            <ul class="tag-title">
+                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
+                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
+                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    let $categoryMenuItem = $('.categoryMenuItem')
+    // 시작은 전체페이지 조회
+    // 추후에 컨트롤러 연동으로 변경 현재 프론트 작업을 위한 임시 소스
+    /* 임시 소스 시작 */
+    // changeBorder($($categoryMenuItem[0]).text())
+    // $($categoryMenuItem[0]).css('border','2px solid #ff8b77')
+    // $($categoryMenuItem[0]).css('border-bottom','none')
+    $($categoryMenuItem[0]).css('border-bottom','2px solid #ff8b77')
+    /* 임시 소스 종료 */
+
+    $('.categoryMenuItem').on('click',function () {
+        categoryMenuReset()
+        // $(this).css('border','2px solid #ff8b77')
+        $(this).css('border-bottom','none')
+        $(this).css('border-bottom','2px solid #ff8b77')
+        // $(this).css('border-bottom','none')
+        // console.log($categoryMenuItem)
+        // changeBorder($(this).text())
+
+    })
+    function categoryMenuReset() {
+        $.each($categoryMenuItem, function (index, item) {
+            $(item).css('border','none')
+            // $(item).css('border','1px solid  #ff8b77 ')
+        });
+    }
+
+
+    function changeBorder(text) {
+        if(text == '소장함'){
+            $($categoryMenuItem[0]).css('border-bottom','2px solid #ff8b77')
+            $($categoryMenuItem[2]).css('border-bottom','2px solid #ff8b77')
+        }else if(text == '찜목록'){
+            $($categoryMenuItem[1]).css('border-bottom','2px solid #ff8b77')
+            $($categoryMenuItem[2]).css('border-bottom','2px solid #ff8b77')
+        }else if(text== '최근 본 작품'){
+            $($categoryMenuItem[0]).css('border-bottom','2px solid #ff8b77')
+            $($categoryMenuItem[1]).css('border-bottom','2px solid #ff8b77')
+        }
+    }
+
+    $('div.OptionChange').on('click',function () {
+        ResetOptionChange()
+        $(this).find('img').attr('src', '/images/category/checkIcon.png' )
+    })
+
+    function ResetOptionChange() {
+        $.each($('div.OptionChange'),function (index,item) {
+            $(item).find('img').attr('src', '/images/category/optionPointIcon.png');
+        })
+    }
+    $('#tagSearchList li').on('click',function () {
+        resetTagSearchList();
+        $(this).addClass('active')
+    })
+    function resetTagSearchList() {
+        $.each($('#tagSearchList li'),function (index, item) {
+            $(item).removeClass('active')
+        })
+    }
+
+
+    function changeTagSearch(){
+        $('#tagSearchList').toggle()
+        $('#searchFormWrap').toggle()
+    }
+
+
+
+
+</script>
+</body>
+</html>
