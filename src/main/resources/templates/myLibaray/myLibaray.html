@@ -7,13 +7,13 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="/css/main.css" type="text/css"/>
+    <link href="/css/footer.css" rel="stylesheet" type="text/css">
     <style>
 
 
-        html {height:100%}
+        html {}
         body {
             width: 100%;
-            min-height:100%;
             margin: 0px;
         }
 
@@ -29,7 +29,6 @@
 
         div#categoryWrap{
             width: 100%;
-            height: 100vh;
 
         }
 
@@ -259,6 +258,7 @@
             border-radius: 30px;
             font-weight: bold;
         }
+
         div.item-img.btn-num{
             max-width: 120px; height: 160px; position: relative;
             border-radius: 4px;
@@ -335,26 +335,45 @@
             gap: 3px;
         }
 
-        .footer-menu ul{
-            list-style-type: none;
-            padding-inline-start: 0;
-            margin-block-start: 0em;
-            margin-block-end: 0em;
-            margin-inline-start: 0px;
-            margin-inline-end: 0px;
+        /*페이징 css*/
+        div.categoryPaging {
             width: 100%;
+            height: 80px;
+            clear: both;
+        }
+        ul.c_PagingList{
             display: flex;
             align-items: center;
-            margin: 0 auto;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 5px;
             height: 100%;
-            width: 1200px;
+            padding: 0;
+        }
+        ul.c_PagingList li{
+            list-style: none;
+            width: 30px;
+            height: 40px;
+            text-align: center;
+            background: #e9ecef;
+            color: #343a40;
+            line-height: 2.25;
+        }
+        ul.c_PagingList li a{
+            text-decoration-line: none;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 12px;
+
+        }
+        ul.c_PagingList li a:visited, ul.c_PagingList li a:link{
+            color: #343a40;
+        }
+        ul.c_PagingList li.pageActive{
+            background:#00AAFF;
+            color: #fff !important;
         }
 
-        div.footer-info{
-            width: 1200px;
-            margin: 0 auto;
-        }
 
     </style>
 </head>
@@ -444,9 +463,7 @@
                         </div>
                         <div class="item-button" style="margin-top: 3em;">
                             <ul class="tag-title">
-                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
-                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
-                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                                <li><a href="#" class="btn-view tag-list">보러가기</a></li>
                             </ul>
                         </div>
                         <img src="/images/like.png" class="like-img">
@@ -456,65 +473,26 @@
                     <span class="tag-update">UP</span>
                     <div class="item-img btn-num">
                         <picture class="">
-                            <source src="/images/no_title.png">
-                            <img alt="대표님 살살해요" src="/images/no_title.png" class="fade-in" style="    max-width: 100%;">
+                            <img data-srcset="https://cdn.anytoon.co.kr/novel/epub/1/%EB%AC%B4%EC%8A%A8%EC%82%AC%EC%9D%B4/20211101054333-1.jpg" alt="대표님 살살해요" src="/images/loading_290x391.png" srcset="https://cdn.anytoon.co.kr/novel/epub/1/%EB%AC%B4%EC%8A%A8%EC%82%AC%EC%9D%B4/20211101054333-1.jpg" class="fade-in" style="    max-width: 100%;">
                         </picture>
                     </div>
                     <!-- //item-img -->
                     <div class="item-info" style="margin-left: 12px;padding: 8px;">
                         <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
-                            <span class="genre" style="color: #ef6e73">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 티끌 모아 대박
+                            <span class="genre" style="color: #ef6e73">[로맨스]</span> 로맨스
                         </p>
                         <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
                             <img class="people" src="/images/people.png">
-                            <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">1만+</span>
-                            <span class="writer">백범</span>
+                            <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">90만+</span>
+                            <span class="writer">웹티, 올코</span>
                         </div>
                         <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
-                            <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">총 편수 : 275</span>
-                            <span>최근 등록일 : 2022-04-30</span>
-                        </div>
-                        <div style="margin-top: 1em;position: absolute;font-weight: bold;font-size: 14px;color: #00AAFF;">
-                            <span>#로맨스</span>&nbsp;&nbsp;
-                            <span>#판타지</span>&nbsp;&nbsp;
-                            <span>#라이트노벨</span>&nbsp;&nbsp;
+                            <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">총 편수 : 308</span>
+                            <span>최근 등록일 : 2022-05-01</span>
                         </div>
                         <div class="item-button" style="margin-top: 3em;">
                             <ul class="tag-title">
-                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
-                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
-                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
-                            </ul>
-                        </div>
-                        <img src="/images/like.png" class="like-img">
-                    </div>
-                </div>
-                <div class="my-item">
-                    <!--<span class="tag-update">UP</span>-->
-                    <div class="item-img btn-num">
-                        <picture class="">
-                            <img src="/images/loading_290x391.png" srcset="https://cdn.anytoon.co.kr/novel/epub/9/%EB%8D%98%EC%A0%84%EB%A6%AC%EC%85%8B/0001/cover.jpg" class="fade-in" style="    max-width: 100%;">
-                        </picture>
-                    </div>
-                    <!-- //item-img -->
-                    <div class="item-info" style="margin-left: 12px;padding: 8px;">
-                        <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
-                            <span class="genre" style="color: #ef6e73">[판타지]</span> 던전리셋
-                        </p>
-                        <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
-                            <img class="people" src="/images/people.png">
-                            <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">5천+</span>
-                            <span class="writer">다울</span>
-                        </div>
-                        <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
-                            <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">총 편수 : 540</span>
-                            <span>최근 등록일 : 2022-04-20</span>
-                        </div>
-                        <div class="item-button" style="margin-top: 3em;">
-                            <ul class="tag-title">
-                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
-                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
-                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                                <li><a href="#" class="btn-view tag-list">보러가기</a></li>
                             </ul>
                         </div>
                         <img src="/images/like.png" class="like-img">
@@ -645,29 +623,31 @@
                     </div>
                 </div>
             </div>
+            <!-- 페이징 시작-->
+            <div class="categoryPaging giveMaxWidth">
+                <!-- 페이징 -->
+                <ul class="c_PagingList" >
+                    <!-- 이전 -->
+                    <li><a>&lt;</a></li>
+
+                    <li class="pageActive"><a>1</a></li>
+                    <li><a>2</a></li>
+                    <li><a>3</a></li>
+                    <li><a>4</a></li>
+                    <li><a>5</a></li>
+                    <li><a>6</a></li>
+
+                    <!-- 다음 -->
+                    <li><a>&gt;</a></li>
+                </ul>
+            </div>
+            <!-- 페이징 종료-->
         </section>
     </div>
 </div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
 
-<!-- footer -->
-<footer class="footer" style="background: #f2f2f2">
-    <div class="footer-menu">
-        <ul>
-            <li><a href="" title="서비스 약관">서비스약관</a></li>
-            <li><a href="" title="개인정보처리방침">개인정보처리방침</a></li>
-            <li><a href="" title="공지사항">공지사항</a></li>
-            <li><a href="" title="공지사항" class="no-loading">고객센터</a></li>
-        </ul>
-    </div>
-    <div class="footer-info">
-        <p style="max-width: 800px;">
-           스텔링에 게시된 모든 컨텐츠들은 저작권법에 의거 보호받고 있습니다.
-            <span style="display: block">저작권자 또는 (주)스텔링의 승인없이 컨텐츠의 일부 또는 전부를 복제·전송·배포 및 기타의 방법으로 저작물을 이용할 경우에는
-            저작권 법에 의해 법적 초치에 처해질 수 있으므로 주의하시길 바랍니다.</span>
-        </p>
-    </div>
-</footer>
-
+</body>
 
 
 <!-- Scripts -->
