@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
+    <link href="/css/footer.css" rel="stylesheet" type="text/css">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
     <title>탈퇴</title>
     <style>
         html, body {
@@ -29,17 +31,14 @@
             font-size: 16px;
         }
         body{
-            width : 100%;
-            max-width: 1200px;
-            margin:0 auto;
         }
         #allWrap{
-            display: inline-block;
+            /*display: inline-block;
             margin: 30px 0 auto;
-            /*border-top: 1px solid #e8e9ed;*/
+            !*border-top: 1px solid #e8e9ed;*!
             width : 100%;
             max-width: 1200px;
-            min-width: 1140px;
+            min-width: 1140px;*/
         }
         .main{
             border-top: 2px solid black;
@@ -180,8 +179,16 @@
     </style>
 </head>
 <body>
-<div id="allWrap">
-    <div class="profileWrap">
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word.html :: headFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
+<div id="allWrap" style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 20px; padding-bottom: 100px; zoom: 1.2;">
+    <div class="profileWrap1">
         <div class="group">
             <div class="left_block">
                 <ul class="liWrap">
@@ -257,7 +264,6 @@
         </div>
     </div>
 </div>
-
 </body>
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
