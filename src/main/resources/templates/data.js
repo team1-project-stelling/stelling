@@ -22,7 +22,7 @@ function search() {
  
     let result= [];
     $.ajax({
-      url : ".././dummy/Res.json",
+      url : "dummy/Res.json",
      
       dataType: "json",	
       type: "get",
@@ -43,7 +43,7 @@ function search() {
  
    let result= [];
    $.ajax({
-     url : ".././dummy/writeDummy.json",
+     url : "/dummy/writeDummy.json",
     
      dataType: "json",	
      type: "get",
