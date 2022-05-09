@@ -63,7 +63,6 @@
             margin: 0;
             padding: 0;
         }
-
         td{
             border-top: 1px solid #e8e9ed;
             border-bottom: 1px solid #e8e9ed;
@@ -98,12 +97,12 @@
         /*    color: white;*/
         /*}*/
         .left_block ul li:hover>a{
-            background:  #ef6e73;
+            background:  #ef6e73b3;
             color: white;
             text-decoration: none;
         }
         .left_block ul li>a{
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 400;
             color: inherit;
             display: block;
@@ -114,10 +113,11 @@
         a{
             text-decoration: none;
             cursor: pointer;
+            color: black;
         }
         .clicked {
-            background: #ef6e73;
-            border-bottom: 1px solid #ef6e73;
+            background: #ef6e73b3;
+            border-bottom: 1px solid #ef6e73b3;
             color: white;
         }
         .writingWrap{
@@ -151,7 +151,7 @@
 </div>
 <!-- 헤더 종료 -->
 <div id="qwer">
-<div id="allWrap" style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 20px; padding-bottom: 100px; zoom: 1.2;">
+<div id="allWrap" style=" margin:0 auto; padding-top: 20px; padding-bottom: 100px; zoom: 1.2;">
     <div class="profileWrap1">
         <div class="group">
             <div class="left_block">
@@ -209,6 +209,7 @@
     </div>
 </div>
 </div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
 </body>
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

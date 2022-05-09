@@ -32,7 +32,7 @@
         a.menu{
             text-decoration: none;
             color: black;
-            font-size: 16px;
+            font-size: 20px;
         }
         #allWrap{
             display: inline-block;
@@ -67,12 +67,12 @@
         /*    color: white;*/
         /*}*/
         .left_block ul li:hover>a{
-            background:  #ef6e73;
+            background:  #ef6e73b3;
             color: white;
             text-decoration: none;
         }
         .left_block ul li>a{
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 400;
             color: inherit;
             display: block;
@@ -122,14 +122,14 @@
 
         .clicked {
             /*background: #ef6e73;*/
-            border-bottom: 2px solid #ef6e73;
+            border-bottom: 2px solid #ef6e73b3;
         }
         .active1{
             border-right: 1px solid #ddd;
         }
         .oned {
-            background: #ef6e73;
-            border-bottom: 1px solid #ef6e73;
+            background: #ef6e73b3;
+            border-bottom: 1px solid #ef6e73b3;
             color: white;
         }
 
@@ -270,28 +270,28 @@
 </div>
 <!-- 헤더 종료 -->
 <div id="qwer">
-<div id="allWrap" style="width : 100%;   max-width:1200px ; margin:0 auto;  padding-top: 20px; padding-bottom: 100px; zoom: 1.2;">
+<div id="allWrap" style="margin:0 auto;  padding-top: 20px; padding-bottom: 100px; zoom: 1.2;">
     <div class="profileWrap1">
         <div class="group">
             <div class="left_block">
                 <ul class="liWrap">
                     <li class="li_top left">
-                        <a href="editProfile.html">프로필 수정</a>
+                        <a class="menu" href="editProfile.html">프로필 수정</a>
                     </li>
                     <li class="left oned">
-                        <a href="myWork2.html">내 작품 관리</a>
+                        <a class="menu" href="myWork2.html">내 작품 관리</a>
                     </li>
                     <li class="left">
-                        <a href="changPw.html">비밀번호 변경</a>
+                        <a class="menu" href="changPw.html">비밀번호 변경</a>
                     </li>
                     <li class="left">
-                        <a href="questions.html">내 문의 내역</a>
+                        <a class="menu" href="questions.html">내 문의 내역</a>
                     </li>
                     <li class="left">
-                        <a href="withdraw.html">탈퇴 하기</a>
+                        <a class="menu" href="withdraw.html">탈퇴 하기</a>
                     </li>
                     <li class="left">
-                        <a href="payment.html">결제</a>
+                        <a class="menu" href="payment.html">결제</a>
                     </li>
                 </ul>
             </div>
@@ -318,8 +318,8 @@
                     <div class="divTable minimalistBlack">
                         <div class="divTableHeading">
                             <div class="divTableRow">
-                                <div class="divTableHead" style="width: 227px;">소설명</div>
-                                <div class="divTableHead" style="width: 132px;">작가</div>
+                                <div class="divTableHead" style="width: 227.5px;">소설명</div>
+                                <div class="divTableHead" style="width: 131.5px;">작가</div>
                                 <div class="divTableHead" style="width: 118px;">회차 수</div>
                                 <div class="divTableHead">총 결제 코인</div>
                                 <div class="divTableHead">총 후원 코인</div>
@@ -460,6 +460,7 @@
     </div>
 </div>
 </div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
 </body>
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>

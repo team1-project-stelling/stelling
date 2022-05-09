@@ -73,7 +73,7 @@
         .profile.pw, .newPw{
             display: inline;
             width: 180px;
-            height: 27px;
+            height: 28px;
         }
         .wrap_btn{
             text-align: center;
@@ -84,12 +84,12 @@
         /*    color: white;*/
         /*}*/
         .left_block ul li:hover>a{
-            background:  #ef6e73;
+            background: #ef6e73b3;
             color: white;
             text-decoration: none;
         }
         .left_block ul li>a{
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 400;
             color: inherit;
             display: block;
@@ -121,8 +121,8 @@
             border-radius: 10px;
         }
         .clicked {
-            background: #ef6e73;
-            border-bottom: 1px solid #ef6e73;
+            background: #ef6e73b3;
+            border-bottom: 1px solid #ef6e73b3;
             color: white;
         }
         #result_NewPw, #result_reNewPw{
@@ -148,7 +148,7 @@
 </div>
 <!-- 헤더 종료 -->
 <div id="qwer">
-<div id="allWrap" style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 20px; padding-bottom: 100px;">
+<div id="allWrap" style=" margin:0 auto; padding-top: 20px; padding-bottom: 50px;">
     <div class="profileWrap1">
         <div class="group">
             <div class="left_block">
@@ -205,6 +205,7 @@
     </div>
 </div>
 </div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
 <!-- Scripts -->
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
