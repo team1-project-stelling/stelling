@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
+    <title>결제</title>
+    <style>
+        html, body {
+            font-family: "Elice Digital Baeum",sans-serif;
+        }
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li{
+            font-size: 15px;
+            font-weight: 400;
+            color: inherit;
+            display: block;
+            word-break: break-all;
+            letter-spacing: -0.2px;
+            border-bottom: 1px solid #e8e9ed;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+        body{
+            width : 100%;
+            max-width: 1200px;
+            margin:0 auto;
+        }
+        #allWrap{
+            display: inline-block;
+            margin: 30px 0 auto;
+            /*border-top: 1px solid #e8e9ed;*/
+            width : 100%;
+            max-width: 1200px;
+        }
+        .main{
+            border-bottom: 1px solid #e8e9ed;
+        }
+        .left_block{
+            float: left;
+            box-sizing: border-box;
+            width: 230px;
+            margin-right: 90px;
+        }
+        .li_top{
+            border-top: 1px solid #e8e9ed;
+        }
+        .right_block{
+            float: left;
+            width: 880px;
+        }
+        .profile_text{
+            font-size: 32px;
+            padding-bottom: 30px;
+        }
+
+        /*.left_block ul li.li_top>a{*/
+        /*    background:  #ef6e73;*/
+        /*    color: white;*/
+        /*}*/
+        .left_block ul li:hover>a{
+            background:  #ef6e73;
+            color: white;
+            text-decoration: none;
+        }
+        .left_block ul li>a{
+            font-size: 15px;
+            font-weight: 400;
+            color: inherit;
+            display: block;
+            padding: 16px 30px 16px 15px;
+            word-break: break-all;
+            letter-spacing: -0.2px;
+        }
+        a{
+            text-decoration: none;
+            cursor: pointer;
+        }
+        div input{
+            width: 227px;
+            height: 22px;
+            border: 1px solid #e8e9ed;
+        }
+        div input:focus{
+            border-color: #ef6e73;
+            outline: none;
+        }
+        /*.navBar{*/
+        /*    display: flex;*/
+        /*}*/
+        .listWrap{
+            width: 100%;
+            height: 100%;
+            margin-bottom: 80px;
+        }
+        .listWrap a{
+            color: #000;
+            font-size: 16px;
+            letter-spacing: -1px;
+            text-align: center;
+            width: 100%;
+            height: 60px;
+            display: block;
+            line-height: 60px;
+
+        }
+        .active {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clicked {
+            /*background: #ef6e73;*/
+            border-bottom: 1px solid #ef6e73;
+        }
+        .active1{
+            border-right: 1px solid #ddd;
+        }
+        .pointTable{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            text-align: center;
+        }
+        .paymentWrap{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        th{
+            border-top: 1px solid #e8e9ed;
+            border-right: 1px solid #e8e9ed;
+            border-bottom: 1px solid #adb5bd;
+            height: 40px;
+        }
+        .td1{
+            border-right: 1px solid #e8e9ed;
+            border-bottom: 1px solid #e8e9ed;
+            padding-right: 10px;
+            text-align: right;
+        }
+        #dateType{
+            float: left;
+        }
+        .searchWrap{
+            float: left;
+        }
+        .btn{
+            border: 1px solid #ef6e73;
+            background: #ef6e73;
+            color: white;
+            font-weight: bold;
+            height: 32px;
+        }
+        .oned {
+            background: #ef6e73;
+            border-bottom: 1px solid #ef6e73;
+            color: white;
+        }
+        div input{
+            width: 140px;
+            height: 30px;
+            border: 1px solid #e8e9ed;
+        }
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="allWrap">
+    <div class="profileWrap">
+        <div class="group">
+            <div class="left_block">
+                <ul class="liWrap">
+                    <li class="li_top left">
+                        <a href="editProfile.html">프로필 수정</a>
+                    </li>
+                    <li class="left">
+                        <a href="">내 작품 관리</a>
+                    </li>
+                    <li class="left">
+                        <a href="changPw.html">비밀번호 변경</a>
+                    </li>
+                    <li class="left">
+                        <a href="questions.html">내 문의 내역</a>
+                    </li>
+                    <li class="left">
+                        <a href="withdraw.html">탈퇴 하기</a>
+                    </li>
+                    <li class="left">
+                        <a href="payment.html">결제</a>
+                    </li>
+                </ul>
+            </div>
+                <div class="right_block">
+                    <div class="">
+                        <div class="profile_text"><strong>최근 구매/후원 내역 </strong></div>
+                        <table class="listWrap">
+                            <tbody>
+                                <tr>
+                                    <td class="active1 one" style="width: 50%">
+                                        <div class="active">내 포인트</div>
+                                    </td>
+                                    <td class="active2" style="width: 50%">
+                                        <div class="active"> 내 후원 내역</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="paymentWrap">
+                            <div>총 결제 금액 (금액)원</div>
+                            <div>
+                                <form>
+                                    <div id="dateType" >
+                                        <input type="date" id="dateFrom" name="form">
+                                        ~ <input type="date" id="dateTo" name="to">
+                                    </div>
+                                    <div class="searchWrap">
+                                        <button class="btn btn-sm" id="btnSearch" name="btnSearch">검색</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <table class="pointTable">
+                            <tbody>
+                                <tr>
+                                    <th>결제 금액</th>
+                                    <th>결제 일</th>
+                                </tr>
+                                <tr>
+                                    <td class="td1">20,000 원</td>
+                                    <td class="td1">2022-05-02</td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">50,000 원</td>
+                                    <td class="td1">2022-05-01</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    var active = document.getElementsByClassName("active");
+
+    function handleClick(event) {
+        console.log(event.target);
+        console.log(event.target.classList);
+
+        active[0].classList.remove("clicked");
+        if (event.target.classList[1] === "clicked") {
+            event.target.classList.remove("clicked");
+        } else {
+            for (var i = 0; i < active.length; i++) {
+                active[i].classList.remove("clicked");
+            }
+
+            event.target.classList.add("clicked");
+        }
+    }
+    function init() {
+        active[0].classList.add("clicked");
+        for (var i = 0; i < active.length; i++) {
+            active[i].addEventListener("click", handleClick);
+        }
+    }
+    init();
+
+
+    //left_block
+    var left = document.getElementsByClassName("left");
+
+    function Click(event) {
+        console.log(event.target);
+        console.log(event.target.classList);
+
+        left[0].classList.remove("oned");
+        if (event.target.classList[1] === "oned") {
+            event.target.classList.remove("oned");
+        } else {
+            for (var i = 0; i < active.length; i++) {
+                left[i].classList.remove("oned");
+            }
+
+            event.target.classList.add("oned");
+        }
+    }
+    function test() {
+        left[5].classList.add("oned");
+        for (var i = 0; i < active.length; i++) {
+            left[i].addEventListener("on", Click);
+        }
+    }
+    test();
+
+
+    //날짜 유효성 검사
+    $('#btnSearch').click(function () {
+        var dateFrom = document.getElementById('dateFrom'); //시작일
+        var dateTo = document.getElementById('dateTo'); //종료일
+        var today = new Date(); //오늘 날짜
+
+        //시작일
+        dateFrom = new Date(dateFrom.value);
+        var fromYear = dateFrom.getFullYear();
+        var fromMonth = dateFrom.getMonth() + 1;
+        var fromDay = dateFrom.getDate();
+
+        //날짜 지정을 하지 않았을 때 NaN이 발생하여 0으로 처리
+        if (isNaN(fromYear) || isNaN(fromMonth) || isNaN(fromDay)){
+            fromYear = 0;
+            fromMonth = 0;
+            fromDay = 0;
+        }
+        dateFrom = fromYear +'/'+ fromMonth +'/'+fromDay;
+
+
+        //종료일
+        dateTo = new Date(dateTo.value);
+        var toYear = dateTo.getFullYear();
+        var toMonth = dateTo.getMonth() + 1;
+        var toDay = dateTo.getDate();
+        //날짜 지정을 하지 않았을 때 NaN이 발생하여 0으로 처리
+        if (isNaN(toYear) || isNaN(toMonth) || isNaN(toDay)){
+            toYear = 0;
+            toMonth = 0;
+            toDay = 0;
+        }
+        dateTo = toYear +'/'+ toMonth +'/'+toDay;
+
+        //오늘날짜 날짜 형식으로 지정
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDay = today.getDate();
+        today = todayYear +'/'+ todayMonth +'/'+todayDay;
+
+        // 날짜 조회 시, 시작일이 오늘 날짜보다는 크고, 종료일이 시작일보다는 커야하기 때문에 조건을 걸어줌
+        if(dateFrom <= today && dateTo >= dateFrom ){
+            return true;
+        } else {
+            alert("해당 기간의 조회가 불가능합니다.");
+        }
+    }); //click() end
+
+
+</script>
+</html>
