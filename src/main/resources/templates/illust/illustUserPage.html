@@ -156,11 +156,15 @@
         font-size: 13px;
         margin-bottom: 30px;
         font-family: 'GmarketSansLight';
+        font-weight: bold;
+        color: gray;
     }
     .text2{
         margin-top: 5px;
         font-size: 13px;
         font-family: 'GmarketSansLight';
+        font-weight: bold;
+        color: gray;
     }
     .worklist{
         margin-left: 55px;
@@ -198,12 +202,12 @@
         width: 312px;
         height: 471px;
         position: fixed;
-        bottom: 0;
+        bottom: 3px;
         background-color: white;
-        border: 2px solid #ef6e73;
         border-radius: 20px;
         overflow: hidden;
         display: none;
+        box-shadow: 0px 2px 4px 6px #80808036;
     }
 
     .chat-top{
@@ -234,7 +238,9 @@
         height: 63px;
         margin-left: 16px;
         border-radius: 16px;
-        border: 1px solid #9f9f9f;;
+        border: 1px solid #9f9f9f7a;
+
+
     }
     .inputChatarea:focus{
         outline: none;
@@ -303,7 +309,19 @@
         width: 42px;
         cursor: pointer;
     }
-
+    .enterBtn{
+        background-color: white;
+        border: 1px solid #ef6e73bf;
+        color: #ef6e73bf;
+        padding: 3px 11px;
+        border-radius: 26px;
+        font-family: 'Elice Digital Baeum';
+    }
+    .enterBtn:hover{
+        background-color:#ef6e73bf;
+        border: 1px solid #ef6e73bf;
+        color: white;
+    }
 
     /*----------------미디어쿼리---------------------*/
     @media(max-width: 400px){
@@ -575,8 +593,9 @@
         <div class="chat-row" style="display: flex;">
             <textarea name="" id='text' class="inputChatarea"></textarea>
             <label for="text">
-                <div style="position: relative;">
-                <img src="/images/icon/전송.png" class="enter"/></div>
+                <div style="position: relative;left: 10.5px;top: 18px;font-size: 14px;">
+                    <button class="enterBtn">전송</button>
+                </div>
             </label>
         </div>
 
