@@ -56,6 +56,7 @@ div#categoryMenu table{
     align-items: center;
     justify-content: center;
     text-decoration-line:none;
+    font-size: 18px;
 
 }
 #categoryMenu table tbody tr td a:hover{color: #ef6e73}
@@ -92,7 +93,7 @@ ul#tagSearchList li a:visited, ul#tagSearchList li a:link{color:#343a40; }
 }
 #totalR_side {
     height: 40px;
-    font-size: 12px;
+    font-size: 14px;
 }
 #totalOption{
     height: 100%;
@@ -123,7 +124,7 @@ div#tagSearchWrap{
 ul#tagSearchList{
     display: flex;
     list-style: none;
-    font-size: 12px;
+    font-size: 14px;ss
     align-items: center;
     padding: 0;
 }
@@ -144,11 +145,11 @@ ul#tagSearchList li  a {
     height: 49.59px;
 }
 div#tagSearchWrap .tagInner button{
-    width: 75px;
+    width: 90px;
     height: 28px;
     color: #000;
     border: 1px solid #ddd;
-    font-size: 12px;
+    font-size: 14px;
     background: url('/images/category/searchIcon.png')no-repeat 4px center;
     background-size: 16px;
     padding: 0 0 0 15px;
@@ -171,6 +172,8 @@ div.resultItem{
     height: auto;
     min-height: 157px;
     float: left;
+    display: flex;
+    align-items: center;
 }
 /*div.resultItem{*/
 /*    width: 100px;*/
@@ -269,7 +272,8 @@ div.updateTimeBox{
 .info_writer {font-size: 14px; color: #666 !important;}
 .resultItem a{ text-decoration-line:none;}
 .info_summary{
-    font-size: 14px;
+
+    font-size: 18px;
     color: #666;
     font-weight: 400;
 }
