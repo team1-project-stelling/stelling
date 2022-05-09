@@ -46,18 +46,19 @@
             </tbody>
         </table>
     </div>
-    <div style="float: right; margin-top: 49px;" class="mobile_hidden">
+    <div style="float: right; margin-top: 51px;" class="mobile_hidden">
         <a href="#">
-            <img src="https://novelpia.com/img/new/mybook/btn_novel_write.png?tmp=1" style="height: 40px;">
+            <img src="https://novelpia.com/img/new/mybook/btn_novel_write.png?tmp=1" style="height: 43px;">
         </a>
     </div>
     <div class="mobile_hidden" style="position: relative; height: 30px; width: 100%; margin-top: 15px;"></div>
     <!--카테고리 -->
     <div class="mobile_hidden" style="border-bottom:2px solid #000;height: 50px;  line-height: 50px;">
         <span style="font-size: 16px; font-weight: 600;">
-            <i class="icon ion-document"><img src="/src/main/resources/static/images/document.png" style="width: 20px;"></i>
+            <i class="icon ion-document"><img src="/images/document.png" style="width: 20px;"></i>
             총 18개 작품
         </span>
+        <!--항목별 검색-->
         <div class="s_inv" style="float: right; margin-right: 20px;">
             <select class="form-control select2" style="width: 90px; float: left; margin-right: 3px; margin-top: 4px;">
                 <option selected value="view">조회순</option>
@@ -80,11 +81,20 @@
             </select>
         </div>
     </div>
+        <!--태그 검색-->
         <div class="mobile_category" style="position: relative; padding: 10px 5px; border-bottom: 1px solid #eee;">
             <ul class="nav nav-pills flex-column flex-md-row genre-box" id="submenu_bar" role="tablist" style="max-width: 100%; overflow-x:auto; white-space: no wrap; -ms-overflow-style:none; scrollbar-width: none; scroll-snap-align: center; font-size: 12px;">
                 <li>
-                    <button type="button" class="btn_genre_search" id="genre_search_modal_btn" style="cursor: pointer;">태그검색</button>
+                    <button type="button" class="btn_genre_search" id="genre_search_modal_btn" onclick="changeTagSearch()" style="cursor: pointer;">태그검색</button>
                 </li>
+                <div id="searchFormWrap">
+                    <form id="searchForm">
+                        <input id="" type="text" placeholder="#검색할 태그를 입력하세요" maxlength="16">
+                        <div class="cancelImg" onclick="changeTagSearch()">
+                            <img src="/images/category/cancelIcon.png">
+                        </div>
+                    </form>
+                </div>
             <ul class="category_ul" style="display: flex; list-style:none; max-width: 100%; overflow-x:auto; white-space: no wrap; -ms-overflow-style:none; scrollbar-width: none; scroll-snap-align: center; font-size: 12px;">
                 <li>
                     <a class="nav-link clicked_menu" href="#" role="tab">전체</a>
@@ -577,87 +587,6 @@
 
 <script src="/src/main/resources/static/js/ranking.js"></script>
 <script type="text/javascript">
-    // const category = $(".nav-link");
-    //     console.log(category);
-    // $.each (category, function(item, index){
-    //     console.log(index, el);
-    // });
-    
-    // $(".active").on("click", function(){
-    //     console.log(this);
-    //     this.css('background-color', 'black');
-    // })
-    
-    //메뉴 클릭 시 클래스 추가
-    // const category = document.querySelector(".nav-link");
-    // for(var i=0; i<category.length; i++){
-    //     (category[i]).onclick=function(){
-    //         (category[i]).classList.add("active");
-    //     }
-    // }
-
-    //메뉴 클릭 시 해당 태그 인덱스 값 부여
-    $(document).ready(function(){
-		$('.nav-link').each(function(index){
-			$(this).attr('menu-index', index);
-		}).click(function(){
-			var index = $(this).attr('menu-index');
-			$('.nav-link[menu-index=' + index + ']').addClass('clicked_menu');
-			$('.nav-link[menu-index!=' + index + ']').removeClass('clicked_menu');
-		});
-
-
-	});
-
-    //각 이미지 마다 적용될 수 있도록 바꿔야함!
-    //필요 없을 듯!
-    // const imgs = document.querySelectorAll(".scale");
-    
-    // for(var i = 0; i<imgs.length; i++){
-    //     imgs[i].setAttribute('onmouseenter', zoomIn(event));
-    //     imgs[i].setAttribute('onmouseleave', zoomOut(event));
-    //     console.log(imgs[i]);
-    // }
-
-    function zoomIn(event){
-            event.target.style.transform = "scale(1.2)"; //1.2배 확대
-            event.target.style.zIndex = 1;
-            event.target.style.transition = "all 0.5s";// 속도
-        }
-
-        function zoomOut(event){
-            event.target.style.transform = "scale(1)";
-            event.target.style.zIndex = 0;
-            event.target.style.transition = "all 0.5s";
-        }
-
-    
-    //상단 메뉴바 클릭시 밑줄(클래스 주기)
-    let menus = document.querySelectorAll('.click-menu');
-    function clickMenu() {  
-        for (var i = 0; i < menus.length; i++){
-            menus[i].classList.remove('menu-select');
-        }
-            this.classList.add('menu-select');
-        }
-    
-        for (var i = 0; i < menus.length; i++){
-            menus[i].addEventListener('click', clickMenu);
-        }
-    
-    //상단 메뉴바 클릭시 밑줄(클래스 주기)
-    //     $(document).ready(function(){
-	// 	$('.click-menu').each(function(index){
-	// 		$(this).attr('menu-index', index);
-	// 	}).click(function(){
-	// 		var index = $(this).attr('menu-index');
-    //         console.log(index);
-	// 		$('.click-menu[menu-index=' + index + ']').addClass('menu-select');
-	// 		$('.click-menu[menu-index!=' + index + ']').removeClass('menu-select');
-	// 	});
-
-
-	// });
 
 
 
@@ -665,4 +594,5 @@
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/fix/header.js"></script>
+<script src="/js/ranking.js"></script>
 </html>
