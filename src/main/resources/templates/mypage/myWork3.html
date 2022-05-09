@@ -10,14 +10,17 @@
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="/css/main.css" type="text/css"/>
     <link href="/css/footer.css" rel="stylesheet" type="text/css">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
     <style>
-        ul{
+        html, body {
+            font-family: "Elice Digital Baeum",sans-serif;
+        }
+        ul.liWrap{
             list-style: none;
             margin: 0;
             padding: 0;
         }
-
-        ul li{
+        ul li.left{
             font-size: 15px;
             font-weight: 400;
             color: inherit;
@@ -26,15 +29,10 @@
             letter-spacing: -0.2px;
             border-bottom: 1px solid #e8e9ed;
         }
-        a{
+        a.menu{
             text-decoration: none;
             color: black;
             font-size: 16px;
-        }
-        body{
-            width : 100%;
-            max-width: 1200px;
-            margin:0 auto;
         }
         #allWrap{
             display: inline-block;
@@ -57,7 +55,7 @@
         }
         .right_block{
             float: left;
-            width: 880px;
+            width: 680px;
         }
         .profile_text{
             font-size: 32px;
@@ -168,6 +166,7 @@
         }
         .divTable.minimalistBlack .divTableCell, .divTable.minimalistBlack .divTableHead {
             border: 1px solid #00000038;
+            border-left: none;
             padding: 5px 4px;
         }
         .divTable.minimalistBlack .divTableBody .divTableCell {
@@ -207,6 +206,7 @@
             width: 20px;
             margin: 0 auto;
             align-items: center;
+            margin-left: 5px;
         }
 
         /*페이징 css*/
@@ -247,38 +247,51 @@
             background:#00AAFF;
             color: #fff !important;
         }
-
         .novel-detail{
             margin-top: 3px;
             margin-bottom: 3px;
+        }
+        #qwer{
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-bottom: 40px;
         }
 
     </style>
 
 </head>
 <body>
-<div id="allWrap">
-    <div class="profileWrap">
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word.html :: headFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
+<div id="qwer">
+<div id="allWrap" style="width : 100%;   max-width:1200px ; margin:0 auto;  padding-top: 20px; padding-bottom: 100px; zoom: 1.2;">
+    <div class="profileWrap1">
         <div class="group">
             <div class="left_block">
                 <ul class="liWrap">
                     <li class="li_top left">
-                        <a href="">프로필 수정</a>
+                        <a href="editProfile.html">프로필 수정</a>
                     </li>
                     <li class="left oned">
-                        <a href="">내 작품 관리</a>
+                        <a href="myWork2.html">내 작품 관리</a>
                     </li>
                     <li class="left">
-                        <a href="">비밀번호 변경</a>
+                        <a href="changPw.html">비밀번호 변경</a>
                     </li>
                     <li class="left">
-                        <a href="">내 문의 내역</a>
+                        <a href="questions.html">내 문의 내역</a>
                     </li>
                     <li class="left">
-                        <a href="">탈퇴 하기</a>
+                        <a href="withdraw.html">탈퇴 하기</a>
                     </li>
                     <li class="left">
-                        <a href="">결제</a>
+                        <a href="payment.html">결제</a>
                     </li>
                 </ul>
             </div>
@@ -305,9 +318,9 @@
                     <div class="divTable minimalistBlack">
                         <div class="divTableHeading">
                             <div class="divTableRow">
-                                <div class="divTableHead" style="width: 252px;">소설명</div>
-                                <div class="divTableHead" style="width: 135px;">작가</div>
-                                <div class="divTableHead" style="width: 120px;">회차 수</div>
+                                <div class="divTableHead" style="width: 227px;">소설명</div>
+                                <div class="divTableHead" style="width: 132px;">작가</div>
+                                <div class="divTableHead" style="width: 118px;">회차 수</div>
                                 <div class="divTableHead">총 결제 코인</div>
                                 <div class="divTableHead">총 후원 코인</div>
                             </div>
@@ -320,7 +333,7 @@
                         <div class="divTable minimalistBlack">
                             <div class="divTableBody">
                                 <div class="divTableRow">
-                                    <div><img src="../../static/images/close.png" class="close"><img src="../../static/images/open.png" class="open" style="display: none"></div>
+                                    <div><img src="/images/close.png" class="close"><img src="/images/open.png" class="open" style="display: none"></div>
                                     <div class="divTableCell" style="width: 207px;">로맨스로맨스몲</div>
                                     <div class="divTableCell" style="width: 135px;">나나나</div>
                                     <div class="divTableCell" style="width: 120px;">308회</div>
@@ -384,7 +397,7 @@
                         <div class="divTable minimalistBlack">
                             <div class="divTableBody">
                                 <div class="divTableRow">
-                                    <div><img src="../../static/images/close.png" class="close"><img src="../../static/images/open.png" class="open" style="display: none"></div>
+                                    <div><img src="/images/close.png" class="close"><img src="/images/open.png" class="open" style="display: none"></div>
                                     <div class="divTableCell" style="width: 207px;">로맨스로맨스몲</div>
                                     <div class="divTableCell" style="width: 135px;">나나나</div>
                                     <div class="divTableCell" style="width: 120px;">308회</div>
@@ -446,7 +459,7 @@
         </div>
     </div>
 </div>
-<th:block th:insert="/fix/footer.html :: footerFragment"/>
+</div>
 </body>
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>

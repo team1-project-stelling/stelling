@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link href="/css/footer.css" rel="stylesheet" type="text/css">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+
+        @media(max-width : 390px){
+
+            .section_login{
+                width: 700px;
+                margin: 0 auto;
+                padding-top: 140px;
+            }
+
+            .title_login {
+                text-align: center;
+                font-size: 47px;
+            }
+
+            .inputbox {
+                width: 94%;
+                height: 88px;
+                padding: 0px 19px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                background-color: #fff;
+                font-size: 28px;
+            }
+
+            .inputbox.passwordbox{
+                width: 94%;
+                margin-top: 10px;
+            }
+
+            .join_button {
+                display: inline-block;
+                height: 88px;
+                font-weight: 500;
+                font-size: 32px;
+                color: #ef6e73;
+                line-height: 51px;
+                text-align: center;
+                margin-top: 8px;
+                width: 100%;
+                border: 1px solid #ef6e73;
+                background-color: white;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+        }
+
+
+        /*        미디어쿼리 끝*/
+
+
+        .contentbox {
+            width : 100%;
+            max-witdh: 1200px;
+            margin: 0 auto ;
+        }
+
+        .title_login {
+            text-align: center;
+            font-size: 28px;
+        }
+
+        .section_login{
+            width: 340px;
+            margin: 0 auto;
+            padding-top: 140px;
+        }
+
+        .formbox {
+            text-align: center;
+            padding-top: 30px;
+        }
+
+        .inputbox {
+            width: 87%;
+            height: 54px;
+            padding: 0px 19px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background-color: #fff;
+            font-size: 14px
+        }
+
+        .inputbox.passwordbox{
+            width: 87%;
+            margin-top: 10px;
+        }
+
+        .join_button {
+            font-weight: bolder;
+            display: inline-block;
+            height: 100%;
+            font-weight: 500;
+            font-size: 18px;
+            color: white;
+            line-height: 56px;
+            text-align: center;
+            margin-top: 50px;
+            width: 100%;
+            border: 1px solid #ef6e73;
+            background-color: #ef6e73;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body style="max-witdh:1200px ;">
+
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word.html :: headFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
+
+
+<!--Main-->
+<div class="mainbox">
+    <div class="contentbox">
+        <div class="section_login">
+            <h3 class="title_login">아이디 찾기</h3>
+            <div class="formbox">
+                <form action="" name="loginform_check">
+                    <input autocomplete="off"; id="uid" class="inputbox" type="text" placeholder="닉네임을 입력해주세요">
+                    <input id="pwd" class="inputbox passwordbox" type="tel" placeholder="휴대폰 번호를 입력해주세요">
+                    <button type="button" onclick="location.href='/stelling/src/main/resources/templates/user/join.html';" class="join_button" >
+                        <span class="">인증번호 받기</span>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
+</body>
+<script src="/js/fix/header.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+</script>
+</html>

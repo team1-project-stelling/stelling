@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>일러스트상세보기 페이지</title>
     <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
+    <link href="/css/footer.css" rel="stylesheet" type="text/css">
 </head>
 <style>
 
@@ -14,7 +16,7 @@
     }
 
 
-    img {
+    .img {
        /* //가로세로 비율은 유지하면서 컨테이너에 꽉 차도록 설정*/
         line-height: 0;
         vertical-align: middle;
@@ -195,8 +197,16 @@
 
 </style>
 <body>
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word_illust.html :: headIllustFragment"/>
 
-<div style="width : 100%;   max-width:1200px ; margin:0 auto; background-color: #fafafa; padding-top: 100px; padding-bottom: 100px;">
+<!--헤더 이미지-->
+<!--<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>-->
+<!-- 헤더 종료 -->
+<div style="width : 100%;   max-width:1200px ; margin:0 auto; background-color: #fafafa; padding-top: 100px; padding-bottom: 100px; margin-bottom: 100px;">
+
 
 
     <!--이미지 상세보기---------------------------------------------------------------------------------- -->
@@ -214,7 +224,7 @@
 
 <!--        <img src="../../static/images/illustDetail/일러스트 상세 1.jpg" width="100%"/>-->
 
-        <img src="../../static/images/illustDetail/일러스트 상세보기.jpg" width="100%"/>
+        <img src="/images/illustDetail/일러스트 상세보기.jpg" width="100%" class="img"/>
 
 <!--        <img src="../../static/images/illustDetail/일러스트 상세2.jpg" width="100%"/>-->
 </div>
@@ -223,12 +233,12 @@
     <div class="mainBox icons">
         <div style="margin-right: 30px;">
 
-            <img src="../../static/images/icon/하트.png"  class="iconImages emptyheart"/>
+            <img src="/images/icon/하트.png"  class="iconImages emptyheart img"/>
             <span>1,230</span>
         </div>
         <div style="margin-right: 5px">
 
-            <img src="../../static/images/icon/눈.png" class="iconImages"/>
+            <img src="/images/icon/눈.png" class="iconImages img"/>
             <span>2,342</span>
         </div>
 
@@ -250,7 +260,7 @@
         <div class="profileBox">
             <div class="profilepic">
 
-                <img src="../../static/images/프사.jpg" width="100%" height="100%"/>
+                <img src="/images/프사.jpg" width="100%" height="100%" class="img"/>
             </div>
             <div>
             <span class="userNick">yewon_s</span>
@@ -279,17 +289,17 @@
         <div class="posts">
         <div class="post">
 
-            <img src="../../static/images/illustDetail/일러스트 상세 1.jpg" width="100%" height="100%"/>
+            <img src="/images/illustDetail/일러스트 상세 1.jpg" width="100%" height="100%"  class="img"/>
             <div class="heart">❤ <p style="font-size: 12px;" class="p">1,213</p></div>
         </div>
         <div class="post">
 
-            <img src="../../static/images/illustDetail/일러스트 상세2.jpg" width="100%" height="100%"/>
+            <img src="/images/illustDetail/일러스트 상세2.jpg" width="100%" height="100%"  class="img"/>
             <div class="heart">❤ <p style="font-size: 12px;" class="p">543</p></div>
         </div>
         <div class="post">
 
-            <img src="../../static/images/illustDetail/일러스트 상세 3.jpg" width="100%" height="100%"/>
+            <img src="/images/illustDetail/일러스트 상세 3.jpg" width="100%" height="100%"  class="img"/>
             <div class="heart">❤ <p style="font-size: 12px;" class="p">1,011</p></div>
         </div>
 
@@ -300,17 +310,17 @@
 
             <div class="post">
 
-                <img src="../../static/images/illustDetail/일러스트 상세4.jpg" width="100%" height="100%"/>
+                <img src="/images/illustDetail/일러스트 상세4.jpg" width="100%" height="100%"  class="img"/>
                 <div class="heart">❤ <p style="font-size: 12px;" class="p">23</p></div>
             </div>
             <div class="post">
 
-                <img src="../../static/images/illustDetail/일러스트 상세5.jpg" width="100%" height="100%"/>
+                <img src="/images/illustDetail/일러스트 상세5.jpg" width="100%" height="100%"  class="img"/>
                 <div class="heart">❤ <p style="font-size: 12px;" class="p">192</p></div>
             </div>
             <div class="post">
 
-                <img src="../../static/images/illustDetail/일러스트 상세6.jpg" width="100%" height="100%"/>
+                <img src="/images/illustDetail/일러스트 상세6.jpg" width="100%" height="100%"  class="img"/>
                 <div class="heart">❤ <p style="font-size: 12px;" class="p">0</p></div>
             </div>
 
@@ -322,24 +332,28 @@
    <!--이미지 클릭시 모달로 원본크기 보여주기 -->
     <div class="modal">
         <div class="modalBox">
-            <img src="../../static/images/illustDetail/일러스트 상세보기.jpg" />
+            <img src="/images/illustDetail/일러스트 상세보기.jpg"  class="img"/>
         </div>
     </div>
 
 
 
 
+
+</div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $emptyHeart = $('.emptyheart');
     $emptyHeart.on("click", function () {
-        if($emptyHeart.attr("src")=="../../static/images/icon/하트.png"){
+        if($emptyHeart.attr("src")=="/images/icon/하트.png"){
 
-            $emptyHeart.attr("src","../../static/images/icon/색칠 된 하트.png");
+            $emptyHeart.attr("src","/images/icon/색칠 된 하트.png");
         }else{
-            $emptyHeart.attr("src","../../static/images/icon/하트.png");
+            $emptyHeart.attr("src","/images/icon/하트.png");
         }
     });
 </script>
+<script src="/js/fix/header.js"></script>
 </html>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>일러스트 카테고리 리스트</title>
     <meta name="viewport" content="width=device-width" />
     <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
+    <link href="/css/footer.css" rel="stylesheet" type="text/css">
+
 </head>
 <style>
     *{
@@ -123,6 +126,14 @@
     }
 </style>
 <body>
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word_illust.html :: headIllustFragment"/>
+
+<!--헤더 이미지-->
+<!--<div id="headerImgWrap" >-->
+<!--    <img id="headerImg"src="/images/fix/headerImg_3.png" >-->
+<!--</div>-->
+<!-- 헤더 종료 -->
 <div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 100px">
 <p class="Title2">Category List</p>
 <div style="display: flex; justify-content: space-between;">
@@ -144,72 +155,72 @@
 <div class="flex2 wrap" style="background-color: #EAEAEA;">
     <div class="box">
         <div class="column cellCss" >
-            <img src="../../static/images/일러스트 1.jpg" class="testWidth" />
+            <img src="/images/일러스트 1.jpg" class="testWidth" />
             <span class="heart">❤<span style="font-size: 12px;">1,213</span></span>
 
         </div>
         <div class="column cellCss">
-            <img src="../../static/images/일러스트 4.jpg" class="testWidth">
+            <img src="/images/일러스트 4.jpg" class="testWidth">
             <span class="heart">❤<span style="font-size: 12px;">1,043</span></span>
         </div>
         <div class="column cellCss">
-            <img src="../../static/images/일러스트 3.jpg" class="testWidth">
+            <img src="/images/일러스트 3.jpg" class="testWidth">
             <span class="heart">❤</span>
         </div>
     </div>
     <div class="box">
         <div class="column cellCss">
-            <img src="../../static/images/일러스트 2.jpg" class="testWidth">
+            <img src="/images/일러스트 2.jpg" class="testWidth">
             <span class="heart">❤</span>
         </div>
         <div class="column cellCss">
-            <img src="../../static/images/일러스트 10.jpg" class="testWidth">
+            <img src="/images/일러스트 10.jpg" class="testWidth">
             <span class="heart">❤</span>
         </div>
         <div class="column cellCss">
-            <img src="../../static/images/일러스트 11.jpg" class="testWidth">
-            <span class="heart">❤</span>
-        </div>
-    </div>
-    <div class="box">
-        <div class="column cellCss">
-            <img src="../../static/images/일러스트 7.jpg" class="testWidth">
-            <span class="heart">❤</span>
-        </div>
-        <div class="column cellCss">
-            <img src="../../static/images/일러스트 6.jpg" class="testWidth">
-            <span class="heart">❤</span>
-        </div>
-        <div class="column cellCss">
-            <img src="../../static/images/일러스트 9.jpg" class="testWidth">
+            <img src="/images/일러스트 11.jpg" class="testWidth">
             <span class="heart">❤</span>
         </div>
     </div>
     <div class="box">
         <div class="column cellCss">
-            <img src="../../static/images/일러스트 5.jpg" class="testWidth">
+            <img src="/images/일러스트 7.jpg" class="testWidth">
             <span class="heart">❤</span>
         </div>
         <div class="column cellCss">
-            <img src="../../static/images/일러스트 8.jpg" class="testWidth">
+            <img src="/images/일러스트 6.jpg" class="testWidth">
             <span class="heart">❤</span>
         </div>
         <div class="column cellCss">
-            <img src="../../static/images/일러스트 12.jpg" class="testWidth">
+            <img src="/images/일러스트 9.jpg" class="testWidth">
             <span class="heart">❤</span>
         </div>
     </div>
     <div class="box">
         <div class="column cellCss">
-            <img src="../../static/images/일러스트 13.jpg" class="testWidth">
+            <img src="/images/일러스트 5.jpg" class="testWidth">
             <span class="heart">❤</span>
         </div>
         <div class="column cellCss">
-            <img src="../../static/images/일러스트 14.jpg" class="testWidth">
+            <img src="/images/일러스트 8.jpg" class="testWidth">
             <span class="heart">❤</span>
         </div>
         <div class="column cellCss">
-            <img src="../../static/images/일러스트 15.jpg" class="testWidth">
+            <img src="/images/일러스트 12.jpg" class="testWidth">
+            <span class="heart">❤</span>
+        </div>
+    </div>
+    <div class="box">
+        <div class="column cellCss">
+            <img src="/images/일러스트 13.jpg" class="testWidth">
+            <span class="heart">❤</span>
+        </div>
+        <div class="column cellCss">
+            <img src="/images/일러스트 14.jpg" class="testWidth">
+            <span class="heart">❤</span>
+        </div>
+        <div class="column cellCss">
+            <img src="/images/일러스트 15.jpg" class="testWidth">
             <span class="heart">❤</span>
         </div>
     </div>
@@ -219,6 +230,8 @@
 
 
 </div>
-
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/fix/header.js"></script>
 </html>

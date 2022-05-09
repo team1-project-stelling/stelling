@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
+    <link href="/css/footer.css" rel="stylesheet" type="text/css">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
     <title>프로필 수정</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <style>
@@ -16,12 +18,12 @@
             font-family: "Elice Digital Baeum",sans-serif;
         }
 
-        ul{
+        ul.liWrap{
             list-style: none;
             margin: 0;
             padding: 0;
         }
-        ul li{
+        ul li.left{
             font-size: 15px;
             font-weight: 400;
             color: inherit;
@@ -31,16 +33,12 @@
             border-bottom: 1px solid #e8e9ed;
         }
 
-        a{
+        a.menu{
             text-decoration: none;
             color: black;
             font-size: 16px;
         }
-        body{
-            width : 100%;
-            max-width: 1200px;
-            margin:0 auto;
-        }
+
         #allWrap{
             display: inline-block;
             margin: 30px 0 auto;
@@ -63,7 +61,7 @@
         }
         .right_block{
             float: left;
-            width: 880px;
+            width: 680px;
         }
         .profile_text{
             font-size: 32px;
@@ -170,13 +168,26 @@
             float: left;
             margin: 8px 2px 0 0;
         }
+        #qwer{
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
 
     </style>
 </head>
 <body>
-<div id="allWrap">
-    <div class="profileWrap">
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word.html :: headFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
+<div id="qwer">
+<div id="allWrap" style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 20px; padding-bottom: 20px; zoom: 1.2;">
+    <div class="profileWrap1">
         <div class="group">
             <div class="left_block">
                 <ul class="liWrap">
@@ -184,7 +195,7 @@
                         <a class="menu" href="editProfile.html">프로필 수정</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="">내 작품 관리</a>
+                        <a class="menu" href="myWork2.html">내 작품 관리</a>
                     </li>
                     <li class="left">
                         <a class="menu" href="changPw.html">비밀번호 변경</a>
@@ -211,16 +222,16 @@
                         <div class="set_myInfo photo">
                             <strong class="profile picture">이미지</strong>
                             <div class="profile_show imgWrap">
-                                <img src="../../static/images/default.png" class="thumb imagePreview1"/>
+                                <img src="/images/default.png" class="thumb imagePreview1"/>
                                 <div>
-                                    <label for="imageSelector" class="icon">
-                                        <img src="../../static/images/클립.png" height="15px"width="15px" style="cursor: pointer"/>
+                                    <label for="imageSelector" class="icon ">
+                                        <img class="clip" src="/images/클립.png" height="15px"width="15px" style="cursor: pointer"/>
                                     </label>
                                     <input type="file" class="hidden_input" id="imageSelector" name="imageSelector"
                                            accept="image/jpeg, image/jpg, image/png" style="display: none"/>
                                 </div>
                                 <div href="javascript:void(0);" class="dellink" id="dellink">
-                                    <img class="icon" src="../../static/images/휴지통.png" height="15px" width="15px" style="cursor: pointer"/>
+                                    <img class="icon" src="/images/휴지통.png" height="15px" width="15px" style="cursor: pointer"/>
                                 </div>
                             </div>
                         </div>
@@ -250,7 +261,8 @@
         </div>
     </div>
 </div>
-
+</div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
 </body>
 <!-- Scripts -->
 <!--<script type="text/javascript" src="upload.js"></script>-->
@@ -312,7 +324,7 @@
             // document.querySelector('.imageSelector').value = '';
             // document.querySelector('.thumb').style.display='none';
             // document.querySelector('.imagePreview1').style.display='block';
-            preview.src = '../../static/images/default.png';
+            preview.src = '/images/default.png';
         });
     });
 

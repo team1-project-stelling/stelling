@@ -6,6 +6,8 @@
     <title>내 작품 관리</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/editProfile.css}">
     <link rel="stylesheet" href="css/editProfile.css" type="text/css"/>
+    <link href="/css/footer.css" rel="stylesheet" type="text/css">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
     <style>
         ul{
             list-style: none;
@@ -28,12 +30,8 @@
             font-size: 16px;
         }
         body{
-            width : 100%;
-            max-width: 1200px;
-            margin:0 auto;
         }
         #allWrap{
-            display: inline-block;
             margin: 30px 0 auto;
             /*border-top: 1px solid #e8e9ed;*/
             width : 100%;
@@ -53,7 +51,7 @@
         }
         .right_block{
             float: left;
-            width: 880px;
+            width: 680px;
         }
         .profile_text{
             font-size: 32px;
@@ -195,32 +193,46 @@
         div.item-button li{
             border-bottom: 0px solid black;
         }
+        #qwer{
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-bottom: 40px;
+        }
     </style>
 
 </head>
 <body>
-<div id="allWrap">
-    <div class="profileWrap">
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word.html :: headFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
+<div id="qwer">
+<div id="allWrap" style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 20px; padding-bottom: 100px; zoom: 1.2;">
+    <div class="profileWrap1">
         <div class="group">
             <div class="left_block">
                 <ul class="liWrap">
                     <li class="li_top left">
-                        <a href="">프로필 수정</a>
+                        <a href="editProfile.html">프로필 수정</a>
                     </li>
                     <li class="left clicked">
-                        <a href="">내 작품 관리</a>
+                        <a href="myWork2.html">내 작품 관리</a>
                     </li>
                     <li class="left">
-                        <a href="">비밀번호 변경</a>
+                        <a href="changPw.html">비밀번호 변경</a>
                     </li>
                     <li class="left">
-                        <a href="">내 문의 내역</a>
+                        <a href="questions.html">내 문의 내역</a>
                     </li>
                     <li class="left">
-                        <a href="">탈퇴 하기</a>
+                        <a href="withdraw.html">탈퇴 하기</a>
                     </li>
                     <li class="left">
-                        <a href="">결제</a>
+                        <a href="payment.html">결제</a>
                     </li>
                 </ul>
             </div>
@@ -243,7 +255,7 @@
                         </tbody>
                     </table>
                     <div class="my-item-list">
-                        <div class="my-item">
+                        <div class="my-item" style="zoom: 0.79;">
                             <span class="tag-update">UP</span>
                             <div class="item-img btn-num">
                                 <picture class="">
@@ -256,7 +268,7 @@
                                     <span class="genre" style="color: #ef6e73">[로맨스]</span> 로맨스
                                 </p>
                                 <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
-                                    <img class="people" src="/images/people.png">
+                                    <img class="people" src="/images/people.png" style="width: 12px;">
                                     <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">90만+</span>
                                     <span class="writer">웹티, 올코</span>
                                 </div>
@@ -271,7 +283,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="my-item">
+                        <div class="my-item" style="zoom: 0.79;">
                             <span class="tag-update">UP</span>
                             <div class="item-img btn-num">
                                 <picture class="">
@@ -284,7 +296,7 @@
                                     <span class="genre" style="color: #ef6e73">[로맨스]</span> 로맨스
                                 </p>
                                 <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
-                                    <img class="people" src="/images/people.png">
+                                    <img class="people" src="/images/people.png" style="width: 12px;">
                                     <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">90만+</span>
                                     <span class="writer">웹티, 올코</span>
                                 </div>
@@ -304,6 +316,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 <!-- Scripts -->

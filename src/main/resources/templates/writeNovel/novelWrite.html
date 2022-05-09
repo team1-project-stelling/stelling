@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>새 회차 등록</title>
+    <link href="/css/footer.css" rel="stylesheet" type="text/css">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
 </head>
 <style>
     .flex{
@@ -187,6 +189,14 @@
 
 </style>
 <body>
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word.html :: headFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
 <div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 100px; padding-bottom: 100px;">
 
     <div class="flex register">
@@ -239,13 +249,13 @@
                 <div style="display: flex;padding: 14px 31px;">
                     <div class="modal_box1" onclick="modal_close(), showfile()">
 
-                        <img src="../../static/images/icon/다운로드.png" class="modal-icon-img1"/>
+                        <img src="/images/icon/다운로드.png" class="modal-icon-img1"/>
 
                         <p class="modal-text1">파일 첨부하기</p>
                     </div>
                     <div class="modal_box2" onclick="modal_close()">
 
-                        <img src="../../static/images/icon/작성.png" class="modal-icon-img2"/>
+                        <img src="/images/icon/작성.png" class="modal-icon-img2"/>
                         <p class="modal-text2">직접 작성하기</p>
                     </div>
                 </div>
@@ -261,8 +271,11 @@
 
 
 </div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/fix/header.js"></script>
+
 <script>
     function calc_length()
     {

@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>일러스트레이터 페이지 작성 페이지</title>
+    <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
+    <link href="/css/footer.css" rel="stylesheet" type="text/css">
 </head>
 <style>
     .profilePicture{
@@ -191,17 +194,25 @@
     }
 </style>
 <body>
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word_illust.html :: headIllustFragment"/>
+
+<!--헤더 이미지-->
+<!--<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>-->
+<!-- 헤더 종료 -->
 <div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 100px; padding-bottom: 100px; margin-top: -108px;">
     <div class="banner">
 
-        <img src="../../static/images/배너.png" height="100%" width="100%"/>
+        <img src="/images/배너.png" height="100%" width="100%"/>
     </div>
     <!--유저 프로필 사진-->
     <div style="margin-top: 129px">
 
     <div>
         <div class="profilePicture">
-            <img src="../../static/images/프사.jpg" height="100%" width="100%"/>
+            <img src="/images/프사.jpg" height="100%" width="100%"/>
             <p class="changeImageText">※ 이미지 변경은 마이페이지에서 가능합니다.</p>
 
         </div>
@@ -238,7 +249,7 @@
                 <div class="inputFlex" style="margin-top: 14px; line-height: 0;">
                     <div class="textLengthWrap position">
                         <div class="infoques">
-                        <img src="../../static/images/icon/물음표.png" height="24px" width="24px" class="ques"/>
+                        <img src="/images/icon/물음표.png" height="24px" width="24px" class="ques"/>
 
                             <img src="../../static/images/icon/말풍선.png" class="chatImg"/>
                             <p class="quesInfo1">작업 내용이나 수상경력</p>
@@ -316,9 +327,10 @@
 
 </div>
 
-
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/fix/header.js"></script>
 <script>
     $('#textBox').keyup(function (e) { let content = $(this).val(); // 글자수 세기
     if (content.length == 0 || content == '') {

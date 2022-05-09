@@ -8,6 +8,7 @@
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="/css/main.css" type="text/css"/>
     <link href="/css/footer.css" rel="stylesheet" type="text/css">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
     <style>
 
 
@@ -33,7 +34,7 @@
         }
 
 
-        section#categorySection{width : 100%; min-height: 100vh;}
+        section#categorySection{width : 100%;}
 
         /* 카테고리메뉴 테이블*/
         div#categoryMenu{
@@ -378,6 +379,14 @@
     </style>
 </head>
 <body class="is-preload">
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word.html :: headFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
 
 <!-- Main -->
 <div id="main">
@@ -521,9 +530,7 @@
                         </div>
                         <div class="item-button" style="margin-top: 3em;">
                             <ul class="tag-title">
-                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
-                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
-                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                                <li><a href="#" class="btn-view tag-list">보러가기</a></li>
                             </ul>
                         </div>
                         <img src="/images/like.png" class="like-img">
@@ -552,9 +559,7 @@
                         </div>
                         <div class="item-button" style="margin-top: 3em;">
                             <ul class="tag-title">
-                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
-                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
-                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                                <li><a href="#" class="btn-view tag-list">보러가기</a></li>
                             </ul>
                         </div>
                         <img src="/images/like.png" class="like-img">
@@ -583,9 +588,7 @@
                         </div>
                         <div class="item-button" style="margin-top: 3em;">
                             <ul class="tag-title">
-                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
-                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
-                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                                <li><a href="#" class="btn-view tag-list">보러가기</a></li>
                             </ul>
                         </div>
                         <img src="/images/like.png" class="like-img">
@@ -614,9 +617,7 @@
                         </div>
                         <div class="item-button" style="margin-top: 3em;">
                             <ul class="tag-title">
-                                <li><a href="#" class="btn-view tag-list">#로맨스</a></li>
-                                <li><a href="#" class="btn-view tag-list">#판타지</a></li>
-                                <li><a href="#" class="btn-view tag-list">#라이트노벨</a></li>
+                                <li><a href="#" class="btn-view tag-list">보러가기</a></li>
                             </ul>
                         </div>
                         <img src="/images/like.png" class="like-img">
@@ -646,9 +647,7 @@
     </div>
 </div>
 <th:block th:insert="/fix/footer.html :: footerFragment"/>
-
 </body>
-
 
 <!-- Scripts -->
 <script src="/js/jquery.min.js"></script>
@@ -730,5 +729,4 @@
 
 
 </script>
-</body>
 </html>
