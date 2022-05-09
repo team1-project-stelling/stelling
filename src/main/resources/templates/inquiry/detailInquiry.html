@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>detailInquiry</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="/css/footer.css" rel="stylesheet" type="text/css">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
     <style>
         @media(max-width : 390px){
             .mainbox {
@@ -127,6 +129,14 @@
     </style>
 </head>
 <body style="max-witdh:1200px ;">
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word.html :: headFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
 
     <!--Main-->
         <div class="mainbox">
@@ -172,4 +182,7 @@
             </div>
         </div>
 </body>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/fix/header.js"></script>
 </html>

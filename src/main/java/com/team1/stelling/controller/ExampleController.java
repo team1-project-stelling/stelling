@@ -32,4 +32,26 @@ public class ExampleController {
         log.info("coinShop");
         return "/coinShop";
     }
+
+    @GetMapping("index")
+    public String index(){
+        log.info("index");
+        return "/index";
+    }
+
+    @GetMapping("round")
+    public String round(){
+        log.info("round");
+        return "/round";
+    }
+
+    @GetMapping("novelRegister")
+    public String novelRegister(){
+        return "writeNovel/novelRegister";
+    }
+
+    @GetMapping("novelWrite")
+    public String novelWrite(){
+        return "writeNovel/novelWrite";
+    }
 }

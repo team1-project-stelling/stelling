@@ -30,4 +30,19 @@ public class ExampleController2 {
         log.info("editProfile");
         return "mypage/editProfile";
     }
+
+    @GetMapping("/detailInquiry")
+    public String detailInquiry(){
+        return "inquiry/detailInquiry";
+    }
+
+    @GetMapping("/writeInquiry")
+    public String writeInquiry(){
+        return "inquiry/writeInquiry";
+    }
+
+    @GetMapping("/ranking")
+    public String ranking(){
+        return "ranking/ranking";
+    }
 }

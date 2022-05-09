@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>이용 약관</title>
+    <link href="/css/footer.css" rel="stylesheet" type="text/css">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
     <style>
         body{
             background: #f2f2f2;
@@ -21,6 +23,14 @@
     </style>
 </head>
 <body>
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word.html :: headFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
 <div class="content-text" style="">
     <h3>스텔링 서비스 이용 약관</h3><br>
     <p class="title">제1조(목적)</p><br>
@@ -195,5 +205,8 @@
     이 약관은 2015년 12월 20일부터 적용됩니다.<br>
     <br>
 </div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/fix/header.js"></script>
 </html>

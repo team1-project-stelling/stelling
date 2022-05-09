@@ -88,3 +88,36 @@ div.footer-detail p.copy{
     padding-top: -22em;
     position: absolute;
 }
+
+
+
+/*!* 반응형 *!*/
+/*@media (max-width: 390px) {*/
+/*    footer {*/
+/*        height: 250px;*/
+/*        position: relative;*/
+/*        width: 390px;*/
+/*    }*/
+
+/*    .footer-menu ul {*/
+/*        gap: 30px;*/
+/*        list-style: none;*/
+/*        display: flex;*/
+/*        padding: 1em;*/
+/*        margin: 0 auto;*/
+/*        width: 1200px;*/
+/*        font-weight: bold;*/
+/*        font-size: 13px;*/
+/*    }*/
+
+/*    div.footer-detail {*/
+/*        display: none;*/
+/*    }*/
+
+/*    div.footer-center{*/
+/*        max-width: 390px;*/
+/*        line-height: 25px;*/
+/*    }*/
+
+
+/*}*/
