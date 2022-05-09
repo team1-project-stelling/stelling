@@ -1,0 +1,114 @@
+    /*-----------------이미지 드롭--------------------------------------------------------------------------*/
+.drop-zone {
+    max-width:100%;
+    height:700px;
+
+    text-align: center;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    border: 2px dashed #d5d5d5;
+    border-radius: 14px;
+    margin: 0 auto;
+}
+
+.drop-zone--over {
+    border-style: solid;
+}
+.drop-zone--over2{
+    border:none !important;
+}
+
+.drop-zone__input {
+    display: none;
+}
+
+.drop-zone__thumb {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top;
+
+}
+
+.span{
+    display: inline-block;
+    margin-top: 27%;
+}
+
+
+
+/*----------------------------------------------------------------------------------------------------*/
+.inputTitle{
+    width: 100%;
+    height: 47px;
+    font-size: 20px;
+    border: none;
+    border-bottom: 2px solid #d5d5d5;
+    padding: 7px;
+    font-weight: bold;
+}
+input.inputTitle:focus{
+    outline: none;
+}
+.titleDiv{
+    margin-bottom: 50px;
+}
+.tag{
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-bottom: 1.5px solid gray;
+    font-size: 15px;
+    padding-left: 7px;
+}
+.hash{
+    height: 36px;
+    font-size: 19px;
+    font-weight: bold;
+    color: gray;
+    padding-left: 7px;
+}
+input.tag:focus{
+    outline: none;
+}
+.upBtn{
+    width: 30%;
+    height: 61px;
+    font-size: 18px;
+    background-color: white;
+    border: 1.8px solid #ef6e73;
+    border-radius: 16px;
+    color: #ef6273;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.upBtn:hover{
+    background-color: #ef6e73;
+    color: white;
+    font-weight: bold;
+}
+
+    #tag-list{
+        display: -webkit-box;
+        list-style: none;
+    }
+
+    .tag-item{
+        margin-right: 10px;
+        display: inline-block;
+        width: fit-content;
+        background-color: #ef6e73b0;
+        color: white;
+        padding: 3px 10px;
+        border-radius: 15px;
+        font-size: 13px;
+        cursor: pointer
+    ;
+    }

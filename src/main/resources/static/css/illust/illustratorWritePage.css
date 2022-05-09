@@ -1,0 +1,184 @@
+.profilePicture{
+    width: 155px;
+    height: 155px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 80px;
+
+}
+.inputFlex{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    line-height: 2;
+}
+.infoText{
+    width: 285px;
+    font-size: 18px;
+    font-weight: 600;
+    height: 35px;
+    color: gray;
+}
+.inputCss{
+    font-size: 15px;
+    height: 35px;
+    padding-left: 8px;
+    width: 531px;
+    margin-left: -280px;
+    border: 1px solid #c8c8c8;
+}
+.textbox2{
+    margin-top: -30px;
+    font-size: 14px;
+    color: #9f9f9f;
+}
+#textBox{
+    height: 55px;
+    resize: none;
+    width: 530px;
+    margin-left: -280px;
+    padding: 7px;
+    border: 1px solid #c8c8c8;
+}
+#textBox2{
+    height: 117px;
+    resize: none;
+    width: 530px;
+    padding: 7px;
+    margin:16px 0px 20px -280px;
+    border: 1px solid #c8c8c8;
+}
+.webSite{
+    margin-right: 16.4%;
+    background-color: white;
+    border: 1px solid #ef6e73;
+    color: #ef6e73;
+    height: 33px;
+    width: 127px;
+    border-radius: 9px;
+    font-weight: initial;
+    cursor: pointer;
+}
+.select{
+    width: 548px;
+    margin-left: -278px;
+    margin-right: 0px;
+    color: #454545;
+    font-weight: initial;
+}
+.clearBtn{
+    margin: 100px auto;
+    text-align: center;
+}
+.finishBtn{
+    font-size: 17px;
+    height: 50px;
+    width: 200px;
+    background-color: #ef6273;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.cancleBtn{
+    width: 200px;
+    height: 50px;
+    font-size: 17px;
+    border: 1.5px solid #ef6273;
+    border-radius: 16px;
+    background-color: white;
+    color: #ef6273;
+    font-weight: bold;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+input:focus, textarea:focus, select:focus{
+    outline:1.5px solid #ef6273 ;
+    border-color: #00ff0000;
+}
+
+.hr{
+    width: 65%;
+    margin-top: 70px;
+}
+.text3{
+    text-align: center;
+    font-size: 13px;
+    color: gray;
+}
+
+.profilePicture:hover > p{
+    opacity: 1;
+}
+p.changeImageText{
+    position: absolute;
+    top: 371px;
+    margin-left: -69px;
+    color: #ef6273;
+    font-weight: initial;
+    opacity: 0;
+}
+.pinkwrap{
+    margin-top: -55px !important;
+    border: 3px solid #ef627369;
+    width: 81%;
+    margin: 0 auto;
+    border-radius: 70px;
+    padding: 100px 0px;
+}
+.ques{
+    position: absolute;
+    position: absolute;
+    left: 103px;
+    top: 6px;
+    opacity: 1;
+}
+.position{
+    position: relative;
+}
+.chatImg{
+    position: absolute;
+    width: 225px;
+    top: -107px;
+    left: 81px;
+    height: 122px;
+    opacity: 0;
+}
+.ques:hover + img, .ques:hover ~ p{
+    opacity: 1;
+}
+
+.quesInfo1{
+    position: absolute;
+    color: white;
+    left: 105px;
+    top: -91px;
+    opacity: 0;
+    font-weight: initial;
+
+}
+.quesInfo2{
+    position: absolute;
+    top: -65px;
+    left: 105px;
+    color: white;
+    opacity: 0;
+    font-weight: initial;
+
+}
+.intpuCss2{
+    width: 538px;
+    margin-left: -278px;
+    margin-right: -1px;
+}
+.banner{
+    width: 1200px;
+    background-color: pink;
+    height: 213px;
+    position: absolute;
+    z-index: -1;
+}
