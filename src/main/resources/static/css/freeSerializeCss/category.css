@@ -397,12 +397,13 @@ div.pieceInfo{
 a.writeButton{display: none;}
 div.totalWordWork img {display: none;}
 div#tagSearchWrap .tagInner button{
-    width: 170px;
+    width: 200px;
 }
 ul#tagSearchList{
     overflow-x: auto;
     white-space: nowrap;
     height: 100%;
+    align-items: center;
 }
     .info_head{
         display: flex;
