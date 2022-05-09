@@ -1,0 +1,250 @@
+
+.chatWrap{
+    display: flex;
+    height: 700px;
+    width: 87%;
+    margin: 0 auto;
+}
+.chatWrapFirst{
+    width: 40%;
+    height:100%;
+    border: 1px solid #cccccc;
+    border-right: none;
+    border-radius: 14px 0 0 14px;
+}
+.chatWrapSecond{
+    /*background-color: yellow;*/
+    width: 70%;
+    height:100%;
+    border: 1px solid #cccccc;
+    border-radius: 0px 14px 14px 0px;
+    position: relative;
+}
+.chatList1{
+    /*background-color: white;*/
+    width: 100%;
+    height: 11%;
+    border-bottom: 1px solid #cccccc;
+}
+.chatList2{
+    /*background-color: green;*/
+    width: 100%;
+    height: 89%;
+
+}
+.chatlist2{
+    width: 100%;
+    height: 71.7%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+}
+.chatList3{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 110px;
+
+}
+
+.chatUser{
+    /*background-color: skyblue;*/
+    height: 12%;
+    width:97%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px 6px;
+}
+.chatUserList{
+    padding-top: 10px;
+    height: 86.9%;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.profilePic{
+    width: 63px;
+    height: 63px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+.userInfo{
+    height: 100%;
+    width: 70%;
+    margin-left: 9px;
+}
+.userName{
+    width: 100%;
+    height: 50%;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 2.5;
+    display: inline-block;
+    /*background-color: gray;*/
+}
+.MessageAlarm{
+    width: 100%;
+    height: 50%;
+    color: #aaaaaa;
+    font-size: 14px;
+    /*background-color: #DEA97F;*/
+}
+.chatUser:hover{
+    background-color: rgba(231, 226, 226, 0.62);
+}
+.ownUser{
+    font-weight: bold;
+    padding: 7px;
+    font-size: 19px;
+}
+.headerUserName{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 13px;
+}
+.profilePic2{
+    width: 45px;
+    height: 45px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+p.user{
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+
+
+/* 채팅 입력차 스타일 지정 */
+.main-chat{
+    overflow-y: scroll;
+}
+.insert-content{
+    background-color: white;
+    padding: 0.4375rem;
+    position: sticky;
+    bottom: 0;
+    width: 93%;
+    margin: 0 auto;
+}
+textarea{
+    resize: none;
+    min-height: 2.1rem;
+    border-radius: 20px;
+    position: absolute;
+    width: 78%;
+    border: 1px solid #c7c7c7;
+    font-size: 17px;
+    line-height: 1;
+    overflow-y: hidden;
+    padding: 10px;
+    height: 63px;
+}
+
+textarea:focus{
+    outline: none;
+}
+/* 채팅 입력창 flex로 정렬 */
+form[name="chatform"]{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.chat-submit{
+    margin-left: 84%;
+    border: 1px solid #ef6273;
+    background-color: rgb(255 255 255);
+    color: #ef6273;
+    padding: 0.1875rem;
+    width: 6.125rem;
+    height: 39px;
+
+    transition-property: background-color, color;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    border-radius: 20px;
+}
+.chat-submit:hover{
+    background-color: #ef6273;;
+    color:white;
+}
+
+.me-chat{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-right: 0.625rem;
+    margin-top: 0.3125rem;
+    margin-bottom: 0.3125rem;
+}
+.friend-chat{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    margin-top: 0.3125rem;
+    margin-bottom: 0.3125rem;
+}
+.friend-chat-col{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+}
+.friend-chat-col, .me-chat-col{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.balloon{
+    display: inline-block;
+    width: auto;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 16px;
+    color: #545454;
+    margin: 5px 10px;
+    background-color: #b4b4b4;
+    color: white;
+}
+
+.balloon2{
+    background-color: #ef6e73;
+    color: white;
+}
+
+.profilePic3{
+    margin-left: 13px;
+}
+.textwrap{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin-top: 8px;
+}
+.chatlist1{
+    text-align: center;
+    height: 8.3%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.delete{
+    width: 20px;
+    display: inline-block;
+    width: 23px;
+    display: inline-block;
+    height: 22px;
+    padding-top: 3px;
+    display: none;
+}
+
+

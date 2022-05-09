@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>새 회차 등록</title>
+    <link href="/css/footer.css" rel="stylesheet" type="text/css">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
+    <link href="/css/novel/novelWrite.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word.html :: headFragment"/>
+
+<!--헤더 이미지-->
+<!--<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>-->
+<!-- 헤더 종료 -->
+<div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 26px; padding-bottom: 100px;">
+
+    <div class="flex register">
+        <div><p class="p" style="color: #a5a5a5;">취소</p></div>
+        <div><h2>새 회차 등록</h2></div>
+        <div>
+            <div class="inlineBox" style="margin-right: 34px;margin-left: -110px;"><p class="p"style="color: #a5a5a5;">임시저장</p></div>
+            <div class="inlineBox"><p class="p" style="color: #ef6e73; font-weight: bold;">등록</p></div>
+        </div>
+    </div>
+    <div class="subMainWrab">
+
+        <div class="filebox">
+            <input class="upload-name" value="첨부파일" readonly >
+            <label for="file">파일찾기</label>
+            <input type="file" id="file">
+        </div>
+
+        <div class="subWrab">
+            <input type="text" placeholder="소제목을 입력하세요." class="sTitle">
+        </div>
+
+        <div>
+            <textarea name="" id="" class="text" placeholder="작품 내용을 입력해주세요."onkeyup="calc_length()"></textarea>
+            <div style="display: flex; justify-content: flex-end;">
+            <p class="kb"><span class="box">0</span> KB / </p>
+            <p class="kb"><span class="box2">50</span> KB</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="wrterReview">
+        <div>
+            <h2>작품 후기</h2>
+        </div>
+        <div style="width: 98%; margin: 0 auto; text-align: center;">
+        <textarea name="" id="" class="text2" placeholder="작품 후기를 입력하세요." ></textarea>
+
+
+
+        </div>
+    </div>
+
+
+
+    <div class="modal">
+        <div class="modalmain">
+            <div class="modal-title">
+                <p class="p2">글 작성 방식을 선택해주세요.</p>
+                <div style="display: flex;padding: 14px 31px;">
+                    <div class="modal_box1" onclick="modal_close(), showfile()">
+
+                        <img src="/images/icon/다운로드.png" class="modal-icon-img1"/>
+
+                        <p class="modal-text1">파일 첨부하기</p>
+                    </div>
+                    <div class="modal_box2" onclick="modal_close()">
+
+                        <img src="/images/icon/작성.png" class="modal-icon-img2"/>
+                        <p class="modal-text2">직접 작성하기</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+</div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/fix/header.js"></script>
+<script src="/js/novel/novelWrite.js"></script>
+</html>

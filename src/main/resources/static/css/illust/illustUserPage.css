@@ -1,0 +1,403 @@
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.p{
+    margin:0px;
+    padding: 0px;
+}
+.box{
+    flex-direction: column;
+    width: 270px;
+    height: fit-content;
+}
+.column{
+
+    flex-direction: column;
+}
+.cellCss{
+    /*width: 91%;*/
+    /*height: 100%;*/
+    text-align: center;
+    margin: 34px 28px 16px 13px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.flex2{
+    display: flex;
+    /*align-items: center; */
+    justify-content: center;
+    padding-bottom: 100px;
+}
+.testWidth{
+    width: 100%;
+    border-radius: 16px;
+    cursor: pointer;
+    display: block;
+}
+.testWidth:hover, .heart:hover{
+    cursor: pointer;
+    opacity: 1;
+}
+.heart{
+    opacity: 0;
+    position: absolute;
+    left: 0px;
+    top: 0;
+    display: block;
+    background-color: #00000073;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 22px;
+    text-align: left;
+    padding-top: 8px;
+    padding-left: 15px;
+}
+
+.firstBox{
+    width: 26%;
+    border: 1px solid #dbdbdb;
+}
+.secBox{
+    width: 74%;
+    background-color: #ececec80;;
+}
+
+.profilePicture{
+
+    border-radius: 50px;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+.userNick{
+    font-size: 23px;
+    font-weight: 600;
+    margin-bottom: 5px !important;
+    text-align: center;
+}
+.postInfo{
+    color: gray;
+    margin-bottom: 10px;
+    font-family: 'GmarketSansMedium';
+}
+
+.profile1{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 41px;
+}
+.chatBtn{
+    width: 100px;
+    height: 36px;
+    background-color: #ef6e73ab;
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 4px;
+    line-height: 2.4;
+    cursor: pointer;
+}
+.listBtn{
+    width: 100px;
+    height: 36px;
+    background-color: white;
+    border: 1.5px solid #ef6e73ab;
+    color: #ef6e73ab;
+    font-weight: 600;
+    border-radius: 4px;
+    line-height: 2.4;
+    cursor: pointer;
+}
+.hr{
+    margin: 30px auto;
+    border-color: #e0e0e0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 80%;
+}
+.p{
+    margin: 0px;
+}
+.intro{
+    color: #c9c9c9;
+    font-size: 16px;
+    font-family: 'GmarketSansMedium';
+}
+.text1{
+    margin-top: 5px;
+    font-size: 13px;
+    margin-bottom: 30px;
+    font-family: 'GmarketSansLight';
+    font-weight: bold;
+    color: gray;
+}
+.text2{
+    margin-top: 5px;
+    font-size: 13px;
+    font-family: 'GmarketSansLight';
+    font-weight: bold;
+    color: gray;
+}
+.worklist{
+    margin-left: 55px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 43px;
+    /*margin-bottom: -16px;*/
+    color: #5a5a5a;
+}
+.hr2{
+    width: 86%;
+    margin-left: 52px;
+    margin-bottom: -17px;
+    margin-top: 6px;
+    height: 0.5px;
+    background-color: #808080c2;
+}
+.cateBtn{
+    background-color: #969696;
+    border: 1px solid gray;
+    font-size: 13px;
+    padding: 3px 8px;
+    border-radius: 15px;
+    margin-top: 10px;
+    color: white;
+    font-weight: bold;
+}
+a{
+    text-decoration: none;
+
+}
+
+/*-------------채팅 ------------------*/
+.chat{
+    width: 312px;
+    height: 471px;
+    position: fixed;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    display: none;
+    box-shadow: 0px 2px 4px 6px #80808036;
+}
+
+.chat-top{
+    width: 100%;
+    height: 47px;
+    text-align: center;
+    line-height: 2.8;
+    background-color: #ef6e73c2;
+    color: white;
+    font-weight: bold;
+}
+.chat-middle{
+    width: 106%;
+    height: 310px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.chat-row{
+    width: 100%;
+    height: 114px;
+
+}
+.inputChatarea{
+    resize: none;
+    padding: 10px;
+    width: 65%;
+    margin-top: 15px;
+    height: 63px;
+    margin-left: 16px;
+    border-radius: 16px;
+    border: 1px solid #9f9f9f7a;
+
+
+}
+.inputChatarea:focus{
+    outline: none;
+}
+
+.me-chat{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-right: 1px;
+    margin-top: 0.3125rem;
+    margin-bottom: 0.3125rem;
+    font-size: 12px;
+}
+.friend-chat{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    margin-top: 0.3125rem;
+    margin-bottom: 0.3125rem;
+    font-size: 12px;
+}
+.friend-chat-col{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+}
+.friend-chat-col, .me-chat-col{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.balloon{
+    display: inline-block;
+    width: auto;
+    border: 1px solid #a3a3a3;
+    border-radius: 20px;
+    padding: 6px 16px;
+    color: #545454;
+    margin: 5px 10px;
+    background-color: #ffffff;
+    color: #5f5f5f;
+}
+
+.balloon2{
+    background-color: #9f9f9fa1;
+    color: white;
+    border: 1px solid #9f9f9fa1;
+}
+.enter{
+    width: 42px;
+    height: 46px;
+    position: absolute;
+    top: 39px;
+    left: 12px;
+    cursor: pointer;
+}
+.x{
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    display: inline-block;
+    width: 42px;
+    cursor: pointer;
+}
+.enterBtn{
+    background-color: white;
+    border: 1px solid #ef6e73bf;
+    color: #ef6e73bf;
+    padding: 3px 11px;
+    border-radius: 26px;
+    font-family: 'Elice Digital Baeum';
+}
+.enterBtn:hover{
+    background-color:#ef6e73bf;
+    border: 1px solid #ef6e73bf;
+    color: white;
+}
+
+/*----------------미디어쿼리---------------------*/
+@media(max-width: 400px){
+    .userInfo{
+        display: block !important;
+    }
+
+    .firstBox{
+        width: 100%;
+        border-radius: 12px;
+        padding-bottom: 18px;
+    }
+    .profilePicture{
+        width: 60px;
+        height: 60px;
+    }
+    .userNick{
+        font-size: 18px;
+    }
+    .postInfo{
+        font-size: 12px;
+    }
+    .profile1{
+        margin-top: 14px;
+    }
+    .hr{
+        margin:11px auto;
+    }
+    .chatBtn{
+        width: 79px;
+        height: 28px;
+        line-height: 1.2;
+    }
+    .listBtn{
+        width: 79px;
+        height: 28px;
+        line-height: 1.2;
+    }
+
+    .introduceDiv{
+        display: flex;
+    }
+
+    .webSiteDiv{
+        display: flex;
+    }
+
+    .activeDiv{
+        display: flex;
+    }
+
+    .intro{
+        font-size: 13px;
+        margin-right: 10px;
+    }
+    .text1{
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    .cateBtn{
+        font-size: 10px;
+        margin-top: 0px;
+    }
+    .secBox{
+        width: 100%;
+        padding-top: 8px;
+        margin-top: 13px;
+    }
+    .worklist{
+        margin-left: 14px;
+        margin-top: 0px;
+    }
+
+    .hr2{
+        width: 94%;
+        margin-left: 7px;
+    }
+    .cellCss{
+        margin: 27px 11px 16px 6px;
+    }
+
+    .chat{
+        bottom: 88px;
+        left: 37px;
+    }
+    .me-chat{
+        margin-right: 15px;
+    }
+}

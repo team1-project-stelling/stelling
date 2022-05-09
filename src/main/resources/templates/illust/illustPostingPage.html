@@ -6,106 +6,8 @@
     <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
     <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
     <link href="/css/footer.css" rel="stylesheet" type="text/css">
+    <link href="/css/illust/illustPostingPage.css" rel="stylesheet" type="text/css">
 </head>
-<style>
-    /*-----------------이미지 드롭--------------------------------------------------------------------------*/
-    .drop-zone {
-        max-width:100%;
-        height:700px;
-
-        text-align: center;
-        font-family: "Quicksand", sans-serif;
-        font-weight: 500;
-        font-size: 20px;
-        cursor: pointer;
-        color: #cccccc;
-        border: 2px dashed #d5d5d5;
-        border-radius: 14px;
-        margin: 0 auto;
-    }
-
-    .drop-zone--over {
-        border-style: solid;
-    }
-    .drop-zone--over2{
-        border:none !important;
-    }
-
-    .drop-zone__input {
-        display: none;
-    }
-
-    .drop-zone__thumb {
-        width: 100%;
-        height: 100%;
-        border-radius: 10px;
-        overflow: hidden;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: top;
-
-    }
-
-  .span{
-      display: inline-block;
-      margin-top: 27%;
-  }
-
-
-
-    /*----------------------------------------------------------------------------------------------------*/
-    .inputTitle{
-        width: 100%;
-        height: 47px;
-        font-size: 20px;
-        border: none;
-        border-bottom: 2px solid #d5d5d5;
-        padding: 7px;
-        font-weight: bold;
-    }
-    input.inputTitle:focus{
-        outline: none;
-    }
-    .titleDiv{
-        margin-bottom: 50px;
-    }
-    .tag{
-        width: 100%;
-        height: 50px;
-        border: none;
-        border-bottom: 1.5px solid gray;
-        font-size: 15px;
-        padding-left: 7px;
-    }
-    .hash{
-        height: 36px;
-        font-size: 19px;
-        font-weight: bold;
-        color: gray;
-        padding-left: 7px;
-    }
-    input.tag:focus{
-        outline: none;
-    }
-    .upBtn{
-        width: 30%;
-        height: 61px;
-        font-size: 18px;
-        background-color: white;
-        border: 1.8px solid #ef6e73;
-        border-radius: 16px;
-        color: #ef6273;
-        font-weight: 500;
-        cursor: pointer;
-    }
-
-    .upBtn:hover{
-        background-color: #ef6e73;
-        color: white;
-        font-weight: bold;
-    }
-
-</style>
 <body>
 <!-- 헤더 시작 -->
 <th:block th:insert="/fix/header_word_illust.html :: headIllustFragment"/>
@@ -135,8 +37,18 @@
 
     <div style="margin-top: 100px;">
         <p class="hash"># 해시태그</p>
-        <input type="text" placeholder="ex) #동화 #수채화 (최대 6개)" class="tag">
+
+
+        <div class="form-group">
+            <input type="text" id="tag"  placeholder="엔터로 해시태그를 등록해주세요.(최대 6개)" class="tag"/>
+        </div>
+<!--        <input type="text" placeholder="ex) #동화 #수채화 (최대 6개)" class="tag">-->
         <p style="color:#ef6e73; font-size: 12px;">※ 작품을 나타내는 태그를 삽입해주세요.</p>
+        <div class="form-group">
+            <input type="hidden" value="" name="tag" id="rdTag" />
+        </div>
+
+        <ul id="tag-list" style="padding: 0;"></ul>
     </div>
 
     <div style="margin:100px auto; text-align: center;">
@@ -158,76 +70,7 @@
 <th:block th:insert="/fix/footer.html :: footerFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
-        const dropZoneElement = inputElement.closest(".drop-zone");
-
-        dropZoneElement.addEventListener("click", (e) => {
-            inputElement.click();
-        });
-        inputElement.addEventListener("change", (e) => {
-            if (inputElement.files.length) {
-                updateThumbnail(dropZoneElement, inputElement.files[0]);
-            }
-        });
-        dropZoneElement.addEventListener("dragover", (e) => {
-            e.preventDefault();
-            dropZoneElement.classList.add("drop-zone--over");
-        });
-        ["dragleave", "dragend"].forEach((type) => {
-            dropZoneElement.addEventListener(type, (e) => {
-                dropZoneElement.classList.remove("drop-zone--over");
-            });
-        });
-        dropZoneElement.addEventListener("drop", (e) => {
-            e.preventDefault();
-
-            if (e.dataTransfer.files.length) {
-                inputElement.files = e.dataTransfer.files;
-                updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
-            }
-
-            dropZoneElement.classList.add("drop-zone--over2");
-            dropZoneElement.classList.remove("drop-zone--over");
-        });
-    });
-
-  /*  /!**
-     * Updates the thumbnail on a drop zone element.
-     *
-     * @param {HTMLElement} dropZoneElement
-     * @param {File} file
-     *!/*/
-    function updateThumbnail(dropZoneElement, file) {
-        let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
-
-        // First time - remove the prompt
-        if (dropZoneElement.querySelector(".drop-zone__prompt")) {
-            dropZoneElement.querySelector(".drop-zone__prompt").remove();
-        }
-
-        // First time - there is no thumbnail element, so lets create it
-        if (!thumbnailElement) {
-            thumbnailElement = document.createElement("div");
-            thumbnailElement.classList.add("drop-zone__thumb");
-            dropZoneElement.appendChild(thumbnailElement);
-        }
-
-        thumbnailElement.dataset.label = file.name;
-
-        // Show thumbnail for image files
-        if (file.type.startsWith("image/")) {
-            const reader = new FileReader();
-
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
-            };
-        } else {
-            thumbnailElement.style.backgroundImage = null;
-        }
-    }
-
+<script src="/js/illust/illustPostingPage.js">
 
 </script>
 <script src="/js/fix/header.js"></script>
