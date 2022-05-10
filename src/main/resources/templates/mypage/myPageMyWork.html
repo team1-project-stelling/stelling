@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>내 작품 관리</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/editProfile.css}">
-    <link rel="stylesheet" href="css/editProfile.css" type="text/css"/>
-    <link href="/css/fix/footer.css" rel="stylesheet" type="text/css">
-    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
-    <link href="/css/mypage/myWork.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/editProfile.css}">
+    <link rel="stylesheet" href="/assetscss/editProfile.css" type="text/css"/>
+    <link href="/assets/css/fix/footer.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/fix/header.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/mypage/myWork.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <!-- 헤더 시작 -->
@@ -26,22 +26,22 @@
                 <div class="left_block">
                     <ul class="liWrap">
                         <li class="li_top left">
-                            <a class="menu" href="myPageEditProfile.html">프로필 수정</a>
+                            <a class="menu" href="editProfile.html">프로필 수정</a>
                         </li>
                         <li class="left clicked">
-                            <a class="menu" href="myPageMyWork.html">내 작품 관리</a>
+                            <a class="menu" href="myWork2.html">내 작품 관리</a>
                         </li>
                         <li class="left">
-                            <a class="menu" href="myPageChangePw.html">비밀번호 변경</a>
+                            <a class="menu" href="changPw.html">비밀번호 변경</a>
                         </li>
                         <li class="left">
-                            <a class="menu" href="myPageQuestion.html">내 문의 내역</a>
+                            <a class="menu" href="questions.html">내 문의 내역</a>
                         </li>
                         <li class="left">
-                            <a class="menu" href="myPageQuit.html">탈퇴 하기</a>
+                            <a class="menu" href="withdraw.html">탈퇴 하기</a>
                         </li>
                         <li class="left">
-                            <a class="menu" href="myPagePayList.html">결제</a>
+                            <a class="menu" href="payment.html">결제</a>
                         </li>
                     </ul>
                 </div>
@@ -52,43 +52,47 @@
                             <tbody>
                             <tr>
                                 <td class="active1 one" style="width: 25%">
-                                    <div class="active"><a href="illust/illustUserPage.html">내 그림</a></div>
+                                    <div class="active"><a href="">내 그림</a></div>
                                 </td>
                                 <td class="active1" style="width: 25%">
-                                    <div class="active"> 내 소설</div>
+                                    <div class="active myNovel"> 내 소설</div>
                                 </td>
                                 <td class="active1" style="width: 25%">
-                                    <div class="active">소설 통계</div>
+                                    <div class="active novelStatistics">소설 통계</div>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
-                        <div class="my-item-list">
-                            <div class="my-item">
-                                <span class="tag-update">UP</span>
-                                <div class="item-img btn-num">
-                                    <picture class="">
-                                        <img data-srcset="https://cdn.anytoon.co.kr/novel/epub/1/%EB%AC%B4%EC%8A%A8%EC%82%AC%EC%9D%B4/20211101054333-1.jpg" alt="대표님 살살해요" src="/images/loading_290x391.png" srcset="https://cdn.anytoon.co.kr/novel/epub/1/%EB%AC%B4%EC%8A%A8%EC%82%AC%EC%9D%B4/20211101054333-1.jpg" class="fade-in" style="    max-width: 95%;">
-                                    </picture>
-                                </div>
-                                <!-- //item-img -->
-                                <div class="item-info" style="margin-left: 7px;padding: 8px;max-width: 276.36px;">
-                                    <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
-                                        <span class="genre" style="color: #ef6e73">[로맨스]</span> 로맨스
-                                    </p>
-                                    <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
-                                        <img class="people" src="/images/people.png" style="width: 12px;">
-                                        <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">90만+</span>
-                                        <span class="writer">웹티, 올코</span>
+                        <div class="myNovelList">
+                            <div class="my-item-list">
+                                <div class="my-item">
+                                    <span class="tag-update">UP</span>
+                                    <div class="item-img btn-num">
+                                        <picture class="">
+                                            <img data-srcset="https://cdn.anytoon.co.kr/novel/epub/1/%EB%AC%B4%EC%8A%A8%EC%82%AC%EC%9D%B4/20211101054333-1.jpg" alt="대표님 살살해요" src="/images/loading_290x391.png" srcset="https://cdn.anytoon.co.kr/novel/epub/1/%EB%AC%B4%EC%8A%A8%EC%82%AC%EC%9D%B4/20211101054333-1.jpg" class="fade-in" style="    max-width: 95%;">
+                                        </picture>
                                     </div>
-                                    <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
-                                        <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">총 편수 : 308</span>
-                                        <span>최근 등록일 : 2022-05-01</span>
-                                    </div>
-                                    <div class="item-button" style="margin-top: 3em;">
-                                        <ul class="tag-title">
-                                            <li><a href="#" class="btn-view tag-list">업로드</a></li>
-                                        </ul>
+                                    <!-- //item-img -->
+                                    <div class="item-info" style="margin-left: 7px;padding: 8px;max-width: 276.36px;">
+                                        <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
+                                            <span class="genre" style="color: #ef6e73">[로맨스]</span> 로맨스
+                                        </p>
+                                        <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
+                                            <img class="people" src="/images/people.png" style="width: 12px;">
+                                            <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">90만+</span>
+                                            <span class="writer">웹티, 올코</span>
+                                        </div>
+                                        <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
+                                            <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">총 편수 : 308</span>
+                                            <span>최근 등록일 : 2022-05-01</span>
+                                        </div>
+                                        <div class="item-button" style="margin-top: 3em;">
+                                            <ul class="tag-title">
+                                                <li><a href="#" class="btn-view tag-list">업로드</a></li>
+                                            </ul>
+                                        </div>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -121,18 +125,164 @@
                                 </div>
                             </div>
                         </div>
+
+
+                        <!-- 통계 테이블-->
+                        <div id="tableWrap">
+                            <div class="divTable minimalistBlack">
+                                <div class="divTableHeading">
+                                    <div class="divTableRow">
+                                        <div class="divTableHead" style="width: 227.5px;">소설명</div>
+                                        <div class="divTableHead" style="width: 131.5px;">작가</div>
+                                        <div class="divTableHead" style="width: 118px;">회차 수</div>
+                                        <div class="divTableHead">총 결제 코인</div>
+                                        <div class="divTableHead">총 후원 코인</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--리스트 테이블-->
+                            <div class="list">
+                                <!--소설 정보 테이블-->
+                                <div class="divTable minimalistBlack">
+                                    <div class="divTableBody">
+                                        <div class="divTableRow">
+                                            <div><img src="/images/close.png" class="close"><img src="/images/open.png" class="open" style="display: none"></div>
+                                            <div class="divTableCell" style="width: 207px;">로맨스로맨스몲</div>
+                                            <div class="divTableCell" style="width: 135px;">나나나</div>
+                                            <div class="divTableCell" style="width: 120px;">308회</div>
+                                            <div class="divTableCell">2,500,000c</div>
+                                            <div class="divTableCell">4,000,000c</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--소설 정보 테이블 끝-->
+
+                                <!--디테일 테이블-->
+                                <div class="divTable minimalistBlack novel-detail" style="display: none;">
+                                    <div class="divTableHeading">
+                                        <div class="divTableRow">
+                                            <div class="divTableHead">회차</div>
+                                            <div class="divTableHead">조회수</div>
+                                            <div class="divTableHead">결제 코인</div>
+                                            <div class="divTableHead">후원 코인</div>
+                                        </div>
+                                    </div>
+                                    <div class="divTableBody">
+                                        <div class="divTableRow">
+                                            <div class="divTableCell">308회</div>
+                                            <div class="divTableCell">3,000,000회</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                        </div>
+                                    </div>
+                                    <div class="divTableBody">
+                                        <div class="divTableRow">
+                                            <div class="divTableCell">307회</div>
+                                            <div class="divTableCell">3,000,000회</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                        </div>
+                                    </div>
+                                    <div class="divTableBody">
+                                        <div class="divTableRow">
+                                            <div class="divTableCell">306회</div>
+                                            <div class="divTableCell">3,000,000회</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                        </div>
+                                    </div>
+                                    <div class="divTableBody">
+                                        <div class="divTableRow">
+                                            <div class="divTableCell">305회</div>
+                                            <div class="divTableCell">3,000,000회</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--디테일 테이블 끝-->
+                            </div>
+                            <!-- 리스트 테이블 끝-->
+
+                            <!--리스트 테이블-->
+                            <div class="list">
+                                <!--소설 정보 테이블-->
+                                <div class="divTable minimalistBlack">
+                                    <div class="divTableBody">
+                                        <div class="divTableRow">
+                                            <div><img src="/images/close.png" class="close"><img src="/images/open.png" class="open" style="display: none"></div>
+                                            <div class="divTableCell" style="width: 207px;">로맨스로맨스몲</div>
+                                            <div class="divTableCell" style="width: 135px;">나나나</div>
+                                            <div class="divTableCell" style="width: 120px;">308회</div>
+                                            <div class="divTableCell">2,500,000c</div>
+                                            <div class="divTableCell">4,000,000c</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--소설 정보 테이블 끝-->
+
+                                <!--디테일 테이블-->
+                                <div class="divTable minimalistBlack novel-detail" style="display: none;">
+                                    <div class="divTableHeading">
+                                        <div class="divTableRow">
+                                            <div class="divTableHead">회차</div>
+                                            <div class="divTableHead">조회수</div>
+                                            <div class="divTableHead">결제 코인</div>
+                                            <div class="divTableHead">후원 코인</div>
+                                        </div>
+                                    </div>
+                                    <div class="divTableBody">
+                                        <div class="divTableRow">
+                                            <div class="divTableCell">308회</div>
+                                            <div class="divTableCell">3,000,000회</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                        </div>
+                                    </div>
+                                    <div class="divTableBody">
+                                        <div class="divTableRow">
+                                            <div class="divTableCell">307회</div>
+                                            <div class="divTableCell">3,000,000회</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                        </div>
+                                    </div>
+                                    <div class="divTableBody">
+                                        <div class="divTableRow">
+                                            <div class="divTableCell">306회</div>
+                                            <div class="divTableCell">3,000,000회</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                        </div>
+                                    </div>
+                                    <div class="divTableBody">
+                                        <div class="divTableRow">
+                                            <div class="divTableCell">305회</div>
+                                            <div class="divTableCell">3,000,000회</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--디테일 테이블 끝-->
+                            </div>
+                            <!-- 리스트 테이블 끝-->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
+
 </body>
 <!-- Scripts -->
 <th:block th:insert="/fix/footer.html :: footerFragment"/>
 <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script src="/js/mypage/myWork.js"></script>
+<script src="/assets/js/mypage/myWork.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>

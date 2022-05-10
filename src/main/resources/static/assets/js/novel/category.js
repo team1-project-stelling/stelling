@@ -1,3 +1,6 @@
+
+console.log("들어옴");
+
 let $categoryMenuItem = $('.categoryMenuItem')
 // 시작은 전체페이지 조회
 // 추후에 컨트롤러 연동으로 변경 현재 프론트 작업을 위한 임시 소스
