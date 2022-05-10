@@ -17,10 +17,6 @@ footer{
     background: #f2f2f2
 }
 
-.footer-info{
-    padding-left: 1em;
-}
-
 .footer-center{
     width: 1200px;
     margin: 0 auto;
@@ -119,7 +115,7 @@ div.footer-detail p.copy{
     }
 
     .footer-menu ul {
-        gap: 35px;
+        gap: 30px;
         list-style: none;
         display: flex;
         margin: 0 auto;
@@ -133,6 +129,10 @@ div.footer-detail p.copy{
         padding-right: 0;
     }
 
+    .first-menu{
+        margin-left: 2em;
+    }
+
 
     div.footer-detail {
         padding-left: 0;
@@ -141,6 +141,7 @@ div.footer-detail p.copy{
     div.footer-center{
         max-width: 100%;
         line-height: 25px;
+        margin-left: 1em;
     }
 
     img.img-copyright{
@@ -154,6 +155,11 @@ div.footer-detail p.copy{
     div.footer-detail p {
         padding-right: 5px;
         font-size: 12px;
+    }
+
+    .footer-menu ul li a{
+        text-decoration: none;
+        color: inherit;
     }
 
     div.footer-detail {
