@@ -1,0 +1,362 @@
+html {}
+body {
+    width: 100%;
+    margin: 0px;
+}
+
+
+/* 공통 값*/
+/* 최대크기 설정*/
+.giveMaxWidth{
+    max-width:1200px ;
+    margin:0 auto  ;
+}
+
+
+
+div#categoryWrap{
+    width: 100%;
+
+}
+
+
+section#categorySection{width : 100%;}
+
+/* 카테고리메뉴 테이블*/
+div#categoryMenu{
+    width : 100%;
+}
+div#categoryMenu table{
+    width : 100%;
+}
+
+
+#categoryMenu table tbody{
+    display: flex;
+    width : 100%;
+}
+#categoryMenu table tbody tr{
+    display: flex;
+    width: 100%;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+}
+#categoryMenu table tbody tr td {
+    width: 100%;
+    height: 100%;
+}
+#categoryMenu table tbody tr td a{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /*border: 1px #ff8b77 solid;*/
+    text-align: center;
+    /* vertical-align: middle; */
+    align-items: center;
+    justify-content: center;
+    text-decoration-line:none;
+
+}
+#categoryMenu a:visited,#categoryMenu a:link , .resultItem a:visited, .resultItem a:link {color: black}
+a.writeButton:visited, a.writeButton:link{color: white}
+ul#tagSearchList li a:visited, ul#tagSearchList li a:link{color:#343a40; }
+#totalWrap{
+    height: 50px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid black;
+}
+.totalWordWork{
+    width: 13%;
+    word-spacing: -1px;
+    font-weight: bold;
+}
+.totalWordWork img{
+    width: 16px;
+}
+#totalOption div img {
+    width: 12px;
+}
+#totalR_side, #totalOption{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+}
+#totalR_side {
+    height: 40px;
+    font-size: 12px;
+    margin-right: 1em;
+}
+#totalOption{
+    height: 100%;
+}
+
+a.writeButton{
+    width: 150px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #333;
+    text-decoration-line:none;
+    color: white;
+}
+a.writeButton img{
+    width: 23px;
+    object-fit: cover;
+}
+div.OptionChange{
+    cursor: pointer;
+}
+div#tagSearchWrap{
+    border-bottom: 1px solid #eee;
+
+}
+
+ul#tagSearchList{
+    display: flex;
+    list-style: none;
+    font-size: 12px;
+    align-items: center;
+    padding: 0;
+}
+ul#tagSearchList li {
+    color: #495057;
+    padding: 4.8px 12.2px;
+
+}
+ul#tagSearchList li  a {
+    text-decoration-line: none;
+
+}
+
+div.category{
+    width: 100%;
+    height: 75px;
+    background-color: #f2f2f2;
+    margin-bottom: 1em;
+    font-weight: bold;
+}
+
+div.category ul{
+    list-style-type: none;
+    padding-inline-start: 0;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: space-between;
+    height: 100%;
+    width: 1200px;
+}
+
+ul.tag-title{
+    list-style-type: none;
+    display: flex;
+    margin-left: -2.5em;
+    margin-top: 0em;
+    position: absolute;
+}
+
+div.category ul li{
+    text-align: center;
+    width: 33%;
+    font-size: 20px;
+}
+
+.list-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 405px;
+}
+.item-search{
+    border: 1px solid #a9a9a9;
+    border-radius: 30px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    font-size: 14px;
+    width: 50%;
+    height: 50px;
+}
+input{
+    border:0 solid black;
+    width: 85%;
+    font-size: 16px;
+    margin-left: 1em;
+}
+
+input:focus {outline: none;}
+
+.active{
+    background: #ef6e73;
+    color: #fff;
+    padding: 0.8em 1.5em 0.8em 1.5em;
+    border-radius: 50px;
+}
+.btn-search {
+    font-size: 16px;
+    margin-right: 1em;
+}
+.my-item{
+    position: relative;
+    display: flex;
+    padding: 18px 0px 10px 12px;
+    border-bottom: 1px solid #eee;
+    width: 49%;
+    float: left;
+}
+button{
+    background-color: white;
+    border-color: #ef6e73;
+    color: #ef6e73;
+}
+
+span.tag-update{
+    position: absolute;
+    margin-left: 34.8em;
+    background: #00AAFF;
+    color: #fff;
+    width: 36px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+a.btn-view{
+    text-decoration: none;
+    color: #fff;
+    background: #ff8b77;
+    border: 1px solid #ff8b77;
+    width: 80px;
+    margin-right: 7px;
+    font-size: 13px;
+    padding: 7px 0.7em 7px 0.7em;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+div.item-img.btn-num{
+    max-width: 120px; height: 160px; position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    width: fit-content;
+    margin-bottom: 0.7em;
+}
+
+
+div.item-detail1 img{
+    margin-right: 5px;
+    width:10px;
+}
+div.item-button img{
+    width: 35px;
+    position: absolute;
+    margin-left: 19em;
+    margin-top: -0.3em;
+}
+
+img.like-img{
+    width: 32px;
+    margin-left: 24em;
+}
+
+.tagInner{
+    display: flex ;
+    gap: 9px;
+    align-items: center;
+    height: 49.59px;
+}
+div#tagSearchWrap .tagInner button{
+    width: 75px;
+    height: 28px;
+    color: #000;
+    border: 1px solid #ddd;
+    font-size: 12px;
+    background: url('/images/category/searchIcon.png')no-repeat 4px center;
+    background-size: 16px;
+    padding: 0 0 0 15px;
+}
+ul#tagSearchList li.active{
+    background: #ff8b77;
+}
+ul#tagSearchList li.active a{
+    background: #ff8b77;
+    color: white !important;
+}
+div#searchResult{
+
+}
+div.resultItem{
+    width: 100%;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+    height: auto;
+    min-height: 157px;
+    float: left;
+}
+#searchForm input{
+    width: 209px;
+    height: 25px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+#searchForm input:focus {outline: 1px solid #ff8b77; border:none;}
+#searchFormWrap{
+    display: none;
+}
+#searchForm{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+/*페이징 css*/
+div.categoryPaging {
+    width: 100%;
+    height: 80px;
+    clear: both;
+}
+ul.c_PagingList{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    height: 100%;
+    padding: 0;
+}
+ul.c_PagingList li{
+    list-style: none;
+    width: 30px;
+    height: 40px;
+    text-align: center;
+    background: #e9ecef;
+    color: #343a40;
+    line-height: 2.25;
+}
+ul.c_PagingList li a{
+    text-decoration-line: none;
+    border: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+
+}
+ul.c_PagingList li a:visited, ul.c_PagingList li a:link{
+    color: #343a40;
+}
+ul.c_PagingList li.pageActive{
+    background:#00AAFF;
+    color: #fff !important;
+}
