@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>writeInquiry</title>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-    <link href="/css/footer.css" rel="stylesheet" type="text/css">
-    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="/css/fix/footer.css" rel="stylesheet" type="text/css">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
 </head>
 <style>
     @media(max-width : 390px){
@@ -74,16 +73,18 @@
         }
     }
     /*미디어쿼리 끝*/
+
+
     .mainbox {
         margin-top: 100px;
-        width: 888px;
+        width: 1300px;
         height: 930px;
         margin: 0 auto;
     }
 
     .mainForm {
 
-        width: 888px;
+        width: 1300px;
         margin: 0 auto;
     }
 
@@ -92,7 +93,7 @@
     }
 
     th {
-        width: 127px;
+        width: 260px;
         height: 90px;
         text-align: left;
     }
@@ -150,7 +151,6 @@
     }
 </style>
 <body style="max-witdh:1200px ;">
-
 <!-- 헤더 시작 -->
 <th:block th:insert="/fix/header_word.html :: headFragment"/>
 
@@ -164,7 +164,7 @@
     <div class="mainbox">
 
         <div class="mainForm">
-            <div style="margin-top: 250px;">
+            <div style="margin-top: 20px;">
                 <header class="head_text">1:1 문의하기</header>
             </div>
             <p class="p_text">
@@ -203,8 +203,8 @@
             </form>
         </div>
     </div>
-<th:block th:insert="/fix/footer.html :: footerFragment"/>
 </body>
-<script src="/js/fix/header.js"></script>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/fix/header.js"></script>
 </html>
