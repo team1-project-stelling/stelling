@@ -16,4 +16,14 @@ public class novelController {
     @GetMapping("/novelWrite")
     public void novelWrite(){
     }
+    @GetMapping("/novelCategory")
+    public void novelCategory(){
+    }
+    @GetMapping("/novelRanking")
+    public void novelRanking(){
+    }
+    @GetMapping("/novelRoundList")
+    public void novelRoundList(){
+    }
+
 }

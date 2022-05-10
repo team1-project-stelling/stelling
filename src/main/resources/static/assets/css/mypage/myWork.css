@@ -20,16 +20,12 @@ a.menu{
     color: black;
     font-size: 20px;
 }
-
 #allWrap{
     display: inline-block;
     margin: 30px 0 auto;
     /*border-top: 1px solid #e8e9ed;*/
     width : 100%;
     max-width: 1200px;
-}
-.main{
-    border-bottom: 1px solid #e8e9ed;
 }
 .left_block{
     float: left;
@@ -48,11 +44,6 @@ a.menu{
     font-size: 32px;
     padding-bottom: 30px;
 }
-
-/*.left_block ul li.li_top>a{*/
-/*    background:  #ef6e73;*/
-/*    color: white;*/
-/*}*/
 .left_block ul li:hover>a{
     background:  #ef6e73b3;
     color: white;
@@ -80,9 +71,6 @@ div input:focus{
     border-color: #ef6e73;
     outline: none;
 }
-/*.navBar{*/
-/*    display: flex;*/
-/*}*/
 .listWrap{
     width: 100%;
     height: 100%;
@@ -108,23 +96,15 @@ div input:focus{
 }
 
 .clicked {
+    border-bottom: 1px solid #ef6e73b3;
+}
+.oned {
     background: #ef6e73b3;
     border-bottom: 1px solid #ef6e73b3;
     color: white;
 }
 .active1{
     border-right: 1px solid #ddd;
-}
-.pointTable{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    text-align: center;
-}
-.paymentWrap{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
 }
 th{
     border-top: 1px solid #e8e9ed;
@@ -145,13 +125,8 @@ a.btn-view{
     padding: 7px 0.7em 7px 0.7em;
     border-radius: 30px;
     font-weight: bold;
-    margin-left: 11em;
+    margin-left: 13.4em;
 }
-
-.tag-title{
-    list-style-type: none;
-}
-
 .my-item{
     position: relative;
     display: flex;
@@ -189,16 +164,24 @@ img.like-img{
 div.item-button li{
     border-bottom: 0px solid black;
 }
-#qwer{
-    max-width: 1200px;
-    margin: 0 auto;
-    margin-bottom: 40px;
+
+
+/*소설 통계*/
+
+div.item-button li{
+    border-bottom: 0px solid black;
 }
 
-.my-item{
-    zoom: 0.78;
+.td1{
+    border-right: 1px solid #e8e9ed;
+    border-bottom: 1px solid #e8e9ed;
+    padding-right: 10px;
+    text-align: right;
 }
 
+.title1{
+    text-align: center;
+}
 
 /*테이블 css*/
 div.minimalistBlack {
@@ -251,8 +234,6 @@ img {
     align-items: center;
     margin-left: 5px;
 }
-
-
 
 /*페이징 css*/
 div.categoryPaging {

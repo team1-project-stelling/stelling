@@ -121,11 +121,11 @@ div#tagSearchWrap{
 
 }
 
-ul#tagSearchList{
+ul#tagSearchList {
     display: flex;
     list-style: none;
-    font-size: 14px;ss
-    align-items: center;
+    font-size: 14px;
+align-items: center;
     padding: 0;
 }
 ul#tagSearchList li {
@@ -383,28 +383,28 @@ ul.c_PagingList li.pageActive{
         width: 97%;
         height: auto;
         margin-left: 3%;
-}
-div.info_summary{display: none;}
-div.resultItem{display: flex;}
-div.info_tag{gap: 0;}
-div.info_tag ul li{
-    padding: 0;
-}
-div.pieceInfo{
-    width: 225px;
+    }
+    div.info_summary{display: none;}
+    div.resultItem{display: flex;}
+    div.info_tag{gap: 0;}
+    div.info_tag ul li{
+        padding: 0;
+    }
+    div.pieceInfo{
+        width: 225px;
 
-}
-a.writeButton{display: none;}
-div.totalWordWork img {display: none;}
-div#tagSearchWrap .tagInner button{
-    width: 200px;
-}
-ul#tagSearchList{
-    overflow-x: auto;
-    white-space: nowrap;
-    height: 100%;
-    align-items: center;
-}
+    }
+    a.writeButton{display: none;}
+    div.totalWordWork img {display: none;}
+    div#tagSearchWrap .tagInner button{
+        width: 200px;
+    }
+    ul#tagSearchList{
+        overflow-x: auto;
+        white-space: nowrap;
+        height: 100%;
+        align-items: center;
+    }
     .info_head{
         display: flex;
         gap: 5px;

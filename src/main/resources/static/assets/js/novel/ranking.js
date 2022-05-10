@@ -17,6 +17,8 @@
 //     }
 // }
 
+
+
 //메뉴 클릭 시 해당 태그 인덱스 값 부여
 $(document).ready(function(){
     $('.nav-link').each(function(index){

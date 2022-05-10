@@ -4,7 +4,7 @@ function search() {
     $.ajax({
       url : "https://api.themoviedb.org/3/movie/popular?api_key=84681a7022280cff3021d07fe9117b39&language=ko-KR",
      
-      dataType: "json",	
+      dataType: "json",
       type: "get",
       async: false,
       success: function(data) {
@@ -24,7 +24,7 @@ function search() {
     $.ajax({
       url : "/dummy/Res.json",
      
-      dataType: "json",	
+      dataType: "json",
       type: "get",
       async: false,
       success: function(data) {
@@ -45,7 +45,7 @@ function search() {
    $.ajax({
      url : "/dummy/writeDummy.json",
     
-     dataType: "json",	
+     dataType: "json",
      type: "get",
      async: false,
      success: function(data) {
@@ -63,7 +63,7 @@ function reply() {
    $.ajax({
      url : "https://dummyjson.com/comments",
     
-     dataType: "json",	
+     dataType: "json",
      type: "get",
      async: false,
      success: function(data) {

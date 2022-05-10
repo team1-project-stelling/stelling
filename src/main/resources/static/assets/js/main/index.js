@@ -174,7 +174,7 @@ function makeHot(v,index,List){
    
    //페이지 이동
 function ff(){
-   location.href=`../../../templates/pages/round.html`
+   location.href=`../../../templates/novel/round.html`
 }
    
 }
@@ -234,7 +234,7 @@ function main_sectionList(v,sectionList){
     sectionList.appendChild(x_item)
     //페이지 지동
     function ff(){
-        location.href=`./pages/round.html?v=`+v.id;
+        location.href=`./novel/round.html?v=`+v.id;
     }
         
 
