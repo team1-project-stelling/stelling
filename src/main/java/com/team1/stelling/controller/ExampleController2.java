@@ -31,14 +31,14 @@ public class ExampleController2 {
         return "myPage_editProfile";
     }
 
-    @GetMapping("/detailInquiry")
+    @GetMapping("/inquiryDetail")
     public String detailInquiry(){
-        return "inquiry_detail";
+        return "inquiry/inquiryDetail";
     }
 
-    @GetMapping("/writeInquiry")
+    @GetMapping("/inquiryWrite")
     public String writeInquiry(){
-        return "inquiry_write";
+        return "inquiry/inquiryWrite";
     }
 
     @GetMapping("/ranking")
