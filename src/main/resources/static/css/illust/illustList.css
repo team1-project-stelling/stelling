@@ -322,8 +322,13 @@ li{list-style:none;
         margin-right: 5px;
     }
     .wrapper{
-        padding: 20px;
+
         overflow: hidden;
+
+    }
+
+    .illust-section{
+        padding: 20px;
         padding-top: 11px;
     }
     .imgDiv{
