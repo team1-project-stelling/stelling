@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
+    <link href="/css/fix/footer.css" rel="stylesheet" type="text/css">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
+    <link href="/css/mypage/questions.css" rel="stylesheet" type="text/css">
+    <title>내문의내역</title>
+
+</head>
+<body>
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word.html :: headFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
+<div id="qwer">
+<div id="allWrap" style=" margin:0 auto; padding-top: 20px; padding-bottom: 100px; zoom: 1.2;">
+    <div class="profileWrap1">
+        <div class="group">
+            <div class="left_block">
+                <ul class="liWrap">
+                    <li class="li_top letf">
+                        <a class="menu" href="myPageEditProfile.html">프로필 수정</a>
+                    </li>
+                    <li class="left">
+                        <a class="menu" href="myPageMyWork.html">내 작품 관리</a>
+                    </li>
+                    <li class="left">
+                        <a class="menu" href="myPageChangePw.html">비밀번호 변경</a>
+                    </li>
+                    <li class="left">
+                        <a class="menu" href="myPageQuestion.html">내 문의 내역</a>
+                    </li>
+                    <li class="left">
+                        <a class="menu" href="myPageQuit.html">탈퇴 하기</a>
+                    </li>
+                    <li class="left">
+                        <a class="menu" href="myPagePayList.html">결제</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="right_block">
+                <div class="">
+                    <div class="profile_text"><strong>내 문의내역</strong></div>
+                    <div class="writingWrap">
+                        <a href="" class="writingBtn">글쓰기</a>
+                    </div>
+                    <table class="questions_table">
+                        <thead>
+                            <th>번호</th>
+                            <th width="463px">제목</th>
+                            <th>작성일</th>
+                            <th class="th_end">답변상태</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><a href="">쉽지 않네</a></td>
+                                <td>2022-04-30</td>
+                                <td class="td_end">진행중</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="current">
+                        <a class="question_paging" href="1">
+                            <code>1</code>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
+</body>
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/mypage/questions.js"></script>
+</html>

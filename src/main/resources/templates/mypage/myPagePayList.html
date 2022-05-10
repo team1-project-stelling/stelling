@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
+    <link href="/css/fix/footer.css" rel="stylesheet" type="text/css">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
+    <link href="/css/mypage/payment.css" rel="stylesheet" type="text/css">
+    <title>결제</title>
+</head>
+<body>
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word.html :: headFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
+<div id="qwer">
+<div id="allWrap" style=" margin:0 auto; padding-top: 20px; padding-bottom: 100px; zoom: 1.2;">
+    <div class="profileWrap1">
+        <div class="group">
+            <div class="left_block">
+                <ul class="liWrap">
+                    <li class="li_top left">
+                        <a href="myPageEditProfile.html">프로필 수정</a>
+                    </li>
+                    <li class="left">
+                        <a class="menu" href="myPageMyWork.html">내 작품 관리</a>
+                    </li>
+                    <li class="left">
+                        <a class="menu" href="myPageChangePw.html">비밀번호 변경</a>
+                    </li>
+                    <li class="left">
+                        <a class="menu" href="myPageQuestion.html">내 문의 내역</a>
+                    </li>
+                    <li class="left">
+                        <a class="menu" href="myPageQuit.html">탈퇴 하기</a>
+                    </li>
+                    <li class="left">
+                        <a class="menu" href="myPagePayList.html">결제</a>
+                    </li>
+                </ul>
+            </div>
+                <div class="right_block">
+                    <div class="">
+                        <div class="profile_text"><strong>최근 구매/후원 내역 </strong></div>
+                        <table class="listWrap">
+                            <tbody>
+                                <tr>
+                                    <td class="active1 one" style="width: 50%">
+                                        <div class="active">내 포인트</div>
+                                    </td>
+                                    <td class="active2" style="width: 50%">
+                                        <div class="active"> 내 후원 내역</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="paymentWrap">
+                            <div>총 결제 금액 (금액)원</div>
+                            <div>
+                                <form>
+                                    <div id="dateType" >
+                                        <input type="date" id="dateFrom" name="form">
+                                        ~ <input type="date" id="dateTo" name="to">
+                                    </div>
+                                    <div class="searchWrap">
+                                        <button class="btn btn-sm" id="btnSearch" name="btnSearch">검색</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <table class="pointTable">
+                            <tbody>
+                                <tr>
+                                    <th>결제 금액</th>
+                                    <th>결제 일</th>
+                                </tr>
+                                <tr>
+                                    <td class="td1">20,000 원</td>
+                                    <td class="td1">2022-05-02</td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">50,000 원</td>
+                                    <td class="td1">2022-05-01</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+</div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
+</body>
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/mypage/payment.js"></script>
+
+</html>

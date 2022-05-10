@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
+    <link href="/css/fix/footer.css" rel="stylesheet" type="text/css">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
+    <link href="/css/mypage/withdraw.css" rel="stylesheet" type="text/css">
+    <title>탈퇴</title>
+</head>
+<body>
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word.html :: headFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
+    <div id="qwer">
+        <div id="allWrap" style="margin:0 auto; padding-top: 20px; padding-bottom: 100px; zoom: 1.2;">
+            <div class="profileWrap1">
+                <div class="group">
+                    <div class="left_block">
+                        <ul class="liWrap">
+                            <li class="li_top left">
+                                <a href="myPageEditProfile.html">프로필 수정</a>
+                            </li>
+                            <li class="left">
+                                <a class="menu" href="myPageMyWork.html">내 작품 관리</a>
+                            </li>
+                            <li class="left">
+                                <a class="menu" href="myPageChangePw.html">비밀번호 변경</a>
+                            </li>
+                            <li class="left">
+                                <a class="menu" href="myPageQuestion.html">내 문의 내역</a>
+                            </li>
+                            <li class="left">
+                                <a class="menu" href="myPageQuit.html">탈퇴 하기</a>
+                            </li>
+                            <li class="left">
+                                <a class="menu" href="myPagePayList.html">결제</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="right_block">
+                        <div class="">
+                            <div class="profile_text"><strong>탈퇴</strong></div>
+                            <div class="main">
+                                <div class="precautions">
+                                    <div>
+                                        <h3 class="withdraw_1">회원탈퇴에 앞서 유의사항 및 안내를 반드시 읽고 진행해 주세요!</h3>
+                                    </div>
+                                </div>
+                                <form action="" method="post">
+                                    <div class="info_agree">
+                                        <div class="info_user">
+                                            <strong class="tit_agree">아이디는 재사용 및 복구 불가</strong>
+                                            <br>
+                                            <strong>회원탈퇴 진행 시 본인을 포함한 타인 모두
+                                                <span class="emphasis">아이디 재사용이나 복구가 불가능합니다.</span>
+                                                <br>신중히 선택하신 후 결정해주세요.
+                                            </strong>
+                                            <span class="check_notice">
+                                                <input type="checkbox" id="idAgree1" name="idAgree">
+                                                <label for="idAgree1" class="lab_check">
+                                                    <span class="icon_check">동의</span>
+                                                </label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="info_agree">
+                                        <div class="info_user">
+                                            <strong class="tit_agree">내정보 및 개인형 서비스 이용 기록 삭제 안내</strong>
+                                            <br>
+                                            <strong>내정보 및 개인형 서비스 이용기록이 모두 삭제되며,
+                                                <span class="emphasis">삭제된 데이터는 복구되지 않습니다.</span>
+                                                <br>필요한 데이터는 미리 백업을 해주세요.
+                                            </strong>
+                                            <span class="check_notice">
+                                                <input type="checkbox" id="idAgree2" name="idAgree">
+                                                <label for="idAgree2" class="lab_check">
+                                                    <span class="icon_check">동의</span>
+                                                </label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="wrap_btn">
+                                        <button type="submit" class="withdraw_btn">탈퇴</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
+</body>
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/mypage/withdraw.js"></script>
+</html>

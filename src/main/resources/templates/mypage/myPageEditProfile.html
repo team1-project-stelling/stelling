@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
+    <link href="/css/fix/footer.css" rel="stylesheet" type="text/css">
+    <link href="/css/fix/header.css" rel="stylesheet" type="text/css">
+    <link href="/css/mypage/editProfile.css" rel="stylesheet" type="text/css">
+    <title>프로필 수정</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+        @media(max-width: 1217px) and (min-width:860px){
+            #allWrap{
+                display: flex;
+                justify-content: center;
+            }
+            .left_block{
+                display: none;
+            }
+        }
+        @media (max-width: 850px) {
+            #allWrap{
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/header_word.html :: headFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
+<div id="qwer">
+<div id="allWrap" style="margin:0 auto; padding-top: 20px; padding-bottom: 50px; zoom: 1.2;">
+    <div class="profileWrap1">
+        <div class="group">
+            <div class="left_block">
+                <ul class="liWrap">
+                    <li class="left left_top">
+                        <a class="menu" href="myPageEditProfile.html">프로필 수정</a>
+                    </li>
+                    <li class="left">
+                        <a class="menu" href="myPageMyWork.html">내 작품 관리</a>
+                    </li>
+                    <li class="left">
+                        <a class="menu" href="myPageChangePw.html">비밀번호 변경</a>
+                    </li>
+                    <li class="left">
+                        <a class="menu" href="myPageQuestion.html">내 문의 내역</a>
+                    </li>
+                    <li class="left">
+                        <a class="menu" href="myPageQuit.html">탈퇴 하기</a>
+                    </li>
+                    <li class="left">
+                        <a class="menu" href="myPagePayList.html">결제</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="right_block">
+                <div class="">
+                    <div class="profile_text"><strong>프로필 수정</strong></div>
+                    <div class="main">
+                        <div class="set_myInfo top">
+                            <strong class="profile id">아이디</strong>
+                            <div class="profile_show">(아이디 자리)</div>
+                        </div>
+                        <div class="set_myInfo photo">
+                            <strong class="profile picture">이미지</strong>
+                            <div class="profile_show imgWrap">
+                                <img src="/images/default.png" class="thumb imagePreview1"/>
+                                <div>
+                                    <label for="imageSelector" class="icon ">
+                                        <img class="clip" src="/images/클립.png" height="15px"width="15px" style="cursor: pointer"/>
+                                    </label>
+                                    <input type="file" class="hidden_input" id="imageSelector" name="imageSelector"
+                                           accept="image/jpeg, image/jpg, image/png" style="display: none"/>
+                                </div>
+                                <div href="javascript:void(0);" class="dellink" id="dellink">
+                                    <img class="icon" src="/images/휴지통.png" height="15px" width="15px" style="cursor: pointer"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="set_myInfo emailWrap">
+                            <strong class="profile email">이메일</strong>
+                            <div class="profile_show"><input class="email" type="text" onchange="validEmail(this)" placeholder="이메일">
+                                <button type="button" class="btn emailChange">변경</button>
+                            <p class ="p" id="result_email"></p>
+                            </div>
+                        </div>
+                        <div class="set_myInfo ">
+                            <strong class="profile nick">닉네임</strong>
+                            <div class="profile_show"><input class="nick" type="text" onchange="validNick(this)" placeholder="2~10자리 이내로 적어주세요!">
+                                <button type="button" class="btn nickChange">변경</button>
+                                <p class ="p" id="result_nick"></p>
+                            </div>
+                        </div>
+                        <div class="set_myInfo ">
+                            <strong class="profile phone">휴대폰</strong>
+                            <div class="profile_show"><input class="phone" type="text" onchange="validPhone(this)" placeholder="' - '없이 입력해주세요">
+                                <button type="button" class="btn phoneChange">변경</button>
+                                <p class ="p" id="result_phone"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
+</body>
+<!-- Scripts -->
+<!--<script type="text/javascript" src="upload.js"></script>-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/mypage/editProfile.js"></script>
+<script>
+</script>
+</html>
