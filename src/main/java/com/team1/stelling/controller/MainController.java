@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @Slf4j
 @RequestMapping("/main/*")
-public class TestController3 {
+public class MainController {
 
 
-    @GetMapping("/main")
-    public void myBook(){}
+    @GetMapping("/index")
+    public void mainPage(){}
 
 
 }
