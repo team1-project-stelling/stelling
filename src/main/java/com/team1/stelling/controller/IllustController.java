@@ -1,4 +1,4 @@
-package com.team1.stelling.controller.illustController;
+package com.team1.stelling.controller;
 
 
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/illust/*")
-public class illustController {
+public class IllustController {
 
     @GetMapping("/illustCategoryList")
     public void illustList(){
@@ -19,10 +19,7 @@ public class illustController {
     @GetMapping("/illustChatPage")
     public void chatForm(){
     }
-    @GetMapping("/header")
-    public String header(){
-        return "fix/header_word_illust";
-    }
+
     @GetMapping("/illustList")
     public void illustCategoryList(){
     }
