@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @Slf4j
 @RequestMapping("/myLibrary/*")
-public class ExampleController {
+public class MyLibrary {
 
     @RequestMapping("")
     public void myLibrary(){
@@ -42,25 +42,6 @@ public class ExampleController {
         return "cash/coinShop";
     }
 
-    @GetMapping("index")
-    public String index(){
-        log.info("index");
-        return "/index";
-    }
 
-    @GetMapping("round")
-    public String round(){
-        log.info("round");
-        return "/round";
-    }
 
-    @GetMapping("novelRegister")
-    public String novelRegister(){
-        return "writeNovel/novelRegister";
-    }
-
-    @GetMapping("novelWrite")
-    public String novelWrite(){
-        return "writeNovel/novelWrite";
-    }
 }
