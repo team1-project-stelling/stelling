@@ -13,23 +13,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/illust/*")
 public class illustController {
 
-    @GetMapping("/illustList")
+    @GetMapping("/illustCategoryList")
     public void illustList(){
     }
-    @GetMapping("/chatForm")
+    @GetMapping("/illustChatPage")
     public void chatForm(){
     }
     @GetMapping("/header")
     public String header(){
         return "fix/header_word_illust";
     }
-    @GetMapping("/illustCategoryList")
+    @GetMapping("/illustList")
     public void illustCategoryList(){
     }
     @GetMapping("/illustPostingPage")
     public void PostingPage(){
     }
-    @GetMapping("/illustratorWritePage")
+    @GetMapping("/illustUserInput")
     public void writePage(){
     }
     @GetMapping("/illustUserPage")

@@ -12,22 +12,22 @@ public class UserController {
 
     @GetMapping("findId")
     public String findId(){
-        return "user/findId";
+        return "user_findId";
     }
 
     @GetMapping("findPw")
     public String findPw(){
-        return "user/findPw";
+        return "user_findPw";
     }
 
     @GetMapping("join")
     public String join(){
-        return "user/join";
+        return "user_join";
     }
 
     @GetMapping("login")
     public String login(){
-        return "user/login";
+        return "user_login";
     }
 
     @GetMapping("agree")

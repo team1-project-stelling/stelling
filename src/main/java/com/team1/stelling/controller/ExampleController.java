@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("/myLibaray/*")
+@RequestMapping("/myLibrary/*")
 public class ExampleController {
 
     @RequestMapping("")
@@ -15,22 +15,31 @@ public class ExampleController {
         log.info("libaray");
     }
 
-    @GetMapping("/myBook")
+    // 소장함 -> 결제
+    @GetMapping("/myLibraryCollection")
     public String myBook(){
-        log.info("myBook");
-        return "myLibaray/myBook";
+        log.info("myLibraryCollection");
+        return "myLibrary/myLibraryCollection";
     }
 
-    @GetMapping("/myRead")
-    public String myRead(){
-        log.info("myRead");
-        return "myLibaray/myRead";
+    // 최근 본 작품
+    @GetMapping("/myLibraryRecentView")
+    public String myLibraryRecentView(){
+        log.info("myLibraryRecentView");
+        return "myLibrary/myLibraryRecentView";
+    }
+    
+    // 찜목록 -> 그냥찜
+    @GetMapping("/myLibraryPick")
+    public String myLibraryPick(){
+        log.info("myLibraryPick");
+        return "myLibrary/myLibraryPick";
     }
 
     @GetMapping("/coinShop")
     public String coinShop(){
         log.info("coinShop");
-        return "/coinShop";
+        return "cash/coinShop";
     }
 
     @GetMapping("index")

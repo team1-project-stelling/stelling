@@ -16,29 +16,29 @@ public class ExampleController2 {
     @GetMapping("/myWork2")
     public String myWork2(){
         log.info("myWork2");
-        return "mypage/myWork2";
+        return "myPage_myWork";
     }
 
     @GetMapping("/myWork3")
     public String myWork3(){
         log.info("myWork3");
-        return "mypage/myWork3";
+        return "myPage_myWork2";
     }
 
     @GetMapping("/editProfile")
     public String editProfile(){
         log.info("editProfile");
-        return "mypage/editProfile";
+        return "myPage_editProfile";
     }
 
-    @GetMapping("/detailInquiry")
+    @GetMapping("/inquiryDetail")
     public String detailInquiry(){
-        return "inquiry/detailInquiry";
+        return "inquiry/inquiryDetail";
     }
 
-    @GetMapping("/writeInquiry")
+    @GetMapping("/inquiryWrite")
     public String writeInquiry(){
-        return "inquiry/writeInquiry";
+        return "inquiry/inquiryWrite";
     }
 
     @GetMapping("/ranking")
