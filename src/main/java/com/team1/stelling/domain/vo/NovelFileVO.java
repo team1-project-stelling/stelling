@@ -32,7 +32,11 @@ public class NovelFileVO {
    @JoinColumn(name = "USER_NUMBER")
    private UserVO userVO;  // 유저번호 FK
 
-   @Column(name = "NOVELFILE_FILEPATH")
+   @ManyToOne
+   @JoinColumn(name = "NOVEL_NUMBER")
+   private NovelVO novelVO;
+
+    @Column(name = "NOVELFILE_FILEPATH")
    private String novelFileFilePath; // 소설 파일 경로
    @Column(name ="NOVELFILE_ORIGINFILENAME")
    private String novelFileOriginalFileName; // 소설 원본 파일 이름
@@ -44,10 +48,11 @@ public class NovelFileVO {
    private Date novelFileUpdateDate;  // 소설 수정시간
 
    @Builder
-    public NovelFileVO(Long novelFileNumber, SubNovelVO subNovelVO, UserVO userVO, String novelFileFilePath, String novelFileOriginalFileName, String novelFileFileName, Date novelFileUploadUpdate, Date novelFileUpdateDate) {
+   public NovelFileVO(Long novelFileNumber, SubNovelVO subNovelVO, UserVO userVO, NovelVO novelVO, String novelFileFilePath, String novelFileOriginalFileName, String novelFileFileName, Date novelFileUploadUpdate, Date novelFileUpdateDate) {
         this.novelFileNumber = novelFileNumber;
         this.subNovelVO = subNovelVO;
         this.userVO = userVO;
+        this.novelVO = novelVO;
         this.novelFileFilePath = novelFileFilePath;
         this.novelFileOriginalFileName = novelFileOriginalFileName;
         this.novelFileFileName = novelFileFileName;
