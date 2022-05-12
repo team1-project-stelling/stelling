@@ -145,7 +145,8 @@ th{
     border-bottom: 1px solid #ef6e73b3;
     color: white;
 }
-div input#dateFrom, input#dateTo{
+
+div input#dateFrom, div input#dateTo{
     width: 140px;
     height: 30px;
     border: 1px solid #e8e9ed;
@@ -157,5 +158,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     max-width: 1200px;
     margin-bottom: 40px;
     margin: 0 auto;
-
 }
