@@ -98,3 +98,23 @@ $('#btnSearch').click(function () {
         alert("해당 기간의 조회가 불가능합니다.");
     }
 }); //click() end
+
+
+//내 포인트 / 내 후원 내역 이동
+document.querySelector('.payTableWrap2').style.display = 'none';
+document.querySelector('.myPoint').addEventListener('click',function(){
+    clickchange1 ()
+})
+document.querySelector('.mySupport').addEventListener('click',function(){
+    clickchange2 ()
+})
+
+function clickchange1() {
+    document.querySelector('.payTableWrap2').style.display = 'none';
+    document.querySelector('.payTableWrap').style.display = "block";
+}
+
+function clickchange2() {
+    document.querySelector('.payTableWrap').style.display = 'none';
+    document.querySelector('.payTableWrap2').style.display = 'block';
+}
