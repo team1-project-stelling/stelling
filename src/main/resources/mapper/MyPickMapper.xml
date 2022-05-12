@@ -14,7 +14,7 @@
     <!--수정-->
     <update id="update">
         UPDATE TBL_MYPICK
-        SET MYPICK_PICK= '1', NOVEL_NUMBER=#{novelNumber}, USER_NUMBER=#{userNumber}
+        SET MYPICK_PICK= #{myPickPick}, NOVEL_NUMBER=#{novelNumber}, USER_NUMBER=#{userNumber}
         WHERE MYPICK_NUMBER=#{myPickNumber}
     </update>
 
@@ -25,7 +25,7 @@
     <select id="get" resultType="myPickVO">
         SELECT MYPICK_NUMBER, MYPICK_PICK, NOVEL_NUMBER, USER_NUMBER
         FROM TBL_MYPICK
-        WHERE USER_NUMBER = #{userNumber}
+        WHERE MYPICK_NUMBER=#{myPickNumber}
     </select>
 
 

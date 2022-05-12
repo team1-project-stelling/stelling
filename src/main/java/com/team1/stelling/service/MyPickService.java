@@ -1,6 +1,7 @@
 package com.team1.stelling.service;
 
 import com.team1.stelling.domain.dao.MyPickDAO;
+import com.team1.stelling.domain.vo.MyIllustVO;
 import com.team1.stelling.domain.vo.MyPickVO;
 import com.team1.stelling.domain.vo.PayVO;
 import lombok.RequiredArgsConstructor;
@@ -15,4 +16,5 @@ public class MyPickService{
 
     public MyPickVO get(Long myPickNumber) {return myPickDAO.get(myPickNumber);}
     public void register(MyPickVO myPickVO) {myPickDAO.register(myPickVO);}
+    public void modify(MyPickVO myPickVO) {myPickDAO.modify(myPickVO);}
 }

@@ -14,7 +14,7 @@
     <!--수정-->
     <update id="update">
         UPDATE TBL_MYILLUST
-        SET MYILLUST_STATUS= '1', USER_NUMBER=#{userNumber}, ILLUST_NUMBER=#{illustNumber}
+        SET MYILLUST_STATUS= #{myIllustStatus}, USER_NUMBER=#{userNumber}, ILLUST_NUMBER=#{illustNumber}
         WHERE MYILLUST_NUMBER=#{myIllustNumber}
     </update>
 
@@ -22,7 +22,7 @@
     <select id="get" resultType="myIllustVO">
         SELECT MYILLUST_NUMBER, MYILLUST_STATUS, USER_NUMBER, ILLUST_NUMBER
         FROM TBL_MYILLUST
-        WHERE USER_NUMBER = #{userNumber}
+        WHERE MYILLUST_NUMBER=#{myIllustNumber}
     </select>
 
 </mapper>

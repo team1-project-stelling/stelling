@@ -13,7 +13,7 @@ public class IllustProfileService{
     private final IllustProfileDAO illustProfileDAO;
 
     public IllustProfileVO get(Long illustProfileNumber) {return illustProfileDAO.get(illustProfileNumber);}
-
     public void register(IllustProfileVO illustProfileVO) {illustProfileDAO.register(illustProfileVO);}
+    public void modify(IllustProfileVO illustProfileVO) {illustProfileDAO.modify(illustProfileVO);}
 
 }
