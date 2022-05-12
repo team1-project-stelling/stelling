@@ -1,5 +1,6 @@
 package com.team1.stelling.domain.vo;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -23,4 +24,14 @@ public class RecentViewVO {
     @JoinColumn(name = "USER_NUMBER")
     UserVO userVO; // userNum FK
 
+    @ManyToOne
+    @JoinColumn(name = "NOVEL_NUMBER")
+    NovelVO novelVO;                //  Fk NOVEL_NUMBER NUMBER,
+
+    @Builder
+    public RecentViewVO(Long recentViewNumber, UserVO userVO, NovelVO novelVO) {
+        this.recentViewNumber = recentViewNumber;
+        this.userVO = userVO;
+        this.novelVO = novelVO;
+    }
 }
