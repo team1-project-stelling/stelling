@@ -13,4 +13,6 @@ public interface MyPickMapper {
 
     //삭제?
     public int delete(Long myPickNumber);
+
+    public MyPickVO get(Long myPickNumber);
 }

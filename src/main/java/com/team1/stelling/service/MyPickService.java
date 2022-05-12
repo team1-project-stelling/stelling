@@ -13,4 +13,5 @@ import org.springframework.stereotype.Service;
 public class MyPickService{
     private final MyPickDAO myPickDAO;
 
+    public MyPickVO get(Long myPickNumber) {return myPickDAO.get(myPickNumber);}
 }

@@ -3,12 +3,22 @@
 <mapper namespace="com.team1.stelling.mapper.MyIllustMapper">
 
     <!--등록-->
-    <insert id="insert"></insert>
+    <insert id="insert">
+        INSERT INTO TBL_MYILLUST (MYILLUST_NUMBER, USER_NUMBER, ILLUST_NUMBER)
+        VALUES(MYILLUST_SEQ.NEXTVAL, #{userNumber}, #{illustNumber})
+    </insert>
 
     <!--삭제-->
     <delete id="delete"></delete>
 
     <!--수정-->
     <update id="update"></update>
+
+    <!--특정 내역 가져오기-->
+    <select id="get" resultType="myIllustVO">
+        SELECT MYILLUST_NUMBER, MYILLUST_STATUS, USER_NUMBER, ILLUST_NUMBER
+        FROM TBL_MYILLUST
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
 
 </mapper>

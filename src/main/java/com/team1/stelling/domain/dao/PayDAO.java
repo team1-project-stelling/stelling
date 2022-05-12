@@ -16,4 +16,6 @@ public class PayDAO {
         log.info("pay register...." + payVO);
         return payMapper.insert(payVO);
     }
+
+    public PayVO get(Long payNumber) {return payMapper.get(payNumber);}
 }

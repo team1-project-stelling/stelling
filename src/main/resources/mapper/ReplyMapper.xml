@@ -3,7 +3,10 @@
 <mapper namespace="com.team1.stelling.mapper.ReplyMapper">
 
     <!--댓글 등록-->
-    <insert id="insert"></insert>
+    <insert id="insert">
+        INSERT INTO TBL_REPLY (REPLY_NUMBER, USER_NUMBER, NOVEL_NUMBER, SUBNOVEL_NUMBER, REPLY_CONTENT)
+        VALUES(REPLY_SEQ.NEXTVAL, #{userNumber}, #{novelNumber}, #{subNovelNumber}, #{replyContent})
+    </insert>
 
     <!--댓글 1개 조회-->
     <select id="read" resultType="replyVO"></select>

@@ -3,7 +3,10 @@
 <mapper namespace="com.team1.stelling.mapper.MyPickMapper">
 
     <!--등록-->
-    <insert id="insert"></insert>
+    <insert id="insert">
+        INSERT INTO TBL_MYPICK (MYPICK_NUMBER, USER_NUMBER, NOVEL_NUMBER)
+        VALUES(MYPICK_SEQ.NEXTVAL, #{userNumber}, #{novelNumber})
+    </insert>
 
     <!--삭제-->
     <delete id="delete"></delete>
@@ -13,4 +16,13 @@
 
     <!--전체 조회-->
     <select id="getList"></select>
+
+    <!--특정 내역 가져오기-->
+    <select id="get" resultType="myPickVO">
+        SELECT MYPICK_NUMBER, MYPICK_PICK, NOVEL_NUMBER, USER_NUMBER
+        FROM TBL_MYPICK
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+
+
 </mapper>

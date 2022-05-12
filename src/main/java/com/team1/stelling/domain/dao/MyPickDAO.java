@@ -16,4 +16,6 @@ public class MyPickDAO {
         log.info("myPick register...." + myPickVO);
         return myPickMapper.insert(myPickVO);
     }
+
+    public MyPickVO get(Long myPickNumber) {return myPickMapper.get(myPickNumber);}
 }

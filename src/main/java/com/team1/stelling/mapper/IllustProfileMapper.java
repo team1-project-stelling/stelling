@@ -13,4 +13,6 @@ public interface IllustProfileMapper {
 
     //삭제?
     public int delete(Long illustProfileNumber);
+
+    public IllustProfileVO get(Long illustProfileNumber);
 }
