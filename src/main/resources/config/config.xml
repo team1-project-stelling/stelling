@@ -8,6 +8,7 @@
         <typeAlias type="com.team1.stelling.domain.vo.MyPickVO" alias="myPickVO"/>
         <typeAlias type="com.team1.stelling.domain.vo.MyIllustVO" alias="myIllustVO"/>
         <typeAlias type="com.team1.stelling.domain.vo.InquiryVO" alias="inquiryVO"/>
+        <typeAlias type="com.team1.stelling.domain.vo.PayVO" alias="payVO"/>
 
     </typeAliases>
 </configuration>

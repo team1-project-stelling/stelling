@@ -35,6 +35,11 @@ public class MyPage {
         log.info("myPageQuestion");
         return "myPage/myPageQuestion";
     }
+    @GetMapping("/myPagePayList")
+    public String myPagePayList(){
+        log.info("myPagePayList");
+        return "myPage/myPagePayList";
+    }
 
 
 
