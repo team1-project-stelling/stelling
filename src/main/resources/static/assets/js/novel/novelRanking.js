@@ -19,7 +19,7 @@
 
 
 
-//메뉴 클릭 시 해당 태그 인덱스 값 부여
+//태그 클릭 시 해당 태그 인덱스 값 부여 -> 클릭시 css 먹이기
 $(document).ready(function(){
     $('.nav-link').each(function(index){
         $(this).attr('menu-index', index);
@@ -42,6 +42,7 @@ $(document).ready(function(){
 //     console.log(imgs[i]);
 // }
 
+//마우스 갖다댔을시 이미지 확대
 function zoomIn(event){
     event.target.style.transform = "scale(1.2)"; //1.2배 확대
     event.target.style.zIndex = 1;
@@ -82,6 +83,7 @@ for (var i = 0; i < menus.length; i++){
 
 // });
 
+//태그 검색 보이기 숨기기
 function changeTagSearch(){
     $('.category_ul').toggle()
     $('#searchFormWrap').toggle()

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>랭킹 페이지</title>
-<link rel="stylesheet" href="/assets/css/novel/ranking.css">
+<link rel="stylesheet" href="/assets/css/novel/novelRanking.css">
 <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
     <link href="/assets/css/fix/footer.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/fix/header.css" rel="stylesheet" type="text/css">
@@ -33,21 +33,21 @@
         <table class="menu_alarm mobile_hidden s_inv" style="width: 100%; max-width: 1200px; height: 60px; margin-top: 0px;">
             <tbody>
                 <tr>
-                    <td class="tdmenu" style="width: 34.8%;">
-                        <a href="#" class="click-menu menu-select">전체</a>
+                    <td class="tdmenu click-menu menu-select" style="width: 34.8%;">
+                        <a href="javascript:void(0);">전체</a>
                     </td>
-                    <td class="tdmenu" style="width: 34.8%;">
-                        <a href="#" class="click-menu">자유</a>
+                    <td class="tdmenu click-menu" style="width: 34.8%;">
+                        <a href="javascript:void(0);">자유</a>
                     </td>
-                    <td class="tdmenu" style="width: 34.8%;">
-                        <a href="#" class="click-menu">완결</a>
+                    <td class="tdmenu click-menu" style="width: 34.8%;">
+                        <a href="javascript:void(0);">완결</a>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div style="float: right; margin-top: 51px;" class="mobile_hidden">
-        <a href="#">
+        <a href="javascript:void(0);">
             <img src="https://novelpia.com/img/new/mybook/btn_novel_write.png?tmp=1" style="height: 43px;">
         </a>
     </div>
@@ -144,8 +144,10 @@
                         <tr>
                             <td style="width: 120px;">
                                 <div style="position:relative;overflow:hidden;box-shadow: 2px 0px 3px 0px rgba(0,0,0,0.3);border-radius: 0px 30px 0px 0px;">
-                                    <img src="https://image.novelpia.com/imagebox/cover/962af16ac0f068f9f5a8378a70b71752_19966_ori.thumb" 
-                                    class="scale" style="height:280px;width:190px;background-position:center;" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
+                                    <a href="javascript:void(0);"> <!--첫번째 이미지만 a태그로 감쌌습니다.-->
+                                        <img src="https://image.novelpia.com/imagebox/cover/962af16ac0f068f9f5a8378a70b71752_19966_ori.thumb"
+                                        class="scale" style="height:280px;width:190px;background-position:center;" onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)">
+                                    </a>
                                 </div>
                                 <div class="thumb_s1">1</div>
                             </td>
@@ -549,11 +551,11 @@
     <!--페이징-->
     <div class="pagenation-group pc-page">
         <ul>
-            <li><a href="#" class="page-select">1</a></li>
-            <li><a href="#" class="page-select">2</a></li>
-            <li><a href="#" class="page-select">3</a></li>
-            <li><a href="#" class="page-select">4</a></li>
-            <li><a href="#" class="page-select">5</a></li>
+            <li><a href="javascript:void(0);" class="page-select">1</a></li>
+            <li><a href="javascript:void(0);" class="page-select">2</a></li>
+            <li><a href="javascript:void(0);" class="page-select">3</a></li>
+            <li><a href="javascript:void(0);" class="page-select">4</a></li>
+            <li><a href="javascript:void(0);" class="page-select">5</a></li>
         </ul>
     </div>
 </div>
@@ -593,5 +595,5 @@
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/fix/header.js"></script>
-<script src="/assets/js/novel/ranking.js"></script>
+<script src="/assets/js/novel/novelRanking.js"></script>
 </html>
