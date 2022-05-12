@@ -15,4 +15,5 @@ public class InquiryDAO {
 
     public InquiryVO get(Long inquiryNumber) {return inquiryMapper.get(inquiryNumber);}
     public void register(InquiryVO inquiryVO) {inquiryMapper.insert(inquiryVO);}
+    public void modify(InquiryVO inquiryVO) {inquiryMapper.update(inquiryVO);}
 }

@@ -15,4 +15,5 @@ public class IllustProfileDAO {
 
     public IllustProfileVO get(Long illustProfileNumber) {return illustProfileMapper.get(illustProfileNumber);}
     public void register(IllustProfileVO illustProfileVO) {illustProfileMapper.insert(illustProfileVO);}
+    public void modify(IllustProfileVO illustProfileVO) {illustProfileMapper.update(illustProfileVO);}
 }

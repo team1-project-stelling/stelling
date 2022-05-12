@@ -16,4 +16,5 @@ public class MyIllustDAO {
 
     public MyIllustVO get(Long myIllustNumber) {return myIllustMapper.get(myIllustNumber);}
     public void register(MyIllustVO myIllustVO) {myIllustMapper.insert(myIllustVO);}
+    public void modify(MyIllustVO myIllustVO) {myIllustMapper.update(myIllustVO);}
 }
