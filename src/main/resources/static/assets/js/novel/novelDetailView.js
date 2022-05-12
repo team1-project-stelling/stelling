@@ -190,3 +190,28 @@ $('.gray').on("click", function () {
     $('.gray').attr('src', '/images/icon/체크핑크.png');
 
 })
+
+
+
+$('.mentBtns1').on("click", function () {
+    console.log($(this).children('img').attr('src'));
+
+
+    if($(this).children('img').attr('src')=='/images/icon/좋아요full.png'){
+        let $number = parseInt($(this).children('span').html());
+        $(this).css('border-color','#cbcbcb');
+        $(this).css('color','#cbcbcb');
+        $(this).children('img').attr('src', '/images/icon/좋아요.png');
+        $(this).children('span').html($number -1);
+
+    }else {
+
+        let $number = parseInt($(this).children('span').html());
+        $(this).css('border-color', '#5A94FF');
+        $(this).css('color', '#5A94FF');
+        $(this).children('img').attr('src', '/images/icon/좋아요full.png');
+        $(this).children('span').html($number + 1);
+
+    }
+});
+
