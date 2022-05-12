@@ -13,4 +13,5 @@ public class InquiryService{
     private final InquiryDAO inquiryDAO;
 
     public InquiryVO get(Long inquiryNumber) {return inquiryDAO.get(inquiryNumber);}
+    public void register(InquiryVO inquiryVO) {inquiryDAO.register(inquiryVO);}
 }

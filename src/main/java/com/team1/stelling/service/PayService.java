@@ -14,4 +14,5 @@ public class PayService{
 
 
     public PayVO get(Long payNumber) {return payDAO.get(payNumber);}
+    public void register(PayVO payVO) {payDAO.register(payVO);}
 }

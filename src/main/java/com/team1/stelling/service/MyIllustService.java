@@ -13,4 +13,5 @@ public class MyIllustService{
     private final MyIllustDAO myIllustDAO;
 
     public MyIllustVO get(Long myIllustNumber) {return myIllustDAO.get(myIllustNumber);}
+    public void register(MyIllustVO myIllustVO) {myIllustDAO.register(myIllustVO);}
 }

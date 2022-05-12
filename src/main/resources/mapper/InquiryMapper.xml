@@ -4,15 +4,19 @@
 
     <!--등록-->
     <insert id="insert">
-        INSERT INTO TBL_INQUIRY (INQUIRY_NUMBER, USER_NUMBER, INQUIRY_TITLE, INQUIRY_CONTENT)
-        VALUES(INQUIRY_SEQ.NEXTVAL, #{userNumber}, #{inquiryTitle}, #{inquiryContent})
+        INSERT INTO TBL_INQUIRY (INQUIRY_NUMBER, USER_NUMBER, INQUIRY_TITLE, INQUIRY_CONTENT, INQUIRY_REPDATE)
+        VALUES(INQUIRY_SEQ.NEXTVAL, #{userNumber}, #{inquiryTitle}, #{inquiryContent}, SYSDATE)
     </insert>
 
     <!--삭제-->
     <delete id="delete"></delete>
 
     <!--수정-->
-    <update id="update"></update>
+    <update id="update">
+        UPDATE TBL_INQUIRY
+        SET USER_NUMBER=#{userNumber}, INQUIRY_ANSWER=#{inquiryAnswer}, INQUIRY_STATUS='1', INQUIRY_REPDATE=SYSDATE
+        WHERE INQUIRY_NUMBER=#{userNumber}
+    </update>
 
     <!--내 문의 내역-->
     <select id="get" resultType="inquiryVO">

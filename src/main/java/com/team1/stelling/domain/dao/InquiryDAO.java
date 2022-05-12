@@ -1,5 +1,6 @@
 package com.team1.stelling.domain.dao;
 
+import com.team1.stelling.domain.vo.IllustProfileVO;
 import com.team1.stelling.domain.vo.InquiryVO;
 import com.team1.stelling.mapper.InquiryMapper;
 import lombok.RequiredArgsConstructor;
@@ -13,4 +14,5 @@ public class InquiryDAO {
     private final InquiryMapper inquiryMapper;
 
     public InquiryVO get(Long inquiryNumber) {return inquiryMapper.get(inquiryNumber);}
+    public void register(InquiryVO inquiryVO) {inquiryMapper.insert(inquiryVO);}
 }

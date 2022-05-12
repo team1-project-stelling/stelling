@@ -13,4 +13,5 @@ public class SupportService{
     private final SupportDAO supportDAO;
 
     public SupportVO get(Long supportNumber) {return supportDAO.get(supportNumber);}
+    public void register(SupportVO supportVO) {supportDAO.register(supportVO);}
 }

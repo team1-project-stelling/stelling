@@ -1,6 +1,7 @@
 package com.team1.stelling.mapper;
 
 import com.team1.stelling.domain.vo.InquiryVO;
+import com.team1.stelling.domain.vo.MyIllustVO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -10,6 +11,8 @@ public interface InquiryMapper {
 
     //상세 보기
     public InquiryVO read(Long inquiryNumber);
+
+    public int update(InquiryVO inquiryVO);
 
     //삭제?
     public int delete(Long inquiryNumber);
