@@ -8,9 +8,11 @@ public interface InquiryMapper {
     //등록
     public int insert(InquiryVO inquiryVO);
 
-    //조회
+    //상세 보기
     public InquiryVO read(Long inquiryNumber);
 
     //삭제?
     public int delete(Long inquiryNumber);
+
+    public InquiryVO get(Long inquiryNumber);
 }

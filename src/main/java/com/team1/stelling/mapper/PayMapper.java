@@ -13,4 +13,6 @@ public interface PayMapper {
 
     //거래 취소시 삭제?
     public int delete(Long payNumber);
+
+    public PayVO get(Long payNumber);
 }

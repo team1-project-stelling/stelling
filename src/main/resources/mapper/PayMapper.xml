@@ -3,7 +3,10 @@
 <mapper namespace="com.team1.stelling.mapper.PayMapper">
 
     <!--등록-->
-    <insert id="insert"></insert>
+    <insert id="insert">
+        INSERT INTO TBL_PAY (PAY_NUMBER, USER_NUMBER, PAY_CHARGE, PAY_COINCOUNT)
+        VALUES(PAY_SEQ.NEXTVAL, #{userNumber}, #{payCharge}, #{payCoinCount})
+    </insert>
 
     <!--1개 조회-->
     <select id="read" resultType="PayVO"></select>
@@ -13,4 +16,11 @@
 
     <!--전체 조회-->
     <select id="getList"></select>
+
+    <!--특정 내역 가져오기-->
+    <select id="get" resultType="payVO">
+        SELECT PAY_NUMBER, USER_NUMBER, PAY_CHARGE, PAY_COINCOUNT, PAY_DATE, PAY_STATUS
+        FROM TBL_PAY
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
 </mapper>

@@ -12,4 +12,6 @@ import org.springframework.stereotype.Service;
 public class PayService{
     private final PayDAO payDAO;
 
+
+    public PayVO get(Long payNumber) {return payDAO.get(payNumber);}
 }
