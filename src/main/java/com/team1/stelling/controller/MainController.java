@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("/novel/*")
-public class TestController3 {
+@RequestMapping("/main/*")
+public class MainController {
 
 
-    @GetMapping("/novelDetailView")
-    public void myBook(){}
+    @GetMapping("/index")
+    public void index(){}
 
 
 }

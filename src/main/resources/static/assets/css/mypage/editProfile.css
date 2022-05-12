@@ -151,9 +151,12 @@ input.email:focus, input.nick:focus, input.phone:focus{
 .thumb{
     float: left;
 }
-.icon{
+.clip,.icon{
+    cursor: pointer;
     float: left;
-    margin: 8px 2px 0 0;
+    width: 15px;
+    height: 15px;
+    margin-top: 10px;
 }
 #qwer{
     max-width: 1200px;

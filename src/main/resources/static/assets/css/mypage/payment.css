@@ -65,11 +65,7 @@ a{
     text-decoration: none;
     cursor: pointer;
 }
-div input{
-    width: 227px;
-    height: 22px;
-    border: 1px solid #e8e9ed;
-}
+
 div input:focus{
     border-color: #ef6e73;
     outline: none;
@@ -149,6 +145,7 @@ th{
     border-bottom: 1px solid #ef6e73b3;
     color: white;
 }
+
 div input#dateFrom, div input#dateTo{
     width: 140px;
     height: 30px;

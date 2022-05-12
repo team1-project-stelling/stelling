@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team1.stelling.mapper.ReplyMapper">
+
+    <!--댓글 등록-->
+    <insert id="insert"></insert>
+
+    <!--댓글 1개 조회-->
+    <select id="read" resultType="replyVO"></select>
+
+    <!--댓글 삭제-->
+    <delete id="delete"></delete>
+
+    <!--댓글 수정-->
+    <update id="update"></update>
+
+    <!--전체 조회-->
+    <select id="getList"></select>
+
+</mapper>
