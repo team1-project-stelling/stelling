@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @Slf4j
 @RequestMapping("/myLibrary/*")
-public class MyLibrary {
+public class MyLibraryController {
 
     @RequestMapping("")
     public void myLibrary(){
