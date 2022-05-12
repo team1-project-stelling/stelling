@@ -383,6 +383,7 @@ body {
 .date {
     font-size: 13px;
     color: silver;
+    margin-left: 27px;
 }
 
 .writeMent{
@@ -432,12 +433,33 @@ body {
     border: 1px solid #9b9b9b;
 }
 .hr{
-    width: 96.5%;
+    width: 99.5%;
     margin-left: -1px;
 }
 .pink, .gray{
     cursor: pointer;
 }
 .mentBtns{
+    background-color: white;
+    border: 1px solid #86868666;
+    width:max-content;
+    text-align: left;
+    padding: 5px;
+    border-radius: 5px;
+    height: 32px;
+    cursor: pointer;
+}
 
+.Best{
+    width: 31px;
+    height: 16px;
+    background-color: #ef6e73;
+    color: white;
+    position: absolute;
+    top: 6px;
+    left: 0px;
+    font-size: 11px;
+    padding: 2px 2px 3px 2px;
+    text-align: center;
+    border-radius: 8px;
 }
