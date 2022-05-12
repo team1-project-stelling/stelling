@@ -1,10 +1,15 @@
 package com.team1.stelling.domain.vo;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -29,18 +34,30 @@ public class ProfileImgFileVO {
     private String profileImgFileOriginFileName; // 프로파일 이미지원본이름
     @Column(name = "PROFILEIMGFILE_FILENAME")
     private String profileImgFileFileName; // 프로파일 이미지 파일네임
-    @Column(name = "PROFILEIMGFILE_UPLOADDATE")
+    @Generated(GenerationTime.INSERT)
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "PROFILEIMGFILE_UPLOADDATE",updatable = false)
     private Date profileImgFileUploadDate; // 프로파일 업로드 시간
+    @Generated(GenerationTime.INSERT)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "PROFILEIMGFILE_UPDATEDATE")
     private Date profileImgFileUpdateDate; // 프로파일  수정 시간
+    public void updateProfileImgFileFilePath(String profileImgFileFilePath) {this.profileImgFileFilePath = profileImgFileFilePath; }
+    public void updateProfileImgFileOriginFileName(String profileImgFileOriginFileName) { this.profileImgFileOriginFileName = profileImgFileOriginFileName; }
+    public void updateProfileImgFileFileName(String profileImgFileFileName) { this.profileImgFileFileName = profileImgFileFileName; }
+    public void updateProfileImgFileUpdateDate() { this.profileImgFileUpdateDate = new Date(); }
 
-    public ProfileImgFileVO(Long profileImgNumber, UserVO userVO, String profileImgFileFilePath, String profileImgFileOriginFileName, String profileImgFileFileName, Date profileImgFileUploadDate, Date profileImgFileUpdateDate) {
+    @Builder
+    public ProfileImgFileVO(Long profileImgNumber, UserVO userVO, String profileImgFileFilePath, String profileImgFileOriginFileName, String profileImgFileFileName, String profileImgFileUploadDate, String profileImgFileUpdateDate) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         this.profileImgNumber = profileImgNumber;
         this.userVO = userVO;
         this.profileImgFileFilePath = profileImgFileFilePath;
         this.profileImgFileOriginFileName = profileImgFileOriginFileName;
         this.profileImgFileFileName = profileImgFileFileName;
-        this.profileImgFileUploadDate = profileImgFileUploadDate;
-        this.profileImgFileUpdateDate = profileImgFileUpdateDate;
+        try {
+            if(profileImgFileUploadDate != null) { this.profileImgFileUploadDate = sdf.parse(profileImgFileUploadDate); }
+            if(profileImgFileUpdateDate != null) { this.profileImgFileUpdateDate = sdf.parse(profileImgFileUpdateDate); }
+        } catch (ParseException e) { e.printStackTrace(); }
     }
 }

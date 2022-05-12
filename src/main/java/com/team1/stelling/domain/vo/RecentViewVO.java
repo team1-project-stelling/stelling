@@ -18,15 +18,15 @@ public class RecentViewVO {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RECENTVIEW_SEQ")
     @Column(name = "RECENTVIEW_NUMBER")
-    Long recentViewNumber;   /* 최근 본 작품 번호*/
+   private Long recentViewNumber;   /* 최근 본 작품 번호*/
 
     @ManyToOne
     @JoinColumn(name = "USER_NUMBER")
-    UserVO userVO; // userNum FK
+    private  UserVO userVO; // userNum FK
 
     @ManyToOne
     @JoinColumn(name = "NOVEL_NUMBER")
-    NovelVO novelVO;                //  Fk NOVEL_NUMBER NUMBER,
+    private NovelVO novelVO;                //  Fk NOVEL_NUMBER NUMBER,
 
     @Builder
     public RecentViewVO(Long recentViewNumber, UserVO userVO, NovelVO novelVO) {
