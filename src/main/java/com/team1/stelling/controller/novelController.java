@@ -25,5 +25,12 @@ public class novelController {
     @GetMapping("/novelRoundList")
     public void novelRoundList(){
     }
+    @GetMapping("/novelDetailView")
+    public void novelDetailView(){
+    }
+
+
+
+
 
 }

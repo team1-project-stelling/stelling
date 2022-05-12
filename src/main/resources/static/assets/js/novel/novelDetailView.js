@@ -16,23 +16,37 @@ $('.colorDiv').on("click", function () {
         $('body').css('background-color', 'white');
         $('.novelContent').css('background-color', 'white');
         $('.whiteLine').css('background-color', 'white');
+        $('.ments').css('color', 'black');
+        $('.writerMent').css('color', 'black');
     } else if ($(this).hasClass('cd2')) {
         $('body').css('background-color', 'wheat');
         $('.novelContent').css('background-color', 'wheat');
         $('.whiteLine').css('background-color', 'wheat');
-
+        $('.ments').css('color', 'black');
+        $('.writerMent').css('color', 'black');
     } else if ($(this).hasClass('cd3')) {
         $('body').css('background-color', 'rgb(61,61,61)');
         $('.novelContent').css('background-color', 'rgb(61,61,61)');
         $('.whiteLine').css('background-color', 'rgb(61,61,61)');
+        $('.ments').css('color', 'white');
+        $('.writerMent').css('color', 'white');
+
     } else if ($(this).hasClass('cd4')) {
         $('.novelContent').css('color', 'white');
+        $('.ments').css('color', 'white');
+        $('.writerMent').css('color', 'white');
     } else if ($(this).hasClass('cd5')) {
         $('.novelContent').css('color', 'rgb(6 192 0)');
+        $('.ments').css('color', 'rgb(6 192 0)');
+        $('.writerMent').css('color', 'rgb(6 192 0)');
     } else if ($(this).hasClass('cd6')) {
         $('.novelContent').css('color', '#ef6e73');
+        $('.ments').css('color', '#ef6e73');
+        $('.writerMent').css('color', '#ef6e73');
     } else if ($(this).hasClass('cd7')) {
         $('.novelContent').css('color', 'rgb(61,61,61)');
+        $('.ments').css('color', 'rgb(61,61,61)');
+        $('.writerMent').css('color', 'rgb(61,61,61)');
     }
 
 
@@ -61,6 +75,7 @@ $('.pmIcon').on("click", function () {
         count -= 1;
         $('.count1').html(count);
     }
+
 });
 
 $('.line').on("click", function () {
@@ -76,6 +91,7 @@ $('.line').on("click", function () {
         count2 -= 1;
         $('.count2').html(count2);
     }
+
 })
 
 
@@ -89,6 +105,7 @@ function selectFunction() {
     } else if (selected == 'noto') {
         $('.novelContent').css('font-family', 'Noto Sans KR');
     }
+
 }
 
 
@@ -150,17 +167,51 @@ $('.switch_label').select(function () {
 
 
 $('#switch').on('click', function () {
-
-
     console.log($('#switch:checked').css('background'));
     if($('#switch:checked').css('background')!=undefined){
         $('.ments').css('display', 'none');
-        console.log("들어옴");
+        $('.writerMent').css('margin-bottom', '225px');
     }else{
         $('.ments').css('display', 'block');
-        console.log("들어옴22");
+        $('.writerMent').css('margin-bottom', '40px');
         var location = document.querySelector(".ments").offsetTop;
         window.scrollTo({top:location, behavior:'smooth'});
+    }
+});
+
+
+$('.pink').on("click", function () {
+    $('.pink').attr('src', '/images/icon/체크핑크.png');
+    $('.gray').attr('src', '/images/icon/체크그레이.png');
+})
+
+$('.gray').on("click", function () {
+    $('.pink').attr('src', '/images/icon/체크그레이.png');
+    $('.gray').attr('src', '/images/icon/체크핑크.png');
+
+})
+
+
+
+$('.mentBtns1').on("click", function () {
+    console.log($(this).children('img').attr('src'));
+
+
+    if($(this).children('img').attr('src')=='/images/icon/좋아요full.png'){
+        let $number = parseInt($(this).children('span').html());
+        $(this).css('border-color','#cbcbcb');
+        $(this).css('color','#cbcbcb');
+        $(this).children('img').attr('src', '/images/icon/좋아요.png');
+        $(this).children('span').html($number -1);
+
+    }else {
+
+        let $number = parseInt($(this).children('span').html());
+        $(this).css('border-color', '#5A94FF');
+        $(this).css('color', '#5A94FF');
+        $(this).children('img').attr('src', '/images/icon/좋아요full.png');
+        $(this).children('span').html($number + 1);
+
     }
 });
 
