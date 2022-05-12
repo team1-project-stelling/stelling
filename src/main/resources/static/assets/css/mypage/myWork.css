@@ -142,6 +142,10 @@ a.btn-view{
     zoom: 0.81;
 }
 
+img.close, img.open{
+    width: 20px;
+}
+
 span.tag-update{
     position: absolute;
     margin-left: 24.8em;
