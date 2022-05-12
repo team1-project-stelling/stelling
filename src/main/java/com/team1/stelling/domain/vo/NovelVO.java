@@ -16,7 +16,7 @@ import java.util.Date;
 @ToString(of = {
         "novelNumber","novelTitle","novelUserNick","novelHashtag","novelUploadDate", "novelUpdateDate", "novelMonday", "novelTuesDay",
         "novelWednesDay", "novelThursDay", "novelFriDay", "novelSaturDay", "novelSunDay", "novelCategory", "novelStatus", "novelSerialsStatus",
-        "novelContent"})
+        "novelIntro"})
 @NoArgsConstructor
 public class NovelVO {
 
@@ -61,11 +61,11 @@ public class NovelVO {
    private int novelStatus;  /*작품 상태 0휴재, 1연재, 2완결, 3 숨김*/
    @Column(name = "NOVEL_SERIALSTATUS")
    private int novelSerialsStatus; /*정기연재 OR 자유연재 상태*/
-   @Column(name = "NOVEL_CONTEN")
-   private String novelContent; /* 소설 소개*/
+   @Column(name = "NOVEL_INTRO")
+   private String novelIntro; /* 소설 소개*/
 
     @Builder
-    public NovelVO(Long novelNumber, UserVO userVO, String novelTitle, String novelUserNick, String novelHashtag, Date novelUploadDate, Date novelUpdateDate, int novelMonday, int novelTuesDay, int novelWednesDay, int novelThursDay, int novelFriDay, int novelSaturDay, int novelSunDay, String novelCategory, int novelStatus, int novelSerialsStatus, String novelContent) {
+    public NovelVO(Long novelNumber, UserVO userVO, String novelTitle, String novelUserNick, String novelHashtag, Date novelUploadDate, Date novelUpdateDate, int novelMonday, int novelTuesDay, int novelWednesDay, int novelThursDay, int novelFriDay, int novelSaturDay, int novelSunDay, String novelCategory, int novelStatus, int novelSerialsStatus, String novelIntro) {
         this.novelNumber = novelNumber;
         this.userVO = userVO;
         this.novelTitle = novelTitle;
@@ -83,6 +83,6 @@ public class NovelVO {
         this.novelCategory = novelCategory;
         this.novelStatus = novelStatus;
         this.novelSerialsStatus = novelSerialsStatus;
-        this.novelContent = novelContent;
+        this.novelIntro = novelIntro;
     }
 }
