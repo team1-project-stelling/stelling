@@ -12,7 +12,11 @@
     <delete id="delete"></delete>
 
     <!--수정-->
-    <update id="update"></update>
+    <update id="update">
+        UPDATE TBL_MYPICK
+        SET MYPICK_PICK= '1', NOVEL_NUMBER=#{novelNumber}, USER_NUMBER=#{userNumber}
+        WHERE MYPICK_NUMBER=#{myPickNumber}
+    </update>
 
     <!--전체 조회-->
     <select id="getList"></select>

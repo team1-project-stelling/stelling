@@ -1,5 +1,6 @@
 package com.team1.stelling.mapper;
 
+import com.team1.stelling.domain.vo.MyIllustVO;
 import com.team1.stelling.domain.vo.MyPickVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -10,6 +11,8 @@ public interface MyPickMapper {
 
     //조회
     public MyPickVO read(Long myPickNumber);
+
+    public int update(MyPickVO myPickVO);
 
     //삭제?
     public int delete(Long myPickNumber);

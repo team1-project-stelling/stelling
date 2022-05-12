@@ -12,7 +12,11 @@
     <delete id="delete"></delete>
 
     <!--수정-->
-    <update id="update"></update>
+    <update id="update">
+        UPDATE TBL_ILLUSTPROFILE
+        SET USER_NUMBER=#{userNumber}, ILLUSTPROFILE_SHORTINTRO=#{illustProfileShortIntro}, ILLUSTPROFILE_DETAILINTRO=#{illustProfileDetailIntro}, ILLUSTPROFILE_CATEGORY=#{illustProfileCategory}, ILLUSTPROFILE_WEBSITE=#{illustProfileWebSite}
+        WHERE ILLUSTPROFILE_NUMBER=#{illustProfileNumber}
+    </update>
 
     <!--특정 내역 가져오기-->
     <select id="get" resultType="illustProfileVO">

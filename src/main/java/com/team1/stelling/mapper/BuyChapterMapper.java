@@ -11,6 +11,8 @@ public interface BuyChapterMapper {
     //조회
     public BuyChapterVO read(Long buyChapterNumber);
 
+    public int update(BuyChapterVO buyChapterVO);
+
     //삭제?
     public int delete(Long buyChapterNumber);
 

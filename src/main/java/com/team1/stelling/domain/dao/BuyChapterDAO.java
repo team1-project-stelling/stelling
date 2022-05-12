@@ -13,5 +13,6 @@ public class BuyChapterDAO {
     private final BuyChapterMapper buyChapterMapper;
 
     public BuyChapterVO get(Long userNumber) {return buyChapterMapper.get(userNumber);}
+    public void register(BuyChapterVO buyChapterVO) {buyChapterMapper.insert(buyChapterVO);}
 
 }

@@ -11,6 +11,8 @@ public interface MyIllustMapper {
     //조회
     public MyIllustVO read(Long myIllustNumber);
 
+    public int update(MyIllustVO myIllustVO);
+
     //삭제?
     public int delete(Long myIllustNumber);
 

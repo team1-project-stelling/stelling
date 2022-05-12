@@ -12,7 +12,11 @@
     <delete id="delete"></delete>
 
     <!--수정-->
-    <update id="update"></update>
+    <update id="update">
+        UPDATE TBL_MYILLUST
+        SET MYILLUST_STATUS= '1', USER_NUMBER=#{userNumber}, ILLUST_NUMBER=#{illustNumber}
+        WHERE MYILLUST_NUMBER=#{myIllustNumber}
+    </update>
 
     <!--특정 내역 가져오기-->
     <select id="get" resultType="myIllustVO">
