@@ -1,6 +1,7 @@
 package com.team1.stelling.controller;
 
 
+import com.team1.stelling.aspect.annotation.LogStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +17,10 @@ public class novelController {
     @GetMapping("/novelWrite")
     public void novelWrite(){
     }
+    @LogStatus
     @GetMapping("/novelCategory")
     public void novelCategory(){
+
     }
     @GetMapping("/novelRanking")
     public void novelRanking(){
