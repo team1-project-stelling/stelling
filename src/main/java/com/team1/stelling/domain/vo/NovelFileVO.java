@@ -19,7 +19,7 @@ import java.util.Date;
 @Table(name ="TBL_NOVELFILE")
 @SequenceGenerator(name ="NOVELFILE_SEQ" , allocationSize = 1)
 @Getter
-@ToString(of = {"novelFileNumber","novelFileFilePath","novelFileOriginalFileName","novelFileFileName","novelFileUploadUpdate", "novelFileUpdateDate"})
+@ToString(of = {"novelFileNumber","novelFileFilePath","novelFileOriginalUUID","novelFileFileName","novelFileUploadUpdate", "novelFileUpdateDate"})
 @NoArgsConstructor
 public class NovelFileVO {
 
@@ -41,8 +41,8 @@ public class NovelFileVO {
 
    @Column(name = "NOVELFILE_FILEPATH")
    private String novelFileFilePath; // 소설 파일 경로
-   @Column(name ="NOVELFILE_ORIGINFILENAME")
-   private String novelFileOriginalFileName; // 소설 원본 파일 이름
+   @Column(name ="NOVELFILE_UUID")
+   private String novelFileOriginalUUID; // 소설 원본 파일 UUID
    @Column(name ="NOVELFILE_FILENAME")
    private String novelFileFileName;  // 소설 파일 이름
    @Generated(GenerationTime.INSERT)
@@ -56,7 +56,7 @@ public class NovelFileVO {
 
     public void updateNovelFileFilePath(String novelFileFilePath) { this.novelFileFilePath = novelFileFilePath; }
 
-    public void updateNovelFileOriginalFileName(String novelFileOriginalFileName) { this.novelFileOriginalFileName = novelFileOriginalFileName; }
+    public void updateNovelFileOriginalFileName(String novelFileOriginalUUID) { this.novelFileOriginalUUID = novelFileOriginalUUID; }
 
     public void updateNovelFileFileName(String novelFileFileName) { this.novelFileFileName = novelFileFileName; }
 
@@ -64,14 +64,14 @@ public class NovelFileVO {
     public void updateNovelFileUpdateDate() { this.novelFileUpdateDate = new Date();  }
 
     @Builder
-   public NovelFileVO(Long novelFileNumber, SubNovelVO subNovelVO, UserVO userVO, NovelVO novelVO, String novelFileFilePath, String novelFileOriginalFileName, String novelFileFileName, String novelFileUploadUpdate, String novelFileUpdateDate) {
+   public NovelFileVO(Long novelFileNumber, SubNovelVO subNovelVO, UserVO userVO, NovelVO novelVO, String novelFileFilePath, String novelFileOriginalUUID, String novelFileFileName, String novelFileUploadUpdate, String novelFileUpdateDate) {
        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         this.novelFileNumber = novelFileNumber;
         this.subNovelVO = subNovelVO;
         this.userVO = userVO;
         this.novelVO = novelVO;
         this.novelFileFilePath = novelFileFilePath;
-        this.novelFileOriginalFileName = novelFileOriginalFileName;
+        this.novelFileOriginalUUID = novelFileOriginalUUID;
         this.novelFileFileName = novelFileFileName;
 
        try {
