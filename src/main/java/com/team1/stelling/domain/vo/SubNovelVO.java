@@ -1,24 +1,23 @@
 package com.team1.stelling.domain.vo;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+@Component
 @Entity
 @Table(name ="TBL_SUBNOVEL")
 @SequenceGenerator(name = "SUBNOVEL_SEQ" , allocationSize = 1)
 @Getter
+@Setter
 @ToString(of = { "subNovelNumber", "subNovelTitle", "subNovelWriterComment", "subNovelUploadDate", "subNovelUpdateDate","subNovelViewCount","subNovelLickCount","subNovelStatus" })
-@NoArgsConstructor
+@AllArgsConstructor
 public class SubNovelVO {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SUBNOVEL_SEQ")
@@ -64,6 +63,8 @@ public class SubNovelVO {
     public void updateSubNovelLickCount() { this.subNovelLickCount++; }
 
     public void updateSubNovelStatus(int subNovelStatus) { this.subNovelStatus = subNovelStatus; }
+
+    public SubNovelVO() {;}
 
     @Builder
     public SubNovelVO(Long subNovelNumber, NovelVO novelVO, UserVO userVO, String subNovelTitle, String subNovelWriterComment, String subNovelUploadDate, String subNovelUpdateDate, int subNovelViewCount, int subNovelLickCount, int subNovelStatus) {
