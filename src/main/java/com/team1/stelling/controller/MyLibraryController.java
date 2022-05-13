@@ -42,6 +42,4 @@ public class MyLibraryController {
         return "cash/coinShop";
     }
 
-
-
 }
