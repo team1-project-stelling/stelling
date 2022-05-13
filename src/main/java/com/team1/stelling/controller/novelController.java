@@ -2,6 +2,7 @@ package com.team1.stelling.controller;
 
 
 import com.team1.stelling.aspect.annotation.LogStatus;
+import com.team1.stelling.domain.vo.NovelVO;
 import com.team1.stelling.service.NovelService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,9 @@ public class novelController {
     @LogStatus
     @GetMapping("/novelCategory")
     public void novelCategory(Model model){
+        List<NovelVO> datas =   novelService.getList();
+        datas.forEach(e -> log.info("####"+e.toString()));
+        model.addAttribute(novelService.getList());
     }
     @GetMapping("/novelRanking")
     public void novelRanking(){
