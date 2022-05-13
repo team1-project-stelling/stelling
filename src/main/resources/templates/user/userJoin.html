@@ -6,546 +6,13 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <link href="/assets/css/fix/footer.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/fix/header.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/user/userJoin.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <style>
-
-        @media(max-width : 390px){
-
-            .title_section {
-                width: 117px !important;
-                margin: 0 auto !important;
-                padding: 15px 0 51px !important;
-            }
-
-            .content {
-                width: 389px !important;
-                margin: 0 auto !important;
-            }
-
-            .mainbox {
-                width: 387px !important;
-                height: 947px !important;
-                margin: 0 auto !important;
-            }
-
-            .joinForm {
-                width: 427px !important;
-                margin: 0 auto !important;
-            }
-
-            .inputbox {
-                width: 181px !important;
-                height: 54px !important;
-                padding: 0 14px !important;
-                border: 1px solid #ccc !important;
-                font-size: 14px !important;
-                color: #333 !important;
-                line-height: 20px !important;
-                border-radius: 3px !important;
-                background: #fff !important;
-                outline: none !important;
-                vertical-align: top !important;
-            }
-
-            .button {
-                width: 79px !important;
-                height: 56px !important;
-                text-align: center !important;
-                border-radius: 3px !important;
-                border: 1px solid #ef6e73 !important;
-                background-color: #ef6e73 !important;
-                color: white !important;
-                margin-left: 2px !important;
-                font-size: 14px !important;
-                cursor: pointer !important;
-            }
-
-            .joinForm td {
-                padding: 4px 0 !important;
-                border-top: 0 !important;
-                font-size: 14px !important;
-                vertical-align: top !important;
-            }
-
-            .select_sex {
-                padding: 10px 21px 12px 8px !important;
-                vertical-align: top !important;
-                width: 31% !important;
-            }
-
-            .radio-ico {
-                width: 19px !important;
-                height: 25px !important;
-            }
-
-            .ico {
-                vertical-align: 7px !important;
-                font-size: 15px !important;
-                margin-left: 3px !important;
-            }
-
-            .check_Wrap {
-                width: 80% !important;
-            }
-
-            .ico_2 {
-                vertical-align: 9px !important;
-                font-size: 13px !important;
-                margin-left: 3px !important;
-            }
-
-            .btn_link {
-                font-size: 11px !important;
-                color: #ef6e73 !important;
-                line-height: 25px !important;
-                letter-spacing: 0 !important;
-                float: right !important;
-                text-decoration: none !important;
-                margin-top: 3px !important;
-            }
-
-            .form_footer {
-                padding-top: 23px !important;
-                text-align: center !important;
-                width: 387px !important;
-            }
-
-            .join_button {
-                width: 341px !important;
-                height: 56px !important;
-                font-size: 16px !important;
-                line-height: 54px !important;
-                border: 1px solid #ef6e73 !important;
-                background-color: #ef6e73 !important;
-                color: #fff !important;
-                display: inline-block !important;
-                vertical-align: top !important;
-                border-radius: 3px !important;
-                cursor: pointer !important;
-            }
-
-            .joinForm th {
-                width: 80px !important;
-                padding: 20px 0 0 4px !important;
-                font-weight: 700 !important;
-                font-size: 14px !important;
-                color: #333 !important;
-                line-height: 20px !important;
-                vertical-align: top !important;
-                text-align: left !important;
-            }
-        }
-
-
-
-        /*미디어쿼리 끝*/
-
-
-        .title_section {
-            width: 1050px;
-            margin: 0 auto;
-            padding: 50px 0 51px;
-        }
-
-        .title_text {
-            font-weight: 700;
-            font-size: 28px;
-            color: #333;
-            line-height: 35px;
-            text-align: center;
-            letter-spacing: -1px;
-        }
-
-        .mainbox {
-            width: 1050px;
-            height: 947px;
-            margin: 0 auto;
-        }
-
-        .joinForm {
-            width: 640px;
-            margin: 0 auto;
-        }
-
-        .content {
-            width : 100%;
-            margin:0 auto  ;
-        }
-
-        .tbl_main {
-            width: 100%;
-            border-top: 2px solid #333;
-        }
-
-        .joinForm .first th {
-            padding-top: 29px;
-        }
-
-        .joinForm th {
-            width: 150px;
-            padding: 20px 0 0 4px;
-            font-weight: 700;
-            font-size: 14px;
-            color: #333;
-            line-height: 20px;
-            vertical-align: top;
-            text-align: left;
-        }
-
-        .joinForm .first td {
-            padding-top: 19px;
-        }
-
-        .joinForm td {
-            padding: 4px 0;
-            border-top: 0;
-            font-size: 14px;
-            vertical-align: top;
-            text-align: left;
-        }
-
-        .inputbox {
-            width: 310px;
-            height: 54px;
-            padding: 0 14px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-            color: #333;
-            line-height: 20px;
-            border-radius: 3px;
-            background: #fff;
-            outline: none;
-            vertical-align: top;
-        }
-
-        .button {
-            width: 126px;
-            height: 56px;
-            text-align: center;
-            border-radius: 3px;
-            border: 1px solid #ef6e73;
-            background-color:  #ef6e73;
-            color: white;
-            margin-left: 2px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .select_sex {
-            display: inline-block;
-            padding: 15px 55px 12px 0;
-            vertical-align: top;
-            width: 25%;
-        }
-
-        .ico {
-            vertical-align: 7px;
-            font-size: 16px;
-            margin-left: -38px;
-        }
-
-        .ico_1 {
-            vertical-align: 8px;
-            font-size: 17px;
-            margin-left: 3px;
-        }
-
-        .ico_2 {
-            vertical-align: 9px;
-            font-size: 13px;
-            margin-left: 3px;
-        }
-
-        .radio-ico {
-            width: 100px;
-            height: 25px;
-        }
-
-
-        .reg_agree th {
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #f4f4f4;
-        }
-
-        .btn_link {
-            font-size: 14px;
-            color: #ef6e73;
-            line-height: 22px;
-            letter-spacing: 0;
-            float: right;
-            text-decoration: none;
-            margin-top: 3px;
-        }
-
-        .re_agree td {
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #f4f4f4;
-        }
-
-        .form_footer {
-            padding-top: 23px;
-            text-align: center;
-        }
-
-        .join_button {
-            width: 327px;
-            height: 56px;
-            font-size: 16px;
-            line-height: 54px;
-            border: 1px solid #ef6e73;
-            background-color: #ef6e73;
-            color: #fff;
-            display: inline-block;
-            vertical-align: top;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-        .check_agree {
-            padding: 12px 0 4px;
-            font-weight: 700;
-            font-size: 18px;
-            line-height: 50px;
-            letter-spacing: 0;
-            margin: 0;
-        }
-        .modal.show { display: block; }
-
-        .modal_body {
-            position: absolute;
-            top: 55%;
-            left: 50%;
-            width: 500px;
-            height: 700px;
-            text-align: left;
-            background-color: rgb(255, 255, 255);
-            border-radius: 10px;
-            box-shadow: 0 2px 3px 0 rgb(34 36 38 / 15%);
-            transform: translateX(-50%) translateY(-50%);
-        }
-
-        .modal {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            height: 1425px;
-            display: none;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-
-        input[type="checkbox"] {
-            -webkit-appearance: none;
-            position: relative;
-            width: 23px;
-            height: 23px;
-            cursor: pointer;
-            outline: none !important;
-            border: 1px solid #eeeeee;
-            border-radius: 2px;
-            background: #fbfbfb;
-        }
-
-        input[type="checkbox"]::before {
-            content: "\2713";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            overflow: hidden;
-            transform: scale(0) translate(-50%, -50%);
-            line-height: 1;
-        }
-
-        input[type="checkbox"]:hover {
-            border-color: rgba(170, 170, 170, 0.5);
-        }
-
-        input[type="checkbox"]:checked {
-            background-color: #ef6e73;
-            border-color: rgba(255, 255, 255, 0.3);
-            color: white;
-        }
-
-        input[type="checkbox"]:checked::before {
-            border-radius: 2px;
-            transform: scale(1) translate(-50%, -50%)
-        }
-
-        .tit_layer {
-            padding: 0px 0px 0px 16px;
-            font-weight: 700;
-            font-size: 24px;
-            line-height: 40px;
-            color: #333;
-            letter-spacing: -1px;
-            text-align: left;
-        }
-
-        .sub {
-            color: #999;
-        }
-
-        .box_tbl {
-            margin-top: 19px;
-            height: 497px;
-            font-size: 14px;
-            color: #666;
-            line-height: 20px;
-            margin-left: 0px;
-            padding: 22px;
-        }
-
-        .btn_ok {
-            display: block;
-            width: 100%;
-            height: 100px;
-            border: 0;
-            border-top: 1px solid #f7f7f7;
-            border-radius: 6px;
-            background-color: #fff;
-            font-weight: 700;
-            font-size: 21px;
-            color: #ef6e73;
-            line-height: 40px;
-            letter-spacing: 0;
-            cursor: pointer;
-        }
-
-        .btn_close {
-            position: absolute;
-            right: 12px;
-            top: 35px;
-            width: 32px;
-            height: 32px;
-            border: 0;
-            background: url(https://res.kurly.com/pc/ico/1908/ico_layer_close.png) no-repeat 0 0;
-            cursor: pointer;
-        }
-
-        .screen_out {
-            display: block;
-            overflow: hidden;
-            position: absolute;
-            left: -9999px;
-            width: 1px;
-            height: 1px;
-            font-size: 0;
-            line-height: 0;
-            text-indent: -9999px;
-        }
-
-        input[type='radio'] {
-            accent-color: #ef6273;
-        }
-
-        .ask-layer-wrapper {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 9999;
-            display: none;
-        }
-
-        .ask-alert-window.ask-alert-type-message {
-            width: 490px;
-            height: 280px;
-        }
-
-        .ask-alert-window {
-            position: absolute;
-            z-index: 9999;
-            background-color: #fff;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            margin: auto;
-        }
-
-        .ask-alert-wrapper {
-            position: relative;
-            margin: 25px;
-        }
-
-        .ask-alert-header {
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: -.025em;
-            color: #5f0080;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #b2b2b2;
-            margin-bottom: 25px;
-        }
-
-        .ask-alert-type-message .ask-alert-content {
-            display: table;
-            width: 100%;
-        }
-
-        .ask-alert-message {
-            height: 60px;
-            display: table-cell;
-            vertical-align: middle;
-            font-size: 13px;
-            line-height: 1.5;
-            text-align: center;
-            width: 100%;
-        }
-
-        .ask-alert-close-button {
-            width: 20px;
-            height: 20px;
-            background-image: url(https://res.kurly.com/pc/etc/old/images/common/icon-close-button.png);
-            text-indent: -9999px;
-            position: absolute;
-            right: 0;
-            top: 0;
-            background-color: transparent;
-            border: 0;
-            background-repeat: no-repeat;
-        }
-
-
-        .phone_input {
-            display: none;
-        }
-        .sub {
-            font-size: 18px;
-        }
-
-        .text_guide_1, .text_guide_2, .text_guide_3 {
-            width: 330px;
-            padding: 0px 0px 0px 5px;
-            display: none;
-        }
-
-        .text_case1 {
-            font-size: 12px;
-            color: #ef6e73;
-        }
-
-        .box_tbl {
-            overflow: scroll;
-            /* IE scroll 숨김 */
-            -ms-overflow-style: none;
-        }
-
-        .box_tbl::-webkit-scrollbar {
-            width: 0 !important;
-            display: none;
-        }
-
-        .check_Wrap {
-            width: 70%;
-        }
-    </style>
 </head>
 <body style="max-witdh:1200px ;">
 
-
 <!-- 헤더 시작 -->
-<th:block th:insert="/fix/headerWord.html :: headFragment"/>
+<th:block th:insert="/fix/header_word.html :: headFragment"/>
 
 <!--헤더 이미지-->
 <div id="headerImgWrap" >
@@ -805,7 +272,7 @@
 <th:block th:insert="/fix/footer.html :: footerFragment"/>
 </body>
 <script src="/assets/js/fix/header.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/user/userJoin.js"></script>
 <script>
 
 
@@ -878,8 +345,8 @@
     const phoneBtn = document.querySelector('#phoneBtn');
 
     phoneBtn.addEventListener("click", e => {
-       e.preventDefault();
-       phonecheck.style.display = "contents";
+        e.preventDefault();
+        phonecheck.style.display = "contents";
     });
 
 
@@ -917,16 +384,16 @@
     };
 
 
-    //비밀번호 유효성검사
-    //8자리 이상, 대문자/소문자/숫자/특수문자 모두 포함되어 있는 지 검사
-    //(?=.*?문자) : 각각의 모든 대상을 '문자'로 검사한다.
 
-    const pwCheck = /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{8,}$/;
-    const hangleCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+
+
+
+
+
 
     document.querySelector("input[name='']").addEventListener("blur", function () {
         const check = false;
-        
+
     })
 
     //joinForm 유효성 검사
@@ -940,6 +407,29 @@
         const mobile = document.getElementById("mobile");
         const email_id = document.getElementById("email_id");
         const agree = document.getElementById("agree");
+
+        //유효성검사
+        const nickCheck = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
+
+        const hangleCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+
+
+        //아이디 유효성
+        const idCheck = /^(?=.*[a-z0-9])[a-z0-9]{2,10}$/;
+
+        if(!idCheck.test(uid.value)){
+            alert("아이디는 2-16글자 사이까지 입력 가능합니다.");
+            uid.focus();
+            return false;
+        };
+
+        //닉네임 유효성
+
+        const nickCheck = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,10}$/;
+
+        if (!nickCheck.test(uname.value)) {
+            alert("닉네임은 2자 - 10자 사이로 입력해주세요.")
+        };
 
 
         //아이디 입력 유무
@@ -955,11 +445,11 @@
             return false;
         };
 
-        //비밀번호 영문자 + 숫자 + 특수조합 (8~25자리 입력) 정규식
-        const pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+        //비밀번호 영문자 + 숫자 + 특수조합 (8~16자리 입력) 정규식
+        const pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
 
         if (!pwdCheck.test(pwd.value)) {
-            alert("비밀번호는 영문자+숫자+특수문자가 포함된 8~25자리를 사용해주세요.");
+            alert("비밀번호는 영문자+숫자+특수문자가 포함된 8~16자리를 사용해주세요.");
             pwd.focus();
             return false;
         };
@@ -1013,7 +503,7 @@
         };
 
         document.joinForm.submit();
-        };
+    };
 
 
     //중복확인 버튼
@@ -1027,7 +517,7 @@
         }else {
             alert("사용할 수 없거나 중복된 아이디 입니다.")
         }
-        };
+    };
 
 
     //이메일 버튼
