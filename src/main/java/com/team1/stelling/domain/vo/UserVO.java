@@ -1,22 +1,22 @@
 package com.team1.stelling.domain.vo;
 
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.hibernate.annotations.ColumnDefault;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
+@Component
 @Entity
 @Table(name ="TBL_USER")
 @SequenceGenerator(name = "USER_SEQ" , allocationSize = 1)
 @Getter
+@Setter
 @ToString
-@NoArgsConstructor
 @DynamicInsert
+@Builder
+@AllArgsConstructor
 public class UserVO {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ")
@@ -50,17 +50,6 @@ public class UserVO {
     public void updateUserCoinBalance(int userCoinBalance) { this.userCoinBalance = userCoinBalance; }
     public void updateUserAccessToken(String userAccessToken) { this.userAccessToken = userAccessToken; }
 
-    @Builder
-    public UserVO(Long userNumber, String userId, String userPw, String userNickName, String userEmail, int userGender, String userPhoneNum, int userStatus, int userCoinBalance, String userAccessToken) {
-        this.userNumber = userNumber;
-        this.userId = userId;
-        this.userPw = userPw;
-        this.userNickName = userNickName;
-        this.userEmail = userEmail;
-        this.userGender = userGender;
-        this.userPhoneNum = userPhoneNum;
-        this.userStatus = userStatus;
-        this.userCoinBalance = userCoinBalance;
-        this.userAccessToken = userAccessToken;
-    }
+    public UserVO() {;}
+
 }
