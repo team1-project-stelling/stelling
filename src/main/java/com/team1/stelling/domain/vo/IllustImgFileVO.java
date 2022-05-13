@@ -1,13 +1,11 @@
 package com.team1.stelling.domain.vo;
 
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.text.ParseException;
@@ -18,12 +16,14 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
+@Component
 @Entity
 @Table(name ="TBL_ILLUSTIMGFILE")
 @SequenceGenerator(name ="ILLUSTIMGFILE_SEQ" , allocationSize = 1)
 @Getter
+@Setter
 @ToString(of = {"illustImgFileNumber","illustImgFileFilePath","illustImgFileOriginFileName","illustImgFileFileName","illustImgFileUploadDate","illustImgFileUpdateDate"})
-@NoArgsConstructor
+@AllArgsConstructor
 @Slf4j
 public class IllustImgFileVO {
    @Id
@@ -60,6 +60,7 @@ public class IllustImgFileVO {
 
     public void updateIllustImgFileFileName(String illustImgFileFileName) { this.illustImgFileFileName = illustImgFileFileName; }
 
+    public IllustImgFileVO() {;}
 
     @Builder
     public IllustImgFileVO(Long illustImgFileNumber, IllustVO illustVO, UserVO userVO, String illustImgFileFilePath, String illustImgFileOriginFileName, String illustImgFileFileName, String illustImgFileUploadDate, String illustImgFileUpdateDate) {

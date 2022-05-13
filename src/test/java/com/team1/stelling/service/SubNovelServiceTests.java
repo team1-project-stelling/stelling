@@ -22,7 +22,7 @@ public class SubNovelServiceTests {
     @Autowired
     SubNovelService subNovelService;
 
-/*    @Test
+    @Test
     public void registerTest(){
         SubNovelVO subNovelVO = SubNovelVO.builder()
                 .novelVO(novelService.get(1L))
@@ -32,7 +32,7 @@ public class SubNovelServiceTests {
                 .subNovelWriterComment("첫 회 연재 시작 하였습니다")
                 .build();
         subNovelService.register(subNovelVO);
-    }*/
+    }
 /*    @Test
     public void getTest(){
         SubNovelVO subNovelVO = subNovelService.get(2L);

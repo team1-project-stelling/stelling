@@ -29,20 +29,22 @@ public class NovelServiceTests {
         List<NovelVO> datas = novelService.getList();
         datas.forEach(e -> log.info("#####"+e.toString()));
     }*/
-/*    @Test
+    @Test
     public void register(){
         NovelVO novelVO = NovelVO.builder()
-                .userVO(userService.get(1L))
-                .novelCategory("#이세계")
-                .novelHashtag("#이세계#전생#환생#모에화")
-                .novelIntro("잘봐주세요")
-                .novelTitle("테스트2번소설")
+                .userVO(userService.get(2L))
+                .novelCategory("#메카")
+                .novelHashtag("#메카#전투#환생#건담")
+                .novelIntro("건담좋아해요?")
+                .novelTitle("테스트3번소설")
                 .novelSerialsStatus(1)
                 .novelStatus(0)
-                .novelCategory("로맨스")
+                .novelFileName("파일 이름")
+                .novelUUID("UUID")
+                .novelUploadPath("C:/upload")
                 .build();
         novelService.register(novelVO);
-    }*/
+    }
 /*    @Test
     public void modifyTest(){
         NovelVO novelVO = novelService.get(2L);

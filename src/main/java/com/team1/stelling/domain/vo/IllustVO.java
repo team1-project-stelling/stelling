@@ -3,20 +3,22 @@ package com.team1.stelling.domain.vo;
 
 import lombok.*;
 import org.hibernate.annotations.GenerationTime;
-import org.springframework.beans.factory.annotation.Value;
 import org.hibernate.annotations.Generated;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Component
 @Entity
 @Table(name ="TBL_ILLUST")
 @SequenceGenerator(name ="ILLUST_SEQ" , allocationSize = 1)
 @Getter
+@Setter
 @ToString(of = {"illustNumber","illustTitle","illustContent","illustUploadDate","illustUpdateDate","illustHashTag","illustViewCount","illustLike","illustShortIntro"})
-@NoArgsConstructor
+@AllArgsConstructor
 public class IllustVO {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ILLUST_SEQ")
@@ -61,6 +63,8 @@ public class IllustVO {
     public void updateIllustLike() { this.illustLike++; } // 좋아요는 한개씩 증가한다
 
     public void updateIllustShortIntro(String illustShortIntro) { this.illustShortIntro = illustShortIntro; }
+
+    public IllustVO() {;}
 
     @Builder
     public IllustVO(Long illustNumber, UserVO userVO, String illustTitle, String illustContent, String illustUploadDate, String illustUpdateDate, String illustHashTag, int illustViewCount, int illustLike, String illustShortIntro) {
