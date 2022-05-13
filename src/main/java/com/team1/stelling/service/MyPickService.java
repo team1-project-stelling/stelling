@@ -1,20 +1,20 @@
 package com.team1.stelling.service;
 
-import com.team1.stelling.domain.dao.MyPickDAO;
-import com.team1.stelling.domain.vo.MyIllustVO;
+import com.team1.stelling.domain.repository.MyPickRepository;
 import com.team1.stelling.domain.vo.MyPickVO;
-import com.team1.stelling.domain.vo.PayVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
 public class MyPickService{
-    private final MyPickDAO myPickDAO;
+    private final MyPickRepository myPickRepository;
 
-    public MyPickVO get(Long myPickNumber) {return myPickDAO.get(myPickNumber);}
+    public MyPickVO get(Long myPickNumber) {return myPickRepository.findById(myPickNumber).get();}
+    public void register(MyPickVO myPickVO) {myPickRepository.save(myPickVO);}
+/*    public MyPickVO get(Long myPickNumber) {return myPickDAO.get(myPickNumber);}
     public void register(MyPickVO myPickVO) {myPickDAO.register(myPickVO);}
-    public void modify(MyPickVO myPickVO) {myPickDAO.modify(myPickVO);}
+    public void modify(MyPickVO myPickVO) {myPickDAO.modify(myPickVO);}*/
 }

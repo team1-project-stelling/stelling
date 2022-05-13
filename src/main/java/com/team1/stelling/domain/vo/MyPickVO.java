@@ -1,16 +1,53 @@
 package com.team1.stelling.domain.vo;
 
-import lombok.Data;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+
 // 소설 찜한 테이블
-@Component
-@Data
+@Entity
+@Table(name ="TBL_MYPICK")
+@SequenceGenerator(name ="MYPICK_SEQ" , allocationSize = 1)
+@Getter
+@ToString(of = {"myPickNumber","myPickPick"})
+@NoArgsConstructor
 public class MyPickVO {
     /* 시퀀스 -> MYPICK_SEQ */
+   @Id
+   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MYPICK_SEQ")
+   @Column(name = "MYPICK_NUMBER")
    private Long myPickNumber; // 번호
+   @Column(name = "MYPICK_PICK")
    private int myPickPick; /*찜이면 1 아니면 0 ?*/
-   private Long novelNumber; /* 찜한 소설의 번호 FK  */
-   private Long userNumber; // 찜한 사용자  FK
+   @ManyToOne
+   @JoinColumn(name = "USER_NUMBER")
+   private UserVO userVO; /* 찜한 소설의 번호 FK  */
+   @ManyToOne
+   @JoinColumn(name = "NOVEL_NUMBER")
+   private NovelVO novelVO; // 찜한 사용자  FK
 
+    public void setMyPickNumber(Long myPickNumber) {
+        this.myPickNumber = myPickNumber;
+    }
+
+    public void setMyPickPick(int myPickPick) {
+        this.myPickPick = myPickPick;
+    }
+
+    public void setUserVO(UserVO userVO) {
+        this.userVO = userVO;
+    }
+
+    public void setNovelVO(NovelVO novelVO) {
+        this.novelVO = novelVO;
+    }
+
+    @Builder
+    public MyPickVO(Long myPickNumber, int myPickPick, UserVO userVO, NovelVO novelVO) {
+        this.myPickNumber = myPickNumber;
+        this.myPickPick = myPickPick;
+        this.userVO = userVO;
+        this.novelVO = novelVO;
+    }
 }
