@@ -2,12 +2,15 @@ package com.team1.stelling.controller;
 
 
 import com.team1.stelling.aspect.annotation.LogStatus;
+import com.team1.stelling.domain.repository.NovelRepository;
+import com.team1.stelling.domain.vo.NovelVO;
 import com.team1.stelling.service.NovelService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -18,7 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class novelController {
 
-    private  final NovelService novelService;
+    private  final NovelRepository novelRepository;
 
 
     @GetMapping("/novelRegister")
@@ -41,7 +44,14 @@ public class novelController {
     public void novelDetailView(){
     }
 
+    @PostMapping("/novelRegister")
+    public void novelRegister(NovelVO novelVO){
+        log.info("=============================================");
+        log.info(novelVO.toString());
+        log.info("=============================================");
+        novelRepository.save(novelVO);
 
+    }
 
 
 

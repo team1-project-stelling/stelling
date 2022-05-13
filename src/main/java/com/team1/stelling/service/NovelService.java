@@ -5,7 +5,9 @@ import com.team1.stelling.domain.vo.NovelVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,8 @@ public class NovelService {
     public void modify(NovelVO novelVO) {
         novelVO.updateNovelUpdateDate();
         novelRepository.save(novelVO);
+
+
     }
 
 }
