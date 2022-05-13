@@ -10,33 +10,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user/*")
 public class UserController {
 
-    @GetMapping("findId")
+    @GetMapping("/findId")
     public String findId(){
-        return "user_findId";
+        return "user/userFindId";
     }
 
-    @GetMapping("findPw")
+    @GetMapping("/findPw")
     public String findPw(){
-        return "user_findPw";
+        return "user/userFindPw";
     }
 
-    @GetMapping("join")
+    @GetMapping("/join")
     public String join(){
-        return "user_join";
+        return "user/userJoin";
     }
 
-    @GetMapping("login")
+    @GetMapping("/login")
     public String login(){
-        return "user_login";
+        return "user/userLogin";
     }
 
-    @GetMapping("agree")
+    @GetMapping("/agree")
     public String agree(){
-        return "/agree";
+        return "etc/agree";
     }
 
-    @GetMapping("privacy")
+    @GetMapping("/privacy")
     public String privacy(){
-        return "/privacy";
+        return "etc/privacy";
     }
 }

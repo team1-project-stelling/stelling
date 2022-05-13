@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <typeAliases>
+        <typeAlias type="com.team1.stelling.domain.vo.ReplyVO" alias="replyVO"/>
+        <typeAlias type="com.team1.stelling.domain.vo.IllustProfileVO" alias="illustProfileVO"/>
+        <typeAlias type="com.team1.stelling.domain.vo.SupportVO" alias="supportVO"/>
+        <typeAlias type="com.team1.stelling.domain.vo.MyPickVO" alias="myPickVO"/>
+        <typeAlias type="com.team1.stelling.domain.vo.MyIllustVO" alias="myIllustVO"/>
+        <typeAlias type="com.team1.stelling.domain.vo.InquiryVO" alias="inquiryVO"/>
+        <typeAlias type="com.team1.stelling.domain.vo.PayVO" alias="payVO"/>
+        <typeAlias type="com.team1.stelling.domain.vo.BuyChapterVO" alias="buyChapterVO"/>
 
+    </typeAliases>
 </configuration>
+
+<!--
+TBL_REPLY TBL_ILLUSTPROFILE TBL_PAY TBL_SUPPORT TBL_BUYCHAPTER TBL_MYPICK TBL_MYILLUST TBL_INQUIRY
+-->

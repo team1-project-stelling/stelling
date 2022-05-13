@@ -65,11 +65,7 @@ a{
     text-decoration: none;
     cursor: pointer;
 }
-div input{
-    width: 227px;
-    height: 22px;
-    border: 1px solid #e8e9ed;
-}
+
 div input:focus{
     border-color: #ef6e73;
     outline: none;
@@ -142,14 +138,15 @@ th{
     background: #ef6e73;
     color: white;
     font-weight: bold;
-    height: 27px;
+    height: 32px;
 }
 .oned {
     background: #ef6e73b3;
     border-bottom: 1px solid #ef6e73b3;
     color: white;
 }
-div input#dateFrom{
+
+div input#dateFrom, div input#dateTo{
     width: 140px;
     height: 30px;
     border: 1px solid #e8e9ed;
@@ -161,5 +158,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     max-width: 1200px;
     margin-bottom: 40px;
     margin: 0 auto;
-
 }

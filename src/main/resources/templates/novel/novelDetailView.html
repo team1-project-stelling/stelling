@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>소설 상세보기</title>
+    <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/NanumHaengBogHanDoBi.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    <link href="/assets/css/novel/novelDetailView.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div style="width: 100%; background-color: #f0f0f0; position: fixed; left: 0; top: 0;">
+    <div class="menuBar">
+        <div class="novelTitle">
+            <div class="arrowIconWrap">
+                <img src="/images/icon/화살표왼쪽.png" class="img"/>
+            </div>
+            <div style="font-size: 17px">
+                눈 떠보니 내가 이세계 개발자?
+            </div>
+        </div>
+
+
+        <div class="icons">
+            <div class="heartIcon">
+                <img src="/images/icon/소설하트.png" class="img topheart"/>
+            </div>
+            <div class="bellIcon">
+                <img src="/images/icon/종알림.png" class="img topbell"/>
+            </div>
+            <div class="listIcon">
+                <img src="/images/icon/목록.png" class="img"/>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="whiteLine whiteLine2"></div>
+
+<div class="novelContentwrap">
+    <textarea name="" id="" class="novelContent" readonly>
+        안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요
+        Skin cancer is the most common malignancy in the world and its incidence has been increasing over the last few decades.
+        Early and accurate detection has a significant effect on the increase of the survival rates in melanoma (Apalla et al., 2017; Geller et al., 2015).
+        Thus, detecting and classifying skin cancer is important, whereas the availability of dermatologists - who can diagnose skin cancer - is limited to assist the population in Europe
+        (European Skin Cancer Foundation, n.d.).
+Classification between benign and malignant skin lesions is important. However, visual inspection of a suspicious skin lesion may not be accurate at all times. The accuracy rate in melanoma diagnosis based on human visual inspection is approximately 65%-70% (Annessi et al., 2007; Argenziano & Soyer, 2001; Brochez et al., 2002). The visual inspection can be supplemented with technical diagnostic tools, such as dermoscopy – a widely used handheld device to diagnose melanoma; it zooms in on a mole and underlying skin at a higher resolution (Halim, 2018; Russo et al., 2017; Witkowski et al., 2017). Although the accuracy of using dermoscopy to detect melanoma is better than that using the naked eye alone (Bafounta et al., 2001; Halim, 2018), the access to such medical instruments is limited due to cost and time concerns (Lucius et al., 2020). Even when the technical diagnostic tools is ready, the accuracy of diagnosis depends on the experience, training, and professional skills of dermatologists (Haenssle et al., 2018). The diagnosis result of different dermatologists may different and may have poor repeatability as well (Wei et al., 2020). Thus, using the advantages of artificial intelligence to assist dermatologists would be beneficial to improve the efficiency of their workflow for skin lesion classification, identifying more melanomas than doctors.
+Recently, machine learning, with regards to deep learning, have rapidly become a successful methodology of choice for medical image analysis (Litjens et al., 2017; Shen et al., 2017). Especially, convolutional neural network (CNN), one of the most popular deep neural networks for image analysis, has proven to be powerful tools in classification performance (Guo et al., 2016) in the diagnosis of pigmented skin lesions in dermatology (Lucius et al., 2020). Previous studies have been done in the use of deep learning technique to enhance skin cancer diagnosis and classification (Esteva et al., 2017). According to Hekler et al. (2019), the combination of human and artificial intelligence achieves superior to the results of human intelligence or artificial intelligence alone. Esteva et al. (2017) also insisted that outfitted mobile device with deep neural networks is able to provide universal access to vital diagnostic care at low cost. Thus, there is no doubt that such technology improves skin cancer diagnosis, extending the reach of dermatologists outside of the clinic.
+These days, a lot of image data has been generated and processed. Quality of the image varies due to various imaging devices. However, if input image resolution varies, it interrupts classification performance of CNN based deep learning model (Kannojia & Jaiswal, 2018). On the other hand, the benefits of using lower-resolution images cannot be ignored. According to Lakhani (2020), training of deep neural networks is much faster and easier when it processes low resolution images. They also claimed that the use of lower resolution images may increase generalizability or decrease overfitting of deep learning models. Therefore, the impact of image resolution on prediction accuracy of skin cancer detection machine learning models needs to be elucidated and improved.
+1.1	Research question and objectives
+This paper aims to explore the effect of image resolution on automated skin cancer detection algorithms. For this purpose, the research question is proposed:
+“Does image resolution impact the prediction accuracy of a deep learning model for automated skin cancer detection?”
+In order to obtain an answer to the research question above, the following research objectives are drawn up:
+1.	Define existing deep learning models for image classification in skin cancer detection
+2.	Determine the most appropriate deep learning model to use for skin cancer detection in order to train.
+3.	Set training parameters to compare the impact of image resolution, such as training a model with low or high image resolution data.
+4.	Process the original dermatoscopic image data into different resolutions - this step will be further explained in section 3.3.
+5.	Prepare training the deep convolutional neural networks-based model in different training conditions.
+6.	Test image sets.
+7.	Compare and evaluate the result of predicted accuracies of different models.
+2	Literature review
+2.1	Types of skin cancer
+Skin cancer is divided into two main types: non-melanoma skin cancer and melanoma skin cancer. Non-melanoma skin cancer means a group of cancers which slowly develop in the upper layers of the skin.
+In terms of the symptoms of non-melanoma skin cancer, a lump or discolored patch appears on the skin that persists for several weeks and slowly progresses over months. Basal cell carcinoma is the most common type of non-melanoma skin cancer, and it can be found anywhere on the skin, but it often develops on the head and neck (American Academy of Dermatology Association, n.d.). The main cause of basal cell carcinomas is sun exposure or radiation therapy received in childhood (Cancer.Net, 2021). Squamous cell carcinoma, which is the second most common type of non-melanoma skin cancer, starts in the cells lining the top of the epidermis. According to the National Health Service (NHS) in UK (2020a), it appears as a firm pink lump with a rough surface which bleeds easily and may develop into an ulcer. These non-melanoma skin cancer types can be considered as skin damage when the tumor is not treated. Melanoma skin cancer refers to a type of skin cancer that can spread to other organs in the body (NHS, 2021b) and is often considered as the most serious skin cancer due to its tendency to spread (American Academy of Dermatology Association, n.d.). Superficial spreading melanoma is the most common type of melanoma skin cancer (Canadian Cancer Society, n.d.). It initially tends to grow outward, so it does not pose a problem, however, if it grows downwards into the deeper skin layers, it can spread to organs (NHS, 2021b). Another type of melanoma skin cancer is nodular melanoma which develops fast downwards into the deeper skin layers (NHS, 2021b). A visual representation of the non-melanoma and melanoma skin cancer lesion is shown in figure 1.
+Non-melanoma skin lesion	Melanoma skin lesion
+Figure 1. Non-melanoma and melanoma skin cancer lesion from HAM10000 dataset (Skin Cancer MNIST: HAM10000, 2018)
+2.2	Recent advances of the effect of image resolution on model performance
+Multiple studies have revealed the effect of image resolution on the accuracy of image classification. Huiping et al. (2003) found that resolution of images differentiates classification accuracy. They also believe that people suppose that the higher image resolution, the better image classification results (Huiping et al., 2003). However, Chevalier et al. (2015) mentioned that fine-grained image classification performance of CNN based model does not improve from mid to high resolution image dataset, while it drops with low resolution image datasets. In addition, Kannojia & Jaiswal (2018) presented an experimental study on the effect of varying resolution on image classification with CNN based model. They trained a model with high resolution images dataset and the other model with varying resolution image dataset and tested two models on varying resolution dataset. The experiment shows that performance of the image classifier depends on visual information and image resolution (Kannojia & Jaiswal, 2018). They also investigated that degradation in image resolution decreases accuracy level of CNN based image classification (Kannojia & Jaiswal, 2018).
+This conflicts with the study of Welch et al. (2020) who analyzed the performance of three-dimensional CNNs trained in order to classify dental artifacts status. In their research, the CNN performance with the resampling grid size of 2563 was not significantly better than other grid sizes (643 and 1283), although prediction time spent with resampling grid size of 2563 is almost doubled than other resampling grid sizes (Welch et al., 2020). However, detection of skin cancer may require retaining detailed visual information in order to be classified correctly. Another research on the effect of image resolution on automated classification of chest X-rays showed that tasks that require a large receptive field were better classified by trained CNNs model with low resolution images. whereas other tasks performed better with high resolution images (Haque et al., 2021). It is supported by the findings of Sabottke & Spieler (2020); increasing image resolution does not necessarily improve performance for multiple chest radiograph diagnoses. In addition, the model trained with high resolution image data may present some drawbacks. It may increase the risk of overfitting and further complicate  the optimization process, compared to the model trained with low resolution image data (Sabottke & Spieler, 2020)
+.
+More specifically, in terms of skin cancer detection, Lucius et al. (2020) stated that image resolution does not affect the prediction accuracy of skin cancer detection. According to this research, although deep convolutional neural networks-based algorithms, which trained with higher resolution (600 * 450 pixels) images, have higher accuracy than the one with lower resolution (300 * 244 pixels) image, the difference was not statistically significant. Similarly, it is proven that the performance of CNN based model for skin cancer classification on low-resolution (28 * 28 pixels) images is close to the model which trained on high resolution (600 * 450 pixels) images (Shah, 2021). The two works used the same data source, HAM10000, but used different size of resolutions - the former one defined 300 * 244 pixels as low resolution and the later one defined 28 * 28 pixels as low resolution. In addition, they used different CNN architectures. Thus, further research is required on the impact of image resolution for skin cancer detection.
+2.3	Deep learning techniques for skin cancer detection
+2.3.1	Convolutional neural network (CNN)
+A convolutional neural network is an effective machine learning algorithm with multiple layers. It consists of three neural layer stages to establish its architectures: convolutional layer, pooling layer, and fully connected layer (Dorj et al., 2018). Convolutional neural networks take in an input image and assign importance to it in terms of various objects which make it possible to differentiate one image from another (Saha, 2018). Thus, CNNs have an excellent performance in machine learning problems by handling a huge amount of image data (Albawi et al., 2017). Many successful deep learning architectures for computer vision rely on CNNs. Some of convolutional neural networks that developed the image classification performance with the advent of large datasets are AlexNet, VGG, ResNet, and Inception (Hershey et al., 2017).
+A study evaluates the classification performance of seven different types of skin lesion with eight types of convolutional neural networks, namely, ResNet34, ResNet50, ResNet101, SEResNet50, VGG16, VGG19, EfficientNetB5, and MobileNet (Lucius et al., 2020); among the different deep convolutional neural networks, MobileNet achieves the highest accuracy in both low (82.47%) and high (83.88%) resolution images. However, the accuracies of other networks account for 74% to 79% which is acceptable (Lucius et al., 2020). Another study claims that the best performing architecture was Inception-ResNet-v2(IRv2) architecture (90.4% of accuracy) but only with soft attention (Datta et al., 2021); the researcher compared the performance of skin lesion classification of VGG16, ResNet, IRv2, and DenseNet201 architectures into three categories, benign nevi, seborrheic keratosis, and melanoma and other models also showed high accuracy levels. In this study, we selected ResNet50 architecture which will be further explained in section 3.2.
+3	Methodology
+3.1	Dataset and preprocessing
+Human Against Machine with 10,000 training images (HAM10000) dataset will be used in this research. The dataset contains 10,015 dermatoscopic images of 7 diagnosis of pigmented skin lesions, namely actinic keratoses, basal cell carcinoma, benign keratosis, dermatofibroma, melanocytic nevi, melanoma, and vascular skin lesions (Tschandl et al., 2018). The dermatoscopic images of the HAM10000 were collected over a period of 20 years from two sites: the skin cancer practice of Cliff Rosendahl in Queensland, Australia, and the Department of Dermatology at the Medical University of Vienna, Austria.
+The dataset will be divided into two groups called a training set and a test set: 80% of the dataset will be used to train the convolutional neural network architecture and the rest will be used to test the accuracy of the generated skin cancer classification model. The original image resolution in the HAM10000 dataset is 600 * 450 pixels. For comparison of the accuracy levels of detection across different image resolutions, the images will be resized to two different resolutions under consideration for deep learning inputs (60 * 45 pixels, 300 * 225 pixels). Resizing of images will be performed by python.
+Since the selected dataset has a massive number of images for training and testing, the data augmentation process is omitted.
+
+    </textarea>
+
+    <div class="writerMent">
+        <div>
+            <p>작가의 말</p>
+            <hr class="hr">
+            <div>
+                안녕하세요 잘부탁드립니다.
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="ments">
+        <div style="display: flex;justify-content: space-between;">
+        <p class="p2">댓글 <span class="span2">(10)</span></p>
+        <button class="send">전송</button>
+        </div>
+
+        <div class="writeMent">
+            <textarea name="" id="" class="writeMentarea"></textarea>
+        </div>
+
+        <div class="flex" style="margin-bottom: 49px;">
+            <div class="flex pink" style="margin-right: 15px;">
+                <div class="pinkCheck"><img src="/images/icon/체크핑크.png" class="img pink"/></div>
+                <div>BEST</div>
+            </div>
+            <div class="flex gray">
+                <div class="grayCheck"><img src="/images/icon/체크그레이.png" class="img gray"/></div>
+                <div>TOTAL</div>
+            </div>
+        </div>
+
+        <div class="profilePlusText" style="position: relative;">
+            <div class="Best">Best</div>
+            <div><!--프사, 아이디-->
+                <div class="profile"><img src="/images/profileSample/프사1.jpg" class="img"/></div>
+            </div>
+            <div style="width: 678px;"><!--댓글내용, 베스트댓글-->
+                <div style="font-size: 12px;">zzang_9</div>
+                <div style="">개미는 뚠뚠, 오늘도 뚠뚠, 열심히 일을 하네 뚠뚠</div>
+            </div>
+            <div>
+                <div style="text-align: right; display: flex;">
+                    <button class="mentBtns mentBtns1" style="margin-right: 6px; border-color:#cbcbcb; color:#cbcbcb;">
+                        <img src="/images/icon/좋아요.png" height="20" width="20" class="likeBtn"/>
+                        <span style="vertical-align: super;">100</span>
+                    </button>
+                    <button class="mentBtns" style="border-color: #ef6e73;"><img src="/images/icon/사이렌full.png" height="20" width="20"/></button>
+                </div>
+                <div class="date">
+                    2022.05.11
+                </div>
+            </div>
+        </div>
+
+        <div class="profilePlusText" style="position: relative;">
+            <div class="Best">Best</div>
+            <div><!--프사, 아이디-->
+                <div class="profile"><img src="/images/profileSample/프사1.jpg" class="img"/></div>
+            </div>
+            <div style="width: 678px;"><!--댓글내용, 베스트댓글-->
+                <div style="font-size: 12px;">zzang_9</div>
+                <div style="">개미는 뚠뚠, 오늘도 뚠뚠, 열심히 일을 하네 뚠뚠</div>
+            </div>
+            <div>
+                <div style="text-align: right; display: flex;">
+                    <button class="mentBtns mentBtns1" style="margin-right: 6px; border-color:#cbcbcb; color:#cbcbcb;">
+                        <img src="/images/icon/좋아요.png" height="20" width="20" class="likeBtn"/>
+                        <span style="vertical-align: super;">100</span>
+                    </button>
+                    <button class="mentBtns" style="border-color: #ef6e73;"><img src="/images/icon/사이렌full.png" height="20" width="20"/></button>
+                </div>
+                <div class="date">
+                    2022.05.11
+                </div>
+            </div>
+        </div>
+
+        <div class="profilePlusText" style="position: relative;">
+            <div class="Best">Best</div>
+            <div><!--프사, 아이디-->
+                <div class="profile"><img src="/images/profileSample/프사1.jpg" class="img"/></div>
+            </div>
+            <div style="width: 678px;"><!--댓글내용, 베스트댓글-->
+                <div style="font-size: 12px;">zzang_9</div>
+                <div style="">개미는 뚠뚠, 오늘도 뚠뚠, 열심히 일을 하네 뚠뚠</div>
+            </div>
+            <div>
+                <div style="text-align: right; display: flex;">
+                    <button class="mentBtns mentBtns1" style="margin-right: 6px; border-color:#cbcbcb; color:#cbcbcb;">
+                        <img src="/images/icon/좋아요.png" height="20" width="20" class="likeBtn"/>
+                           <span style="vertical-align: super;" class="number">100</span>
+                    </button>
+                    <button class="mentBtns" style="border-color: #ef6e73;"><img src="/images/icon/사이렌full.png" height="20" width="20"/></button>
+                </div>
+                <div class="date">
+                    2022.05.11
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<div class="displayBottom">
+
+    <div class="whiteLine"></div>
+    <div style="width: 100%; background-color: #f0f0f0; height: 46px;">
+        <div style="width: 44%; margin: 0 auto; line-height: 3; color: #adadad; display: flex; justify-content: space-between;">
+            눈 떠보니 내가 이세계 개발자 1화
+            <div style="display: flex;">
+                <div style="margin-right: 29px; cursor:pointer;">
+                    <span class="span">&lt</span>
+                    이전화
+                </div>
+                <div style="cursor:pointer;">
+                    다음화
+                    <span class="span">&gt</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="bottomNav">
+        <div class="icons2">
+            <div class="bottomIcon homeIcon"><img src="/images/icon/홈.png" class="img"/></div>
+            <div class="bottomIcon mentIcon"><img src="/images/icon/댓글.png" class="img"/></div>
+            <div class="bottomIcon heartIcon"><img src="/images/icon/소설하트.png" class="img topheart"/></div>
+            <div class="bottomIcon textimg"><img src="/images/icon/텍스트.png" class="img"/></div>
+
+        </div>
+        <div class="icons2" style="margin-top: -10px;">
+            <div class="textIcon home">&nbsp;&nbsp;홈</div>
+            <div class="textIcon ment">댓글</div>
+            <div class="textIcon heart">하트</div>
+            <div class="textIcon textIcon2">텍스트</div>
+        </div>
+    </div>
+</div>
+
+
+<!--텍스트 설정 모달-->
+
+<div class="textModal">
+    <div class="textModal_column">
+        배경 색상
+        <div class="columnDiv">
+            <div class="colorDiv cd1" style="background-color: white; border: 1px solid #c4c4c4;"></div>
+            <div class="colorDiv cd2" style="background-color: wheat;"></div>
+            <div class="colorDiv cd3" style="background-color: black;"></div>
+        </div>
+
+    </div>
+
+    <div class="textModal_column">
+        글자 색상
+        <div class="columnDiv">
+            <div class="colorDiv cd4" style="background-color: white; border: 1px solid #c4c4c4;"></div>
+            <div class="colorDiv cd5" style="background-color: rgba(74,163,71,0.73);"></div>
+            <div class="colorDiv cd6" style="background-color: #ef6e73;"></div>
+            <div class="colorDiv cd7" style="background-color: #000000;"></div>
+        </div>
+    </div>
+    <div class="textModal_column">
+        <span>글자 크기&nbsp;<span class="count1">0</span></span>
+        <div class="columnDiv plusMinusDiv fontsize">
+            <div class="minusIcon pmIcon m"><img src="/images/icon/minus-gray.png" class="img"/></div>
+            <div class="plusIcon pmIcon p"><img src="/images/icon/plus-gray.png" class="img"/></div>
+        </div>
+    </div>
+    <div class="textModal_column">
+        <span>줄 간격&nbsp;<span class="count2">0</span></span>
+        <div class="columnDiv plusMinusDiv">
+            <div class="minusIcon line m"><img src="/images/icon/minus-gray.png" class="img"/></div>
+            <div class="plusIcon line p"><img src="/images/icon/plus-gray.png" class="img"/></div>
+        </div>
+    </div>
+    <div class="textModal_column">
+        글꼴
+        <div class="columnDiv" style="margin-right: 26px;">
+            <select name="" id="" class="fontSelect" onchange="selectFunction()">
+                <option value="alice">Alice</option>
+                <option value="noto">NotoSansKo</option>
+                <option value="dobbie">Happy Dobbie</option>
+            </select>
+        </div>
+    </div>
+    <div class="textModal_column">댓글숨기기
+        <div class=" wrapper">
+            <input type="checkbox" id="switch">
+            <label for="switch" class="switch_label">
+                <span class="onf_btn"></span>
+            </label>
+        </div>
+    </div>
+
+
+</div>
+
+
+<!--사이드 바 모달-->
+
+<div class="sidebar slide-div">
+    <div class="side-row">
+        <div style="margin-right: 35px;"><span>1</span>편.</div>
+        <div>
+            <div>나는 왕이다</div>
+            <div class="day">2022.05.11</div>
+        </div>
+    </div>
+    <div class="side-row">
+        <div style="margin-right: 35px;"><span>2</span>편.</div>
+        <div>
+            <div>나는 왕이다</div>
+            <div class="day">2022.05.11</div>
+        </div>
+    </div>
+    <div class="side-row">
+        <div style="margin-right: 35px;"><span>3</span>편.</div>
+        <div>
+            <div>나는 왕이다</div>
+            <div class="day">2022.05.11</div>
+        </div>
+    </div>
+    <div class="side-row">
+        <div style="margin-right: 35px;"><span>4</span>편.</div>
+        <div>
+            <div>나는 왕이다</div>
+            <div class="day">2022.05.11</div>
+        </div>
+    </div>
+    <div class="side-row">
+        <div style="margin-right: 35px;"><span>5</span>편.</div>
+        <div>
+            <div>나는 왕이다</div>
+            <div class="day">2022.05.11</div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/novel/novelDetailView.js"></script>
+</html>

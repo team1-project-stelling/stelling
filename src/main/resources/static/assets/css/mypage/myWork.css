@@ -112,6 +112,12 @@ th{
     border-bottom: 1px solid #adb5bd;
     height: 40px;
 }
+
+ul.tag-title{
+    list-style-type: none;
+    margin-left: -55px;
+}
+
 /*내 소설*/
 
 a.btn-view{
@@ -133,6 +139,11 @@ a.btn-view{
     padding: 18px 0px 10px 12px;
     border-bottom: 1px solid #eee;
     float: left;
+    zoom: 0.81;
+}
+
+img.close, img.open{
+    width: 20px;
 }
 
 span.tag-update{
@@ -165,6 +176,9 @@ div.item-button li{
     border-bottom: 0px solid black;
 }
 
+ul{
+    list-style-type: none !important;
+}
 
 /*소설 통계*/
 
@@ -229,8 +243,6 @@ div.minimalistBlack {
 .divTableBody { display: table-row-group;}
 
 img {
-    width: 20px;
-    margin: 0 auto;
     align-items: center;
     margin-left: 5px;
 }
