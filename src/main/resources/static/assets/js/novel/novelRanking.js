@@ -42,7 +42,7 @@ $(document).ready(function(){
 //     console.log(imgs[i]);
 // }
 
-//마우스 갖다댔을시 이미지 확대
+//마우스 올렸을 때 이미지 확대
 function zoomIn(event){
     event.target.style.transform = "scale(1.2)"; //1.2배 확대
     event.target.style.zIndex = 1;
@@ -55,8 +55,17 @@ function zoomOut(event){
     event.target.style.transition = "all 0.5s";
 }
 
+//마우스 올렸을 때 폰트 색 변경(전체, 자유, 완결)
+function mouseOver(event){
+    event.target.style.color = "#ef6e73";
+}
 
-//상단 메뉴바 클릭시 밑줄(클래스 주기)
+function mouseOut(event){
+    event.target.style.color = "#000";
+}
+
+
+//상단 메뉴바 클릭 시 밑줄(클래스 주기)
 let menus = document.querySelectorAll('.click-menu');
 function clickMenu() {
     for (var i = 0; i < menus.length; i++){
