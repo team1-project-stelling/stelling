@@ -1,18 +1,17 @@
 package com.team1.stelling.domain.vo;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-
+@Component
 @Entity
 @Table(name ="TBL_RECENTVIEW")
 @SequenceGenerator(name ="RECENTVIEW_SEQ" , allocationSize = 1)
 @Getter
+@Setter
 @ToString(of = {"recentViewNumber"})
-@NoArgsConstructor
+@AllArgsConstructor
 public class RecentViewVO {
 
     @Id
@@ -28,10 +27,6 @@ public class RecentViewVO {
     @JoinColumn(name = "NOVEL_NUMBER")
     private NovelVO novelVO;                //  Fk NOVEL_NUMBER NUMBER,
 
-    @Builder
-    public RecentViewVO(Long recentViewNumber, UserVO userVO, NovelVO novelVO) {
-        this.recentViewNumber = recentViewNumber;
-        this.userVO = userVO;
-        this.novelVO = novelVO;
-    }
+    public RecentViewVO() {;}
+
 }

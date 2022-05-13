@@ -1,23 +1,23 @@
 package com.team1.stelling.domain.vo;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Component
 @Entity
 @Table(name ="TBL_PROFILEIMGFILE")
 @SequenceGenerator(name ="PROFILEIMGFILE_SEQ" , allocationSize = 1)
 @Getter
+@Setter
 @ToString(of = {"profileImgNumber","profileImgFileFilePath","profileImgFileOriginFileName","profileImgFileFileName","profileImgFileUploadDate","profileImgFileUpdateDate"})
-@NoArgsConstructor
+@AllArgsConstructor
 public class ProfileImgFileVO {
 
     @Id
@@ -46,6 +46,8 @@ public class ProfileImgFileVO {
     public void updateProfileImgFileOriginFileName(String profileImgFileOriginFileName) { this.profileImgFileOriginFileName = profileImgFileOriginFileName; }
     public void updateProfileImgFileFileName(String profileImgFileFileName) { this.profileImgFileFileName = profileImgFileFileName; }
     public void updateProfileImgFileUpdateDate() { this.profileImgFileUpdateDate = new Date(); }
+
+    public ProfileImgFileVO() { ;}
 
     @Builder
     public ProfileImgFileVO(Long profileImgNumber, UserVO userVO, String profileImgFileFilePath, String profileImgFileOriginFileName, String profileImgFileFileName, String profileImgFileUploadDate, String profileImgFileUpdateDate) {
