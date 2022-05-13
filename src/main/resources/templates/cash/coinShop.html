@@ -318,7 +318,7 @@
 </head>
 <body class="is-preload">
 <!-- 헤더 시작 -->
-<th:block th:insert="/fix/header_word.html :: headFragment"/>
+<th:block th:insert="/fix/headerWord.html :: headFragment"/>
 
 <!--헤더 이미지-->
 <div id="headerImgWrap" >
@@ -536,7 +536,8 @@
     //     $(this).on("click", function(){
 
     $(".iamportPayment").on('click', function(){
-        console.log($(this).data('price'));
+        console.log('상품명' + ':' + $(this).data('tit'));
+        console.log($(this).data('price') + '원');
         if(userNum == null){
             alert("로그인 후 이용해주세요.");
             return;
@@ -547,8 +548,8 @@
                 pg : 'kg', //pg사 선택 (kakao, kakaopay 둘다 가능)
                 pay_method: 'card',
                 merchant_uid : 'merchant_' + new Date().getTime(), //주문번호
-                name : '결제테스트', // 상품명
-                amount : $(this).data('price'),
+                name : $(this).data('tit'), // 상품명
+                amount : /*$(this).data('price'),*/ 100,
                 buyer_email : 'skminy27@nate.com',
                 buyer_name : '신재민',
                 buyer_tel : '01089087253',  //필수항목
@@ -558,8 +559,8 @@
                 //m_redirect_url : 'https://localhost:8080/payments/complete'
             }, function(rsp){
                 if(rsp.success){//결제 성공시
-                    alert('예약 결제가 완료되었습니다!');
-                    location.href = "";
+                    alert('결제가 완료되었습니다!');
+                    location.href = "/myPage/myPagePayList/" /*+ userNum;*/ //userNum값을 컨트롤러에 넘겨주면 userNum로 유저 정보 조회 및 결제금액, 잔여코인 insert(tbl_pay테이블 userNum fk연결되있음)
                 } else{
                     let msg = '결제에 실패하였습니다.\n';
                     msg += rsp.error_msg;
