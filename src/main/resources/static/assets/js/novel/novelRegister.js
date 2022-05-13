@@ -174,7 +174,7 @@ $('.btn').on("click", function () {
 
 /*유효성검사 + form데이터 보내기*/
 
-    $('#insertBtn').on("click", function () {
+    $('.insertBtn').on("click", function () {
         let hashtag = $('#tag-list').text();
         hashtag=hashtag.replace(/x/gi, "");
         $('input[name="novelHashtag"]').val(hashtag);

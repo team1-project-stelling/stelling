@@ -21,12 +21,12 @@
 
         <h2 class="h2">새 작품 등록</h2>
         <hr class="hr">
-    <form action="/novel/novelRegister">
-        <button class="btn rutin">정기 연재</button>
-        <button class="btn free">자유 연재</button>
+    <form action="/novel/novelRegister" method="post">
+        <button class="btn rutin" type="button">정기 연재</button>
+        <button class="btn free" type="button">자유 연재</button>
 
 <!--나중에 수정시 연재 완결 버튼으로 사용할것 -----------------------------------------------------------------  -->
-<!--    <button class="btn end">완결</button>-->
+<!--    <button class="btn end" type="button">완결</button>-->
 
     <!--정기연재 버튼 눌렀을때 요일 입력받는 div생성-->
     <div class="box daysBtns days">
@@ -48,7 +48,7 @@
         <div class="flex" style="justify-content: space-between;">
         <p>*카테고리</p>
             <div class="selectBox2 categorySelect">
-                <button class="label">카테고리</button>
+                <button class="label" type="button">카테고리</button>
                 <ul class="optionList">
                     <li class="optionItem">로맨스</li>
                     <li class="optionItem">로맨스 판타지</li>
@@ -122,7 +122,7 @@
                             <label for="file">업로드</label>
                             <input type="file" id="file" onchange="setThumbnail(event)" class="thum">
 
-                            <input class="upload-name">
+                            <input class="upload-name" name="novelFileName">
                         </div>
                     </div>
                     <div class="exImg">
@@ -153,7 +153,7 @@
 
     </form>
     <div style="text-align: center;">
-        <button class="insertBtn">등록하기</button>
+        <button class="insertBtn" type="button">등록하기</button>
     </div>
 
 
