@@ -21,7 +21,7 @@
 
         <h2 class="h2">새 작품 등록</h2>
         <hr class="hr">
-    <form action="/novel/novelRegister" method="post">
+    <form action="/novel/novelRegister" method="post" name="register">
         <button class="btn rutin" type="button">정기 연재</button>
         <button class="btn free" type="button">자유 연재</button>
 
@@ -143,36 +143,17 @@
             </div>
         </div>
     </div>
-        <input type="hidden" name="novelSerialsStatus">
+        <input type="hidden" name="novelSerialsStatus" value="1">
         <input type="hidden" name="novelCategory">
         <input type="hidden" name="novelHashtag">
-        <input type="hidden" name="novelSerialsStatus" value="1">
 
 
 
 
     </form>
     <div style="text-align: center;">
-        <button class="insertBtn" type="button">등록하기</button>
+        <button class="insertBtn" type="button" id="insertBtn">등록하기</button>
     </div>
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -184,5 +165,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/fix/header.js"></script>
-<script src="/assets/js/illust/novelRegister.js"></script>
+<script src="/assets/js/novel/novelRegister.js"></script>
 </html>
