@@ -5,8 +5,17 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Entity
@@ -15,6 +24,7 @@ import java.util.Date;
 @Getter
 @ToString(of = {"illustImgFileNumber","illustImgFileFilePath","illustImgFileOriginFileName","illustImgFileFileName","illustImgFileUploadDate","illustImgFileUpdateDate"})
 @NoArgsConstructor
+@Slf4j
 public class IllustImgFileVO {
    @Id
    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ILLUSTIMGFILE_SEQ")
@@ -32,20 +42,42 @@ public class IllustImgFileVO {
    private String illustImgFileOriginFileName; // 일러스트 원본 파일 이름
    @Column(name = "ILLUSTIMGFILE_FILENAME")
    private String illustImgFileFileName; // 일러스트 파일 이름
-   @Column(name = "ILLUSTIMGFILE_UPLOADDATE")
+   @Generated(GenerationTime.INSERT)
+   @Temporal(TemporalType.TIMESTAMP)
+   @Column(name = "ILLUSTIMGFILE_UPLOADDATE",updatable = false)
    private Date illustImgFileUploadDate; // 일러스트 등록 시간
+   @Generated(GenerationTime.INSERT)
+   @Temporal(TemporalType.TIMESTAMP)
    @Column(name = "ILLUSTIMGFILE_UPDATEDATE")
    private Date illustImgFileUpdateDate; // 일러스트 수정시간
 
-   @Builder
-   public IllustImgFileVO(Long illustImgFileNumber, IllustVO illustVO, UserVO userVO, String illustImgFileFilePath, String illustImgFileOriginFileName, String illustImgFileFileName, Date illustImgFileUploadDate, Date illustImgFileUpdateDate) {
+
+    public void updateIllustImgFileUpdateDate(){ this.illustImgFileUpdateDate =  new Date();}
+
+    public void updateIllustImgFileFilePath(String illustImgFileFilePath) { this.illustImgFileFilePath = illustImgFileFilePath; }
+
+    public void updateIllustImgFileOriginFileName(String illustImgFileOriginFileName) { this.illustImgFileOriginFileName = illustImgFileOriginFileName; }
+
+    public void updateIllustImgFileFileName(String illustImgFileFileName) { this.illustImgFileFileName = illustImgFileFileName; }
+
+
+    @Builder
+    public IllustImgFileVO(Long illustImgFileNumber, IllustVO illustVO, UserVO userVO, String illustImgFileFilePath, String illustImgFileOriginFileName, String illustImgFileFileName, String illustImgFileUploadDate, String illustImgFileUpdateDate) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+
         this.illustImgFileNumber = illustImgFileNumber;
         this.illustVO = illustVO;
         this.userVO = userVO;
         this.illustImgFileFilePath = illustImgFileFilePath;
         this.illustImgFileOriginFileName = illustImgFileOriginFileName;
         this.illustImgFileFileName = illustImgFileFileName;
-        this.illustImgFileUploadDate = illustImgFileUploadDate;
-        this.illustImgFileUpdateDate = illustImgFileUpdateDate;
+
+        try {
+            if(illustImgFileUploadDate != null) { this.illustImgFileUploadDate = sdf.parse(illustImgFileUploadDate); }
+            if(illustImgFileUpdateDate != null) { this.illustImgFileUpdateDate = sdf.parse(illustImgFileUpdateDate); }
+        } catch (ParseException e) { e.printStackTrace();}
+
     }
 }
+

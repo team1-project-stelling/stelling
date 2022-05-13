@@ -4,8 +4,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -33,20 +37,32 @@ public class NovelImgFileVO {
    private String novelImgFileOriginFileName;
    @Column(name = "NOVELIMGFILE_FILENAME")
    private String novelImgFileFileName;
-   @Column(name = "NOVELIMGFILE_UPLOADDATE")
+    @Generated(GenerationTime.INSERT)
+    @Temporal(TemporalType.TIMESTAMP)
+   @Column(name = "NOVELIMGFILE_UPLOADDATE",updatable = false)
    private Date novelImgFileUploadDate;
+    @Generated(GenerationTime.INSERT)
+    @Temporal(TemporalType.TIMESTAMP)
    @Column(name ="NOVELIMGFILE_UPDATEDATE")
    private Date novelImgFileUpdateDate;
 
-   @Builder
-   public NovelImgFileVO(Long novelImgFileNumber, NovelVO novelVO, UserVO userVO, String novelImgFileFilePath, String novelImgFileOriginFileName, String novelImgFileFileName, Date novelImgFileUploadDate, Date novelImgFileUpdateDate) {
+    public void updateNovelImgFileFilePath(String novelImgFileFilePath) { this.novelImgFileFilePath = novelImgFileFilePath; }
+    public void updateNovelImgFileOriginFileName(String novelImgFileOriginFileName) { this.novelImgFileOriginFileName = novelImgFileOriginFileName; }
+    public void updateNovelImgFileFileName(String novelImgFileFileName) { this.novelImgFileFileName = novelImgFileFileName; }
+    public void updateNovelImgFileUpdateDate() { this.novelImgFileUpdateDate = new Date(); }
+
+    @Builder
+   public NovelImgFileVO(Long novelImgFileNumber, NovelVO novelVO, UserVO userVO, String novelImgFileFilePath, String novelImgFileOriginFileName, String novelImgFileFileName, String novelImgFileUploadDate, String novelImgFileUpdateDate) {
+       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         this.novelImgFileNumber = novelImgFileNumber;
         this.novelVO = novelVO;
         this.userVO = userVO;
         this.novelImgFileFilePath = novelImgFileFilePath;
         this.novelImgFileOriginFileName = novelImgFileOriginFileName;
         this.novelImgFileFileName = novelImgFileFileName;
-        this.novelImgFileUploadDate = novelImgFileUploadDate;
-        this.novelImgFileUpdateDate = novelImgFileUpdateDate;
-    }
+       try {
+           if(novelImgFileUploadDate != null) { this.novelImgFileUploadDate = sdf.parse(novelImgFileUploadDate); }
+           if(novelImgFileUpdateDate != null) { this.novelImgFileUpdateDate = sdf.parse(novelImgFileUpdateDate); }
+       } catch (ParseException e) { e.printStackTrace(); }
+   }
 }

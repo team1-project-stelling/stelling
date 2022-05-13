@@ -1,5 +1,8 @@
 package com.team1.stelling.domain.dao;
 
+import com.team1.stelling.domain.vo.IllustProfileVO;
+import com.team1.stelling.domain.vo.InquiryVO;
+import com.team1.stelling.domain.vo.MyIllustVO;
 import com.team1.stelling.domain.vo.MyPickVO;
 import com.team1.stelling.mapper.MyPickMapper;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +15,7 @@ import org.springframework.stereotype.Repository;
 public class MyPickDAO {
     private final MyPickMapper myPickMapper;
 
-    public int register(MyPickVO myPickVO){
-        log.info("myPick register...." + myPickVO);
-        return myPickMapper.insert(myPickVO);
-    }
+    public MyPickVO get(Long myPickNumber) {return myPickMapper.get(myPickNumber);}
+    public void register(MyPickVO myPickVO) {myPickMapper.insert(myPickVO);}
+    public void modify(MyPickVO myPickVO) {myPickMapper.update(myPickVO);}
 }

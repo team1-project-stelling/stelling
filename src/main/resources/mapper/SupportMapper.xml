@@ -3,7 +3,11 @@
 <mapper namespace="com.team1.stelling.mapper.SupportMapper">
 
     <!--등록-->
-    <insert id="insert"></insert>
+    <insert id="insert">
+        INSERT INTO TBL_SUPPORT (SUPPORT_NUMBER, SUPPORT_SPONSER, SUPPORT_RECEIVER, NOVEL_NUMBER, SUPPORT_COIN)
+        VALUES(SUPPORT_SEQ.NEXTVAL, #{supportSponser}, #{supportReceiver}, #{novelNumber}, #{supportCoin})
+
+    </insert>
 
     <!--삭제-->
     <delete id="delete"></delete>
@@ -11,4 +15,10 @@
     <!--수정-->
     <update id="update"></update>
 
+    <!--특정 내역 가져오기-->
+    <select id="get" resultType="supportVO">
+        SELECT SUPPORT_NUMBER, SUPPORT_SPONSER, SUPPORT_RECEIVER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE
+        FROM TBL_SUPPORT
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
 </mapper>

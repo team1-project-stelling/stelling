@@ -1,6 +1,7 @@
 package com.team1.stelling.mapper;
 
 import com.team1.stelling.domain.vo.Criteria;
+import com.team1.stelling.domain.vo.MyIllustVO;
 import com.team1.stelling.domain.vo.ReplyVO;
 import org.apache.ibatis.annotations.Mapper;
 

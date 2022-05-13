@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class IllustProfileVO {
     /* 시퀀스 ->   ILLUSTPROFILE_SEQ */
     private Long illustProfileNumber; // 일러스트 프로파일 번호
-    Long  userNumber; // 유저 번호 FK
+    private Long  userNumber; // 유저 번호 FK
     private String illustProfileShortIntro; // 짧은 소개
     private String illustProfileDetailIntro; // 자세한 소개
     private String illustProfileCategory; // 주 활동 카테고리
