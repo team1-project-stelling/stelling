@@ -21,8 +21,6 @@ public class RecentViewServiceTests {
     @Autowired
     UserService userService;
     @Autowired
-    ProfileImgService profileImgService;
-    @Autowired
     RecentViewService recentViewService;
 
 /*    @Test
