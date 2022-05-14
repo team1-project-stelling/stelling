@@ -1,11 +1,13 @@
 package com.team1.stelling.controller;
 
+import com.team1.stelling.domain.vo.PayVO;
 import com.team1.stelling.service.PayService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -49,11 +51,24 @@ public class MyLibraryController {
         return "cash/coinShop";
     }
 
-    @GetMapping("/payList")
-    public String payList(Long userNumber, Model model){
-        log.info("userNumber List에 담기 전" + String.valueOf(userNumber));
+    //결제 리스트(마이페이지)
+    @GetMapping("/payList/{userNumber}")
+    public String payList(@PathVariable Long userNumber, Model model){
         model.addAttribute("payList", payService.getList(userNumber));
-        log.info("userNumber1 List에 담은 후" + String.valueOf(userNumber));
         return "myPage/myPagePayList";
+    }
+
+    //결제 내역 등록
+//    @PostMapping("/register/{userNumber}/{payCharge}/{payCoinCount}")
+//    public String register(@PathVariable Long userNumber, @PathVariable Long payCharge, @PathVariable Long payCoinCount){
+//        payService.register(userNumber, payCharge, payCoinCount);
+//        return "cash/coinShop";
+//    }
+    
+    //결제 내역 등록
+    @PostMapping("/register")
+    public String register(PayVO payVO){
+        payService.register(payVO);
+        return "cash/coinShop";
     }
 }

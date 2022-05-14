@@ -18,5 +18,6 @@ public class PayDAO {
 
 //    public PayVO get(Long payNumber) {return payMapper.get(payNumber);}
     public List<PayVO> getList(Long userNumber) {return payMapper.getList(userNumber);}
+//    public void register(Long userNumber, Long payCharge, Long payCoinCount) {payMapper.insert(userNumber, payCharge, payCoinCount);}
     public void register(PayVO payVO) {payMapper.insert(payVO);}
 }
