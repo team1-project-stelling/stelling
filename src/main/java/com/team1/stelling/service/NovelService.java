@@ -4,7 +4,10 @@ import com.team1.stelling.domain.repository.NovelRepository;
 import com.team1.stelling.domain.vo.NovelVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +24,14 @@ public class NovelService {
     public void modify(NovelVO novelVO) {
         novelVO.updateNovelUpdateDate();
         novelRepository.save(novelVO);
+    }
+    public int getTotal(){return novelRepository.findByIdTotal();}
+
+    /* search */
+    @Transactional
+    public Page<NovelVO> search(String keyword, Pageable pageable) {
+        Page<NovelVO> novelList = novelRepository.findByNovelHashtagContaining(keyword, pageable);
+        return novelList;
     }
 
 }

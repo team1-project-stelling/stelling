@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class NovelServiceTests {
         List<NovelVO> datas = novelService.getList();
         datas.forEach(e -> log.info("#####"+e.toString()));
     }*/
-    @Test
+/*    @Test
     public void register(){
         NovelVO novelVO = NovelVO.builder()
                 .userVO(userService.get(2L))
@@ -44,7 +46,7 @@ public class NovelServiceTests {
                 .novelUploadPath("C:/upload")
                 .build();
         novelService.register(novelVO);
-    }
+    }*/
 /*    @Test
     public void modifyTest(){
         NovelVO novelVO = novelService.get(2L);
@@ -53,5 +55,7 @@ public class NovelServiceTests {
         novelVO.updateNovelCategory("#로맨스");
         novelService.modify(novelVO);
     }*/
+
+
     
 }

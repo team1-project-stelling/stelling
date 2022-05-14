@@ -20,7 +20,7 @@ import java.util.Date;
 @ToString(of = {
         "novelNumber","novelTitle","novelHashtag","novelUploadDate", "novelUpdateDate", "novelMonday", "novelTuesDay",
         "novelWednesDay", "novelThursDay", "novelFriDay", "novelSaturDay", "novelSunDay", "novelCategory", "novelStatus", "novelSerialsStatus",
-        "novelIntro","novelFileName","novelUploadPath","novelUUID"})
+        "novelIntro","novelFileName","novelUploadPath","novelUUID","novelRoundAboutTotal","novelLikeCountTotal","novelViewCountTotal"})
 @AllArgsConstructor
 public class NovelVO {
 
@@ -45,7 +45,7 @@ public class NovelVO {
     @Generated(GenerationTime.INSERT)
     @Temporal(TemporalType.TIMESTAMP)
    @Column(name = "NOVEL_UPDATEDATE")
-   private Date novelUpdateDate; // 수정 시간
+   private Date novelUpdateDate; // 최근 소설 등록 시간 -- 회차 등록시 업데이트 받는 값
    @Column(name = "NOVEL_MONDAY")
    private int novelMonday; // 월요일
    @Column(name = "NOVEL_TUESDAY")
@@ -65,15 +65,21 @@ public class NovelVO {
    @Column(name = "NOVEL_STATUS")
    private int novelStatus;  /*작품 상태 0휴재, 1연재, 2완결, 3 숨김*/
    @Column(name = "NOVEL_SERIALSTATUS")
-   private int novelSerialsStatus; /*정기연재 OR 자유연재 상태*/
+   private int novelSerialsStatus; /* 0 정기연재 OR 1 자유연재 상태*/
    @Column(name = "NOVEL_INTRO")
    private String novelIntro; /* 소설 소개*/
    @Column(name = "NOVEL_FILENAME")
-   private String novelFileName;
+   private String novelFileName; // 파일이름
    @Column(name = "NOVEL_UPLOADPATH")
-   private String novelUploadPath;
+   private String novelUploadPath; // 업로드 경로
    @Column(name = "NOVEL_UUID")
-   private String novelUUID;
+   private String novelUUID; // UUID
+   @Column(name ="NOVEL_ROUNDABOUTTOTAL")
+   private int novelRoundAboutTotal; // 소설회차 수 -> insert시 업데이트 받을 값
+   @Column(name ="NOVEL_LIKECOUNTTOTAL")
+   private int novelLikeCountTotal; // 좋아요 전체 회수 -> insert시 업데이트 받을 값
+   @Column(name = "NOVEL_VIEWCOUNTTOTAL")
+   private int novelViewCountTotal;
 
 
     public void updateNovelTitle(String novelTitle) { this.novelTitle = novelTitle;}
@@ -98,10 +104,11 @@ public class NovelVO {
     public void updateNovelUUID(String novelUUID) { this.novelUUID = novelUUID; }
 
 
+
     public NovelVO() { ;}
 
     @Builder
-    public NovelVO(Long novelNumber, UserVO userVO, String novelTitle, String novelHashtag, String novelUploadDate, String novelUpdateDate, int novelMonday, int novelTuesDay, int novelWednesDay, int novelThursDay, int novelFriDay, int novelSaturDay, int novelSunDay, String novelCategory, int novelStatus, int novelSerialsStatus, String novelIntro, String novelFileName, String novelUploadPath, String novelUUID) {
+    public NovelVO(Long novelNumber, UserVO userVO, String novelTitle, String novelHashtag, String novelUploadDate, String novelUpdateDate, int novelMonday, int novelTuesDay, int novelWednesDay, int novelThursDay, int novelFriDay, int novelSaturDay, int novelSunDay, String novelCategory, int novelStatus, int novelSerialsStatus, String novelIntro, String novelFileName, String novelUploadPath, String novelUUID ,int novelRoundAboutTotal, int novelLikeCountTotal, int novelViewCountTotal) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         this.novelNumber = novelNumber;
         this.userVO = userVO;
@@ -125,5 +132,8 @@ public class NovelVO {
         this.novelFileName = novelFileName;
         this.novelUploadPath = novelUploadPath;
         this.novelUUID = novelUUID;
+        this.novelRoundAboutTotal =novelRoundAboutTotal;
+        this.novelLikeCountTotal = novelLikeCountTotal;
+        this.novelViewCountTotal = novelViewCountTotal;
     }
 }
