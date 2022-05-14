@@ -9,6 +9,7 @@ import java.util.List;
 @Mapper
 public interface PayMapper {
     //등록
+//    public int insert(Long userNumber, Long payCharge, Long payCoinCount);
     public int insert(PayVO payVO);
 
     //조회
