@@ -57,7 +57,6 @@ a.menu{
 
 .profile_show{
     float: left;
-    word-spacing: -6px;
     position: relative;
 }
 .emailChange, .nickChange, .phoneChange{
