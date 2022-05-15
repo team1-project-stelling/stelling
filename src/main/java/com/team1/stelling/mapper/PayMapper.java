@@ -1,6 +1,7 @@
 package com.team1.stelling.mapper;
 
 import com.team1.stelling.domain.vo.MyIllustVO;
+import com.team1.stelling.domain.vo.PayDTO;
 import com.team1.stelling.domain.vo.PayVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,6 +13,12 @@ public interface PayMapper {
 //    public int insert(Long userNumber, Long payCharge, Long payCoinCount);
     public int insert(PayVO payVO);
 
+    //결제 내역
+    public List<PayVO> getList(Long userNumber);
+
+    //총 결제 금액
+    public PayDTO getTotal(Long userNumber);
+
     //조회
     public PayVO read(Long payNumber);
 
@@ -21,5 +28,4 @@ public interface PayMapper {
     public int delete(Long payNumber);
 
 //    public PayVO get(Long payNumber);
-    public List<PayVO> getList(Long userNumber);
 }

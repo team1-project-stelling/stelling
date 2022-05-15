@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -53,10 +54,18 @@ public class MyLibraryController {
         return "cash/coinShop";
     }
 
+    //결제 내역 등록
+    @PostMapping("/coinShop")
+    public String register(PayVO payVO){
+        payService.register(payVO);
+        return "cash/coinShop";
+    }
+
     //결제 리스트(마이페이지)
     @GetMapping("/payList/{userNumber}")
     public String payList(@PathVariable Long userNumber, Model model){
             model.addAttribute("payList", payService.getList(userNumber));
+            model.addAttribute("payDTO", payService.getTotal(userNumber));
         return "myPage/myPagePayList";
     }
 
@@ -77,10 +86,4 @@ public class MyLibraryController {
 //        return "cash/coinShop";
 //    }
 
-    //결제 내역 등록
-    @PostMapping("/register")
-    public String register(PayVO payVO){
-        payService.register(payVO);
-        return "cash/coinShop";
-    }
 }
