@@ -1,13 +1,15 @@
 package com.team1.stelling.domain.vo;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 /*후원(전체, 회차)*/
-@Component
-@Data
+@Getter
+@Setter
 public class SupportVO {
     /* 시퀀스 -> SUPPORT_SEQ*/
    private Long supportNumber; // 후원번호

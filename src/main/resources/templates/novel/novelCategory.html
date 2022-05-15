@@ -40,7 +40,7 @@
             <div id="totalWrap"class="giveMaxWidth">
                 <div class="totalWordWork">
                     <img src="/images/category/fileIcon.png" alt="파일아이콘">
-                    <span>총 18,827개 작품</span>
+                    <span th:text="|총 ${novelTotal}개 작품|">18,827</span>
                 </div>
                 <div id="totalR_side">
                     <div id="totalOption">
@@ -53,90 +53,59 @@
             </div>
             <div id="tagSearchWrap" class="giveMaxWidth">
                 <div class="tagInner">
-                    <button class="tagBtn" onclick="changeTagSearch()">태그검색</button>
+                    <button class="tagBtn"onclick="changeTagSearch()" >태그검색</button>
 
                     <div id="searchFormWrap">
-                        <form id="searchForm">
-                            <input id="" type="text" placeholder="#검색할 태그를 입력하세요" maxlength="16">
+                        <form id="searchForm"  method="get" action="/novel/novelSearch">
+                            <input name="keyword" id="searchFormInput" type="text" placeholder="#검색할 태그를 입력하세요" maxlength="16">
+                            <button class="searchFormWrapBtn">검색</button>
                             <div class="cancelImg" onclick="changeTagSearch()">
                                 <img src="/images/category/cancelIcon.png">
                             </div>
                         </form>
                     </div>
                     <ul id="tagSearchList">
-                        <li class="active"><a>전체</a></li>
-                        <li><a href="#">판타지</a></li>
-                        <li><a href="#">무협</a></li>
-                        <li><a href="#">현대</a></li>
-                        <li><a href="#">로맨스</a></li>
-                        <li><a href="#">현대판타지</a></li>
-                        <li><a href="#">라이트노벨</a></li>
-                        <li><a href="#">공포</a></li>
-                        <li><a href="#">SF</a></li>
-                        <li><a href="#">스포츠</a></li>
-                        <li><a href="#">대체역사</a></li>
-                        <li><a href="#">기타</a></li>
-                        <li><a href="#">패러디</a></li>
+                        <li class="active"><a href="/novel/novelCategory">전체</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=판타지)}">판타지</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=무협)}">무협</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=현대)}">현대</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=로맨스)}">로맨스</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=현대판타지)}">현대판타지</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=라이트노벨)}">라이트노벨</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=공포)}">공포</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=SF)}">SF</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=스포츠)}">스포츠</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=대체역사)}">대체역사</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=기타)}">기타</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=패러디)}">패러디</a></li>
                     </ul>
                 </div>
             </div>
             <div id="searchResult"class="giveMaxWidth">
-                <div class="resultItem">        <!--/upload/d-->
-                     <div class="coverBox"><img src="/upload/display?fileName=stelling/gi23.png" alt="표지사진"><img src="/images/category/updateIcon.png" alt="업데이트아이콘"></div>
-                     <div class="pieceInfo">
-                         <div>
-                            <div class="info_head">
-                                <div>
-                                    <span class="free_content">자유</span>
-                                    <span class="mono_content">독점</span>
-                                    <span class="finish_content">완결</span>
-                                </div>
-                                <a href="#" class="info_title">권능의 여왕</a>
-                                <a href="#" class="info_writer">거북이</a>
-                            </div>
-                            <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
-                        </div>
-                        <div class="info_counts">
-                            <div class="info_count"><img src="/images/category/viewIcon.png" alt="조회수">755.7K명</div>
-                            <div class="info_count"><img src="/images/category/bookIcon.png" alt="회차">10회차</div>
-                            <div class="info_count"><img src="/images/category/likeIcon.png" alt="좋아요">47회</div>
-                        </div>
-                        <div class="info_tag">
-                            <ul>
-                                <li><a href="#">#판타지</a></li>
-                                <li><a href="#">#라이트노넬</a></li>
-                                <li><a href="#">#전생</a></li>
-                                <li><a href="#">#이세계</a></li>
-                                <li><a href="#">#여주인공</a></li>
-                                <li><a href="#">#여왕</a></li>
-                            </ul>
-                    <!--        <div class="mobile_updateTimeBox">1분전 UP</div>-->
-                        </div>
-                         <div>
-                             <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
-                         </div>
-                     </div>
-                </div>
                 <!-- 더미 데이터 시작 -->
+                <th:block  th:each="novel:${list}">
                 <div class="resultItem">
-                    <div class="coverBox"><img src="/images/category/dumi1.jpg" alt="표지사진"><img src="/images/category/updateIcon.png" alt="업데이트아이콘"></div>
+                    <div class="coverBox">
+                        <img th:src="'/upload/display?fileName='+${novel.novelUploadPath}+'/'+${novel.novelFileName}" alt="표지사진"> <!--추후 UUID추가-->
+                        <img src="/images/category/updateIcon.png" alt="업데이트아이콘" th:if="${#calendars.format(novel.novelUpdateDate,'yyyy-MM-dd')== #calendars.format(#calendars.createNow(),'yyyy-MM-dd')}"></div>
                     <div class="pieceInfo">
                         <div>
                             <div class="info_head">
                                 <div>
-                                    <span class="free_content">자유</span>
+                                    <span class="free_content" th:if="${novel.novelSerialsStatus == 0}">자유</span>
+                                    <span class="free_content" th:if="${novel.novelSerialsStatus == 1}">정기</span>
                                     <span class="mono_content">독점</span>
-                                    <span class="finish_content">완결</span>
+                                    <span class="finish_content" th:if="${novel.novelStatus == 2}">완결</span>
                                 </div>
-                                <a href="#" class="info_title">권능의 여왕</a>
-                                <a href="#" class="info_writer">거북이</a>
+                                <a href="#" class="info_title" th:text="${novel.novelTitle}">권능의 여왕</a>
+                                <a href="#" class="info_writer" th:text="${novel.userVO.userNickName}">거북이</a>
                             </div>
-                            <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
+                            <div class="info_summary" th:text="${novel.novelIntro}"></div>
                         </div>
                         <div class="info_counts">
-                            <div class="info_count"><img src="/images/category/viewIcon.png" alt="조회수">755.7K명</div>
-                            <div class="info_count"><img src="/images/category/bookIcon.png" alt="회차">10회차</div>
-                            <div class="info_count"><img src="/images/category/likeIcon.png" alt="좋아요">47회</div>
+                            <div class="info_count"><img src="/images/category/viewIcon.png" alt="조회수" th:text="|${novel.novelViewCountTotal}명|"></div>
+                            <div class="info_count"><img src="/images/category/bookIcon.png" alt="회차" th:text="|${novel.novelRoundAboutTotal}회차|"></div>
+                            <div class="info_count"><img src="/images/category/likeIcon.png" alt="좋아요" th:text="|${novel.novelLikeCountTotal}회|"></div>
                         </div>
                         <div class="info_tag">
                             <ul>
@@ -145,391 +114,48 @@
                         </div>
                         <!--<div class="mobile_updateTimeBox">1분전 UP</div>-->
                         <div>
-                            <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
+                            <th:block th:if="${#calendars.format(novel.novelUpdateDate,'yyyy-MM-dd') == #calendars.format(#calendars.createNow(),'yyyy-MM-dd')}">
+                                <!-- 현재 날짜와 업데이트 날짜가 일치할때-->
+                                <div class="updateTimeBox web_updateTimeBox" th:if="${#calendars.format(novel.novelUpdateDate,'yyyy-MM-dd HH') == #calendars.format(#calendars.createNow(),'yyyy-MM-dd HH')}" th:text="${#strings.toString(#calendars.format(#calendars.createNow(),'mm'))} -${ #strings.toString(#calendars.format(novel.novelUpdateDate,'mm'))}+'분전 UP'"></div>
+                                <div class="updateTimeBox web_updateTimeBox" th:unless="${#calendars.format(novel.novelUpdateDate,'yyyy-MM-dd HH')== #calendars.format(#calendars.createNow(),'yyyy-MM-dd HH')}" th:text="${#strings.toString(#calendars.format(#calendars.createNow(),'HH'))} -${ #strings.toString(#calendars.format(novel.novelUpdateDate,'HH'))}+'시간전 UP'"></div>
+                            </th:block>
+                            <th:block th:unless="${#calendars.format(novel.novelUpdateDate,'yyyy-MM-dd') == #calendars.format(#calendars.createNow(),'yyyy-MM-dd')}">
+                                <div class="updateTimeBox web_updateTimeBox" th:text="|${#calendars.format(novel.novelUpdateDate,'yyyy-MM-dd')} UP|"></div>
+                            </th:block>
+
                         </div>
                     </div>
                 </div>
-                <div class="resultItem">
-                    <div class="coverBox"><img src="/images/category/dumi2.jpg" alt="표지사진"><img src="/images/category/updateIcon.png" alt="업데이트아이콘"></div>
-                    <div class="pieceInfo">
-                        <div>
-                            <div class="info_head">
-                                <div>
-                                    <span class="free_content">자유</span>
-                                    <span class="mono_content">독점</span>
-                                    <span class="finish_content">완결</span>
-                                </div>
-                                <a href="#" class="info_title">권능의 여왕</a>
-                                <a href="#" class="info_writer">거북이</a>
-                            </div>
-                            <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
-                        </div>
-                        <div class="info_counts">
-                            <div class="info_count"><img src="/images/category/viewIcon.png" alt="조회수">755.7K명</div>
-                            <div class="info_count"><img src="/images/category/bookIcon.png" alt="회차">10회차</div>
-                            <div class="info_count"><img src="/images/category/likeIcon.png" alt="좋아요">47회</div>
-                        </div>
-                        <div class="info_tag">
-                            <ul>
-                                <li><a href="#">#판타지</a></li>
-                                <li><a href="#">#라이트노넬</a></li>
-                                <li><a href="#">#전생</a></li>
-                                <li><a href="#">#이세계</a></li>
-                                <li><a href="#">#여주인공</a></li>
-                                <li><a href="#">#여왕</a></li>
-                            </ul>
-                        </div>
-                  <!--      <div class="mobile_updateTimeBox">21.01.21 UP</div>-->
-                        <div>
-                            <div class="updateTimeBox web_updateTimeBox">21.01.21 UP</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="resultItem">
-                    <div class="coverBox"><img src="/images/category/dumi3.jpg" alt="표지사진"></div>
-                    <div class="pieceInfo">
-                        <div>
-                            <div class="info_head">
-                                <div>
-                                    <span class="free_content">자유</span>
-                                    <span class="mono_content">독점</span>
-                                    <span class="finish_content">완결</span>
-                                </div>
-                                <a href="#" class="info_title">권능의 여왕</a>
-                                <a href="#" class="info_writer">거북이</a>
-                            </div>
-                            <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
-                        </div>
-                        <div class="info_counts">
-                            <div class="info_count"><img src="/images/category/viewIcon.png" alt="조회수">755.7K명</div>
-                            <div class="info_count"><img src="/images/category/bookIcon.png" alt="회차">10회차</div>
-                            <div class="info_count"><img src="/images/category/likeIcon.png" alt="좋아요">47회</div>
-                        </div>
-                        <div class="info_tag">
-                            <ul>
-                                <li><a href="#">#판타지</a></li>
-                                <li><a href="#">#라이트노넬</a></li>
-                                <li><a href="#">#전생</a></li>
-                                <li><a href="#">#이세계</a></li>
-                                <li><a href="#">#여주인공</a></li>
-                                <li><a href="#">#여왕</a></li>
-                            </ul>
-                        </div>
-                        <!--<div class="mobile_updateTimeBox">21.01.21 UP</div>-->
-                        <div>
-                            <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="resultItem">
-                    <div class="coverBox"><img src="/images/category/dumi4.png" alt="표지사진"></div>
-                    <div class="pieceInfo">
-                        <div>
-                            <div class="info_head">
-                                <div>
-                                    <span class="free_content">자유</span>
-                                    <span class="mono_content">독점</span>
-                                    <span class="finish_content">완결</span>
-                                </div>
-                                <a href="#" class="info_title">권능의 여왕</a>
-                                <a href="#" class="info_writer">거북이</a>
-                            </div>
-                            <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
-                        </div>
-                        <div class="info_counts">
-                            <div class="info_count"><img src="/images/category/viewIcon.png" alt="조회수">755.7K명</div>
-                            <div class="info_count"><img src="/images/category/bookIcon.png" alt="회차">10회차</div>
-                            <div class="info_count"><img src="/images/category/likeIcon.png" alt="좋아요">47회</div>
-                        </div>
-                        <div class="info_tag">
-                            <ul>
-                                <li><a href="#">#판타지</a></li>
-                                <li><a href="#">#라이트노넬</a></li>
-                                <li><a href="#">#전생</a></li>
-                                <li><a href="#">#이세계</a></li>
-                                <li><a href="#">#여주인공</a></li>
-                                <li><a href="#">#여왕</a></li>
-                            </ul>
-                        </div>
-                       <!-- <div class="mobile_updateTimeBox">21.01.21 UP</div>-->
-                        <div>
-                            <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="resultItem">
-                    <div class="coverBox"><img src="/images/category/dumi5.jpg" alt="표지사진"></div>
-                    <div class="pieceInfo">
-                        <div>
-                            <div class="info_head">
-                                <div>
-                                    <span class="free_content">자유</span>
-                                    <span class="mono_content">독점</span>
-                                    <span class="finish_content">완결</span>
-                                </div>
-                                <a href="#" class="info_title">권능의 여왕</a>
-                                <a href="#" class="info_writer">거북이</a>
-                            </div>
-                            <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
-                        </div>
-                        <div class="info_counts">
-                            <div class="info_count"><img src="/images/category/viewIcon.png" alt="조회수">755.7K명</div>
-                            <div class="info_count"><img src="/images/category/bookIcon.png" alt="회차">10회차</div>
-                            <div class="info_count"><img src="/images/category/likeIcon.png" alt="좋아요">47회</div>
-                        </div>
-                        <div class="info_tag">
-                            <ul>
-                                <li><a href="#">#판타지</a></li>
-                                <li><a href="#">#라이트노넬</a></li>
-                                <li><a href="#">#전생</a></li>
-                                <li><a href="#">#이세계</a></li>
-                                <li><a href="#">#여주인공</a></li>
-                                <li><a href="#">#여왕</a></li>
-                            </ul>
-                        </div>
-                        <!--<div class="mobile_updateTimeBox">21.01.21 UP</div>-->
-                        <div>
-                            <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="resultItem">
-                    <div class="coverBox"><img src="/images/category/dumi6.jpg" alt="표지사진"></div>
-                    <div class="pieceInfo">
-                        <div>
-                            <div class="info_head">
-                                <div>
-                                    <span class="free_content">자유</span>
-                                    <span class="mono_content">독점</span>
-                                    <span class="finish_content">완결</span>
-                                </div>
-                                <a href="#" class="info_title">권능의 여왕</a>
-                                <a href="#" class="info_writer">거북이</a>
-                            </div>
-                            <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
-                        </div>
-                        <div class="info_counts">
-                            <div class="info_count"><img src="/images/category/viewIcon.png" alt="조회수">755.7K명</div>
-                            <div class="info_count"><img src="/images/category/bookIcon.png" alt="회차">10회차</div>
-                            <div class="info_count"><img src="/images/category/likeIcon.png" alt="좋아요">47회</div>
-                        </div>
-                        <div class="info_tag">
-                            <ul>
-                                <li><a href="#">#판타지</a></li>
-                                <li><a href="#">#라이트노넬</a></li>
-                                <li><a href="#">#전생</a></li>
-                                <li><a href="#">#이세계</a></li>
-                                <li><a href="#">#여주인공</a></li>
-                                <li><a href="#">#여왕</a></li>
-                            </ul>
-                        </div>
-                       <!-- <div class="mobile_updateTimeBox">1분전 UP</div>-->
-                        <div>
-                            <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="resultItem">
-                    <div class="coverBox"><img src="/images/category/test.png" alt="표지사진"></div>
-                    <div class="pieceInfo">
-                        <div>
-                            <div class="info_head">
-                                <div>
-                                    <span class="free_content">자유</span>
-                                    <span class="mono_content">독점</span>
-                                    <span class="finish_content">완결</span>
-                                </div>
-                                <a href="#" class="info_title">권능의 여왕</a>
-                                <a href="#" class="info_writer">거북이</a>
-                            </div>
-                            <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
-                        </div>
-                        <div class="info_counts">
-                            <div class="info_count"><img src="/images/category/viewIcon.png" alt="조회수">755.7K명</div>
-                            <div class="info_count"><img src="/images/category/bookIcon.png" alt="회차">10회차</div>
-                            <div class="info_count"><img src="/images/category/likeIcon.png" alt="좋아요">47회</div>
-                        </div>
-                        <div class="info_tag">
-                            <ul>
-                                <li><a href="#">#판타지</a></li>
-                                <li><a href="#">#라이트노넬</a></li>
-                                <li><a href="#">#전생</a></li>
-                                <li><a href="#">#이세계</a></li>
-                                <li><a href="#">#여주인공</a></li>
-                                <li><a href="#">#여왕</a></li>
-                            </ul>
-                        </div>
-                      <!--  <div class="mobile_updateTimeBox">1분전 UP</div>-->
-                        <div>
-                            <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="resultItem">
-                    <div class="coverBox"><img src="/images/category/test.png" alt="표지사진"></div>
-                    <div class="pieceInfo">
-                        <div>
-                            <div class="info_head">
-                                <div>
-                                    <span class="free_content">자유</span>
-                                    <span class="mono_content">독점</span>
-                                    <span class="finish_content">완결</span>
-                                </div>
-                                <a href="#" class="info_title">권능의 여왕</a>
-                                <a href="#" class="info_writer">거북이</a>
-                            </div>
-                            <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
-                        </div>
-                        <div class="info_counts">
-                            <div class="info_count"><img src="/images/category/viewIcon.png" alt="조회수">755.7K명</div>
-                            <div class="info_count"><img src="/images/category/bookIcon.png" alt="회차">10회차</div>
-                            <div class="info_count"><img src="/images/category/likeIcon.png" alt="좋아요">47회</div>
-                        </div>
-                        <div class="info_tag">
-                            <ul>
-                                <li><a href="#">#판타지</a></li>
-                                <li><a href="#">#라이트노넬</a></li>
-                                <li><a href="#">#전생</a></li>
-                                <li><a href="#">#이세계</a></li>
-                                <li><a href="#">#여주인공</a></li>
-                                <li><a href="#">#여왕</a></li>
-                            </ul>
-                        </div>
-                      <!--  <div class="mobile_updateTimeBox">1분전 UP</div>-->
-                        <div>
-                            <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="resultItem">
-                    <div class="coverBox"><img src="/images/category/test.png" alt="표지사진"></div>
-                    <div class="pieceInfo">
-                        <div>
-                            <div class="info_head">
-                                <div>
-                                    <span class="free_content">자유</span>
-                                    <span class="mono_content">독점</span>
-                                    <span class="finish_content">완결</span>
-                                </div>
-                                <a href="#" class="info_title">권능의 여왕</a>
-                                <a href="#" class="info_writer">거북이</a>
-                            </div>
-                            <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
-                        </div>
-                        <div class="info_counts">
-                            <div class="info_count"><img src="/images/category/viewIcon.png" alt="조회수">755.7K명</div>
-                            <div class="info_count"><img src="/images/category/bookIcon.png" alt="회차">10회차</div>
-                            <div class="info_count"><img src="/images/category/likeIcon.png" alt="좋아요">47회</div>
-                        </div>
-                        <div class="info_tag">
-                            <ul>
-                                <li><a href="#">#판타지</a></li>
-                                <li><a href="#">#라이트노넬</a></li>
-                                <li><a href="#">#전생</a></li>
-                                <li><a href="#">#이세계</a></li>
-                                <li><a href="#">#여주인공</a></li>
-                                <li><a href="#">#여왕</a></li>
-                            </ul>
-                        </div>
-                     <!--   <div class="mobile_updateTimeBox">1분전 UP</div>-->
-                        <div>
-                            <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="resultItem">
-                    <div class="coverBox"><img src="/images/category/test.png" alt="표지사진"></div>
-                    <div class="pieceInfo">
-                        <div>
-                            <div class="info_head">
-                                <div>
-                                    <span class="free_content">자유</span>
-                                    <span class="mono_content">독점</span>
-                                    <span class="finish_content">완결</span>
-                                </div>
-                                <a href="#" class="info_title">권능의 여왕</a>
-                                <a href="#" class="info_writer">거북이</a>
-                            </div>
-                            <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
-                        </div>
-                        <div class="info_counts">
-                            <div class="info_count"><img src="/images/category/viewIcon.png" alt="조회수">755.7K명</div>
-                            <div class="info_count"><img src="/images/category/bookIcon.png" alt="회차">10회차</div>
-                            <div class="info_count"><img src="/images/category/likeIcon.png" alt="좋아요">47회</div>
-                        </div>
-                        <div class="info_tag">
-                            <ul>
-                                <li><a href="#">#판타지</a></li>
-                                <li><a href="#">#라이트노넬</a></li>
-                                <li><a href="#">#전생</a></li>
-                                <li><a href="#">#이세계</a></li>
-                                <li><a href="#">#여주인공</a></li>
-                                <li><a href="#">#여왕</a></li>
-                            </ul>
-                        </div>
-                        <!--<div class="mobile_updateTimeBox">1분전 UP</div>-->
-                        <div>
-                            <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="resultItem">
-                    <div class="coverBox"><img src="/images/category/test.png" alt="표지사진"></div>
-                    <div class="pieceInfo">
-                        <div>
-                            <div class="info_head">
-                                <div>
-                                    <span class="free_content">자유</span>
-                                    <span class="mono_content">독점</span>
-                                    <span class="finish_content">완결</span>
-                                </div>
-                                <a href="#" class="info_title">권능의 여왕</a>
-                                <a href="#" class="info_writer">거북이</a>
-                            </div>
-                            <div class="info_summary">고블린군체 속에서 태어나 평화롭게 살아가던 한 소녀의 삶은 토벌대에 의해 완전히 망가져 버리게 된다. 죽어가는 고블린들을 뒤로 한 채 원치 않게 구출 당해진 소녀는 고아들을 돌보는 보육원에 맡겨지게 된다. 탈출도 할 수 없었던 이곳에서 벗어나기만을 기다리던 그녀는 드디어 보육원의 보호기간이 끝나게 되는데... </div>
-                        </div>
-                        <div class="info_counts">
-                            <div class="info_count"><img src="/images/category/viewIcon.png" alt="조회수">755.7K명</div>
-                            <div class="info_count"><img src="/images/category/bookIcon.png" alt="회차">10회차</div>
-                            <div class="info_count"><img src="/images/category/likeIcon.png" alt="좋아요">47회</div>
-                        </div>
-                        <div class="info_tag">
-                            <ul>
-                                <li><a href="#">#판타지</a></li>
-                                <li><a href="#">#라이트노넬</a></li>
-                                <li><a href="#">#전생</a></li>
-                                <li><a href="#">#이세계</a></li>
-                                <li><a href="#">#여주인공</a></li>
-                                <li><a href="#">#여왕</a></li>
-                            </ul>
-                        </div>
-                      <!--  <div class="mobile_updateTimeBox">1분전 UP</div>-->
-                        <div>
-                            <div class="updateTimeBox web_updateTimeBox">1분전 UP</div>
-                        </div>
-                    </div>
-                </div>
+
+                </th:block>
                 <!-- 더미 데이터 종료 -->
 
             </div>
 
 
+
             <!-- 페이징 시작-->
+
             <div class="categoryPaging giveMaxWidth">
                 <!-- 페이징 -->
                 <ul class="c_PagingList" >
                     <!-- 이전 -->
-                    <li><a>&lt;</a></li>
+                    <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/novel/novelSearch(keyword=${pageableDTO.keyword},page=${pageableDTO.startPage -2 })}" >&lt;&lt;</a></li>
+                    <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/novel/novelSearch(keyword=${pageableDTO.keyword},page=${pageableDTO.previous})}">&lt;</a></li>
 
-                    <li class="pageActive"><a>1</a></li>
-                    <li><a>2</a></li>
-                    <li><a>3</a></li>
-                    <li><a>4</a></li>
-                    <li><a>5</a></li>
-                    <li><a>6</a></li>
+
+                    <th:block th:each="num:${#numbers.sequence(pageableDTO.startPage,pageableDTO.endPage)}">
+                        <li  th:if="${pageableDTO.pageNumber== num}" th:text="${num}" class="pageActive"></li>
+                        <li th:unless="${pageableDTO.pageNumber == num}" ><a href="/novel/novelSearch" th:text="${num}" th:href="@{/novel/novelSearch(keyword=${pageableDTO.keyword},page=${num - 1})}"></a></li>
+                    </th:block>
+
+
+
+
 
                     <!-- 다음 -->
-                    <li><a>&gt;</a></li>
+                    <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/novel/novelSearch(keyword=${pageableDTO.keyword},page=${pageableDTO.next})}">&gt;</a></li>
+                    <li th:if="${pageableDTO.hasNext}"><a th:href="@{/novel/novelSearch(keyword=${pageableDTO.keyword},page=${pageableDTO.endPage })}">&gt;&gt;</a></li>
                 </ul>
             </div>
             <!-- 페이징 종료-->
@@ -538,6 +164,7 @@
 
 <th:block th:insert="/fix/footer.html :: footerFragment"/>
 </body>
+<script></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/fix/header.js"></script>
 <script src="/assets/js/novel/category.js"></script>
