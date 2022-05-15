@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /*회차 구매 내역 */
-@Component
 @Data
 public class BuyChapterVO {
     /* 시퀀스 -> BUYCHAPTER_SEQ*/

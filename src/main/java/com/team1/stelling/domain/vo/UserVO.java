@@ -7,15 +7,14 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
-@Component
 @Entity
 @Table(name ="TBL_USER")
 @SequenceGenerator(name = "USER_SEQ" , allocationSize = 1)
 @Getter
-@Setter
 @ToString
 @DynamicInsert
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class UserVO {
     @Id
@@ -50,6 +49,5 @@ public class UserVO {
     public void updateUserCoinBalance(int userCoinBalance) { this.userCoinBalance = userCoinBalance; }
     public void updateUserAccessToken(String userAccessToken) { this.userAccessToken = userAccessToken; }
 
-    public UserVO() {;}
 
 }
