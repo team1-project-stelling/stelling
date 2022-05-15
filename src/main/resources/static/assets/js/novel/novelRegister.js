@@ -58,30 +58,68 @@ label.addEventListener('click', () => {
     }
 })
 
-$(document).ready(function(){
-    var fileTarget = $('#file');
-    fileTarget.on('change', function(){ // 값이 변경되면
-        var cur=$(".filebox input[type='file']").val();
-        $(".upload-name").val(cur);
+let regex = new RegExp("(.*?)\.(exe|sh|zip|alz|txt)$");
+let maxSize = 1024 * 1024 * 40;
+
+$(document).ready(function() {
+
+
+    function checkFile(fileName, fileSize) {
+        if (regex.test(fileName)) {
+            alert("업로드할 수 없는 파일의 형식입니다.");
+            return false;
+        }
+        if (fileSize > maxSize) {
+            alert("파일 사이즈 초과");
+            return false;
+        }
+        return true;
+    }
+
+         let fileTarget = $('#file');
+        fileTarget.on('change', function(){ // 값이 변경되면
+        let cur=$(".filebox input[type='file']").val();
+        let fileOrigin = fileTarget[0].files;
+
+        if(checkFile(fileOrigin[0].name,fileOrigin[0].size)){
+            $(".upload-name").val(cur.substring(12, cur.length));
+
+            // $('input[name="novelFileName"]').val(cur.substring(12, cur.length));
+        }
+
     });
 });
+
 $('.imgs').on("click", function () {
     let imgSrc =$(this).attr("src");
     $('.thumnail>img').attr('src',imgSrc);
     $('.thum').val("");
     $('.upload-name').val("");
 
+    $('input[name="novelFileName"]').val(imgSrc.substring(8, imgSrc.length));
 });
 
+
+
+
 function setThumbnail(event) {
+    console.log(event);
+    console.log(event.target.files[0].name);
+
     let reader = new FileReader();
     reader.onload = function(event) {
         let img = document.createElement("img");
         img.setAttribute("src", event.target.result);
         $('.thumnail>img').attr('src', $(img).attr('src'));
         // document.querySelector("div#image_container").appendChild(img);
+        console.log( event.name);
+        console.log( event);
     };
-    reader.readAsDataURL(event.target.files[0]); }
+
+        if (!regex.test(event.target.files[0].name) && event.target.files[0].size<=maxSize) {
+            reader.readAsDataURL(event.target.files[0])
+         }
+    }
 
 
 
@@ -158,36 +196,70 @@ $(document).ready(function () {
         $(this).parent().remove();
         counter--;
     });
-})
+});
 
 //작품 정기, 자유 ==================================================
 $('.btn').on("click", function () {
     if($(this).hasClass('rutin')){
         $("input[name='novelSerialsStatus']").val(1);
     }else if($(this).hasClass('free')){
+       $("input:checkbox[name='novelday']").prop("checked", false);
         $("input[name='novelSerialsStatus']").val(2);
     }
 })
 
 
+$("input[type='file']").change(function(e){
+    let inputFile = $("input[type='file']");
+    let files = inputFile[0].files;
+    let formData = new FormData();
+
+    for(let i = 0; i < files.length; i++){
+        formData.append("uploadFile", files[i]);
+    }
+
+    $.ajax({
+        url: "/novel/uploadAjaxAction",
+        data: formData,
+        type: "POST",
+        // 현재 설정된 헤더 설정을 기본 방식으로 변경하지 못하도록 false로 설정
+        processData: false,
+        contentType: false,
+        success: function(result){
+
+            $(result).each(function (i, item) {
+                $('input[name="novelFileName"]').val(item.novelFileName);
+                $('input[name="novelUploadPath"]').val(item.novelUploadPath);
+                $('input[name="novelUUID"]').val(item.novelUUID);
+                console.log("등록됨");
+                console.log($('input[name="novelUploadPath"]').val());
+            });
+        }
+
+    });
+});
 
 
 /*유효성검사 + form데이터 보내기*/
 
     $('#insertBtn').on("click", function () {
+
+
+
+
         console.log("눌림");
         let hashtag = $('#tag-list').text();
-        hashtag=hashtag.replace(/x/gi, "");
+        hashtag = hashtag.replace(/x/gi, "");
         $('input[name="novelHashtag"]').val(hashtag);
-        $('input[name="novelCategory"]').val($(label).val())
+        $('input[name="novelCategory"]').val($(label).val());
 
 
-        console.log("novelStatus"+$('input[name="novelSerialsStatus"]').val());
-        console.log("novelCategory"+$('input[name="novelCategory"]').val());
-        console.log("novelHashtag"+$('input[name="novelHashtag"]').val());
-
+        $("input[type=checkbox]").each(function () {
+            if ($(this).is(':checked')) {
+                $('input[name="' + $(this).val() + '"]').val(1);
+            }
+        });
 
         register.submit();
-
 
     });
