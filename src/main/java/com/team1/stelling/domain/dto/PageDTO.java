@@ -1,12 +1,17 @@
-package com.team1.stelling.domain.vo;
+package com.team1.stelling.domain.dto;
 
 
+import com.team1.stelling.domain.vo.Criteria;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-@Component
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Slf4j
 public class PageDTO {
     private int startPage;
@@ -18,7 +23,6 @@ public class PageDTO {
     private int total;
     private int pageCount;
 
-    public PageDTO() {;}
 
     public PageDTO(Criteria criteria, int total) {
         this(criteria, total, 10);

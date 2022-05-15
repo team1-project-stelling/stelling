@@ -1,4 +1,4 @@
-package com.team1.stelling.service;
+package com.team1.stelling.domain.dto;
 
 import com.team1.stelling.domain.repository.NovelRepository;
 import com.team1.stelling.domain.vo.NovelVO;
@@ -33,5 +33,8 @@ public class NovelService {
         Page<NovelVO> novelList = novelRepository.findByNovelHashtagContaining(keyword, pageable);
         return novelList;
     }
+    /* 페이징처리 전체조회*/
+    @Transactional
+    public Page<NovelVO> getList(Pageable pageable){return novelRepository.findAll(pageable);}
 
 }

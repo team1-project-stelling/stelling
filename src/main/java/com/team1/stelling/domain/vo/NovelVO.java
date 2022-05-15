@@ -11,20 +11,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Component
 @Entity
 @Table(name ="TBL_NOVEL")
-@SequenceGenerator(name = "NOVEL_SEQ" , allocationSize = 1)
 @Getter
-@Setter
+@NoArgsConstructor
 @ToString(of = {
         "novelNumber","novelTitle","novelHashtag","novelUploadDate", "novelUpdateDate", "novelMonday", "novelTuesDay",
         "novelWednesDay", "novelThursDay", "novelFriDay", "novelSaturDay", "novelSunDay", "novelCategory", "novelStatus", "novelSerialsStatus",
         "novelIntro","novelFileName","novelUploadPath","novelUUID","novelRoundAboutTotal","novelLikeCountTotal","novelViewCountTotal"})
-@AllArgsConstructor
 public class NovelVO {
 
     @Id
+    @SequenceGenerator(name = "NOVEL_SEQ" , allocationSize = 1)
     @GeneratedValue(strategy =  GenerationType.SEQUENCE, generator = "NOVEL_SEQ")
     @Column(name = "NOVEL_NUMBER")
    private Long novelNumber;  // 노벨번호
@@ -105,7 +103,6 @@ public class NovelVO {
 
 
 
-    public NovelVO() { ;}
 
     @Builder
     public NovelVO(Long novelNumber, UserVO userVO, String novelTitle, String novelHashtag, String novelUploadDate, String novelUpdateDate, int novelMonday, int novelTuesDay, int novelWednesDay, int novelThursDay, int novelFriDay, int novelSaturDay, int novelSunDay, String novelCategory, int novelStatus, int novelSerialsStatus, String novelIntro, String novelFileName, String novelUploadPath, String novelUUID ,int novelRoundAboutTotal, int novelLikeCountTotal, int novelViewCountTotal) {

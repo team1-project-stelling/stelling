@@ -58,26 +58,26 @@
                     <div id="searchFormWrap">
                         <form id="searchForm"  method="get" action="/novel/novelSearch">
                             <input name="keyword" id="searchFormInput" type="text" placeholder="#검색할 태그를 입력하세요" maxlength="16">
-                            <button>검색</button>
+                            <button class="searchFormWrapBtn">검색</button>
                             <div class="cancelImg" onclick="changeTagSearch()">
                                 <img src="/images/category/cancelIcon.png">
                             </div>
                         </form>
                     </div>
                     <ul id="tagSearchList">
-                        <li class="active"><a>전체</a></li>
-                        <li><a href="#">판타지</a></li>
-                        <li><a href="#">무협</a></li>
-                        <li><a href="#">현대</a></li>
-                        <li><a href="#">로맨스</a></li>
-                        <li><a href="#">현대판타지</a></li>
-                        <li><a href="#">라이트노벨</a></li>
-                        <li><a href="#">공포</a></li>
-                        <li><a href="#">SF</a></li>
-                        <li><a href="#">스포츠</a></li>
-                        <li><a href="#">대체역사</a></li>
-                        <li><a href="#">기타</a></li>
-                        <li><a href="#">패러디</a></li>
+                        <li class="active"><a href="/novel/novelCategory">전체</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=판타지)}">판타지</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=무협)}">무협</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=현대)}">현대</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=로맨스)}">로맨스</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=현대판타지)}">현대판타지</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=라이트노벨)}">라이트노벨</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=공포)}">공포</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=SF)}">SF</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=스포츠)}">스포츠</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=대체역사)}">대체역사</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=기타)}">기타</a></li>
+                        <li><a th:href="@{/novel/novelSearch(keyword=패러디)}">패러디</a></li>
                     </ul>
                 </div>
             </div>
@@ -140,7 +140,7 @@
                 <!-- 페이징 -->
                 <ul class="c_PagingList" >
                     <!-- 이전 -->
-                    <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/novel/novelSearch(keyword=${pageableDTO.keyword},page=0)}" >&lt;&lt;</a></li>
+                    <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/novel/novelSearch(keyword=${pageableDTO.keyword},page=${pageableDTO.startPage -2 })}" >&lt;&lt;</a></li>
                     <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/novel/novelSearch(keyword=${pageableDTO.keyword},page=${pageableDTO.previous})}">&lt;</a></li>
 
 

@@ -15,6 +15,6 @@ public interface NovelRepository extends JpaRepository<NovelVO, Long> {
     @Query( value = "SELECT COUNT(NOVEL_NUMBER) FROM TBL_NOVEL", nativeQuery = true)
     int findByIdTotal();
     Page<NovelVO> findByNovelHashtagContaining(String keyword, Pageable pageable);
-
+    Page<NovelVO> findAll(Pageable pageable);
 
 }

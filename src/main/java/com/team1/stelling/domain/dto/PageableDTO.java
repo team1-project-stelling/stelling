@@ -1,14 +1,15 @@
-package com.team1.stelling.domain.vo;
+package com.team1.stelling.domain.dto;
 
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-@Component
-@Data
+
+@Getter
+@Setter
+@NoArgsConstructor
 @Slf4j
 public class PageableDTO {
     /*
@@ -21,15 +22,14 @@ public class PageableDTO {
     private int startPage;
     private int endPage;
     private int realEnd;
-    private int next,previous,pageNumber;
+    private int pageNumber;
+    private int next,previous;
     private boolean hasPrev, hasNext;
-
     private int amount;
     private int total;
     private int pageCount;
     private Pageable pageable;
 
-    public PageableDTO() {;}
 
     public PageableDTO(int total, Pageable pageable) {
         this( pageable,total, 10,10);
