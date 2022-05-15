@@ -17,5 +17,6 @@ public class PayService{
 
 //    public PayVO get(Long payNumber) {return payDAO.get(payNumber);}
     public List<PayVO> getList(Long userNumber) {return payDAO.getList(userNumber);}
+//    public void register(Long userNumber, Long payCharge, Long payCoinCount) {payDAO.register(userNumber, payCharge, payCoinCount);}
     public void register(PayVO payVO) {payDAO.register(payVO);}
 }

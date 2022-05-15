@@ -19,6 +19,7 @@
         SELECT PAY_NUMBER, USER_NUMBER, PAY_CHARGE, PAY_COINCOUNT, PAY_DATE, PAY_STATUS
         FROM TBL_PAY
         WHERE USER_NUMBER = #{userNumber}
+        ORDER BY PAY_DATE DESC
     </select>
 
     <!--특정 내역 가져오기-->
