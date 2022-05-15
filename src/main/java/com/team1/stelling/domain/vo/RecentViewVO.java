@@ -4,14 +4,12 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-@Component
 @Entity
 @Table(name ="TBL_RECENTVIEW")
 @SequenceGenerator(name ="RECENTVIEW_SEQ" , allocationSize = 1)
 @Getter
-@Setter
 @ToString(of = {"recentViewNumber"})
-@AllArgsConstructor
+@NoArgsConstructor
 public class RecentViewVO {
 
     @Id
@@ -27,6 +25,5 @@ public class RecentViewVO {
     @JoinColumn(name = "NOVEL_NUMBER")
     private NovelVO novelVO;                //  Fk NOVEL_NUMBER NUMBER,
 
-    public RecentViewVO() {;}
 
 }

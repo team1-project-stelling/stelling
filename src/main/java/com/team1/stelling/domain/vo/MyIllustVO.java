@@ -1,10 +1,12 @@
 package com.team1.stelling.domain.vo;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-@Component
-@Data
+@Getter
+@Setter
 public class MyIllustVO {
     /* 시퀀스 -> MYILLUST_SEQ  */
     private Long myIllustNumber; // 일러스트 번호

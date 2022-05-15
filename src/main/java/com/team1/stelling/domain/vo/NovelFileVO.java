@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.text.ParseException;
@@ -17,13 +16,13 @@ import java.util.Date;
 
 @Entity
 @Table(name ="TBL_NOVELFILE")
-@SequenceGenerator(name ="NOVELFILE_SEQ" , allocationSize = 1)
 @Getter
 @ToString(of = {"novelFileNumber","novelFileFilePath","novelFileOriginalUUID","novelFileFileName","novelFileUploadUpdate", "novelFileUpdateDate"})
 @NoArgsConstructor
 public class NovelFileVO {
 
    @Id
+   @SequenceGenerator(name ="NOVELFILE_SEQ" , allocationSize = 1)
    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NOVELFILE_SEQ")
    @Column(name = "NOVELFILE_NUMBER")
    private Long novelFileNumber; //*파일번호, 소설원고*//*
