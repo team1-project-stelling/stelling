@@ -22,6 +22,14 @@
         ORDER BY PAY_DATE DESC
     </select>
 
+    <!--총 결제 금액-->
+    <select id="getTotal" resultType="PayDTO">
+        SELECT USER_NUMBER, SUM(PAY_CHARGE) AS CHARGE_TOTAL
+        FROM TBL_PAY
+        WHERE USER_NUMBER = #{userNumber}
+        GROUP BY USER_NUMBER
+    </select>
+
     <!--특정 내역 가져오기-->
     <select id="get" resultType="payVO">
         SELECT PAY_NUMBER, USER_NUMBER, PAY_CHARGE, PAY_COINCOUNT, PAY_DATE, PAY_STATUS

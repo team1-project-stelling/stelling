@@ -91,7 +91,7 @@ div input:focus{
 }
 .active {
     width: 100%;
-    height: 50px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -158,4 +158,81 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     max-width: 1200px;
     margin-bottom: 40px;
     margin: 0 auto;
+}
+
+.align-items-center {
+    align-items: center!important;
+}
+
+.justify-content-center {
+    justify-content: center!important;
+}
+
+.d-flex {
+    display: flex!important;
+}
+
+*, ::before, ::after {
+    box-sizing: inherit;
+}
+
+article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+}
+
+.pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 2px;
+}
+
+ol, ul, dl {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.pagination .page-item + .page-item {
+    padding-left: 3px;
+    margin: 0;
+}
+
+.pagination-basic .page-item .page-link {
+    border: 0;
+    width: 35px;
+    height: 40px;
+    text-align: center;
+    padding: 11px 0;
+    background-color: #e9ecef;
+}
+
+.pagination .page-item .page-link {
+    color: #495057;
+    padding: 5px 0;
+    width: 32px;
+    height: 22px;
+    text-align: center;
+    border-radius: 0;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.pagination-primary .active .page-link, .pagination-primary .active .page-link:hover, .pagination-primary .active .page-link:focus {
+    background-color: #007bff;
+    color: #fff;
+    border-color: transparent;
+}
+
+.pagination-basic .active .page-link, .pagination-basic .active .page-link:hover, .pagination-basic .active .page-link:focus {
+    border: 0;
+    background-color: #17a2b8;
 }
