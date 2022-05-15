@@ -1,8 +1,8 @@
 package com.team1.stelling.controller;
 
 import com.team1.stelling.aspect.annotation.LogStatus;
+import com.team1.stelling.domain.dto.PageDTO;
 import com.team1.stelling.domain.vo.NovelVO;
-import com.team1.stelling.domain.dto.PageableDTO;
 import com.team1.stelling.domain.dto.NovelService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ public class NovelSearchController {
         log.info("#############keyword:"+keyword);
         Page<NovelVO> searchList = novelService.search(keyword, pageable);
 
-        PageableDTO pageableDTO = new PageableDTO( (int)searchList.getTotalElements(),pageable);
+        PageDTO.PageableDTO pageableDTO = new PageDTO.PageableDTO( (int)searchList.getTotalElements(),pageable);
         model.addAttribute("list", searchList);
         model.addAttribute( "novelTotal", searchList.getTotalElements());
         model.addAttribute("keyword", keyword);

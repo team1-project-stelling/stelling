@@ -11,20 +11,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Component
 @Entity
 @Table(name ="TBL_NOVEL")
-@SequenceGenerator(name = "NOVEL_SEQ" , allocationSize = 1)
+
 @Getter
-@Setter
 @ToString(of = {
         "novelNumber","novelTitle","novelHashtag","novelUploadDate", "novelUpdateDate", "novelMonday", "novelTuesDay",
         "novelWednesDay", "novelThursDay", "novelFriDay", "novelSaturDay", "novelSunDay", "novelCategory", "novelStatus", "novelSerialsStatus",
-        "novelIntro","novelFileName","novelUploadPath","novelUUID"})
-@AllArgsConstructor
+        "novelIntro","novelFileName","novelUploadPath","novelUUID","novelRoundAboutTotal","novelLikeCountTotal","novelViewCountTotal"})
+@NoArgsConstructor
 public class NovelVO {
 
     @Id
+    @SequenceGenerator(name = "NOVEL_SEQ" , allocationSize = 1)
     @GeneratedValue(strategy =  GenerationType.SEQUENCE, generator = "NOVEL_SEQ")
     @Column(name = "NOVEL_NUMBER")
    private Long novelNumber;  // 노벨번호
@@ -74,6 +73,12 @@ public class NovelVO {
    private String novelUploadPath; /* 경로 */
    @Column(name = "NOVEL_UUID")
    private String novelUUID; /* UUID */
+   @Column(name = "NOVEL_ROUNDABOUTTOTAL")
+   private int novelRoundAboutTotal;
+   @Column(name = "NOVEL_LIKECOUNTTOTAL")
+   private int novelLikeCountTotal;
+   @Column(name = "NOVEL_VIEWCOUNTTOTAL")
+   private int novelViewCountTotal;
 
 
     public void updateNovelTitle(String novelTitle) { this.novelTitle = novelTitle;}
@@ -98,10 +103,9 @@ public class NovelVO {
     public void updateNovelUUID(String novelUUID) { this.novelUUID = novelUUID; }
 
 
-    public NovelVO() { ;}
 
     @Builder
-    public NovelVO(Long novelNumber, UserVO userVO, String novelTitle, String novelHashtag, String novelUploadDate, String novelUpdateDate, int novelMonday, int novelTuesDay, int novelWednesDay, int novelThursDay, int novelFriDay, int novelSaturDay, int novelSunDay, String novelCategory, int novelStatus, int novelSerialsStatus, String novelIntro, String novelFileName, String novelUploadPath, String novelUUID) {
+    public NovelVO(Long novelNumber, UserVO userVO, String novelTitle, String novelHashtag, String novelUploadDate, String novelUpdateDate, int novelMonday, int novelTuesDay, int novelWednesDay, int novelThursDay, int novelFriDay, int novelSaturDay, int novelSunDay, String novelCategory, int novelStatus, int novelSerialsStatus, String novelIntro, String novelFileName, String novelUploadPath, String novelUUID, int novelRoundAboutTotal, int novelLikeCountTotal, int  novelViewCountTotal) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         this.novelNumber = novelNumber;
         this.userVO = userVO;
@@ -125,5 +129,8 @@ public class NovelVO {
         this.novelFileName = novelFileName;
         this.novelUploadPath = novelUploadPath;
         this.novelUUID = novelUUID;
+        this.novelRoundAboutTotal = novelRoundAboutTotal;
+        this.novelLikeCountTotal = novelLikeCountTotal ;
+        this.novelViewCountTotal = novelViewCountTotal;
     }
 }
