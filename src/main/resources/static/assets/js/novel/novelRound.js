@@ -32,7 +32,7 @@ function IntroModalHandlerClose(){
 
 
 
-const data = search();
+// const data = search(91, RoundMake(), onerror);
 RoundMake();
 
 function RoundMake(){
@@ -46,51 +46,67 @@ function RoundMake(){
     let introHead = document.querySelector('.introHead');
     let introbody =document.querySelector('.introbody');
 
-    data.slice(1,2)?.map((v)=>{
-
-        let img= document.createElement('img');
-        img.src=`https://image.tmdb.org/t/p/w500${v.poster_path}`;
-        let imgs= document.createElement('img');
-        imgs.src=`https://image.tmdb.org/t/p/w500${v.poster_path}`;
 
 
-        //제목
-        let title= document.createElement('h2');
-        let titletext=document.createTextNode(`${v.title}`)
-        //조회수
-        let cnt= document.createElement('h3');
-        let cnttext=document.createTextNode(`${v.vote_count}만명`)
-        //카테고리
-        let gener = document.createElement('span')
-        gener.className="hashtagSpan"
-        console.log((v.genre_ids).length)
 
-        let genertext =document.createTextNode(`${v.genre_ids}`)
+            let str ='';
+                str+="<img src='/novel/novelRoundInfo?novelNumber="+91+"'>";
 
-        console.log(genertext.data)
-        console.log(genertext.data.split(','))
-        // 작품소개
-        modelHText = document.createTextNode(`${v.title}`)
-        modelBText = document.createTextNode(`${v.overview}`)
+            $('.x_ximg').html(str)
 
 
-        let NwriterText =document.createTextNode(v.original_title)
-        //이미지 
+        getNovelVo(91,function (result) {
+            // 제목
+            let title= document.createElement('h2');
+            let titletext=document.createTextNode(`${result.novelTitle}`)
+            //조회수
+            let cnt= document.createElement('h3');
+            let cnttext=document.createTextNode(`${result.novelViewCountTotal}만명`)
+            //카테고리
+            let gener = document.createElement('span')
+            gener.className="hashtagSpan"
+
+                let hash = result.novelHashtag+"";
+            // let genertext =document.createTextNode(`${result.novelHashtag}`);
+            //
+            // console.log(genertext.data)
+            // console.log(genertext.data.split(','))
+            // 작품소개
+            modelHText = document.createTextNode(`${result.novelTitle}`)
+            modelBText = document.createTextNode(`${result.novelIntro}`)
+
+            // console.log(genertext);
+            // console.log(genertext.data);
+            // let NwriterText =document.createTextNode(result.original_title)
+            // 이미지
 
 
-        title.append(titletext)
-        cnt.append(cnttext)
-        gener.append('#'+genertext.data.split(',')[0])
+            title.append(titletext)
+            cnt.append(cnttext)
+            let arr = new Array();
+            arr = hash.split(" ");
+            console.log(arr);
 
-        hashtag.append(gener)
-        Noveltitle.append(title)
-        watchCnt.append(cnt)
-        x_ximg.append(img)
-        x_Desc_writer_N.append(NwriterText)
+            for (var i = 0; i < arr.length; i++) {
+                // let gener = document.createElement('span')
 
-        introHead.append(modelHText)
-        introbody.append(modelBText)
-    })
+                let str="";
+                str = "<span class='hashtagSpan'>#"+arr[i]+"</span>";
+                $('.hashtag').append(str);
+            }
+            // gener.append('#'+genertext.split('  '))
+
+
+            Noveltitle.append(title)
+            watchCnt.append(cnt)
+            // x_Desc_writer_N.append(NwriterText)
+
+            introHead.append(modelHText)
+            introbody.append(modelBText)
+        } );
+
+
+
 
 
 }

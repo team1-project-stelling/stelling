@@ -70,7 +70,8 @@ public class NovelVO {
    @Column(name = "NOVEL_INTRO")
    private String novelIntro; /* 소설 소개*/
    @Column(name = "NOVEL_FILENAME")
-   private String novelFileName; /* 프로질 사진 이름 */
+   private String novelFileName;
+    ; /* 프로질 사진 이름 */
    @Column(name = "NOVEL_UPLOADPATH")
    private String novelUploadPath; /* 경로 */
    @Column(name = "NOVEL_UUID")
