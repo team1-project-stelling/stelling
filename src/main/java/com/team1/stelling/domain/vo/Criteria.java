@@ -19,12 +19,13 @@ public class Criteria { /*Criteria : 검색의 기준*/
     //    롬복을 통해 생성된 초기화 생성자를 기본 생성자에서 기본 값을 설정한 뒤 호출해준다.
     public Criteria() {this(1, 10);}
 
-    public Criteria(@NonNull int pageNum, @NonNull int amount, String type, String keyword) {
-        this.pageNum = pageNum;
-        this.amount = amount;
-        this.type = type;
-        this.keyword = keyword;
-    }
+//    public Criteria(@NonNull int pageNum, @NonNull int amount, String type, String keyword) {
+//        this.pageNum = pageNum;
+//        this.amount = amount;
+//
+//        this.type = type;
+//        this.keyword = keyword;
+//    }
 
     //    "경로1/경로2?KEY=VALUE&KEY=VALUE"
 //    위와 같이 여러 개의 파라미터를 GET방식으로 전달할 때 사용되는 문법을 쿼리 스트링이라고 한다.

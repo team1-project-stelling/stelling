@@ -1,9 +1,12 @@
 package com.team1.stelling.controller;
 
+import com.team1.stelling.domain.dto.PageDTO;
+import com.team1.stelling.domain.vo.Criteria;
 import com.team1.stelling.domain.vo.PayVO;
 import com.team1.stelling.service.PayService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -62,9 +65,10 @@ public class MyLibraryController {
     }
 
     //결제 리스트(마이페이지)
-    @GetMapping("/payList/{userNumber}")
-    public String payList(@PathVariable Long userNumber, Model model){
-            model.addAttribute("payList", payService.getList(userNumber));
+    @GetMapping("/payList")
+    public String payList(Long userNumber, Criteria criteria, Model model){
+            model.addAttribute("payList", payService.getList(criteria, userNumber));
+            model.addAttribute("pageDTO", new PageDTO(criteria, payService.getSearchTotal(criteria)));
             model.addAttribute("payDTO", payService.getTotal(userNumber));
         return "myPage/myPagePayList";
     }
