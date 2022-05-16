@@ -43,6 +43,5 @@ public class UserServiceTests {
         UserVO userVO = userService.get(2L);
         userVO.updateUserPw("m10m10");
         userService.modify(userVO);
-
     }*/
 }
