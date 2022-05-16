@@ -4,7 +4,11 @@ import com.team1.stelling.domain.repository.IllustRepository;
 import com.team1.stelling.domain.vo.IllustVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class IllustService {
     private final IllustRepository illustRepository;
+    private final ModelMapper modelMapper;
 
     public IllustVO get(Long illustBno){
         return illustRepository.findById(illustBno).get();
@@ -22,6 +27,11 @@ public class IllustService {
     public void modify(IllustVO vo){
         vo.updateIllustUpdateDate();
         illustRepository.save(vo);
+    }
+
+    @Transactional
+    public Page<IllustVO> getList(Pageable pageable){
+        return  illustRepository.findAll(pageable).map(objectEntity -> modelMapper.map(objectEntity, IllustVO.class));
     }
     
 }
