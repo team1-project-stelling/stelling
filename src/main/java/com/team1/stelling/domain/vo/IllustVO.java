@@ -4,23 +4,20 @@ package com.team1.stelling.domain.vo;
 import lombok.*;
 import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.Generated;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Component
 @Entity
 @Table(name ="TBL_ILLUST")
-@SequenceGenerator(name ="ILLUST_SEQ" , allocationSize = 1)
 @Getter
-@Setter
 @ToString(of = {"illustNumber","illustTitle","illustContent","illustUploadDate","illustUpdateDate","illustHashTag","illustViewCount","illustLike","illustShortIntro"})
-@AllArgsConstructor
+@NoArgsConstructor
 public class IllustVO {
     @Id
+    @SequenceGenerator(name ="ILLUST_SEQ" , allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ILLUST_SEQ")
     @Column(name = "ILLUST_NUMBER")
     private Long illustNumber;
@@ -64,7 +61,6 @@ public class IllustVO {
 
     public void updateIllustShortIntro(String illustShortIntro) { this.illustShortIntro = illustShortIntro; }
 
-    public IllustVO() {;}
 
     @Builder
     public IllustVO(Long illustNumber, UserVO userVO, String illustTitle, String illustContent, String illustUploadDate, String illustUpdateDate, String illustHashTag, int illustViewCount, int illustLike, String illustShortIntro) {

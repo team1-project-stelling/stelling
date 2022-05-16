@@ -1,7 +1,5 @@
 package com.team1.stelling.domain.dao;
 
-import com.team1.stelling.domain.vo.IllustProfileVO;
-import com.team1.stelling.domain.vo.InquiryVO;
 import com.team1.stelling.domain.vo.MyIllustVO;
 import com.team1.stelling.mapper.MyIllustMapper;
 import lombok.RequiredArgsConstructor;

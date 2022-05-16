@@ -9,6 +9,7 @@
         <typeAlias type="com.team1.stelling.domain.vo.MyIllustVO" alias="myIllustVO"/>
         <typeAlias type="com.team1.stelling.domain.vo.InquiryVO" alias="inquiryVO"/>
         <typeAlias type="com.team1.stelling.domain.vo.PayVO" alias="payVO"/>
+        <typeAlias type="com.team1.stelling.domain.vo.PayDTO" alias="payDTO"/>
         <typeAlias type="com.team1.stelling.domain.vo.BuyChapterVO" alias="buyChapterVO"/>
 
     </typeAliases>

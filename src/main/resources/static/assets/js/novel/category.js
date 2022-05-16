@@ -1,5 +1,13 @@
 
-console.log("들어옴");
+$("form#searchForm").submit(function () {
+    if(!$('input#searchFormInput').val()){
+
+        alert('검색할 태그를 입력하세요!')
+        return false;
+    }
+    return true;
+})
+
 
 let $categoryMenuItem = $('.categoryMenuItem')
 // 시작은 전체페이지 조회

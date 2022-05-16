@@ -1,13 +1,8 @@
 package com.team1.stelling.service;
 
-import com.team1.stelling.domain.vo.RecentViewVO;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 
 @SpringBootTest
@@ -20,8 +15,6 @@ public class RecentViewServiceTests {
     NovelService novelService;
     @Autowired
     UserService userService;
-    @Autowired
-    ProfileImgService profileImgService;
     @Autowired
     RecentViewService recentViewService;
 

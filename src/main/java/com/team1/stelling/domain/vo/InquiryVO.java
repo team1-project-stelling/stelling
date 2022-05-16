@@ -1,12 +1,14 @@
 package com.team1.stelling.domain.vo;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-@Component
-@Data
+@Getter
+@Setter
 public class InquiryVO {
     /* 시퀀스 - > INQUIRY_SEQ */
    private Long inquiryNumber; // 1:1문의 번호
