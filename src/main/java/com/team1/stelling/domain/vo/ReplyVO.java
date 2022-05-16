@@ -1,14 +1,12 @@
 package com.team1.stelling.domain.vo;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-@Getter
-@Setter
+@Component
+@Data
 public class ReplyVO {
     /* 시퀀스 ->  REPLY_SEQ  */
 

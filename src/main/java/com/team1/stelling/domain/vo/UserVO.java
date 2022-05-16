@@ -7,15 +7,17 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
+@Component
 @Entity
 @Table(name ="TBL_USER")
 @SequenceGenerator(name = "USER_SEQ" , allocationSize = 1)
 @Getter
+@Setter
 @ToString
 @DynamicInsert
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class UserVO {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ")

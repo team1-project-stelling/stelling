@@ -2,7 +2,6 @@ package com.team1.stelling.controller;
 
 
 import com.team1.stelling.aspect.annotation.LogStatus;
-import com.team1.stelling.domain.dto.IllustProfileRegisterDTO;
 import com.team1.stelling.domain.vo.Criteria;
 import com.team1.stelling.service.IllustProfileService;
 import com.team1.stelling.service.IllustService;
@@ -50,16 +49,6 @@ public class IllustController {
 
     @GetMapping("/illustUserPage")
     public void userPage(){
-    }
-
-    @GetMapping ("/register") public void register(){}
-
-    @LogStatus
-    @PostMapping("/register")
-    public RedirectView register(IllustProfileRegisterDTO registerDTO){
-        illustProfileService.register(registerDTO);
-
-        return new RedirectView("illustUserPage");
     }
 
 

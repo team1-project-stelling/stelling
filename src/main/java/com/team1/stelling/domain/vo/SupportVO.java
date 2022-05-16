@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /*후원(전체, 회차)*/
-@Getter
-@Setter
+@Component
+@Data
 public class SupportVO {
     /* 시퀀스 -> SUPPORT_SEQ*/
    private Long supportNumber; // 후원번호
