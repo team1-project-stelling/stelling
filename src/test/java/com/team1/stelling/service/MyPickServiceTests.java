@@ -1,6 +1,5 @@
 package com.team1.stelling.service;
 
-import com.team1.stelling.domain.dto.NovelService;
 import com.team1.stelling.domain.vo.MyPickVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

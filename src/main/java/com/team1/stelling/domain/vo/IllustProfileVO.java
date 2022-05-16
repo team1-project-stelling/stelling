@@ -4,8 +4,8 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 
 
-@Getter
-@Setter
+@Component
+@Data
 public class IllustProfileVO {
     /* 시퀀스 ->   ILLUSTPROFILE_SEQ */
     private Long illustProfileNumber; // 일러스트 프로파일 번호

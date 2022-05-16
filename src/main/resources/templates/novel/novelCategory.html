@@ -97,8 +97,8 @@
                                     <span class="mono_content">독점</span>
                                     <span class="finish_content" th:if="${novel.novelStatus == 2}">완결</span>
                                 </div>
-                                <a href="#" class="info_title" th:text="${novel.novelTitle}">권능의 여왕</a>
-                                <a href="#" class="info_writer" th:text="${novel.userVO.userNickName}">거북이</a>
+                                <a href="#" class="info_title" th:text="${novel.novelTitle}"></a>
+                                <a href="#" class="info_writer" th:text="${novel.userVO.userNickName}"></a>
                             </div>
                             <div class="info_summary" th:text="${novel.novelIntro}"></div>
                         </div>
@@ -109,7 +109,9 @@
                         </div>
                         <div class="info_tag">
                             <ul>
-
+                                <th:block  th:each="tag:${novel.novelHashtag}">
+                                    <li><a th:href="@{/novel/novelSearch(keyword=${tag})}" th:text="|#${tag}|">#판타지</a></li>
+                                </th:block>
                             </ul>
                         </div>
                         <!--<div class="mobile_updateTimeBox">1분전 UP</div>-->

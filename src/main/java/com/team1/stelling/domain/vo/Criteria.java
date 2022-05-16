@@ -1,11 +1,13 @@
 package com.team1.stelling.domain.vo;
 
-import lombok.*;
+import lombok.Data;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
 
-@Getter
-@Setter
+@Component
+@Data
 @RequiredArgsConstructor
 public class Criteria { /*Criteria : 검색의 기준*/
     //    생성자로 초기화 시 pageNum과 amount만 초기화하기 위해서 @NonNull을 붙인다.

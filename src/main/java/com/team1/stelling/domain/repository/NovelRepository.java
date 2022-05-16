@@ -16,5 +16,6 @@ public interface NovelRepository extends JpaRepository<NovelVO, Long> {
     int findByIdTotal();
     Page<NovelVO> findByNovelHashtagContaining(String keyword, Pageable pageable);
     Page<NovelVO> findAll(Pageable pageable);
+//    Page<NovelVO> findAll(Pageable pageable);
 
 }

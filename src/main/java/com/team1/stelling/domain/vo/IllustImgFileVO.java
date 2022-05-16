@@ -16,15 +16,18 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
+@Component
 @Entity
 @Table(name ="TBL_ILLUSTIMGFILE")
+@SequenceGenerator(name ="ILLUSTIMGFILE_SEQ" , allocationSize = 1)
 @Getter
+@Setter
 @ToString(of = {"illustImgFileNumber","illustImgFileFilePath","illustImgFileOriginUUID","illustImgFileFileName","illustImgFileUploadDate","illustImgFileUpdateDate"})
-@NoArgsConstructor
+@AllArgsConstructor
 @Slf4j
+@NoArgsConstructor
 public class IllustImgFileVO {
    @Id
-   @SequenceGenerator(name ="ILLUSTIMGFILE_SEQ" , allocationSize = 1)
    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ILLUSTIMGFILE_SEQ")
    @Column(name = "ILLUSTIMGFILE_NUMBER")
    private Long illustImgFileNumber; /* 이미지파일 번호 PK*/
