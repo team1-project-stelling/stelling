@@ -11,15 +11,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Component
 @Entity
 @Table(name ="TBL_NOVEL")
-
 @Getter
+@Setter
 @ToString(of = {
         "novelNumber","novelTitle","novelHashtag","novelUploadDate", "novelUpdateDate", "novelMonday", "novelTuesDay",
         "novelWednesDay", "novelThursDay", "novelFriDay", "novelSaturDay", "novelSunDay", "novelCategory", "novelStatus", "novelSerialsStatus",
         "novelIntro","novelFileName","novelUploadPath","novelUUID","novelRoundAboutTotal","novelLikeCountTotal","novelViewCountTotal"})
 @NoArgsConstructor
+@AllArgsConstructor
 public class NovelVO {
 
     @Id
