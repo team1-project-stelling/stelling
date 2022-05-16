@@ -10,14 +10,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Component
 @Entity
 @Table(name ="TBL_SUBNOVEL")
+@SequenceGenerator(name = "SUBNOVEL_SEQ" , allocationSize = 1)
 @Getter
+@Setter
 @ToString(of = { "subNovelNumber", "subNovelTitle", "subNovelWriterComment", "subNovelUploadDate", "subNovelUpdateDate","subNovelViewCount","subNovelLickCount","subNovelStatus" })
+@AllArgsConstructor
 @NoArgsConstructor
 public class SubNovelVO {
     @Id
-    @SequenceGenerator(name = "SUBNOVEL_SEQ" , allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SUBNOVEL_SEQ")
     @Column(name = "SUBNOVEL_NUMBER")
     Long subNovelNumber; // 회차 번호
