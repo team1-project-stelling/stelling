@@ -1,12 +1,15 @@
 package com.team1.stelling.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
 @SpringBootTest
 @Slf4j
+@RequiredArgsConstructor
 public class NovelServiceTests {
 
 
@@ -50,6 +53,9 @@ public class NovelServiceTests {
         novelService.modify(novelVO);
     }*/
 
-
+/*    @Test
+    public void getEndNovelListTest(){
+        novelService.getEndNovelList().forEach(e->log.info(e.toString()));
+    }*/
     
 }

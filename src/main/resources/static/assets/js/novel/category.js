@@ -16,10 +16,17 @@ let $categoryMenuItem = $('.categoryMenuItem')
 // changeBorder($($categoryMenuItem[0]).text())
 // $($categoryMenuItem[0]).css('border','2px solid #ef6e73')
 // $($categoryMenuItem[0]).css('border-bottom','none')
-$($categoryMenuItem[0]).css('border-bottom','2px solid #ef6e73')
+// $($categoryMenuItem[0]).css('border-bottom','2px solid #ef6e73')
 /* 임시 소스 종료 */
 
-$('.categoryMenuItem').on('click',function () {
+
+function changeMenuItem (novelStatus) {
+    categoryMenuReset()
+    $($categoryMenuItem[novelStatus]).css('border-bottom','none')
+    $($categoryMenuItem[novelStatus]).css('border-bottom','2px solid #ef6e73')
+}
+
+/*$('.categoryMenuItem').on('click',function () {
     categoryMenuReset()
     // $(this).css('border','2px solid #ef6e73')
     $(this).css('border-bottom','none')
@@ -28,7 +35,7 @@ $('.categoryMenuItem').on('click',function () {
     // console.log($categoryMenuItem)
     // changeBorder($(this).text())
 
-})
+})*/
 function categoryMenuReset() {
     $.each($categoryMenuItem, function (index, item) {
         $(item).css('border','none')
@@ -50,10 +57,10 @@ function changeBorder(text) {
     }
 }
 
-$('div.OptionChange').on('click',function () {
+/*$('div.OptionChange').on('click',function () {
     ResetOptionChange()
     $(this).find('img').attr('src', '/images/category/checkIcon.png' )
-})
+})*/
 
 function ResetOptionChange() {
     $.each($('div.OptionChange'),function (index,item) {
