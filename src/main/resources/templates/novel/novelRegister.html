@@ -19,27 +19,24 @@
 <!-- 헤더 종료 -->
 <div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 100px; padding-bottom: 100px;">
 
-    <h2 class="h2">새 작품 등록</h2>
-    <hr class="hr">
-
-    <button class="btn rutin">정기 연재</button>
-    <button class="btn free">자유 연재</button>
+        <h2 class="h2">새 작품 등록</h2>
+        <hr class="hr">
+    <form action="/novel/novelRegister" method="post" name="register" id="register">
+        <button class="btn rutin" type="button">정기 연재</button>
+        <button class="btn free" type="button">자유 연재</button>
 
 <!--나중에 수정시 연재 완결 버튼으로 사용할것 -----------------------------------------------------------------  -->
-<!--    <button class="btn end">완결</button>-->
+<!--    <button class="btn end" type="button">완결</button>-->
 
     <!--정기연재 버튼 눌렀을때 요일 입력받는 div생성-->
     <div class="box daysBtns days">
-        <div class="daybtn"><input type="checkbox">월</div>
-        <div class="daybtn"><input type="checkbox">화</div>
-        <div class="daybtn"><input type="checkbox">수</div>
-        <div class="daybtn"><input type="checkbox">목</div>
-        <div class="daybtn"><input type="checkbox">금</div>
-        <div class="daybtn"><input type="checkbox">토</div>
-        <div class="daybtn"><input type="checkbox">일</div>
-
-
-
+        <div class="daybtn"><input type="checkbox" name="novelday" value="novelMonday">월</div>
+        <div class="daybtn"><input type="checkbox" name="novelday" value="novelTuesDay">화</div>
+        <div class="daybtn"><input type="checkbox" name="novelday" value="novelWednesDay">수</div>
+        <div class="daybtn"><input type="checkbox" name="novelday" value="novelThursDay">목</div>
+        <div class="daybtn"><input type="checkbox" name="novelday" value="novelFriDay">금</div>
+        <div class="daybtn"><input type="checkbox" name="novelday" value="novelSaturDay">토</div>
+        <div class="daybtn"><input type="checkbox" name="novelday" value="novelSunDay">일</div>
 
     </div>
 
@@ -48,7 +45,7 @@
         <div class="flex" style="justify-content: space-between;">
         <p>*카테고리</p>
             <div class="selectBox2 categorySelect">
-                <button class="label">카테고리</button>
+                <button class="label" type="button">카테고리</button>
                 <ul class="optionList">
                     <li class="optionItem">로맨스</li>
                     <li class="optionItem">로맨스 판타지</li>
@@ -90,7 +87,7 @@
             <div>
         <p style="margin-bottom: 0px;">*작품 명</p>
             </div>
-            <input type="text" class="titleInput">
+            <input type="text" class="titleInput" name="novelTitle">
         </div>
     </div>
     <div class="box">
@@ -99,7 +96,7 @@
         <p class="p">작품 소개</p>
             <p clas="p" style="font-size: 13px; color: gray;font-weight: 400;margin-top: 2px;">(줄거리)</p>
             </div>
-            <textarea name="" id=""class="textarea"></textarea>
+            <textarea name="novelIntro" id=""class="textarea"></textarea>
         </div>
     </div>
 
@@ -109,6 +106,7 @@
                 <p>표지 이미지</p>
                 <p style="font-size: 13px; color: gray;font-weight: 400;margin-top: -20px;">(200 * 305px)</p>
             </div>
+
 
 
             <div class="flex">
@@ -122,7 +120,7 @@
                             <label for="file">업로드</label>
                             <input type="file" id="file" onchange="setThumbnail(event)" class="thum">
 
-                            <input class="upload-name">
+                            <input class="upload-name" >
                         </div>
                     </div>
                     <div class="exImg">
@@ -143,22 +141,28 @@
             </div>
         </div>
     </div>
+        <input type="hidden" name="novelSerialsStatus" value="1">
+        <input type="hidden" name="novelCategory">
+        <input type="hidden" name="novelHashtag">
+        <input type="hidden" name="novelMonday" value="0">
+        <input type="hidden" name="novelTuesDay" value="0">
+        <input type="hidden" name="novelWednesDay" value="0">
+        <input type="hidden" name="novelThursDay" value="0">
+        <input type="hidden" name="novelFriDay" value="0">
+        <input type="hidden" name="novelSaturDay" value="0">
+        <input type="hidden" name="novelSunDay" value="0">
+        <input type="hidden" name="novelFileName">
+        <input type="hidden" name="novelUploadPath">
+        <input type="hidden" name="novelUUID">
 
 
+
+
+
+    </form>
     <div style="text-align: center;">
-        <button class="insertBtn">등록하기</button>
+        <button class="insertBtn" type="button" id="insertBtn">등록하기</button>
     </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -170,5 +174,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/fix/header.js"></script>
-<script src="/assets/js/illust/novelRegister.js"></script>
+<script src="/assets/js/novel/novelRegister.js"></script>
 </html>
