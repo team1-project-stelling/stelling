@@ -16,17 +16,15 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-@Component
 @Entity
 @Table(name ="TBL_ILLUSTIMGFILE")
-@SequenceGenerator(name ="ILLUSTIMGFILE_SEQ" , allocationSize = 1)
 @Getter
-@Setter
-@ToString(of = {"illustImgFileNumber","illustImgFileFilePath","illustImgFileOriginFileName","illustImgFileFileName","illustImgFileUploadDate","illustImgFileUpdateDate"})
-@AllArgsConstructor
+@ToString(of = {"illustImgFileNumber","illustImgFileFilePath","illustImgFileOriginUUID","illustImgFileFileName","illustImgFileUploadDate","illustImgFileUpdateDate"})
+@NoArgsConstructor
 @Slf4j
 public class IllustImgFileVO {
    @Id
+   @SequenceGenerator(name ="ILLUSTIMGFILE_SEQ" , allocationSize = 1)
    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ILLUSTIMGFILE_SEQ")
    @Column(name = "ILLUSTIMGFILE_NUMBER")
    private Long illustImgFileNumber; /* 이미지파일 번호 PK*/
@@ -38,8 +36,8 @@ public class IllustImgFileVO {
    private UserVO userVO;  // 유저 번호 fk
    @Column(name = "ILLUSTIMGFILE_FILEPATH")
    private String illustImgFileFilePath; // 일러스트 이미지 파일경로
-   @Column(name = "ILLUSTIMGFILE_ORIGINFILENAME")
-   private String illustImgFileOriginFileName; // 일러스트 원본 파일 이름
+   @Column(name = "ILLUSTIMGFILE_UUID")
+   private String illustImgFileOriginUUID; // 일러스트파일 UUID
    @Column(name = "ILLUSTIMGFILE_FILENAME")
    private String illustImgFileFileName; // 일러스트 파일 이름
    @Generated(GenerationTime.INSERT)
@@ -56,14 +54,13 @@ public class IllustImgFileVO {
 
     public void updateIllustImgFileFilePath(String illustImgFileFilePath) { this.illustImgFileFilePath = illustImgFileFilePath; }
 
-    public void updateIllustImgFileOriginFileName(String illustImgFileOriginFileName) { this.illustImgFileOriginFileName = illustImgFileOriginFileName; }
+    public void updateillustImgFileOriginUUID(String illustImgFileOriginUUID) { this.illustImgFileOriginUUID = illustImgFileOriginUUID; }
 
     public void updateIllustImgFileFileName(String illustImgFileFileName) { this.illustImgFileFileName = illustImgFileFileName; }
 
-    public IllustImgFileVO() {;}
 
     @Builder
-    public IllustImgFileVO(Long illustImgFileNumber, IllustVO illustVO, UserVO userVO, String illustImgFileFilePath, String illustImgFileOriginFileName, String illustImgFileFileName, String illustImgFileUploadDate, String illustImgFileUpdateDate) {
+    public IllustImgFileVO(Long illustImgFileNumber, IllustVO illustVO, UserVO userVO, String illustImgFileFilePath, String illustImgFileOriginUUID, String illustImgFileFileName, String illustImgFileUploadDate, String illustImgFileUpdateDate) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 
@@ -71,7 +68,7 @@ public class IllustImgFileVO {
         this.illustVO = illustVO;
         this.userVO = userVO;
         this.illustImgFileFilePath = illustImgFileFilePath;
-        this.illustImgFileOriginFileName = illustImgFileOriginFileName;
+        this.illustImgFileOriginUUID = illustImgFileOriginUUID;
         this.illustImgFileFileName = illustImgFileFileName;
 
         try {

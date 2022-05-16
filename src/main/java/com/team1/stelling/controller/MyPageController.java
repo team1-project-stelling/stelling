@@ -10,31 +10,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/myPage/*")
 public class MyPageController {
 
-/*    @RequestMapping("")
-    public void changPw(){log.info("changePw");}*/
 
-    @GetMapping("/myWork")
-    public String myWork2(){
-        log.info("myWork");
-        return "myPage/myPageMyWork";
-    }
-
-    @GetMapping("/myWork2")
-    public String myWork3(){
-        log.info("myWork2");
-        return "myPage/myPageMyWork2";
-    }
-
-    @GetMapping("/editProfile")
+    @GetMapping("/myPageEditProfile")
     public String editProfile(){
         log.info("editProfile");
         return "myPage/myPageEditProfile";
     }
+
+    @GetMapping("/myPageMyWork")
+    public void myWork(){
+        log.info("myWork");
+    }
+
+    @GetMapping("/myPageChangePw")
+    public void myPageChangePw(){
+        log.info("myPageChangePw");
+    }
+
     @GetMapping("/myPageQuestion")
     public String myPageQuestion(){
         log.info("myPageQuestion");
         return "myPage/myPageQuestion";
     }
+    @GetMapping("/myPageQuit")
+    public String myPageQuit(){
+        log.info("myPageQuit");
+        return "myPage/myPageQuit";
+    }
+
     @GetMapping("/myPagePayList")
     public String myPagePayList(){
         log.info("myPagePayList");

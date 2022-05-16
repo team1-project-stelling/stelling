@@ -1,10 +1,15 @@
 package com.team1.stelling.service;
 
 import com.team1.stelling.domain.repository.IllustImgFileRepository;
+import com.team1.stelling.domain.repository.NovelRepository;
 import com.team1.stelling.domain.vo.IllustImgFileVO;
+import com.team1.stelling.domain.vo.NovelVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

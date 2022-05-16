@@ -144,7 +144,7 @@ ul#tagSearchList li  a {
     align-items: center;
     height: 49.59px;
 }
-div#tagSearchWrap .tagInner button{
+div#tagSearchWrap .tagInner button.tagBtn{
     width: 90px;
     height: 28px;
     color: #000;
@@ -153,6 +153,17 @@ div#tagSearchWrap .tagInner button{
     background: url('/images/category/searchIcon.png')no-repeat 4px center;
     background-size: 16px;
     padding: 0 0 0 15px;
+}
+button.searchFormWrapBtn{
+    width: 55px;
+    height: 28px;
+    color: #000;
+    border: none;
+    font-size: 14px;
+    background: #ef6e73;
+    background-size: 16px;
+    color: white;
+    cursor: pointer;
 }
 ul#tagSearchList li.active{
     background: #ef6e73;
