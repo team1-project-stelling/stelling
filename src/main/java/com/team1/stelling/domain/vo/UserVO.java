@@ -39,6 +39,12 @@ public class UserVO {
     private int userStatus;      // 회원 상태 0 - 일반회원 , 1 - 관리자 , 2- 휴면(탈퇴)
     @Column(name = "USER_COINBALANCE")
     private int userCoinBalance;  // 코인 잔액
+    @Column(name = "USER_FILEPATH")
+    private String userFilePath;  // 코인 잔액
+    @Column(name = "USER_UUID")
+    private String userUuid;  // 코인 잔액
+    @Column(name = "USER_FILENAME")
+    private String userFileName;  // 코인 잔액
     @Column(name = "USER_ACCESSTOKEN")
     private String userAccessToken; // 카카오 계정 이용시 발급 받는 토큰
 
