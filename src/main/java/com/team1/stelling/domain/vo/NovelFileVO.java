@@ -16,6 +16,7 @@ import java.util.Date;
 @Table(name ="TBL_NOVELFILE")
 @SequenceGenerator(name ="NOVELFILE_SEQ" , allocationSize = 1)
 @Getter
+@Setter
 @ToString(of = {"novelFileNumber","novelFileFilePath","novelFileOriginalUUID","novelFileFileName","novelFileUploadUpdate", "novelFileUpdateDate"})
 @NoArgsConstructor
 @AllArgsConstructor

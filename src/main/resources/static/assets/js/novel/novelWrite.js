@@ -64,19 +64,18 @@ $("input[name='file']").on('change',function(){
 $('.enter').on("click",function () {
     console.log("전송버튼눌림");
     let novelFile = new FormData();
-    let file = $("#file")[0].files;
-    let data = {"content":$('textarea[name="novelContent"]').val()+"", "fileName":file[0].name+""};
+
     console.log($('textarea[name="novelContent"]').val());
-    console.log(file[0].name);
     novelFile.method='POST';
     novelFile.action='/novel/novelWriter';
     novelFile.append("content", $('textarea[name="novelContent"]').val());
     novelFile.append("subNovelTitle",$('input[name="subNovelTitle"]').val());
-    // novelFile.append("novelNumber",노벨넘버받아와야함);
-    novelFile.append("novelNumber",86);
+    novelFile.append("novelNumber",92);
+    novelFile.append("userNumber",1);
+    novelFile.append("subNovelWriterComment",$("#subNovelWriterComment").val());
     $.ajax({
         type: "POST",
-        url: "/novel/novelWriter",
+        url: "/novel/makeNovelFile",
         data:novelFile,
         processData: false,
         contentType: false,
