@@ -6,17 +6,19 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 
 // 소설 찜한 테이블
+@Component
 @Entity
 @Table(name ="TBL_MYPICK")
+@SequenceGenerator(name ="MYPICK_SEQ" , allocationSize = 1)
 @Getter
+@Setter
 @ToString(of = {"myPickNumber","myPickPick"})
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class MyPickVO {
     /* 시퀀스 -> MYPICK_SEQ */
     @Id
-    @SequenceGenerator(name ="MYPICK_SEQ" , allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MYPICK_SEQ")
     @Column(name = "MYPICK_NUMBER")
     private Long myPickNumber; // 번호
