@@ -215,3 +215,27 @@ $('.mentBtns1').on("click", function () {
     }
 });
 
+
+$('.siren').click(function () {
+    Swal.fire({
+        title: '해당 댓글을 신고하시겠습니까?',
+        // text: "다시 되돌릴 수 없습니다. 신중하세요.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ef6e73',
+        cancelButtonColor: '#a8a8a8',
+        confirmButtonText: '네',
+        cancelButtonText: '아니요',
+        fontSize : 15,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                confirmButtonColor: '#ef6e73',
+                title:'신고되었습니다.'
+            }
+
+
+            )
+        }
+    })
+});
