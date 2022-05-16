@@ -21,7 +21,7 @@
 
         <h2 class="h2">새 작품 등록</h2>
         <hr class="hr">
-    <form action="/novel/novelRegister" method="post" name="register">
+    <form action="/novel/novelRegister" method="post" name="register" id="register">
         <button class="btn rutin" type="button">정기 연재</button>
         <button class="btn free" type="button">자유 연재</button>
 
@@ -30,16 +30,13 @@
 
     <!--정기연재 버튼 눌렀을때 요일 입력받는 div생성-->
     <div class="box daysBtns days">
-        <div class="daybtn"><input type="checkbox" name="novelMonday" val="1">월</div>
-        <div class="daybtn"><input type="checkbox" name="novelTuesDay" val="1">화</div>
-        <div class="daybtn"><input type="checkbox" name="novelWednesDay" val="1">수</div>
-        <div class="daybtn"><input type="checkbox" name="novelThursDay" val="1">목</div>
-        <div class="daybtn"><input type="checkbox" name="novelFriDay" val="1">금</div>
-        <div class="daybtn"><input type="checkbox" name="novelSaturDay" val="1">토</div>
-        <div class="daybtn"><input type="checkbox" name="novelSunDay" val="1">일</div>
-
-
-
+        <div class="daybtn"><input type="checkbox" name="novelday" value="novelMonday">월</div>
+        <div class="daybtn"><input type="checkbox" name="novelday" value="novelTuesDay">화</div>
+        <div class="daybtn"><input type="checkbox" name="novelday" value="novelWednesDay">수</div>
+        <div class="daybtn"><input type="checkbox" name="novelday" value="novelThursDay">목</div>
+        <div class="daybtn"><input type="checkbox" name="novelday" value="novelFriDay">금</div>
+        <div class="daybtn"><input type="checkbox" name="novelday" value="novelSaturDay">토</div>
+        <div class="daybtn"><input type="checkbox" name="novelday" value="novelSunDay">일</div>
 
     </div>
 
@@ -111,6 +108,7 @@
             </div>
 
 
+
             <div class="flex">
                 <div class="thumnail">
 
@@ -122,7 +120,7 @@
                             <label for="file">업로드</label>
                             <input type="file" id="file" onchange="setThumbnail(event)" class="thum">
 
-                            <input class="upload-name" name="novelFileName">
+                            <input class="upload-name" >
                         </div>
                     </div>
                     <div class="exImg">
@@ -146,6 +144,17 @@
         <input type="hidden" name="novelSerialsStatus" value="1">
         <input type="hidden" name="novelCategory">
         <input type="hidden" name="novelHashtag">
+        <input type="hidden" name="novelMonday" value="0">
+        <input type="hidden" name="novelTuesDay" value="0">
+        <input type="hidden" name="novelWednesDay" value="0">
+        <input type="hidden" name="novelThursDay" value="0">
+        <input type="hidden" name="novelFriDay" value="0">
+        <input type="hidden" name="novelSaturDay" value="0">
+        <input type="hidden" name="novelSunDay" value="0">
+        <input type="hidden" name="novelFileName">
+        <input type="hidden" name="novelUploadPath">
+        <input type="hidden" name="novelUUID">
+
 
 
 
