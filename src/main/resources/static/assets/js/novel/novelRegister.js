@@ -250,6 +250,7 @@ $("input[type='file']").change(function(e){
         console.log("눌림");
         let hashtag = $('#tag-list').text();
         hashtag = hashtag.replace(/x/gi, "");
+        hashtag = hashtag.replace(/&nbsp/gi, ",");
         $('input[name="novelHashtag"]').val(hashtag);
         $('input[name="novelCategory"]').val($(label).val());
 
