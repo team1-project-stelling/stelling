@@ -118,3 +118,13 @@ function clickchange2() {
     document.querySelector('.payTableWrap').style.display = 'none';
     document.querySelector('.payTableWrap2').style.display = 'block';
 }
+
+//페이지 이동하는 form태그 가져와서 action경로 직접 넣는다
+
+
+$(".page-link").click(function(e){
+    e.preventDefault();
+    $(pageForm).find("input[name='pageNum']").val($(this).attr("href")); // 사용자가 클릭한 페이지
+    // $(pageForm).attr("action", "/myLibrary/payList?userNumber=" + userNumber);
+    $(pageForm).submit();
+})
