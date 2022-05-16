@@ -6,6 +6,10 @@ import com.team1.stelling.domain.vo.MyPickVO;
 import com.team1.stelling.domain.vo.NovelVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.parser.AutoDetectParser;
+import org.apache.tika.sax.BodyContentHandler;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.cglib.core.internal.Function;
@@ -13,8 +17,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.xml.sax.SAXException;
 
-import java.util.List;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -47,5 +59,20 @@ public class NovelService {
 //        novelRepository.findAll(pageable).map(objectEntity -> modelMapper.map(objectEntity, NovelCategoryDTO.class));
         return  novelRepository.findAll(pageable).map(objectEntity -> modelMapper.map(objectEntity, NovelCategoryDTO.class));
     }
+
+
+    /* 노벨 VO 등록 */
+    @PostMapping("/novelRegister")
+    public void novelRegister(NovelVO novelVO) {
+        log.info("=============================================");
+        log.info(novelVO.toString());
+        log.info("=============================================");
+        novelRepository.save(novelVO);
+
+    }
+
+
+
+
 
 }
