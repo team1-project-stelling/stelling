@@ -24,21 +24,11 @@ function IntroModalHandlerClose(){
 }
 
 
-
-
-
-
-
-
-
-
-// const data = search(91, RoundMake(), onerror);
 RoundMake();
 
 function RoundMake(){
     //모음
     let x_ximg = document.querySelector('.x_ximg')
-
     let Noveltitle = document.querySelector('.Noveltitle')
     let watchCnt = document.querySelector('.watchCnt')
     let hashtag = document.querySelector('.hashtag')
@@ -47,11 +37,8 @@ function RoundMake(){
     let introbody =document.querySelector('.introbody');
 
 
-
-
-            let str ='';
-                str+="<img src='/novel/novelRoundInfo?novelNumber="+91+"'>";
-
+            //소설 이미지
+            let str ="<img src='/novel/novelRoundInfo?novelNumber="+91+"'>";
             $('.x_ximg').html(str)
 
 
@@ -65,12 +52,8 @@ function RoundMake(){
             //카테고리
             let gener = document.createElement('span')
             gener.className="hashtagSpan"
+            let hash = result.novelHashtag+"";
 
-                let hash = result.novelHashtag+"";
-            // let genertext =document.createTextNode(`${result.novelHashtag}`);
-            //
-            // console.log(genertext.data)
-            // console.log(genertext.data.split(','))
             // 작품소개
             modelHText = document.createTextNode(`${result.novelTitle}`)
             modelBText = document.createTextNode(`${result.novelIntro}`)
