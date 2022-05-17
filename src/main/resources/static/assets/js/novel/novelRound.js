@@ -24,7 +24,10 @@ function IntroModalHandlerClose(){
 }
 
 
+let novelNumber = 109;
 RoundMake();
+
+
 
 function RoundMake(){
     //모음
@@ -35,25 +38,26 @@ function RoundMake(){
     let x_Desc_writer_N=document.querySelector('.x_Desc_writer_N')
     let introHead = document.querySelector('.introHead');
     let introbody =document.querySelector('.introbody');
-
+    
 
             //소설 이미지
-            let str ="<img src='/novel/novelRoundInfo?novelNumber="+91+"'>";
+            let str ="<img src='/novel/novelRoundInfo?novelNumber="+novelNumber+"'>";
             $('.x_ximg').html(str)
 
 
-        getNovelVo(91,function (result) {
+            getNovelVo(novelNumber,function (result) {
             // 제목
             let title= document.createElement('h2');
             let titletext=document.createTextNode(`${result.novelTitle}`)
-            //조회수
-            let cnt= document.createElement('h3');
-            let cnttext=document.createTextNode(`${result.novelViewCountTotal}만명`)
             //카테고리
             let gener = document.createElement('span')
             gener.className="hashtagSpan"
-            let hash = result.novelHashtag+"";
+            let hash = result.novelHashtag;
+            //조회수
+            let cnt= document.createElement('h3');
+            let cnttext=document.createTextNode(`${result.novelViewCountTotal}만명`)
 
+            cnt.append(cnttext)
             // 작품소개
             modelHText = document.createTextNode(`${result.novelTitle}`)
             modelBText = document.createTextNode(`${result.novelIntro}`)
@@ -64,28 +68,27 @@ function RoundMake(){
             // 이미지
 
 
-            title.append(titletext)
-            cnt.append(cnttext)
-            let arr = new Array();
-            arr = hash.split(" ");
-            console.log(arr);
 
-            for (var i = 0; i < arr.length; i++) {
-                // let gener = document.createElement('span')
+            //해시태그
+            let arr = hash.replace(/\s+/, ',').split(',');
 
+            for (let i = 0; i < arr.length; i++) {
                 let str="";
                 str = "<span class='hashtagSpan'>#"+arr[i]+"</span>";
                 $('.hashtag').append(str);
             }
-            // gener.append('#'+genertext.split('  '))
 
 
-            Noveltitle.append(title)
-            watchCnt.append(cnt)
             // x_Desc_writer_N.append(NwriterText)
 
+            title.append(titletext)
+            Noveltitle.append(title)
+            watchCnt.append(cnt)
             introHead.append(modelHText)
             introbody.append(modelBText)
+
+
+
         } );
 
 
@@ -93,6 +96,45 @@ function RoundMake(){
 
 
 }
+
+
+getSubNovelList(novelNumber, function (result) {
+    console.log(result);
+
+
+
+});
+
+
+getOrderBySubNovelList(novelNumber, function (result) {
+    NoveltotalCnt = document.createTextNode("전체(" +result.length+ ")개");
+    document.querySelector('.NoveltotalCnt').append(NoveltotalCnt);
+    Novel = document.querySelector('.Novel');
+
+    let current =0;
+    let current10 = current+10
+
+
+    result.forEach(function (subnovel, i) {
+
+        let date=subnovel.subNovelUploadDate+"";
+        date =date.substring(0, 10);
+
+        Novel.innerHTML +=
+            ` <li class="Novelli">
+        <div class="NovelImg">
+        <img src='/novel/novelRoundInfo?novelNumber=${novelNumber}'>
+        </div>
+        <div class="NovelDEC">
+            <div class="NovelDECS">
+                <div class="Noveltt">${subnovel.subNovelTitle} ${i+1}화</div>
+                <div class="Novelday">${date}</div>
+            </div>
+        </div>`
+    })
+
+
+})
 
 
 

@@ -13,9 +13,8 @@ import com.team1.stelling.domain.repository.NovelRepository;
 import com.team1.stelling.domain.repository.SubNovelRepository;
 import com.team1.stelling.domain.repository.UserRepository;
 import com.team1.stelling.domain.vo.*;
-import com.team1.stelling.service.IllustImgFileService;
+import com.team1.stelling.service.*;
 
-import com.team1.stelling.service.NovelService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tika.exception.TikaException;
@@ -44,10 +43,9 @@ import java.util.*;
 public class novelController {
 
     private  final NovelService novelService;
-    private final NovelRepository novelRepository;
-    private final UserRepository userRepository;
-    private final SubNovelRepository subNovelRepository;
-    private final NovelFileRepository novelFileRepository;
+    private final UserService userService;
+    private final SubNovelService subNovelService;
+    private final NovelFileService novelFileService;
 //    private  final NovelSearchService novelSearchService;
 
 
@@ -105,7 +103,8 @@ public class novelController {
         log.info("=============================================");
         log.info(novelVO.toString());
         log.info("=============================================");
-        novelRepository.save(novelVO);
+        novelService.register(novelVO);
+//        novelRepository.save(novelVO);
 
     }
 
@@ -195,8 +194,8 @@ public class novelController {
         log.info(novelFileDTO.getSubNovelTitle());
         log.info(novelFileDTO.getUserNumber().toString());
         log.info("-------------------------------------------------------------------------------------");
-        NovelVO novelVO = novelRepository.findById(novelFileDTO.getNovelNumber()).get();
-        UserVO userVO = userRepository.findById(novelFileDTO.getUserNumber()).get();
+        NovelVO novelVO =novelService.get(novelFileDTO.getNovelNumber());
+        UserVO userVO =userService.get(novelFileDTO.getUserNumber());
 
         SubNovelVO subNovelVO = new SubNovelVO();
         subNovelVO.setNovelVO(novelVO);
@@ -204,7 +203,7 @@ public class novelController {
         subNovelVO.setSubNovelTitle(novelFileDTO.getSubNovelTitle());
         subNovelVO.setSubNovelWriterComment(novelFileDTO.getSubNovelWriterComment());
         subNovelVO.setSubNovelStatus(1); //회차상태 0: 숨김, 1:보여짐
-        subNovelRepository.save(subNovelVO);
+        subNovelService.register(subNovelVO);
 
         String title = novelVO.getNovelTitle();
         String uploadFolder = "C:/stelling";
@@ -224,7 +223,7 @@ public class novelController {
         novelFileVO.setSubNovelVO(subNovelVO);
         novelFileVO.setNovelVO(novelVO);
         novelFileVO.setUserVO(userVO);
-        novelFileRepository.save(novelFileVO);
+        novelFileService.register(novelFileVO);
 
 
         BufferedWriter bw = new BufferedWriter(new FileWriter(new File(uploadPath+"/"+uploadFileName+".txt")));

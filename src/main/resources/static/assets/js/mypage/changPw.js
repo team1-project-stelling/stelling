@@ -62,3 +62,5 @@ function sameNewPw(obj) {
         result_reNewPw.style.color = '#19ce60';
     }
 }
+
+$

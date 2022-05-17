@@ -22,4 +22,6 @@ public class SubNovelService {
         vo.updateSubNovelUpdateDate();
         subNovelRepository.save(vo);
     }
+    public List<SubNovelVO> getList(Long novelNumber){return subNovelRepository.findByNovelVO_NovelNumber(novelNumber);}
+    public List<SubNovelVO> orderBySubNovelList(Long novelNumber){return subNovelRepository.findAllByNovelVO_NovelNumberOrderBySubNovelNumber(novelNumber);}
 }
