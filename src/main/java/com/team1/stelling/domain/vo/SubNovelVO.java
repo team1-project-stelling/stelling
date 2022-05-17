@@ -18,6 +18,7 @@ import java.util.Date;
 @Setter
 @ToString(of = { "subNovelNumber", "subNovelTitle", "subNovelWriterComment", "subNovelUploadDate", "subNovelUpdateDate","subNovelViewCount","subNovelLickCount","subNovelStatus" })
 @AllArgsConstructor
+@NoArgsConstructor
 public class SubNovelVO {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SUBNOVEL_SEQ")
@@ -64,7 +65,6 @@ public class SubNovelVO {
 
     public void updateSubNovelStatus(int subNovelStatus) { this.subNovelStatus = subNovelStatus; }
 
-    public SubNovelVO() {;}
 
     @Builder
     public SubNovelVO(Long subNovelNumber, NovelVO novelVO, UserVO userVO, String subNovelTitle, String subNovelWriterComment, String subNovelUploadDate, String subNovelUpdateDate, int subNovelViewCount, int subNovelLickCount, int subNovelStatus) {

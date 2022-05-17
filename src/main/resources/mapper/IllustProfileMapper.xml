@@ -4,24 +4,15 @@
 
     <!--등록-->
     <insert id="insert">
-        INSERT INTO TBL_ILLUSTPROFILE (ILLUSTPROFILE_NUMBER, USER_NUMBER, ILLUSTPROFILE_SHORTINTRO, ILLUSTPROFILE_DETAILINTRO, ILLUSTPROFILE_CATEGORY, ILLUSTPROFILE_WEBSITE)
+       INSERT INTO TBL_ILLUSTPROFILE
+        (ILLUSTPROFILE_NUMBER, USER_NUMBER, ILLUSTPROFILE_SHORTINTRO, ILLUSTPROFILE_DETAILINTRO, ILLUSTPROFILE_CATEGORY, ILLUSTPROFILE_WEBSITE)
         VALUES(ILLUSTPROFILE_SEQ.NEXTVAL, #{userNumber}, #{illustProfileShortIntro}, #{illustProfileDetailIntro}, #{illustProfileCategory}, #{illustProfileWebSite})
     </insert>
 
-    <!--삭제-->
-    <delete id="delete"></delete>
-
-    <!--수정-->
-    <update id="update">
-        UPDATE TBL_ILLUSTPROFILE
-        SET USER_NUMBER=#{userNumber}, ILLUSTPROFILE_SHORTINTRO=#{illustProfileShortIntro}, ILLUSTPROFILE_DETAILINTRO=#{illustProfileDetailIntro}, ILLUSTPROFILE_CATEGORY=#{illustProfileCategory}, ILLUSTPROFILE_WEBSITE=#{illustProfileWebSite}
-        WHERE ILLUSTPROFILE_NUMBER=#{illustProfileNumber}
-    </update>
-
-    <!--특정 내역 가져오기-->
-    <select id="get" resultType="illustProfileVO">
-        SELECT ILLUSTPROFILE_NUMBER, USER_NUMBER, ILLUSTPROFILE_SHORTINTRO, ILLUSTPROFILE_DETAILINTRO, ILLUSTPROFILE_CATEGORY, ILLUSTPROFILE_WEBSITE
-        FROM TBL_ILLUSTPROFILE
-        WHERE ILLUSTPROFILE_NUMBER=#{illustProfileNumber}
+    <!--특정 내역 가져오기 join사용-->
+    <select id="get" resultType="illustProfileDTO">
+SELECT pf.ILLUSTPROFILE_NUMBER, pf.USER_NUMBER, u.USER_NICKNAME, u.USER_FILEPATH, u.USER_UUID,u.USER_FILENAME, pf.ILLUSTPROFILE_SHORTINTRO, pf.ILLUSTPROFILE_DETAILINTRO, pf.ILLUSTPROFILE_CATEGORY, pf.ILLUSTPROFILE_WEBSITE
+        FROM TBL_ILLUSTPROFILE pf, TBL_USER u
+       	WHERE pf.USER_NUMBER = u.USER_NUMBER AND pf.USER_NUMBER =#{userNumber}
     </select>
 </mapper>

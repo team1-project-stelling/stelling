@@ -15,6 +15,7 @@ import javax.persistence.*;
 @ToString(of = {"myPickNumber","myPickPick"})
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class MyPickVO {
     /* 시퀀스 -> MYPICK_SEQ */
     @Id
@@ -46,6 +47,5 @@ public class MyPickVO {
         this.novelVO = novelVO;
     }
 
-    public MyPickVO() { ;}
 
 }

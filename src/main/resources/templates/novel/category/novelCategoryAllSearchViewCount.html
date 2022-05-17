@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Stelling</title>
+    <link href="/assets/css/novel/category.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/fix/header.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/fix/footer.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<!-- 헤더 시작 -->
+    <th:block th:insert="/fix/headerWord.html :: headFragment"/>
+
+    <!--헤더 이미지-->
+    <div id="headerImgWrap" >
+        <img id="headerImg"src="/images/fix/headerImg_3.png" >
+    </div>
+<!-- 헤더 종료 -->
+
+    <div id="categoryWrap" class="giveMaxWidth">
+        <section id="categorySection" class="giveMaxWidth">
+            <div id="categoryMenu" class="giveMaxWidth">
+                <table class="giveMaxWidth">
+                    <tbody>
+                    <tr>
+                        <td><a href="/novel/category/novelCategory?categoryStatus=0" class="categoryMenuItem">전체</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="/novel/category/novelCategory?categoryStatus=1" class="categoryMenuItem">신작</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="/novel/category/novelCategory?categoryStatus=2" class="categoryMenuItem">완결</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="totalWrap"class="giveMaxWidth">
+                <div class="totalWordWork">
+                    <img src="/images/category/fileIcon.png" alt="파일아이콘">
+                    <span th:text="|총 ${novelTotal}개 작품|">18,827</span>
+                </div>
+                <div id="totalR_side">
+                    <div id="totalOption">
+                        <div class="OptionChange" th:onclick="'location.href=\''+ @{/novel/category/novelSearch(keyword=${pageableDTO.keyword},categoryStatus=${pageableDTO.categoryStatus})} +'\'' "><img src="/images/category/optionPointIcon.png" alt="체크아이콘">공개일자 순</div>
+                        <div class="OptionChange" th:onclick="'location.href=\''+ @{/novel/category/novelSearch/viewCount(keyword=${pageableDTO.keyword},categoryStatus=${pageableDTO.categoryStatus})} +'\'' "><img src="/images/category/checkIcon.png" alt="체크아이콘">조회순</div>
+                        <div class="OptionChange" th:onclick="'location.href=\''+ @{/novel/category/novelSearch/likeCount(keyword=${pageableDTO.keyword},categoryStatus=${pageableDTO.categoryStatus})} +'\'' "><img src="/images/category/optionPointIcon.png" alt="체크아이콘">추천순</div>
+                    </div>
+                        <a href="/novel/category/novelWrite" class="writeButton"><img src="/images/category/wordWriteIcon.png" alt="글등록아이콘">신규작품 등록</a>
+                </div>
+            </div>
+            <div id="tagSearchWrap" class="giveMaxWidth">
+                <div class="tagInner">
+                    <button class="tagBtn"onclick="changeTagSearch()" >태그검색</button>
+
+                    <div id="searchFormWrap">
+                        <form id="searchForm"  method="get" action="/novel/category/novelSearch">
+                            <input type="hidden" name="categoryStatus" th:value="${pageableDTO.categoryStatus}">
+                            <input name="keyword" id="searchFormInput" type="text" placeholder="#검색할 태그를 입력하세요" maxlength="16">
+                            <button class="searchFormWrapBtn">검색</button>
+                            <div class="cancelImg" onclick="changeTagSearch()">
+                                <img src="/images/category/cancelIcon.png">
+                            </div>
+                        </form>
+                    </div>
+                    <ul id="tagSearchList">
+                        <li><a th:href="@{/novel/category/novelCategory(categoryStatus=${pageableDTO.categoryStatus})}">전체</a></li>
+                        <li><a th:href="@{/novel/category/novelFindToTag(keyword=판타지,categoryStatus=${pageableDTO.categoryStatus})}">판타지</a></li>
+                        <li><a th:href="@{/novel/category/novelFindToTag(keyword=무협,categoryStatus=${pageableDTO.categoryStatus})}">무협</a></li>
+                        <li><a th:href="@{/novel/category/novelFindToTag(keyword=현대,categoryStatus=${pageableDTO.categoryStatus})}">현대</a></li>
+                        <li><a th:href="@{/novel/category/novelFindToTag(keyword=로맨스,categoryStatus=${pageableDTO.categoryStatus})}">로맨스</a></li>
+                        <li><a th:href="@{/novel/category/novelFindToTag(keyword=현대판타지,categoryStatus=${pageableDTO.categoryStatus})}">현대판타지</a></li>
+                        <li><a th:href="@{/novel/category/novelFindToTag(keyword=라이트노벨,categoryStatus=${pageableDTO.categoryStatus})}">라이트노벨</a></li>
+                        <li><a th:href="@{/novel/category/novelFindToTag(keyword=공포,categoryStatus=${pageableDTO.categoryStatus})}">공포</a></li>
+                        <li><a th:href="@{/novel/category/novelFindToTag(keyword=SF,categoryStatus=${pageableDTO.categoryStatus})}">SF</a></li>
+                        <li><a th:href="@{/novel/category/novelFindToTag(keyword=스포츠,categoryStatus=${pageableDTO.categoryStatus})}">스포츠</a></li>
+                        <li><a th:href="@{/novel/category/novelFindToTag(keyword=대체역사,categoryStatus=${pageableDTO.categoryStatus})}">대체역사</a></li>
+                        <li><a th:href="@{/novel/category/novelFindToTag(keyword=기타,categoryStatus=${pageableDTO.categoryStatus})}">기타</a></li>
+                        <li><a th:href="@{/novel/category/novelFindToTag(keyword=패러디,categoryStatus=${pageableDTO.categoryStatus})}">패러디</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="searchResult"class="giveMaxWidth">
+                <!-- 더미 데이터 시작 -->
+                <th:block  th:each="novel:${list}">
+                <div class="resultItem">
+                    <div class="coverBox">
+                        <img th:src="'/upload/display?fileName='+${novel.novelUploadPath}+'/'+${novel.novelFileName}" alt="표지사진"> <!--추후 UUID추가-->
+                        <img src="/images/category/updateIcon.png" alt="업데이트아이콘" th:if="${#calendars.format(novel.novelUpdateDate,'yyyy-MM-dd')== #calendars.format(#calendars.createNow(),'yyyy-MM-dd')}"></div>
+                    <div class="pieceInfo">
+                        <div>
+                            <div class="info_head">
+                                <div>
+                                    <span class="free_content" th:if="${novel.novelSerialsStatus == 0}">자유</span>
+                                    <span class="free_content" th:if="${novel.novelSerialsStatus == 1}">정기</span>
+                                    <span class="mono_content">독점</span>
+                                    <span class="finish_content" th:if="${novel.novelStatus == 2}">완결</span>
+                                </div>
+                                <a href="#" class="info_title" th:text="${novel.novelTitle}"></a>
+                                <a href="#" class="info_writer" th:text="${novel.userVO.userNickName}"></a>
+                            </div>
+                            <div class="info_summary" th:text="${novel.novelIntro}"></div>
+                        </div>
+                        <div class="info_counts">
+                            <div class="info_count"><img src="/images/category/viewIcon.png" alt="조회수" th:text="|${novel.novelViewCountTotal}명|"></div>
+                            <div class="info_count"><img src="/images/category/bookIcon.png" alt="회차" th:text="|${novel.novelRoundAboutTotal}회차|"></div>
+                            <div class="info_count"><img src="/images/category/likeIcon.png" alt="좋아요" th:text="|${novel.novelLikeCountTotal}회|"></div>
+                        </div>
+                        <div class="info_tag">
+                            <ul>
+                                <th:block  th:each="tag:${novel.novelHashtag}">
+                                    <li><a th:href="@{/novel/category/novelFindToTag(keyword=${tag},categoryStatus=${pageableDTO.categoryStatus})}" th:text="|#${tag}|">#판타지</a></li>
+                                </th:block>
+                            </ul>
+                        </div>
+                        <!--<div class="mobile_updateTimeBox">1분전 UP</div>-->
+                        <div>
+                            <th:block th:if="${#calendars.format(novel.novelUpdateDate,'yyyy-MM-dd') == #calendars.format(#calendars.createNow(),'yyyy-MM-dd')}">
+                                <!-- 현재 날짜와 업데이트 날짜가 일치할때-->
+                                <div class="updateTimeBox web_updateTimeBox" th:if="${#calendars.format(novel.novelUpdateDate,'yyyy-MM-dd HH') == #calendars.format(#calendars.createNow(),'yyyy-MM-dd HH')}" th:text="${#strings.toString(#calendars.format(#calendars.createNow(),'mm'))} -${ #strings.toString(#calendars.format(novel.novelUpdateDate,'mm'))}+'분전 UP'"></div>
+                                <div class="updateTimeBox web_updateTimeBox" th:unless="${#calendars.format(novel.novelUpdateDate,'yyyy-MM-dd HH')== #calendars.format(#calendars.createNow(),'yyyy-MM-dd HH')}" th:text="${#strings.toString(#calendars.format(#calendars.createNow(),'HH'))} -${ #strings.toString(#calendars.format(novel.novelUpdateDate,'HH'))}+'시간전 UP'"></div>
+                            </th:block>
+                            <th:block th:unless="${#calendars.format(novel.novelUpdateDate,'yyyy-MM-dd') == #calendars.format(#calendars.createNow(),'yyyy-MM-dd')}">
+                                <div class="updateTimeBox web_updateTimeBox" th:text="|${#calendars.format(novel.novelUpdateDate,'yyyy-MM-dd')} UP|"></div>
+                            </th:block>
+
+                        </div>
+                    </div>
+                </div>
+
+                </th:block>
+                <!-- 더미 데이터 종료 -->
+
+            </div>
+
+
+
+            <!-- 페이징 시작-->
+
+            <div class="categoryPaging giveMaxWidth">
+                <!-- 페이징 -->
+                <ul class="c_PagingList" >
+                    <!-- 이전 -->
+                    <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/novel/category/novelSearch/viewCount(keyword=${pageableDTO.keyword},page=${pageableDTO.startPage -2 },categoryStatus=${pageableDTO.categoryStatus},categoryStatus=${pageableDTO.categoryStatus})}" >&lt;&lt;</a></li>
+                    <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/novel/category/novelSearch/viewCount(keyword=${pageableDTO.keyword},page=${pageableDTO.previous},categoryStatus=${pageableDTO.categoryStatus},categoryStatus=${pageableDTO.categoryStatus})}">&lt;</a></li>
+
+
+                    <th:block th:each="num:${#numbers.sequence(pageableDTO.startPage,pageableDTO.endPage)}">
+                        <li  th:if="${pageableDTO.pageNumber== num}" th:text="${num}" class="pageActive"></li>
+                        <li th:unless="${pageableDTO.pageNumber == num}" ><a  th:text="${num}" th:href="@{/novel/category/novelSearch/viewCount(keyword=${pageableDTO.keyword},page=${num - 1},categoryStatus=${pageableDTO.categoryStatus})}"></a></li>
+                    </th:block>
+
+
+
+
+
+                    <!-- 다음 -->
+                    <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/novel/category/novelSearch/viewCount(keyword=${pageableDTO.keyword},page=${pageableDTO.next},categoryStatus=${pageableDTO.categoryStatus})}">&gt;</a></li>
+                    <li th:if="${pageableDTO.hasNext}"><a th:href="@{/novel/category/novelSearch/viewCount(keyword=${pageableDTO.keyword},page=${pageableDTO.endPage },categoryStatus=${pageableDTO.categoryStatus})}">&gt;&gt;</a></li>
+                </ul>
+            </div>
+            <!-- 페이징 종료-->
+        </section>
+    </div>
+
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
+</body>
+<script></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/fix/header.js"></script>
+<script src="/assets/js/novel/category.js"></script>
+<script th:inline="javascript">
+    let pageInfo = [[${pageableDTO.categoryStatus}]];
+    changeMenuItem(pageInfo)
+</script>
+</html>

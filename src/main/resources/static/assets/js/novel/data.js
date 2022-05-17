@@ -1,41 +1,74 @@
-function search() { 
+function getSubNovelList(novelNumber, callback, error) {
 
-    let result= [];
     $.ajax({
-      url : "https://api.themoviedb.org/3/movie/popular?api_key=84681a7022280cff3021d07fe9117b39&language=ko-KR",
-     
-      dataType: "json",
-      type: "get",
-      async: false,
-      success: function(data) {
-         result= data.results
-         console.log(result)
-      },
+        url : "/novel/getSubNovelList?novelNumber="+novelNumber,
+        // dataType: "json",
+        type: "GET",
+        // async: false,
+        success: function(result) {
+            callback(result);
+        },
         error: function (){alert("실패");}
     });
-    return result;
-
- }
 
 
- function ResCnt() { 
- 
-    let result= [];
+}
+
+function getNovelVo(novelNumber, callback, error) {
+
     $.ajax({
-      url : "/dummy/Res.json",
-     
-      dataType: "json",
-      type: "get",
-      async: false,
-      success: function(data) {
-         result= data
-         
-      },
-        error: function (){alert("실패");}
+        url : "/novel/getNovelVO/"+novelNumber,
+        // dataType: "json",
+        type: "GET",
+        // async: false,
+        success: function(result) {
+            callback(result);
+        },
+        error: function (){
+            if(error){
+                console.log(error);
+            }
+            alert("실패");}
     });
-    return result;
- 
- }
+}
+
+
+function getOrderBySubNovelList(novelNumber, callback, error){
+    $.ajax({
+             url : "/novel/orderBySubNovelList?novelNumber="+novelNumber,
+             type: "get",
+             success: function(result) {
+                callback(result);
+
+             },
+               error: function () {
+                   if (error) {
+                       alert("실패");
+                   }
+               }
+           });
+}
+
+
+
+ // function ResCnt() {
+ //
+ //    let result= [];
+ //    $.ajax({
+ //      url : "/dummy/Res.json",
+ //
+ //      dataType: "json",
+ //      type: "get",
+ //      async: false,
+ //      success: function(data) {
+ //         result= data
+ //
+ //      },
+ //        error: function (){alert("실패");}
+ //    });
+ //    return result;
+ //
+ // }
 
 
 

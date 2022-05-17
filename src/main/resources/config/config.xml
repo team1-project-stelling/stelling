@@ -4,11 +4,13 @@
     <typeAliases>
         <typeAlias type="com.team1.stelling.domain.vo.ReplyVO" alias="replyVO"/>
         <typeAlias type="com.team1.stelling.domain.vo.IllustProfileVO" alias="illustProfileVO"/>
+        <typeAlias type="com.team1.stelling.domain.dto.IllustProfileDTO" alias="illustProfileDTO"/>
         <typeAlias type="com.team1.stelling.domain.vo.SupportVO" alias="supportVO"/>
         <typeAlias type="com.team1.stelling.domain.vo.MyPickVO" alias="myPickVO"/>
         <typeAlias type="com.team1.stelling.domain.vo.MyIllustVO" alias="myIllustVO"/>
         <typeAlias type="com.team1.stelling.domain.vo.InquiryVO" alias="inquiryVO"/>
         <typeAlias type="com.team1.stelling.domain.vo.PayVO" alias="payVO"/>
+        <typeAlias type="com.team1.stelling.domain.vo.PayDTO" alias="payDTO"/>
         <typeAlias type="com.team1.stelling.domain.vo.BuyChapterVO" alias="buyChapterVO"/>
 
     </typeAliases>

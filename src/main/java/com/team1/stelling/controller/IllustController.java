@@ -1,37 +1,87 @@
 package com.team1.stelling.controller;
 
 
+import com.team1.stelling.aspect.annotation.LogStatus;
+import com.team1.stelling.domain.dto.PageDTO;
+import com.team1.stelling.domain.dto.PageableDTO;
+import com.team1.stelling.domain.vo.Criteria;
+import com.team1.stelling.domain.vo.IllustProfileVO;
+import com.team1.stelling.domain.vo.IllustVO;
+import com.team1.stelling.service.IllustProfileService;
+import com.team1.stelling.service.IllustService;
+import com.team1.stelling.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @Slf4j
-@RequiredArgsConstructor
 @RequestMapping("/illust/*")
+@RequiredArgsConstructor
 public class IllustController {
 
-    @GetMapping("/illustCategoryList")
-    public void illustList(){
+    private final IllustProfileService illustProfileService;
+    private final IllustService illustService;
+
+    @LogStatus
+    @GetMapping("/illustList")
+    public void illustList(Criteria criteria){
     }
+
     @GetMapping("/illustChatPage")
     public void chatForm(){
     }
 
-    @GetMapping("/illustList")
+    @GetMapping("/illustCategoryList")
     public void illustCategoryList(){
     }
+
     @GetMapping("/illustPostingPage")
     public void PostingPage(){
     }
+
     @GetMapping("/illustUserInput")
-    public void writePage(){
+    public void illustUserInput(){}
+
+    @GetMapping("/register") public void register(){}
+
+    @PostMapping("/register")
+    public RedirectView register(IllustProfileVO illustProfileVO, RedirectAttributes rttr){
+
+        illustProfileVO.setUserNumber(21L);
+
+        illustProfileService.register(illustProfileVO);
+
+//        rttr.addFlashAttribute("userNumber", illustProfileVO.getUserNumber());
+
+        return new RedirectView("illustUserPage");
     }
+
     @GetMapping("/illustUserPage")
-    public void userPage(){
+    public void illustUserPage(Long userNumber, Criteria criteria, Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
+
+        Page<IllustVO> list = illustService.getList(pageable);
+        PageableDTO pageableDTO = new PageableDTO( (int)list.getTotalElements(),pageable);
+        model.addAttribute("list", list);
+        model.addAttribute("illustProfile", illustProfileService.get(21L));
+//        model.addAttribute("illustProfile", illustProfileService.get(userNumber));
+        model.addAttribute("pageableDTO", pageableDTO);
     }
+
+
     @GetMapping("/illustViewDetail")
     public void ViewDetail(){
     }

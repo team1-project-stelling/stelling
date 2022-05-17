@@ -15,6 +15,10 @@ import javax.persistence.*;
 @Setter
 @ToString
 @DynamicInsert
+<<<<<<< HEAD
+=======
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+>>>>>>> f142c6365e7512699af313bd2f18acf87618a95a
 public class UserVO {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ")
@@ -36,6 +40,12 @@ public class UserVO {
     private int userStatus;      // 회원 상태 0 - 일반회원 , 1 - 관리자 , 2- 휴면(탈퇴)
     @Column(name = "USER_COINBALANCE")
     private int userCoinBalance;  // 코인 잔액
+    @Column(name = "USER_FILEPATH")
+    private String userFilePath;  // 코인 잔액
+    @Column(name = "USER_UUID")
+    private String userUuid;  // 코인 잔액
+    @Column(name = "USER_FILENAME")
+    private String userFileName;  // 코인 잔액
     @Column(name = "USER_ACCESSTOKEN")
     private String userAccessToken; // 카카오 계정 이용시 발급 받는 토큰
 
@@ -47,6 +57,7 @@ public class UserVO {
     public void updateUserStatus(int userStatus) { this.userStatus = userStatus; }
     public void updateUserCoinBalance(int userCoinBalance) { this.userCoinBalance = userCoinBalance; }
     public void updateUserAccessToken(String userAccessToken) { this.userAccessToken = userAccessToken; }
+
 
 
     @Builder

@@ -1,9 +1,12 @@
 package com.team1.stelling.controller;
 
+import com.team1.stelling.domain.dto.PageDTO;
+import com.team1.stelling.domain.vo.Criteria;
 import com.team1.stelling.domain.vo.PayVO;
 import com.team1.stelling.service.PayService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -53,10 +57,19 @@ public class MyLibraryController {
         return "cash/coinShop";
     }
 
+    //결제 내역 등록
+    @PostMapping("/coinShop")
+    public String register(PayVO payVO){
+        payService.register(payVO);
+        return "cash/coinShop";
+    }
+
     //결제 리스트(마이페이지)
-    @GetMapping("/payList/{userNumber}")
-    public String payList(@PathVariable Long userNumber, Model model){
-            model.addAttribute("payList", payService.getList(userNumber));
+    @GetMapping("/payList")
+    public String payList(Long userNumber, Criteria criteria, Model model){
+            model.addAttribute("payList", payService.getList(criteria, userNumber));
+            model.addAttribute("pageDTO", new PageDTO(criteria, payService.getSearchTotal(criteria)));
+            model.addAttribute("payDTO", payService.getTotal(userNumber));
         return "myPage/myPagePayList";
     }
 
@@ -77,10 +90,4 @@ public class MyLibraryController {
 //        return "cash/coinShop";
 //    }
 
-    //결제 내역 등록
-    @PostMapping("/register")
-    public String register(PayVO payVO){
-        payService.register(payVO);
-        return "cash/coinShop";
-    }
 }

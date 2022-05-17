@@ -1,26 +1,25 @@
 package com.team1.stelling.domain.vo;
 
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+@Component
 @Entity
 @Table(name ="TBL_NOVELFILE")
 @SequenceGenerator(name ="NOVELFILE_SEQ" , allocationSize = 1)
 @Getter
+@Setter
 @ToString(of = {"novelFileNumber","novelFileFilePath","novelFileOriginalUUID","novelFileFileName","novelFileUploadUpdate", "novelFileUpdateDate"})
 @NoArgsConstructor
+@AllArgsConstructor
 public class NovelFileVO {
 
    @Id

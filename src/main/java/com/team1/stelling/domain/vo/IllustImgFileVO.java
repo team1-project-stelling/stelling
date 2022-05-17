@@ -25,6 +25,7 @@ import java.util.Date;
 @ToString(of = {"illustImgFileNumber","illustImgFileFilePath","illustImgFileOriginUUID","illustImgFileFileName","illustImgFileUploadDate","illustImgFileUpdateDate"})
 @AllArgsConstructor
 @Slf4j
+@NoArgsConstructor
 public class IllustImgFileVO {
    @Id
    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ILLUSTIMGFILE_SEQ")
@@ -60,7 +61,6 @@ public class IllustImgFileVO {
 
     public void updateIllustImgFileFileName(String illustImgFileFileName) { this.illustImgFileFileName = illustImgFileFileName; }
 
-    public IllustImgFileVO() {;}
 
     @Builder
     public IllustImgFileVO(Long illustImgFileNumber, IllustVO illustVO, UserVO userVO, String illustImgFileFilePath, String illustImgFileOriginUUID, String illustImgFileFileName, String illustImgFileUploadDate, String illustImgFileUpdateDate) {
