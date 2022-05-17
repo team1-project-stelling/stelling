@@ -1,18 +1,18 @@
-// function search(novelNumber, callback, error) {
-//
-//     $.ajax({
-//         url : "/novel/novelRoundInfo/"+novelNumber,
-//         // dataType: "json",
-//         type: "GET",
-//         // async: false,
-//         success: function(result) {
-//             callback(result);
-//         },
-//         error: function (){alert("실패");}
-//     });
-//
-//
-// }
+function getSubNovelList(novelNumber, callback, error) {
+
+    $.ajax({
+        url : "/novel/getSubNovelList?novelNumber="+novelNumber,
+        // dataType: "json",
+        type: "GET",
+        // async: false,
+        success: function(result) {
+            callback(result);
+        },
+        error: function (){alert("실패");}
+    });
+
+
+}
 
 function getNovelVo(novelNumber, callback, error) {
 
@@ -24,30 +24,51 @@ function getNovelVo(novelNumber, callback, error) {
         success: function(result) {
             callback(result);
         },
-        error: function (){alert("실패");}
+        error: function (){
+            if(error){
+                console.log(error);
+            }
+            alert("실패");}
     });
 }
 
 
-
- function ResCnt() { 
- 
-    let result= [];
+function getOrderBySubNovelList(novelNumber, callback, error){
     $.ajax({
-      url : "/dummy/Res.json",
-     
-      dataType: "json",
-      type: "get",
-      async: false,
-      success: function(data) {
-         result= data
-         
-      },
-        error: function (){alert("실패");}
-    });
-    return result;
- 
- }
+             url : "/novel/orderBySubNovelList?novelNumber="+novelNumber,
+             type: "get",
+             success: function(result) {
+                callback(result);
+
+             },
+               error: function () {
+                   if (error) {
+                       alert("실패");
+                   }
+               }
+           });
+}
+
+
+
+ // function ResCnt() {
+ //
+ //    let result= [];
+ //    $.ajax({
+ //      url : "/dummy/Res.json",
+ //
+ //      dataType: "json",
+ //      type: "get",
+ //      async: false,
+ //      success: function(data) {
+ //         result= data
+ //
+ //      },
+ //        error: function (){alert("실패");}
+ //    });
+ //    return result;
+ //
+ // }
 
 
 

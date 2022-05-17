@@ -54,7 +54,7 @@
                                         <h3 class="withdraw_1">회원탈퇴에 앞서 유의사항 및 안내를 반드시 읽고 진행해 주세요!</h3>
                                     </div>
                                 </div>
-                                <form action="" method="post">
+                                <form action="/myPage/withDraw" method="get" name="checkFrom" id="withDrawForm">
                                     <div class="info_agree">
                                         <div class="info_user">
                                             <strong class="tit_agree">아이디는 재사용 및 복구 불가</strong>
@@ -64,7 +64,7 @@
                                                 <br>신중히 선택하신 후 결정해주세요.
                                             </strong>
                                             <span class="check_notice">
-                                                <input type="checkbox" id="idAgree1" name="idAgree">
+                                                <input type="checkbox" id="idAgree1" name="idAgree" class="agree">
                                                 <label for="idAgree1" class="lab_check">
                                                     <span class="icon_check">동의</span>
                                                 </label>
@@ -80,7 +80,7 @@
                                                 <br>필요한 데이터는 미리 백업을 해주세요.
                                             </strong>
                                             <span class="check_notice">
-                                                <input type="checkbox" id="idAgree2" name="idAgree">
+                                                <input type="checkbox" id="idAgree2" name="idAgree" class="agree">
                                                 <label for="idAgree2" class="lab_check">
                                                     <span class="icon_check">동의</span>
                                                 </label>
@@ -88,7 +88,7 @@
                                         </div>
                                     </div>
                                     <div class="wrap_btn">
-                                        <button type="submit" class="withdraw_btn">탈퇴</button>
+                                        <button type="button" class="withdraw_btn" onclick="check_agree()">탈퇴</button>
                                     </div>
                                 </form>
                             </div>

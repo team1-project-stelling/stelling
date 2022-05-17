@@ -12,6 +12,8 @@
         <typeAlias type="com.team1.stelling.domain.vo.PayVO" alias="payVO"/>
         <typeAlias type="com.team1.stelling.domain.vo.PayDTO" alias="payDTO"/>
         <typeAlias type="com.team1.stelling.domain.vo.BuyChapterVO" alias="buyChapterVO"/>
+        <typeAlias type="com.team1.stelling.domain.vo.NovelVO" alias="NovelVO"/>
+        <typeAlias type="com.team1.stelling.domain.dto.NovelRankingDTO" alias="NovelRankingDTO"/>
 
     </typeAliases>
 </configuration>

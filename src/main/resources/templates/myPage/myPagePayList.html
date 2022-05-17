@@ -41,7 +41,7 @@
                             <a class="menu" href="myPageQuit.html">탈퇴 하기</a>
                         </li>
                         <li class="left">
-                            <a class="menu payment" href="javascript:void(0);">결제</a>
+                            <a class="menu payment" href="javascript:goList();">결제</a>
                         </li>
                     </ul>
                 </div>
@@ -162,9 +162,9 @@
 
                                     </li>
                                     <form action="/myLibrary/payList" th:object="${criteria}" name="pageForm">
-                                        <input type="hidden" name="userNumber" value="1">
-                                        <input type="hidden" th:field="*{pageNum}">
-                                        <input type="hidden" th:field="*{amount}">
+                                        <input class="userNumber" type="hidden" name="userNumber" value="1">
+                                        <input class="pageNum" type="hidden" th:value="*{pageNum}">
+                                        <input class="amount" type="hidden" th:value="*{amount}">
                                     </form>
                                 </ul>
                             </nav>
@@ -182,10 +182,19 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/mypage/payment.js"></script>
 <script src="/assets/js/fix/header.js"></script>
-<script>
-    const userNumber = 1; //세션 userNumber 임시 값
+<script th:inline="javascript">
+    let pageInfo = [[${criteria.listLink}]];
+    const userNumber = [[${session.userNumber}]]; //세션 userNumber
     //결제 버튼 눌렀을 때 이동
-    $(".payment").prop('href', '/myLibrary/payList?userNumber=' + userNumber);
+    // $(".payment").prop('href', '/myLibrary/payList?userNumber=' + userNumber);
+    const pageNum = $(".pageNum").val();
+    const amount = $(".amount").val();
+    // const userNumber = $(".userNumber").val();
 
+    // $(".payment").prop('href', '/myLibrary/payList?userNumber=' + userNumber + "&pageNum=" + pageNum + "&amount=" + amount);
+
+    function goList(){
+        location.href = "/myLibrary/payList?userNumber=" + userNumber + "&pageNum=" + pageNum + "&amount=" + amount;
+    }
 </script>
 </html>

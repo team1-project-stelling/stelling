@@ -163,5 +163,8 @@
 <th:block th:insert="/fix/footer.html :: footerFragment"/>
 <script src="/assets/js/main/index.js"></script>
 <script src="/assets/js/fix/header.js"></script>
-
+<script>
+    let session = [[${session.userNumber}]];
+    console.log("세션 유저 번호 : " + session);
+</script>
 </html>

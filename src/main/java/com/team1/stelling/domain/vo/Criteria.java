@@ -37,9 +37,7 @@ public class Criteria { /*Criteria : 검색의 기준*/
     public String getListLink(){
         UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
                 .queryParam("pageNum", this.pageNum)
-                .queryParam("amount", this.amount)
-                .queryParam("type", this.type)
-                .queryParam("keyword", this.keyword);
+                .queryParam("amount", this.amount);
         return builder.toUriString();
     }
 
