@@ -5,6 +5,7 @@ import com.team1.stelling.aspect.annotation.LogStatus;
 import com.team1.stelling.domain.dto.NovelCategoryDTO;
 //import com.team1.stelling.domain.repository.NovelSearchRepository;
 
+import com.team1.stelling.domain.dto.PageDTO;
 import com.team1.stelling.domain.dto.PageableDTO;
 
 import com.team1.stelling.domain.repository.NovelFileRepository;
@@ -64,7 +65,7 @@ public class novelController {
     public void novelCategory(Model model, @PageableDefault(page = 0, size = 10, sort = "novelNumber" ,direction = Sort.Direction.DESC)Pageable pageable){
 
        Page<NovelCategoryDTO> list = novelService.getList(pageable);
-        PageDTO.PageableDTO pageableDTO = new PageDTO.PageableDTO( (int)list.getTotalElements(),pageable);
+        PageableDTO pageableDTO = new PageableDTO( (int)list.getTotalElements(),pageable);
         model.addAttribute( "list",list);
         model.addAttribute( "novelTotal", list.getTotalElements());
         model.addAttribute("pageableDTO", pageableDTO);
@@ -90,7 +91,7 @@ public class novelController {
         log.info("#############keyword:"+keyword);
         Page<NovelCategoryDTO> searchList = novelService.search(keyword, pageable);
 //        Page<NovelCategoryDTO> searchList = novelSearchService.search(keyword, pageable);
-        PageDTO.PageableDTO pageableDTO = new PageDTO.PageableDTO( (int)searchList.getTotalElements(),pageable);
+        PageableDTO pageableDTO = new PageableDTO( (int)searchList.getTotalElements(),pageable);
         searchList.getSize();
         model.addAttribute("list", searchList);
         model.addAttribute( "novelTotal", searchList.getTotalElements());
