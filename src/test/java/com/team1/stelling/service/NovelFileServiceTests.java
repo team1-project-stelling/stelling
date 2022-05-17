@@ -1,16 +1,8 @@
 package com.team1.stelling.service;
 
-import com.team1.stelling.domain.repository.NovelRepository;
-import com.team1.stelling.domain.vo.IllustVO;
-import com.team1.stelling.domain.vo.NovelFileVO;
-import com.team1.stelling.domain.vo.NovelVO;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 
 @SpringBootTest

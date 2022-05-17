@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
-
 
 @SpringBootTest
 @Slf4j
@@ -38,10 +36,11 @@ public class UserServiceTests {
         List<UserVO> datas = userService.getList();
         datas.forEach(e -> log.info("########"+e.toString()));
     }*/
-/*    @Test
+    @Test
     public void modifyTest(){
         UserVO userVO = userService.get(2L);
-        userVO.updateUserPw("m10m10");
+        userVO.updateUserPw("asdfas");
+        userVO.updateUserEmail("afsdfa@naver.com");
         userService.modify(userVO);
-    }*/
+    }
 }
