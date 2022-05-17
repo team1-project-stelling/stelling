@@ -34,9 +34,6 @@ a.menu{
     border-top: 1px solid #e8e9ed;
     padding: 0;
 }
-.main{
-    border-bottom: 1px solid #e8e9ed;
-}
 .left_block{
     float: left;
     box-sizing: border-box;
@@ -59,12 +56,19 @@ a.menu{
     float: left;
     position: relative;
 }
-.emailChange, .nickChange, .phoneChange{
+.changeBtnWrap{
+    text-align: center;
+    margin-top: 20px;
+}
+.profileChange{
     height: 28px;
-    border: 1px solid #dfdfdf;
+    border: none;
     position: absolute;
-    width: 41px;
+    width: 51px;
     cursor: pointer;
+    background: #ef6e73b3;
+    border-radius: 5px;
+    color: white;
 }
 .set_myInfo{
     padding: 31px 0 47px 5px;

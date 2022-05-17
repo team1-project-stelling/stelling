@@ -15,8 +15,6 @@ import javax.persistence.*;
 @Setter
 @ToString
 @DynamicInsert
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserVO {
     @Id
@@ -57,5 +55,22 @@ public class UserVO {
     public void updateUserCoinBalance(int userCoinBalance) { this.userCoinBalance = userCoinBalance; }
     public void updateUserAccessToken(String userAccessToken) { this.userAccessToken = userAccessToken; }
 
+
+
+    @Builder
+    public UserVO(Long userNumber, String userId, String userPw, String userNickName, String userEmail, int userGender, String userPhoneNum, int userStatus, int userCoinBalance, String userAccessToken) {
+        this.userNumber = userNumber;
+        this.userId = userId;
+        this.userPw = userPw;
+        this.userNickName = userNickName;
+        this.userEmail = userEmail;
+        this.userGender = userGender;
+        this.userPhoneNum = userPhoneNum;
+        this.userStatus = userStatus;
+        this.userCoinBalance = userCoinBalance;
+        this.userAccessToken = userAccessToken;
+    }
+
+    public UserVO() {;}
 
 }
