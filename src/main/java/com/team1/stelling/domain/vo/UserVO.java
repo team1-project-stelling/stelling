@@ -71,6 +71,5 @@ public class UserVO {
         this.userAccessToken = userAccessToken;
     }
 
-    public UserVO() {;}
 
 }

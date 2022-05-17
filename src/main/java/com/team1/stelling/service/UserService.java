@@ -34,6 +34,6 @@ public class UserService {
     public void joinUser(UserVO vo) { userRepository.save(vo); }
 
     //로그인
-    public int login(Map<String, String> loginMap) {return userDAO.login(loginMap);}
+    public Integer login(Map<String, String> loginMap) {return userDAO.login(loginMap);}
 
 }

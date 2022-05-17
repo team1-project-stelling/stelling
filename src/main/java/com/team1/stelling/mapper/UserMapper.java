@@ -7,5 +7,5 @@ import java.util.Map;
 @Mapper
 public interface UserMapper {
     //로그인
-    public int login(Map<String, String> loginMap);
+    public Integer login(Map<String, String> loginMap);
 }

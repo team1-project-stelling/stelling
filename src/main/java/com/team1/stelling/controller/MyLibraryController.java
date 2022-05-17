@@ -70,7 +70,7 @@ public class MyLibraryController {
             model.addAttribute("payList", payService.getList(criteria, userNumber));
             model.addAttribute("pageDTO", new PageDTO(criteria, payService.getSearchTotal(criteria)));
             model.addAttribute("payDTO", payService.getTotal(userNumber));
-        return "myPage/myPagePayList";
+            return "myPage/myPagePayList";
     }
 
 //    @GetMapping("/payList/{userNumber}")
