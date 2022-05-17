@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team1.stelling.mapper.IllustProfileMapper">
+
+    <!--등록-->
+    <insert id="insert">
+       INSERT INTO TBL_ILLUSTPROFILE
+        (ILLUSTPROFILE_NUMBER, USER_NUMBER, ILLUSTPROFILE_SHORTINTRO, ILLUSTPROFILE_DETAILINTRO, ILLUSTPROFILE_CATEGORY, ILLUSTPROFILE_WEBSITE)
+        VALUES(ILLUSTPROFILE_SEQ.NEXTVAL, #{userNumber}, #{illustProfileShortIntro}, #{illustProfileDetailIntro}, #{illustProfileCategory}, #{illustProfileWebSite})
+    </insert>
+
+    <!--특정 내역 가져오기 join사용-->
+    <select id="get" resultType="illustProfileDTO">
+SELECT pf.ILLUSTPROFILE_NUMBER, pf.USER_NUMBER, u.USER_NICKNAME, u.USER_FILEPATH, u.USER_UUID,u.USER_FILENAME, pf.ILLUSTPROFILE_SHORTINTRO, pf.ILLUSTPROFILE_DETAILINTRO, pf.ILLUSTPROFILE_CATEGORY, pf.ILLUSTPROFILE_WEBSITE
+        FROM TBL_ILLUSTPROFILE pf, TBL_USER u
+       	WHERE pf.USER_NUMBER = u.USER_NUMBER AND pf.USER_NUMBER =#{userNumber}
+    </select>
+</mapper>

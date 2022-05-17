@@ -1,5 +1,6 @@
 package com.team1.stelling.mapper;
 
+import com.team1.stelling.domain.vo.Criteria;
 import com.team1.stelling.domain.vo.MyIllustVO;
 import com.team1.stelling.domain.vo.PayDTO;
 import com.team1.stelling.domain.vo.PayVO;
@@ -14,10 +15,13 @@ public interface PayMapper {
     public int insert(PayVO payVO);
 
     //결제 내역
-    public List<PayVO> getList(Long userNumber);
+    public List<PayVO> getList(Criteria criteria, Long userNumber);
 
     //총 결제 금액
     public PayDTO getTotal(Long userNumber);
+
+    //검색한 결과의 총 개수(페이징 처리를 위함)
+    public int getSearchTotal(Criteria criteria);
 
     //조회
     public PayVO read(Long payNumber);
