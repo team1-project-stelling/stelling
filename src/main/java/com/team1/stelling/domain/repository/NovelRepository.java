@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -22,4 +23,10 @@ public interface NovelRepository extends JpaRepository<NovelVO, Long> {
     Page<NovelVO> findByNovelStatusAndNovelHashtagContaining(int novelStatus,String keyword, Pageable pageable);
     Page<NovelVO> findAllByNovelUploadDateBetween(Date start, Date end,Pageable pageable);
     Page<NovelVO> findAllByNovelUploadDateBetweenAndNovelHashtagContaining(Date start, Date end,String keyword,Pageable pageable);
+
+    // TOP 50
+//    List<NovelVO> findTop50ByOrderByNovelLikeCountTotalDesc();
+    List<NovelVO> findTop50ByOrderByNovelLikeCountTotalDesc();
+
+//    List<NovelVO> findTop50ByNovelHashtagContainingOrderByNovelLikeCountTotalDesc(String keyword);
 }
