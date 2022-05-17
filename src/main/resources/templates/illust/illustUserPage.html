@@ -34,7 +34,7 @@
                     <div>
                         <div><p class="p userNick" th:text="*{userNickName}"></p></div>
                         <div style="display: flex;">
-                            <p class="p postInfo">게시물 <span>6</span></p>
+                            <p class="p postInfo">게시물 <span th:text="${total}"></span></p>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <p class="p postInfo">완료한 작업 <span>3</span></p>
                         </div>
@@ -177,4 +177,24 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/fix/header.js"></script>
 <script src="/assets/js/illust/illustUserPage.js"></script>
+<script>
+    let number = [[${illust.illustNumber}]];
+
+    showList();
+
+    function showList(e) {
+        let str="";
+
+        for(let i=0; i<list.length; i+3){
+            let fileCallPath = list[i].illustFilePath + "/" + list[i].illustFileName;
+            str += "<img src='/upload/display?fileName=" + fileCallPath + " class='testWidth' />";
+            str += "<span class='heart'>❤";
+            str += "<span list[i].illustLike style='font-size: 12px;'>";
+            str += "</span>";
+            str += "</span>";
+        }
+    }
+
+
+</script>
 </html>
