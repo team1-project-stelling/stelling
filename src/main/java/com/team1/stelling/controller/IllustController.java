@@ -3,6 +3,7 @@ package com.team1.stelling.controller;
 
 import com.team1.stelling.aspect.annotation.LogStatus;
 import com.team1.stelling.domain.dto.PageDTO;
+import com.team1.stelling.domain.dto.PageableDTO;
 import com.team1.stelling.domain.vo.Criteria;
 import com.team1.stelling.domain.vo.IllustProfileVO;
 import com.team1.stelling.domain.vo.IllustVO;
@@ -73,7 +74,7 @@ public class IllustController {
     public void illustUserPage(Long userNumber, Criteria criteria, Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
 
         Page<IllustVO> list = illustService.getList(pageable);
-        PageDTO.PageableDTO pageableDTO = new PageDTO.PageableDTO( (int)list.getTotalElements(),pageable);
+        PageableDTO pageableDTO = new PageableDTO( (int)list.getTotalElements(),pageable);
         model.addAttribute("list", list);
         model.addAttribute("illustProfile", illustProfileService.get(21L));
 //        model.addAttribute("illustProfile", illustProfileService.get(userNumber));
