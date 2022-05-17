@@ -1,14 +1,18 @@
 package com.team1.stelling.controller;
 
-import com.team1.stelling.domain.repository.UserRepository;
+import com.team1.stelling.domain.vo.UserDTO;
 import com.team1.stelling.domain.vo.UserVO;
 import com.team1.stelling.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @Slf4j
@@ -48,11 +52,28 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/joinUs.do")
-    public String joinUs(UserVO vo){
-
+    public String joinUs(UserVO vo, HttpServletRequest request){
+//        HttpSession session = request.getSession();
+//        session.setAttribute("userNumber", vo.getUserNumber());
         userService.joinUser(vo);
-        return "main/index";
+        return "user/userLogin";
     }
 
+    @PostMapping("/login")
+    public String login(UserDTO dto, HttpServletRequest req){
+        HttpSession session = req.getSession();
+        int userNumber = 0;
 
+        HashMap<String, String> loginMap = new HashMap<>();
+        loginMap.put("userId", dto.getUserId());
+        loginMap.put("userPw", dto.getUserPw());
+
+        if(userNumber == 0) {
+            userNumber = userService.login(loginMap);
+            session.setAttribute("userNumber", userNumber);
+            return "main/index";
+        } else {
+            return "user/userLogin";
+        }
+    }
 }
