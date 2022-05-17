@@ -162,9 +162,9 @@
 
                                     </li>
                                     <form action="/myLibrary/payList" th:object="${criteria}" name="pageForm">
-                                        <input type="hidden" name="userNumber" value="1">
-                                        <input type="hidden" th:field="*{pageNum}">
-                                        <input type="hidden" th:field="*{amount}">
+                                        <input class="userNumber" type="hidden" name="userNumber" value="1">
+                                        <input class="pageNum" type="hidden" th:field="*{pageNum}">
+                                        <input class="amount" type="hidden" th:field="*{amount}">
                                     </form>
                                 </ul>
                             </nav>
@@ -183,9 +183,14 @@
 <script src="/assets/js/mypage/payment.js"></script>
 <script src="/assets/js/fix/header.js"></script>
 <script>
-    const userNumber = 1; //세션 userNumber 임시 값
+    // const userNumber = 1; //세션 userNumber 임시 값
     //결제 버튼 눌렀을 때 이동
-    $(".payment").prop('href', '/myLibrary/payList?userNumber=' + userNumber);
+    // $(".payment").prop('href', '/myLibrary/payList?userNumber=' + userNumber);
+    const pageNum = $(".pageNum").val();
+    const amount = $(".amount").val();
+    const userNumber = $(".userNumber").val();
+
+    $(".payment").prop('href', '/myLibrary/payList?userNumber=' + userNumber + "&pageNum=" + pageNum + "&amount=" + amount);
 
 </script>
 </html>
