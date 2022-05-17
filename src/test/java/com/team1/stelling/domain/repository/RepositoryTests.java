@@ -37,15 +37,15 @@ public class RepositoryTests {
         IllustVO illustVO =  illustRepository.findById(1L).get();
         log.info(illustVO.toString());
     }*/
-    @Test
-    public void queryATet(){
-/*       List<String> datas= userRepository.findByNumber();
-       datas.forEach(e -> log.info("@#@#"+e));*/
-//        List<UserVO> datas =   userRepository.findByNumberList();
-//        datas.forEach(e -> log.info("#######"+e.toString()));
-         List<String> datas = userRepository.findByNumberJoinList();
-         datas.forEach(e ->log.info("#####"+e));
-
-
-    }
+//    @Test
+//    public void queryATet(){
+///*       List<String> datas= userRepository.findByNumber();
+//       datas.forEach(e -> log.info("@#@#"+e));*/
+////        List<UserVO> datas =   userRepository.findByNumberList();
+////        datas.forEach(e -> log.info("#######"+e.toString()));
+//         List<String> datas = userRepository.findByNumberJoinList();
+//         datas.forEach(e ->log.info("#####"+e));
+//
+//
+//    }
 }

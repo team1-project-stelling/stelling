@@ -54,10 +54,16 @@ public class MyPageController {
         return "myPage/myPageQuestion";
     }
 
+    @GetMapping("/withDraw")
+    public String withDraw(){
+        UserVO sessionUser = userService.get(28L);
+        sessionUser.updateUserStatus(0L);
+        userService.modify(sessionUser);
+        return "main/index";
+    }
     @GetMapping("/myPageQuit")
-    public String myPageQuit(){
+    public void myPageQuit(){
         log.info("myPageQuit");
-        return "myPage/myPageQuit";
     }
 
     @GetMapping("/myPagePayList")
