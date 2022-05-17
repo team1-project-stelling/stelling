@@ -15,7 +15,6 @@ import javax.persistence.*;
 @Setter
 @ToString
 @DynamicInsert
-
 public class UserVO {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ")
