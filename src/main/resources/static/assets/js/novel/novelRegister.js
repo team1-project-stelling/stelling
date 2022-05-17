@@ -240,6 +240,11 @@ $("input[type='file']").change(function(e){
 });
 
 
+function replaceGab(obj){
+    let a = $('.titleInput').val().replace(/ /gi, '_');
+    $('.titleInput').val(a);
+}
+
 /*유효성검사 + form데이터 보내기*/
 
     $('#insertBtn').on("click", function () {
