@@ -70,8 +70,8 @@ $('.enter').on("click",function () {
     novelFile.action='/novel/novelWriter';
     novelFile.append("content", $('textarea[name="novelContent"]').val());
     novelFile.append("subNovelTitle",$('input[name="subNovelTitle"]').val());
-    novelFile.append("novelNumber",107);
-    novelFile.append("userNumber",2);
+    novelFile.append("novelNumber",109);
+    novelFile.append("userNumber",1);
     novelFile.append("subNovelWriterComment",$("#subNovelWriterComment").val());
     $.ajax({
         type: "POST",
