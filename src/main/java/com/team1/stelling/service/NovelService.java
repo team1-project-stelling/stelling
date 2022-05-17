@@ -1,6 +1,9 @@
 package com.team1.stelling.service;
 
+import com.team1.stelling.domain.criteria.NovelRankingCriteria;
+import com.team1.stelling.domain.dao.NovelDAO;
 import com.team1.stelling.domain.dto.NovelCategoryDTO;
+import com.team1.stelling.domain.dto.NovelRankingDTO;
 import com.team1.stelling.domain.repository.NovelRepository;
 import com.team1.stelling.domain.vo.MyPickVO;
 import com.team1.stelling.domain.vo.NovelVO;
@@ -12,6 +15,7 @@ import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.sax.BodyContentHandler;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.internal.Function;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,6 +43,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class NovelService {
     private final NovelRepository novelRepository;
+    private final NovelDAO novelDAO;
 //    private final NovelSearchRepository novelSearchRepository;
     private final ModelMapper modelMapper;
     final int ENDNOVELSTAUTS = 2; // 완결 상태 값 2:
@@ -84,9 +89,22 @@ public class NovelService {
         return novelRepository.findAllByNovelUploadDateBetweenAndNovelHashtagContaining(start,end,keyword,pageable).map(objectEntity -> modelMapper.map(objectEntity, NovelCategoryDTO.class));
     }
 
+    public List<NovelVO> getTop50 () {
+        return novelRepository.findTop50ByOrderByNovelLikeCountTotalDesc();
+    }
+
+/*    public List<NovelVO> getTop50ByTag (String keyword) {
+        log.info("@@@@@SERVKEY:"+keyword);
+        novelRepository.findTop50ByNovelHashtagContainingOrderByNovelLikeCountTotalDesc(keyword).forEach(e -> log.info("@@@@@@lsit"+e.toString()));
+        return novelRepository.findTop50ByNovelHashtagContainingOrderByNovelLikeCountTotalDesc(keyword);
+    }*/
+
+    public List<NovelRankingDTO> rankingSearch(NovelRankingCriteria novelRankingCriteria){
+        return novelDAO.rankingSearch(novelRankingCriteria);
+    }
 
 
-    /* 노벨 VO 등록 */
+/*    *//* 노벨 VO 등록 *//*
     @PostMapping("/novelRegister")
     public void novelRegister(NovelVO novelVO) {
         log.info("=============================================");
@@ -94,7 +112,7 @@ public class NovelService {
         log.info("=============================================");
         novelRepository.save(novelVO);
 
-    }
+    }*/
 
 
 }
