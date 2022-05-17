@@ -1,13 +1,19 @@
 package com.team1.stelling.controller;
 
+import com.team1.stelling.domain.repository.UserRepository;
+import com.team1.stelling.domain.vo.UserVO;
+import com.team1.stelling.service.UserService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Slf4j
 @RequestMapping("/user/*")
+@RequiredArgsConstructor
 public class UserController {
 
     @GetMapping("/findId")
@@ -26,9 +32,7 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login(){
-        return "user/userLogin";
-    }
+    public String login(){ return "user/userLogin"; }
 
     @GetMapping("/agree")
     public String agree(){
@@ -39,4 +43,16 @@ public class UserController {
     public String privacy(){
         return "etc/privacy";
     }
+
+
+    private final UserService userService;
+
+    @PostMapping("/joinUs.do")
+    public String joinUs(UserVO vo){
+
+        userService.joinUser(vo);
+        return "main/index";
+    }
+
+
 }

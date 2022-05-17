@@ -1,7 +1,7 @@
 
 function login_check() {
-    const uid = document.getElementById("uid");
-    const pwd = document.getElementById("pwd");
+    const uid = document.getElementById("userId");
+    const pwd = document.getElementById("userPw");
 
     //아이디 입력 유무
     if (uid.value == "") {
