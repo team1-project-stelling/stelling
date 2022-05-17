@@ -15,12 +15,12 @@ import java.util.Date;
 @Entity
 @Table(name ="TBL_ILLUST")
 @Getter @Setter
-@SequenceGenerator(name ="ILLUST_SEQ" , allocationSize = 1)
 @ToString(of = {"illustNumber","illustTitle","illustContent","illustUploadDate","illustUpdateDate","illustHashTag","illustViewCount","illustLike","illustShortIntro"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class IllustVO {
     @Id
+    @SequenceGenerator(name ="ILLUST_SEQ" , allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ILLUST_SEQ")
     @Column(name = "ILLUST_NUMBER")
     private Long illustNumber;
