@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class UserServiceTests {
 //    @Autowired
 //    UserService userService;
+
 /*    @Test
     public void registerTest(){
         UserVO userVO = UserVO.builder()
