@@ -13,5 +13,5 @@ import java.util.Map;
 public class UserDAO {
     private final UserMapper userMapper;
 
-    public int login(Map<String, String> loginMap) {return userMapper.login(loginMap);}
+    public Integer login(Map<String, String> loginMap) {return userMapper.login(loginMap);}
 }
