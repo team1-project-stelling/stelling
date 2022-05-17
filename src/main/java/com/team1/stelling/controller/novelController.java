@@ -3,14 +3,17 @@ package com.team1.stelling.controller;
 
 import com.team1.stelling.aspect.annotation.LogStatus;
 import com.team1.stelling.domain.dto.NovelCategoryDTO;
-import com.team1.stelling.domain.dto.PageDTO;
 //import com.team1.stelling.domain.repository.NovelSearchRepository;
+
+import com.team1.stelling.domain.dto.PageableDTO;
+
 import com.team1.stelling.domain.repository.NovelFileRepository;
 import com.team1.stelling.domain.repository.NovelRepository;
 import com.team1.stelling.domain.repository.SubNovelRepository;
 import com.team1.stelling.domain.repository.UserRepository;
 import com.team1.stelling.domain.vo.*;
 import com.team1.stelling.service.IllustImgFileService;
+
 import com.team1.stelling.service.NovelService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +34,7 @@ import org.xml.sax.SAXException;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 
 @Controller
 @Slf4j
@@ -54,6 +58,7 @@ public class novelController {
     public void novelWrite(){
     }
 
+
     @LogStatus
     @GetMapping("/novelCategory")
     public void novelCategory(Model model, @PageableDefault(page = 0, size = 10, sort = "novelNumber" ,direction = Sort.Direction.DESC)Pageable pageable){
@@ -64,6 +69,7 @@ public class novelController {
         model.addAttribute( "novelTotal", list.getTotalElements());
         model.addAttribute("pageableDTO", pageableDTO);
     }
+
 
     @GetMapping("/novelRanking")
     public void novelRanking(){
@@ -76,6 +82,7 @@ public class novelController {
     @GetMapping("/novelDetailView")
     public void novelDetailView(){
     }
+
 
     @LogStatus
     @GetMapping("/novelSearch")
@@ -224,9 +231,6 @@ public class novelController {
         bw.close();
         return "파일생성 성공";
     }
-
-
-
 
 
 

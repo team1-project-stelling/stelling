@@ -25,15 +25,15 @@
             <div id="categoryMenu" class="giveMaxWidth">
                 <table class="giveMaxWidth">
                     <tbody>
-                        <tr>
-                            <td><a href="#" class="categoryMenuItem">전체</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#" class="categoryMenuItem">신작</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#" class="categoryMenuItem">완결</a></td>
-                        </tr>
+                    <tr>
+                        <td><a href="/novel/category/novelCategory?categoryStatus=0" class="categoryMenuItem">전체</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="/novel/category/novelCategory?categoryStatus=1" class="categoryMenuItem">신작</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="/novel/category/novelCategory?categoryStatus=2" class="categoryMenuItem">완결</a></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -44,9 +44,9 @@
                 </div>
                 <div id="totalR_side">
                     <div id="totalOption">
-                        <div class="OptionChange"><img src="/images/category/checkIcon.png" alt="체크아이콘">공개일자 순</div>
-                        <div class="OptionChange"><img src="/images/category/optionPointIcon.png" alt="체크아이콘">조회순</div>
-                        <div class="OptionChange"><img src="/images/category/optionPointIcon.png" alt="체크아이콘">추천순</div>
+                        <div class="OptionChange" th:onclick="'location.href=\''+ @{/novel/category/novelFindToTag(keyword=${pageableDTO.keyword},categoryStatus=${pageableDTO.categoryStatus})} +'\'' "><img src="/images/category/optionPointIcon.png" alt="체크아이콘">공개일자 순</div>
+                        <div class="OptionChange" th:onclick="'location.href=\''+ @{/novel/category/novelFindToTag/viewCount(keyword=${pageableDTO.keyword},categoryStatus=${pageableDTO.categoryStatus})}  +'\''"><img src="/images/category/optionPointIcon.png" alt="체크아이콘">조회순</div>
+                        <div class="OptionChange" th:onclick="'location.href=\''+@{/novel/category/novelFindToTag/likeCount(keyword=${pageableDTO.keyword},categoryStatus=${pageableDTO.categoryStatus})} +'\''"><img src="/images/category/checkIcon.png" alt="체크아이콘">추천순</div>
                     </div>
                         <a href="/novel/novelWrite" class="writeButton"><img src="/images/category/wordWriteIcon.png" alt="글등록아이콘">신규작품 등록</a>
                 </div>
@@ -56,7 +56,8 @@
                     <button class="tagBtn"onclick="changeTagSearch()" >태그검색</button>
 
                     <div id="searchFormWrap">
-                        <form id="searchForm"  method="get" action="/novel/novelSearch">
+                        <form id="searchForm"  method="get" action="/novel/category/novelSearch">
+                            <input type="hidden" name="categoryStatus" th:value="${pageableDTO.categoryStatus}">
                             <input name="keyword" id="searchFormInput" type="text" placeholder="#검색할 태그를 입력하세요" maxlength="16">
                             <button class="searchFormWrapBtn">검색</button>
                             <div class="cancelImg" onclick="changeTagSearch()">
@@ -65,19 +66,19 @@
                         </form>
                     </div>
                     <ul id="tagSearchList">
-                        <li class="active"><a href="/novel/novelCategory">전체</a></li>
-                        <li><a th:href="@{/novel/novelSearch(keyword=판타지)}">판타지</a></li>
-                        <li><a th:href="@{/novel/novelSearch(keyword=무협)}">무협</a></li>
-                        <li><a th:href="@{/novel/novelSearch(keyword=현대)}">현대</a></li>
-                        <li><a th:href="@{/novel/novelSearch(keyword=로맨스)}">로맨스</a></li>
-                        <li><a th:href="@{/novel/novelSearch(keyword=현대판타지)}">현대판타지</a></li>
-                        <li><a th:href="@{/novel/novelSearch(keyword=라이트노벨)}">라이트노벨</a></li>
-                        <li><a th:href="@{/novel/novelSearch(keyword=공포)}">공포</a></li>
-                        <li><a th:href="@{/novel/novelSearch(keyword=SF)}">SF</a></li>
-                        <li><a th:href="@{/novel/novelSearch(keyword=스포츠)}">스포츠</a></li>
-                        <li><a th:href="@{/novel/novelSearch(keyword=대체역사)}">대체역사</a></li>
-                        <li><a th:href="@{/novel/novelSearch(keyword=기타)}">기타</a></li>
-                        <li><a th:href="@{/novel/novelSearch(keyword=패러디)}">패러디</a></li>
+                        <li><a th:href="@{/novel/category/novelCategory(categoryStatus=${pageableDTO.categoryStatus})}">전체</a></li>
+                        <li th:classappend="${pageableDTO.keyword== '판타지'} ? 'active' : ''"><a th:href="@{/novel/category/novelFindToTag(keyword=판타지,categoryStatus=${pageableDTO.categoryStatus})}">판타지</a></li>
+                        <li th:classappend="${pageableDTO.keyword== '무협'} ? 'active' : ''"><a th:href="@{/novel/category/novelFindToTag(keyword=무협,categoryStatus=${pageableDTO.categoryStatus})}">무협</a></li>
+                        <li th:classappend="${pageableDTO.keyword== '현대'} ? 'active' : ''"><a th:href="@{/novel/category/novelFindToTag(keyword=현대,categoryStatus=${pageableDTO.categoryStatus})}">현대</a></li>
+                        <li th:classappend="${pageableDTO.keyword== '로맨스'} ? 'active' : ''"><a th:href="@{/novel/category/novelFindToTag(keyword=로맨스,categoryStatus=${pageableDTO.categoryStatus})}">로맨스</a></li>
+                        <li th:classappend="${pageableDTO.keyword== '현대판타지'} ? 'active' : ''"><a th:href="@{/novel/category/novelFindToTag(keyword=현대판타지,categoryStatus=${pageableDTO.categoryStatus})}">현대판타지</a></li>
+                        <li th:classappend="${pageableDTO.keyword== '라이트노벨'} ? 'active' : ''"><a th:href="@{/novel/category/novelFindToTag(keyword=라이트노벨,categoryStatus=${pageableDTO.categoryStatus})}">라이트노벨</a></li>
+                        <li th:classappend="${pageableDTO.keyword== '공포'} ? 'active' : ''"><a th:href="@{/novel/category/novelFindToTag(keyword=공포,categoryStatus=${pageableDTO.categoryStatus})}">공포</a></li>
+                        <li th:classappend="${pageableDTO.keyword== 'SF'} ? 'active' : ''"><a th:href="@{/novel/category/novelFindToTag(keyword=SF,categoryStatus=${pageableDTO.categoryStatus})}">SF</a></li>
+                        <li th:classappend="${pageableDTO.keyword== '스포츠'} ? 'active' : ''"><a th:href="@{/novel/category/novelFindToTag(keyword=스포츠,categoryStatus=${pageableDTO.categoryStatus})}">스포츠</a></li>
+                        <li th:classappend="${pageableDTO.keyword== '대체역사'} ? 'active' : ''"><a th:href="@{/novel/category/novelFindToTag(keyword=대체역사,categoryStatus=${pageableDTO.categoryStatus})}">대체역사</a></li>
+                        <li th:classappend="${pageableDTO.keyword== '기타'} ? 'active' : ''"><a th:href="@{/novel/category/novelFindToTag(keyword=기타,categoryStatus=${pageableDTO.categoryStatus})}">기타</a></li>
+                        <li th:classappend="${pageableDTO.keyword== '패러디'} ? 'active' : ''"><a th:href="@{/novel/category/novelFindToTag(keyword=패러디,categoryStatus=${pageableDTO.categoryStatus})}">패러디</a></li>
                     </ul>
                 </div>
             </div>
@@ -110,7 +111,7 @@
                         <div class="info_tag">
                             <ul>
                                 <th:block  th:each="tag:${novel.novelHashtag}">
-                                    <li><a th:href="@{/novel/novelSearch(keyword=${tag})}" th:text="|#${tag}|">#판타지</a></li>
+                                    <li><a th:href="@{/novel/category/novelFindToTag(keyword=${tag},categoryStatus=${pageableDTO.categoryStatus})}" th:text="|#${tag}|">#판타지</a></li>
                                 </th:block>
                             </ul>
                         </div>
@@ -142,13 +143,13 @@
                 <!-- 페이징 -->
                 <ul class="c_PagingList" >
                     <!-- 이전 -->
-                    <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/novel/novelSearch(keyword=${pageableDTO.keyword},page=${pageableDTO.startPage -2 })}" >&lt;&lt;</a></li>
-                    <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/novel/novelSearch(keyword=${pageableDTO.keyword},page=${pageableDTO.previous})}">&lt;</a></li>
+                    <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/novel/category/novelFindToTag/likeCount(keyword=${pageableDTO.keyword},page=${pageableDTO.startPage -2 },categoryStatus=${pageableDTO.categoryStatus})}" >&lt;&lt;</a></li>
+                    <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/novel/category/novelFindToTag/likeCount(keyword=${pageableDTO.keyword},page=${pageableDTO.previous},categoryStatus=${pageableDTO.categoryStatus})}">&lt;</a></li>
 
 
                     <th:block th:each="num:${#numbers.sequence(pageableDTO.startPage,pageableDTO.endPage)}">
                         <li  th:if="${pageableDTO.pageNumber== num}" th:text="${num}" class="pageActive"></li>
-                        <li th:unless="${pageableDTO.pageNumber == num}" ><a href="/novel/novelSearch" th:text="${num}" th:href="@{/novel/novelSearch(keyword=${pageableDTO.keyword},page=${num - 1})}"></a></li>
+                        <li th:unless="${pageableDTO.pageNumber == num}" ><a th:text="${num}" th:href="@{/novel/category/novelFindToTag/likeCount(keyword=${pageableDTO.keyword},page=${num - 1},categoryStatus=${pageableDTO.categoryStatus})}"></a></li>
                     </th:block>
 
 
@@ -156,8 +157,8 @@
 
 
                     <!-- 다음 -->
-                    <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/novel/novelSearch(keyword=${pageableDTO.keyword},page=${pageableDTO.next})}">&gt;</a></li>
-                    <li th:if="${pageableDTO.hasNext}"><a th:href="@{/novel/novelSearch(keyword=${pageableDTO.keyword},page=${pageableDTO.endPage })}">&gt;&gt;</a></li>
+                    <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/novel/category/novelFindToTag/likeCount(keyword=${pageableDTO.keyword},page=${pageableDTO.next},categoryStatus=${pageableDTO.categoryStatus})}">&gt;</a></li>
+                    <li th:if="${pageableDTO.hasNext}"><a th:href="@{/novel/category/novelFindToTag/likeCount(keyword=${pageableDTO.keyword},page=${pageableDTO.endPage },categoryStatus=${pageableDTO.categoryStatus})}">&gt;&gt;</a></li>
                 </ul>
             </div>
             <!-- 페이징 종료-->
@@ -170,5 +171,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/fix/header.js"></script>
 <script src="/assets/js/novel/category.js"></script>
-
+<script th:inline="javascript">
+    let pageInfo = [[${pageableDTO.categoryStatus}]];
+    changeMenuItem(pageInfo)
+</script>
 </html>
