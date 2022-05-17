@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Setter
 @ToString(of = {"recentViewNumber"})
 @AllArgsConstructor
+@NoArgsConstructor
 public class RecentViewVO {
 
     @Id
@@ -27,6 +28,5 @@ public class RecentViewVO {
     @JoinColumn(name = "NOVEL_NUMBER")
     private NovelVO novelVO;                //  Fk NOVEL_NUMBER NUMBER,
 
-    public RecentViewVO() {;}
 
 }

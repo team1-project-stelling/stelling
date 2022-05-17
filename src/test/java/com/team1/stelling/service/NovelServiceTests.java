@@ -1,6 +1,6 @@
 package com.team1.stelling.service;
 
-import com.team1.stelling.domain.vo.NovelVO;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @Slf4j
+@RequiredArgsConstructor
 public class NovelServiceTests {
 
 
@@ -27,7 +28,7 @@ public class NovelServiceTests {
         List<NovelVO> datas = novelService.getList();
         datas.forEach(e -> log.info("#####"+e.toString()));
     }*/
-    @Test
+/*    @Test
     public void register(){
         NovelVO novelVO = NovelVO.builder()
                 .userVO(userService.get(2L))
@@ -42,7 +43,7 @@ public class NovelServiceTests {
                 .novelUploadPath("C:/upload")
                 .build();
         novelService.register(novelVO);
-    }
+    }*/
 /*    @Test
     public void modifyTest(){
         NovelVO novelVO = novelService.get(2L);
@@ -50,6 +51,11 @@ public class NovelServiceTests {
         novelVO.updateNovelThursDay(1);
         novelVO.updateNovelCategory("#로맨스");
         novelService.modify(novelVO);
+    }*/
+
+/*    @Test
+    public void getEndNovelListTest(){
+        novelService.getEndNovelList().forEach(e->log.info(e.toString()));
     }*/
     
 }

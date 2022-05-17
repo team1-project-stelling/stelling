@@ -31,12 +31,12 @@ public class UserServiceTests {
         UserVO userVO = userService.get(2L);
         log.info("#########"+userVO.toString());
     }*/
-/*    @Test
+    @Test
     public void getListTest(){
         List<UserVO> datas = userService.getList();
         datas.forEach(e -> log.info("########"+e.toString()));
-    }*/
-    @Test
+    }
+/*    @Test
     public void modifyTest(){
         UserVO userVO = userService.get(2L);
         userVO.updateUserPw("asdfas");

@@ -24,7 +24,7 @@
         <div><h2>새 회차 등록</h2></div>
         <div>
             <div class="inlineBox" style="margin-right: 34px;margin-left: -110px;"><p class="p"style="color: #a5a5a5;">임시저장</p></div>
-            <div class="inlineBox"><p class="p" style="color: #ef6e73; font-weight: bold;">등록</p></div>
+            <div class="inlineBox"><p class="p enter" style="color: #ef6e73; font-weight: bold;">등록</p></div>
         </div>
     </div>
     <div class="subMainWrab">
@@ -32,15 +32,15 @@
         <div class="filebox">
             <input class="upload-name" value="첨부파일" readonly >
             <label for="file">파일찾기</label>
-            <input type="file" id="file">
+            <input type="file" id="file" name="file" >
         </div>
 
         <div class="subWrab">
-            <input type="text" placeholder="소제목을 입력하세요." class="sTitle">
+            <input type="text" placeholder="소제목을 입력하세요." class="sTitle" name="subNovelTitle">
         </div>
 
         <div>
-            <textarea name="" id="" class="text" placeholder="작품 내용을 입력해주세요."onkeyup="calc_length()"></textarea>
+            <textarea name="novelContent" id="" class="text novelContent" placeholder="작품 내용을 입력해주세요."onkeyup="calc_length()"></textarea>
             <div style="display: flex; justify-content: flex-end;">
             <p class="kb"><span class="box">0</span> KB / </p>
             <p class="kb"><span class="box2">50</span> KB</p>
@@ -53,7 +53,7 @@
             <h2>작품 후기</h2>
         </div>
         <div style="width: 98%; margin: 0 auto; text-align: center;">
-        <textarea name="" id="" class="text2" placeholder="작품 후기를 입력하세요." ></textarea>
+        <textarea name="subNovelWriterComment" id="subNovelWriterComment" class="text2" placeholder="작품 후기를 입력하세요." ></textarea>
 
 
 
