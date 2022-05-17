@@ -1,5 +1,6 @@
 package com.team1.stelling.mapper;
 
+import com.team1.stelling.domain.dto.IllustProfileDTO;
 import com.team1.stelling.domain.vo.IllustProfileVO;
 import com.team1.stelling.domain.vo.MyIllustVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -17,5 +18,5 @@ public interface IllustProfileMapper {
     //삭제?
     public int delete(Long illustProfileNumber);
 
-    public IllustProfileVO get(Long illustProfileNumber);
+    public IllustProfileDTO get(Long userNumber);
 }

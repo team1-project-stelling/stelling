@@ -1,5 +1,5 @@
 .MainHeader {
-  margin-top: 91px;
+  margin-top: 32px;
 }
 
 * {
@@ -235,14 +235,18 @@
 }
 
 .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_Desc_writer div span {
+  display: inline-block;
   border: 1px solid black;
-  width: 50px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
   padding: 5px;
   border-radius: 20px;
+  line-height: 1.2;
 }
 
 .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_Desc_writer div div {
-  margin-top: 20px;
+  /*margin-top: 20px;*/
 }
 
 .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_xBtn {
@@ -711,6 +715,7 @@
   border-radius: 10px;
   padding: 5px;
   color: #ef6e73;
+  margin-left: 8px;
 }
 
 .ResRank {

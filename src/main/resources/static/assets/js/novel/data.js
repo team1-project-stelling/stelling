@@ -1,21 +1,33 @@
-function search() { 
+// function search(novelNumber, callback, error) {
+//
+//     $.ajax({
+//         url : "/novel/novelRoundInfo/"+novelNumber,
+//         // dataType: "json",
+//         type: "GET",
+//         // async: false,
+//         success: function(result) {
+//             callback(result);
+//         },
+//         error: function (){alert("실패");}
+//     });
+//
+//
+// }
 
-    let result= [];
+function getNovelVo(novelNumber, callback, error) {
+
     $.ajax({
-      url : "https://api.themoviedb.org/3/movie/popular?api_key=84681a7022280cff3021d07fe9117b39&language=ko-KR",
-     
-      dataType: "json",
-      type: "get",
-      async: false,
-      success: function(data) {
-         result= data.results
-         console.log(result)
-      },
+        url : "/novel/getNovelVO/"+novelNumber,
+        // dataType: "json",
+        type: "GET",
+        // async: false,
+        success: function(result) {
+            callback(result);
+        },
         error: function (){alert("실패");}
     });
-    return result;
+}
 
- }
 
 
  function ResCnt() { 

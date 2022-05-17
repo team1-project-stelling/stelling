@@ -26,13 +26,13 @@
 
 <div class="userPage">
     <div style="display: flex;" class="userInfo">
-        <div class="firstBox">
+        <div class="firstBox" th:object="${illustProfile}">
                 <div class="profile1">
                     <div class="profilePicture">
-                        <img src="/images/프사.jpg" width="100%" height="100%"/>
+                        <img th:src="'/upload/display?fileName='+*{userFilePath}+'/'+*{userFileName}" width="100%" height="100%"/>
                     </div>
                     <div>
-                        <div><p class="p userNick">yewon_seo</p></div>
+                        <div><p class="p userNick" th:text="*{userNickName}"></p></div>
                         <div style="display: flex;">
                             <p class="p postInfo">게시물 <span>6</span></p>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -49,19 +49,19 @@
             <hr class="hr">
                 <div style="width: 80%; margin: 0 auto;  " class="introduceDiv">
                     <p class="p intro">Introduce</p>
-                    <p class="p text1">끄어어어ㅓ...졸려죽겠다..🦉</p>
+                    <p class="p text1" th:text="*{illustProfileShortIntro}"></p>
                 </div>
             <hr class="hr">
             <div style="width: 80%; margin: 0 auto;" class="webSiteDiv">
                 <p class="p intro">Website</p>
                 <p class="p text1">
-                    <a href="https://www.instagram.com/yewon.seo_/" style="font-size: 13px;">www.instagram.com/yewon.seo_/</a>
+                    <a th:href="@{illustProfileWebSite}" style="font-size: 13px;" th:text="*{illustProfileWebSite}"></a>
                 </p>
             </div>
             <hr class="hr">
                 <div style="width: 80%; margin: 0 auto;" class="activeDiv">
                     <p class="p intro">주 활동영역</p>
-                    <button class="cateBtn">디즈니 감성</button>
+                    <button class="cateBtn" th:text="*{illustProfileCategory}"></button>
 <!--                    <p class="p text1">디즈니 감성</p>-->
 
                 </div>
@@ -69,14 +69,7 @@
             <div style="width: 80%; margin: 0 auto;">
                 <p class="p intro">Profile</p>
                 <p class="p intro"></p>
-                <p class="p text2">
-                    2020년 5월 TMG 의류 삽화
-                    <br>
-                    2021년 2월 소르르 Sweater 음원 삽화
-                    <br>
-                    2021년 7월 KB 손해보험 ESG 지원사업 일러스트 협업
-                    <br>
-                    2021년 8월 한국 공항 공사 일러스트 제작</p>
+                <p class="p text2" th:text="*{illustProfileDetailIntro}"></p>
             </div>
 
 
@@ -91,55 +84,29 @@
                 WorkList
             </div>
             <hr class="hr2">
-            <div class="flex2 wrap" >
+            <th:block th:each="illust:${list}">
+            <div class="flex2 wrap" th:object="${illust}">
                 <div class="box">
-                    <div class="column cellCss" >
-                        <img src="/images/일러스트 1.jpg" class="testWidth" />
-                        <span class="heart">❤<span style="font-size: 12px;">1,213</span></span>
-
-                    </div>
                     <div class="column cellCss">
-                        <img src="/images/illustDetail/일러스트 상세2.jpg" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;">1,043</span></span>
-                    </div>
-                    <div class="column cellCss">
-                        <img src="/images/일러스트 3.jpg" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;">987</span></span>
+                        <img th:src="'/upload/display?fileName='+*{illustFilePath}+'/'+*{illustFileName}" class="testWidth" />
+                        <span class="heart">❤<span style="font-size: 12px;" th:text="*{illustLike}"></span></span>
                     </div>
                 </div>
                 <div class="box">
                     <div class="column cellCss">
-                        <img src="/images/일러스트 2.jpg" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;">1,002</span></span>
-                    </div>
-                    <div class="column cellCss">
-                        <img src="/images/illustDetail/일러스트 상세보기.jpg" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;">23</span></span>
-                    </div>
-                    <div class="column cellCss">
-                        <img src="/images/illustDetail/일러스트 상세4.jpg" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;">101</span></span>
+                        <img th:src="'/upload/display?fileName='+*{illustFilePath}+'/'+*{illustFileName}" class="testWidth">
+                        <span class="heart">❤<span style="font-size: 12px;" th:text="*{illustLike}"></span></span>
                     </div>
                 </div>
                 <div class="box">
                     <div class="column cellCss">
-                        <img src="/images/일러스트 7.jpg" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;">42</span></span>
-                    </div>
-                    <div class="column cellCss">
-                        <img src="/images/일러스트 6.jpg" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;">1,231</span></span>
-                    </div>
-                    <div class="column cellCss">
-                        <img src="/images/일러스트 9.jpg" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;">22</span></span>
+                        <img th:src="'/upload/display?fileName='+*{illustFilePath}+'/'+*{illustFileName}" class="testWidth">
+                        <span class="heart">❤<span style="font-size: 12px;" th:text="*{illustLike}"></span></span>
                     </div>
                 </div>
-
-
 
             </div>
-
+            </th:block>
         </div>
 
     </div>

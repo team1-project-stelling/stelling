@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/novel/round.css">
+    <link rel="stylesheet" href="/assets/css/novel/novelRound.css">
+    <link href="/assets/css/fix/header.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/fix/footer.css" rel="stylesheet" type="text/css">
 
     <title>Document</title>
 </head>
 <body>
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/headerWord.html :: headFragment"/>
+
 <div class="MainHeader">
 
     <div class="MainContain">
@@ -192,12 +197,13 @@
 </div>
 
 
-
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
 
 
 
 </body>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="/assets/js/novel/data.js"></script>
-<script src="/assets/js/novel/round.js"></script>
+<script src="/assets/js/fix/header.js"></script>
+<script src="/assets/js/novel/novelRound.js"></script>
 </html>

@@ -1,11 +1,11 @@
 function ModalHandler(){
-    
+
     document.body.classList.add('preventscroll');
     document.querySelector('.Sponmodalwrap').style.display='block'
 }
 
 function ModalHandlerClose(){
-    
+
     document.querySelector('.Sponmodalwrap').style.display='none'
     document.body.classList.remove('preventscroll');
 }
@@ -14,13 +14,13 @@ function ModalHandlerClose(){
 function IntroModalHandler(){
     document.body.classList.add('preventscroll');
     document.querySelector('.intromodalwrap').style.display='block'
-    
+
 }
 
 function IntroModalHandlerClose(){
     document.body.classList.remove('preventscroll');
     document.querySelector('.intromodalwrap').style.display='none'
-    
+
 }
 
 
@@ -32,65 +32,81 @@ function IntroModalHandlerClose(){
 
 
 
-const data = search();
+// const data = search(91, RoundMake(), onerror);
 RoundMake();
 
 function RoundMake(){
     //모음
     let x_ximg = document.querySelector('.x_ximg')
-   
+
     let Noveltitle = document.querySelector('.Noveltitle')
     let watchCnt = document.querySelector('.watchCnt')
     let hashtag = document.querySelector('.hashtag')
     let x_Desc_writer_N=document.querySelector('.x_Desc_writer_N')
     let introHead = document.querySelector('.introHead');
     let introbody =document.querySelector('.introbody');
-    
-     data.slice(1,2)?.map((v)=>{
-        
-        let img= document.createElement('img');
-        img.src=`https://image.tmdb.org/t/p/w500${v.poster_path}`;
-        let imgs= document.createElement('img');
-        imgs.src=`https://image.tmdb.org/t/p/w500${v.poster_path}`;
 
 
-        //제목
-        let title= document.createElement('h2');
-        let titletext=document.createTextNode(`${v.title}`)
-        //조회수
-        let cnt= document.createElement('h3');
-        let cnttext=document.createTextNode(`${v.vote_count}만명`)
-        //카테고리
-        let gener = document.createElement('span')
-        gener.className="hashtagSpan"
-        console.log((v.genre_ids).length)
-            
-        let genertext =document.createTextNode(`${v.genre_ids}`)
-       
-        console.log(genertext.data)
-        console.log(genertext.data.split(','))   
-        // 작품소개
-        modelHText = document.createTextNode(`${v.title}`)
-        modelBText = document.createTextNode(`${v.overview}`)
 
 
-        let NwriterText =document.createTextNode(v.original_title)
-        //이미지 
-        
-        
-        title.append(titletext)
-        cnt.append(cnttext)
-        gener.append('#'+genertext.data.split(',')[0])
-       
-        hashtag.append(gener)
-        Noveltitle.append(title)
-        watchCnt.append(cnt)
-        x_ximg.append(img)
-        x_Desc_writer_N.append(NwriterText)
+            let str ='';
+                str+="<img src='/novel/novelRoundInfo?novelNumber="+91+"'>";
 
-        introHead.append(modelHText)
-        introbody.append(modelBText)
-    })
+            $('.x_ximg').html(str)
+
+
+        getNovelVo(91,function (result) {
+            // 제목
+            let title= document.createElement('h2');
+            let titletext=document.createTextNode(`${result.novelTitle}`)
+            //조회수
+            let cnt= document.createElement('h3');
+            let cnttext=document.createTextNode(`${result.novelViewCountTotal}만명`)
+            //카테고리
+            let gener = document.createElement('span')
+            gener.className="hashtagSpan"
+
+                let hash = result.novelHashtag+"";
+            // let genertext =document.createTextNode(`${result.novelHashtag}`);
+            //
+            // console.log(genertext.data)
+            // console.log(genertext.data.split(','))
+            // 작품소개
+            modelHText = document.createTextNode(`${result.novelTitle}`)
+            modelBText = document.createTextNode(`${result.novelIntro}`)
+
+            // console.log(genertext);
+            // console.log(genertext.data);
+            // let NwriterText =document.createTextNode(result.original_title)
+            // 이미지
+
+
+            title.append(titletext)
+            cnt.append(cnttext)
+            let arr = new Array();
+            arr = hash.split(" ");
+            console.log(arr);
+
+            for (var i = 0; i < arr.length; i++) {
+                // let gener = document.createElement('span')
+
+                let str="";
+                str = "<span class='hashtagSpan'>#"+arr[i]+"</span>";
+                $('.hashtag').append(str);
+            }
+            // gener.append('#'+genertext.split('  '))
+
+
+            Noveltitle.append(title)
+            watchCnt.append(cnt)
+            // x_Desc_writer_N.append(NwriterText)
+
+            introHead.append(modelHText)
+            introbody.append(modelBText)
+        } );
+
+
+
 
 
 }
@@ -104,19 +120,19 @@ function ResRank(){
     ResRank= document.querySelector('.ResRank')
     table = document.querySelector('.table')
     cnt.slice(0,10)?.map((v,index) =>{
-     
-      //  sponCnt = document.createTextNode(`${index}${v.id}님 ${v.sponCnt}개`)
+
+        //  sponCnt = document.createTextNode(`${index}${v.id}님 ${v.sponCnt}개`)
 
         ResRank.innerHTML +=
-        `
+            `
         
         <span class="rankCnt"> ${index+1}위 ${v.id}님 ${v.sponCnt}개  <span/>  
-        ` 
-       })
+        `
+    })
 
-       cnt?.map((v,index)=>{
+    cnt?.map((v,index)=>{
         table.innerHTML +=
-        ` 
+            ` 
     
         <tr>
              <th style="width: 33%">${index+1}위</th>
@@ -127,8 +143,8 @@ function ResRank(){
 
 
 
-         ` 
-       })
+         `
+    })
 
 }
 
@@ -140,17 +156,17 @@ function writeDum(){
     NoveltotalCnt = document.createTextNode("전체(" +writeD.length+ ")개")
     document.querySelector('.NoveltotalCnt').append(NoveltotalCnt)
     Novel = document.querySelector('.Novel');
-   
+
     let current =0;
     let current10 = current+10
 
 
     writeD.slice(current,current10)?.map((v,index)=>{
-        
+
         Novel.innerHTML +=
-        ` <li class="Novelli">
+            ` <li class="Novelli">
         <div class="NovelImg">
-        <img src="/images/파댕이2.PNG" alt="">
+        <img src="./파댕이2.PNG" alt="">
 
         </div>
         
@@ -161,34 +177,34 @@ function writeDum(){
             </div>
                 
         </div>`
-        
+
     })
 
-    
-   
+
+
 }
-    
+
 
 //댓글
 const replyData = reply();
 replyD()
 
 function replyD(){
-    ReplyToTal = document.querySelector(".ReplyToTal") 
+    ReplyToTal = document.querySelector(".ReplyToTal")
     const ReplyCmt = document.querySelector(".ReplyCmt")
-    
-    
-    
-    
+
+
+
+
     ReplyToTal.innerHTML += `${replyData.length}개`
     replyData.slice(0,10)?.map(v =>{
-        
+
         ReplyCmt.innerHTML +=
-        `
+            `
         <div class="ReplyCmtWrap">
         <div class="ReplyCmtDtail">
         <div class="ReplyImg">
-        <img src="/images/파댕이.PNG" alt="">
+        <img src="./파댕이.PNG" alt="">
             </div>
             <div class="ReplyDEC">
             <div class="ReplyIds">
@@ -207,7 +223,7 @@ function replyD(){
                     <div class="ReplyLike">
                     
                     
-                    <img src="https://static-page.kakao.com/static/common/icon_like.svg?f9e9a51be34a0e0106b7c1e179d0b43e" alt="">
+                    <img src="https://static-page.kakao.com/static/common/icon_like.svg?f9e9a51be34a0e0106b7c1e179d0b43e" alt="" class="changImg">
                     
                     
                     </div>
@@ -219,7 +235,7 @@ function replyD(){
                     </div>
                     </div>
                     <div class="ReplyDeclarWrap">
-                    <div class="ReplyDeclar" >신고</div>
+                    <div class="ReplyDeclar " >신고</div>
                     </div>
                     </div>
                     
@@ -227,18 +243,22 @@ function replyD(){
                     
                     
                     `
-                    
-                    
-                 
-                    
-                })
-                
-        const ReplyDeclar = document.querySelectorAll(".ReplyDeclar")
-        for(i=0; i<ReplyDeclar.length;i++){
+
+
+
+
+    })
+
+    const ReplyDeclar = document.querySelectorAll(".ReplyDeclar")
+    for(i=0; i<ReplyDeclar.length;i++){
         ReplyDeclar[i].addEventListener('click',(e)=>{
+            if (!confirm(e.composedPath()[2].childNodes[3].childNodes[1].childNodes[1].innerText +"님을 신고하시겠습니까?")) {
+
+            } else {
+                alert("신고완료");
+            }
 
 
-            alert(e.composedPath()[2].childNodes[3].childNodes[1].childNodes[1].innerText)
 
 
         })
@@ -252,13 +272,41 @@ function replyD(){
 
 
 let bb = document.querySelectorAll('.bb');
-function clickHandler() {  
-     for (var i = 0; i < bb.length; i++){
-        bb[i].classList.remove('choose');    
-     }
-     this.classList.add('choose');
+function clickHandler() {
+    for (var i = 0; i < bb.length; i++){
+        bb[i].classList.remove('choose');
+    }
+    this.classList.add('choose');
 }
 
- for (var i = 0; i < bb.length; i++){
+for (var i = 0; i < bb.length; i++){
     bb[i].addEventListener('click', clickHandler);
- }
+}
+
+
+
+// 클릭 하트 변경
+let heartChange = document.querySelectorAll('.changImg');
+clickheartHandler();
+
+
+let clickheat =true;
+function clickheartHandler(clickheat){
+    for(i=0; i< heartChange.length; i++){
+        heartChange[i].addEventListener("click",function(){
+            clickheat;
+            if(!clickheat){
+                this.setAttribute("src","https://static-page.kakao.com/static/common/icon_like_already.svg?b34ad60df8d04b48d10fbba10519e931")
+                clickheat =true
+
+            }else{
+                this.setAttribute("src","https://static-page.kakao.com/static/common/icon_like.svg?f9e9a51be34a0e0106b7c1e179d0b43e")
+                clickheat =false
+            }
+
+
+        })
+
+    }
+
+}
