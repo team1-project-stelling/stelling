@@ -134,7 +134,12 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/mypage/editProfile.js"></script>
 <script src="/assets/js/fix/header.js"></script>
-<script>
+<script th:inline="javascript">
+    const userNumber = [[${session.userNumber}]];
+    console.log("세션 유저 번호 : " + userNumber);
 
+    function goPayList(){
+        location.href = "/myLibrary/payList?userNumber=" + userNumber;
+    }
 </script>
 </html>

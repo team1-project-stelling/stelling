@@ -30,10 +30,10 @@ public class MyPageController {
 
     //프로필수정
     @PostMapping("/myPageEditProfile")
-    public void modify(UserVO userVO, Model model, HttpServletRequest req){
-        HttpSession session = req.getSession();
-        Long userNum = (Long) session.getAttribute("userNumber");
-        UserVO sessionUser = userService.get(userNum);
+    public void modify(UserVO userVO, Model model){
+//        HttpSession session = req.getSession();
+//        Long userNum = (Long) session.getAttribute("userNumber");
+        UserVO sessionUser = userService.get(userVO.getUserNumber());
         sessionUser.updateFilePate(userVO.getUserFilePath());
         sessionUser.updateFileName(userVO.getUserFileName());
         sessionUser.updateUserUuid(userVO.getUserUuid());
