@@ -30,10 +30,10 @@ public class MyPageController {
 
     //프로필수정
     @PostMapping("/myPageEditProfile")
-    public void modify(UserVO userVO, Model model, HttpServletRequest req){
-        HttpSession session = req.getSession();
-        Long userNum = (Long) session.getAttribute("userNumber");
-        UserVO sessionUser = userService.get(userNum);
+    public void modify(UserVO userVO, Model model, Long userNumber){
+//        HttpSession session = req.getSession();
+//        Long userNum = (Long) session.getAttribute("userNumber");
+        UserVO sessionUser = userService.get(userNumber);
         sessionUser.updateFilePate(userVO.getUserFilePath());
         sessionUser.updateFileName(userVO.getUserFileName());
         sessionUser.updateUserUuid(userVO.getUserUuid());
@@ -47,7 +47,6 @@ public class MyPageController {
 
     @GetMapping("/myPageEditProfile")
     public String myPageEditProfile(Model model,Long userNumber){
-
         log.info("" + userNumber);
         UserVO sessionUser = userService.get(userNumber);
         log.info("myPageEditProfile");
@@ -78,7 +77,7 @@ public class MyPageController {
 
     //탈퇴(status 1->0으로 변경)
     @GetMapping("/withDraw")
-    public String withDraw(){
+    public String withDraw(Long userNumber){
         UserVO sessionUser = userService.get(28L);
         sessionUser.updateUserStatus(0L);
         userService.modify(sessionUser);
