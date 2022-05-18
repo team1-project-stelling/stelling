@@ -21,5 +21,6 @@ public class NovelFileService {
         vo.updateNovelFileUpdateDate();
         novelFileRepository.save(vo);
     }
+    public NovelFileVO getFilePathBySubNum(Long subNum){return novelFileRepository.findBySubNovelVO_SubNovelNumberOrderByNovelFileNumber(subNum);}
 
 }

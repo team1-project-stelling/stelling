@@ -2,10 +2,8 @@ package com.team1.stelling.controller;
 
 
 import com.team1.stelling.domain.dto.ReplyDTO;
-import com.team1.stelling.domain.vo.NovelVO;
-import com.team1.stelling.domain.vo.ReplyVO;
-import com.team1.stelling.domain.vo.SubNovelVO;
-import com.team1.stelling.domain.vo.UserVO;
+import com.team1.stelling.domain.dto.ReplyListDTO;
+import com.team1.stelling.domain.vo.*;
 import com.team1.stelling.service.NovelService;
 import com.team1.stelling.service.ReplyService;
 import com.team1.stelling.service.SubNovelService;
@@ -14,7 +12,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -28,20 +29,31 @@ public class NovelReplyController {
 
 
     @PostMapping(value = "/add", consumes = "application/json", produces = "text/plain; charset=utf-8")
-    public void ReplyRegister(@RequestBody ReplyDTO replyDTO){
+    public String replyRegister(@RequestBody ReplyDTO replyDTO){
         log.info("-------------------------------------------------------------------------------------------");
         log.info("replyRegister컨트롤러들어옴");
         log.info("-------------------------------------------------------------------------------------------");
-        ReplyVO replyVO = new ReplyVO();
-        NovelVO novelVO = novelService.get(replyDTO.getNovelNumber());
-        UserVO userVO = userService.get(replyDTO.getUserNumber());
-        SubNovelVO subNovelVO =subNovelService.get(replyDTO.getSubNovelNumber());
-        replyVO.setReplyContent(replyDTO.getReplyContent());
-        replyVO.setNovelVO(novelVO);
-        replyVO.setUserVO(userVO);
-        replyVO.setSubNovelVO(subNovelVO);
-        replyService.register(replyVO);
-        log.info(replyVO.toString());
+
+        replyService.register(ReplyVO.builder().novelVO(novelService.get(replyDTO.getNovelNumber()))
+                    .subNovelVO(subNovelService.get(replyDTO.getSubNovelNumber()))
+                    .userVO(userService.get(replyDTO.getUserNumber()))
+                    .replyContent(replyDTO.getReplyContent()).build());
+        return "등록완료";
+    }
+    @Transactional
+    @GetMapping("/list/{subNovelNumber}")
+    public ReplyListDTO replygetList(@PathVariable("subNovelNumber") Long subNovelNumber){
+        log.info("=================================================================================================");
+        log.info("DTO컨트롤러 들어옴");
+        log.info("subNum:"+subNovelNumber);
+        List<ReplyVO> List = replyService.getList(29L);
+        log.info("리스트:"+List.toString());
+        log.info("=================================================================================================");
+        return new ReplyListDTO(replyService.getList(subNovelNumber),replyService.getUserList(subNovelNumber));
     }
 
+    @GetMapping("/repliesTest/{subNovelNumber}")
+    public List<ReplyVO> getList(@PathVariable Long subNovelNumber){
+        return replyService.getList(subNovelNumber);
+    }
 }

@@ -6,8 +6,13 @@ import com.team1.stelling.domain.dto.NovelCategoryDTO;
 //import com.team1.stelling.domain.repository.NovelSearchRepository;
 
 import com.team1.stelling.domain.dto.NovelFileDTO;
+import com.team1.stelling.domain.dto.PageDTO;
 import com.team1.stelling.domain.dto.PageableDTO;
 
+import com.team1.stelling.domain.repository.NovelFileRepository;
+import com.team1.stelling.domain.repository.NovelRepository;
+import com.team1.stelling.domain.repository.SubNovelRepository;
+import com.team1.stelling.domain.repository.UserRepository;
 import com.team1.stelling.domain.vo.*;
 import com.team1.stelling.service.*;
 
@@ -58,7 +63,7 @@ public class novelController {
     @GetMapping("/novelCategory")
     public void novelCategory(Model model, @PageableDefault(page = 0, size = 10, sort = "novelNumber" ,direction = Sort.Direction.DESC)Pageable pageable){
 
-       Page<NovelCategoryDTO> list = novelService.getList(pageable);
+        Page<NovelCategoryDTO> list = novelService.getList(pageable);
         PageableDTO pageableDTO = new PageableDTO( (int)list.getTotalElements(),pageable);
         model.addAttribute( "list",list);
         model.addAttribute( "novelTotal", list.getTotalElements());
@@ -128,12 +133,12 @@ public class novelController {
             log.info("Upload File Name : " + file.getOriginalFilename());
             log.info("Upload File Size : " + file.getSize());
 
-            NovelVO novelVO = new NovelVO();
+//            NovelVO novelVO = new NovelVO();
             uploadFileName = uuid.toString() + "_" + file.getOriginalFilename();
 
-            novelVO.setNovelFileName(uploadFileName);
-            novelVO.setNovelUUID(uuid.toString());
-            novelVO.setNovelUploadPath(uploadFolderPath);
+//            novelVO.setNovelFileName(uploadFileName);
+//            novelVO.setNovelUUID(uuid.toString());
+//            novelVO.setNovelUploadPath(uploadFolderPath);
 
             //저장할 경로와 파일의 이름을 File객체에 담는다.
             File saveFile = new File(uploadPath, uploadFileName);
@@ -144,7 +149,10 @@ public class novelController {
 //                InputStream in = new FileInputStream(saveFile);
 
 
-                fileList.add(novelVO);
+
+                fileList.add(NovelVO.builder().novelFileName(uploadFileName)
+                        .novelUUID(uuid.toString())
+                        .novelUploadPath(uploadFolderPath).build());
             } catch (IOException e) {
                 log.error(e.getMessage());
             }
@@ -192,7 +200,6 @@ public class novelController {
         log.info("-------------------------------------------------------------------------------------");
         NovelVO novelVO =novelService.get(novelFileDTO.getNovelNumber());
         UserVO userVO =userService.get(novelFileDTO.getUserNumber());
-
         SubNovelVO subNovelVO = new SubNovelVO();
         subNovelVO.setNovelVO(novelVO);
         subNovelVO.setUserVO(userVO);
@@ -212,14 +219,12 @@ public class novelController {
             uploadPath.mkdirs();
         }
 
-        NovelFileVO novelFileVO = new NovelFileVO();
-        novelFileVO.setNovelFileFileName(uploadFileName);
-        novelFileVO.setNovelFileFilePath(uploadFolderPath);
-        novelFileVO.setNovelFileOriginalUUID(uuid.toString());
-        novelFileVO.setSubNovelVO(subNovelVO);
-        novelFileVO.setNovelVO(novelVO);
-        novelFileVO.setUserVO(userVO);
-        novelFileService.register(novelFileVO);
+        novelFileService.register(NovelFileVO.builder().novelFileFileName(uploadFileName)
+                    .novelFileFilePath(uploadFolderPath)
+                    .novelFileOriginalUUID(uuid.toString())
+                    .subNovelVO(subNovelVO)
+                    .novelVO(novelVO)
+                    .userVO(userVO).build());
 
 
         BufferedWriter bw = new BufferedWriter(new FileWriter(new File(uploadPath+"/"+uploadFileName+".txt")));

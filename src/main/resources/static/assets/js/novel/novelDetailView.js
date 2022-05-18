@@ -1,3 +1,10 @@
+
+
+
+showNovel(subNovelNumber, function (result) {
+    $('.novelContent').val(result);
+    textareaauto();
+})
 textareaauto();
 
 function textareaauto() {
@@ -238,3 +245,18 @@ $('.siren').click(function () {
     })
 });
 
+function showNovel(subNovelNumber,callback,error) {
+    $.ajax({
+        type:"GET",
+        url:"/novelDetail/showNovel/"+subNovelNumber,
+        success:function (result) {
+            callback(result);
+        },
+        error:function(xhr, status, er){
+            if(error){
+                error(er);
+            }
+        }
+        });
+
+}

@@ -56,7 +56,7 @@ public class SubNovelVO {
     private int subNovelLickCount;  // 회차 좋아요
 
     @Column(name = "SUBNOVEL_STATUS")
-    private  int subNovelStatus;/*회차 상태 0 숨김, 1 보여짐*/
+    private int subNovelStatus;/*회차 상태 0 숨김, 1 보여짐*/
 
 
 
