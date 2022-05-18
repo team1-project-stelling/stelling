@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team1.stelling.mapper.NovelMapper">
+    <select id="rankingSearch" resultType="NovelRankingDTO">
+        SELECT
+        NOVEL_NUMBER ,
+        n.USER_NUMBER,
+        U.USER_NICKNAME,
+        NOVEL_TITLE ,
+        NOVEL_HASHTAG ,
+        NOVEL_UPLOADDATE ,
+        NOVEL_UPDATEDATE ,
+        NOVEL_CATEGORY ,
+        NOVEL_STATUS ,
+        NOVEL_SERIALSTATUS ,
+        NOVEL_INTRO ,
+        NOVEL_FILENAME ,
+        NOVEL_UPLOADPATH,
+        NOVEL_UUID ,
+        NOVEL_ROUNDABOUTTOTAL,
+        NOVEL_LIKECOUNTTOTAL ,
+        NOVEL_VIEWCOUNTTOTAL
+        FROM
+        (
+        SELECT
+        NOVEL_NUMBER ,
+        USER_NUMBER,
+        NOVEL_TITLE ,
+        NOVEL_HASHTAG ,
+        NOVEL_UPLOADDATE ,
+        NOVEL_UPDATEDATE ,
+        NOVEL_CATEGORY ,
+        NOVEL_STATUS ,
+        NOVEL_SERIALSTATUS ,
+        NOVEL_INTRO ,
+        NOVEL_FILENAME ,
+        NOVEL_UPLOADPATH,
+        NOVEL_UUID ,
+        NOVEL_ROUNDABOUTTOTAL,
+        NOVEL_LIKECOUNTTOTAL ,
+        NOVEL_VIEWCOUNTTOTAL
+        FROM TBL_NOVEL
+
+        <if test="keyword != null">
+        WHERE
+
+
+
+/*        NOVEL_SERIALSTATUS = 0 AND
+
+        NOVEL_STATUS = 1 AND*/
+
+
+
+        NOVEL_HASHTAG
+        LIKE '%'||#{keyword}||'%'
+        </if>
+        ORDER BY
+        NOVEL_LIKECOUNTTOTAL
+        DESC
+        ) n , TBL_USER U
+        WHERE ROWNUM <![CDATA[ <=]]> 50
+
+
+
+
+
+
+    </select>
+</mapper>
