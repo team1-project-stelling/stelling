@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @DynamicInsert
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class UserVO {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ")
@@ -38,11 +38,11 @@ public class UserVO {
     @Column(name = "USER_COINBALANCE")
     private int userCoinBalance;  // 코인 잔액
     @Column(name = "USER_FILEPATH")
-    private String userFilePath;  // 코인 잔액
+    private String userFilePath;  // 파일 경로
     @Column(name = "USER_UUID")
-    private String userUuid;  // 코인 잔액
+    private String userUuid;  // uuid
     @Column(name = "USER_FILENAME")
-    private String userFileName;  // 코인 잔액
+    private String userFileName;  // 파일 이름
     @Column(name = "USER_ACCESSTOKEN")
     private String userAccessToken; // 카카오 계정 이용시 발급 받는 토큰
 
@@ -54,11 +54,15 @@ public class UserVO {
     public void updateUserStatus(int userStatus) { this.userStatus = userStatus; }
     public void updateUserCoinBalance(int userCoinBalance) { this.userCoinBalance = userCoinBalance; }
     public void updateUserAccessToken(String userAccessToken) { this.userAccessToken = userAccessToken; }
-
-
+    public void updateUserUuid(String userUuid){this.userUuid = userUuid;}
+    public void updateFilePate(String userFilePath){this.userFilePath = userFilePath;}
+    public void updateFileName(String userFileName){this.userFileName = userFileName;}
 
     @Builder
-    public UserVO(Long userNumber, String userId, String userPw, String userNickName, String userEmail, int userGender, String userPhoneNum, int userStatus, int userCoinBalance, String userAccessToken) {
+    public UserVO(Long userNumber, String userId, String userPw, String userNickName, String userEmail,
+                  Long userGender, String userPhoneNum, Long userStatus, Long userCoinBalance,
+                  String userFilePath, String userUuid, String userFileName, String userAccessToken)
+    {
         this.userNumber = userNumber;
         this.userId = userId;
         this.userPw = userPw;
@@ -68,7 +72,9 @@ public class UserVO {
         this.userPhoneNum = userPhoneNum;
         this.userStatus = userStatus;
         this.userCoinBalance = userCoinBalance;
+        this.userFilePath = userFilePath;
+        this.userUuid = userUuid;
+        this.userFileName = userFileName;
         this.userAccessToken = userAccessToken;
     }
-
 }

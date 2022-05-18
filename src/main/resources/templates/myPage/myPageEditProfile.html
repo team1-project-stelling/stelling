@@ -115,6 +115,10 @@
                                 <div class="changeBtnWrap">
                                     <button type="submit" class="btn profileChange">변경</button>
                                 </div>
+                            <input type="hidden" name="userFileName">
+                            <input type="hidden" name="userFilePath">
+                            <input type="hidden" name="userUuid">
+                            <input type="hidden" name="userNumber" th:value="${session.userNumber}">
                          </form>
                     </div>
                 </div>
@@ -131,5 +135,6 @@
 <script src="/assets/js/mypage/editProfile.js"></script>
 <script src="/assets/js/fix/header.js"></script>
 <script>
+
 </script>
 </html>
