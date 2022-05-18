@@ -75,7 +75,7 @@
     <div class="mobile_hidden" style="position: relative; height: 30px; width: 100%; margin-top: 15px;"></div>
     <!--카테고리 -->
     <div class="mobile_hidden" style="border-bottom:2px solid #000;height: 50px;  line-height: 50px;">
-        <form id="selectForm" method="get" action="/novel/ranking/novelRanking/tagSearch">
+        <form id="selectForm" method="get" action="/novel/ranking/novelRanking/changeModelOfDay">
         <span style="font-size: 16px; font-weight: 600;">
             <i class="icon ion-document"><img src="/images/document.png" style="width: 20px;"></i>
             <span th:text="|총 ${resultTotal}개 작품|"></span>
@@ -106,9 +106,10 @@
     <!--태그 검색-->
     <div class="mobile_category" style="position: relative; padding: 10px 5px; border-bottom: 1px solid #eee;">
         <div style="width: 100%; display: flex;align-items: center; gap: 10px;">
-            <!--<div class="rankMenuDiv" onclick="location.href='/novel/ranking/novelRanking/changeModelOfDay?day=0'" style=" width: 100px;height: 34px;display: flex; align-items: center; cursor: pointer;">요일랭킹보기</div>-->
-            <a href="0" class="changeModelOfDay">요일랭킹보기</a>
-            <div id="tagSearchRank" >
+            <a href="-1" class="changeModelOfDay">태그랭킹보기</a>
+<!--            <div class="rankMenuDiv" onclick="location.href='/novel/ranking/novelRanking'" style=" width: 100px;height: 34px;display: flex; align-items: center; cursor: pointer;">태그랭킹보기</div>-->
+<!--
+            <div id="tagSearchRank">
                 <ul class="nav nav-pills flex-column flex-md-row genre-box" id="submenu_bar" role="tablist" style="padding-bottom: 0px; max-width: 100%; overflow-x:auto; white-space: no wrap; -ms-overflow-style:none; scrollbar-width: none; scroll-snap-align: center; font-size: 12px;">
                     <li>
                         <button type="button" class="btn_genre_search" id="genre_search_modal_btn" onclick="changeTagSearch()" style="cursor: pointer;">태그검색</button>
@@ -126,7 +127,7 @@
                     </div>
                     <ul class="category_ul" style=" display: flex; list-style:none; max-width: 100%; overflow-x:auto; white-space: no wrap; -ms-overflow-style:none; scrollbar-width: none; scroll-snap-align: center; font-size: 12px;">
                         <li>
-                            <a th:classappend="${criteria.keyword== 'searchAll'} ? 'menuActive' : ''" class="nav-link" href="searchAll" role="tab">전체</a>
+                            <a th:classappend="${criteria.keyword== 'all'} ? 'menuActive' : ''" class="nav-link" href="searchAll" role="tab">전체</a>
                         </li>
                         <li>
                             <a th:classappend="${criteria.keyword== '판타지'} ? 'menuActive' : ''" class="nav-link" href="판타지" role="tab">판타지</a>
@@ -164,17 +165,18 @@
                     </ul>
                 </ul>
             </div>
-<!--            <div id="dayOfRank" style="display: none;">
+-->
+            <div id="dayOfRank" >
                 <ul>
-                    <li><a th:classappend="${criteria.keyword== 0} ? 'menuActive' : ''" class="changeDay"href="0">월</a></li>
-                    <li><a th:classappend="${criteria.keyword== 1} ? 'menuActive' : ''" class="changeDay"href="1">화</a></li>
-                    <li><a th:classappend="${criteria.keyword== 2} ? 'menuActive' : ''" class="changeDay"href="2">수</a></li>
-                    <li><a th:classappend="${criteria.keyword== 3} ? 'menuActive' : ''" class="changeDay"href="3">목</a></li>
-                    <li><a th:classappend="${criteria.keyword== 4} ? 'menuActive' : ''" class="changeDay"href="4">금</a></li>
-                    <li><a th:classappend="${criteria.keyword== 5} ? 'menuActive' : ''" class="changeDay"href="5">토</a></li>
-                    <li><a th:classappend="${criteria.keyword== 6} ? 'menuActive' : ''" class="changeDay"href="6">일</a></li>
+                    <li><a th:classappend="${criteria.day== 0} ? 'menuActive' : ''" class="changeDay"href="0">월</a></li>
+                    <li><a th:classappend="${criteria.day== 1} ? 'menuActive' : ''" class="changeDay"href="1">화</a></li>
+                    <li><a th:classappend="${criteria.day== 2} ? 'menuActive' : ''" class="changeDay"href="2">수</a></li>
+                    <li><a th:classappend="${criteria.day== 3} ? 'menuActive' : ''" class="changeDay"href="3">목</a></li>
+                    <li><a th:classappend="${criteria.day== 4} ? 'menuActive' : ''" class="changeDay"href="4">금</a></li>
+                    <li><a th:classappend="${criteria.day== 5} ? 'menuActive' : ''" class="changeDay"href="5">토</a></li>
+                    <li><a th:classappend="${criteria.day== 6} ? 'menuActive' : ''" class="changeDay"href="6">일</a></li>
                 </ul>
-            </div>-->
+            </div>
         </div>
     </div>
     <!--랭킹 목록-->
@@ -230,19 +232,17 @@
     let day = [[${criteria.day}]];
 
 
-    $("a.changeModelOfDay").click(function (e) {
-        e.preventDefault();
-        location.href = "/novel/ranking/novelRanking/changeModelOfDay?day=" + $(this).attr("href")+"&rankType="+rankType+"&novelStatus="+novelStatus+"&keyword="+"searchAll";
-    })
-
 
     var param = {"rankType":rankType, "novelStatus":novelStatus,"keyword":keyword,"day":day}
 
-
+    $("a.changeModelOfDay").click(function (e) {
+        e.preventDefault();
+        location.href = "/novel/ranking/novelRanking?day=" + $(this).attr("href")+"&rankType="+rankType+"&novelStatus="+novelStatus+"&keyword="+keyword;
+    })
 
     $("a.changeDay").click(function (e) {
         e.preventDefault();
-        location.href = "/novel/ranking/novelRanking?day=" + $(this).attr("href")+"&rankType="+rankType+"&novelStatus="+novelStatus+"&keyword="+keyword;
+        location.href = "/novel/ranking/novelRanking/changeModelOfDay?day=" + $(this).attr("href")+"&rankType="+rankType+"&novelStatus="+novelStatus+"&keyword="+"searchAll";
     })
     $("a.nav-link").click(function (e) {
         e.preventDefault();

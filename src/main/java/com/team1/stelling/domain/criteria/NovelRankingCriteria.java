@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.constraints.NotNull;
+
 @Component
 @Data
 @RequiredArgsConstructor
@@ -14,12 +16,15 @@ public class NovelRankingCriteria {
     @NonNull
     private String rankType;
     // 소설 상태
+    @NonNull
     private String novelStatus;
     // 검색할 태그
+    @NonNull
     private String keyword;
     // 요일
+    @NonNull
     private int day; // 0 -월 ~ 6 -일
-    public NovelRankingCriteria(){this("");}
+    public NovelRankingCriteria(){this("view","all","searchAll",-1);}
     public String getListLink(){
         UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
                 .queryParam("rankType",this.rankType)
