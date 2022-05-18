@@ -87,19 +87,19 @@
             <th:block th:each="illust:${list}">
             <div class="flex2 wrap" th:object="${illust}">
                 <div class="box">
-                    <div class="column cellCss">
+                    <div class="column cellCss cell1">
                         <img th:src="'/upload/display?fileName='+*{illustFilePath}+'/'+*{illustFileName}" class="testWidth" />
                         <span class="heart">❤<span style="font-size: 12px;" th:text="*{illustLike}"></span></span>
                     </div>
                 </div>
                 <div class="box">
-                    <div class="column cellCss">
+                    <div class="column cellCss cell2">
                         <img th:src="'/upload/display?fileName='+*{illustFilePath}+'/'+*{illustFileName}" class="testWidth">
                         <span class="heart">❤<span style="font-size: 12px;" th:text="*{illustLike}"></span></span>
                     </div>
                 </div>
                 <div class="box">
-                    <div class="column cellCss">
+                    <div class="column cellCss cell3">
                         <img th:src="'/upload/display?fileName='+*{illustFilePath}+'/'+*{illustFileName}" class="testWidth">
                         <span class="heart">❤<span style="font-size: 12px;" th:text="*{illustLike}"></span></span>
                     </div>
@@ -177,23 +177,21 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/fix/header.js"></script>
 <script src="/assets/js/illust/illustUserPage.js"></script>
-<script>
-    let number = [[${illust.illustNumber}]];
+<script src="/assets/js/illust/module.js"></script>
+<script th:inline="javascript">
 
-    showList();
-
-    function showList(e) {
-        let str="";
-
-        for(let i=0; i<list.length; i+3){
-            let fileCallPath = list[i].illustFilePath + "/" + list[i].illustFileName;
-            str += "<img src='/upload/display?fileName=" + fileCallPath + " class='testWidth' />";
-            str += "<span class='heart'>❤";
-            str += "<span list[i].illustLike style='font-size: 12px;'>";
-            str += "</span>";
-            str += "</span>";
-        }
-    }
+    // let userNumber = 1;
+    // getMyIllustList(userNumber, function (result) {
+    //     let filePath = [[${illustFilePath}]];
+    //     let fileName = [[${illustFileName}]];
+    //     let like = [[${illustLike}]];
+    //     let str ="";
+    //     for(let i=0; i<result.length; i+3){
+    //         str += "<img  class='testWidth' th:src='/upload/display?fileName="+ filePath +"/"+ fileName + "'/>";
+    //         str += "<span class='heart'>❤<span style='font-size: 12px;' th:text="+ like +"></span></span>";
+    //     };
+    //     $('.cell1').html(str);
+    // });
 
 
 </script>

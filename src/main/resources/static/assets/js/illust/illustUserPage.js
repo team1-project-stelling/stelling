@@ -1,6 +1,6 @@
 $('.arrow').on('click', function () {
 
-    if($('.arrow>img').attr('src') == '/images/icon/화살표.png'){
+    if($('.arrow>img').attr('src') === '/images/icon/화살표.png'){
         $('.arrow>img').attr('src', '/images/icon/위화살표.png')
         $('.delete').css('display', 'inline-block');
     }else{
@@ -17,3 +17,5 @@ $('.chatBtn').on('click',function () {
 $('.x').on('click', function () {
     $('.chat').slideToggle();
 });
+
+
