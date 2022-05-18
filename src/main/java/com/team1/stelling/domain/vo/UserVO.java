@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @DynamicInsert
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class UserVO {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ")
@@ -55,11 +55,13 @@ public class UserVO {
     public void updateUserCoinBalance(Long userCoinBalance) { this.userCoinBalance = userCoinBalance; }
     public void updateUserAccessToken(String userAccessToken) { this.userAccessToken = userAccessToken; }
     public void updateUserUuid(String userUuid){this.userUuid = userUuid;}
+    public void updateFilePate(String userFilePath){this.userFilePath = userFilePath;}
+    public void updateFileName(String userFileName){this.userFileName = userFileName;}
 
     @Builder
     public UserVO(Long userNumber, String userId, String userPw, String userNickName, String userEmail,
-                  Long userGender, String userPhoneNum, Long userStatus, Long userCoinBalance, String userFilePath,
-                  String userUuid, String userFileName, String userAccessToken)
+                  Long userGender, String userPhoneNum, Long userStatus, Long userCoinBalance,
+                  String userFilePath, String userUuid, String userFileName, String userAccessToken)
     {
         this.userNumber = userNumber;
         this.userId = userId;
@@ -75,5 +77,4 @@ public class UserVO {
         this.userFileName = userFileName;
         this.userAccessToken = userAccessToken;
     }
-
 }
