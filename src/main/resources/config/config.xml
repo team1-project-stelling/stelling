@@ -14,7 +14,7 @@
         <typeAlias type="com.team1.stelling.domain.vo.BuyChapterVO" alias="buyChapterVO"/>
         <typeAlias type="com.team1.stelling.domain.vo.NovelVO" alias="NovelVO"/>
         <typeAlias type="com.team1.stelling.domain.dto.NovelRankingDTO" alias="NovelRankingDTO"/>
-
+        <typeAlias type="com.team1.stelling.domain.vo.UserVO" alias="UserVO"/>
     </typeAliases>
 </configuration>
 
