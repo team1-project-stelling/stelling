@@ -61,10 +61,10 @@
                         <a class="menu" href="myPageQuestion.html">내 문의 내역</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPageQuit.html">탈퇴 하기</a>
+                        <a class="menu" href="javascript:goPayList1();">탈퇴 하기</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="/myPage/myPagePayList">결제</a>
+                        <a class="menu" href="javascript:goPayList();">결제</a>
                     </li>
                 </ul>
             </div>
@@ -140,6 +140,9 @@
 
     function goPayList(){
         location.href = "/myLibrary/payList?userNumber=" + userNumber;
+    }
+    function goPayList1(){
+        location.href = "/myPage/myPageQuit?userNumber=" + userNumber;
     }
 </script>
 </html>
