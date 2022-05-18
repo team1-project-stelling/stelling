@@ -1,5 +1,6 @@
 package com.team1.stelling.controller;
 
+import com.team1.stelling.aspect.annotation.LogStatus;
 import com.team1.stelling.domain.dto.PageableDTO;
 import com.team1.stelling.domain.vo.MyPickVO;
 import com.team1.stelling.domain.vo.RecentViewVO;
@@ -13,8 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Slf4j
@@ -61,5 +61,27 @@ public class MyLibraryCollectionController {
         model.addAttribute("total",list.getTotalElements());
         model.addAttribute("pageableDTO", pageableDTO);
         return "myLibrary/myLibraryRecentView";
+    }
+
+    @GetMapping("/myRecentView/search")
+    public String myRecentViewSearch(String keyword,Model model, @PageableDefault(page = 0, size = 10, sort = "recentViewNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
+        // 로그인시 세션에 존재할 임시 유저 정보
+        Long userNum = 1L;
+        Page<RecentViewVO> list = recentViewService.getMyViewSearch(userNum,keyword,pageable);
+        PageableDTO  pageableDTO = new PageableDTO( (int)list.getTotalElements(),pageable);
+        pageableDTO.setKeyword(keyword);
+        model.addAttribute("list",list);
+        model.addAttribute("total",list.getTotalElements());
+        model.addAttribute("pageableDTO", pageableDTO);
+        return "myLibrary/myLibraryRecentViewSearch";
+    }
+
+
+    @LogStatus
+    @ResponseBody
+    @DeleteMapping( value = "/myRecentView/delete/{recentViewNumber}")
+    public String remove(@PathVariable("recentViewNumber") Long recentViewNumber){
+        log.info("remove............" + recentViewNumber);
+        return recentViewService.remove(recentViewNumber) ? "최근 본 작품 삭제 성공" : "최근 본 작품 삭제 실패";
     }
 }
