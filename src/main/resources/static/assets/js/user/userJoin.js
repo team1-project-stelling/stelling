@@ -47,21 +47,21 @@ const inputbox_2 = document.querySelector('#userPw');
 const inputbox_3 = document.querySelector('#repwd');
 
 
-//아이디 가이드 열기
-inputbox_1.addEventListener("click", e => {
-    e.preventDefault();
-    guidebox_1.style.display = "block";
-});
-
-inputbox_2.addEventListener("click", e => {
-    e.preventDefault();
-    guidebox_2.style.display = "block";
-});
-
-inputbox_3.addEventListener("click", e => {
-    e.preventDefault();
-    guidebox_3.style.display = "block";
-});
+// //아이디 가이드 열기
+// inputbox_1.addEventListener("click", e => {
+//     e.preventDefault();
+//     guidebox_1.style.display = "block";
+// });
+//
+// inputbox_2.addEventListener("click", e => {
+//     e.preventDefault();
+//     guidebox_2.style.display = "block";
+// });
+//
+// inputbox_3.addEventListener("click", e => {
+//     e.preventDefault();
+//     guidebox_3.style.display = "block";
+// });
 
 
 //휴대폰 인증 펼치기
@@ -193,36 +193,4 @@ function joinform_check() {
 
     //입력 값 전송
     document.joinForm.submit(); //유효성 검사의 포인트
-}
-
-//아이디 중복체크 팝업창(현재 공백문서)
-function id_check() {
-    //window.open("팝업될 문서 경로", "팝업될 문서 이름", "옵션");
-    window.open("", "", "width=600, height=200, left=200, top=100");
-}
-
-
-//우편번호 검색 팝업창(현재 공백문서)
-function search_address() {
-    window.open("", "b", "width=600, height=300, left=200, top=100");
-}
-
-function CV_checkIdPattern(str){
-
-    const guidebox_1 = document.querySelector('.text_guide_1');
-    const guidebox_2 = document.querySelector('.text_guide_2');
-    const guidebox_3 = document.querySelector('.text_guide_3');
-    const inputbox_1 = document.querySelector('#uid');
-    const inputbox_2 = document.querySelector('#pwd');
-    const inputbox_3 = document.querySelector('#repwd');
-    const pattern1 = /[0-9]/; // 숫자
-    const pattern2 = /[a-zA-Z]/; // 문자
-    const pattern3 = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
-
-    const numtextyn = (pattern1.test(str) || pattern2.test(str));
-    if(!numtextyn || pattern3.test(str) || str.length > 14) {
-        guidebox_1.style.color = "green";
-    } else {
-        return true;
-    }
 }

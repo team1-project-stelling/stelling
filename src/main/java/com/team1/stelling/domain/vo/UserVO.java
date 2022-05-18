@@ -14,8 +14,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@Data
 @DynamicInsert
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class UserVO {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ")
@@ -40,7 +41,7 @@ public class UserVO {
     @Column(name = "USER_FILEPATH")
     private String userFilePath;  // 파일 경로
     @Column(name = "USER_UUID")
-    private String userUuid;  // 
+    private String userUuid;  // uuid
     @Column(name = "USER_FILENAME")
     private String userFileName;  // 파일 이름
     @Column(name = "USER_ACCESSTOKEN")
@@ -55,6 +56,8 @@ public class UserVO {
     public void updateUserCoinBalance(Long userCoinBalance) { this.userCoinBalance = userCoinBalance; }
     public void updateUserAccessToken(String userAccessToken) { this.userAccessToken = userAccessToken; }
     public void updateUserUuid(String userUuid){this.userUuid = userUuid;}
+    public void updateFilePate(String userFilePath){this.userFilePath = userFilePath;}
+    public void updateFileName(String userFileName){this.userFileName = userFileName;}
 
     @Builder
     public UserVO(Long userNumber, String userId, String userPw, String userNickName, String userEmail,
@@ -75,5 +78,4 @@ public class UserVO {
         this.userFileName = userFileName;
         this.userAccessToken = userAccessToken;
     }
-
 }

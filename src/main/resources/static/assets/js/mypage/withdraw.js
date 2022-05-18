@@ -39,3 +39,4 @@ function check_agree() {
         $('#withDrawForm').submit();
     }
 }
+
