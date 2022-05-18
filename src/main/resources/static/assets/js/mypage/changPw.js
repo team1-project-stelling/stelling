@@ -1,4 +1,4 @@
-let active = document.getElementsByClassName("left");
+var active = document.getElementsByClassName("left");
 
 function handleClick(event) {
     console.log(event.target);
@@ -8,7 +8,7 @@ function handleClick(event) {
     if (event.target.classList[1] === "clicked") {
         event.target.classList.remove("clicked");
     } else {
-        for (let i = 0; i < active.length; i++) {
+        for (var i = 0; i < active.length; i++) {
             active[i].classList.remove("clicked");
         }
 
@@ -17,7 +17,7 @@ function handleClick(event) {
 }
 function init() {
     active[2].classList.add("clicked");
-    for (let i = 0; i < active.length; i++) {
+    for (var i = 0; i < active.length; i++) {
         active[i].addEventListener("click", handleClick);
     }
 }
@@ -40,15 +40,15 @@ function validNewPw(obj){
 
 function validNewPwCheck(obj){
     // 최소 8 자, 하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자 정규식
-    let pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    var pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
     return (obj.value.match(pattern)!=null)
 }
 
 //새 비밀번호 확인
 function sameNewPw(obj) {
-    let newPw = document.querySelector('.new').value;
-    let rePw = document.querySelector('.rePw').value;
-    let result_reNewPw = document.getElementById('result_reNewPw');
+    var newPw = document.querySelector('.new').value;
+    var rePw = document.querySelector('.rePw').value;
+    var result_reNewPw = document.getElementById('result_reNewPw');
 
 
     if(newPw != rePw){
@@ -63,3 +63,4 @@ function sameNewPw(obj) {
     }
 }
 
+$
