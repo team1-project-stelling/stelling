@@ -42,7 +42,7 @@
 }
 
 .bellIcon {
-    width: 28px;
+    width: 31px;
     height: 31px;
     margin-right: 14px;
     padding-top: 1px;
@@ -315,7 +315,7 @@ textarea:focus {
     right: -400px;
     border-radius: 20px 0px 0px 20px;
     overflow-y: scroll;
-
+    z-index: 3;
 }
 
 .side-row {
