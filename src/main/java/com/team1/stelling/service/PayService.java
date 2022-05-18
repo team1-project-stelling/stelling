@@ -23,6 +23,8 @@ public class PayService{
     //총 결제 금액
     public PayDTO getTotal(Long userNumber) {return payDAO.getTotal(userNumber);}
 
+    public List<PayVO> getPayCharge(Long userNumber) {return payDAO.getPayCharge(userNumber);}
+
     //검색한 결과의 총 개수(페이징 처리를 위함)
     public int getSearchTotal(Criteria criteria) {return payDAO.getSearchTotal(criteria);}
 
