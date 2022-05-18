@@ -5,13 +5,9 @@ import com.team1.stelling.aspect.annotation.LogStatus;
 import com.team1.stelling.domain.dto.NovelCategoryDTO;
 //import com.team1.stelling.domain.repository.NovelSearchRepository;
 
-import com.team1.stelling.domain.dto.PageDTO;
+import com.team1.stelling.domain.dto.NovelFileDTO;
 import com.team1.stelling.domain.dto.PageableDTO;
 
-import com.team1.stelling.domain.repository.NovelFileRepository;
-import com.team1.stelling.domain.repository.NovelRepository;
-import com.team1.stelling.domain.repository.SubNovelRepository;
-import com.team1.stelling.domain.repository.UserRepository;
 import com.team1.stelling.domain.vo.*;
 import com.team1.stelling.service.*;
 

@@ -25,6 +25,7 @@ function IntroModalHandlerClose(){
 
 
 let novelNumber = 109;
+let novelOriginTitle = "";
 RoundMake();
 
 
@@ -48,14 +49,15 @@ function RoundMake(){
             getNovelVo(novelNumber,function (result) {
             // 제목
             let title= document.createElement('h2');
-            let titletext=document.createTextNode(`${result.novelTitle}`)
+            let titletext=document.createTextNode(`${result.novelTitle}`);
+                novelOriginTitle =result.novelTitle;
             //카테고리
             let gener = document.createElement('span')
             gener.className="hashtagSpan"
             let hash = result.novelHashtag;
             //조회수
             let cnt= document.createElement('h3');
-            let cnttext=document.createTextNode(`${result.novelViewCountTotal}만명`)
+            let cnttext=document.createTextNode(setStringNumber(${result.novelViewCountTotal})+`명`)
 
             cnt.append(cnttext)
             // 작품소개
@@ -70,7 +72,7 @@ function RoundMake(){
 
 
             //해시태그
-            let arr = hash.replace(/\s+/, ',').split(',');
+            let arr = hash.replace(/ /gi, ",").split(',');
 
             for (let i = 0; i < arr.length; i++) {
                 let str="";
@@ -127,7 +129,7 @@ getOrderBySubNovelList(novelNumber, function (result) {
         </div>
         <div class="NovelDEC">
             <div class="NovelDECS">
-                <div class="Noveltt">${subnovel.subNovelTitle} ${i+1}화</div>
+                <div class="Noveltt">${novelOriginTitle} ${i+1}화</div>
                 <div class="Novelday">${date}</div>
             </div>
         </div>`

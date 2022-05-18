@@ -1,4 +1,4 @@
-package com.team1.stelling.domain.vo;
+package com.team1.stelling.domain.dto;
 
 import lombok.*;
 import org.springframework.stereotype.Component;

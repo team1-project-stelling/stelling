@@ -28,7 +28,7 @@
                 <img src="/images/icon/소설하트.png" class="img topheart"/>
             </div>
             <div class="bellIcon">
-                <img src="/images/icon/종알림.png" class="img topbell"/>
+                <img src="/images/icon/후원코인.png" class="img topbell"/>
             </div>
             <div class="listIcon">
                 <img src="/images/icon/목록.png" class="img"/>
@@ -98,11 +98,11 @@ Since the selected dataset has a massive number of images for training and testi
     <div class="ments">
         <div style="display: flex;justify-content: space-between;">
         <p class="p2">댓글 <span class="span2">(10)</span></p>
-        <button class="send">전송</button>
+        <button class="send" type="button" >전송</button>
         </div>
 
         <div class="writeMent">
-            <textarea name="" id="" class="writeMentarea"></textarea>
+            <textarea name="replyContent" id="replyContent" class="writeMentarea"></textarea>
         </div>
 
         <div class="flex" style="margin-bottom: 49px;">
@@ -127,7 +127,7 @@ Since the selected dataset has a massive number of images for training and testi
             </div>
             <div>
                 <div style="text-align: right; display: flex;">
-                    <button class="mentBtns mentBtns1" style="margin-right: 6px; border-color:#cbcbcb; color:#cbcbcb;">
+                    <button class="mentBtns mentBtns1" style="margin-right: 6px; border-color:#cbcbcb; color:#cbcbcb;" type="button">
                         <img src="/images/icon/좋아요.png" height="20" width="20" class="likeBtn"/>
                         <span style="vertical-align: super;">100</span>
                     </button>
@@ -150,7 +150,7 @@ Since the selected dataset has a massive number of images for training and testi
             </div>
             <div>
                 <div style="text-align: right; display: flex;">
-                    <button class="mentBtns mentBtns1" style="margin-right: 6px; border-color:#cbcbcb; color:#cbcbcb;">
+                    <button class="mentBtns mentBtns1" style="margin-right: 6px; border-color:#cbcbcb; color:#cbcbcb;" type="button">
                         <img src="/images/icon/좋아요.png" height="20" width="20" class="likeBtn"/>
                         <span style="vertical-align: super;">100</span>
                     </button>
@@ -173,11 +173,11 @@ Since the selected dataset has a massive number of images for training and testi
             </div>
             <div>
                 <div style="text-align: right; display: flex;">
-                    <button class="mentBtns mentBtns1" style="margin-right: 6px; border-color:#cbcbcb; color:#cbcbcb;">
+                    <button class="mentBtns mentBtns1" style="margin-right: 6px; border-color:#cbcbcb; color:#cbcbcb;" type="button">
                         <img src="/images/icon/좋아요.png" height="20" width="20" class="likeBtn"/>
                            <span style="vertical-align: super;" class="number">100</span>
                     </button>
-                    <button class="mentBtns siren" style="border-color: #ef6e73;"><img src="/images/icon/사이렌full.png" height="20" width="20"/></button>
+                    <button class="mentBtns siren" style="border-color: #ef6e73;"><img src="/images/icon/사이렌full.png" height="20" width="20" type="button"/></button>
                 </div>
                 <div class="date">
                     2022.05.11
@@ -331,4 +331,11 @@ Since the selected dataset has a massive number of images for training and testi
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/novel/novelDetailView.js"></script>
+<script src="/assets/js/novel/novelReply.js"></script>
+<script>
+    let userNumber = 2;
+    let subNovelNumber= 29;
+    let novelNumber = 109;
+
+</script>
 </html>
