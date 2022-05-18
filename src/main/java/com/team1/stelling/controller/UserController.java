@@ -84,4 +84,26 @@ public class UserController {
             return "redirect:/main/index";
         }
     }
+
+    /////////////////////////////////////////
+    // 아이디 중복확인
+    @ResponseBody // 값 변환을 위해 꼭 필요함
+    @PostMapping("/idCheck") // 아이디 중복확인을 위한 값으로 따로 매핑
+    public int overlappedID(String userId){
+        int count = 0;
+        count = userService.idCheck(userId);
+        log.info("#######################" + count);
+        return count;
+    }
+
+    /////////////////////////////////////////
+    // 이메일 중복확인
+    @ResponseBody // 값 변환을 위해 꼭 필요함
+    @PostMapping("/emailCheck") // 아이디 중복확인을 위한 값으로 따로 매핑
+    public int overlappedEmail(String userEmail){
+        int count = 0;
+        count = userService.idCheck(userEmail);
+        log.info("#######################" + count);
+        return count;
+    }
 }

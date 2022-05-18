@@ -1,3 +1,10 @@
+
+
+
+showNovel(subNovelNumber, function (result) {
+    $('.novelContent').val(result);
+    textareaauto();
+})
 textareaauto();
 
 function textareaauto() {
@@ -146,10 +153,10 @@ $('.topheart').on("click", function () {
 })
 
 $('.topbell').on("click", function () {
-    if ($(this).attr('src') == '/images/icon/종알림.png') {
-        $(this).attr('src', '/images/icon/종알림full.png');
+    if ($(this).attr('src') == '/images/icon/후원코인.png') {
+        $(this).attr('src', '/images/icon/후원코인full.png');
     } else {
-        $(this).attr('src', '/images/icon/종알림.png');
+        $(this).attr('src', '/images/icon/후원코인.png');
     }
 })
 
@@ -233,9 +240,23 @@ $('.siren').click(function () {
                 confirmButtonColor: '#ef6e73',
                 title:'신고되었습니다.'
             }
-
-
             )
         }
     })
 });
+
+function showNovel(subNovelNumber,callback,error) {
+    $.ajax({
+        type:"GET",
+        url:"/novelDetail/showNovel/"+subNovelNumber,
+        success:function (result) {
+            callback(result);
+        },
+        error:function(xhr, status, er){
+            if(error){
+                error(er);
+            }
+        }
+        });
+
+}

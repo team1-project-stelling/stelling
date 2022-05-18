@@ -16,10 +16,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @Slf4j
@@ -62,6 +62,65 @@ public class NovelRankingController {
         model.addAttribute( "resultTotal", rankingList.size());
         model.addAttribute( "criteria", novelRankingCriteria);
         return "/novel/ranking/novelRanking";
-
     }
+
+    @LogStatus
+    @GetMapping("novelRanking/rankingSearchOfDay")
+    public String rankingSearchOfDay(NovelRankingCriteria novelRankingCriteria,Model model){
+//        Page<NovelCategoryDTO> rankingList = novelService.getList(pageable);
+        List<NovelRankingDTO> rankingList = novelService.rankingSearch(novelRankingCriteria);
+        rankingList.forEach(e -> log.info("^^^^^"+e.toString()));
+        log.info("@@@@"+novelRankingCriteria.toString());
+
+        /*        List<NovelVO> rankingList = novelService.getTop50ByTag(novelRankingCriteria.getKeyword());*/
+/*
+        rankingList.forEach(e -> log.info("#########"+e.toString()));
+        log.info("###### total:"+ rankingList.size());
+        model.addAttribute("rankingList",rankingList);
+        model.addAttribute( "resultTotal", rankingList.size());
+        model.addAttribute( "criteria", novelRankingCriteria);*/
+
+
+//        model.addAttribute("pageableDTO",pageableDTO);
+        model.addAttribute("rankingList",rankingList);
+        model.addAttribute( "resultTotal", rankingList.size());
+        model.addAttribute( "criteria", novelRankingCriteria);
+        return "/novel/ranking/novelRanking";
+    }
+
+    @LogStatus
+    @GetMapping("novelRanking/changeModelOfDay")
+    public String changeModelOfDay(NovelRankingCriteria novelRankingCriteria,Model model){
+//        Page<NovelCategoryDTO> rankingList = novelService.getList(pageable);
+        log.info("changeModelOfDay!!!!");
+        List<NovelRankingDTO> rankingList = novelService.rankingSearch(novelRankingCriteria);
+        rankingList.forEach(e -> log.info("^^^^^"+e.toString()));
+        log.info("@@@@"+novelRankingCriteria.toString());
+
+        /*        List<NovelVO> rankingList = novelService.getTop50ByTag(novelRankingCriteria.getKeyword());*/
+/*
+        rankingList.forEach(e -> log.info("#########"+e.toString()));
+        log.info("###### total:"+ rankingList.size());
+        model.addAttribute("rankingList",rankingList);
+        model.addAttribute( "resultTotal", rankingList.size());
+        model.addAttribute( "criteria", novelRankingCriteria);*/
+
+
+//        model.addAttribute("pageableDTO",pageableDTO);
+        model.addAttribute("rankingList",rankingList);
+        model.addAttribute( "resultTotal", rankingList.size());
+        model.addAttribute( "criteria", novelRankingCriteria);
+        return "/novel/ranking/novelRankingOfDay";
+    }
+
+/*    @LogStatus
+    @ResponseBody
+    @PostMapping( value =  {"/changeModelOfDay"}, consumes = "application/json")
+    public void modify(@RequestBody NovelRankingCriteria novelRankingCriteria,Model model){
+        log.info("changeModelOfDay.........." + novelRankingCriteria.toString());
+        novelRankingCriteria.setDay(-1);
+        log.info("@@@@@@@@@.........." + novelRankingCriteria.toString());
+        model.addAttribute( "criteria", novelRankingCriteria);
+    }*/
+
 }
