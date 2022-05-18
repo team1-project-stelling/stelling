@@ -75,6 +75,7 @@ public class MyPageController {
         return "myPage/myPageQuestion";
     }
 
+
     //탈퇴(status 1->0으로 변경)
     @GetMapping("/withDraw")
     public String withDraw(){
@@ -83,6 +84,7 @@ public class MyPageController {
         userService.modify(sessionUser);
         return "main/index";
     }
+  
     @GetMapping("/myPageQuit")
     public void myPageQuit(){
         log.info("myPageQuit");

@@ -24,7 +24,6 @@ public class UserService {
     public void register(UserVO vo){ userRepository.save(vo);}
     public void modify(UserVO vo){ userRepository.save(vo);}
 
-
 //    public boolean checkEmailDuplicate(String email){
 //        return userRepository.existsByUserEmail(email);
 //    }
