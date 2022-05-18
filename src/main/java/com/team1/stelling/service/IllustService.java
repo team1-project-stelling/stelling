@@ -2,6 +2,7 @@ package com.team1.stelling.service;
 
 import com.team1.stelling.domain.repository.IllustRepository;
 import com.team1.stelling.domain.vo.IllustVO;
+import com.team1.stelling.domain.vo.SubNovelVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -28,6 +29,7 @@ public class IllustService {
         vo.updateIllustUpdateDate();
         illustRepository.save(vo);
     }
+    public int getTotal(){return illustRepository.findByUserNumberTotal(1L);}
 
     @Transactional
     public Page<IllustVO> getList(Pageable pageable){

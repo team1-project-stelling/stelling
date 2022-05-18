@@ -90,11 +90,11 @@
                             <th>성별</th>
                             <td>
                                 <label class="select_sex" for="userGender-1">
-                                    <input id="userGender-1" name="userGender" class="radio-ico" type="radio">
+                                    <input id="userGender-1" name="userGender" value="0" class="radio-ico" type="radio">
                                     <span class="ico">남자</span>
                                 </label>
                                 <label  class="select_sex" for="userGender-2">
-                                    <input id="userGender-2" name="userGender" class="radio-ico" type="radio">
+                                    <input id="userGender-2" name="userGender" value="1" class="radio-ico" type="radio">
                                     <span id="female" class="ico">여자</span>
                                 </label>
                             </td>
@@ -129,8 +129,10 @@
                     </tbody>
                 </table>
                 <div class="form_footer">
-                    <button onclick="joinform_check();" type="submit" class="join_button">가입하기</button>
+                    <button onclick="joinform_check();" type="button" class="join_button">가입하기</button>
                 </div>
+                <input type="hidden" name="userCoinBalance" value="0">
+                <input type="hidden" name="userStatus" value="1">
             </form>
         </div>
     </div>

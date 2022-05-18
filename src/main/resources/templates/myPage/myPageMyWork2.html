@@ -30,22 +30,22 @@
             <div class="left_block">
                 <ul class="liWrap">
                     <li class="li_top left">
-                        <a class="menu" href="myPageEditProfile.html">프로필 수정</a>
+                        <a class="menu" href="/myPage/myPageEditProfile">프로필 수정</a>
                     </li>
                     <li class="left oned">
-                        <a class="menu" href="myPageMyWork.html">내 작품 관리</a>
+                        <a class="menu" href="/myPage/myPageWork">내 작품 관리</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPageChangePw.html">비밀번호 변경</a>
+                        <a class="menu" href="/myPage/myPageChangePw">비밀번호 변경</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPageQuestion.html">내 문의 내역</a>
+                        <a class="menu" href="/myPage/myPageQuestion">내 문의 내역</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPageQuit.html">탈퇴 하기</a>
+                        <a class="menu" href="/myPage/myPageQuit">탈퇴 하기</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPagePayList.html">결제</a>
+                        <a class="menu" href="javascript:goPayList()">결제</a>
                     </li>
                 </ul>
             </div>
@@ -222,5 +222,11 @@
 <script src="/assets/js/mypage/myWork.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:inline="javascript">
+    const userNumber = [[${session.userNumber}]];
 
+    function goPayList(){
+        location.href = "/myLibrary/payList?userNumber=" + userNumber;
+    }
+</script>
 </html>
