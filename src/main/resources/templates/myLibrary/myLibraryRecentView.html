@@ -24,6 +24,15 @@
         padding: 0;
     }
     div.cancelImg{margin-left: 10px;}
+    a.recentRemove{
+        width: 25px;
+        height: 25px;
+        float: right;
+    }
+    a.recentRemove img{
+        width: 25px;
+        height: 25px;
+    }
 </style>
 <body class="is-preload">
 <!-- 헤더 시작 -->
@@ -42,10 +51,10 @@
             <div id="categoryMenu" class="giveMaxWidth">
                 <table class="giveMaxWidth">
                     <tbody>
-                    <tr style="border-bottom: 1px solid #ef6e73;">
+                    <tr>
                         <td><a href="/myLibrary/myLibraryCollection/myPick" class="categoryMenuItem">찜목록</a></td>
                     </tr>
-                    <tr>
+                    <tr style="border-bottom: 1px solid #ef6e73;">
                         <td><a href="/myLibrary/myLibraryCollection/myRecentView" class="categoryMenuItem">최근 본 작품</a></td>
                     </tr>
                     </tbody>
@@ -94,28 +103,28 @@
                 </div>
             </div>
             <div class="my-item-list">
-                <th:block th:each="pick:${list}">
+                <th:block th:each="recent:${list}">
                 <div class="my-item">
                     <!--<span class="tag-update">UP</span>-->
                     <div class="item-img btn-num">
                         <picture class="">
-                            <img th:src="'/upload/display?fileName='+${pick.novelVO.novelUploadPath}+'/'+${pick.novelVO.novelFileName}" class="fade-in" alt="표지사진" style="max-width: 100%;"> <!--추후 UUID추가-->
+                            <img th:src="'/upload/display?fileName='+${recent.novelVO.novelUploadPath}+'/'+${recent.novelVO.novelFileName}" class="fade-in" alt="표지사진" style="max-width: 100%;"> <!--추후 UUID추가-->
                         </picture>
                     </div>
                     <!-- //item-img -->
                     <div class="item-info" style="margin-left: 12px;padding: 8px;">
                         <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
-                            <span class="genre" style="color: #ef6e73" th:text="'['+${pick.novelVO.novelCategory}+']'">[판타지]</span>
-                            <span th:text="${pick.novelVO.novelTitle}">던전리셋</span>
+                            <span class="genre" style="color: #ef6e73" th:text="'['+${recent.novelVO.novelCategory}+']'">[판타지]</span>
+                            <span th:text="${recent.novelVO.novelTitle}">던전리셋</span>
                         </p>
                         <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
 <!--                            <img class="people" src="/images/people.png">
                             <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">5천+</span>-->
-                            <span class="writer" th:text="${pick.userVO.userNickName}"></span>
+                            <span class="writer" th:text="${recent.userVO.userNickName}"></span>
                         </div>
                         <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
-                            <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;" th:text="|총 편수: ${pick.novelVO.novelRoundAboutTotal}|"></span>
-                            <span th:text="|최근 등록일 : ${#calendars.format(pick.novelVO.novelUpdateDate,'yyyy-MM-dd')}|"></span>
+                            <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;" th:text="|총 편수: ${recent.novelVO.novelRoundAboutTotal}|"></span>
+                            <span th:text="|최근 등록일 : ${#calendars.format(recent.novelVO.novelUpdateDate,'yyyy-MM-dd')}|"></span>
 
                         </div>
                         <div class="item-button" style="margin-top: 3em;">
@@ -123,8 +132,11 @@
                                 <li><a href="#" class="btn-view tag-list">보러가기</a></li>
                             </ul>
                         </div>
+                        <a class="recentRemove"><img src="/images/휴지통.png"></a>
                     </div>
+
                 </div>
+
                 </th:block>
             </div>
             <!-- 페이징 시작-->

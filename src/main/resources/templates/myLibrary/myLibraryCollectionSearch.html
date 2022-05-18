@@ -12,7 +12,7 @@
     <link href="/assets/css/myLibrary/myBook.css" rel="stylesheet" type="text/css">
 </head>
 <style>
-    #searchForm button#pickFormBtn{
+   #searchForm button#pickFormBtn{
         width: 55px;
         height: 28px;
         border: none;
@@ -23,7 +23,7 @@
         cursor: pointer;
         padding: 0;
     }
-    div.cancelImg{margin-left: 10px;}
+   div.cancelImg{margin-left: 10px;}
 </style>
 <body class="is-preload">
 <!-- 헤더 시작 -->
@@ -115,8 +115,7 @@
                         </div>
                         <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
                             <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;" th:text="|총 편수: ${pick.novelVO.novelRoundAboutTotal}|"></span>
-                            <span th:text="|최근 등록일 : ${#calendars.format(pick.novelVO.novelUpdateDate,'yyyy-MM-dd')}|"></span>
-
+                            <span th:text="|최근 등록일 : ${pick.novelVO.novelUpdateDate}|"></span>
                         </div>
                         <div class="item-button" style="margin-top: 3em;">
                             <ul class="tag-title">
@@ -132,13 +131,13 @@
                 <!-- 페이징 -->
                 <ul class="c_PagingList" >
                     <!-- 이전 -->
-                    <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/myLibrary/myLibraryCollection/myPick(page=${pageableDTO.startPage -2 })}" >&lt;&lt;</a></li>
-                    <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/myLibrary/myLibraryCollection/myPick(page=${pageableDTO.previous})}">&lt;</a></li>
+                    <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/myLibrary/myLibraryCollection/myPick/search(page=${pageableDTO.startPage -2 },keyword=${pageableDTO.keyword})}" >&lt;&lt;</a></li>
+                    <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/myLibrary/myLibraryCollection/myPick/search(page=${pageableDTO.previous},keyword=${pageableDTO.keyword})}">&lt;</a></li>
 
 
                     <th:block th:each="num:${#numbers.sequence(pageableDTO.startPage,pageableDTO.endPage)}">
                         <li  th:if="${pageableDTO.pageNumber== num}" th:text="${num}" class="pageActive"></li>
-                        <li th:unless="${pageableDTO.pageNumber == num}" ><a th:text="${num}" th:href="@{/myLibrary/myLibraryCollection/myPick(page=${num - 1})}"></a></li>
+                        <li th:unless="${pageableDTO.pageNumber == num}" ><a th:text="${num}" th:href="@{/myLibrary/myLibraryCollection/myPick/search(page=${num - 1},keyword=${pageableDTO.keyword})}"></a></li>
                     </th:block>
 
 
@@ -146,8 +145,8 @@
 
 
                     <!-- 다음 -->
-                    <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/myLibrary/myLibraryCollection/myPick(page=${pageableDTO.next})}">&gt;</a></li>
-                    <li th:if="${pageableDTO.hasNext}"><a th:href="@{/myLibrary/myLibraryCollection/myPick(page=${pageableDTO.endPage})}">&gt;&gt;</a></li>
+                    <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/myLibrary/myLibraryCollection/myPick(page=${pageableDTO.next},keyword=${pageableDTO.keyword})}">&gt;</a></li>
+                    <li th:if="${pageableDTO.hasNext}"><a th:href="@{/myLibrary/myLibraryCollection/myPick/search(page=${pageableDTO.endPage},keyword=${pageableDTO.keyword})}">&gt;&gt;</a></li>
                 </ul>
             </div>
             <!-- 페이징 종료-->

@@ -52,14 +52,14 @@
 <th:block th:insert="/fix/headerWord.html :: headFragment"/>
 
 <!--헤더 이미지-->
-<div id="headerImgWrap" >
+<!--<div id="headerImgWrap" >
     <img id="headerImg"src="/images/fix/rankingBanner2.png" >
-</div>
+</div>-->
 <!-- 헤더 종료 -->
 <div style="max-width: 1200px; margin:0 auto;">
     <div class="top-tab-menu" style="max-width: 1200px; margin: 25px auto 0 auto;">
         <div class="mobile_hidden" style="position: relative; height: 20px; width: 100%;"></div>
-      <!--  <div style="font-size: 50px;text-align: center;">TOP50</div>-->
+        <div style="font-size: 50px;text-align: center;">TOP50</div>
         <!--        <table class="menu_alarm mobile_hidden s_inv" style="width: 100%; max-width: 1200px; height: 60px; margin-top: 0px;">
                     <tbody>
                         <tr>
@@ -177,7 +177,7 @@
 -->
             <div id="dayOfRank" >
                 <ul>
-                    <li th:classappend="${criteria.day== 0} ? 'menuActive' : ''" class="changeDay"><a href="0">월</a></li>
+                    <li th:classappend="${criteria.day== 0} ? 'menuActive' : ''" class="changeDay"><a class="changeDay"href="0">월</a></li>
                     <li th:classappend="${criteria.day== 1} ? 'menuActive' : ''" class="changeDay"><a class="changeDay"href="1">화</a></li>
                     <li th:classappend="${criteria.day== 2} ? 'menuActive' : ''" class="changeDay"><a class="changeDay"href="2">수</a></li>
                     <li th:classappend="${criteria.day== 3} ? 'menuActive' : ''" class="changeDay"><a class="changeDay"href="3">목</a></li>
