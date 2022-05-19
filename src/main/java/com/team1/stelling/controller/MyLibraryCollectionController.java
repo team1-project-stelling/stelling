@@ -51,6 +51,15 @@ public class MyLibraryCollectionController {
         return "myLibrary/myLibraryCollectionSearch";
     }
 
+    @LogStatus
+    @ResponseBody
+    @DeleteMapping( value = "/myPick/delete/{myPickViewNumber}")
+    public String myPickRemove(@PathVariable("myPickViewNumber") Long myPickViewNumber){
+        log.info("remove............" + myPickViewNumber);
+        return myLibraryService.remove(myPickViewNumber) ? "찜 삭제 성공" : "찜  삭제 실패";
+    }
+
+
     @GetMapping("/myRecentView")
     public String myRecentView(Model model, @PageableDefault(page = 0, size = 10, sort = "recentViewNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
         // 로그인시 세션에 존재할 임시 유저 정보
@@ -80,7 +89,7 @@ public class MyLibraryCollectionController {
     @LogStatus
     @ResponseBody
     @DeleteMapping( value = "/myRecentView/delete/{recentViewNumber}")
-    public String remove(@PathVariable("recentViewNumber") Long recentViewNumber){
+    public String recentRemove(@PathVariable("recentViewNumber") Long recentViewNumber){
         log.info("remove............" + recentViewNumber);
         return recentViewService.remove(recentViewNumber) ? "최근 본 작품 삭제 성공" : "최근 본 작품 삭제 실패";
     }
