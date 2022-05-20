@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @Slf4j
@@ -21,5 +22,11 @@ public class UserService {
     public List<UserVO> getList(){return userRepository.findAll(); }
     public void register(UserVO vo){ userRepository.save(vo);}
     public void modify(UserVO vo){ userRepository.save(vo);}
-
+    public String findUserNickName(Long userNum){
+     String userNickName = userRepository.findById(userNum).orElse(null).getUserNickName();
+        if(Objects.isNull(userNickName)){
+            log.info("없는 사용자");
+        }
+        return userNickName;
+    }
 }

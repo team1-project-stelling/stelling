@@ -17,5 +17,4 @@ public interface UserRepository extends JpaRepository<UserVO, Long>{
     @Query( value = "SELECT  N.NOVEL_TITLE FROM TBL_USER  U JOIN TBL_NOVEL N ON U.USER_NUMBER = N.USER_NUMBER ", nativeQuery = true)
     List<String>  findByNumberJoinList();
 
-
 }
