@@ -149,6 +149,7 @@ function validPhoneCheck(obj){
     return (obj.value.match(pattern)!=null)
 }
 
+//프로필 이미지 로컬에 저장
 $("input[type='file']").change(function(e){
     let inputFile = $("input[type='file']");
     let files = inputFile[0].files;

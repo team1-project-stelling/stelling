@@ -1,10 +1,12 @@
 package com.team1.stelling.controller;
 
-import com.team1.stelling.domain.vo.NovelVO;
+import com.google.gson.JsonObject;
+import com.team1.stelling.domain.repository.UserRepository;
 import com.team1.stelling.domain.vo.UserVO;
 import com.team1.stelling.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +28,7 @@ import java.util.UUID;
 @RequestMapping("/myPage/*")
 public class MyPageController {
     private final UserService userService;
+    private final UserRepository userRepository;
 
 
     //프로필수정
@@ -61,12 +64,31 @@ public class MyPageController {
     }
 
 
+//비밀번호 변경----------------
     @GetMapping("/myPageChangePw")
     public void myPageChangePw() {
         log.info("myPageChangePw");
     }
 
 
+    @PostMapping("/pwChangeForm")
+    public String pwChangeForm(HttpServletRequest request,String userNewPw){
+        HttpSession session = request.getSession();
+        UserVO uservo = userRepository.findById(Long.valueOf((Integer)session.getAttribute("userNumber"))).get();
+        uservo.setUserPw(userNewPw);
+        userRepository.save(uservo);
+        return "/myPage/myPageEditProfile";
+    }
+
+
+    @PostMapping("/pwCheck")
+    @ResponseBody
+    public String pwCheck(HttpServletRequest request){
+        HttpSession session =  request.getSession();
+        String userPw = userRepository.findById(Long.valueOf((Integer)session.getAttribute("userNumber"))).get().getUserPw();
+        return userPw;
+    }
+//--------------------------------
 
     @GetMapping("/myPageQuestion")
     public String myPageQuestion(){
@@ -78,8 +100,8 @@ public class MyPageController {
     //탈퇴(status 1->0으로 변경)
     @GetMapping("/withDraw")
     public String withDraw(Long userNumber){
-        UserVO sessionUser = userService.get(28L);
-        sessionUser.updateUserStatus(0L);
+        UserVO sessionUser = userService.get(userNumber);
+        sessionUser.updateUserStatus(0);
         userService.modify(sessionUser);
         return "main/index";
     }
@@ -103,10 +125,6 @@ public class MyPageController {
     public List<UserVO> uploadAjaxPost(MultipartFile[] uploadFile) {
         String uploadFolder = "C:/stelling";
         List<UserVO> fileList = new ArrayList<>();
-//        UUID(Universally unique identifier) : 범용 고유 식별자
-//        네트워크 상에서 각각의 개체들을 식별하기 위하여 사용되었다.
-//        중복될 가능성이 거의 없다고 인정되기 때문에 많이 사용된다.
-//        UUID의 개수는 10의 38승입니다.
 
         UUID uuid = UUID.randomUUID();
         String uploadFileName = null;
