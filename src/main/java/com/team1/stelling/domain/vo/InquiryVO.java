@@ -38,4 +38,31 @@ public class InquiryVO {
    @Column(name = "INQUIRY_REPDATE")
    private Date inquiryRepDate; // 답변 시간
 
+   public void updateInquiryNumber(Long inquiryNumber) {
+      this.inquiryNumber = inquiryNumber;
+   }
+
+   public void updateInquiryTitle(String inquiryTitle) {
+      this.inquiryTitle = inquiryTitle;
+   }
+
+   public void updateInquiryContent(String inquiryContent) {
+      this.inquiryContent = inquiryContent;
+   }
+
+   public void updateInquiryAnswer(String inquiryAnswer) {
+      this.inquiryAnswer = inquiryAnswer;
+   }
+
+   public void updateInquiryStatus(int inquiryStatus) {
+      this.inquiryStatus = inquiryStatus;
+   }
+
+   public void updateInquiryDate(Date inquiryDate) {
+      this.inquiryDate = inquiryDate;
+   }
+
+   public void updateInquiryRepDate(Date inquiryRepDate) {
+      this.inquiryRepDate = inquiryRepDate;
+   }
 }

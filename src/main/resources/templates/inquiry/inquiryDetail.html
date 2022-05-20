@@ -21,7 +21,7 @@
     <!--Main-->
         <div class="mainbox">
             <div style="margin-top: 250px;">
-                <header class="head_text">내 문의내역</header>
+                <header class="head_text" >내 문의내역</header>
             </div>
             <div>
                 <p class="text_position_1">
@@ -30,34 +30,35 @@
                 <table class="table">
                     <tbody>
                         <tr class="tr">
-                            <td class="td_left">닉네임</td>
+                            <td class="td_left" th:text="${inquiry.userVO.userNickName}">닉네임</td>
                             <td class="td_center"></td>
                             <td class="td_right">처리상태</td>
-                            <td class="td_rightright"></td>
+                            <td class="td_rightright" th:if="${inquiry.inquiryStatus == 0}">처리중</td>
+                            <td class="td_rightright" th:it="${inquiry.inquiryStatus == 1}">완료</td>
                         </tr>
                         <tr class="tr">
                             <td class="td_left">제목</td>
-                            <td class="td_center"></td>
+                            <td class="td_center" th:text="${inquiry.inquiryTitle}"></td>
                             <td class="td_right">등록일</td>
-                            <td class="td_rightright"></td>
+                            <td class="td_rightright" th:text="${#calendars.format(inquiry.inquiryDate,'yyyy-MM-dd')}"></td>
                         </tr>
                         <tr class="tr">
                             <td class="td_left" style="height: 200px">내용</td>
-                            <td class="td_center"></td>
+                            <td class="td_center" th:text="${inquiry.inquiryContent}"></td>
                             <td class="td_right"></td>
                         </tr>
                         <tr class="tr">
                             <td class="td_left" style="height: 200px">답변</td>
-                            <td class="td_center"></td>
+                            <td class="td_center" th:if="${inquiry.inquiryStatus == 1}" th:text="${inquiry.inquiryContent}"></td>
+                            <td class="td_center" th:if="${inquiry.inquiryStatus == 1}" >답변까지 최대 7일 소요될 수 있습니다.</td>
                             <td class="td_right"></td>
                         </tr>
                     </tbody>
                 </table>
                 <p class="text_position_1">답변이 만족스럽지 않으셨거나 이 외 다른 문의사항이 있으신 경우 다시 문의주시면 최대한 빠르게 답변 드리겠습니다.</p>
                 <div class="button_position">
-                    <a href=""><button class="ask_again_button">다시 문의하기</button></a>
-                    <a href=""><button class="list_button">목록</button></a>
-                    
+                    <a href="#"><button class="ask_again_button">다시 문의하기</button></a>
+                    <a href="#"><button class="list_button">목록</button></a>
                 </div>
             </div>
         </div>

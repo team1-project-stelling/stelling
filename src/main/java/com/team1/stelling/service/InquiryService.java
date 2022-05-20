@@ -17,8 +17,8 @@ public class InquiryService{
     private final InquiryRepository inquiryRepository;
     private final UserService userService;
 
-    public InquiryVO get(Long inquiryNumber) {return inquiryDAO.get(inquiryNumber);}
     public void register(InquiryVO inquiryVO) { inquiryRepository.save(inquiryVO);}
     public void modify(InquiryVO inquiryVO) {inquiryDAO.modify(inquiryVO);}
+    public InquiryVO get(Long inquiryNumber){return inquiryRepository.findById(inquiryNumber).orElse(new InquiryVO());}
 
 }

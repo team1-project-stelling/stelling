@@ -28,13 +28,11 @@ public class InquiryController {
     private final InquiryService inquiryService;
 
     @GetMapping("/inquiryDetail")
-    public String detailInquiry(Model model, HttpServletRequest request){
-/*        HttpSession session =  request.getSession();
-        String userNickName = userService.findUserNickName(Long.valueOf((Integer)session.getAttribute("userNumber")));*/
-        String userNickName = userService.findUserNickName(5L);
-
-        model.addAttribute("userNickName", userNickName);
-        log.info(userNickName);
+    public String inquiryDetail (Model model) {
+        /*        HttpSession session =  request.getSession(); */
+//        inquiryService.get(Long.valueOf((Integer)session.getAttribute("userNumber"));
+        InquiryVO inquiryVO = inquiryService.get(1L);
+        model.addAttribute("inquiry", inquiryVO);
         return "inquiry/inquiryDetail";
     }
 
@@ -66,4 +64,6 @@ public class InquiryController {
         out.flush();
         return "/myPage/myPageQuestion";
     }
+
+
 }
