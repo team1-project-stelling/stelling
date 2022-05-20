@@ -55,13 +55,13 @@
                         <a class="menu" href="myPageMyWork.html">내 작품 관리</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPageChangePw.html">비밀번호 변경</a>
+                        <a class="menu" href="javascript:goChangePw();">비밀번호 변경</a>
                     </li>
                     <li class="left">
                         <a class="menu" href="myPageQuestion.html">내 문의 내역</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="javascript:goPayList1();">탈퇴 하기</a>
+                        <a class="menu" href="javascript:goQuit();">탈퇴 하기</a>
                     </li>
                     <li class="left">
                         <a class="menu" href="javascript:goPayList();">결제</a>
@@ -141,8 +141,11 @@
     function goPayList(){
         location.href = "/myLibrary/payList?userNumber=" + userNumber;
     }
-    function goPayList1(){
+    function goQuit(){
         location.href = "/myPage/myPageQuit?userNumber=" + userNumber;
+    }
+    function goChangePw(){
+        location.href = "/myPage/myPageChangePw?userNumber";
     }
 </script>
 </html>
