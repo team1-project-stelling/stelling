@@ -1,13 +1,36 @@
 
-
-
-showNovel(subNovelNumber, function (result) {
-    $('.novelContent').val(result);
-    textareaauto();
-})
 textareaauto();
 
+showNovel({"subNovelNumber":subNovelNumber, "novelNumber":novelNumber}, function (result) {
+    $('.novelContent').val(result.novelContent);
+    $('.writerComment').html(result.writerComment);
+    $('.showLikeNum').html(result.likeCount);
+    let str ="";
+    let subNovel =result.subNovelTitleList;
+
+    console.log(subNovel);
+    subNovel.forEach(function (subNovel, i) {
+        let subNovelUpdateDate =subNovel.subNovelUpdateDate;
+
+        str+= "<div class='side-row'>"
+        str+= "<div style='margin-right: 35px;'><span>"+ ++i +"</span>편.</div>";
+        str+= "<div>";
+        str+= "<div>"+subNovel.subNovelTitle+"</div>";
+        str+= "<div class='day'>"+subNovelUpdateDate.substring(0,10)+"</div>";
+        str+= "</div>";
+        str+= "</div>";
+    })
+
+    $('.slide-div').html(str);
+
+
+
+    textareaauto();
+})
+
+
 function textareaauto() {
+    console.log("텍스트조절");
     $('textarea').each(function () {
         this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
     }).on('input', function () {
@@ -16,15 +39,15 @@ function textareaauto() {
     });
 }
 
+
 $('.colorDiv').on("click", function () {
-    console.log($(this));
-    console.log($(this).hasClass());
     if ($(this).hasClass('cd1')) {
         $('body').css('background-color', 'white');
         $('.novelContent').css('background-color', 'white');
         $('.whiteLine').css('background-color', 'white');
         $('.ments').css('color', 'black');
         $('.writerMent').css('color', 'black');
+
     } else if ($(this).hasClass('cd2')) {
         $('body').css('background-color', 'wheat');
         $('.novelContent').css('background-color', 'wheat');
@@ -98,7 +121,6 @@ $('.line').on("click", function () {
         count2 -= 1;
         $('.count2').html(count2);
     }
-
 })
 
 
@@ -112,7 +134,6 @@ function selectFunction() {
     } else if (selected == 'noto') {
         $('.novelContent').css('font-family', 'Noto Sans KR');
     }
-
 }
 
 
@@ -146,9 +167,15 @@ $(".listIcon").click(function () {
 
 $('.topheart').on("click", function () {
     if ($(this).attr('src') == '/images/icon/소설하트.png') {
-        $(this).attr('src', '/images/icon/소설하트full.png');
+        $('.topheart').attr('src', '/images/icon/소설하트full.png');
+        subNovelLikeCount({"subNovelNumber":subNovelNumber, "num":1}, function (likeCount) {
+            $('.showLikeNum').html(likeCount);
+        })
     } else {
         $(this).attr('src', '/images/icon/소설하트.png');
+        subNovelLikeCount({"subNovelNumber":subNovelNumber, "num":-1}, function (likeCount) {
+            $('.showLikeNum').html(likeCount);
+        })
     }
 })
 
@@ -163,7 +190,6 @@ $('.topbell').on("click", function () {
 
 
 $('.mentIcon').on('click', function () {
-    // console.log($('.ments').scrollHeight);
     var location = document.querySelector(".ments").offsetTop;
     window.scrollTo({top:location, behavior:'smooth'});
 })
@@ -174,7 +200,6 @@ $('.switch_label').select(function () {
 
 
 $('#switch').on('click', function () {
-    console.log($('#switch:checked').css('background'));
     if($('#switch:checked').css('background')!=undefined){
         $('.ments').css('display', 'none');
         $('.writerMent').css('margin-bottom', '225px');
@@ -200,30 +225,68 @@ $('.gray').on("click", function () {
 
 
 
-$('.mentBtns1').on("click", function () {
-    console.log($(this).children('img').attr('src'));
+    $('.replyWrap').on("click", "button.mentBtns1",function () {
+        let replyNum=$(this).data("replynum");
+        if ($(this).children('img').attr('src') == '/images/icon/좋아요full.png') {
+            let $number = parseInt($(this).children('span').html());
+            $(this).css('border-color', '#cbcbcb');
+            $(this).css('color', '#cbcbcb');
+            $(this).children('img').attr('src', '/images/icon/좋아요.png');
+            $(this).children('span').html($number - 1);
+            replyUp({"replyNum":replyNum, "num":-1}, function(result){
+            });
 
+        } else {
 
-    if($(this).children('img').attr('src')=='/images/icon/좋아요full.png'){
-        let $number = parseInt($(this).children('span').html());
-        $(this).css('border-color','#cbcbcb');
-        $(this).css('color','#cbcbcb');
-        $(this).children('img').attr('src', '/images/icon/좋아요.png');
-        $(this).children('span').html($number -1);
+            let $number = parseInt($(this).children('span').html());
+            $(this).css('border-color', '#5A94FF');
+            $(this).css('color', '#5A94FF');
+            $(this).children('img').attr('src', '/images/icon/좋아요full.png');
+            $(this).children('span').html($number + 1);
+            replyUp({"replyNum":replyNum, "num":1},function(result) {
+            });
+        }
 
-    }else {
+    });
 
-        let $number = parseInt($(this).children('span').html());
-        $(this).css('border-color', '#5A94FF');
-        $(this).css('color', '#5A94FF');
-        $(this).children('img').attr('src', '/images/icon/좋아요full.png');
-        $(this).children('span').html($number + 1);
+function replyUp(reply, callback, error){
 
+$.ajax({
+    type: "GET",
+    url: "/reply/"+reply.replyNum+"/"+reply.num,
+    success: function(result, status, xhr){
+        if(callback){
+            callback(result);
+        }
+    },
+    error: function(xhr, status, er){
+        if(error){
+            error(er);
+        }
     }
+
 });
+}
 
+function subNovelLikeCount(numbers, callback, error){
+    $.ajax({
+        type: "GET",
+        url: "/novelDetail/"+numbers.subNovelNumber+"/"+ numbers.num,
+        success: function(result, status, xhr){
+            if(callback){
+                callback(result);
+            }
+        },
+        error: function(xhr, status, er){
+            if(error){
+                error(er);
+            }
+        }
 
-$('.siren').click(function () {
+    });
+}
+
+$('.replyWrap').on("click", "button.siren",function () {
     Swal.fire({
         title: '해당 댓글을 신고하시겠습니까?',
         // text: "다시 되돌릴 수 없습니다. 신중하세요.",
@@ -245,10 +308,10 @@ $('.siren').click(function () {
     })
 });
 
-function showNovel(subNovelNumber,callback,error) {
+function showNovel(nums,callback,error) {
     $.ajax({
         type:"GET",
-        url:"/novelDetail/showNovel/"+subNovelNumber,
+        url:"/novelDetail/showNovel/"+nums.subNovelNumber+"/"+nums.novelNumber,
         success:function (result) {
             callback(result);
         },

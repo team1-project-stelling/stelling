@@ -8,10 +8,12 @@ import com.team1.stelling.service.NovelService;
 import com.team1.stelling.service.SubNovelService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.dom4j.rule.Mode;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,21 +45,19 @@ public class novelRoundController {
         return novelVO;
     }
 
+
+
     @GetMapping("/getSubNovelList")
     @ResponseBody
     public  List<SubNovelVO> getSubNovel(Long novelNumber){
         List<SubNovelVO> sub = subNovelService.getList(novelNumber);
-//        log.info("=======================================================");
-//        log.info(sub.toString());
-//        log.info("=======================================================");
         return sub;
     }
 
     @GetMapping("/orderBySubNovelList")
     @ResponseBody
     public List<SubNovelVO> orderBySubNovelList(Long novelNumber){
-        List<SubNovelVO> sub = subNovelService.orderBySubNovelList(novelNumber
-        );
+        List<SubNovelVO> sub = subNovelService.orderBySubNovelList(novelNumber);
         log.info("_----------------------------------------------------------------");
         log.info(sub.toString());
         log.info("_----------------------------------------------------------------");

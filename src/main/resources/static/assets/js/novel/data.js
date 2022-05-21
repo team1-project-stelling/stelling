@@ -18,9 +18,7 @@ function getNovelVo(novelNumber, callback, error) {
 
     $.ajax({
         url : "/novel/getNovelVO/"+novelNumber,
-        // dataType: "json",
         type: "GET",
-        // async: false,
         success: function(result) {
             callback(result);
         },
@@ -71,41 +69,36 @@ function getOrderBySubNovelList(novelNumber, callback, error){
  // }
 
 
-
- function write() { 
+//
+//  function write() {
+//
+//    let result= [];
+//    $.ajax({
+//      url : "/support/getSupportList",
+//      dataType: "json",
+//      type: "get",
+//      async: false,
+//      success: function(data) {
+//         result= data
+//
+//      },
+//        error: function (){alert("실패");}
+//    });
+//    return result;
+//
+// }
+function getReply(novelNumber, callback , error) {
  
-   let result= [];
    $.ajax({
-     url : "/dummy/writeDummy.json",
-    
-     dataType: "json",
+     url : "/reply/getReplyLists/latest?novelNumber="+novelNumber,
      type: "get",
-     async: false,
-     success: function(data) {
-        result= data
+     success: function(replyDTO) {
+        callback(replyDTO.replyVOList, replyDTO.userVOList);
+        console.log(replyDTO.replyVOList);
       
      },
        error: function (){alert("실패");}
    });
-   return result;
-
-}
-function reply() { 
- 
-   let result= [];
-   $.ajax({
-     url : "https://dummyjson.com/comments",
-    
-     dataType: "json",
-     type: "get",
-     async: false,
-     success: function(data) {
-        result= data.comments
-      
-     },
-       error: function (){alert("실패");}
-   });
-   return result;
 
 }
 

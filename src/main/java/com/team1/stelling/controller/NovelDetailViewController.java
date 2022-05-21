@@ -1,6 +1,8 @@
 package com.team1.stelling.controller;
 
+import com.team1.stelling.domain.dto.NovelDetailVIewDTO;
 import com.team1.stelling.domain.vo.NovelFileVO;
+import com.team1.stelling.domain.vo.SubNovelVO;
 import com.team1.stelling.service.NovelFileService;
 import com.team1.stelling.service.NovelService;
 import com.team1.stelling.service.SubNovelService;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -28,11 +31,16 @@ public class NovelDetailViewController {
     private final NovelFileService novelFileService;
 
 
-    @GetMapping("/showNovel/{subNovelNumber}")
+    @GetMapping("/showNovel/{subNovelNumber}/{novelNumber}")
     @ResponseBody
-    public String ViewDetail(@PathVariable("subNovelNumber") Long subNovelNumber) throws IOException {
+    public NovelDetailVIewDTO ViewDetail(@PathVariable("subNovelNumber") Long subNovelNumber, @PathVariable("novelNumber") Long novelNumber) throws IOException {
       String getFilePathBySubNum= novelFileService.getFilePathBySubNum(subNovelNumber).getNovelFileFilePath();
       String getFileNameBySubNum= novelFileService.getFilePathBySubNum(subNovelNumber).getNovelFileFileName();
+        NovelDetailVIewDTO novelDetailVIewDTO = new NovelDetailVIewDTO();
+        SubNovelVO subNovelVO = subNovelService.get(subNovelNumber);
+        String writerComment = subNovelVO.getSubNovelWriterComment();
+        int likeCount = subNovelVO.getSubNovelLikeCount();
+        List<SubNovelVO> subNovelTitleList =subNovelService.orderBySubNovelList(novelNumber);
 
         BufferedReader br = null;
         String line = null;
@@ -42,7 +50,6 @@ public class NovelDetailViewController {
             log.info("===================================================================================");
 
             while((line = br.readLine()) != null){
-                log.info("라인"+line);
                 result+=line+"\n";
             }
         } catch (FileNotFoundException e) {
@@ -52,6 +59,24 @@ public class NovelDetailViewController {
                 br.close();
             }
         }
-        return result;
+
+        novelDetailVIewDTO.setNovelContent(result);
+        novelDetailVIewDTO.setWriterComment(writerComment);
+        novelDetailVIewDTO.setLikeCount(likeCount);
+        novelDetailVIewDTO.setSubNovelTitleList(subNovelTitleList);
+        return novelDetailVIewDTO;
     }
+
+    @GetMapping("/{subNovelNumber}/{num}")
+    @ResponseBody
+    public int subNovelLikeCount(@PathVariable("subNovelNumber")Long subNovelNumber, @PathVariable("num") int num){
+       SubNovelVO subNovelVO = subNovelService.get(subNovelNumber);
+       subNovelVO.updateSubNovelLickCount(num);
+       subNovelService.register(subNovelVO);
+       return subNovelVO.getSubNovelLikeCount();
+    }
+
+
+
+
 }
