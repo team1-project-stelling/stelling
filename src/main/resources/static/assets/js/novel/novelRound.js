@@ -25,6 +25,7 @@ function IntroModalHandlerClose(){
 
 
 let novelNumber = 109;
+let novelOriginTitle = "";
 RoundMake();
 
 
@@ -38,7 +39,7 @@ function RoundMake(){
     let x_Desc_writer_N=document.querySelector('.x_Desc_writer_N')
     let introHead = document.querySelector('.introHead');
     let introbody =document.querySelector('.introbody');
-    
+
 
             //소설 이미지
             let str ="<img src='/novel/novelRoundInfo?novelNumber="+novelNumber+"'>";
@@ -48,14 +49,15 @@ function RoundMake(){
             getNovelVo(novelNumber,function (result) {
             // 제목
             let title= document.createElement('h2');
-            let titletext=document.createTextNode(`${result.novelTitle}`)
+            let titletext=document.createTextNode(`${result.novelTitle}`);
+                novelOriginTitle =result.novelTitle;
             //카테고리
             let gener = document.createElement('span')
             gener.className="hashtagSpan"
             let hash = result.novelHashtag;
             //조회수
             let cnt= document.createElement('h3');
-            let cnttext=document.createTextNode(`${result.novelViewCountTotal}만명`)
+            let cnttext=document.createTextNode(setStringNumber(`${result.novelViewCountTotal}`+`명`));
 
             cnt.append(cnttext)
             // 작품소개
@@ -67,10 +69,48 @@ function RoundMake(){
             // let NwriterText =document.createTextNode(result.original_title)
             // 이미지
 
+            //요일 체크
+            let days = "";
+            if(`${result.novelMonday}`==1){
+                days+="<span class='d_day d_dayColor'>월</span>";
+            }else{
+                days+="<span class='d_day'>월</span>";
+            }
+            if(`${result.novelTuesDay}`==1){
+                days+="<span class='d_day d_dayColor'>화</span>";
+            }else{
+                days+="<span class='d_day'>화</span>";
+            }
+            if(`${result.novelWednesDay}`==1){
+                days+="<span class='d_day d_dayColor'>수</span>";
+            }else{
+                days+="<span class='d_day'>수</span>";
+            }
+            if(`${result.novelThursDay}`==1){
+                days+="<span class='d_day d_dayColor'>목</span>";
+            }else{
+                days+="<span class='d_day'>목</span>";
+            } if(`${result.novelFriDay}`==1){
+                days+="<span class='d_day d_dayColor'>금</span>";
+            }else{
+                days+="<span class='d_day'>금</span>";
+            }
+            if(`${result.novelSaturDay}`==1){
+                days+="<span class='d_day d_dayColor'>토</span>";
+            }else{
+                days+="<span class='d_day'>토</span>";
+            }
+            if(`${result.novelSaturDay}`==1){
+                days+="<span class='d_day d_dayColor'>일</span>";
+            }else{
+                days+="<span class='d_day'>일</span>";
+            }
+            $('.days').html(days);
+
 
 
             //해시태그
-            let arr = hash.replace(/\s+/, ',').split(',');
+            let arr = hash.replace(/ /gi, ",").split(',');
 
             for (let i = 0; i < arr.length; i++) {
                 let str="";
@@ -100,12 +140,9 @@ function RoundMake(){
 
 getSubNovelList(novelNumber, function (result) {
     console.log(result);
-
-
-
 });
 
-
+//소설 회차 리스트
 getOrderBySubNovelList(novelNumber, function (result) {
     NoveltotalCnt = document.createTextNode("전체(" +result.length+ ")개");
     document.querySelector('.NoveltotalCnt').append(NoveltotalCnt);
@@ -113,7 +150,6 @@ getOrderBySubNovelList(novelNumber, function (result) {
 
     let current =0;
     let current10 = current+10
-
 
     result.forEach(function (subnovel, i) {
 
@@ -127,7 +163,7 @@ getOrderBySubNovelList(novelNumber, function (result) {
         </div>
         <div class="NovelDEC">
             <div class="NovelDECS">
-                <div class="Noveltt">${subnovel.subNovelTitle} ${i+1}화</div>
+                <div class="Noveltt">${novelOriginTitle} ${i+1}화</div>
                 <div class="Novelday">${date}</div>
             </div>
         </div>`
@@ -137,41 +173,82 @@ getOrderBySubNovelList(novelNumber, function (result) {
 })
 
 
+//댓글 띄우기
+getReply(novelNumber, function (replyVO, userVO) {
+    const ReplyCmt =$(".ReplyCmt");
+    let str = "";
+    let replyArea = $('.replyWrap');
+
+    if(replyVO == null || replyVO.length == 0){
+        replyArea.html("<p>등록된 댓글이 없습니다.</p>");
+        return;
+    }
+    for (let i=0; i<replyVO.length; i++){
+        let replyUploadDate =replyVO[i].replyUploadDate+"";
+        str +="<div class='profilePlusText' style='position: relative;'>";
+        str +="<div class='Best'>Best</div>";
+        str +="<div><!--프사, 아이디-->";
+        str +="<div class='profile'><img src='"+userVO[i].userFilePath+"'class='img'/></div>";
+        str +="</div>";
+        str +="<div style='width: 678px;'>";
+        str +="<div style='font-size: 12px;'>"+ userVO[i].userNickName +"</div>";
+        str +="<div>"+replyVO[i].replyContent+"</div>";
+        str +="</div>";
+        str +="<div>";
+        str +="<div style='text-align: right; display: flex;'>";
+        str +="<button class='mentBtns mentBtns1' style='margin-right: 6px; border-color:#cbcbcb; color:#cbcbcb;' data-replynum ='"+replyVO[i].replyNumber+"' type='button'>";
+        str +="<img src='/images/icon/좋아요.png' height='20' width='20' class='likeBtn'/>";
+        str +="<span style='vertical-align: super;'>"+replyVO[i].replyUp+"</span>";
+        str +="</button>";
+        str +="<button class='mentBtns siren' style='border-color: #ef6e73;'><img src='/images/icon/사이렌full.png' height='20' width='20'/></button>";
+        str +="</div>";
+        str +="<div class='date'>";
+        str +=replyUploadDate.substring(0,10);
+        str +="</div>";
+        str +="</div>";
+        str +="</div>";
+    };
+    ReplyCmt.html(str);
+});
 
 
-const cnt =ResCnt();
-ResRank()
-function ResRank(){
-    ResRank= document.querySelector('.ResRank')
-    table = document.querySelector('.table')
-    cnt.slice(0,10)?.map((v,index) =>{
-
-        //  sponCnt = document.createTextNode(`${index}${v.id}님 ${v.sponCnt}개`)
-
-        ResRank.innerHTML +=
-            `
-        
-        <span class="rankCnt"> ${index+1}위 ${v.id}님 ${v.sponCnt}개  <span/>  
-        `
-    })
-
-    cnt?.map((v,index)=>{
-        table.innerHTML +=
-            ` 
-    
-        <tr>
-             <th style="width: 33%">${index+1}위</th>
-             <th style="width: 33%">${v.id}님</th>
-             <th style="width: 33%"> ${v.sponCnt}개</th>
-         </tr>
 
 
 
-
-         `
-    })
-
-}
+// const cnt =ResCnt();
+//
+// ResRank()
+// function ResRank(){
+//     ResRank= document.querySelector('.ResRank')
+//     table = document.querySelector('.table')
+//     cnt.slice(0,10)?.map((v,index) =>{
+//
+//         //  sponCnt = document.createTextNode(`${index}${v.id}님 ${v.sponCnt}개`)
+//
+//         ResRank.innerHTML +=
+//             `
+//
+//         <span class="rankCnt"> ${index+1}위 ${v.id}님 ${v.sponCnt}개  <span/>
+//         `
+//     })
+//
+//     cnt?.map((v,index)=>{
+//         table.innerHTML +=
+//             `
+//
+//         <tr>
+//              <th style="width: 33%">${index+1}위</th>
+//              <th style="width: 33%">${v.id}님</th>
+//              <th style="width: 33%"> ${v.sponCnt}개</th>
+//          </tr>
+//
+//
+//
+//
+//          `
+//     })
+//
+// }
 
 ///페이징 처리
 const writeD = write();
@@ -209,86 +286,6 @@ function writeDum(){
 
 }
 
-
-//댓글
-const replyData = reply();
-replyD()
-
-function replyD(){
-    ReplyToTal = document.querySelector(".ReplyToTal")
-    const ReplyCmt = document.querySelector(".ReplyCmt")
-
-
-
-
-    ReplyToTal.innerHTML += `${replyData.length}개`
-    replyData.slice(0,10)?.map(v =>{
-
-        ReplyCmt.innerHTML +=
-            `
-        <div class="ReplyCmtWrap">
-        <div class="ReplyCmtDtail">
-        <div class="ReplyImg">
-        <img src="./파댕이.PNG" alt="">
-            </div>
-            <div class="ReplyDEC">
-            <div class="ReplyIds">
-            <div class="ReplyId">
-            ${v.user.username}
-            </div>
-            <div class="ReplyDateWrap">
-            <div class="ReplyDate"></div>
-            </div>
-            </div>
-                
-            <div class="ReplyText">
-                    ${v.body}
-                </div>
-                <div class="ReplyLikeWrap">
-                    <div class="ReplyLike">
-                    
-                    
-                    <img src="https://static-page.kakao.com/static/common/icon_like.svg?f9e9a51be34a0e0106b7c1e179d0b43e" alt="" class="changImg">
-                    
-                    
-                    </div>
-                    <div class="ReplyLikeCnt">
-                    ${v.postId}
-                    </div>
-                    
-                    
-                    </div>
-                    </div>
-                    <div class="ReplyDeclarWrap">
-                    <div class="ReplyDeclar " >신고</div>
-                    </div>
-                    </div>
-                    
-                    </div>
-                    
-                    
-                    `
-
-
-
-
-    })
-
-    const ReplyDeclar = document.querySelectorAll(".ReplyDeclar")
-    for(i=0; i<ReplyDeclar.length;i++){
-        ReplyDeclar[i].addEventListener('click',(e)=>{
-            if (!confirm(e.composedPath()[2].childNodes[3].childNodes[1].childNodes[1].innerText +"님을 신고하시겠습니까?")) {
-
-            } else {
-                alert("신고완료");
-            }
-
-
-
-
-        })
-    }
-}
 
 
 

@@ -510,9 +510,10 @@ input[type='radio'] {
     display: none;
 }
 
-.text_case1 {
+.id_ok, .id_already {
     font-size: 12px;
     color: #ef6e73;
+    display: none;
 }
 
 .box_tbl {

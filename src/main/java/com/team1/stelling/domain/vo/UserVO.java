@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@Data
 @DynamicInsert
 @NoArgsConstructor
 public class UserVO {

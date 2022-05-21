@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,4 +22,6 @@ public class RecentViewService {
     public RecentViewVO get(Long rvNo){return recentViewRepository.findById(rvNo).get();}
     public List<RecentViewVO> getList(){return recentViewRepository.findAll();}
     public Page<RecentViewVO> getMyView(Long userNum, Pageable pageable){return recentViewRepository.findByUserVO_UserNumber(userNum,pageable);}
+    public Page<RecentViewVO> getMyViewSearch(Long userNum, String keyword, Pageable pageable){ return recentViewRepository.findByUserVO_UserNumberAndNovelVO_NovelHashtagContaining(userNum,keyword,pageable);}
+    public boolean remove(Long recentViewNumber){ return recentViewRepository.deleteByRecentViewNumber(recentViewNumber) == 1;}
 }

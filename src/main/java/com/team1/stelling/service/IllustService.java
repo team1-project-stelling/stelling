@@ -31,6 +31,7 @@ public class IllustService {
     }
     public int getTotal(){return illustRepository.findByUserNumberTotal(1L);}
 
+    public List<IllustVO> getList(Long userNumber){return illustRepository.findByUserVO_UserNumber(userNumber);}
     @Transactional
     public Page<IllustVO> getList(Pageable pageable){
         return  illustRepository.findAll(pageable).map(objectEntity -> modelMapper.map(objectEntity, IllustVO.class));

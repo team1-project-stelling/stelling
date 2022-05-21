@@ -27,4 +27,9 @@ public class UserService {
     //로그인
     public Integer login(Map<String, String> loginMap) {return userDAO.login(loginMap);}
 
+    //아이디 중복확인
+    public int idCheck(String userId) { return userDAO.idCheck(userId); }
+
+    //이메일 중복확인
+    public int emailCheck(String userEmail) { return userDAO.emailCheck(userEmail); }
 }

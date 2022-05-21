@@ -24,6 +24,18 @@
         padding: 0;
     }
     div.cancelImg{margin-left: 10px;}
+    a.recentRemove{
+        width: 25px;
+        height: 25px;
+        float: right;
+    }
+    a.recentRemove img{
+        width: 25px;
+        height: 25px;
+    }
+    div.item-info{
+        width: 100%;
+    }
 </style>
 <body class="is-preload">
 <!-- 헤더 시작 -->
@@ -42,10 +54,10 @@
             <div id="categoryMenu" class="giveMaxWidth">
                 <table class="giveMaxWidth">
                     <tbody>
-                    <tr style="border-bottom: 1px solid #ef6e73;">
+                    <tr>
                         <td><a href="/myLibrary/myLibraryCollection/myPick" class="categoryMenuItem">찜목록</a></td>
                     </tr>
-                    <tr>
+                    <tr style="border-bottom: 1px solid #ef6e73;">
                         <td><a href="/myLibrary/myLibraryCollection/myRecentView" class="categoryMenuItem">최근 본 작품</a></td>
                     </tr>
                     </tbody>
@@ -68,7 +80,7 @@
                 <div class="tagInner">
                     <button class="tagBtn" onclick="changeTagSearch()">태그검색</button>
                     <div id="searchFormWrap">
-                        <form id="searchForm" action="/myLibrary/myLibraryCollection/myPick/search">
+                        <form id="searchForm" action="/myLibrary/myLibraryCollection/myRecentView/search">
                             <input name="keyword" type="text" placeholder="#검색할 태그를 입력하세요" maxlength="16">
                             <button id="pickFormBtn">검색</button>
                             <div class="cancelImg" onclick="changeTagSearch()">
@@ -77,7 +89,7 @@
                         </form>
                     </div>
                     <ul id="tagSearchList">
-                        <li><a href="/myLibrary/myLibraryCollection/myPick">전체</a></li>
+                        <li><a href="/myLibrary/myLibraryCollection/myRecentView">전체</a></li>
                         <li class="pickSearch"th:classappend="${pageableDTO.keyword== '판타지'} ? 'active' : ''"><a href="판타지">판타지</a></li>
                         <li class="pickSearch"th:classappend="${pageableDTO.keyword== '무협'} ? 'active' : ''"><a href="무협">무협</a></li>
                         <li class="pickSearch"th:classappend="${pageableDTO.keyword== '현대'} ? 'active' : ''"><a href="현대">현대</a></li>
@@ -94,38 +106,40 @@
                 </div>
             </div>
             <div class="my-item-list">
-                <th:block th:each="pick:${list}">
-                <div class="my-item">
-                    <span class="tag-update" th:if="${#calendars.format(pick.novelVO.novelUpdateDate,'yyyy-MM-dd')== #calendars.format(#calendars.createNow(),'yyyy-MM-dd')}">UP</span>
-                    <div class="item-img btn-num">
-                        <picture class="">
-                            <img th:src="'/upload/display?fileName='+${pick.novelVO.novelUploadPath}+'/'+${pick.novelVO.novelFileName}" class="fade-in" alt="표지사진" style="max-width: 100%;"> <!--추후 UUID추가-->
-                        </picture>
-                    </div>
-                    <!-- //item-img -->
-                    <div class="item-info" style="margin-left: 12px;padding: 8px;">
-                        <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
-                            <span class="genre" style="color: #ef6e73" th:text="'['+${pick.novelVO.novelCategory}+']'">[판타지]</span>
-                            <span th:text="${pick.novelVO.novelTitle}">던전리셋</span>
-                        </p>
-                        <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
-<!--                            <img class="people" src="/images/people.png">
-                            <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">5천+</span>-->
-                            <span class="writer" th:text="${pick.userVO.userNickName}"></span>
+                <th:block th:each="recent:${list}">
+                    <div class="my-item">
+                        <!--<span class="tag-update">UP</span>-->
+                        <div class="item-img btn-num">
+                            <picture class="">
+                                <img th:src="'/upload/display?fileName='+${recent.novelVO.novelUploadPath}+'/'+${recent.novelVO.novelFileName}" class="fade-in" alt="표지사진" style="max-width: 100%;"> <!--추후 UUID추가-->
+                            </picture>
                         </div>
-                        <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
-                            <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;" th:text="|총 편수: ${pick.novelVO.novelRoundAboutTotal}|"></span>
-                            <span th:text="|최근 등록일 : ${#calendars.format(pick.novelVO.novelUpdateDate,'yyyy-MM-dd')}|"></span>
+                        <!-- //item-img -->
+                        <div class="item-info" style="margin-left: 12px;padding: 8px;">
+                            <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
+                                <span class="genre" style="color: #ef6e73" th:text="'['+${recent.novelVO.novelCategory}+']'">[판타지]</span>
+                                <span th:text="${recent.novelVO.novelTitle}">던전리셋</span>
+                            </p>
+                            <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
+                                <!--                            <img class="people" src="/images/people.png">
+                                                            <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">5천+</span>-->
+                                <span class="writer" th:text="${recent.userVO.userNickName}"></span>
+                            </div>
+                            <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
+                                <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;" th:text="|총 편수: ${recent.novelVO.novelRoundAboutTotal}|"></span>
+                                <span th:text="|최근 등록일 : ${#calendars.format(recent.novelVO.novelUpdateDate,'yyyy-MM-dd')}|"></span>
 
+                            </div>
+                            <div class="item-button" style="margin-top: 3em;">
+                                <ul class="tag-title">
+                                    <li><a href="#" class="btn-view tag-list">보러가기</a></li>
+                                </ul>
+                            </div>
+                            <a class="recentRemove" th:href="${recent.recentViewNumber}"><img src="/images/휴지통.png"></a>
                         </div>
-                        <div class="item-button" style="margin-top: 3em;">
-                            <ul class="tag-title">
-                                <li><a href="#" class="btn-view tag-list">보러가기</a></li>
-                            </ul>
-                        </div>
-                        <a class="myPickRemove" th:href="${pick.myPickNumber}"><img src="/images/like.png" class="like-img"></a>
+
                     </div>
-                </div>
+
                 </th:block>
             </div>
             <!-- 페이징 시작-->
@@ -133,13 +147,13 @@
                 <!-- 페이징 -->
                 <ul class="c_PagingList" >
                     <!-- 이전 -->
-                    <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/myLibrary/myLibraryCollection/myPick(page=${pageableDTO.startPage -2 })}" >&lt;&lt;</a></li>
-                    <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/myLibrary/myLibraryCollection/myPick(page=${pageableDTO.previous})}">&lt;</a></li>
+                    <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/myLibrary/myLibraryCollection/myRecentView/search(page=${pageableDTO.startPage -2 },keyword=${pageableDTO.keyword})}" >&lt;&lt;</a></li>
+                    <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/myLibrary/myLibraryCollection/myRecentView/search(page=${pageableDTO.previous},keyword=${pageableDTO.keyword})}">&lt;</a></li>
 
 
                     <th:block th:each="num:${#numbers.sequence(pageableDTO.startPage,pageableDTO.endPage)}">
                         <li  th:if="${pageableDTO.pageNumber== num}" th:text="${num}" class="pageActive"></li>
-                        <li th:unless="${pageableDTO.pageNumber == num}" ><a th:text="${num}" th:href="@{/myLibrary/myLibraryCollection/myPick(page=${num - 1})}"></a></li>
+                        <li th:unless="${pageableDTO.pageNumber == num}" ><a th:text="${num}" th:href="@{/myLibrary/myLibraryCollection/myRecentView/search(page=${num - 1},keyword=${pageableDTO.keyword})}"></a></li>
                     </th:block>
 
 
@@ -147,8 +161,8 @@
 
 
                     <!-- 다음 -->
-                    <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/myLibrary/myLibraryCollection/myPick(page=${pageableDTO.next})}">&gt;</a></li>
-                    <li th:if="${pageableDTO.hasNext}"><a th:href="@{/myLibrary/myLibraryCollection/myPick(page=${pageableDTO.endPage})}">&gt;&gt;</a></li>
+                    <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/myLibrary/myLibraryCollection/myRecentView/search(page=${pageableDTO.next},keyword=${pageableDTO.keyword})}">&gt;</a></li>
+                    <li th:if="${pageableDTO.hasNext}"><a th:href="@{/myLibrary/myLibraryCollection/myRecentView/search(page=${pageableDTO.endPage},keyword=${pageableDTO.keyword})}">&gt;&gt;</a></li>
                 </ul>
             </div>
             <!-- 페이징 종료-->
@@ -161,38 +175,36 @@
 
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script th:inline="javascript">
     $("li.pickSearch a").click(function (e) {
         e.preventDefault();
-        location.href = "/myLibrary/myLibraryCollection/myPick/search?keyword=" + $(this).attr("href");
+        location.href = "/myLibrary/myLibraryCollection/myRecentView/search?keyword=" + $(this).attr("href");
     })
 
-
-    $("a.myPickRemove").click(function (e) {
+    $("a.recentRemove").click(function (e) {
         e.preventDefault();
-        let myPickNumber =  $(this).attr("href");
+        let recentViewNumber =  $(this).attr("href");
         $.ajax({
             type: "DELETE",
-            url: "/myLibrary/myLibraryCollection/myPick/delete/" +myPickNumber,
+            url: "/myLibrary/myLibraryCollection/myRecentView/delete/" +recentViewNumber,
             success: function(result, status, xhr){
                 alert(result);
-                location.href = '/myLibrary/myLibraryCollection/myPick/'
+                location.href = '/myLibrary/myLibraryCollection/myRecentView/'
             },
             error: function(xhr, status, er){
-                if(er){
-                    er(xhr);
+                if(error){
+                    error(er);
                 }
             }
         });
     })
 </script>
-<!--<script src="/assets/js/jquery.dropotron.min.js"></script>
 <script src="/assets/js/browser.min.js"></script>
 <script src="/assets/js/breakpoints.min.js"></script>
-<script src="/assets/js/util.js"></script>-->
+<script src="/assets/js/util.js"></script>
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/myLibrary/myBook.js"></script>
-
 
 </body>
 </html>

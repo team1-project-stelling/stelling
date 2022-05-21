@@ -33,6 +33,9 @@
         width: 25px;
         height: 25px;
     }
+    div.item-info{
+        width: 100%;
+    }
 </style>
 <body class="is-preload">
 <!-- 헤더 시작 -->
@@ -132,7 +135,7 @@
                                 <li><a href="#" class="btn-view tag-list">보러가기</a></li>
                             </ul>
                         </div>
-                        <a class="recentRemove"><img src="/images/휴지통.png"></a>
+                        <a class="recentRemove" th:href="${recent.recentViewNumber}"><img src="/images/휴지통.png"></a>
                     </div>
 
                 </div>
@@ -144,13 +147,13 @@
                 <!-- 페이징 -->
                 <ul class="c_PagingList" >
                     <!-- 이전 -->
-                    <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/myLibrary/myLibraryCollection/myPick(page=${pageableDTO.startPage -2 })}" >&lt;&lt;</a></li>
-                    <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/myLibrary/myLibraryCollection/myPick(page=${pageableDTO.previous})}">&lt;</a></li>
+                    <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/myLibrary/myLibraryCollection/myRecentView(page=${pageableDTO.startPage -2 })}" >&lt;&lt;</a></li>
+                    <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/myLibrary/myLibraryCollection/myRecentView(page=${pageableDTO.previous})}">&lt;</a></li>
 
 
                     <th:block th:each="num:${#numbers.sequence(pageableDTO.startPage,pageableDTO.endPage)}">
                         <li  th:if="${pageableDTO.pageNumber== num}" th:text="${num}" class="pageActive"></li>
-                        <li th:unless="${pageableDTO.pageNumber == num}" ><a th:text="${num}" th:href="@{/myLibrary/myLibraryCollection/myPick(page=${num - 1})}"></a></li>
+                        <li th:unless="${pageableDTO.pageNumber == num}" ><a th:text="${num}" th:href="@{/myLibrary/myLibraryCollection/myRecentView(page=${num - 1})}"></a></li>
                     </th:block>
 
 
@@ -158,8 +161,8 @@
 
 
                     <!-- 다음 -->
-                    <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/myLibrary/myLibraryCollection/myPick(page=${pageableDTO.next})}">&gt;</a></li>
-                    <li th:if="${pageableDTO.hasNext}"><a th:href="@{/myLibrary/myLibraryCollection/myPick(page=${pageableDTO.endPage})}">&gt;&gt;</a></li>
+                    <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/myLibrary/myLibraryCollection/myRecentView(page=${pageableDTO.next})}">&gt;</a></li>
+                    <li th:if="${pageableDTO.hasNext}"><a th:href="@{/myLibrary/myLibraryCollection/myRecentView(page=${pageableDTO.endPage})}">&gt;&gt;</a></li>
                 </ul>
             </div>
             <!-- 페이징 종료-->
@@ -171,19 +174,34 @@
 
 
 <!-- Scripts -->
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/jquery.dropotron.min.js"></script>
-<script src="/assets/js/browser.min.js"></script>
-<script src="/assets/js/breakpoints.min.js"></script>
-<script src="/assets/js/util.js"></script>
-<script src="/assets/js/main.js"></script>
-<script src="/assets/js/myLibrary/myBook.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:inline="javascript">
     $("li.pickSearch a").click(function (e) {
         e.preventDefault();
-        location.href = "/myLibrary/myLibraryCollection/myPick/search?keyword=" + $(this).attr("href");
+        location.href = "/myLibrary/myLibraryCollection/myRecentView/search?keyword=" + $(this).attr("href");
+    })
+    $("a.recentRemove").click(function (e) {
+        e.preventDefault();
+        let recentViewNumber =  $(this).attr("href");
+        $.ajax({
+            type: "DELETE",
+            url: "/myLibrary/myLibraryCollection/myRecentView/delete/" +recentViewNumber,
+            success: function(result, status, xhr){
+                alert(result);
+                location.href = '/myLibrary/myLibraryCollection/myRecentView/'
+            },
+            error: function(xhr, status, er){
+                if(error){
+                    error(xhr);
+                }
+            }
+        });
     })
 </script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/myLibrary/myBook.js"></script>
+
+
 </body>
 </html>

@@ -25,10 +25,9 @@ public class SubNovelVO {
     @Column(name = "SUBNOVEL_NUMBER")
     Long subNovelNumber; // 회차 번호
 
-
     @ManyToOne
     @JoinColumn(name ="NOVEL_NUMBER")
-   private NovelVO novelVO; /*FK 소설 번호 */
+    private NovelVO novelVO; /*FK 소설 번호 */
 
     @ManyToOne
     @JoinColumn(name = "USER_NUMBER")
@@ -36,22 +35,30 @@ public class SubNovelVO {
 
     @Column(name = "SUBNOVEL_TITLE ")
     private  String subNovelTitle; //   회차제목
+
     @Column(name = "SUBNOVEL_WRITERCOMMENT")
     private String subNovelWriterComment; /*작가의 작품 후기(매 회차 마다)*/
+
     @Generated(GenerationTime.INSERT)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "SUBNOVEL_UPLOADDATE",updatable = false)
     private Date subNovelUploadDate;  // 회차 업로드 시간
+
     @Generated(GenerationTime.INSERT)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "SUBNOVEL_UPDATEDATE")
     private  Date subNovelUpdateDate;  // 회차 수정 시간
+
     @Column(name = "SUBNOVEL_VIEWCOUNT")
     private  int subNovelViewCount; // 조회수
+
     @Column(name = "SUBNOVEL_LIKECOUNT")
-    private int subNovelLickCount;  // 회차 좋아요
+    private int subNovelLikeCount;  // 회차 좋아요
+
     @Column(name = "SUBNOVEL_STATUS")
-    private  int subNovelStatus;/*회차 상태 0 숨김, 1 보여짐*/
+    private int subNovelStatus;/*회차 상태 0 숨김, 1 보여짐*/
+
+
 
     public void updateSubNovelTitle(String subNovelTitle) { this.subNovelTitle = subNovelTitle;}
 
@@ -61,13 +68,13 @@ public class SubNovelVO {
 
     public void updateSubNovelViewCount() { this.subNovelViewCount++; }
 
-    public void updateSubNovelLickCount() { this.subNovelLickCount++; }
+    public void updateSubNovelLickCount(int num) { this.subNovelLikeCount+=num; }
 
     public void updateSubNovelStatus(int subNovelStatus) { this.subNovelStatus = subNovelStatus; }
 
 
     @Builder
-    public SubNovelVO(Long subNovelNumber, NovelVO novelVO, UserVO userVO, String subNovelTitle, String subNovelWriterComment, String subNovelUploadDate, String subNovelUpdateDate, int subNovelViewCount, int subNovelLickCount, int subNovelStatus) {
+    public SubNovelVO(Long subNovelNumber, NovelVO novelVO, UserVO userVO, String subNovelTitle, String subNovelWriterComment, String subNovelUploadDate, String subNovelUpdateDate, int subNovelViewCount, int subNovelLikeCount, int subNovelStatus) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         this.subNovelNumber = subNovelNumber;
         this.novelVO = novelVO;
@@ -79,7 +86,7 @@ public class SubNovelVO {
             if(subNovelUpdateDate != null ) { this.subNovelUpdateDate = sdf.parse(subNovelUpdateDate); }
         } catch (ParseException e) { e.printStackTrace();}
         this.subNovelViewCount = subNovelViewCount;
-        this.subNovelLickCount = subNovelLickCount;
+        this.subNovelLikeCount = subNovelLikeCount;
         this.subNovelStatus = subNovelStatus;
     }
 }
