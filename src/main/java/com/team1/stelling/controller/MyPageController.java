@@ -33,19 +33,17 @@ public class MyPageController {
 
     //프로필수정
     @PostMapping("/myPageEditProfile")
-    public void modify(UserVO userVO, Model model, Long userNumber){
-//        HttpSession session = req.getSession();
-//        Long userNum = (Long) session.getAttribute("userNumber");
-        UserVO sessionUser = userService.get(userNumber);
-        sessionUser.updateFilePate(userVO.getUserFilePath());
-        sessionUser.updateFileName(userVO.getUserFileName());
-        sessionUser.updateUserUuid(userVO.getUserUuid());
-        sessionUser.updateUserEmail(userVO.getUserEmail());
-        sessionUser.updateUserNickName(userVO.getUserNickName());
-        sessionUser.updateUserPhoneNum(userVO.getUserPhoneNum());
-        log.info(userVO.toString());
-        userService.modify(sessionUser);
-        model.addAttribute("userVO", sessionUser);
+    public void modify(UserVO userVO, Model model,HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserVO userProfile = userRepository.findById(Long.valueOf((Integer)session.getAttribute("userNumber"))).get();
+        userProfile.setUserFileName(userVO.getUserFileName());
+        userProfile.setUserFilePath(userVO.getUserFileName());
+        userProfile.setUserUuid(userVO.getUserUuid());
+        userProfile.setUserEmail(userVO.getUserEmail());
+        userProfile.setUserNickName(userVO.getUserNickName());
+        userProfile.setUserPhoneNum(userVO.getUserPhoneNum());
+        userRepository.save(userProfile);
+        model.addAttribute("userVO", userProfile);
     }
 
     @GetMapping("/myPageEditProfile")
@@ -99,10 +97,11 @@ public class MyPageController {
 
     //탈퇴(status 1->0으로 변경)
     @GetMapping("/withDraw")
-    public String withDraw(Long userNumber){
-        UserVO sessionUser = userService.get(userNumber);
-        sessionUser.updateUserStatus(0);
-        userService.modify(sessionUser);
+    public String withDraw(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserVO uservo = userRepository.findById(Long.valueOf((Integer)session.getAttribute("userNumber"))).get();
+        uservo.setUserStatus(0);
+        userRepository.save(uservo);
         return "main/index";
     }
   
