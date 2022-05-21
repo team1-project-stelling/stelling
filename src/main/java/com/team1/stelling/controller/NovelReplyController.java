@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @Slf4j
@@ -43,17 +44,34 @@ public class NovelReplyController {
     @Transactional
     @GetMapping("/list/{subNovelNumber}")
     public ReplyListDTO replygetList(@PathVariable("subNovelNumber") Long subNovelNumber){
-        log.info("=================================================================================================");
-        log.info("DTO컨트롤러 들어옴");
-        log.info("subNum:"+subNovelNumber);
-        List<ReplyVO> List = replyService.getList(29L);
-        log.info("리스트:"+List.toString());
-        log.info("=================================================================================================");
-        return new ReplyListDTO(replyService.getList(subNovelNumber),replyService.getUserList(subNovelNumber));
+          return new ReplyListDTO(replyService.getList(subNovelNumber),replyService.getUserList(subNovelNumber));
     }
 
     @GetMapping("/repliesTest/{subNovelNumber}")
     public List<ReplyVO> getList(@PathVariable Long subNovelNumber){
         return replyService.getList(subNovelNumber);
     }
-}
+
+    @GetMapping("/{replyNum}/{num}")
+    public void replyUp(@PathVariable("replyNum") Long replyNum, @PathVariable("num")int num){
+        ReplyVO replyVO = replyService.get(replyNum);
+        replyVO.updateReplyUp(num);
+        replyService.register(replyVO);
+        log.info("===============================================================================================");
+        log.info("리플라이 좋아요 갯수: "+replyVO.getReplyUp());
+    }
+
+    //최신순 댓글 총 목록
+    @GetMapping("/getReplyLists/latest")
+    public ReplyListDTO getReplyLists(Long novelNumber){
+        List<ReplyVO> replyVOList =replyService.getReplyListLatest(novelNumber);
+        List<UserVO> userVOList=replyVOList.stream().map(v->v.getUserVO()).collect(Collectors.toList());
+        ReplyListDTO result = new ReplyListDTO(replyVOList,userVOList);
+
+        return result;
+    }
+
+
+    }
+
+

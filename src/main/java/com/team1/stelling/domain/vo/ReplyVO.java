@@ -59,7 +59,7 @@ public class ReplyVO {
 
    public void updateReplyContent(String replyContent){this.replyContent= replyContent;}
    public void updateReplyUpdateDate(){this.replyUpdateDate = new Date();}
-   public void updateReplyUp(){this.replyUp= this.replyUp+1;}
+   public void updateReplyUp(int num){this.replyUp= this.replyUp+num;}
 
    @Builder
    public ReplyVO(Long replyNumber, UserVO userVO, NovelVO novelVO, SubNovelVO subNovelVO, String replyContent, String replyUploadDate, String replyUpdateDate, int replyUp, int replyReport) {
