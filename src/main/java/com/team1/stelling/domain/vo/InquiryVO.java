@@ -1,7 +1,10 @@
 package com.team1.stelling.domain.vo;
 
 import lombok.*;
+import org.hibernate.annotations.GenerationTime;
 import org.springframework.stereotype.Component;
+import org.hibernate.annotations.Generated;
+
 
 import javax.persistence.*;
 import java.util.Date;
@@ -34,8 +37,12 @@ public class InquiryVO {
    @Column(name = "INQUIRY_STATUS")
    private int inquiryStatus;/*답변 대기중, 답변 완료*/
    @Column(name = "INQUIRY_DATE")
+   @Generated(GenerationTime.INSERT)
+   @Temporal(TemporalType.TIMESTAMP)
    private Date inquiryDate; // 1대1문의 작성시간(요청)
    @Column(name = "INQUIRY_REPDATE")
+   @Generated(GenerationTime.INSERT)
+   @Temporal(TemporalType.TIMESTAMP)
    private Date inquiryRepDate; // 답변 시간
 
    public void updateInquiryNumber(Long inquiryNumber) {

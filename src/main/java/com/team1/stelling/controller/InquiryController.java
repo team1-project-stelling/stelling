@@ -31,7 +31,7 @@ public class InquiryController {
     public String inquiryDetail (Model model) {
         /*        HttpSession session =  request.getSession(); */
 //        inquiryService.get(Long.valueOf((Integer)session.getAttribute("userNumber"));
-        InquiryVO inquiryVO = inquiryService.get(1L);
+        InquiryVO inquiryVO = inquiryService.get(4L);
         model.addAttribute("inquiry", inquiryVO);
         return "inquiry/inquiryDetail";
     }
