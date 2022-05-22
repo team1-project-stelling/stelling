@@ -5,6 +5,8 @@ import com.team1.stelling.aspect.annotation.LogStatus;
 import com.team1.stelling.domain.dto.NovelCategoryDTO;
 //import com.team1.stelling.domain.repository.NovelSearchRepository;
 
+import com.team1.stelling.domain.dto.NovelFileDTO;
+import com.team1.stelling.domain.dto.PageDTO;
 import com.team1.stelling.domain.dto.PageableDTO;
 
 import com.team1.stelling.domain.repository.NovelFileRepository;
@@ -12,9 +14,8 @@ import com.team1.stelling.domain.repository.NovelRepository;
 import com.team1.stelling.domain.repository.SubNovelRepository;
 import com.team1.stelling.domain.repository.UserRepository;
 import com.team1.stelling.domain.vo.*;
-import com.team1.stelling.service.IllustImgFileService;
+import com.team1.stelling.service.*;
 
-import com.team1.stelling.service.NovelService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tika.exception.TikaException;
@@ -43,10 +44,9 @@ import java.util.*;
 public class novelController {
 
     private  final NovelService novelService;
-    private final NovelRepository novelRepository;
-    private final UserRepository userRepository;
-    private final SubNovelRepository subNovelRepository;
-    private final NovelFileRepository novelFileRepository;
+    private final UserService userService;
+    private final SubNovelService subNovelService;
+    private final NovelFileService novelFileService;
 //    private  final NovelSearchService novelSearchService;
 
 
@@ -63,7 +63,7 @@ public class novelController {
     @GetMapping("/novelCategory")
     public void novelCategory(Model model, @PageableDefault(page = 0, size = 10, sort = "novelNumber" ,direction = Sort.Direction.DESC)Pageable pageable){
 
-       Page<NovelCategoryDTO> list = novelService.getList(pageable);
+        Page<NovelCategoryDTO> list = novelService.getList(pageable);
         PageableDTO pageableDTO = new PageableDTO( (int)list.getTotalElements(),pageable);
         model.addAttribute( "list",list);
         model.addAttribute( "novelTotal", list.getTotalElements());
@@ -104,7 +104,8 @@ public class novelController {
         log.info("=============================================");
         log.info(novelVO.toString());
         log.info("=============================================");
-        novelRepository.save(novelVO);
+        novelService.register(novelVO);
+//        novelRepository.save(novelVO);
 
     }
 
@@ -132,12 +133,12 @@ public class novelController {
             log.info("Upload File Name : " + file.getOriginalFilename());
             log.info("Upload File Size : " + file.getSize());
 
-            NovelVO novelVO = new NovelVO();
+//            NovelVO novelVO = new NovelVO();
             uploadFileName = uuid.toString() + "_" + file.getOriginalFilename();
 
-            novelVO.setNovelFileName(uploadFileName);
-            novelVO.setNovelUUID(uuid.toString());
-            novelVO.setNovelUploadPath(uploadFolderPath);
+//            novelVO.setNovelFileName(uploadFileName);
+//            novelVO.setNovelUUID(uuid.toString());
+//            novelVO.setNovelUploadPath(uploadFolderPath);
 
             //저장할 경로와 파일의 이름을 File객체에 담는다.
             File saveFile = new File(uploadPath, uploadFileName);
@@ -148,7 +149,10 @@ public class novelController {
 //                InputStream in = new FileInputStream(saveFile);
 
 
-                fileList.add(novelVO);
+
+                fileList.add(NovelVO.builder().novelFileName(uploadFileName)
+                        .novelUUID(uuid.toString())
+                        .novelUploadPath(uploadFolderPath).build());
             } catch (IOException e) {
                 log.error(e.getMessage());
             }
@@ -194,16 +198,15 @@ public class novelController {
         log.info(novelFileDTO.getSubNovelTitle());
         log.info(novelFileDTO.getUserNumber().toString());
         log.info("-------------------------------------------------------------------------------------");
-        NovelVO novelVO = novelRepository.findById(novelFileDTO.getNovelNumber()).get();
-        UserVO userVO = userRepository.findById(novelFileDTO.getUserNumber()).get();
-
+        NovelVO novelVO =novelService.get(novelFileDTO.getNovelNumber());
+        UserVO userVO =userService.get(novelFileDTO.getUserNumber());
         SubNovelVO subNovelVO = new SubNovelVO();
         subNovelVO.setNovelVO(novelVO);
         subNovelVO.setUserVO(userVO);
         subNovelVO.setSubNovelTitle(novelFileDTO.getSubNovelTitle());
         subNovelVO.setSubNovelWriterComment(novelFileDTO.getSubNovelWriterComment());
         subNovelVO.setSubNovelStatus(1); //회차상태 0: 숨김, 1:보여짐
-        subNovelRepository.save(subNovelVO);
+        subNovelService.register(subNovelVO);
 
         String title = novelVO.getNovelTitle();
         String uploadFolder = "C:/stelling";
@@ -216,14 +219,12 @@ public class novelController {
             uploadPath.mkdirs();
         }
 
-        NovelFileVO novelFileVO = new NovelFileVO();
-        novelFileVO.setNovelFileFileName(uploadFileName);
-        novelFileVO.setNovelFileFilePath(uploadFolderPath);
-        novelFileVO.setNovelFileOriginalUUID(uuid.toString());
-        novelFileVO.setSubNovelVO(subNovelVO);
-        novelFileVO.setNovelVO(novelVO);
-        novelFileVO.setUserVO(userVO);
-        novelFileRepository.save(novelFileVO);
+        novelFileService.register(NovelFileVO.builder().novelFileFileName(uploadFileName)
+                    .novelFileFilePath(uploadFolderPath)
+                    .novelFileOriginalUUID(uuid.toString())
+                    .subNovelVO(subNovelVO)
+                    .novelVO(novelVO)
+                    .userVO(userVO).build());
 
 
         BufferedWriter bw = new BufferedWriter(new FileWriter(new File(uploadPath+"/"+uploadFileName+".txt")));

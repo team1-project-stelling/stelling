@@ -49,22 +49,22 @@
             <div class="left_block">
                 <ul class="liWrap">
                     <li class="left left_top">
-                        <a class="menu" href="myPageEditProfile.html">프로필 수정</a>
+                        <a class="menu" href="javascript:goEditProfile();">프로필 수정</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPageMyWork.html">내 작품 관리</a>
+                        <a class="menu" href="javascript:goMyWork();">내 작품 관리</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPageChangePw.html">비밀번호 변경</a>
+                        <a class="menu" href="javascript:goChangePw();">비밀번호 변경</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPageQuestion.html">내 문의 내역</a>
+                        <a class="menu" href="javascript:goQuestion();">내 문의 내역</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPageQuit.html">탈퇴 하기</a>
+                        <a class="menu" href="javascript:goQuit();">탈퇴 하기</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPagePayList.html">결제</a>
+                        <a class="menu" href="javascript:goPayList();">결제</a>
                     </li>
                 </ul>
             </div>
@@ -74,45 +74,52 @@
                     <div class="main">
                         <div class="set_myInfo top">
                             <strong class="profile id">아이디</strong>
-                            <div class="profile_show">(아이디 자리)</div>
+                            <div class="profile_show"><div th:text="${userVO.userId}">아이디 자리</div></div>
                         </div>
-                        <div class="set_myInfo photo">
-                            <strong class="profile picture">이미지</strong>
-                            <div class="profile_show imgWrap">
-                                <img src="/images/default.png" class="thumb imagePreview1"/>
-                                <div>
-                                    <label for="imageSelector" class="iconClip">
-                                        <img class="clip" src="/images/클립.png" height="15px"width="15px" />
-                                    </label>
-                                    <input type="file" class="hidden_input" id="imageSelector" name="imageSelector"
-                                           accept="image/jpeg, image/jpg, image/png" style="display: none"/>
+                        <form action="/myPage/myPageEditProfile" method="post">
+                            <div class="set_myInfo photo">
+                                <strong class="profile picture">이미지</strong>
+                                <div class="profile_show imgWrap">
+                                    <img src="/images/default.png" class="thumb imagePreview1"/>
+                                    <div>
+                                        <label for="imageSelector" class="iconClip">
+                                            <img class="clip" src="/images/클립.png" height="15px"width="15px" />
+                                        </label>
+                                        <input type="file" class="hidden_input" id="imageSelector" name="imageSelector"
+                                               accept="image/jpeg, image/jpg, image/png" style="display: none"/>
+                                    </div>
+                                    <div href="javascript:void(0);" class="dellink" id="dellink">
+                                        <img class="icon" src="/images/휴지통.png" height="15px" width="15px" />
+                                    </div>
                                 </div>
-                                <div href="javascript:void(0);" class="dellink" id="dellink">
-                                    <img class="icon" src="/images/휴지통.png" height="15px" width="15px" />
+                            </div>
+                                <div class="set_myInfo emailWrap">
+                                    <strong class="profile email">이메일</strong>
+                                    <div class="profile_show"><input th:value="${userVO.userEmail}" name="userEmail" class="email" type="text" onchange="validEmail(this)" placeholder="이메일">
+                                    <p class ="p" id="result_email"></p>
+                                    </div>
+                                </div>
+                            <div class="set_myInfo ">
+                                <strong class="profile nick">닉네임</strong>
+                                <div class="profile_show"><input th:value="${userVO.userNickName}" name="userNickName" class="nick" type="text" onchange="validNick(this)" placeholder="2~10자리 이내로 적어주세요!">
+                                    <p class ="p" id="result_nick"></p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="set_myInfo emailWrap">
-                            <strong class="profile email">이메일</strong>
-                            <div class="profile_show"><input class="email" type="text" onchange="validEmail(this)" placeholder="이메일">
-                                <button type="button" class="btn emailChange">변경</button>
-                            <p class ="p" id="result_email"></p>
+                            <div class="set_myInfo ">
+                                <strong class="profile phone">휴대폰</strong>
+                                <div class="profile_show"><input th:value="${userVO.userPhoneNum}" name="userPhoneNum" class="phone" type="text" onchange="validPhone(this)" placeholder="' - '없이 입력해주세요">
+
+                                    <p class ="p" id="result_phone"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="set_myInfo ">
-                            <strong class="profile nick">닉네임</strong>
-                            <div class="profile_show"><input class="nick" type="text" onchange="validNick(this)" placeholder="2~10자리 이내로 적어주세요!">
-                                <button type="button" class="btn nickChange">변경</button>
-                                <p class ="p" id="result_nick"></p>
-                            </div>
-                        </div>
-                        <div class="set_myInfo ">
-                            <strong class="profile phone">휴대폰</strong>
-                            <div class="profile_show"><input class="phone" type="text" onchange="validPhone(this)" placeholder="' - '없이 입력해주세요">
-                                <button type="button" class="btn phoneChange">변경</button>
-                                <p class ="p" id="result_phone"></p>
-                            </div>
-                        </div>
+                                <div class="changeBtnWrap">
+                                    <button type="submit" class="btn profileChange">변경</button>
+                                </div>
+                            <input type="hidden" name="userFileName">
+                            <input type="hidden" name="userFilePath">
+                            <input type="hidden" name="userUuid">
+                            <input type="hidden" name="userNumber" th:value="${session.userNumber}">
+                         </form>
                     </div>
                 </div>
             </div>
@@ -127,6 +134,28 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/mypage/editProfile.js"></script>
 <script src="/assets/js/fix/header.js"></script>
-<script>
+<script th:inline="javascript">
+    const userNumber = [[${session.userNumber}]];
+    console.log("세션 유저 번호 : " + userNumber);
+
+    function goEditProfile(){
+        location.href = "/myPage/myPageEditProfile";
+    }
+    function goMyWork(){
+        location.href = "/myPage/myPageMyWork";
+    }
+    function goChangePw(){
+        location.href = "/myPage/myPageChangePw";
+    }
+    function goQuestion(){
+        location.href = "/myPage/myPageQuestion";
+    }
+    function goQuit(){
+        location.href = "/myPage/myPageQuit?userNumber=" + userNumber;
+    }
+    function goPayList(){
+        location.href = "/myLibrary/payList?userNumber=" + userNumber;
+    }
+
 </script>
 </html>

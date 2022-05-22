@@ -27,6 +27,7 @@
                 AND ROWNUM <= #{criteria.pageNum} * #{criteria.amount}
                 )
             WHERE RN > (#{criteria.pageNum} - 1) * #{criteria.amount}
+            ORDER BY PAY_DATE DESC
         ]]>
     </select>
 
@@ -36,6 +37,12 @@
         FROM TBL_PAY
         WHERE USER_NUMBER = #{userNumber}
         GROUP BY USER_NUMBER
+    </select>
+
+    <select id="getPayCharge" resultType="PayVO">
+            SELECT PAY_CHARGE
+            FROM TBL_PAY
+            WHERE USER_NUMBER = #{userNumber}
     </select>
 
     <!--검색한 결과의 총 개수(페이징 처리를 위함)-->

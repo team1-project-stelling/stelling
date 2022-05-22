@@ -163,5 +163,20 @@
 <th:block th:insert="/fix/footer.html :: footerFragment"/>
 <script src="/assets/js/main/index.js"></script>
 <script src="/assets/js/fix/header.js"></script>
+<script th:inline="javascript">
+    const userNumber = [[${session.userNumber}]];
+    console.log("세션 유저 번호 : " + userNumber);
+    // const userNumber = [[${session.userNumber}]];
+    // console.log(userNumber);
 
-</html>
+    //로그인된 회원만 마이페이지 이동
+    function goMyPage(){
+        if(userNumber == null){
+            alert("로그인한 회원만 이용가능합니다.");
+            return;
+        } else{
+            location.href = "/myPage/myPageEditProfile?userNumber=" + userNumber;
+        }
+    }
+</script>
+</html>l

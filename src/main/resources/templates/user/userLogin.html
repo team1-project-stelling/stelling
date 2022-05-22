@@ -2,61 +2,62 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <link href="/assets/css/fix/footer.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/fix/header.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/user/userLogin.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Login</title>
 </head>
 <body style="max-witdh:1200px ;">
 
-    <!-- 헤더 시작 -->
-    <th:block th:insert="/fix/header_word.html :: headFragment"/>
+<!-- 헤더 시작 -->
 
-    <!--헤더 이미지-->
-    <div id="headerImgWrap" >
-        <img id="headerImg"src="/images/fix/headerImg_3.png" >
-    </div>
-    <!-- 헤더 종료 -->
+<th:block th:insert="/fix/headerWord.html :: headFragment"/>
 
-    <!--Main-->
-    <div class="mainbox">
-        <div class="contentbox">
-            <div class="section_login">
-                <h3 class="title_login">로그인</h3>
-                    <div class="formbox">
-                        <form action="" name="loginform_check">
-                            <input autocomplete="off"; id="uid" class="inputbox" type="text" placeholder="아이디를 입력해주세요">
-                            <input id="pwd" class="inputbox passwordbox" type="password" placeholder="비밀번호를 입력해주세요">
-                                <div>
-                                    <div class="login_search">
-                                        <a class="find_button" href="/stelling/src/main/resources/templates/user/findId.html">아이디 찾기</a>
-                                        <span class="bar"></span>
-                                        <a class="find_button" href="/stelling/src/main/resources/templates/user/findPw.html">비밀번호 찾기</a>
-                                    </div>
-                                </div>
-                            <div>
-                                <div class="social_logo">
-                                    <button class='btn-social-login' style='background:#1FC700'><i class="xi-3x xi-naver"></i></button>
-                                    <button class='btn-social-login' style='background:#FFEB00'><i class="xi-3x xi-kakaotalk text-dark"></i></button>
-                                    <button class='btn-social-login' style='background:#4267B2'><i class="xi-3x xi-facebook"></i></button>
-                                    <button class='btn-social-login'><i class="xi-3x xi-apple text-dark"></i></button>
-                                </div>
-                            </div>
-                            <button onclick="login_check();" class="login_button" type="submit">
-                                <span class="login_button_text">로그인</span>
-                            </button>
-                            <button type="button" onclick="location.href='user_join.html';" class="join_button" >
-                                <span class="">회원가입</span>
-                            </button>
-                        </form>
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
 
+<!--Main-->
+<div class="mainbox">
+    <div class="contentbox">
+        <div class="section_login">
+            <h3 class="title_login">로그인</h3>
+            <div class="formbox">
+                <form method="post" action="/user/login" name="loginform_check">
+                    <input autocomplete="off"; id="userId" name="userId" class="inputbox" type="text" placeholder="아이디를 입력해주세요">
+                    <input id="userPw" name="userPw" class="inputbox passwordbox" type="password" placeholder="비밀번호를 입력해주세요">
+                    <div>
+                        <div class="login_search">
+                            <a class="find_button" href="/stelling/src/main/resources/templates/user/findId.html">아이디 찾기</a>
+                            <span class="bar"></span>
+                            <a class="find_button" href="/stelling/src/main/resources/templates/user/findPw.html">비밀번호 찾기</a>
+                        </div>
                     </div>
+                    <div>
+                        <div class="social_logo">
+                            <button class='btn-social-login' style='background:#1FC700'><i class="xi-3x xi-naver"></i></button>
+                            <button class='btn-social-login' style='background:#FFEB00'><i class="xi-3x xi-kakaotalk text-dark"></i></button>
+                            <button class='btn-social-login' style='background:#4267B2'><i class="xi-3x xi-facebook"></i></button>
+                            <button class='btn-social-login'><i class="xi-3x xi-apple text-dark"></i></button>
+                        </div>
+                    </div>
+                    <button onclick="login_check();" class="login_button" type="submit">
+                        <span class="login_button_text">로그인</span>
+                    </button>
+                    <button type="button" onclick="location.href='http://localhost:8989/user/join';" class="join_button" >
+                        <span class="">회원가입</span>
+                    </button>
+                </form>
+
             </div>
         </div>
     </div>
-    <th:block th:insert="/fix/footer.html :: footerFragment"/>
+</div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
 </body>
 <script src="/assets/js/fix/header.js"></script>
 <script src="/assets/js/user/userLogin.js"></script>

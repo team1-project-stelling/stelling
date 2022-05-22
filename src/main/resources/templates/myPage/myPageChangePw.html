@@ -26,26 +26,25 @@
             <div class="left_block">
                 <ul class="liWrap">
                     <li class="li_top left">
-                        <a class="menu" href="myPageEditProfile.html">프로필 수정</a>
+                        <a class="menu" href="javascript:goEditProfile();">프로필 수정</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPageMyWork.html">내 작품 관리</a>
+                        <a class="menu" href="javascript:goMyWork();">내 작품 관리</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPageChangePw.html">비밀번호 변경</a>
+                        <a class="menu" href="javascript:goChangePw();">비밀번호 변경</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPageQuestion.html">내 문의 내역</a>
+                        <a class="menu" href="javascript:goQuestion();">내 문의 내역</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPageQuit.html">탈퇴 하기</a>
+                        <a class="menu" href="javascript:goQuit();">탈퇴 하기</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPagePayList.html">결제</a>
+                        <a class="menu" href="javascript:goPayList();">결제</a>
                     </li>
                 </ul>
             </div>
-            <form class="changPw" action="" method="post">
                 <div class="right_block">
                     <div class="">
                         <div class="profile_text"><strong>비밀번호 변경</strong></div>
@@ -53,6 +52,7 @@
                             <div class="set_myInfo top">
                                 <strong class="profile pw">현재 비밀번호</strong>
                                 <input class="userPw" type="password" placeholder="현재 비밀번호를 입력해 주세요.">
+                                <p class="userPwEq"></p>
                             </div>
                             <div class="set_myInfo">
                                 <strong class="profile newPw">새 비밀번호</strong>
@@ -61,15 +61,16 @@
                                     <p class ="p" id="result_NewPw"></p>
                                 </div>
                             </div>
+            <form class="changPw" action="pwChangeForm" method="post">
                             <div class="set_myInfo">
                                 <strong class="profile newPw">새 비밀번호 확인</strong>
-                                <input class="rePw" type="password" onchange="sameNewPw(this)" placeholder="새 비밀번호를 다시 입력해주세요">
+                                <input name="userNewPw" class="rePw" type="password" onchange="sameNewPw(this)" placeholder="새 비밀번호를 다시 입력해주세요">
                                 <p class ="p" id="result_reNewPw"></p>
                             </div>
                         </div>
                     </div>
                     <div class="wrap_btn">
-                        <button type="button" class="wrap_btn_save" name="저장_버튼">저장</button>
+                        <button type="submit" class="wrap_btn_save" name="저장_버튼" onclick="test()">저장</button>
                     </div>
                 </div>
             </form>
@@ -83,4 +84,29 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/mypage/changPw.js"></script>
 <script src="/assets/js/fix/header.js"></script>
+<script th:inline="javascript">
+    // const userNumber = [[${session.userNumber}]];
+    // console.log("세션 유저 번호 : " + userNumber);
+    let userPw = document.querySelector('.userPw').value
+
+    function goEditProfile(){
+        location.href = "/myPage/myPageEditProfile";
+    }
+    function goMyWork(){
+        location.href = "/myPage/myPageMyWork";
+    }
+    function goChangePw(){
+        location.href = "/myPage/myPageChangePw";
+    }
+    function goQuestion(){
+        location.href = "/myPage/myPageQuestion";
+    }
+    function goQuit(){
+        location.href = "/myPage/myPageQuit";
+    }
+    function goPayList(){
+        location.href = "/myLibrary/payList?userNumber=" + userNumber;
+    }
+
+</script>
 </html>

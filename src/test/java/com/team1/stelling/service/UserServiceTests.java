@@ -1,4 +1,4 @@
-package com.team1.stelling.service;
+package com.team1.stelling.service;//package com.team1.stelling.service;
 
 import com.team1.stelling.domain.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
@@ -6,15 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
-
 
 @SpringBootTest
 @Slf4j
 public class UserServiceTests {
-    @Autowired
-    UserService userService;
-
+//    @Autowired
+//    UserService userService;
 /*    @Test
     public void registerTest(){
         UserVO userVO = UserVO.builder()
@@ -33,16 +30,18 @@ public class UserServiceTests {
         UserVO userVO = userService.get(2L);
         log.info("#########"+userVO.toString());
     }*/
-    @Test
-    public void getListTest(){
-        List<UserVO> datas = userService.getList();
-        datas.forEach(e -> log.info("########"+e.toString()));
-    }
-/*    @Test
-    public void modifyTest(){
-        UserVO userVO = userService.get(2L);
-        userVO.updateUserPw("m10m10");
-        userService.modify(userVO);
-
-    }*/
+//    @Test
+//    public void getListTest(){
+//        List<UserVO> datas = userService.getList();
+//        datas.forEach(e -> log.info("########"+e.toString()));
+//    }
+//   @Test
+//    public void modifyTest(){
+//        UserVO userVO = userService.get(2L);
+//        userVO.updateUserPw("asdfas");
+//        userVO.updateUserEmail("afsdfa@naver.com");
+//        userService.modify(userVO);
+//    }
 }
+
+

@@ -18,14 +18,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -35,6 +33,7 @@ public class IllustController {
 
     private final IllustProfileService illustProfileService;
     private final IllustService illustService;
+    private final UserService userService;
 
     @LogStatus
     @GetMapping("/illustList")
@@ -54,14 +53,16 @@ public class IllustController {
     }
 
     @GetMapping("/illustUserInput")
-    public void illustUserInput(){}
+    public void illustUserInput(Long userNumber, Model model){
+        model.addAttribute("user", userService.get(1L));
+    }
 
     @GetMapping("/register") public void register(){}
 
     @PostMapping("/register")
     public RedirectView register(IllustProfileVO illustProfileVO, RedirectAttributes rttr){
 
-        illustProfileVO.setUserNumber(21L);
+        illustProfileVO.setUserNumber(1L);
 
         illustProfileService.register(illustProfileVO);
 
@@ -73,26 +74,31 @@ public class IllustController {
     @GetMapping("/illustUserPage")
     public void illustUserPage(Long userNumber, Criteria criteria, Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
 
-        Page<IllustVO> list = illustService.getList(pageable);
-        PageableDTO pageableDTO = new PageableDTO( (int)list.getTotalElements(),pageable);
+
+        List<IllustVO> list = illustService.getList(1L);
+        model.addAttribute("illustProfile", illustProfileService.get(1L));
+        model.addAttribute("total", list.size());
         model.addAttribute("list", list);
-        model.addAttribute("illustProfile", illustProfileService.get(21L));
 //        model.addAttribute("illustProfile", illustProfileService.get(userNumber));
-        model.addAttribute("pageableDTO", pageableDTO);
     }
 
-
+    @LogStatus
     @GetMapping("/illustViewDetail")
-    public void ViewDetail(){
+    public void read(Long illustNumber, Model model, IllustVO illustVO, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
+        List<IllustVO> list = illustService.getList(1L);
+        model.addAttribute("illust", illustService.get(25L));
+//        model.addAttribute("illust", illustService.get(illustNumber));
+        model.addAttribute("total", list.size());
+        model.addAttribute("list", list);
     }
 
 
 
 
-    @GetMapping("/uploadTest")
-    public String readFile() {
-        return "upload/uploadTest";
-    }
+//    @GetMapping("/uploadTest")
+//    public String readFile() {
+//        return "upload/uploadTest";
+//    }
 
 
 /*

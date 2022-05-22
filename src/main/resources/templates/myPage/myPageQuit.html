@@ -26,22 +26,22 @@
                     <div class="left_block">
                         <ul class="liWrap">
                             <li class="li_top left">
-                                <a href="myPageEditProfile.html">프로필 수정</a>
+                                <a class="menu" href="javascript:goEditProfile();">프로필 수정</a>
                             </li>
                             <li class="left">
-                                <a class="menu" href="myPageMyWork.html">내 작품 관리</a>
+                                <a class="menu" href="javascript:goMyWork();">내 작품 관리</a>
                             </li>
                             <li class="left">
-                                <a class="menu" href="myPageChangePw.html">비밀번호 변경</a>
+                                <a class="menu" href="javascript:goChangePw();">비밀번호 변경</a>
                             </li>
                             <li class="left">
-                                <a class="menu" href="myPageQuestion.html">내 문의 내역</a>
+                                <a class="menu" href="javascript:goQuestion();">내 문의 내역</a>
                             </li>
                             <li class="left">
-                                <a class="menu" href="myPageQuit.html">탈퇴 하기</a>
+                                <a class="menu" href="javascript:goQuit();">탈퇴 하기</a>
                             </li>
                             <li class="left">
-                                <a class="menu" href="myPagePayList.html">결제</a>
+                                <a class="menu" href="javascript:goPayList();">결제</a>
                             </li>
                         </ul>
                     </div>
@@ -54,7 +54,7 @@
                                         <h3 class="withdraw_1">회원탈퇴에 앞서 유의사항 및 안내를 반드시 읽고 진행해 주세요!</h3>
                                     </div>
                                 </div>
-                                <form action="" method="post">
+                                <form action="/myPage/withDraw" method="get" name="checkFrom" id="withDrawForm">
                                     <div class="info_agree">
                                         <div class="info_user">
                                             <strong class="tit_agree">아이디는 재사용 및 복구 불가</strong>
@@ -64,7 +64,7 @@
                                                 <br>신중히 선택하신 후 결정해주세요.
                                             </strong>
                                             <span class="check_notice">
-                                                <input type="checkbox" id="idAgree1" name="idAgree">
+                                                <input type="checkbox" id="idAgree1" name="idAgree" class="agree">
                                                 <label for="idAgree1" class="lab_check">
                                                     <span class="icon_check">동의</span>
                                                 </label>
@@ -88,7 +88,7 @@
                                         </div>
                                     </div>
                                     <div class="wrap_btn">
-                                        <button type="submit" class="withdraw_btn">탈퇴</button>
+                                        <button type="button" class="withdraw_btn" onclick="check_agree()">탈퇴</button>
                                     </div>
                                 </form>
                             </div>
@@ -104,4 +104,25 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/mypage/withdraw.js"></script>
 <script src="/assets/js/fix/header.js"></script>
+<script>
+    function goEditProfile(){
+        location.href = "/myPage/myPageEditProfile";
+    }
+    function goMyWork(){
+        location.href = "/myPage/myPageMyWork";
+    }
+    function goChangePw(){
+        location.href = "/myPage/myPageChangePw";
+    }
+    function goQuestion(){
+        location.href = "/myPage/myPageQuestion";
+    }
+    function goQuit(){
+        location.href = "/myPage/myPageQuit";
+    }
+    function goPayList(){
+        location.href = "/myLibrary/payList?userNumber=" + userNumber;
+    }
+
+</script>
 </html>

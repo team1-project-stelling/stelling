@@ -6,15 +6,12 @@ import com.team1.stelling.domain.vo.PayVO;
 import com.team1.stelling.service.PayService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.HttpRequest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -67,10 +64,33 @@ public class MyLibraryController {
     //결제 리스트(마이페이지)
     @GetMapping("/payList")
     public String payList(Long userNumber, Criteria criteria, Model model){
-            model.addAttribute("payList", payService.getList(criteria, userNumber));
+            List<PayVO> pay = payService.getPayCharge(userNumber);
+            List<PayVO> payList = payService.getList(criteria, userNumber);
+//            DecimalFormat decFormat = new DecimalFormat("###,###");
+//            List<String> tempCharge = new ArrayList<>();
+//
+//                for(int i = 0; i < payList.size(); i++){
+//                    tempCharge.add(decFormat.format(pay.get(i).getPayCharge()));
+//                    payList.get(i).setPayCharge(tempCharge.get(i));
+//                }
+
+//            List<Long> tempList = new ArrayList<Long>();
+//            List<String> payChargeList = new ArrayList<String>();
+
+//            for(int i=0; i<payList.size(); i++){
+//                tempList.add(payList.get(i).getPayCharge());
+//                payChargeList.add(decFormat.format(tempList.get(i)));
+//            }
+//
+//
+//
+//            log.info("결제금액리스트 : " + payChargeList);
+
+            model.addAttribute("payList", payList);
+//            model.addAttribute("payChargeList", payChargeList);
             model.addAttribute("pageDTO", new PageDTO(criteria, payService.getSearchTotal(criteria)));
             model.addAttribute("payDTO", payService.getTotal(userNumber));
-        return "myPage/myPagePayList";
+            return "myPage/myPagePayList";
     }
 
 //    @GetMapping("/payList/{userNumber}")

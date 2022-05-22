@@ -240,6 +240,13 @@ $("input[type='file']").change(function(e){
 });
 
 
+// function replaceGab(obj){
+//     let a = $('.titleInput').val().replace(/ /gi, '_');
+//     $('.titleInput').val(a);
+// }
+
+
+
 /*유효성검사 + form데이터 보내기*/
 
     $('#insertBtn').on("click", function () {
@@ -253,6 +260,8 @@ $("input[type='file']").change(function(e){
         hashtag = hashtag.replace(/&nbsp/gi, ",");
         $('input[name="novelHashtag"]').val(hashtag);
         $('input[name="novelCategory"]').val($(label).val());
+        let title = $('.titleInput').val();
+        $('input[name="novelTitle"]').val(title.trim());
 
 
         $("input[type=checkbox]").each(function () {

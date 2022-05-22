@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team1.stelling.mapper.UserMapper">
+    <select id="login" parameterType="map" resultType="Integer">
+      SELECT USER_NUMBER FROM TBL_USER WHERE USER_ID=#{userId} AND USER_PW =#{userPw}
+   </select>
+    <select id="idCheck" resultType="_int">
+		SELECT COUNT(USER_ID) FROM TBL_USER WHERE USER_ID=#{userId}
+	</select>
+    <select id="emailCheck" resultType="_int">
+		SELECT COUNT(USER_EMAIL) FROM TBL_USER WHERE USER_EMAIL=#{userEmail}
+	</select>
+</mapper>

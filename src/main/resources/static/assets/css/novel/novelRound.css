@@ -87,7 +87,7 @@
   flex-direction: column;
   overflow: hidden;
   padding-top: 5px;
-  padding-bottom: 5px;
+  padding-bottom: 32px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -200,8 +200,7 @@
   min-width: 0px;
   max-width: 100%;
   height: auto;
-  width: 13px;
-  background-color: black;
+  width: 17px;
 }
 
 .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_Desc_pepole :last-child div {
@@ -236,13 +235,15 @@
 
 .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_Desc_writer div span {
   display: inline-block;
-  border: 1px solid black;
+  border: 2px solid #d3d3d3;
   width: 20px;
+  color: #d3d3d3;
   height: 20px;
   text-align: center;
   padding: 5px;
   border-radius: 20px;
   line-height: 1.2;
+  margin-right: 5px;
 }
 
 .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_Desc_writer div div {
@@ -645,7 +646,7 @@
   box-sizing: border-box;
   margin: 0px;
   min-width: 0px;
-  font-size: 25px;
+  font-size: 20px;
   color: #333333;
   -webkit-box-flex: 1;
   -ms-flex: 1 1 0%;
@@ -698,6 +699,7 @@
   -ms-flex-pack: justify;
   justify-content: space-between;
   border-bottom: 1px solid #d9d9d9;
+  margin-bottom: 41px;
 }
 
 .ListReply .ReplyHeader :last-child {
@@ -975,4 +977,64 @@
 .preventscroll {
   height: 100%;
   overflow: hidden;
+}
+
+.d_dayColor{
+  color: #ef6e73 !important;
+  border-color: #ef6e73 !important;
+}
+
+.profilePlusText {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px dashed darkgrey;
+  justify-content: space-between;
+}
+
+.profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  overflow: hidden;
+  margin-right: 20px;
+}
+.ments {
+  width: 115%;
+  margin-left: -92px;
+  padding: 0px 40px 40px 40px;
+  /*box-shadow: 2px 7px 16px 9px #80808061;*/
+  border-radius: 13px;
+  margin-bottom: 300px;
+
+}
+.date {
+  font-size: 13px;
+  color: silver;
+  text-align: right;
+}
+.mentBtns{
+  background-color: white;
+  border: 1px solid #86868666;
+  width:max-content;
+  text-align: left;
+  padding: 5px;
+  border-radius: 5px;
+  height: 32px;
+  cursor: pointer;
+}
+
+
+.Best{
+  width: 31px;
+  height: 16px;
+  background-color: #ef6e73;
+  color: white;
+  position: absolute;
+  top: 6px;
+  left: 0px;
+  font-size: 11px;
+  padding: 2px 2px 3px 2px;
+  text-align: center;
+  border-radius: 8px;
 }

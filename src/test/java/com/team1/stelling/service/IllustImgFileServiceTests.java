@@ -1,8 +1,6 @@
 package com.team1.stelling.service;
 
 import com.team1.stelling.domain.vo.IllustImgFileVO;
-import com.team1.stelling.domain.vo.IllustVO;
-import com.team1.stelling.domain.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

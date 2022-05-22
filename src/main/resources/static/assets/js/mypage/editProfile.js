@@ -148,3 +148,34 @@ function validPhoneCheck(obj){
     var pattern = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
     return (obj.value.match(pattern)!=null)
 }
+
+//프로필 이미지 로컬에 저장
+$("input[type='file']").change(function(e){
+    let inputFile = $("input[type='file']");
+    let files = inputFile[0].files;
+    let formData = new FormData();
+
+    for(let i = 0; i < files.length; i++){
+        formData.append("uploadFile", files[i]);
+    }
+
+    $.ajax({
+        url: "/myPage/uploadAjaxAction",
+        data: formData,
+        type: "POST",
+        // 현재 설정된 헤더 설정을 기본 방식으로 변경하지 못하도록 false로 설정
+        processData: false,
+        contentType: false,
+        success: function(result){
+            console.log(result);
+            $(result).each(function (i, item) {
+                $('input[name="userFileName"]').val(item.userFileName);
+                $('input[name="userFilePath"]').val(item.userFilePath);
+                $('input[name="userUuid"]').val(item.userUuid);
+                console.log("등록됨");
+                console.log($('input[name="userUploadPath"]').val());
+            });
+        }
+
+    });
+});

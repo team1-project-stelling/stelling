@@ -39,10 +39,11 @@
     margin-right: 12px;
     height: 32px;
     cursor: pointer;
+    position: relative;
 }
 
 .bellIcon {
-    width: 28px;
+    width: 31px;
     height: 31px;
     margin-right: 14px;
     padding-top: 1px;
@@ -315,7 +316,7 @@ textarea:focus {
     right: -400px;
     border-radius: 20px 0px 0px 20px;
     overflow-y: scroll;
-
+    z-index: 3;
 }
 
 .side-row {
@@ -383,7 +384,7 @@ body {
 .date {
     font-size: 13px;
     color: silver;
-    margin-left: 27px;
+    text-align: right;
 }
 
 .writeMent{
@@ -462,4 +463,36 @@ body {
     padding: 2px 2px 3px 2px;
     text-align: center;
     border-radius: 8px;
+}
+
+
+
+.showLikeNum {
+    position: absolute;
+    min-width: 14px;
+    width: fit-content;
+    height: 10px;
+    left: -4px;
+    top: 46px;
+    background: #00000087;
+    color: white;
+    border-radius: 5px;
+    padding: 12px 12.8px;
+    opacity: 0;
+    text-align: center;
+    line-height: 0.6;
+}
+.heartIcon:hover > .showLikeNum{
+    opacity: 1;
+}
+
+.showLikeNum:after {
+    border-top: 13px solid transparent;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 12px solid #00000087;
+    content: "";
+    position: absolute;
+    top: -25px;
+    left: 13px;
 }
