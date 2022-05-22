@@ -45,4 +45,12 @@
         WHERE SUPPORT_SPONSER = #{supportSponser}
         GROUP BY SUPPORT_SPONSER
     </select>
+
+    <!--노벨번호로 후원내역 가져오기-->
+    <select id="getSupportListWithNovelNumber" resultType="supportVO">
+    SELECT SUPPORT_NUMBER, SUPPORT_SPONSER, SUPPORT_RECEIVER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE
+    FROM TBL_SUPPORT
+    WHERE NOVEL_NUMBER = #{novelNumber};
+    </select>
+
 </mapper>

@@ -16,4 +16,5 @@ public class MyLibraryService {
 
     public Page<MyPickVO> getMyPickList(Long userNumber,Pageable pageable){return myPickRepository.findByUserVO_UserNumber(userNumber,pageable);}
     public Page<MyPickVO> getMyPickTagSearch(Long userNumber,String keyword,Pageable pageable){return myPickRepository.findByUserVO_UserNumberAndNovelVO_NovelHashtagContaining(userNumber,keyword,pageable);}
+    public boolean remove(Long myPickNumber){return myPickRepository.deleteByMyPickNumber(myPickNumber) == 1;}
 }

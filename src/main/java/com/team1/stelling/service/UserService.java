@@ -17,19 +17,10 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserDAO userDAO;
 
-    public UserVO get(Long userNumber){
-        return userRepository.findById(userNumber).get();
-    }
-    public List<UserVO> getList(){return userRepository.findAll(); }
+    public UserVO get(Long userNumber){return userRepository.findById(userNumber).get();}
+    public List<UserVO> getList(){return userRepository.findAll();}
     public void register(UserVO vo){ userRepository.save(vo);}
     public void modify(UserVO vo){ userRepository.save(vo);}
-
-//    public boolean checkEmailDuplicate(String email){
-//        return userRepository.existsByUserEmail(email);
-//    }
-//    public boolean checkNickNameDuplicate(String nickName){
-//        return userRepository.existsByUserNickName(nickName);
-//    }
 
     public void joinUser(UserVO vo) { userRepository.save(vo); }
 

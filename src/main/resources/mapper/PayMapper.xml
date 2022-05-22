@@ -23,7 +23,11 @@
                 SELECT /*+ INDEX_DESC(TBL_PAY BIN$OBDZeKBJR7yPR8+xtHguqw==$0)*/
                 ROWNUM RN, PAY_NUMBER, USER_NUMBER, PAY_CHARGE, PAY_COINCOUNT, PAY_DATE, PAY_STATUS
                 FROM TBL_PAY
-                WHERE USER_NUMBER = #{userNumber}
+                WHERE USER_NUMBER = #{userNumber} ]]>
+                AND <if test="startDate != null and endDate != null">
+                    </if>
+
+        <![CDATA[
                 AND ROWNUM <= #{criteria.pageNum} * #{criteria.amount}
                 ORDER BY ROWNUM DESC
                 )

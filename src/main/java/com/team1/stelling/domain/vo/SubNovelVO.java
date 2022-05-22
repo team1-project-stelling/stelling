@@ -53,7 +53,7 @@ public class SubNovelVO {
     private  int subNovelViewCount; // 조회수
 
     @Column(name = "SUBNOVEL_LIKECOUNT")
-    private int subNovelLickCount;  // 회차 좋아요
+    private int subNovelLikeCount;  // 회차 좋아요
 
     @Column(name = "SUBNOVEL_STATUS")
     private int subNovelStatus;/*회차 상태 0 숨김, 1 보여짐*/
@@ -68,13 +68,13 @@ public class SubNovelVO {
 
     public void updateSubNovelViewCount() { this.subNovelViewCount++; }
 
-    public void updateSubNovelLickCount() { this.subNovelLickCount++; }
+    public void updateSubNovelLickCount(int num) { this.subNovelLikeCount+=num; }
 
     public void updateSubNovelStatus(int subNovelStatus) { this.subNovelStatus = subNovelStatus; }
 
 
     @Builder
-    public SubNovelVO(Long subNovelNumber, NovelVO novelVO, UserVO userVO, String subNovelTitle, String subNovelWriterComment, String subNovelUploadDate, String subNovelUpdateDate, int subNovelViewCount, int subNovelLickCount, int subNovelStatus) {
+    public SubNovelVO(Long subNovelNumber, NovelVO novelVO, UserVO userVO, String subNovelTitle, String subNovelWriterComment, String subNovelUploadDate, String subNovelUpdateDate, int subNovelViewCount, int subNovelLikeCount, int subNovelStatus) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         this.subNovelNumber = subNovelNumber;
         this.novelVO = novelVO;
@@ -86,7 +86,7 @@ public class SubNovelVO {
             if(subNovelUpdateDate != null ) { this.subNovelUpdateDate = sdf.parse(subNovelUpdateDate); }
         } catch (ParseException e) { e.printStackTrace();}
         this.subNovelViewCount = subNovelViewCount;
-        this.subNovelLickCount = subNovelLickCount;
+        this.subNovelLikeCount = subNovelLikeCount;
         this.subNovelStatus = subNovelStatus;
     }
 }
