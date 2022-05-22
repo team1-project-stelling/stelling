@@ -8,7 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import java.util.Objects;
+
 import java.util.Map;
+
 
 @Service
 @Slf4j
@@ -22,6 +26,15 @@ public class UserService {
     public void register(UserVO vo){ userRepository.save(vo);}
     public void modify(UserVO vo){ userRepository.save(vo);}
 
+    public String findUserNickName(Long userNum){
+     String userNickName = userRepository.findById(userNum).orElse(null).getUserNickName();
+        if(Objects.isNull(userNickName)){
+            log.info("없는 사용자");
+        }
+        return userNickName;
+    }
+
+
     public void joinUser(UserVO vo) { userRepository.save(vo); }
 
     //로그인
@@ -32,4 +45,5 @@ public class UserService {
 
     //이메일 중복확인
     public int emailCheck(String userEmail) { return userDAO.emailCheck(userEmail); }
+
 }

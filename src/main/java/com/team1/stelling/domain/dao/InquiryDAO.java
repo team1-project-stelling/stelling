@@ -14,6 +14,6 @@ public class InquiryDAO {
     private final InquiryMapper inquiryMapper;
 
     public InquiryVO get(Long inquiryNumber) {return inquiryMapper.get(inquiryNumber);}
-    public void register(InquiryVO inquiryVO) {inquiryMapper.insert(inquiryVO);}
+    public boolean register(InquiryVO inquiryVO) {return  inquiryMapper.insert(inquiryVO) == 1;}
     public void modify(InquiryVO inquiryVO) {inquiryMapper.update(inquiryVO);}
 }

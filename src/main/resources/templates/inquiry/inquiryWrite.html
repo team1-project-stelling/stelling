@@ -32,31 +32,31 @@
                 문의 내용 중 욕설, 폭언, 위협, 허위사실 등이 포함될 경우 모욕, 협박, 명예훼손 등으로 간주하여 답변이 제외될 수 있으며, 관련 법규에 의거 처벌될 수 있습니다.
             </p>
             <hr style="border: 1px solid black">
-            <form action="">
+            <form action="/inquiry/inquiryWrite" method="post" id="inquiryWriteForm">
                 <table>
                     <tbody>
                         <tr>
                             <th>닉네임</th>
                             <td>
-                                <input type="text">
+                                <input type="text" th:value="${userNickName}" readonly>
                             </td>
                         </tr>
                         <tr>
                             <th>제목</th>
                             <td>
-                                <input type="text" class="title_input">
+                                <input name="inquiryTitle" type="text" id="inquiryWriteFormTitle" class="title_input" maxlength="35">
                             </td>
                         </tr>
                         <tr>
                             <th style="display: block">문의 내용</th>
                             <td>
-                                <textarea class="content_input"></textarea>
+                                <textarea name="inquiryContent" id="inquiryWriteFormContent" class="content_input" maxlength="1350"></textarea>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="button_position">
-                    <button type="button" class="button_style">문의하기</button>
+                    <button type="button" id="inquiryWriteFormBtn"class="button_style">문의하기</button>
                 </div>
             </form>
         </div>
@@ -64,5 +64,22 @@
 </body>
 <th:block th:insert="/fix/footer.html :: footerFragment"/>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $('button#inquiryWriteFormBtn').on('click',function () {
+        if(!$('#inquiryWriteFormTitle').val()){
+            alert('제목을 입력해주세요!');
+            return
+        }
+        if(!$('#inquiryWriteFormContent').val()){
+            alert('내용을 입력해주세요!');
+            return
+        }
+        $('#inquiryWriteForm').submit();
+
+    })
+
+
+</script>
 <script src="/assets/js/fix/header.js"></script>
+<script src="/assets/js/inquiry/inquiryWrite.js"></script>
 </html>
