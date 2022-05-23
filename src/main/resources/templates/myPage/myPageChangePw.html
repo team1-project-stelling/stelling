@@ -89,6 +89,11 @@
     // console.log("세션 유저 번호 : " + userNumber);
     let userPw = document.querySelector('.userPw').value
 
+    if(userNumber == null){
+        alert("세션이 만료되어 로그인 페이지로 이동합니다");
+        location.href = '/user/login';
+    }
+
     function goEditProfile(){
         location.href = "/myPage/myPageEditProfile";
     }

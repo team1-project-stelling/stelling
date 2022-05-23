@@ -26,6 +26,7 @@ public class UserService {
     public void register(UserVO vo){ userRepository.save(vo);}
     public void modify(UserVO vo){ userRepository.save(vo);}
 
+
     public String findUserNickName(Long userNum){
      String userNickName = userRepository.findById(userNum).orElse(null).getUserNickName();
         if(Objects.isNull(userNickName)){
@@ -33,7 +34,6 @@ public class UserService {
         }
         return userNickName;
     }
-
 
     public void joinUser(UserVO vo) { userRepository.save(vo); }
 

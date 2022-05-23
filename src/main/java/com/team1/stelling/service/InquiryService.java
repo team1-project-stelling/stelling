@@ -7,6 +7,10 @@ import com.team1.stelling.domain.vo.InquiryVO;
 import com.team1.stelling.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,6 +23,7 @@ public class InquiryService{
 
     public void register(InquiryVO inquiryVO) { inquiryRepository.save(inquiryVO);}
     public void modify(InquiryVO inquiryVO) {inquiryDAO.modify(inquiryVO);}
-    public InquiryVO get(Long inquiryNumber){return inquiryRepository.findById(inquiryNumber).orElse(new InquiryVO());}
 
+    public Page<InquiryVO> getPageList(Pageable pageable, Long userNumber){return inquiryRepository.findByUserVO_UserNumber(userNumber, pageable);}
+    public InquiryVO get(Long inquiryNumber){return inquiryRepository.findById(inquiryNumber).orElse(new InquiryVO());}
 }
