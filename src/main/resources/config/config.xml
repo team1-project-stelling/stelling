@@ -6,6 +6,7 @@
         <typeAlias type="com.team1.stelling.domain.vo.IllustProfileVO" alias="illustProfileVO"/>
         <typeAlias type="com.team1.stelling.domain.dto.IllustProfileDTO" alias="illustProfileDTO"/>
         <typeAlias type="com.team1.stelling.domain.vo.SupportVO" alias="supportVO"/>
+        <typeAlias type="com.team1.stelling.domain.dto.SupportDTO" alias="supportDTO"/>
         <typeAlias type="com.team1.stelling.domain.vo.MyPickVO" alias="myPickVO"/>
         <typeAlias type="com.team1.stelling.domain.vo.MyIllustVO" alias="myIllustVO"/>
         <typeAlias type="com.team1.stelling.domain.vo.InquiryVO" alias="inquiryVO"/>

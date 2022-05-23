@@ -19,10 +19,11 @@ import org.springframework.stereotype.Service;
 public class InquiryService{
     private final InquiryDAO inquiryDAO;
     private final InquiryRepository inquiryRepository;
+    private final UserService userService;
 
-    public InquiryVO get(Long inquiryNumber) {return inquiryDAO.get(inquiryNumber);}
-    public void register(InquiryVO inquiryVO) {inquiryDAO.register(inquiryVO);}
+    public void register(InquiryVO inquiryVO) { inquiryRepository.save(inquiryVO);}
     public void modify(InquiryVO inquiryVO) {inquiryDAO.modify(inquiryVO);}
 
     public Page<InquiryVO> getPageList(Pageable pageable, Long userNumber){return inquiryRepository.findByUserVO_UserNumber(userNumber, pageable);}
+    public InquiryVO get(Long inquiryNumber){return inquiryRepository.findById(inquiryNumber).orElse(new InquiryVO());}
 }
