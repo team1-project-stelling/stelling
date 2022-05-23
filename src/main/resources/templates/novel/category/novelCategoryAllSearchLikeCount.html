@@ -98,8 +98,8 @@
                                     <span class="mono_content">독점</span>
                                     <span class="finish_content" th:if="${novel.novelStatus == 2}">완결</span>
                                 </div>
-                                <a href="#" class="info_title" th:text="${novel.novelTitle}"></a>
-                                <a href="#" class="info_writer" th:text="${novel.userVO.userNickName}"></a>
+                                <a th:href="@{/novel/novelDetailView(novelNumber=${novel.novelNumber})}" class="info_title" th:text="${novel.novelTitle}"></a>
+                                <a  class="info_writer" th:text="${novel.userVO.userNickName}"></a>
                             </div>
                             <div class="info_summary" th:text="${novel.novelIntro}"></div>
                         </div>
