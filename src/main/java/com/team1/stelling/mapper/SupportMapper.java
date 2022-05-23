@@ -22,12 +22,9 @@ public interface SupportMapper {
     //검색한 결과의 총 개수
     public int getSearchSupportTotal(Criteria criteria);
 
-<<<<<<< HEAD
     //후원한 코인 총 개수
     public SupportDTO getSupportCoinTotal(Long supportSponser);
-=======
     public SupportVO get(Long supportNumber);
 
     public List<SupportVO> getSupportListWithNovelNumber(Long novelNumber);
->>>>>>> d28bdfcd21da60623b1704a11ff562d7b285a735
 }

@@ -19,14 +19,11 @@ public class SupportDAO {
     public List<SupportVO> getSuppotList(Criteria criteria, Long supportSponser) {return supportMapper.getSuppotList(criteria, supportSponser);}
 
     public void register(SupportVO supportVO) {supportMapper.insert(supportVO);}
-<<<<<<< HEAD
 
     //검색한 결과의 총 개수(페이징 처리)
     public int getSearchSupportTotal(Criteria criteria) {return supportMapper.getSearchSupportTotal(criteria);}
 
     //후원한 코인 총 개수
     public SupportDTO getSupportCoinTotal(Long supportSponser){return supportMapper.getSupportCoinTotal(supportSponser);}
-=======
     public List<SupportVO> getSupportListWithNovelNumber(Long novelNumber){return supportMapper.getSupportListWithNovelNumber(novelNumber);}
->>>>>>> d28bdfcd21da60623b1704a11ff562d7b285a735
 }

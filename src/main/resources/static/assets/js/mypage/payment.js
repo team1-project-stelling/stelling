@@ -136,7 +136,10 @@ $(".page-link").click(function(e){
 
     // $(pageForm).attr("action", "/myLibrary/payList?userNumber=" + userNumber);
     $(pageForm).submit();
+})
 
+$("#btnSearch").click(function(e){
+    $(dateForm).find("input[name='userNumber']").val(userNumber);
 })
 
 

@@ -74,6 +74,12 @@ public class MyLibraryController {
         NumberFormat numberFormat = NumberFormat.getInstance();
         String payChargeTotal = numberFormat.format(payService.getTotal(userNumber).getChargeTotal());
         log.info("총 결제 금액" + payChargeTotal);
+        log.info(criteria.toString());
+
+//        String startDate = criteria.getStartDate();
+//        String endDate = criteria.getEndDate();
+//        log.info("startDate : " + startDate);
+//        log.info("endDate : " + endDate);
 
         model.addAttribute("payList", payService.getList(criteria, userNumber));
         model.addAttribute("payChargeTotal", payChargeTotal);
