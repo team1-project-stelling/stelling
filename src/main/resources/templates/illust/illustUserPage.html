@@ -84,29 +84,47 @@
                 WorkList
             </div>
             <hr class="hr2">
-            <th:block th:each="illust:${list}">
-            <div class="flex2 wrap" th:object="${illust}">
+
+            <div class="flex2 wrap">
                 <div class="box">
+                    <th:block th:each="list, index:${list}">
                     <div class="column cellCss cell1">
-                        <img th:src="'/upload/display?fileName='+*{illustFilePath}+'/'+*{illustFileName}" class="testWidth" />
-                        <span class="heart">❤<span style="font-size: 12px;" th:text="*{illustLike}"></span></span>
+                            <th:block th:if="${index.index} == 0 or ${index.index} % 3 == 0">
+                                <a th:href="@{'/illust/illustViewDetail&userNumber=' + ${list.userVO.userNumber} + '&illustNumber=' + ${list.illustNumber}}">
+                                    <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                                    <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
+                                </a>
+                        </th:block>
                     </div>
+                    </th:block>
                 </div>
                 <div class="box">
+                    <th:block th:each="list, index:${list}">
                     <div class="column cellCss cell2">
-                        <img th:src="'/upload/display?fileName='+*{illustFilePath}+'/'+*{illustFileName}" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;" th:text="*{illustLike}"></span></span>
+                            <th:block th:if="${index.index} % 3 == 1">
+                                <a th:href="@{'/illust/illustViewDetail&userNumber=' + ${list.userVO.userNumber} + '&illustNumber=' + ${list.illustNumber}}">
+                                    <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                                    <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
+                                </a>
+                            </th:block>
                     </div>
+                    </th:block>
                 </div>
                 <div class="box">
+                    <th:block th:each="list, index:${list}">
                     <div class="column cellCss cell3">
-                        <img th:src="'/upload/display?fileName='+*{illustFilePath}+'/'+*{illustFileName}" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;" th:text="*{illustLike}"></span></span>
+                            <th:block th:if="${index.index} % 3 == 2">
+                                <a th:href="@{'/illust/illustViewDetail&userNumber=' + ${list.userVO.userNumber} + '&illustNumber=' + ${list.illustNumber}}">
+                                    <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                                    <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
+                                </a>
+                            </th:block>
                     </div>
+                    </th:block>
                 </div>
 
             </div>
-            </th:block>
+
         </div>
 
     </div>
@@ -180,18 +198,6 @@
 <script src="/assets/js/illust/module.js"></script>
 <script th:inline="javascript">
 
-    // let userNumber = 1;
-    // getMyIllustList(userNumber, function (result) {
-    //     let filePath = [[${illustFilePath}]];
-    //     let fileName = [[${illustFileName}]];
-    //     let like = [[${illustLike}]];
-    //     let str ="";
-    //     for(let i=0; i<result.length; i+3){
-    //         str += "<img  class='testWidth' th:src='/upload/display?fileName="+ filePath +"/"+ fileName + "'/>";
-    //         str += "<span class='heart'>❤<span style='font-size: 12px;' th:text="+ like +"></span></span>";
-    //     };
-    //     $('.cell1').html(str);
-    // });
 
 
 </script>

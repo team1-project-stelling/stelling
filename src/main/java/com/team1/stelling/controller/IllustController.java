@@ -2,6 +2,7 @@ package com.team1.stelling.controller;
 
 
 import com.team1.stelling.aspect.annotation.LogStatus;
+import com.team1.stelling.domain.dto.IllustProfileDTO;
 import com.team1.stelling.domain.dto.PageDTO;
 import com.team1.stelling.domain.dto.PageableDTO;
 import com.team1.stelling.domain.vo.Criteria;
@@ -37,7 +38,20 @@ public class IllustController {
 
     @LogStatus
     @GetMapping("/illustList")
-    public void illustList(Criteria criteria){
+    public void illustList(Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC)Pageable pageable){
+
+        List<IllustProfileDTO> profile = illustProfileService.list();
+        Page<IllustVO> list = illustService.getList(pageable);
+        PageableDTO pageableDTO = new PageableDTO((int) list.getTotalElements(), pageable);
+
+        log.info("---------------------------------------------------------------");
+        log.info(illustProfileService.list().toString());
+        log.info(illustService.getList().toString());
+        log.info("---------------------------------------------------------------");
+
+        model.addAttribute("profile", profile);
+        model.addAttribute("list", list);
+        model.addAttribute("pageableDTO", pageableDTO);
     }
 
     @GetMapping("/illustChatPage")
@@ -54,6 +68,7 @@ public class IllustController {
 
     @GetMapping("/illustUserInput")
     public void illustUserInput(Long userNumber, Model model){
+
         model.addAttribute("user", userService.get(1L));
     }
 
@@ -71,25 +86,32 @@ public class IllustController {
         return new RedirectView("illustUserPage");
     }
 
-    @GetMapping("/illustUserPage")
-    public void illustUserPage(Long userNumber, Criteria criteria, Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
+    @GetMapping("/illustUserPage/{userNumber}")
+    public String illustUserPage(@PathVariable("userNumber") Long userNumber, Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
 
 
-        List<IllustVO> list = illustService.getList(1L);
-        model.addAttribute("illustProfile", illustProfileService.get(1L));
-        model.addAttribute("total", list.size());
+        Page<IllustVO> list = illustService.getUserIllustList(pageable, userNumber);
+        PageableDTO pageableDTO = new PageableDTO((int) list.getTotalElements(), pageable);
+
+        model.addAttribute("illustProfile", illustProfileService.getProfile(userNumber));
+        model.addAttribute("total", list.getTotalElements());
+        model.addAttribute("pageableDTO", pageableDTO);
         model.addAttribute("list", list);
-//        model.addAttribute("illustProfile", illustProfileService.get(userNumber));
+
+        return "illust/illustUserPage";
     }
 
     @LogStatus
-    @GetMapping("/illustViewDetail")
-    public void read(Long illustNumber, Model model, IllustVO illustVO, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
-        List<IllustVO> list = illustService.getList(1L);
-        model.addAttribute("illust", illustService.get(25L));
-//        model.addAttribute("illust", illustService.get(illustNumber));
+    @GetMapping("/illustViewDetail&userNumber={userNumber}&illustNumber={illustNumber}")
+    public String read(@PathVariable("illustNumber") Long illustNumber,@PathVariable("userNumber") Long userNumber, Model model, IllustVO illustVO, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
+
+        List<IllustVO> list = illustService.getSixList(userNumber);
+
+        model.addAttribute("illust", illustService.get(illustNumber));
         model.addAttribute("total", list.size());
         model.addAttribute("list", list);
+
+        return "illust/illustViewDetail";
     }
 
 
