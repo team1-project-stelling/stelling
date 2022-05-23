@@ -22,6 +22,8 @@ public class UserService {
     public void register(UserVO vo){ userRepository.save(vo);}
     public void modify(UserVO vo){ userRepository.save(vo);}
 
+
+
     public void joinUser(UserVO vo) { userRepository.save(vo); }
 
     //로그인

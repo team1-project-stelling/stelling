@@ -1,14 +1,23 @@
 package com.team1.stelling.controller;
 
-import com.google.gson.JsonObject;
+import com.team1.stelling.domain.dto.PageableDTO;
 import com.team1.stelling.domain.repository.UserRepository;
+import com.team1.stelling.domain.vo.InquiryVO;
+import com.team1.stelling.domain.vo.NovelVO;
 import com.team1.stelling.domain.vo.UserVO;
+import com.team1.stelling.service.InquiryService;
+import com.team1.stelling.service.NovelService;
 import com.team1.stelling.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,6 +38,9 @@ import java.util.UUID;
 public class MyPageController {
     private final UserService userService;
     private final UserRepository userRepository;
+    private final InquiryService inquiryService;
+    private final NovelService novelService;
+
 
 
     //프로필수정
@@ -47,19 +59,41 @@ public class MyPageController {
     }
 
     @GetMapping("/myPageEditProfile")
-    public String myPageEditProfile(Model model,Long userNumber){
-        log.info("" + userNumber);
-        UserVO sessionUser = userService.get(userNumber);
-        log.info("myPageEditProfile");
+    public String myPageEditProfile(Model model,HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserVO sessionUser = userRepository.findById(Long.valueOf((Integer)session.getAttribute("userNumber"))).get();
         model.addAttribute("userVO", sessionUser);
         return "/myPage/myPageEditProfile";
     }
+
     //---------
 
+//    @GetMapping("/myPageMyWork")
+//    public void myWork(){
+//        log.info("myWork");
+//    }
+
     @GetMapping("/myPageMyWork")
-    public void myWork(){
-        log.info("myWork");
+    public String myPageMyWork(Model model, HttpServletRequest request, @PageableDefault(page = 0, size = 10, sort = "novelNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
+        HttpSession session = request.getSession();
+
+        UserVO uservo = userRepository.findById(Long.valueOf((Integer)session.getAttribute("userNumber"))).get();
+        Page<NovelVO> list = novelService.getPageList(Long.valueOf((Integer)session.getAttribute("userNumber")), pageable);
+        PageableDTO pageableDTO = new PageableDTO((int)list.getTotalElements(),pageable);
+        model.addAttribute("list",list);
+        model.addAttribute("pageableDTO", pageableDTO);
+        model.addAttribute("userVO",uservo);
+        return "myPage/myPageMyWork";
     }
+
+//    //저장된 소설 표지 가져오기
+//    @GetMapping("/novelRegisterImg")
+//    @ResponseBody
+//    public byte[] getFile(@RequestParam("novelNumber") Long novelNumber) throws IOException{
+//        NovelVO novelVO = novelService.get(novelNumber);
+//        return FileCopyUtils.copyToByteArray(new File("C:/stelling/" +novelVO.getNovelUploadPath()+"/"+novelVO.getNovelFileName()));
+//    }
+    //--------------------
 
 
 //비밀번호 변경----------------
@@ -87,14 +121,19 @@ public class MyPageController {
         return userPw;
     }
 //--------------------------------
-
+    //페이징-문의내역
     @GetMapping("/myPageQuestion")
-    public String myPageQuestion(){
-        log.info("myPageQuestion");
+    public String myPageQuestion(Model model, HttpServletRequest request, @PageableDefault(page = 0, size = 10, sort = "inquiryNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
+        HttpSession session = request.getSession();
+
+        Page<InquiryVO> list = inquiryService.getPageList(pageable, Long.valueOf((Integer)session.getAttribute("userNumber")));
+        PageableDTO pageableDTO = new PageableDTO( (int)list.getTotalElements(),pageable);
+        model.addAttribute("list",list);
+        model.addAttribute("pageableDTO", pageableDTO);
         return "myPage/myPageQuestion";
     }
 
-
+//-----------------
     //탈퇴(status 1->0으로 변경)
     @GetMapping("/withDraw")
     public String withDraw(HttpServletRequest request){

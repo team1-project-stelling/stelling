@@ -193,7 +193,10 @@
     let pageInfo = [[${criteria.listLink}]];
     const userNumber = [[${session.userNumber}]]; //세션 userNumber
 
-
+    if(userNumber == null){
+        alert("세션이 만료되어 로그인 페이지로 이동합니다");
+        location.href = '/user/login';
+    }
 
     function money_comma(num){
         num = Number(num);

@@ -74,7 +74,6 @@ public class IllustController {
     @GetMapping("/illustUserPage")
     public void illustUserPage(Long userNumber, Criteria criteria, Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
 
-
         List<IllustVO> list = illustService.getList(1L);
         model.addAttribute("illustProfile", illustProfileService.get(1L));
         model.addAttribute("total", list.size());
