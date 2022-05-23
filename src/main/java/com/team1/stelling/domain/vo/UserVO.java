@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Component
 @Entity
 @Table(name ="TBL_USER")
-@SequenceGenerator(name = "USER_SEQ" , allocationSize = 1)
 @Getter
 @Setter
 @ToString
@@ -19,31 +18,43 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class UserVO {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_NUMBER")
     private Long userNumber; // 회원번호
+
     @Column(name = "USER_ID")
     private String userId;   // 아이디
+
     @Column(name = "USER_PW")
     private String userPw;    // 비밀번호
+
     @Column(name = "USER_NICKNAME")
     private String userNickName; // 닉네임
+
     @Column(name = "USER_EMAIL")
     private String userEmail;   // 이메일
+
     @Column(name = "USER_GENDER")
     private int userGender;  // 성별
+
     @Column(name = "USER_PHONENUM")
     private String userPhoneNum;  //전화번호
+
     @Column(name = "USER_STATUS")
     private int userStatus;      // 회원 상태 0 - 일반회원 , 1 - 관리자 , 2- 휴면(탈퇴)
+
     @Column(name = "USER_COINBALANCE")
     private int userCoinBalance;  // 코인 잔액
+
     @Column(name = "USER_FILEPATH")
     private String userFilePath;  // 파일 경로
+
     @Column(name = "USER_UUID")
+
     private String userUuid;  // uuid
     @Column(name = "USER_FILENAME")
     private String userFileName;  // 파일 이름
+
     @Column(name = "USER_ACCESSTOKEN")
     private String userAccessToken; // 카카오 계정 이용시 발급 받는 토큰
 

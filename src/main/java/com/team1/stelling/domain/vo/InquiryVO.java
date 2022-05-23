@@ -16,30 +16,36 @@ import java.util.Date;
 @Setter
 @ToString(of = {"inquiryNumber","inquiryTitle","inquiryContent","inquiryAnswer","inquiryStatus","inquiryDate","inquiryRepDate"})
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class InquiryVO {
    /* 시퀀스 - > INQUIRY_SEQ */
-   @SequenceGenerator(name ="INQUIRY_SEQ" , allocationSize = 1)
-   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "INQUIRY_SEQ")
    @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "INQUIRY_NUMBER")
    private Long inquiryNumber; // 1:1문의 번호
+
    @ManyToOne
    @JoinColumn(name = "USER_NUMBER")
    private UserVO userVO;/*닉네임을 가져오기 위한 FK*/
+
    @Column(name = "INQUIRY_TITLE")
    private String inquiryTitle;/*문의 제목*/
+
    @Column(name = "INQUIRY_CONTENT")
    private String inquiryContent;/*문의 내용*/
+
    @Column(name = "INQUIRY_ANSWER")
    private String inquiryAnswer;/*문의 답변*/
+
    @Column(name = "INQUIRY_STATUS")
    private int inquiryStatus;/*답변 대기중, 답변 완료*/
-   @Column(name = "INQUIRY_DATE")
+
+   @Column(name = "INQUIRY_INQUIRYDATE")
    @Generated(GenerationTime.INSERT)
    @Temporal(TemporalType.TIMESTAMP)
    private Date inquiryDate; // 1대1문의 작성시간(요청)
+
    @Column(name = "INQUIRY_REPDATE")
    @Generated(GenerationTime.INSERT)
    @Temporal(TemporalType.TIMESTAMP)
@@ -72,4 +78,6 @@ public class InquiryVO {
    public void updateInquiryRepDate(Date inquiryRepDate) {
       this.inquiryRepDate = inquiryRepDate;
    }
+
+
 }
