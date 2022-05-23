@@ -88,8 +88,6 @@ public class IllustController {
 
     @GetMapping("/illustUserPage/{userNumber}")
     public String illustUserPage(@PathVariable("userNumber") Long userNumber, Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
-
-
         Page<IllustVO> list = illustService.getUserIllustList(pageable, userNumber);
         PageableDTO pageableDTO = new PageableDTO((int) list.getTotalElements(), pageable);
 

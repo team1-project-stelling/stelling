@@ -138,6 +138,11 @@
     const userNumber = [[${session.userNumber}]];
     console.log("세션 유저 번호 : " + userNumber);
 
+    if(userNumber == null){
+        alert("세션이 만료되어 로그인 페이지로 이동합니다");
+        location.href = '/user/login';
+    }
+
     function goEditProfile(){
         location.href = "/myPage/myPageEditProfile";
     }
@@ -151,10 +156,10 @@
         location.href = "/myPage/myPageQuestion";
     }
     function goQuit(){
-        location.href = "/myPage/myPageQuit?userNumber=" + userNumber;
+        location.href = "/myPage/myPageQuit";
     }
     function goPayList(){
-        location.href = "/myLibrary/payList?userNumber=" + userNumber;
+        location.href = "/myLibrary/payList";
     }
 
 </script>
