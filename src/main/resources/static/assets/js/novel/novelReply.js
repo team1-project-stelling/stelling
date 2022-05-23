@@ -36,7 +36,7 @@ function add(reply, callback, error) {
 
 
 function showList(subNovelNumber){
-    getList(subNovelNumber, function(replyDTO, replyVO, userVO){
+    getList(subNovelNumber, function(replyVO, userVO){
         let str = "";
         let replyArea = $('.replyWrap');
 
@@ -58,7 +58,7 @@ function showList(subNovelNumber){
             str +="</div>";
             str +="<div>";
             str +="<div style='text-align: right; display: flex;'>";
-            str +="<button class='mentBtns mentBtns1' style='margin-right: 6px; border-color:#cbcbcb; color:#cbcbcb;' type='button'>";
+            str +="<button class='mentBtns mentBtns1' style='margin-right: 6px; border-color:#cbcbcb; color:#cbcbcb;' data-replynum ='"+replyVO[i].replyNumber+"' type='button'>";
             str +="<img src='/images/icon/좋아요.png' height='20' width='20' class='likeBtn'/>";
             str +="<span style='vertical-align: super;'>"+replyVO[i].replyUp+"</span>";
             str +="</button>";
@@ -80,7 +80,7 @@ function getList(subNovelNumber, callback, error) {
         type: "GET",
         url: "/reply/list/" + subNovelNumber,
         success: function(replyDTO) {
-            callback(replyDTO, replyDTO.replyVOList, replyDTO.userVOList);
+            callback(replyDTO.replyVOList, replyDTO.userVOList);
         },
         error: function(xhr, status, er){
             if(error){

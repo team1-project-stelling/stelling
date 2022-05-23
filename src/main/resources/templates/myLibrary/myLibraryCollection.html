@@ -96,7 +96,7 @@
             <div class="my-item-list">
                 <th:block th:each="pick:${list}">
                 <div class="my-item">
-                    <!--<span class="tag-update">UP</span>-->
+                    <span class="tag-update" th:if="${#calendars.format(pick.novelVO.novelUpdateDate,'yyyy-MM-dd')== #calendars.format(#calendars.createNow(),'yyyy-MM-dd')}">UP</span>
                     <div class="item-img btn-num">
                         <picture class="">
                             <img th:src="'/upload/display?fileName='+${pick.novelVO.novelUploadPath}+'/'+${pick.novelVO.novelFileName}" class="fade-in" alt="표지사진" style="max-width: 100%;"> <!--추후 UUID추가-->
@@ -123,7 +123,7 @@
                                 <li><a href="#" class="btn-view tag-list">보러가기</a></li>
                             </ul>
                         </div>
-                        <a href="#"><img src="/images/like.png" class="like-img"></a>
+                        <a class="myPickRemove" th:href="${pick.myPickNumber}"><img src="/images/like.png" class="like-img"></a>
                     </div>
                 </div>
                 </th:block>
@@ -160,19 +160,39 @@
 
 
 <!-- Scripts -->
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/jquery.dropotron.min.js"></script>
-<script src="/assets/js/browser.min.js"></script>
-<script src="/assets/js/breakpoints.min.js"></script>
-<script src="/assets/js/util.js"></script>
-<script src="/assets/js/main.js"></script>
-<script src="/assets/js/myLibrary/myBook.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:inline="javascript">
     $("li.pickSearch a").click(function (e) {
         e.preventDefault();
         location.href = "/myLibrary/myLibraryCollection/myPick/search?keyword=" + $(this).attr("href");
     })
+
+
+    $("a.myPickRemove").click(function (e) {
+        e.preventDefault();
+        let myPickNumber =  $(this).attr("href");
+        $.ajax({
+            type: "DELETE",
+            url: "/myLibrary/myLibraryCollection/myPick/delete/" +myPickNumber,
+            success: function(result, status, xhr){
+                alert(result);
+                location.href = '/myLibrary/myLibraryCollection/myPick/'
+            },
+            error: function(xhr, status, er){
+                if(er){
+                    er(xhr);
+                }
+            }
+        });
+    })
 </script>
+<!--<script src="/assets/js/jquery.dropotron.min.js"></script>
+<script src="/assets/js/browser.min.js"></script>
+<script src="/assets/js/breakpoints.min.js"></script>
+<script src="/assets/js/util.js"></script>-->
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/myLibrary/myBook.js"></script>
+
+
 </body>
 </html>

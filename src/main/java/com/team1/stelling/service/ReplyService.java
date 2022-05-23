@@ -26,5 +26,7 @@ public class ReplyService{
         replyVO.updateReplyUpdateDate();
         replyRepository.save(replyVO);
     }
+    public List<ReplyVO> getReplyListLatest(Long novelNumber){return replyRepository.findAllByNovelVO_NovelNumberOrderByReplyNumber(novelNumber); }
+    public List<ReplyVO> getReplyListRecommend(Long novelNumber){return replyRepository.findAllByNovelVO_NovelNumberOrderByReplyUpDesc(novelNumber); }
 
 }
