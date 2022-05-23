@@ -2,15 +2,21 @@ package com.team1.stelling.controller;
 
 import com.team1.stelling.domain.dto.PageDTO;
 import com.team1.stelling.domain.vo.Criteria;
+import com.team1.stelling.domain.vo.PayDTO;
 import com.team1.stelling.domain.vo.PayVO;
+import com.team1.stelling.domain.vo.SupportVO;
 import com.team1.stelling.service.PayService;
+import com.team1.stelling.service.SupportService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.HandlerMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +27,7 @@ import java.util.List;
 public class MyLibraryController {
 
     private final PayService payService;
+    private final SupportService supportService;
 
     @RequestMapping("")
     public void myLibrary(){
@@ -64,34 +71,39 @@ public class MyLibraryController {
     //결제 리스트(마이페이지)
     @GetMapping("/payList")
     public String payList(Long userNumber, Criteria criteria, Model model){
-            List<PayVO> pay = payService.getPayCharge(userNumber);
-            List<PayVO> payList = payService.getList(criteria, userNumber);
-//            DecimalFormat decFormat = new DecimalFormat("###,###");
-//            List<String> tempCharge = new ArrayList<>();
-//
-//                for(int i = 0; i < payList.size(); i++){
-//                    tempCharge.add(decFormat.format(pay.get(i).getPayCharge()));
-//                    payList.get(i).setPayCharge(tempCharge.get(i));
-//                }
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        String payChargeTotal = numberFormat.format(payService.getTotal(userNumber).getChargeTotal());
+        log.info("총 결제 금액" + payChargeTotal);
+        log.info(criteria.toString());
 
-//            List<Long> tempList = new ArrayList<Long>();
-//            List<String> payChargeList = new ArrayList<String>();
+//        String startDate = criteria.getStartDate();
+//        String endDate = criteria.getEndDate();
+//        log.info("startDate : " + startDate);
+//        log.info("endDate : " + endDate);
 
-//            for(int i=0; i<payList.size(); i++){
-//                tempList.add(payList.get(i).getPayCharge());
-//                payChargeList.add(decFormat.format(tempList.get(i)));
-//            }
-//
-//
-//
-//            log.info("결제금액리스트 : " + payChargeList);
-
-            model.addAttribute("payList", payList);
-//            model.addAttribute("payChargeList", payChargeList);
-            model.addAttribute("pageDTO", new PageDTO(criteria, payService.getSearchTotal(criteria)));
-            model.addAttribute("payDTO", payService.getTotal(userNumber));
-            return "myPage/myPagePayList";
+        model.addAttribute("payList", payService.getList(criteria, userNumber));
+        model.addAttribute("payChargeTotal", payChargeTotal);
+        model.addAttribute("pageDTO", new PageDTO(criteria, payService.getSearchTotal(criteria)));
+        return "myPage/myPagePayList";
     }
+
+    @GetMapping("/supportList")
+    public String supportList(Long supportSponser, Criteria criteria, Model model){
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        String supportCoinTotal = numberFormat.format(supportService.getSupportCoinTotal(supportSponser).getSupportTotal());
+        log.info("총 후원 코인" + supportCoinTotal);
+
+        model.addAttribute("supportList", supportService.getSupportList(criteria, supportSponser));
+        model.addAttribute("supportCoinTotal", supportCoinTotal);
+        model.addAttribute("pageDTO", new PageDTO(criteria, supportService.getSearchSupportTotal(criteria)));
+        return "myPage/myPageSupportList";
+    }
+
+    //후원 리스트(마이페이지)
+//    @GetMapping("/showList")
+//    public String showList(Long userNumber, Criteria criteria, Model model){
+//
+//    }
 
 //    @GetMapping("/payList/{userNumber}")
 //    public String payList(@PathVariable Long userNumber, String startDate, String endDate, Model model){
