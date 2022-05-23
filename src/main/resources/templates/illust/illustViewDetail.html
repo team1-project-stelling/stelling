@@ -27,7 +27,7 @@
         <p class="p titleInfo">
             <span style="font-style: italic">by </span>
             <span style="font-weight: bold" th:text="*{userVO.userNickName}">yewon_seo</span> &nbsp;
-            <span style="font-size: 13px" th:text="*{illustUploadDate}">2022년 04월 30일</span>
+            <span style="font-size: 13px" th:text="*{#dates.format(illustUploadDate, 'yyyy-MM-dd')}">2022년 04월 30일</span>
             <span></span>
         </p>
     </div>
@@ -86,7 +86,7 @@
             </div>
         </div>
             <div style="margin-right: 25px;">
-                <button class="chatBtn">PROFILE</button>
+                <button class="chatBtn" th:href="${illust.userVO.userNumber}">PROFILE</button>
                 <button class="lookBtn">LIST</button>
             </div>
         </div>
@@ -98,17 +98,21 @@
 
         <div class="posts">
             <th:block th:each=" list, index : ${list}">
-            <div class="post" th:if="${index.index} == 0 or ${index.index} == 1 or ${index.index} == 2">
-                <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" width="100%" height="100%"  class="img"/>
-                <div class="heart">❤ <p style="font-size: 12px;" class="p" th:text="${list.illustLike}"></p></div>
+            <div class="post" th:if="${index.index} <= 2">
+                <a class="goRead" th:href="@{'/illust/illustViewDetail' + '&userNumber=' + ${list.userVO.userNumber} + '&illustNumber=' + ${list.illustNumber}}">
+                    <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" width="100%" height="100%"  class="img"/>
+                    <div class="heart">❤ <p style="font-size: 12px;" class="p" th:text="${list.illustLike}"></p></div>
+                </a>
             </div>
             </th:block>
         </div>
         <div class="posts">
             <th:block th:each=" list, index : ${list}">
-            <div class="post" th:if="${index.index} == 3 or ${index.index} == 4 or ${index.index} == 5 ">
-                <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" width="100%" height="100%"  class="img"/>
-                <div class="heart">❤ <p style="font-size: 12px;" class="p" th:text="${list.illustLike}"></p></div>
+            <div class="post" th:if="${index.index} > 2 and ${index.index} <= 5">
+                <a class="goRead" th:href="@{'/illust/illustViewDetail&userNumber=' + ${list.userVO.userNumber} + '&illustNumber=' + ${list.illustNumber}}">
+                    <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" width="100%" height="100%"  class="img"/>
+                    <div class="heart">❤ <p style="font-size: 12px;" class="p" th:text="${list.illustLike}"></p></div>
+                </a>
             </div>
             </th:block>
         </div>
@@ -141,6 +145,17 @@
             $emptyHeart.attr("src","/images/icon/하트.png");
         }
     });
+</script>
+<script th:inline="javascript">
+    $("button.lookBtn").click(function (e) {
+        e.preventDefault();
+        location.href = "/illust/illustList";
+    })
+
+    $("button.chatBtn").click(function (e) {
+        e.preventDefault();
+        location.href = "/illust/illustUserPage/" + $(this).attr("href");
+    })
 </script>
 <script src="/assets/js/fix/header.js"></script>
 </html>

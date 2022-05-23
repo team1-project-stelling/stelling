@@ -34,60 +34,84 @@
     <div class="slide_wrapper">
         <ul class="slides">
             <li>
-                <div class="imgDiv" style="background-color: #417A97; color: white">
-                    <img src="/images/illustCategory/동화.jpg" class="img" />
-                    <p>동화</p>
-                </div></li>
-            <li><div class="imgDiv" style="background-color: #F1E5B3; color: gray">
-                <img src="/images/illustCategory/디즈니.jpg" class="img" />
-                <p class="categoryName">디즈니</p>
-            </div></li>
-            <li><div class="imgDiv" style="background-color: #44CEFF; color: white">
-                <img src="/images/illustCategory/배경화.jpg" class="img" />
-                <p class="categoryName">배경</p>
-            </div>
+                <a>
+                    <div class="imgDiv" style="background-color: #417A97; color: white">
+                        <img src="/images/illustCategory/동화.jpg" class="img" />
+                        <p>동화</p>
+                    </div>
+                </a>
             </li>
             <li>
-                <div class="imgDiv" style="background-color: #F2E6D8; color: gray">
-                    <img src="/images/illustCategory/수채화.jpg" class="img" />
-                    <p class="categoryName">수채화</p>
-                </div>
+                <a>
+                    <div class="imgDiv" style="background-color: #F1E5B3; color: gray">
+                        <img src="/images/illustCategory/디즈니.jpg" class="img" />
+                        <p class="categoryName">디즈니</p>
+                    </div>
+                </a>
             </li>
             <li>
-                <div class="imgDiv" style="background-color: #F87DB3; color: white">
-                    <img src="/images/illustCategory/시티팝.jpg" class="img" />
-                    <p class="categoryName">시티팝</p>
-                </div>
+                <a>
+                    <div class="imgDiv" style="background-color: #44CEFF; color: white">
+                        <img src="/images/illustCategory/배경화.jpg" class="img" />
+                        <p class="categoryName">배경</p>
+                    </div>
+                </a>
             </li>
             <li>
-                <div class="imgDiv" style="background-color: #566D50; color: white">
-                    <img src="/images/illustCategory/인물화.jpg"class="img"  />
-                    <p class="categoryName">인물화</p>
-                </div>
+                <a>
+                    <div class="imgDiv" style="background-color: #F2E6D8; color: gray">
+                        <img src="/images/illustCategory/수채화.jpg" class="img" />
+                        <p class="categoryName">수채화</p>
+                    </div>
+                </a>
             </li>
             <li>
-                <div class="imgDiv" style="background-color: #90C863; color: white">
-                    <img src="/images/illustCategory/지브리.jpg" class="img" />
-                    <p class="categoryName">지브리</p>
-                </div>
+                <a>
+                    <div class="imgDiv" style="background-color: #F87DB3; color: white">
+                        <img src="/images/illustCategory/시티팝.jpg" class="img" />
+                        <p class="categoryName">시티팝</p>
+                    </div>
+                </a>
             </li>
             <li>
-                <div class="imgDiv" style="background-color: #676886; color: white">
-                    <img src="/images/illustCategory/추상화.jpg" class="img" />
-                    <p class="categoryName">추상화</p>
-                </div>
+                <a>
+                    <div class="imgDiv" style="background-color: #566D50; color: white">
+                        <img src="/images/illustCategory/인물화.jpg"class="img"  />
+                        <p class="categoryName">인물화</p>
+                    </div>
+                </a>
             </li>
             <li>
-                <div class="imgDiv" style="background-color: #E6AFAA; color: white;">
-                    <img src="/images/illustCategory/캐릭터.jpg" class="img" />
-                    <p class="categoryName">캐릭터</p>
-                </div>
+                <a>
+                    <div class="imgDiv" style="background-color: #90C863; color: white">
+                        <img src="/images/illustCategory/지브리.jpg" class="img" />
+                        <p class="categoryName">지브리</p>
+                    </div>
+                </a>
             </li>
             <li>
-                <div class="imgDiv" style="background-color: #303030; color: white;">
-                    <img src="/images/illustCategory/흑백.jpg" class="img" />
-                    <p class="categoryName">흑백</p>
-                </div>
+                <a>
+                    <div class="imgDiv" style="background-color: #676886; color: white">
+                        <img src="/images/illustCategory/추상화.jpg" class="img" />
+                        <p class="categoryName">추상화</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <div class="imgDiv" style="background-color: #E6AFAA; color: white;">
+                        <img src="/images/illustCategory/캐릭터.jpg" class="img" />
+                        <p class="categoryName">캐릭터</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <div class="imgDiv" style="background-color: #303030; color: white;">
+                        <img src="/images/illustCategory/흑백.jpg" class="img" />
+                        <p class="categoryName">흑백</p>
+                    </div>
+                </a>
             </li>
 
 
@@ -103,57 +127,14 @@
 
     <p class="Title2 creatorarea">Best Creator</p>
     <div class="illustratorDIv">
-
-
-        <div class="center cre">
-            <div class="illustratorProfile">
-                <img src="/images/profileSample/프사1.jpg" />
-
+        <th:block th:each="profile, index:${profile}" th:if="${index.index} <=6">
+            <div class="center cre">
+                <div class="illustratorProfile">
+                    <img th:src="'/upload/display?fileName='+${profile.userFilePath}+'/'+${profile.userFileName}" />
+                </div>
+                <p th:text="${profile.userNickName}">zzang_9</p>
             </div>
-            <p>zzang_9</p>
-        </div>
-
-        <div class="center cre">
-            <div class="illustratorProfile">
-                <img src="/images/profileSample/프사2.jpg" />
-
-            </div>
-            <p>ppicka</p>
-        </div>
-        <div class="center cre">
-            <div class="illustratorProfile">
-                <img src="/images/profileSample/프사3.jpg" />
-            </div>
-            <p>vaccineCat</p>
-        </div>
-        <div class="center cre">
-            <div class="illustratorProfile">
-                <img src="/images/profileSample/프사4.jpg" />
-            </div>
-            <p>dangdang</p>
-        </div>
-        <div class="center cre">
-            <div class="illustratorProfile">
-                <img src="/images/profileSample/프사5.jpg" />
-
-            </div>
-            <p>cute_dang</p>
-        </div>
-        <div class="center cre_x">
-            <div class="illustratorProfile">
-                <img src="/images/profileSample/프사1.jpg" />
-
-            </div>
-            <p>zzang_9</p>
-        </div>
-        <div class="center cre_x">
-            <div class="illustratorProfile">
-                <img src="/images/profileSample/프사5.jpg" />
-
-            </div>
-            <p>cute_dang</p>
-        </div>
-
+        </th:block>
     </div>
 
 
@@ -200,83 +181,79 @@
         </div>
     </div>
 
+<!--   리스트 시작     -->
     <div class="flex2 wrap" style=" background-color: #EAEAEA; margin-bottom: 100px; padding-bottom: 68px;">
         <div class="box column1">
-            <div class="column cellCss" >
-                <img src="/images/일러스트 1.jpg" class="testWidth" />
-                <span class="heart">❤<span style="font-size: 12px;">1,213</span></span>
-
-            </div>
-            <div class="column cellCss">
-                <img src="/images/일러스트 4.jpg" class="testWidth">
-                <span class="heart">❤<span style="font-size: 12px;">1,043</span></span>
-            </div>
-            <div class="column cellCss">
-                <img src="/images/일러스트 3.jpg" class="testWidth">
-                <span class="heart">❤</span>
-            </div>
+            <th:block th:each="list, index:${list}" th:if="${index.index} == 0 or ${index.index} % 5 == 0">
+                <a class="goRead" th:href="@{'/illust/illustViewDetail&userNumber=' + ${list.userVO.userNumber} + '&illustNumber=' + ${list.illustNumber}}">
+                    <div class="column cellCss" >
+                        <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                        <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}">1,213</span></span>
+                    </div>
+                </a>
+            </th:block>
         </div>
         <div class="box column2">
-            <div class="column cellCss">
-                <img src="/images/일러스트 2.jpg" class="testWidth">
-                <span class="heart">❤</span>
-            </div>
-            <div class="column cellCss">
-                <img src="/images/일러스트 10.jpg" class="testWidth">
-                <span class="heart">❤</span>
-            </div>
-            <div class="column cellCss">
-                <img src="/images/일러스트 11.jpg" class="testWidth">
-                <span class="heart">❤</span>
-            </div>
+            <th:block th:each="list, index:${list}" th:if="${index.index} % 5 == 1">
+                <a class="goRead" th:href="@{'/illust/illustViewDetail&userNumber=' + ${list.userVO.userNumber} + '&illustNumber=' + ${list.illustNumber}}">
+                    <div class="column cellCss">
+                        <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                        <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}">1,213</span></span>
+                    </div>
+                </a>
+            </th:block>
         </div>
         <div class="box column3">
-            <div class="column cellCss">
-                <img src="/images/일러스트 7.jpg" class="testWidth">
-                <span class="heart">❤</span>
-            </div>
-            <div class="column cellCss">
-                <img src="/images/일러스트 6.jpg" class="testWidth">
-                <span class="heart">❤</span>
-            </div>
-            <div class="column cellCss">
-                <img src="/images/일러스트 9.jpg" class="testWidth">
-                <span class="heart">❤</span>
-            </div>
+            <th:block th:each="list, index:${list}" th:if="${index.index} % 5 == 2">
+                <a class="goRead" th:href="@{'/illust/illustViewDetail&userNumber=' + ${list.userVO.userNumber} + '&illustNumber=' + ${list.illustNumber}}">
+                    <div class="column cellCss">
+                        <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                        <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}">1,213</span></span>
+                    </div>
+                </a>
+            </th:block>
         </div>
         <div class="box column4">
-            <div class="column cellCss">
-                <img src="/images/일러스트 5.jpg" class="testWidth">
-                <span class="heart">❤</span>
-            </div>
-            <div class="column cellCss">
-                <img src="/images/일러스트 8.jpg" class="testWidth">
-                <span class="heart">❤</span>
-            </div>
-            <div class="column cellCss">
-                <img src="/images/일러스트 12.jpg" class="testWidth">
-                <span class="heart">❤</span>
-            </div>
+            <th:block th:each="list, index:${list}" th:if="${index.index} % 5 == 3">
+                <a class="goRead" th:href="@{'/illust/illustViewDetail&userNumber=' + ${list.userVO.userNumber} + '&illustNumber=' + ${list.illustNumber}}">
+                    <div class="column cellCss">
+                        <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                        <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}">1,213</span></span>
+                    </div>
+                </a>
+            </th:block>
         </div>
         <div class="box column5">
-            <div class="column cellCss">
-                <img src="/images/일러스트 13.jpg" class="testWidth">
-                <span class="heart">❤</span>
-            </div>
-            <div class="column cellCss">
-                <img src="/images/일러스트 14.jpg" class="testWidth">
-                <span class="heart">❤</span>
-            </div>
-            <div class="column cellCss">
-                <img src="/images/일러스트 15.jpg" class="testWidth">
-                <span class="heart">❤</span>
-            </div>
+            <th:block th:each="list, index:${list}" th:if="${index.index} % 5 == 4">
+                <a class="goRead" th:href="@{'/illust/illustViewDetail&userNumber=' + ${list.userVO.userNumber} + '&illustNumber=' + ${list.illustNumber}}">
+                    <div class="column cellCss">
+                        <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                        <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}">1,213</span></span>
+                    </div>
+                </a>
+            </th:block>
         </div>
 
     </div>
 
 
+        <!-- 페이징 -->
+        <ul class="c_PagingList" >
+            <!-- 이전 -->
+            <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/illust/illustList(page=${pageableDTO.startPage -2 })}" >&lt;&lt;</a></li>
+            <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/illust/illustList(page=${pageableDTO.previous})}">&lt;</a></li>
 
+
+            <th:block th:each="num:${#numbers.sequence(pageableDTO.startPage,pageableDTO.endPage)}">
+                <li  th:if="${pageableDTO.pageNumber== num}" th:text="${num}" class="pageActive"></li>
+                <li th:unless="${pageableDTO.pageNumber == num}" ><a th:text="${num}" th:href="@{/illust/illustList(page=${num - 1})}"></a></li>
+            </th:block>
+
+
+            <!-- 다음 -->
+            <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/illust/illustList(page=${pageableDTO.next})}">&gt;</a></li>
+            <li th:if="${pageableDTO.hasNext}"><a th:href="@{/illust/illustList(page=${pageableDTO.endPage)}">&gt;&gt;</a></li>
+        </ul>
     </section>
 </div>
 
@@ -288,4 +265,6 @@
 <script src="/assets/js/illust/illustList.js"></script>
 
 <script src="/assets/js/fix/header.js"></script>
+<script th:inline="javascript">
+</script>
 </html>
