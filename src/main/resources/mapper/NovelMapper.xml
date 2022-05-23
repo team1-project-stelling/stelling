@@ -69,15 +69,16 @@
                 NOVEL_HASHTAG
          LIKE '%'||#{keyword}||'%'
         </if>
+
+        )  n JOIN TBL_USER u
+        ON u.USER_NUMBER  = n.USER_NUMBER
         ORDER BY
         <choose>
             <when test="rankType == 'view'.toString()">NOVEL_VIEWCOUNTTOTAL</when>
             <when test="rankType == 'like'.toString()">NOVEL_LIKECOUNTTOTAL</when>
         </choose>
         DESC
-        )  n JOIN TBL_USER u
-        ON u.USER_NUMBER  = n.USER_NUMBER
-        WHERE ROWNUM <![CDATA[<=]]> 50
+        LIMIT 50 ;
     </select>
 
     <select id="rankingSearchOfDay" resultType="NovelRankingDTO">
@@ -133,15 +134,16 @@
             NOVEL_HASHTAG
             LIKE '%'||#{keyword}||'%'
         </if>
+
+        )  n JOIN TBL_USER u
+        ON u.USER_NUMBER  = n.USER_NUMBER
         ORDER BY
         <choose>
             <when test="rankType == 'view'.toString()">NOVEL_VIEWCOUNTTOTAL</when>
             <when test="rankType == 'like'.toString()">NOVEL_LIKECOUNTTOTAL</when>
         </choose>
         DESC
-        )  n JOIN TBL_USER u
-        ON u.USER_NUMBER  = n.USER_NUMBER
-        WHERE ROWNUM <![CDATA[<=]]> 50
+        LIMIT 50 ;
     </select>
 
 

@@ -4,19 +4,18 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-@Component
 @Entity
 @Table(name ="TBL_RECENTVIEW")
-@SequenceGenerator(name ="RECENTVIEW_SEQ" , allocationSize = 1)
 @Getter
 @Setter
 @ToString(of = {"recentViewNumber"})
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class RecentViewVO {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RECENTVIEW_SEQ")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "RECENTVIEW_NUMBER")
    private Long recentViewNumber;   /* 최근 본 작품 번호*/
 

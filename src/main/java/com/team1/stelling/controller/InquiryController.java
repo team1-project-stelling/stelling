@@ -38,6 +38,7 @@ public class InquiryController {
     public String writeInquiry(Model model,HttpServletRequest request) {
 
         HttpSession session =  request.getSession();
+        log.info("유저번호 ;"+Long.valueOf((Integer)session.getAttribute("userNumber")));
         String userNickName = userService.findUserNickName(Long.valueOf((Integer)session.getAttribute("userNumber")));
         model.addAttribute("userNickName", userNickName);
         return "inquiry/inquiryWrite";
