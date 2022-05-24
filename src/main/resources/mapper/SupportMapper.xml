@@ -15,11 +15,35 @@
     <!--수정-->
     <update id="update"></update>
 
-    <!--특정 내역 가져오기-->
-    <select id="get" resultType="supportVO">
-        SELECT SUPPORT_NUMBER, SUPPORT_SPONSER, SUPPORT_RECEIVER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE
+    <!--후원 내역-->
+    <select id="getSuppotList" resultType="supportVO">
+        <![CDATA[
+            SELECT SUPPORT_NUMBER, SUPPORT_SPONSER, SUPPORT_RECEIVER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE
+            FROM
+                (
+                SELECT
+                ROWNUM RN, SUPPORT_NUMBER, SUPPORT_SPONSER, SUPPORT_RECEIVER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE
+                FROM TBL_SUPPORT
+                WHERE SUPPORT_SPONSER = #{supportSponser}
+                AND ROWNUM <= #{criteria.pageNum} * #{criteria.amount}
+                ORDER BY ROWNUM DESC
+                )
+            WHERE RN > (#{criteria.pageNum} - 1) * #{criteria.amount}
+        ]]>
+    </select>
+
+    <!--검색한 결과의 총 개수(페이징 처리를 위함)-->
+    <select id="getSearchSupportTotal" resultType="_int">
+        SELECT COUNT(SUPPORT_NUMBER)
         FROM TBL_SUPPORT
-        WHERE USER_NUMBER = #{userNumber}
+    </select>
+
+    <!--총 결제 금액-->
+    <select id="getSupportCoinTotal" resultType="SupportDTO">
+        SELECT SUPPORT_SPONSER, SUM(SUPPORT_COIN) AS SUPPORT_TOTAL
+        FROM TBL_SUPPORT
+        WHERE SUPPORT_SPONSER = #{supportSponser}
+        GROUP BY SUPPORT_SPONSER
     </select>
 
     <!--노벨번호로 후원내역 가져오기-->

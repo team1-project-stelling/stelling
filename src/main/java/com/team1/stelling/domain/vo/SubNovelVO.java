@@ -1,5 +1,6 @@
 package com.team1.stelling.domain.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
@@ -13,15 +14,14 @@ import java.util.Date;
 @Component
 @Entity
 @Table(name ="TBL_SUBNOVEL")
-@SequenceGenerator(name = "SUBNOVEL_SEQ" , allocationSize = 1)
 @Getter
 @Setter
-@ToString(of = { "subNovelNumber", "subNovelTitle", "subNovelWriterComment", "subNovelUploadDate", "subNovelUpdateDate","subNovelViewCount","subNovelLickCount","subNovelStatus" })
+@ToString(of = { "subNovelNumber", "subNovelTitle", "subNovelWriterComment", "subNovelUploadDate", "subNovelUpdateDate","subNovelViewCount","subNovelLikeCount","subNovelStatus" })
 @AllArgsConstructor
 @NoArgsConstructor
 public class SubNovelVO {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SUBNOVEL_SEQ")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SUBNOVEL_NUMBER")
     Long subNovelNumber; // 회차 번호
 

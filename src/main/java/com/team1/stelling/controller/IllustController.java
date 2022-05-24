@@ -118,6 +118,7 @@ public class IllustController {
         return new RedirectView("illustUserPage");
     }
 
+
     @GetMapping("/illustUserPage")
     public String illustUserPage(Long userNumber, Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
 

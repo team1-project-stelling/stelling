@@ -47,32 +47,33 @@
                 </div>
                 <div class="right_block">
                     <div class="">
-                        <div class="profile_text"><strong>최근 구매/후원 내역 </strong></div>
+                        <div class="profile_text"><strong>최근 구매 내역 </strong></div>
                         <table class="listWrap">
                             <tbody>
                             <tr>
                                 <td class="active1 one" style="width: 50%">
-                                    <div class="active myPoint">내 포인트</div>
+                                    <a href="javascript:goList();" style="border-bottom: 1px solid #ef6e73b3;"><div class="active myPoint">내 포인트</div></a>
                                 </td>
                                 <td class="active2" style="width: 50%">
-                                    <div class="active mySupport"> 내 후원 내역</div>
+                                    <a href="javascript:goSupportList();"><div class="active mySupport"> 내 후원 내역</div></a>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
 
                         <div class="payTableWrap">
-                            <th:block th:if="${payDTO != null}">
+                            <th:block th:if="${payChargeTotal != null}">
                             <div class="paymentWrap">
-                                <div th:text="'총 결제 금액 :' + ${payDTO.chargeTotal} + '원'">총 결제 금액</div>
+                                <div th:text="'총 결제 금액 :' + ${payChargeTotal} + '원'"></div>
                                 <div>
-                                    <form>
+                                    <form name="dateForm" action="/myLibrary/payList">
                                         <div id="dateType" >
+                                            <input class="userNumber" type="hidden" name="userNumber" value="">
                                             <input type="date" id="dateFrom" name="startDate">
                                             ~ <input type="date" id="dateTo" name="endDate">
                                         </div>
                                         <div class="searchWrap">
-                                            <button class="btn btn-sm" id="btnSearch" name="btnSearch">검색</button>
+                                            <button type="submit" class="btn btn-sm" id="btnSearch">검색</button>
                                         </div>
                                     </form>
                                 </div>
@@ -85,64 +86,51 @@
                                     <th>결제 일</th>
                                 </tr>
                                 <th:block th:each="pay:${payList}">
-                                    <tr>
-                                        <td class="td1" th:text="|${pay.getPayCharge()}원|"></td>
-                                        <td class="td1" th:text="*{#dates.format(pay.getPayDate(), 'yyyy-MM-dd')}"></td>
+                                    <tr th:object="${pay}">
+                                        <td class="td1" th:text="|*{payCharge}원|"></td>
+                                        <td class="td1" th:text="*{#dates.format(payDate, 'yyyy-MM-dd')}"></td>
                                     </tr>
                                 </th:block>
                                 </tbody>
                             </table>
                         </div>
 
-                        <div class="payTableWrap2">
-                            <div class="paymentWrap">
-                                <div>총 후원 금액 (금액)원</div>
-                                <div>
-                                    <form>
-                                        <div id="dateType" >
-                                            <input type="date" id="dateFrom" name="form">
-                                            ~ <input type="date" id="dateTo" name="to">
-                                        </div>
-                                        <div class="searchWrap">
-                                            <button class="btn btn-sm" id="btnSearch" name="btnSearch">검색</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <table class="pointTable">
-                                <tbody>
-                                <tr>
-                                    <th>후원 금액</th>
-                                    <th>후원한 날짜</th>
-                                </tr>
-                                <tr>
-                                    <td class="td1">20,000 원</td>
-                                    <td class="td1">2022-05-02</td>
-                                </tr>
-                                <tr>
-                                    <td class="td1">50,000 원</td>
-                                    <td class="td1">2022-05-01</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!--페이징-->
-                        <div class=" d-flex align-items-center justify-content-center" style="height:80px;">
+<!--                        <div class="payTableWrap2">-->
+<!--                            <div class="paymentWrap">-->
+<!--                                <div>총 후원 금액 (금액)원</div>-->
+<!--                                <div>-->
+<!--                                    <form>-->
+<!--                                        <div id="dateType" >-->
+<!--                                            <input type="date" id="dateFrom" name="form">-->
+<!--                                            ~ <input type="date" id="dateTo" name="to">-->
+<!--                                        </div>-->
+<!--                                        <div class="searchWrap">-->
+<!--                                            <button class="btn btn-sm" id="btnSearch" name="btnSearch">검색</button>-->
+<!--                                        </div>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <table class="pointTable">-->
+<!--                                <tbody>-->
+<!--                                <tr>-->
+<!--                                    <th>후원한 코인</th>-->
+<!--                                    <th>후원한 날짜</th>-->
+<!--                                </tr>-->
+<!--                                <th:block th:each="sup:${supportList}">-->
+<!--                                <tr>-->
+<!--                                    <td class="td1" th:text="|${sup.getSupportCoin()}코인|"></td>-->
+<!--                                    <td class="td1" th:text="${#dates.format(sup.getSupportDate(), 'yyyy-MM-dd')}"></td>-->
+<!--                                </tr>-->
+<!--                                </th:block>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </div>-->
+                        <!--결제 내역 페이징-->
+                        <div class=" d-flex align-items-center justify-content-center" id="pay-paging" style="height:80px;">
                             <nav aria-label="Page navigation">
                                 <ul th:object="${pageDTO}" class="pagination pagination-basic pagination-primary mg-b-0">
 
 
-                                    <!--                                        <li class="page-item" style="width:30px;margin-left:3px;">-->
-                                    <!--                                            <a style="width:30px;opacity:0.4;" class="page-link" href="/freestory/all/date/1/all/?main_genre=">-->
-                                    <!--                                                <i class="icon ion-arrow-left-a"></i>-->
-                                    <!--                                            </a>-->
-                                    <!--                                        </li>-->
-
-                                    <!--                                        <li class="page-item" style="width:30px;margin-left:1px;">-->
-                                    <!--                                            <a style="width:30px;opacity:0.4;" class="page-link" href="/freestory/all/date/1/all/?main_genre=">-->
-                                    <!--                                                <i class="icon ion-arrow-left-b"></i>-->
-                                    <!--                                            </a>-->
-                                    <!--                                        </li>-->
                                     <!--이전 버튼-->
                                     <li><a class="page-link" th:if="*{prev}" th:href="*{startPage - 1}">&lt;</a></li>
 
@@ -156,26 +144,17 @@
 
                                     <!--다음 버튼-->
                                     <li><a class="page-link" th:if="*{next}" th:href="*{endPage + 1}">&gt;</a></li>
-                                    <!--                                        <li class="page-item" style="width:30px;margin-left:3px;">-->
-                                    <!--                                            <a style="width:30px;" class="page-link" href="/freestory/all/date/6/all/?main_genre=">-->
-                                    <!--                                                <i class="icon ion-arrow-right-b"></i>-->
-                                    <!--                                            </a>-->
-
-                                    <!--                                        </li><li class="page-item" style="width:30px;margin-left:3px;">-->
-                                    <!--                                        <a style="width:30px;" class="page-link" href="/freestory/all/date/623/all/?main_genre=">-->
-                                    <!--                                            <i class="icon ion-arrow-right-a"></i>-->
-                                    <!--                                        </a>-->
 
                                     </li>
                                     <form action="/myLibrary/payList" th:object="${criteria}" name="pageForm">
-                                        <input class="userNumber" type="hidden" name="userNumber" value="1">
+                                        <input class="userNumber" type="hidden" name="userNumber" value="">
                                         <input class="pageNum" type="hidden" th:field="*{pageNum}">
-
                                         <input class="amount" type="hidden" th:field="*{amount}">
                                     </form>
                                 </ul>
                             </nav>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -192,15 +171,20 @@
 <script th:inline="javascript">
     let pageInfo = [[${criteria.listLink}]];
     const userNumber = [[${session.userNumber}]]; //세션 userNumber
-
+    const supportSponser = [[${session.userNumber}]]; //세션 userNumber
+    console.log("세션 유저 번호 : " + userNumber);
 
 
     function money_comma(num){
         num = Number(num);
         num = num.replace(/[^\d]+/g, ''); //숫자만 남김
         return num.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1, ');
-    }
 
+    //세션이 만료되었을때 로그인 페이지로 이동
+    if(userNumber == null){
+        alert("세션이 만료되어 로그인 페이지로 이동합니다");
+        location.href = '/user/login';
+    }
 
     //결제 버튼 눌렀을 때 이동
     // $(".payment").prop('href', '/myLibrary/payList?userNumber=' + userNumber);
@@ -227,6 +211,15 @@
     }
     function goPayList(){
         location.href = "/myLibrary/payList?userNumber=" + userNumber;
+    }
+
+    function goSupportList(){
+        location.href = "/myLibrary/supportList?supportSponser=" + supportSponser + "&pageNum=" + pageNum + "&amount=" + amount;
+    }
+
+    function input(){
+        console.log($('#dateFrom').val().toString());
+        console.log($('#dateTo').val().toString());
     }
 </script>
 </html>

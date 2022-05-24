@@ -10,4 +10,16 @@
     <select id="emailCheck" resultType="_int">
 		SELECT COUNT(USER_EMAIL) FROM TBL_USER WHERE USER_EMAIL=#{userEmail}
 	</select>
+    <select id="getSearchId" resultType="String">
+		SELECT USER_ID FROM TBL_USER
+        WHERE USER_NICKNAME = #{userNick} AND USER_PHONENUM = #{phoneNum}
+	</select>
+    <select id="getSearchPw" resultType="String">
+		SELECT USER_PW FROM TBL_USER
+        WHERE USER_ID = #{userId} AND USER_EMAIL = #{userEmail}
+	</select>
+    <select id="findPw" resultType="String">
+		SELECT USER_PW FROM TBL_USER
+        WHERE USER_ID = #{userId} AND USER_EMAIL = #{userEmail}
+	</select>
 </mapper>

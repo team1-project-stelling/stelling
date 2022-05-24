@@ -28,35 +28,31 @@ public class InquiryController {
     private final InquiryService inquiryService;
 
     @GetMapping("/inquiryDetail")
-    public String inquiryDetail (Model model) {
-        /*        HttpSession session =  request.getSession(); */
-//        inquiryService.get(Long.valueOf((Integer)session.getAttribute("userNumber"));
-        InquiryVO inquiryVO = inquiryService.get(4L);
+    public String inquiryDetail (Long inquiryNumber,Model model) {
+        InquiryVO inquiryVO = inquiryService.get(inquiryNumber);
         model.addAttribute("inquiry", inquiryVO);
         return "inquiry/inquiryDetail";
     }
 
     @GetMapping("/inquiryWrite")
-    public String writeInquiry(Model model) {
+    public String writeInquiry(Model model,HttpServletRequest request) {
 
-        /*        HttpSession session =  request.getSession();
-        String userNickName = userService.findUserNickName(Long.valueOf((Integer)session.getAttribute("userNumber")));*/
-        String userNickName = userService.findUserNickName(5L);
+        HttpSession session =  request.getSession();
+        log.info("유저번호 ;"+Long.valueOf((Integer)session.getAttribute("userNumber")));
+        String userNickName = userService.findUserNickName(Long.valueOf((Integer)session.getAttribute("userNumber")));
         model.addAttribute("userNickName", userNickName);
         return "inquiry/inquiryWrite";
     }
     @PostMapping("/inquiryWrite")
-    public String inquiryRegister(InquiryVO inquiryVO, HttpServletResponse response) throws IOException {
-        /*        HttpSession session =  request.getSession(); */
-
+    public String inquiryRegister(InquiryVO inquiryVO, HttpServletResponse response,HttpServletRequest request) throws IOException {
+        HttpSession session =  request.getSession();
 
         log.info(inquiryVO.toString());
         response.setContentType("text/html; charset=euc-kr");
 
         PrintWriter out = response.getWriter();
 
-//        inquiryVO.setUserVO(userService.get(Long.valueOf((Integer)session.getAttribute("userNumber")));
-        inquiryVO.setUserVO(userService.get(5L));
+        inquiryVO.setUserVO(userService.get(Long.valueOf((Integer)session.getAttribute("userNumber"))));
         inquiryService.register(inquiryVO);
 
 

@@ -7,12 +7,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 import java.util.List;
-
-import java.util.Objects;
-
 import java.util.Map;
-
+import java.util.Objects;
 
 @Service
 @Slf4j
@@ -26,6 +25,7 @@ public class UserService {
     public void register(UserVO vo){ userRepository.save(vo);}
     public void modify(UserVO vo){ userRepository.save(vo);}
 
+
     public String findUserNickName(Long userNum){
      String userNickName = userRepository.findById(userNum).orElse(null).getUserNickName();
         if(Objects.isNull(userNickName)){
@@ -34,16 +34,11 @@ public class UserService {
         return userNickName;
     }
 
-
     public void joinUser(UserVO vo) { userRepository.save(vo); }
-
-    //로그인
     public Integer login(Map<String, String> loginMap) {return userDAO.login(loginMap);}
-
-    //아이디 중복확인
     public int idCheck(String userId) { return userDAO.idCheck(userId); }
-
-    //이메일 중복확인
     public int emailCheck(String userEmail) { return userDAO.emailCheck(userEmail); }
-
+    public String getSearchId(String userNick, String phoneNum){ return userDAO.getSearchId(userNick, phoneNum) ; }
+    public String getSearchPw(String userId, String userEmail){ return userDAO.getSearchPw(userId, userEmail) ; }
+    public String findPw(String userId, String userEmail) { return userDAO.findPw(userId,userEmail) ; }
 }

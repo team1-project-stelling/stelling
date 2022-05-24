@@ -158,7 +158,6 @@ $("input[type='file']").change(function(e){
     for(let i = 0; i < files.length; i++){
         formData.append("uploadFile", files[i]);
     }
-
     $.ajax({
         url: "/myPage/uploadAjaxAction",
         data: formData,
@@ -176,6 +175,5 @@ $("input[type='file']").change(function(e){
                 console.log($('input[name="userUploadPath"]').val());
             });
         }
-
     });
 });
