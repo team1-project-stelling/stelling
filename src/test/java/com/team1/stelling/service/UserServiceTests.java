@@ -10,9 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 @Slf4j
 public class UserServiceTests {
-//    @Autowired
-//    UserService userService;
-/*    @Test
+    @Autowired
+    UserService userService;
+    @Test
     public void registerTest(){
         UserVO userVO = UserVO.builder()
                 .userEmail("zlatan99@naver.com")
@@ -24,7 +24,7 @@ public class UserServiceTests {
                 .userStatus(1)
                 .build();
         userService.register(userVO);
-    }*/
+    }
 /*    @Test
     public void getTest(){
         UserVO userVO = userService.get(2L);
