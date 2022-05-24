@@ -20,16 +20,21 @@ public class IllustService {
     private final IllustRepository illustRepository;
     private final ModelMapper modelMapper;
 
-    public IllustVO get(Long illustBno){
-        return illustRepository.findById(illustBno).get();
+
+    public IllustVO get(Long illustNumber){
+        return illustRepository.findById(illustNumber).get();
     }
     public List<IllustVO> getList (){return illustRepository.findAll();}
+    public List<IllustVO> getSixList(Long userNumber){return illustRepository.findByUserVO_UserNumber(userNumber);}
     public void register (IllustVO vo){illustRepository.save(vo);}
     public void modify(IllustVO vo){
         vo.updateIllustUpdateDate();
         illustRepository.save(vo);
     }
     public int getTotal(){return illustRepository.findByUserNumberTotal(1L);}
+
+
+    public Page<IllustVO> getUserIllustList(Pageable pageable, Long userNumber){return illustRepository.findByUserVO_UserNumber(pageable, userNumber);}
 
     @Transactional
     public Page<IllustVO> getList(Pageable pageable){

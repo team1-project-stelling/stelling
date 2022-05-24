@@ -16,7 +16,7 @@ public class SupportVO {
    private Long supportSponser; // FK (userNum) 후원한 사람
    private Long supportReceiver; // 후원받은사람
    private Long novelNumber; /*FK, 소설 번호*/
-   private int supportCoin; /*후원 금액 = 차감 코인*/
+   private Long supportCoin; /*후원 금액 = 차감 코인*/
    private Date supportDate; /*후원 날짜*/
 
 

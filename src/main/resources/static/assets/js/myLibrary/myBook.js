@@ -39,11 +39,11 @@ function changeBorder(text) {
     }
 }*/
 
-$('div.OptionChange').on('click',function () {
+/*$('div.OptionChange').on('click',function () {
     ResetOptionChange();
     $(this).find('img').attr('src', '/images/category/checkIcon.png' );
-})
-
+})*/
+/*
 function ResetOptionChange() {
     $.each($('div.OptionChange'),function (index,item) {
         $(item).find('img').attr('src', '/images/category/optionPointIcon.png');
@@ -57,7 +57,7 @@ function resetTagSearchList() {
     $.each($('#tagSearchList li'),function (index, item) {
         $(item).removeClass('active');
     })
-}
+}*/
 
 
 function changeTagSearch(){

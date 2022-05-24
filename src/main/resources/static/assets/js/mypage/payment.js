@@ -1,27 +1,27 @@
 var active = document.getElementsByClassName("active");
 
-function handleClick(event) {
-    console.log(event.target);
-    console.log(event.target.classList);
-
-    active[0].classList.remove("clicked");
-    if (event.target.classList[1] === "clicked") {
-        event.target.classList.remove("clicked");
-    } else {
-        for (var i = 0; i < active.length; i++) {
-            active[i].classList.remove("clicked");
-        }
-
-        event.target.classList.add("clicked");
-    }
-}
-function init() {
-    active[0].classList.add("clicked");
-    for (var i = 0; i < active.length; i++) {
-        active[i].addEventListener("click", handleClick);
-    }
-}
-init();
+// function handleClick(event) {
+//     console.log(event.target);
+//     console.log(event.target.classList);
+//
+//     active[0].classList.remove("clicked");
+//     if (event.target.classList[1] === "clicked") {
+//         event.target.classList.remove("clicked");
+//     } else {
+//         for (var i = 0; i < active.length; i++) {
+//             active[i].classList.remove("clicked");
+//         }
+//
+//         event.target.classList.add("clicked");
+//     }
+// }
+// function init() {
+//     active[0].classList.add("clicked");
+//     for (var i = 0; i < active.length; i++) {
+//         active[i].addEventListener("click", handleClick);
+//     }
+// }
+// init();
 
 
 //left_block
@@ -101,30 +101,45 @@ $('#btnSearch').click(function () {
 
 
 //내 포인트 / 내 후원 내역 이동
-document.querySelector('.payTableWrap2').style.display = 'none';
-document.querySelector('.myPoint').addEventListener('click',function(){
-    clickchange1 ()
-})
-document.querySelector('.mySupport').addEventListener('click',function(){
-    clickchange2 ()
+// document.querySelector('.payTableWrap2').style.display = 'none';
+// document.querySelector('.myPoint').addEventListener('click',function(){
+//     clickchange1 ()
+// })
+// document.querySelector('.mySupport').addEventListener('click',function(){
+//     clickchange2 ()
+// })
+//
+// function clickchange1() {
+//     document.querySelector('.payTableWrap2').style.display = 'none';
+//     document.querySelector('.payTableWrap').style.display = "block";
+// }
+//
+// function clickchange2() {
+//     document.querySelector('.payTableWrap').style.display = 'none';
+//     document.querySelector('.payTableWrap2').style.display = 'block';
+// }
+
+$(".myPoint").click(function(){
+    location.href = "/myLibrary/payList?userNumber=" + userNumber;
 })
 
-function clickchange1() {
-    document.querySelector('.payTableWrap2').style.display = 'none';
-    document.querySelector('.payTableWrap').style.display = "block";
-}
-
-function clickchange2() {
-    document.querySelector('.payTableWrap').style.display = 'none';
-    document.querySelector('.payTableWrap2').style.display = 'block';
-}
+$(".mySupport").click(function(){
+    location.href = "/myLibrary/supportList?userNumber=" + userNumber;
+})
 
 //페이지 이동하는 form태그 가져와서 action경로 직접 넣는다
-
-
 $(".page-link").click(function(e){
     e.preventDefault();
     $(pageForm).find("input[name='pageNum']").val($(this).attr("href")); // 사용자가 클릭한 페이지
+    $(pageForm).find("input[name='supportSponser']").val(supportSponser); // 사용자가 클릭한 페이지
+    $(pageForm).find("input[name='userNumber']").val(userNumber); // 로그인 되어있는 회원 번호
+
     // $(pageForm).attr("action", "/myLibrary/payList?userNumber=" + userNumber);
     $(pageForm).submit();
 })
+
+$("#btnSearch").click(function(e){
+    $(dateForm).find("input[name='userNumber']").val(userNumber);
+})
+
+

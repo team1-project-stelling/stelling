@@ -1,4 +1,4 @@
-var left = document.getElementsByClassName("left");
+let left = document.getElementsByClassName("left");
 
 function handleClick(event) {
     console.log(event.target);
@@ -8,7 +8,7 @@ function handleClick(event) {
     if (event.target.classList[1] === "clicked") {
         event.target.classList.remove("clicked");
     } else {
-        for (var i = 0; i < active.length; i++) {
+        for (let i = 0; i < active.length; i++) {
             left[i].classList.remove("clicked");
         }
 
@@ -16,8 +16,8 @@ function handleClick(event) {
     }
 }
 function init() {
-    left[2].classList.add("clicked");
-    for (var i = 0; i < active.length; i++) {
+    left[3].classList.add("clicked");
+    for (let i = 0; i < active.length; i++) {
         left[i].addEventListener("click", handleClick);
     }
 }

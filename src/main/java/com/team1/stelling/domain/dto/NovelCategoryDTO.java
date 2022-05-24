@@ -11,6 +11,7 @@ import java.util.Objects;
 @Getter
 
 public class NovelCategoryDTO {
+    private Long novelNumber; // 소설 번호
     private UserVO userVO;
     private String novelTitle;  // 소설제목
     private String[] novelHashtag; /*예) #로맨스 #메카물 #마법사*/
@@ -60,6 +61,8 @@ public class NovelCategoryDTO {
     public void setNovelLikeCountTotal(int novelLikeCountTotal) { this.novelLikeCountTotal = setStringNumber(novelLikeCountTotal); }
 
     public void setNovelViewCountTotal(int novelViewCountTotal) { this.novelViewCountTotal = setStringNumber(novelViewCountTotal); }
+
+    public void setNovelNumber(Long novelNumber) { this.novelNumber = novelNumber;}
 
     public static String setStringNumber(int count) {
         if(count >= 1000 && count < 10000){ //1k

@@ -18,6 +18,7 @@ public class IllustProfileService{
 
     private final IllustProfileDAO illustProfileDAO;
 
-    public IllustProfileDTO get(Long userNumber) {return illustProfileDAO.get(userNumber);}
+    public IllustProfileDTO getProfile(Long userNumber) {return illustProfileDAO.getProfile(userNumber);}
     public void register(IllustProfileVO illustProfileVO) {illustProfileDAO.register(illustProfileVO);}
+    public List<IllustProfileDTO> list(){return illustProfileDAO.list();}
 }

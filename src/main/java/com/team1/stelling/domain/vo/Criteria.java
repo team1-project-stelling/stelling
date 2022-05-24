@@ -1,10 +1,15 @@
 package com.team1.stelling.domain.vo;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Component
 @Data
@@ -15,6 +20,8 @@ public class Criteria { /*Criteria : 검색의 기준*/
     @NonNull private int amount;
     private String type;
     private String keyword;
+    private String startDate;
+    private String endDate;
 
     //    롬복을 통해 생성된 초기화 생성자를 기본 생성자에서 기본 값을 설정한 뒤 호출해준다.
     public Criteria() {this(1, 10);}
