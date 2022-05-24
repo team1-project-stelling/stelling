@@ -101,6 +101,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  justify-content: space-between;
 }
 
 .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_Desc_title :first-child {
@@ -300,6 +301,9 @@
   background: #fdc324;
   color: #333 !important;
   border: 1px solid #fdc324 !important;
+  width: 108px;
+  border-radius: 4px;
+  height: 45px;
 }
 
 .x_xContent {
@@ -517,6 +521,7 @@
 
 .hashtag {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .NovelList {
@@ -585,7 +590,7 @@
 .NovelList .Novel li :first-child {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  margin: 0px 20px 0px 0px;
+  margin: 0px 11px 0px 0px;
   min-width: 0px;
   position: relative;
   border-radius: 6px;
@@ -1037,4 +1042,96 @@
   padding: 2px 2px 3px 2px;
   text-align: center;
   border-radius: 8px;
+}
+a.goToView{
+  text-decoration: none;
+  width: auto !important;
+  margin-bottom: 18px !important;
+}
+div.modify{
+  width: 36px;
+  margin-top: 25px;
+  margin-right: 17px;
+  display: none;
+  cursor: pointer;
+}
+span.modify, span.delete{
+  cursor: pointer;
+}
+.img{
+  width: 100% !important;
+  cursor: pointer;
+}
+.deleteCheckBox{
+  width: 37px !important;
+  height: 36px !important;
+  padding-right: 0px !important;
+}
+div.delete{
+  display: none;
+  cursor: pointer;
+  padding-top: 26px;
+  padding-right: 3px;
+  height: 30px;
+}
+ul.c_PagingList{
+  display: inline-flex;
+  justify-content: center;
+}
+li>a{
+  text-decoration: none;
+}
+div.ok{
+  display: none;
+  margin-right: 21px;
+  cursor: pointer;
+}
+div.cancle{
+  display: none;
+  margin-right: 21px;
+  cursor: pointer;
+}
+
+  /*체크박스 변경*/
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  outline: none !important;
+  border: 1px solid #eeeeee;
+  border-radius: 2px;
+  background: #fbfbfb;
+}
+
+input[type="checkbox"]::before {
+  content: "\2713";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  transform: scale(0) translate(-50%, -50%);
+  line-height: 1;
+  zoom: 2.5;
+}
+
+input[type="checkbox"]:hover {
+  border-color: rgba(170, 170, 170, 0.5);
+}
+
+input[type="checkbox"]:checked {
+  background-color: #ef6e73;
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+input[type="checkbox"]:checked::before {
+  border-radius: 2px;
+  transform: scale(1) translate(-50%, -50%)
+}
+
+.free{
+  font-size: 14px;
+  color: lightgrey;
 }

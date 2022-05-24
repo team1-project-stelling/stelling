@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/assets/css/novel/novelRound.css">
     <link href="/assets/css/fix/header.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/fix/footer.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <title>소설회차목록</title>
 </head>
@@ -22,37 +23,72 @@
             <div class="content">
                 <div class="x_x">
                     <div class="x_xH">
-                        <div class="x_ximg"></div>
+                        <div class="x_ximg">
+                            <th:block th:if="${novelImgSrc==null}">
+                                <img th:src="@{/novel/novelRegisterImg(novelNumber=${novelNumber})}">
+
+                            </th:block>
+                            <th:block th:unless="${novelImgSrc==null}">
+                                <img th:src="${novelImgSrc}" alt="">
+                            </th:block>
+                        </div>
                         <div class="x_xDesc">
                             <div class="x_Desc_title">
+                                <!--소설 타이틀-->
                                 <div class="Noveltitle">
-                                    <h2></h2>
+                                    <h2 th:text="${novelVO.novelTitle}" style="font-size: 28px;"></h2>
+
+                                </div>
+
+                                <div>
+                                    <img src="/images/icon/소설하트.png" height="40" style="margin-right:9px;" th:id="${novelVO.novelNumber}" class="myPick"/>
                                 </div>
 
                             </div>
                             <div class="x_Desc_pepole">
                                 <div>
                                     <img src="https://static-page.kakao.com/static/common/ico-workhome-person.svg?41e74cfb5cb9084198b21f6b2c7899c2" alt="">
-                                    <div class="watchCnt"></div>
+                                    <div class="watchCnt"><h3 th:text="|${novelVO.novelViewCountTotal}명|"></h3></div>
                                 </div>
 
                                 <div>
 
-                                    <!-- <img src="	https://static-page.kakao.com/static/common/ico-wo…home-comment.svg?eaf3ebfe59b36ae76144c6626928ed14" alt="" class="kakaoimg"> -->
                                     <img src="https://static-page.kakao.com/static/common/ico-workhome-comment.svg?eaf3ebfe59b36ae76144c6626928ed14" class="kakaoimg">
-                                    <div>20만</div>
+                                    <div class="replySize"></div>
                                     <img src="https://static-page.kakao.com/static/common/ic-more-gray.svg?639494b81c8127013d0e627243aee94e">
                                 </div>
                             </div>
 
+
+                            <div class="writer" th:text="|글 작가: ${writerName}|" style="margin-bottom: -10px; color: #a8a7a7; margin-top: 15px;"></div>
+
+
                             <div class="x_xContent">
+
                                 <div class="x_Desc_writer">
-                                    <div class="days"></div>
+
+                                    <div class="days">
+                                        <span class="d_day" th:if="${novelVO.novelMonday==0}">월</span>
+                                        <span class="d_day d_dayColor" th:unless="${novelVO.novelMonday==0}">월</span>
+                                        <span class="d_day" th:if="${novelVO.novelTuesDay==0}">화</span>
+                                        <span class="d_day d_dayColor" th:unless="${novelVO.novelTuesDay==0}">화</span>
+                                        <span class="d_day" th:if="${novelVO.novelWednesDay==0}">수</span>
+                                        <span class="d_day d_dayColor" th:unless="${novelVO.novelWednesDay==0}">수</span>
+                                        <span class="d_day" th:if="${novelVO.novelThursDay==0}">목</span>
+                                        <span class="d_day d_dayColor" th:unless="${novelVO.novelThursDay==0}">목</span>
+                                        <span class="d_day" th:if="${novelVO.novelFriDay==0}">금</span>
+                                        <span class="d_day d_dayColor" th:unless="${novelVO.novelFriDay==0}">금</span>
+                                        <span class="d_day" th:if="${novelVO.novelSaturDay==0}">토</span>
+                                        <span class="d_day d_dayColor" th:unless="${novelVO.novelSaturDay==0}">토</span>
+                                        <span class="d_day" th:if="${novelVO.novelSunDay==0}">일</span>
+                                        <span class="d_day d_dayColor" th:unless="${novelVO.novelSunDay==0}">일</span>
+                                    </div>
                                 </div>
+
 
                                 <div class="x_xBtn">
                                     <button onclick="IntroModalHandler()">작품소개</button>
-                                    <button>첫편보기</button>
+                                    <a th:href="@{/novel/novelDetailView(novelNumber=${novelNumber}, subNovelNumber=${firstSNumber}, count=1)}"><button type="button">첫편보기</button></a>
                                 </div>
                             </div>
                         </div>
@@ -62,22 +98,16 @@
                     <div class="x_xF">
                         <button>
                             <div class="ResRank">
-
-
                             </div>
-
-                            <div onclick="ModalHandler()" class="modaldiv"><img src="https://static-page.kakao.com/static/common/ic-same-novel.svg?b923ffbeb7a7a8a2e2e3091b1ff9e4f6
-                                    " alt="" ></div>
+                            <div onclick="ModalHandler()" class="modaldiv"><img src="https://static-page.kakao.com/static/common/ic-same-novel.svg?b923ffbeb7a7a8a2e2e3091b1ff9e4f6" alt=""></div>
                         </button>
                     </div>
                     <div class="hashtag">
-                        <span>카테고리   </span>
-                        <!-- <span class="hashtagSpan">#OOTD</span>
-                        <span class="hashtagSpan">#OOTD</span>
-                        <span class="hashtagSpan">#OOTD</span>
-                        <span class="hashtagSpan">#OOTD</span>
-                        <span class="hashtagSpan">#OOTD</span> -->
-                    </div>
+                        <span>카테고리</span>
+                        <!--해쉬태그-->
+                        <th:block th:each="hash:${#strings.arraySplit(novelVO.novelHashtag,' ')}">
+                            <span class="hashtagSpan" th:text="|#${hash}|"></span>
+                        </th:block>
                 </div>
 
 
@@ -87,16 +117,71 @@
 
 
 
-
                     <div class="Noveltotal">
 
-                        <span class="NoveltotalCnt"></span>
+                        <span class="NoveltotalCnt" th:text="|전체(${listSize})개|"></span>
+                        <div class="change">
+                            <span class="modify">수정</span> |
+                            <span class="delete">삭제</span>
+                        </div>
+                        <div class="ok"><span>완료</span></div>
+                        <div class="cancle"><span>취소</span></div>
                     </div>
-                    <ul class="Novel">
 
+                    <!--소설 회차 리스트-->
+                    <ul class="Novel" >
+                        <li class="Novelli"  th:each="subnovelVO, i:${subnovelVOList}">
+                            <div class="NovelImg">
+                                <th:block th:if="${novelImgSrc==null}">
+                                    <img th:src="@{/novel/novelRegisterImg(novelNumber=${subnovelVO.novelVO.novelNumber})}">
+                                </th:block>
+                                <th:block th:unless="${novelImgSrc==null}">
+                                    <img th:src="${novelImgSrc}" alt="">
+                                </th:block>
+                            </div>
+                            <div class="NovelDEC">
+                                <div class="NovelDECS">
+                                    <a class='goToView' th:href="@{/novel/novelDetailView(novelNumber=${subnovelVO.novelVO.novelNumber}, subNovelNumber=${subnovelVO.subNovelNumber}, count=${i.count})}">
+                                        <th:block th:if="${pageableDTO.pageNumber > 1}">
+                                            <div class="Noveltt" th:text="|${subnovelVO.novelVO.novelTitle} ${i.count+(pageableDTO.pageNumber-1)*10}화|"></div>
+                                        </th:block>
+                                        <th:block th:unless="${pageableDTO.pageNumber > 1}">
+
+                                            <div class="Noveltt" th:text="|${subnovelVO.novelVO.novelTitle} ${i.count}화 [무료]|"></div>
+
+
+                                        </th:block>
+
+                                    </a>
+                                    <div class="Novelday" th:text="${#strings.substring(subnovelVO.subNovelUploadDate,0,10)}"></div>
+                                </div>
+                            </div>
+                            <div class="modify">
+                                <img src="/images/icon/수정.png" class="img modifyIcon" th:id="${subnovelVO.subNovelNumber}"/>
+                            </div>
+                            <div class="delete">
+                                <input type="checkbox" class="deleteCheckBox" th:id="${subnovelVO.subNovelNumber}">
+                            </div>
+                        </li>
                     </ul>
-                    <div class="NovelNum">123</div>
+                    <!-- 페이징 -->
+                    <ul class="c_PagingList" >
+                        <!-- 이전 -->
+                        <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/novel/novelRoundList(page=${pageableDTO.startPage -2 }, novelNumber=${novelNumber})}" >&lt;&lt;</a></li>
+                        <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/novel/novelRoundList(page=${pageableDTO.previous},novelNumber=${novelNumber})}">&lt;</a></li>
 
+
+                        <th:block th:each="num:${#numbers.sequence(pageableDTO.startPage,pageableDTO.endPage)}">
+                            <li  th:if="${pageableDTO.pageNumber== num}" th:text="${num}" class="pageActive"></li>
+                            <li th:unless="${pageableDTO.pageNumber == num}" ><a th:text="${num}" th:href="@{/novel/novelRoundList(page=${num - 1},novelNumber=${novelNumber})}"></a></li>
+                        </th:block>
+
+                        <!-- 다음 -->
+                        <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/novel/novelRoundList(page=${pageableDTO.next},novelNumber=${novelNumber})}">&gt;</a></li>
+                        <li th:if="${pageableDTO.hasNext}"><a th:href="@{/novel/novelRoundList(page=${pageableDTO.endPage},novelNumber=${novelNumber})}">&gt;&gt;</a></li>
+                    </ul>
+                </div>
+                    <!-- 페이징 종료-->
 
                 </div>
 
@@ -104,7 +189,6 @@
                     <div class="ReplyHeader">
                         <div class="ReplyToTal">
                             댓글
-
                         </div>
 
                         <div class="ReplyDe">
@@ -115,13 +199,15 @@
 
 
                     </div>
+                    <!--댓글란-->
                     <div class="ReplyCmt">
 
-
-
-
-
                     </div>
+<!--                    <div class="replyPage">-->
+
+<!--                    </div>-->
+
+
                 </div>
             </div>
         </div>
@@ -133,12 +219,9 @@
 </div>
 
 <!-- 후원 -->
-<div
-        class="Sponmodalwrap">
+<div class="Sponmodalwrap">
     <div class="SponModal">
-        <div
-
-                class="sponheadWrap">
+        <div class="sponheadWrap">
             <div class="sponhead">후원목록</div>
             <button onclick="ModalHandlerClose()"><span style="font-size: 40px;">x</span></button>
 
@@ -146,15 +229,13 @@
         <hr style="width: 80%;">
 
         <div class="sponbody">
-            <table  style="width: 100%" class="table">
-                <tr>
+            <table style="width: 100%" class="table">
+                <tbody><tr>
                     <th style="width: 33%">순위</th>
                     <th style="width: 33%;text-align: left">아이디</th>
                     <th style="width: 33%">후원 개수</th>
                 </tr>
-
-
-            </table>
+                </tbody></table>
         </div>
     </div>
 </div>
@@ -163,16 +244,12 @@
 <div class="intromodalwrap">
     <div class="introModal">
         <div class="sponheadWrap">
-            <div class="introHead" style="text-align: left;"></div>
-
+            <div class="introHead" style="text-align: left;" th:text="${novelVO.novelTitle}"></div>
             <button onclick="IntroModalHandlerClose()" style="width: 50px; "><span style="font-size: 40px;">x</span></button>
-
         </div>
         <hr width="80%">
-        <div  class="introbody" style="margin-top: 20px;">
-
-
-        </div>
+        <!--소개 적는 란 -->
+        <div class="introbody" style="margin-top: 20px;" th:text="${novelVO.novelIntro}"></div>
     </div>
 </div>
 
@@ -180,10 +257,14 @@
 <th:block th:insert="/fix/footer.html :: footerFragment"/>
 
 
-
 </body>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script th:inline="javascript">
+    const novelNumber = [[${novelNumber}]]
+    const userNumber =2;
+    // let novelNumber = 101;
+</script>
 <script src="/assets/js/novel/data.js"></script>
 <script src="/assets/js/fix/header.js"></script>
 <script src="/assets/js/novel/novelRound.js"></script>

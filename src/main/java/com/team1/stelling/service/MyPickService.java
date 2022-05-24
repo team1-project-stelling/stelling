@@ -33,6 +33,8 @@ public class MyPickService{
     }
     public void register(MyPickVO myPickVO) {myPickRepository.save(myPickVO);}
 
+    public void removeMyPick(Long pickNum){myPickRepository.deleteById(pickNum);}
+    public MyPickVO getByNovelNumAndUserNum(Long novelNum, Long userNum){return myPickRepository.getByNovelVO_NovelNumberAndUserVOUserNumber(novelNum, userNum);}
 /*    public MyPickVO get(Long myPickNumber) {return myPickRepository.findById(myPickNumber).get();}
     public void register(MyPickVO myPickVO) {myPickRepository.save(myPickVO);}
     public MyPickVO get(Long myPickNumber) {return myPickDAO.get(myPickNumber);}
