@@ -9,5 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface MyPickRepository extends JpaRepository<MyPickVO, Long> {
     Page<MyPickVO> findByUserVO_UserNumberAndNovelVO_NovelHashtagContaining(Long userNumber,String keyword, Pageable pageable);
     Page<MyPickVO> findByUserVO_UserNumber(Long userNumber,Pageable pageable);
+    MyPickVO getByNovelVO_NovelNumberAndUserVOUserNumber(Long novelNum, Long userNum);
 
 }

@@ -11,6 +11,7 @@ public class NovelFileDTO {
     private String subNovelWriterComment;
     private Long novelNumber;
     private Long userNumber;
-
+    private String modifyCheck;
+    private Long subNovelNumber;
 
 }

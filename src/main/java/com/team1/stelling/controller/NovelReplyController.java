@@ -1,8 +1,10 @@
 package com.team1.stelling.controller;
 
 
+import com.team1.stelling.domain.dto.PageableDTO;
 import com.team1.stelling.domain.dto.ReplyDTO;
 import com.team1.stelling.domain.dto.ReplyListDTO;
+import com.team1.stelling.domain.dto.ReplyUserDTO;
 import com.team1.stelling.domain.vo.*;
 import com.team1.stelling.service.NovelService;
 import com.team1.stelling.service.ReplyService;
@@ -10,6 +12,11 @@ import com.team1.stelling.service.SubNovelService;
 import com.team1.stelling.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,49 +36,63 @@ public class NovelReplyController {
     private final SubNovelService subNovelService;
 
 
+    //댓글 추가하기
     @PostMapping(value = "/add", consumes = "application/json", produces = "text/plain; charset=utf-8")
     public String replyRegister(@RequestBody ReplyDTO replyDTO){
-        log.info("-------------------------------------------------------------------------------------------");
-        log.info("replyRegister컨트롤러들어옴");
-        log.info("-------------------------------------------------------------------------------------------");
-
         replyService.register(ReplyVO.builder().novelVO(novelService.get(replyDTO.getNovelNumber()))
-                    .subNovelVO(subNovelService.get(replyDTO.getSubNovelNumber()))
-                    .userVO(userService.get(replyDTO.getUserNumber()))
-                    .replyContent(replyDTO.getReplyContent()).build());
+                .subNovelVO(subNovelService.get(replyDTO.getSubNovelNumber()))
+                .userVO(userService.get(replyDTO.getUserNumber()))
+                .replyContent(replyDTO.getReplyContent()).build());
         return "등록완료";
     }
+
+    //reply+user 가져오기
     @Transactional
     @GetMapping("/list/{subNovelNumber}")
     public ReplyListDTO replygetList(@PathVariable("subNovelNumber") Long subNovelNumber){
-          return new ReplyListDTO(replyService.getList(subNovelNumber),replyService.getUserList(subNovelNumber));
+        return new ReplyListDTO(replyService.getList(subNovelNumber),replyService.getUserList(subNovelNumber));
     }
 
+    //소설 회차 번호로 댓글 가져오기
     @GetMapping("/repliesTest/{subNovelNumber}")
     public List<ReplyVO> getList(@PathVariable Long subNovelNumber){
         return replyService.getList(subNovelNumber);
     }
 
+    //댓글 좋아요 기능
     @GetMapping("/{replyNum}/{num}")
     public void replyUp(@PathVariable("replyNum") Long replyNum, @PathVariable("num")int num){
         ReplyVO replyVO = replyService.get(replyNum);
         replyVO.updateReplyUp(num);
         replyService.register(replyVO);
-        log.info("===============================================================================================");
-        log.info("리플라이 좋아요 갯수: "+replyVO.getReplyUp());
     }
 
     //최신순 댓글 총 목록
     @GetMapping("/getReplyLists/latest")
     public ReplyListDTO getReplyLists(Long novelNumber){
-        List<ReplyVO> replyVOList =replyService.getReplyListLatest(novelNumber);
+        List<ReplyVO> replyVOList =replyService.getReplyListByNovelNumber(novelNumber);
         List<UserVO> userVOList=replyVOList.stream().map(v->v.getUserVO()).collect(Collectors.toList());
         ReplyListDTO result = new ReplyListDTO(replyVOList,userVOList);
-
         return result;
     }
 
-
+    //댓글 최신순
+    @GetMapping("/getReplyUserDTO")
+    public ReplyUserDTO getreplys(Long novelNumber, @PageableDefault(page =0 ,size =5 ,sort ="replyUploadDate" ,direction = Sort.Direction.DESC) Pageable pageable){
+        Page<ReplyVO> replyVOS = replyService.getReplyListByNovelNumber(novelNumber,pageable);
+        Page<UserVO> userVOS = replyVOS.map(v->v.getUserVO());
+        ReplyUserDTO replyUserDTO= new ReplyUserDTO(replyVOS, userVOS, pageable);
+        return replyUserDTO;
     }
+
+
+
+
+
+
+
+
+
+}
 
 

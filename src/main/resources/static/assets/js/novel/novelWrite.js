@@ -1,3 +1,4 @@
+/*소설작성 용량*/
 function calc_length()
 {
     let doc1 =$('.text').val();
@@ -12,15 +13,16 @@ function calc_length()
         alert("최대 50KB까지만 입력 가능합니다");
     }
 }
+
 function modal_close() {
     $('.modal').css('display', 'none');
-    console.log($(this).classList);
-
 }
+
 function showfile(){
     $('.filebox').css('display', 'block');
 }
 
+/*소설 파일 불러오기*/
 $("input[name='file']").on('change',function(){
     let file = $("#file")[0].files;
     let regex = new RegExp("(.*?)\.(txt|hwp)$");
@@ -44,7 +46,6 @@ $("input[name='file']").on('change',function(){
             data: formData,
             success: function(result, status, xhr){
                 $('.novelContent').val(result)
-                // console.log(result);
                 calc_length();
             },
             error: function(xhr, status, er){
@@ -60,33 +61,52 @@ $("input[name='file']").on('change',function(){
 
 });
 
+/*임시저장 버튼 클릭시 세션에 값 저장*/
+$('.temporarySave').on("click", function () {
+    alert("임시저장되었습니다.");
+    sessionStorage.setItem("content",$('textarea[name="novelContent"]').val());
+    sessionStorage.setItem("subNovelWriterComment",$('textarea[name="subNovelWriterComment"]').val());
+    sessionStorage.setItem("subNovelTitle",$('input[name="subNovelTitle"]').val());
+})
+
+/*세션 값 불러오기*/
+getSession();
+
+/*세션 값 불러오기*/
+function getSession(){
+    if(sessionStorage.getItem("content")){
+        $('textarea[name="novelContent"]').val(sessionStorage.getItem("content"))
+    }
+    if(sessionStorage.getItem("subNovelWriterComment")){
+        $('textarea[name="subNovelWriterComment"]').val(sessionStorage.getItem("subNovelWriterComment"));
+    }
+    if(sessionStorage.getItem("subNovelTitle")){
+        $('input[name="subNovelTitle"]').val(sessionStorage.getItem("subNovelTitle"));
+    }
+
+}
 
 $('.enter').on("click",function () {
-    console.log("전송버튼눌림");
-    let novelFile = new FormData();
+    sessionStorage.clear();
+    $('input[name="content"]').val($('textarea[name="novelContent"]').val());
+    $('input[name="subNovelTitle"]').val($('input[name="subNovelTitle"]').val());
+    $('input[name="novelNumber"]').val(novelNumber);
+    $('input[name="userNumber"]').val(userNumber);
+    $('input[name="subNovelWriterComment"]').val($("#subNovelWriterComment").val());
 
-    console.log($('textarea[name="novelContent"]').val());
-    novelFile.method='POST';
-    novelFile.action='/novel/novelWriter';
-    novelFile.append("content", $('textarea[name="novelContent"]').val());
-    novelFile.append("subNovelTitle",$('input[name="subNovelTitle"]').val());
-    novelFile.append("novelNumber",109);
-    novelFile.append("userNumber",1);
-    novelFile.append("subNovelWriterComment",$("#subNovelWriterComment").val());
-    $.ajax({
-        type: "POST",
-        url: "/novel/makeNovelFile",
-        data:novelFile,
-        processData: false,
-        contentType: false,
-        success: function(result, status, xhr){
-         console.log(result);
+    $(novelWriteForm).submit();
 
-        },
-        error: function(xhr, status, er){
-            if(er){
-                console.log(er);
-            }
-        }
-    });
 })
+
+$('.modifyEnter').on("click", function () {
+    sessionStorage.clear();
+    $('input[name="content"]').val($('textarea[name="modify_novelContent"]').val());
+    $('input[name="subNovelTitle"]').val($('input[name="modify_sTitle"]').val());
+    $('input[name="novelNumber"]').val(novelNumber);
+    $('input[name="userNumber"]').val(userNumber);
+    $('input[name="subNovelWriterComment"]').val($("textarea[name='modify_writerComment']").val());
+
+    $(novelModifyForm).submit();
+
+})
+

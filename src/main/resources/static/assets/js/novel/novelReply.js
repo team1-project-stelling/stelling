@@ -36,7 +36,8 @@ function add(reply, callback, error) {
 
 
 function showList(subNovelNumber){
-    getList(subNovelNumber, function(replyVO, userVO){
+    getList(subNovelNumber, function(replyVO, userVO ){
+
         let str = "";
         let replyArea = $('.replyWrap');
 
@@ -44,7 +45,6 @@ function showList(subNovelNumber){
             replyArea.html("<p>등록된 댓글이 없습니다.</p>");
             return;
         }
-        console.log(replyDTO);
             for (let i=0; i<replyVO.length; i++){
             let replyUploadDate =replyVO[i].replyUploadDate+"";
             str +="<div class='profilePlusText' style='position: relative;'>";
@@ -62,7 +62,7 @@ function showList(subNovelNumber){
             str +="<img src='/images/icon/좋아요.png' height='20' width='20' class='likeBtn'/>";
             str +="<span style='vertical-align: super;'>"+replyVO[i].replyUp+"</span>";
             str +="</button>";
-            str +="<button class='mentBtns siren' style='border-color: #ef6e73;'><img src='/images/icon/사이렌full.png' height='20' width='20'/></button>";
+            str +="<button class='mentBtns siren' id='"+replyVO[i].replyNumber+"' style='border-color: #ef6e73;'><img src='/images/icon/사이렌full.png' height='20' width='20'/></button>";
             str +="</div>";
             str +="<div class='date'>";
             str +=replyUploadDate.substring(0,10);
@@ -70,7 +70,12 @@ function showList(subNovelNumber){
             str +="</div>";
             str +="</div>";
         };
+
+
         replyArea.html(str);
+
+
+
     });
 }
 
