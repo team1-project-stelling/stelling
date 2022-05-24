@@ -25,61 +25,78 @@ import java.util.Date;
 public class NovelVO {
 
     @Id
-    @SequenceGenerator(name = "NOVEL_SEQ" , allocationSize = 1)
-    @GeneratedValue(strategy =  GenerationType.SEQUENCE, generator = "NOVEL_SEQ")
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     @Column(name = "NOVEL_NUMBER")
    private Long novelNumber;  // 노벨번호
 
-/* Column(name = "USER_NUMBER")
-   private int userNumber; // 양방향 */
    @ManyToOne
    @JoinColumn(name ="USER_NUMBER")
    private UserVO userVO;
+
    @Column(name = "NOVEL_TITLE")
    private String novelTitle;  // 소설제목
+
    @Column(name = "NOVEL_HASHTAG")
    private String novelHashtag; /*예) #로맨스 #메카물 #마법사*/
-    @Generated(GenerationTime.INSERT)
-    @Temporal(TemporalType.TIMESTAMP)
+
+   @Generated(GenerationTime.INSERT)
+   @Temporal(TemporalType.TIMESTAMP)
    @Column(name = "NOVEL_UPLOADDATE")
    private Date novelUploadDate; // 업로드(작성) 시간
-    @Generated(GenerationTime.INSERT)
-    @Temporal(TemporalType.TIMESTAMP)
+
+   @Generated(GenerationTime.INSERT)
+   @Temporal(TemporalType.TIMESTAMP)
    @Column(name = "NOVEL_UPDATEDATE")
    private Date novelUpdateDate; // 수정 시간
+
    @Column(name = "NOVEL_MONDAY")
    private int novelMonday; // 월요일
+
    @Column(name = "NOVEL_TUESDAY")
    private int novelTuesDay; // 화요일
+
    @Column(name = "NOVEL_WEDNESDAY")
    private int novelWednesDay; // 수요일
+
    @Column(name = "NOVEL_THURSDAY")
    private int novelThursDay; // 목요일
+
    @Column(name = "NOVEL_FRIDAY")
    private int novelFriDay; // 금요일
+
    @Column(name = "NOVEL_SATURDAY")
    private int novelSaturDay; // 토요일
+
    @Column(name = "NOVEL_SUNDAY")
    private int novelSunDay; // 일요일
+
    @Column(name = "NOVEL_CATEGORY")
    private String novelCategory; /* 큰 카테고리 --> 첫번째 태그 연결*/
+
    @Column(name = "NOVEL_STATUS")
    private int novelStatus;  /*작품 상태 0휴재, 1연재, 2완결, 3 숨김*/
+
    @Column(name = "NOVEL_SERIALSTATUS")
    private int novelSerialsStatus; /*정기연재 OR 자유연재 상태*/
+
    @Column(name = "NOVEL_INTRO")
    private String novelIntro; /* 소설 소개*/
+
    @Column(name = "NOVEL_FILENAME")
    private String novelFileName;
     ; /* 프로질 사진 이름 */
    @Column(name = "NOVEL_UPLOADPATH")
    private String novelUploadPath; /* 경로 */
+
    @Column(name = "NOVEL_UUID")
    private String novelUUID; /* UUID */
+
    @Column(name = "NOVEL_ROUNDABOUTTOTAL")
    private int novelRoundAboutTotal;
+
    @Column(name = "NOVEL_LIKECOUNTTOTAL")
    private int novelLikeCountTotal;
+
    @Column(name = "NOVEL_VIEWCOUNTTOTAL")
    private int novelViewCountTotal;
 

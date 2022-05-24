@@ -5,8 +5,10 @@ import com.team1.stelling.domain.dao.NovelDAO;
 import com.team1.stelling.domain.dto.NovelCategoryDTO;
 import com.team1.stelling.domain.dto.NovelRankingDTO;
 import com.team1.stelling.domain.repository.NovelRepository;
+import com.team1.stelling.domain.vo.InquiryVO;
 import com.team1.stelling.domain.vo.MyPickVO;
 import com.team1.stelling.domain.vo.NovelVO;
+import com.team1.stelling.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tika.exception.TikaException;
@@ -114,5 +116,6 @@ public class NovelService {
 
     }*/
 
+    public Page<NovelVO> getPageList(Long userNumber, Pageable pageable){return novelRepository.findByUserVO_userNumber(userNumber, pageable);}
 
 }

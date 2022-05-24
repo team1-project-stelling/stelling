@@ -20,8 +20,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class IllustVO {
     @Id
-    @SequenceGenerator(name ="ILLUST_SEQ" , allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ILLUST_SEQ")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ILLUST_NUMBER")
     private Long illustNumber;
 
@@ -31,28 +30,38 @@ public class IllustVO {
 
     @Column(name = "ILLUST_TITLE")
     private String illustTitle; // 일러스트 제목
+
     @Column(name = "ILLUST_CONTENT")
     private String illustContent;  // 일러스트 내용
+
     @Generated(GenerationTime.INSERT)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "ILLUST_UPLOADDATE" ,updatable = false)
     private Date illustUploadDate;   /* 작성 시간*/
+
     @Generated(GenerationTime.INSERT)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "ILLUST_UPDATEDATE")
     private Date illustUpdateDate; // 수정시간
+
     @Column(name = "ILLUST_HASHTAG")
     private String illustHashTag; // 해쉬태그
+
     @Column(name = "ILLUST_VIEWCOUNT")
     private int illustViewCount; // 조회수
+
     @Column(name = "ILLUST_LIKE")
     private int illustLike; /*각 일러스트에 대한 좋아요*/
+
     @Column(name = "ILLUST_SHORTINTRO")
     private String illustShortIntro;/*작품에 대한 짧은 소개*/
+
     @Column(name = "ILLUST_FILENAME")
     private String illustFileName;/*작품 name*/
+
     @Column(name = "ILLUST_FILEPATH")
     private String illustFilePath;/*작품 path*/
+
     @Column(name = "ILLUST_UUID")
     private String illustUuid;/*작품 uuid*/
 
