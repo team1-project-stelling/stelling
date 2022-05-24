@@ -1,5 +1,6 @@
 package com.team1.stelling.service;
 
+import com.team1.stelling.domain.criteria.IllustCategoryCriteria;
 import com.team1.stelling.domain.repository.IllustRepository;
 import com.team1.stelling.domain.vo.IllustVO;
 import com.team1.stelling.domain.vo.SubNovelVO;
@@ -40,5 +41,11 @@ public class IllustService {
     public Page<IllustVO> getList(Pageable pageable){
         return  illustRepository.findAll(pageable).map(objectEntity -> modelMapper.map(objectEntity, IllustVO.class));
     }
+
+    public Page<IllustVO> CategoryList(String keyword, Pageable pageable){
+        return illustRepository.findByIllustHashTagContaining(keyword, pageable);
+    }
+
+    public int getLikeTotal(Long userNumber){return illustRepository.findByIllustLikeTotal(userNumber);}
     
 }
