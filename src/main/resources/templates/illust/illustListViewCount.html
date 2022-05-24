@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>일러스트 목록</title>
+    <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
+    <link href="/assets/css/fix/header.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/fix/footer.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/illust/illustList.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<!-- 헤더 시작 -->
+<th:block th:insert="/fix/headerWordIllust.html :: headIllustFragment"/>
+
+<!--헤더 이미지-->
+<!--<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>-->
+<!-- 헤더 종료 -->
+
+
+
+<div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 100px" class="wrapper">
+    <section class="illust-section">
+
+
+
+        <p class="Title2" style="margin-bottom: -19px;margin-top: -36px;">Category</p>
+        <div class="category">
+            <div class="slide_wrapper">
+                <ul class="slides">
+                    <li>
+                        <a th:href="@{/illust/illustCategoryList(keyword='동화')}">
+                            <div class="imgDiv" style="background-color: #417A97; color: white">
+                                <img src="/images/illustCategory/동화.jpg" class="img" />
+                                <p>동화</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/illust/illustCategoryList(keyword='디즈니')}">
+                            <div class="imgDiv" style="background-color: #F1E5B3; color: gray">
+                                <img src="/images/illustCategory/디즈니.jpg" class="img" />
+                                <p class="categoryName">디즈니</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/illust/illustCategoryList(keyword='배경화')}">
+                            <div class="imgDiv" style="background-color: #44CEFF; color: white">
+                                <img src="/images/illustCategory/배경화.jpg" class="img" />
+                                <p class="categoryName">배경</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/illust/illustCategoryList(keyword='수채화')}">
+                            <div class="imgDiv" style="background-color: #F2E6D8; color: gray">
+                                <img src="/images/illustCategory/수채화.jpg" class="img" />
+                                <p class="categoryName">수채화</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/illust/illustCategoryList(keyword='시티팝')}">
+                            <div class="imgDiv" style="background-color: #F87DB3; color: white">
+                                <img src="/images/illustCategory/시티팝.jpg" class="img" />
+                                <p class="categoryName">시티팝</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/illust/illustCategoryList(keyword='인물화')}">
+                            <div class="imgDiv" style="background-color: #566D50; color: white">
+                                <img src="/images/illustCategory/인물화.jpg"class="img"  />
+                                <p class="categoryName">인물화</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/illust/illustCategoryList(keyword='지브리')}">
+                            <div class="imgDiv" style="background-color: #90C863; color: white">
+                                <img src="/images/illustCategory/지브리.jpg" class="img" />
+                                <p class="categoryName">지브리</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/illust/illustCategoryList(keyword='추상화')}">
+                            <div class="imgDiv" style="background-color: #676886; color: white">
+                                <img src="/images/illustCategory/추상화.jpg" class="img" />
+                                <p class="categoryName">추상화</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/illust/illustCategoryList(keyword='캐릭터')}">
+                            <div class="imgDiv" style="background-color: #E6AFAA; color: white;">
+                                <img src="/images/illustCategory/캐릭터.jpg" class="img" />
+                                <p class="categoryName">캐릭터</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/illust/illustCategoryList(keyword='흑백')}">
+                            <div class="imgDiv" style="background-color: #303030; color: white;">
+                                <img src="/images/illustCategory/흑백.jpg" class="img" />
+                                <p class="categoryName">흑백</p>
+                            </div>
+                        </a>
+                    </li>
+
+
+                </ul>
+
+            </div>
+            <p class="controls">
+                <span class="prev">&lang;</span>
+                <span class="next">&rang;</span>
+            </p>
+        </div>
+
+
+        <p class="Title2 creatorarea">Best Creator</p>
+        <div class="illustratorDIv">
+            <th:block th:each="profile, index:${profile}" th:if="${index.index} <=6">
+                <a th:href="@{/illust/illustUserPage(userNumber=${profile.userNumber})}">
+                    <div class="center cre">
+                        <div class="illustratorProfile">
+                            <img th:src="'/upload/display?fileName='+${profile.userFilePath}+'/'+${profile.userFileName}"/>
+                        </div>
+                        <p th:text="${profile.userNickName}">zzang_9</p>
+                    </div>
+                </a>
+            </th:block>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="Title2 artWork" style="margin-bottom: 36px;">Art Work</p>
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                <button class="hashtag">#인물화</button>
+                <button class="hashtag">#food</button>
+                <button class="hashtag">#black&white</button>
+                <button class="hashtag">#character</button>
+            </div>
+
+            <div>
+
+                <div class="selectBox2 categorySelect" >
+                    <button class="label">조회순</button>
+                    <ul class="optionList">
+                        <li class="optionItem" th:onclick="'location.href=\''+ @{/illust/illustList/like} +'\'' ">인기순</li>
+                        <li class="optionItem" th:onclick="'location.href=\''+ @{/illust/illustList} +'\'' ">최신순</li>
+                    </ul>
+                </div>
+                <!--           &lt;!&ndash; <select name="" id="" class="selectBox">-->
+                <!--                <option value="">인기순</option>-->
+                <!--                <option value="">최신순</option>-->
+                <!--            </select>&ndash;&gt;-->
+            </div>
+        </div>
+
+        <!--   리스트 시작     -->
+        <div class="flex2 wrap" style=" background-color: #EAEAEA; margin-bottom: 100px; padding-bottom: 68px;">
+            <div class="box column1">
+                <th:block th:each="list, index:${list}" th:if="${index.index} == 0 or ${index.index} % 5 == 0">
+                    <a class="goRead" th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
+                        <div class="column cellCss" >
+                            <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                            <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}">1,213</span></span>
+                        </div>
+                    </a>
+                </th:block>
+            </div>
+            <div class="box column2">
+                <th:block th:each="list, index:${list}" th:if="${index.index} % 5 == 1">
+                    <a class="goRead" th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
+                        <div class="column cellCss">
+                            <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                            <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}">1,213</span></span>
+                        </div>
+                    </a>
+                </th:block>
+            </div>
+            <div class="box column3">
+                <th:block th:each="list, index:${list}" th:if="${index.index} % 5 == 2">
+                    <a class="goRead" th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
+                        <div class="column cellCss">
+                            <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                            <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}">1,213</span></span>
+                        </div>
+                    </a>
+                </th:block>
+            </div>
+            <div class="box column4">
+                <th:block th:each="list, index:${list}" th:if="${index.index} % 5 == 3">
+                    <a class="goRead" th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
+                        <div class="column cellCss">
+                            <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                            <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}">1,213</span></span>
+                        </div>
+                    </a>
+                </th:block>
+            </div>
+            <div class="box column5">
+                <th:block th:each="list, index:${list}" th:if="${index.index} % 5 == 4">
+                    <a class="goRead" th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
+                        <div class="column cellCss">
+                            <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                            <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}">1,213</span></span>
+                        </div>
+                    </a>
+                </th:block>
+            </div>
+
+        </div>
+
+
+        <!-- 페이징 -->
+        <ul class="c_PagingList" >
+            <!-- 이전 -->
+            <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/illust/illustList/viewCount(page=${pageableDTO.startPage -2 })}" >&lt;&lt;</a></li>
+            <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/illust/illustList/viewCount(page=${pageableDTO.previous})}">&lt;</a></li>
+
+
+            <th:block th:each="num:${#numbers.sequence(pageableDTO.startPage,pageableDTO.endPage)}">
+                <li  th:if="${pageableDTO.pageNumber== num}" th:text="${num}" class="pageActive"></li>
+                <li th:unless="${pageableDTO.pageNumber == num}" ><a th:text="${num}" th:href="@{/illust/illustList/viewCount(page=${num - 1})}"></a></li>
+            </th:block>
+
+
+            <!-- 다음 -->
+            <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/illust/illustList/viewCount(page=${pageableDTO.next})}">&gt;</a></li>
+            <li th:if="${pageableDTO.hasNext}"><a th:href="@{/illust/illustList/viewCount(page=${pageableDTO.endPage)}">&gt;&gt;</a></li>
+        </ul>
+    </section>
+</div>
+
+
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/illust/illustList.js"></script>
+
+<script src="/assets/js/fix/header.js"></script>
+</html>
