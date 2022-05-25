@@ -82,6 +82,8 @@ public class UserController {
         } else {
             log.info("========로그인 성공========");
             session.setAttribute("userNumber", userNumber);
+            session.setAttribute("user", userService.get(Long.valueOf(userNumber)));
+
             return "redirect:/main/index";
         }
     }
