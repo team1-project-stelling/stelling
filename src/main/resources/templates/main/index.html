@@ -9,6 +9,15 @@
     <link href="/assets/css/fix/header.css" rel="stylesheet" type="text/css">
     <title>Stelling</title>
     <script src="../../static/assets/js/main/index.js"></script>
+    <style>
+        .live-hot{
+            list-style: none;
+            margin-left: -40px;
+            margin-bottom: 10px;
+            display: flex;
+            height: 135px;
+        }
+    </style>
 </head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="/assets/js/novel/data.js"></script>
@@ -21,43 +30,43 @@
     <img id="headerImg"src="/images/fix/headerImg_3.png" >
 </div>
 <!-- 헤더 종료 -->
-    <div class="M_banner_area">
-        <div class="M_banner_list">
-                
-        <script> 
+<div class="M_banner_area">
+    <div class="M_banner_list">
 
-    
+        <script>
+
+
             const img =search()
-          
-             img?.map((imgs,index)=>{
-                 let img= document.createElement('img');
+
+            img?.map((imgs,index)=>{
+                let img= document.createElement('img');
                 img.src=`https://image.tmdb.org/t/p/w500${imgs.poster_path}`;
                 img.className=`banner_img${index} banner_img ${imgs.id} `
                 img.id=`imgss`
                 document.querySelector(".M_banner_list").appendChild(img)
-            
+
             })
-           
-            
-            </script>
-
-</div>
-
-<!-- 위에는 맵을 돌려서 오는게 맞고 -->
 
 
+        </script>
 
-<div class="banner_arrow">
-    <a class="left"><img src="https://www.joara.com/assets/ic/pc-web/bt_arr_visual_left.png"/></a>
-    <a class="right"><img src="https://www.joara.com/assets/ic/pc-web/bt_arr_visual_right.png"/></a>
- </div>
+    </div>
+
+    <!-- 위에는 맵을 돌려서 오는게 맞고 -->
+
+
+
+    <div class="banner_arrow">
+        <a class="left"><img src="https://www.joara.com/assets/ic/pc-web/bt_arr_visual_left.png"/></a>
+        <a class="right"><img src="https://www.joara.com/assets/ic/pc-web/bt_arr_visual_right.png"/></a>
+    </div>
 </div>
 
 
 <div class="M_Hot_area" >
     <h2>
         <div class="M_Hot_area_tittle">
-            <span>실시간</span> <span class="RealTime">HOT</span> 
+            <span>실시간</span> <span class="RealTime">HOT</span>
         </div>
     </h2>
     <div class="M_tags_area">
@@ -76,89 +85,133 @@
 
 
         </div>
-    
-    
-    
-</div>
-
-
-<!-- 실시간 hot 배너 -->
-    <div class="M_tags_List">
-        <div class="tags_List"> 
-
-            <div class="tags_header">
-            <span>조회수</span> <a href="#">더보기</a>
-            </div>
-             <div class="tags_container tags_left">
-              
-             </div></div>
-
-           <div class="tags_List"> 
-           <div class="tags_header">
-           <span>선호작수</span> <a href="#">더보기</a>
-           </div>
-           <div class="tags_container tags_middle" ></div></div>    
-       
-           <div class="tags_List">
-            <div class="tags_header tags_middle">
-            <span>완결작</span> <a href="#">더보기</a></div>
-            <div class="tags_container tags_right" ></div></div>    
-           
-    </div></div>    
-
-
-</div>
-</div>
-</div>
-
-    <div class="main_section">
-            
-
-
-        <div class="M_x_W">
-        <div class="M_x_">
-        <div class="x_title">
-        <div>이번 주 신작은??
-        <span>NewFace의 반란!</span>
-        </div>
-        </div>    
-        <div class="x_box fisrtList" ></div>
-        </div>
-        </div>
-
-
-        <div class="M_x_">
-        <div class="x_title">   
-        <div>이번 주 신작은??
-        <span>NewFace의 반란!</span>
-        </div></div>    
-        <div class="x_box secondList" ></div>
-        </div>          
-            
-
-        <div style="background-color: beige">
-        <div class="M_x_">
-        <div class="x_title">   
-        <div>한번쯤은 보게될껄?
-        <span>Illustrator</span>
-        </div></div>    
-        <div class="x_box fourList movemove" id="fourList" ></div>
-        </div>          
-        </div>    
-
-        <div class="M_x_">
-        <div class="x_title">   
-        <div>이번 주 신작은??
-        <span>NewFace의 반란!</span>
-        </div></div>    
-        <div class="x_box thirdList" ></div>
-        </div>          
-
-            
 
 
 
     </div>
+
+
+    <!-- 실시간 hot 배너 -->
+    <div class="M_tags_List">
+        <div class="tags_List">
+            <div class="tags_header">
+                <span>조회수</span> <a href="#">더보기</a>
+            </div>
+            <div class="content-wrap">
+            <ul>
+                <li class="live-hot">
+                    <img src="https://image.novelpia.com/imagebox/cover/bf0de9f85bcef128854633c0361708aa_476858_ori.file" style="width: 90px;">
+                    <div style="margin-left: 15px; line-height: 1;">
+                        <p><b>1</b> 히어로가 집착하는 악당이 되었다.</p>
+                        <p>서은하</p>
+                        <p>#판타지 #현대 #착각 #후회 #집착 #피폐 #히어로</p>
+                    </div>
+                </li>
+                <li class="live-hot">
+                    <img src="https://image.novelpia.com/imagebox/cover/bf0de9f85bcef128854633c0361708aa_476858_ori.file" style="width: 90px;">
+                    <div style="margin-left: 15px; line-height: 1;">
+                        <p><b>1</b> 히어로가 집착하는 악당이 되었다.</p>
+                        <p>서은하</p>
+                        <p>#판타지 #현대 #착각 #후회 #집착 #피폐 #히어로</p>
+                    </div>
+                </li>
+                <li class="live-hot">
+                    <img src="https://image.novelpia.com/imagebox/cover/bf0de9f85bcef128854633c0361708aa_476858_ori.file" style="width: 90px;">
+                    <div style="margin-left: 15px; line-height: 1;">
+                        <p><b>1</b> 히어로가 집착하는 악당이 되었다.</p>
+                        <p>서은하</p>
+                        <p>#판타지 #현대 #착각 #후회 #집착 #피폐 #히어로</p>
+                    </div>
+                </li>
+            </ul>
+            </div>
+            <div class="tags_container tags_left">
+
+            </div></div>
+
+        <div class="tags_List">
+            <div class="tags_header">
+                <span>선호작수</span> <a href="#">더보기</a>
+            </div>
+            <div class="tags_container tags_middle" ></div></div>
+
+        <div class="tags_List">
+            <div class="tags_header tags_middle">
+                <span>완결작</span> <a href="#">더보기</a></div>
+            <div class="tags_container tags_right" ></div></div>
+
+    </div></div>
+
+
+</div>
+</div>
+</div>
+
+<div class="main_section">
+
+
+
+    <div class="M_x_W">
+        <div class="M_x_">
+            <div class="x_title">
+                <div>이번 주 신작은??
+                    <span>NewFace의 반란!</span>
+                    <ul style="list-style: none; display: flex;">
+                        <th:block th:each="newWork:${newWorkList}">
+                            <li style="margin-right :20px;" th:object="${newWork}">
+                                <a href=""><img th:src="'/upload/display?fileName='+*{novelUploadPath}+'/'+*{novelFileName}" style="width: 175px;" alt="이미지 준비중"></a>
+                                <p style="margin: 0; font-size: 14px;" th:text="*{novelTitle}"></p>
+                                <p style="margin: 0; font-size: 14px;">작가이름</p>
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+            </div>
+            <div class="x_box fisrtList" ></div>
+        </div>
+    </div>
+
+
+    <div class="M_x_">
+        <div class="x_title">
+            <div>이번 주 신작은??
+                <span>NewFace의 반란!</span>
+            </div></div>
+        <div class="x_box secondList" ></div>
+    </div>
+
+
+    <div style="background-color: beige">
+        <div class="M_x_">
+            <div class="x_title">
+                <div>한번쯤은 보게될걸?
+                    <span>Illustrator</span>
+                    <ul style="list-style: none; display: flex;">
+                        <th:block th:each="newIllust:${newIllustList}">
+                            <li style="margin-right :20px;" th:object="${newIllust}">
+                                <a href=""><img th:src="'/upload/display?fileName='+*{illustImgFileFilePath}+'/'+*{illustImgFileFileName}" style="width: 175px;" alt="이미지 준비중"></a>
+                                <p style="margin: 0; font-size: 14px;" th:text="*{userNickName}"></p>
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+            <div class="x_box fourList movemove" id="fourList" ></div>
+        </div>
+    </div>
+
+    <div class="M_x_">
+        <div class="x_title">
+            <div>이번 주 신작은??
+                <span>NewFace의 반란!</span>
+            </div></div>
+        <div class="x_box thirdList" ></div>
+    </div>
+
+
+
+
+
+</div>
 </body>
 <th:block th:insert="/fix/footer.html :: footerFragment"/>
 <script src="/assets/js/main/index.js"></script>
@@ -179,4 +232,4 @@
         }
     }
 </script>
-</html>l
+</html>
