@@ -26,8 +26,8 @@ public class SubNovelService {
 //    public List<SubNovelVO> getList(Long novelNumber){return subNovelRepository.findByNovelVO_NovelNumber(novelNumber);}
 //    public List<SubNovelVO> orderBySubNovelList(Long novelNumber){return subNovelRepository.findAllByNovelVO_NovelNumberOrderBySubNovelNumber(novelNumber);}
 
-    public List<SubNovelVO> getList(Long novelNumber){return subNovelRepository.findByNovelVO_NovelNumber(novelNumber);}
-    public List<SubNovelVO> orderBySubNovelList(Long novelNumber){return subNovelRepository.findAllByNovelVO_NovelNumberOrderBySubNovelNumber(novelNumber);}
+//    public List<SubNovelVO> getList(Long novelNumber){return subNovelRepository.findByNovelVO_NovelNumber(novelNumber);}
+//    public List<SubNovelVO> orderBySubNovelList(Long novelNumber){return subNovelRepository.findAllByNovelVO_NovelNumberOrderBySubNovelNumber(novelNumber);}
     public Page<SubNovelVO> getListByNovelNumber(Long novelNumber,  Pageable pageable){return subNovelRepository.findAllByNovelVO_NovelNumber(novelNumber, pageable);}
     public List<SubNovelVO> getListByNovelNumber(Long novelNumber){return subNovelRepository.findAllByNovelVO_NovelNumberOrderBySubNovelUploadDate(novelNumber);}
 //    public void removeSubNovelVO(Long snNo){subNovelRepository.deleteSubNovelVOBySubNovelNumber(snNo);}
