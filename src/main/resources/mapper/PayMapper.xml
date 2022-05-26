@@ -4,8 +4,8 @@
 
     <!--등록-->
     <insert id="insert">
-        INSERT INTO TBL_PAY (PAY_NUMBER, USER_NUMBER, PAY_CHARGE, PAY_COINCOUNT)
-        VALUES(PAY_SEQ.NEXTVAL, #{userNumber}, #{payCharge}, #{payCoinCount})
+        INSERT INTO TBL_PAY (USER_NUMBER, PAY_CHARGE, PAY_COINCOUNT)
+        VALUES(#{userNumber}, #{payCharge}, #{payCoinCount})
     </insert>
 
     <!--1개 조회-->
@@ -16,28 +16,11 @@
 
     <!--전체 조회-->
     <select id="getList" resultType="PayVO">
-        <![CDATA[
-            SELECT ROWNUM, PAY_NUMBER, USER_NUMBER, PAY_CHARGE, PAY_COINCOUNT, PAY_DATE, PAY_STATUS
-            FROM
-                (
-                SELECT /*+ INDEX_DESC(TBL_PAY BIN$OBDZeKBJR7yPR8+xtHguqw==$0)*/
-                ROWNUM RN, PAY_NUMBER, USER_NUMBER, PAY_CHARGE, PAY_COINCOUNT, PAY_DATE, PAY_STATUS
-                FROM TBL_PAY
-                WHERE USER_NUMBER = #{userNumber}
-            ]]>
-        <if test="criteria.startDate != null and criteria.endDate != null">
-            <![CDATA[
-                AND PAY_DATE >= #{criteria.startDate}
-                AND PAY_DATE <= #{criteria.endDate}
-                ]]>
-        </if>
-
-        <![CDATA[
-                AND ROWNUM <= #{criteria.pageNum} * #{criteria.amount}
-                ORDER BY ROWNUM DESC
-                )
-            WHERE RN > (#{criteria.pageNum} - 1) * #{criteria.amount}
-        ]]>
+            SELECT PAY_NUMBER, USER_NUMBER, PAY_CHARGE, PAY_COINCOUNT, PAY_DATETIME, PAY_STATUS
+            FROM TBL_PAY
+            WHERE USER_NUMBER = #{userNumber}
+            ORDER BY PAY_NUMBER DESC
+            LIMIT #{paging.skip}, #{paging.amount}
     </select>
 
     <!--총 결제 금액-->

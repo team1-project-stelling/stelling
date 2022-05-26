@@ -101,6 +101,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  justify-content: space-between;
 }
 
 .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_Desc_title :first-child {
@@ -300,6 +301,9 @@
   background: #fdc324;
   color: #333 !important;
   border: 1px solid #fdc324 !important;
+  width: 108px;
+  border-radius: 4px;
+  height: 45px;
 }
 
 .x_xContent {
@@ -517,6 +521,7 @@
 
 .hashtag {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .NovelList {
@@ -581,11 +586,14 @@
   display: -ms-flexbox;
   display: flex;
 }
+.NovelList .Novel li:hover{
+  background-color: #ef6e731c;
+}
 
 .NovelList .Novel li :first-child {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  margin: 0px 20px 0px 0px;
+  margin: 0px 11px 0px 0px;
   min-width: 0px;
   position: relative;
   border-radius: 6px;
@@ -593,7 +601,7 @@
   -webkit-box-flex: 0;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
-  width: 100px;
+  width: fit-content;
 }
 
 .NovelList .Novel li :first-child img {
@@ -1037,4 +1045,223 @@
   padding: 2px 2px 3px 2px;
   text-align: center;
   border-radius: 8px;
+}
+a.goToView{
+  text-decoration: none;
+  width: auto !important;
+  margin-bottom: 18px !important;
+}
+div.modify{
+  width: 36px;
+  margin-top: 25px;
+  margin-right: 17px;
+  display: none;
+  cursor: pointer;
+}
+span.modify, span.delete{
+  cursor: pointer;
+}
+.img{
+  width: 100% !important;
+  cursor: pointer;
+}
+.deleteCheckBox{
+  width: 37px !important;
+  height: 36px !important;
+  padding-right: 0px !important;
+}
+div.delete{
+  display: none;
+  cursor: pointer;
+  padding-top: 26px;
+  padding-right: 3px;
+  height: 30px;
+}
+ul.c_PagingList{
+  display: inline-flex;
+  justify-content: center;
+}
+li>a{
+  text-decoration: none;
+}
+div.ok{
+  display: none;
+  margin-right: 21px;
+  cursor: pointer;
+}
+div.cancle{
+  display: none;
+  margin-right: 21px;
+  cursor: pointer;
+}
+
+  /*체크박스 변경*/
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  outline: none !important;
+  border: 1px solid #eeeeee;
+  border-radius: 2px;
+  background: #fbfbfb;
+}
+
+input[type="checkbox"]::before {
+  content: "\2713";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  transform: scale(0) translate(-50%, -50%);
+  line-height: 1;
+  zoom: 2.5;
+}
+
+input[type="checkbox"]:hover {
+  border-color: rgba(170, 170, 170, 0.5);
+}
+
+input[type="checkbox"]:checked {
+  background-color: #ef6e73;
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+input[type="checkbox"]:checked::before {
+  border-radius: 2px;
+  transform: scale(1) translate(-50%, -50%)
+}
+
+.free{
+  font-size: 14px;
+  color: lightgrey;
+}
+.xIcon{
+  width: 25px;
+  height: 25px;
+  margin-left: 43px;
+  cursor: pointer;
+}
+.freeText{
+  color: gray;
+  margin: 0px;
+  font-size: 20px;
+  margin-top: 1px;
+}
+.lock{
+  width: 24px !important;
+  margin-top: 3.4px !important;
+  margin-left: 6px !important;
+}
+.freeButton{
+  width: 39px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: #ef6e73c7;
+  border-radius: 9px;
+  margin-top: 6px;
+  font-size: 14px;
+  height: 21px;
+  margin-left: 7px;
+}
+
+.payQModal{
+  width: 450px;
+  height: 271px;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 3;
+}
+.modalText{
+  font-size: 23px;
+  margin-top: 68px;
+  margin-bottom: 44px;
+  font-size: 25px;
+}
+.coinBtn1{
+  background-color: #ef6e73;
+  border: 1px solid #ef6e73;
+  width: 148px;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 13px;
+  margin-right: 15px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.coinBtn2{
+  background-color: white;
+  border: 2px solid #8080808f;
+  width: 148px;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 13px;
+  font-weight: bold;
+  color: #808080ba;
+  cursor: pointer;
+}
+.modal_background{
+  position: fixed;
+  top:0; left: 0; bottom: 0; right: 0;
+  background: rgba(175, 175, 175, 0.44);
+  z-index: 2;
+  display: none;
+}
+
+.modal_background2{
+  position: fixed;
+  top:0; left: 0; bottom: 0; right: 0;
+  background: rgba(175, 175, 175, 0.44);
+  z-index: 2;
+  display: none;
+}
+.payQModal2{
+  width: 450px;
+  height: 271px;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 3;
+
+}
+.goToRead{
+  background-color: white;
+  border: 1px solid #ef6e73;
+  color: #ef6e73;
+  width: 174px;
+  height: 40px;
+  border-radius: 10px;
+  margin-top: 16px;
+  font-size: 16px;
+  font-family: 'Elice Digital Baeum';
+  cursor: pointer;
+}
+.goToRead:hover{
+  color:white;
+  background-color: #ef6e73;
+}
+.payClear{
+  margin-top: 70px;
+  font-size: 23px;
+  margin-bottom: -7px;
+  color: #808080;
+}
+.balance{
+  font-size: 16px;
+  color: #aeaeae;
 }

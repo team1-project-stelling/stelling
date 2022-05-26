@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 public interface MyPickRepository extends JpaRepository<MyPickVO, Long> {
     Page<MyPickVO> findByUserVO_UserNumberAndNovelVO_NovelHashtagContaining(Long userNumber,String keyword, Pageable pageable);
     Page<MyPickVO> findByUserVO_UserNumber(Long userNumber,Pageable pageable);
+
+    MyPickVO getByNovelVO_NovelNumberAndUserVOUserNumber(Long novelNum, Long userNum);
+
     @Transactional
     int deleteByMyPickNumber(Long myPickNumber);
 

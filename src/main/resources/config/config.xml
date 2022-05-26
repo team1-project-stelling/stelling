@@ -10,12 +10,15 @@
         <typeAlias type="com.team1.stelling.domain.vo.MyPickVO" alias="myPickVO"/>
         <typeAlias type="com.team1.stelling.domain.vo.MyIllustVO" alias="myIllustVO"/>
         <typeAlias type="com.team1.stelling.domain.vo.InquiryVO" alias="inquiryVO"/>
-        <typeAlias type="com.team1.stelling.domain.vo.PayVO" alias="payVO"/>
-        <typeAlias type="com.team1.stelling.domain.vo.PayDTO" alias="payDTO"/>
+        <typeAlias type="com.team1.stelling.domain.vo.PayVO" alias="PayVO"/>
+        <typeAlias type="com.team1.stelling.domain.vo.PayDTO" alias="PayDTO"/>
         <typeAlias type="com.team1.stelling.domain.vo.BuyChapterVO" alias="buyChapterVO"/>
         <typeAlias type="com.team1.stelling.domain.vo.NovelVO" alias="NovelVO"/>
+        <typeAlias type="com.team1.stelling.domain.dto.NovelDTO" alias="NovelDTO"/>
         <typeAlias type="com.team1.stelling.domain.dto.NovelRankingDTO" alias="NovelRankingDTO"/>
         <typeAlias type="com.team1.stelling.domain.vo.UserVO" alias="UserVO"/>
+        <typeAlias type="com.team1.stelling.domain.vo.Paging" alias="Paging"/>
+        <typeAlias type="com.team1.stelling.domain.dto.NewIllustDTO" alias="NewIllustDTO"/>
     </typeAliases>
 </configuration>
 

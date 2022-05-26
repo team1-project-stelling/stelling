@@ -15,7 +15,7 @@ import java.util.Date;
 @Entity
 @Table(name ="TBL_ILLUST")
 @Getter @Setter
-@ToString(of = {"illustNumber","illustTitle","illustContent","illustUploadDate","illustUpdateDate","illustHashTag","illustViewCount","illustLike","illustShortIntro"})
+@ToString(of = {"illustNumber","illustTitle","illustContent","illustUploadDate","illustUpdateDate","illustHashTag","illustViewCount","illustLike","illustShortIntro", "illustFileName", "illustFilePath", "illustUuid"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class IllustVO {

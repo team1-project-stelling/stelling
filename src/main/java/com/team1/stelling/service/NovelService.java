@@ -48,7 +48,7 @@ public class NovelService {
     private final NovelDAO novelDAO;
 //    private final NovelSearchRepository novelSearchRepository;
     private final ModelMapper modelMapper;
-    final int ENDNOVELSTAUTS = 2; // 완결 상태 값 2:
+    static final int ENDNOVELSTAUTS = 2; // 완결 상태 값 2:
 
     public NovelVO get(Long nNO){ return novelRepository.findById(nNO).orElseGet(null);}
     public List<NovelVO> getList(){return novelRepository.findAll();}
@@ -118,4 +118,7 @@ public class NovelService {
 
     public Page<NovelVO> getPageList(Long userNumber, Pageable pageable){return novelRepository.findByUserVO_userNumber(userNumber, pageable);}
 
+    public Page<NovelCategoryDTO> getListSearchAll(String keyword, Pageable pageable){
+        return novelRepository.findByNovelHashtagContainingOrNovelTitleContainingOrUserVO_UserNickNameContaining(keyword,keyword,keyword,pageable).map(objectEntity -> modelMapper.map(objectEntity, NovelCategoryDTO.class));
+    }
 }
