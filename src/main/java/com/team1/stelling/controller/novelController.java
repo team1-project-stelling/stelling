@@ -12,6 +12,7 @@ import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.sax.BodyContentHandler;
+import org.bouncycastle.math.raw.Mod;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -49,7 +50,8 @@ public class novelController {
     }
 
     @GetMapping("/novelWrite")
-    public void novelWrite(){
+    public void novelWrite(Long novelNumber, Model model){
+        model.addAttribute("novelNumber", novelNumber);
     }
 
     /*소설 수정페이지 이동*/

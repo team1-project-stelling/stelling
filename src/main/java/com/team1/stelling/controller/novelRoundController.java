@@ -75,11 +75,12 @@ public class novelRoundController {
         String writerName = userService.get(novelVO.getUserVO().getUserNumber()).getUserNickName();
         PageableDTO pageableDTO = new PageableDTO((int)subNovelVOS.getTotalElements(), pageable);
 
-        if(novelService.get(novelNumber).getNovelFileName().contains("sampleImg")){
-            String novelImgSrc = "/images/"+novelService.get(novelNumber).getNovelFileName();
-            model.addAttribute("novelImgSrc", novelImgSrc);
+        if(novelService.get(novelNumber).getNovelFileName()!=null){
+            if(novelService.get(novelNumber).getNovelFileName().contains("sampleImg")){
+                String novelImgSrc = "/images/"+novelService.get(novelNumber).getNovelFileName();
+                model.addAttribute("novelImgSrc", novelImgSrc);
+            }
         }
-
         ArrayList<Long> sNumbers = new ArrayList<>();
         for (SubNovelVO sub : subNovelVOS){
             sNumbers.add(sub.getSubNovelNumber());
@@ -92,7 +93,10 @@ public class novelRoundController {
         model.addAttribute("novelVO", novelVO);
         model.addAttribute("pageableDTO", pageableDTO);
         model.addAttribute("writerName", writerName);
-        model.addAttribute("firstSNumber",  sNumbers.get(0));
+        if(sNumbers.size()!=0){
+            model.addAttribute("firstSNumber",  sNumbers.get(0));
+        }
+
 
     }
 
@@ -103,7 +107,7 @@ public class novelRoundController {
         for(Long SubNovelNumber :  subNovelDeleteDTO.getDeleteNumber()){
             subNovelService.removeSubNovelVO(SubNovelNumber);
         }
-      return "삭제성공";
+        return "삭제성공";
     }
 
     @GetMapping("/myPick")
@@ -111,6 +115,7 @@ public class novelRoundController {
     public String novelPick(int num, Long novelNumber, Long userNumber){
         if(num==1) {
             myPickService.register(MyPickVO.builder()
+                    .myPickPick(num)
                     .novelVO(novelService.get(novelNumber))
                     .userVO(userService.get(userNumber))
                     .build());

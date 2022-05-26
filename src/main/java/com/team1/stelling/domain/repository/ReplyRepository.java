@@ -11,7 +11,9 @@ public interface ReplyRepository extends JpaRepository<ReplyVO, Long> {
     List<ReplyVO> findAllBySubNovelVO_SubNovelNumberOrderByReplyNumber(Long subNovelNUm);
 
     Page<ReplyVO> findAllByNovelVO_NovelNumber(Long novelNum, Pageable pageable);
+    Page<ReplyVO> findAllBySubNovelVO_SubNovelNumber(Long subNum, Pageable pageable);
     List<ReplyVO> findAllByNovelVO_NovelNumber(Long novelNum);
+
     //노벨넘버로 댓글 추천순
 //    List<ReplyVO> findAllByNovelVO_NovelNumberOrderByReplyUpDesc(Long novelNum);
 

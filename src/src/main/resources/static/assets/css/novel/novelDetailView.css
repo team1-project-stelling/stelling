@@ -385,7 +385,6 @@ body {
     font-size: 13px;
     color: silver;
     text-align: right;
-    width: fit-content;
 }
 
 .writeMent{
@@ -576,6 +575,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    position: relative;
     border-radius: 16px;
     overflow: hidden;
 }
@@ -639,10 +639,4 @@ body {
 }
 .a{
     text-decoration: none;
-}
-.xIcon{
-    width: 25px;
-    height: 25px;
-    margin-left: 50px;
-    cursor: pointer;
 }
