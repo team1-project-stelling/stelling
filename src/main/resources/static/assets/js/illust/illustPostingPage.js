@@ -146,6 +146,8 @@ $(document).ready(function () {
 })
 
 
+$("input[type='file']").change(function(e){
+
 
     /* 메인이미지 저장하기*/
     let inputFile = $("input[type='file']");
@@ -178,7 +180,7 @@ $(document).ready(function () {
             alert("이미지 등록 실패")
         }
     });
-
+})
 /*form데이터 보내기*/
 $('.upBtn').on("click", function () {
 
@@ -189,5 +191,5 @@ $('.upBtn').on("click", function () {
 
     register.submit();
     console.log("서브밋")
-    });
+});
 
