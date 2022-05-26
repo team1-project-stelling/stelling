@@ -1,5 +1,6 @@
 package com.team1.stelling.service;
 
+import com.team1.stelling.domain.vo.NovelVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -18,11 +19,11 @@ public class NovelServiceTests {
     NovelService novelService;
     @Autowired
     UserService userService;
-/*    @Test
-    public void getTest(){
-        NovelVO novelVO = novelService.get(1L);
-        log.info("########"+novelVO.toString());
-    }*/
+//    @Test
+//    public void getTest(){
+//        NovelVO novelVO = novelService.get(24L);
+//        log.info("########"+novelVO.toString());
+//    }
 /*    @Test
     public void getListTest(){
         List<NovelVO> datas = novelService.getList();

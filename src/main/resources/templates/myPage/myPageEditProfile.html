@@ -80,7 +80,8 @@
                             <div class="set_myInfo photo">
                                 <strong class="profile picture">이미지</strong>
                                 <div class="profile_show imgWrap">
-                                    <img src="/images/default.png" class="thumb imagePreview1"/>
+                                    <img th:if="${userVO.userFilePath == 'stelling'}" src="/images/default.png" class="thumb imagePreview1"/>
+                                    <img th:unless="${userVO.userFilePath =='stelling'}" class="thumb imagePreview1" style="width:110px;height: 110px" th:src="'/myPage/display?fileName='+ ${userVO.userFilePath}+'/'+${userVO.userUuid} + '_'+${userVO.userFileName}" >
                                     <div>
                                         <label for="imageSelector" class="iconClip">
                                             <img class="clip" src="/images/클립.png" height="15px"width="15px" />
@@ -159,7 +160,7 @@
         location.href = "/myPage/myPageQuit";
     }
     function goPayList(){
-        location.href = "/myLibrary/payList";
+        location.href = "/myLibrary/payList?userNumber="+ userNumber;
     }
 
 </script>

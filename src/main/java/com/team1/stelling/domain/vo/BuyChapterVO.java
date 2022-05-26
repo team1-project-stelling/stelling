@@ -1,5 +1,6 @@
 package com.team1.stelling.domain.vo;
 
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -17,5 +18,6 @@ public class BuyChapterVO {
     private int buyChapterCoin;  /*차감코인*/
     private Date buyChapterDate; /*구매날짜*/
     private int buyChapterStatus; /* 만약 취소나 환불이 있다면 -> 상태 */
+
 
 }

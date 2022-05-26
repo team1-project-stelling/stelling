@@ -1,4 +1,4 @@
-var active = document.getElementsByClassName("active");
+let active = document.getElementsByClassName("active");
 
 // function handleClick(event) {
 //     console.log(event.target);
@@ -25,7 +25,7 @@ var active = document.getElementsByClassName("active");
 
 
 //left_block
-var left = document.getElementsByClassName("left");
+let left = document.getElementsByClassName("left");
 
 function Click(event) {
     console.log(event.target);
@@ -53,15 +53,15 @@ test();
 
 //날짜 유효성 검사
 $('#btnSearch').click(function () {
-    var dateFrom = document.getElementById('dateFrom'); //시작일
-    var dateTo = document.getElementById('dateTo'); //종료일
-    var today = new Date(); //오늘 날짜
+    let dateFrom = document.getElementById('dateFrom'); //시작일
+    let dateTo = document.getElementById('dateTo'); //종료일
+    let today = new Date(); //오늘 날짜
 
     //시작일
     dateFrom = new Date(dateFrom.value);
-    var fromYear = dateFrom.getFullYear();
-    var fromMonth = dateFrom.getMonth() + 1;
-    var fromDay = dateFrom.getDate();
+    let fromYear = dateFrom.getFullYear();
+    let fromMonth = dateFrom.getMonth() + 1;
+    let fromDay = dateFrom.getDate();
 
     //날짜 지정을 하지 않았을 때 NaN이 발생하여 0으로 처리
     if (isNaN(fromYear) || isNaN(fromMonth) || isNaN(fromDay)){
@@ -74,9 +74,9 @@ $('#btnSearch').click(function () {
 
     //종료일
     dateTo = new Date(dateTo.value);
-    var toYear = dateTo.getFullYear();
-    var toMonth = dateTo.getMonth() + 1;
-    var toDay = dateTo.getDate();
+    let toYear = dateTo.getFullYear();
+    let toMonth = dateTo.getMonth() + 1;
+    let toDay = dateTo.getDate();
     //날짜 지정을 하지 않았을 때 NaN이 발생하여 0으로 처리
     if (isNaN(toYear) || isNaN(toMonth) || isNaN(toDay)){
         toYear = 0;
@@ -86,9 +86,9 @@ $('#btnSearch').click(function () {
     dateTo = toYear +'/'+ toMonth +'/'+toDay;
 
     //오늘날짜 날짜 형식으로 지정
-    var todayYear = today.getFullYear();
-    var todayMonth = today.getMonth() + 1;
-    var todayDay = today.getDate();
+    let todayYear = today.getFullYear();
+    let todayMonth = today.getMonth() + 1;
+    let todayDay = today.getDate();
     today = todayYear +'/'+ todayMonth +'/'+todayDay;
 
     // 날짜 조회 시, 시작일이 오늘 날짜보다는 크고, 종료일이 시작일보다는 커야하기 때문에 조건을 걸어줌
@@ -128,18 +128,19 @@ $(".mySupport").click(function(){
 })
 
 //페이지 이동하는 form태그 가져와서 action경로 직접 넣는다
-$(".page-link").click(function(e){
-    e.preventDefault();
-    $(pageForm).find("input[name='pageNum']").val($(this).attr("href")); // 사용자가 클릭한 페이지
-    $(pageForm).find("input[name='supportSponser']").val(supportSponser); // 사용자가 클릭한 페이지
-    $(pageForm).find("input[name='userNumber']").val(userNumber); // 로그인 되어있는 회원 번호
-
-    // $(pageForm).attr("action", "/myLibrary/payList?userNumber=" + userNumber);
-    $(pageForm).submit();
-})
-
-$("#btnSearch").click(function(e){
-    $(dateForm).find("input[name='userNumber']").val(userNumber);
-})
+// $(".page-link").click(function(e){
+//     e.preventDefault();
+//     $(pageForm).find("input[name='pageNum']").val($(this).attr("href")); // 사용자가 클릭한 페이지
+//     $(pageForm).find("input[name='supportSponser']").val(supportSponser); // 사용자가 클릭한 페이지
+//     $(pageForm).find("input[name='userNumber']").val(userNumber); // 로그인 되어있는 회원 번호
+//
+//     // $(pageForm).attr("action", "/myLibrary/payList?userNumber=" + userNumber);
+//     $(pageForm).submit();
+// })
+//
+// $("#btnSearch").click(function(e){
+//     $(dateForm).find("input[name='userNumber']").val(userNumber);
+//     $(dataForm).submit();
+// })
 
 

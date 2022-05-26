@@ -17,19 +17,11 @@
 
     <!--후원 내역-->
     <select id="getSuppotList" resultType="supportVO">
-        <![CDATA[
-            SELECT SUPPORT_NUMBER, SUPPORT_SPONSER, SUPPORT_RECEIVER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE
-            FROM
-                (
-                SELECT
-                ROWNUM RN, SUPPORT_NUMBER, SUPPORT_SPONSER, SUPPORT_RECEIVER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE
-                FROM TBL_SUPPORT
-                WHERE SUPPORT_SPONSER = #{supportSponser}
-                AND ROWNUM <= #{criteria.pageNum} * #{criteria.amount}
-                ORDER BY ROWNUM DESC
-                )
-            WHERE RN > (#{criteria.pageNum} - 1) * #{criteria.amount}
-        ]]>
+            SELECT SUPPORT_NUMBER, SUPPORT_SPONSER, SUPPORT_RECEIVER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATETIME
+            FROM TBL_SUPPORT
+            WHERE SUPPORT_SPONSER = #{supportSponser}
+            ORDER BY SUPPORT_NUMBER DESC
+            LIMIT #{paging.skip}, #{paging.amount}
     </select>
 
     <!--검색한 결과의 총 개수(페이징 처리를 위함)-->

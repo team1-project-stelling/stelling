@@ -6,6 +6,24 @@ import com.team1.stelling.service.CertifiedPhoneService;
 import com.team1.stelling.service.SendEmailService;
 import com.team1.stelling.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Random;
+
+//package com.team1.stelling.controller;
+
+import com.team1.stelling.domain.vo.UserDTO;
+import com.team1.stelling.domain.vo.UserVO;
+import com.team1.stelling.service.CertifiedPhoneService;
+import com.team1.stelling.service.SendEmailService;
+import com.team1.stelling.service.UserService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -72,7 +90,7 @@ public class UserController {
         HashMap<String, String> loginMap = new HashMap<>();
         loginMap.put("userId", dto.getUserId());
         loginMap.put("userPw", dto.getUserPw());
-        
+
         userNumber = userService.login(loginMap);
 
         if (userNumber == null) {
@@ -82,6 +100,8 @@ public class UserController {
         } else {
             log.info("========로그인 성공========");
             session.setAttribute("userNumber", userNumber);
+            session.setAttribute("user", userService.get(Long.valueOf(userNumber)));
+
             return "redirect:/main/index";
         }
     }

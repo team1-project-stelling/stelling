@@ -133,6 +133,8 @@ $(document).ready(function () {
         }
     });
 
+
+
     // 삭제 버튼
     // 인덱스 검사 후 삭제
     $(document).on("click", ".del-btn", function (e) {
@@ -142,3 +144,52 @@ $(document).ready(function () {
         counter--;
     });
 })
+
+
+$("input[type='file']").change(function(e){
+
+
+    /* 메인이미지 저장하기*/
+    let inputFile = $("input[type='file']");
+    let files = inputFile[0].files;
+    let formData = new FormData();
+
+    for (let i = 0; i < files.length; i++) {
+        formData.append("uploadFile", files[i]);
+    }
+    console.log(formData);
+
+    /*formdata action으로 변경 */
+    $.ajax({
+        url: "/illust/uploadAjaxAction",
+        data: formData,
+        type: "POST",
+        // 현재 설정된 헤더 설정을 기본 방식으로 변경하지 못하도록 false로 설정
+        processData: false,
+        contentType: false,
+        success: function (result) {
+            $(result).each(function (i, item) {
+                $('input[name="illustFileName"]').val(item.illustFileName);
+                $('input[name="illustFilePath"]').val(item.illustFilePath);
+                $('input[name="illustUuid"]').val(item.illustUuid);
+                alert("OK")
+                console.log("ajax")
+            })
+        },
+        error:function () {
+            alert("이미지 등록 실패")
+        }
+    });
+})
+/*form데이터 보내기*/
+$('.upBtn').on("click", function () {
+
+    let hashtag = $('#tag-list').text();
+    hashtag = hashtag.replace(/x/gi, "");
+    hashtag = hashtag.replace(/&nbsp/gi, ",");
+    $('input[name="illustHashTag"]').val(hashtag);
+
+    register.submit();
+    console.log("서브밋")
+});
+

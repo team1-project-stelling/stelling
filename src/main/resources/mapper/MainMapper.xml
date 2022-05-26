@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team1.stelling.mapper.MainMapper">
+    <!--신작 조회-->
+    <select id="getNewNovelList" resultType="NovelDTO">
+        SELECT NOVEL_TITLE, NOVEL_UPLOADPATH, NOVEL_FILENAME
+        FROM TBL_NOVEL ORDER BY NOVEL_UPLOADDATE DESC
+        LIMIT 0, 6
+    </select>
+
+    <!--일러스트 조회-->
+    <select id="getNewIllustList" resultType="NewIllustDTO">
+        SELECT USER_NICKNAME, ILLUSTIMGFILE_FILEPATH, ILLUSTIMGFILE_FILENAME
+        FROM TBL_ILLUSTIMGFILE
+        JOIN TBL_USER ON TBL_ILLUSTIMGFILE.USER_NUMBER =TBL_USER.USER_NUMBER
+        ORDER BY ILLUSTIMGFILE_UPLOADDATE DESC
+        LIMIT 0, 6
+    </select>
+</mapper>
