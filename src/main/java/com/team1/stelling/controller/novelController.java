@@ -26,6 +26,8 @@ import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.xml.sax.SAXException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -161,8 +163,12 @@ public class novelController {
 
     /*소설 등록*/
     @PostMapping("/novelRegister")
-    public void novelRegister(NovelVO novelVO) {
+    public String novelRegister(NovelVO novelVO, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Long userNumber = (Long)session.getAttribute("userNumber");
+        novelVO.setUserVO(userService.get(userNumber));
         novelService.register(novelVO);
+        return "novel/novelRegister";
     }
 
     /*소설 표지 이미지 저장*/
