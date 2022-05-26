@@ -4,9 +4,12 @@ import com.team1.stelling.domain.repository.SubNovelRepository;
 import com.team1.stelling.domain.vo.SubNovelVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -24,4 +27,5 @@ public class SubNovelService {
     }
     public List<SubNovelVO> getList(Long novelNumber){return subNovelRepository.findByNovelVO_NovelNumber(novelNumber);}
     public List<SubNovelVO> orderBySubNovelList(Long novelNumber){return subNovelRepository.findAllByNovelVO_NovelNumberOrderBySubNovelNumber(novelNumber);}
+
 }
