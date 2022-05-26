@@ -6,7 +6,7 @@
     <insert id="insert">
        INSERT INTO TBL_ILLUSTPROFILE
         (ILLUSTPROFILE_NUMBER, USER_NUMBER, ILLUSTPROFILE_SHORTINTRO, ILLUSTPROFILE_DETAILINTRO, ILLUSTPROFILE_CATEGORY, ILLUSTPROFILE_WEBSITE)
-        VALUES(ILLUSTPROFILE_SEQ.NEXTVAL, #{userNumber}, #{illustProfileShortIntro}, #{illustProfileDetailIntro}, #{illustProfileCategory}, #{illustProfileWebSite})
+        VALUES(#{illustProfileNumber}, #{userNumber}, #{illustProfileShortIntro}, #{illustProfileDetailIntro}, #{illustProfileCategory}, #{illustProfileWebSite})
     </insert>
 
     <!--특정 내역 가져오기 join사용-->
