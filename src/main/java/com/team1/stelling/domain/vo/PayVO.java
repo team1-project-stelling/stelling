@@ -1,8 +1,6 @@
 package com.team1.stelling.domain.vo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -16,6 +14,6 @@ public class PayVO {
    private Long payCharge; /*실제 사용자가 결제한 금액*/
    private Long chargeTotal; /*총 결제 금액*/
    private int payCoinCount; /*거래에서 환전된 코인*/
-   private Date payDate; // 거래일시
+   private Date payDateTime; // 거래일시
    private int payStatus; /* 환불 및 기타 상태 */
 }

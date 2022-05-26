@@ -26,22 +26,22 @@
                 <div class="left_block">
                     <ul class="liWrap">
                         <li class="li_top left">
-                            <a href="myPageEditProfile.html">프로필 수정</a>
+                            <a class="menu" href="javascript:goEditProfile();">프로필 수정</a>
                         </li>
                         <li class="left">
-                            <a class="menu" href="myPageMyWork.html">내 작품 관리</a>
+                            <a class="menu" href="javascript:goEditProfile();">내 작품 관리</a>
                         </li>
                         <li class="left">
-                            <a class="menu" href="myPageChangePw.html">비밀번호 변경</a>
+                            <a class="menu" href="javascript:goChangePw();">비밀번호 변경</a>
                         </li>
                         <li class="left">
-                            <a class="menu" href="myPageQuestion.html">내 문의 내역</a>
+                            <a class="menu" href="javascript:goQuestion();">내 문의 내역</a>
                         </li>
                         <li class="left">
-                            <a class="menu" href="myPageQuit.html">탈퇴 하기</a>
+                            <a class="menu" href="javascript:goQuit();">탈퇴 하기</a>
                         </li>
                         <li class="left">
-                            <a class="menu payment" href="javascript:goList();">결제</a>
+                            <a class="menu payment" href="javascript:goPayList();">결제</a>
                         </li>
                     </ul>
                 </div>
@@ -99,13 +99,14 @@
                             <div class="paymentWrap">
                                 <div th:text="'총 후원 코인 : ' + ${supportCoinTotal} + '코인'"></div>
                                 <div>
-                                    <form>
+                                    <form name="dateForm" action="/myLibrary/supportList">
                                         <div id="dateType" >
-                                            <input type="date" id="dateFrom" name="form">
-                                            ~ <input type="date" id="dateTo" name="to">
+                                            <input class="userNumber" type="hidden" name="userNumber" value="">
+                                            <input type="date" id="dateFrom" name="startDate">
+                                            ~ <input type="date" id="dateTo" name="endDate">
                                         </div>
                                         <div class="searchWrap">
-                                            <button class="btn btn-sm" id="btnSearch" name="btnSearch">검색</button>
+                                            <button class="btn btn-sm" id="btnSearch">검색</button>
                                         </div>
                                     </form>
                                 </div>
@@ -120,7 +121,7 @@
                                     <th:block th:each="sup:${supportList}">
                                     <tr th:object="${sup}">
                                         <td class="td1" th:text="|*{supportCoin}코인|"></td>
-                                        <td class="td1" th:text="*{#dates.format(supportDate, 'yyyy-MM-dd')}"></td>
+                                        <td class="td1" th:text="*{#dates.format(supportDateTime, 'yyyy-MM-dd')}"></td>
                                     </tr>
                                     </th:block>
                                     </tbody>
@@ -129,29 +130,38 @@
                         <!--결제 내역 페이징-->
                         <div class=" d-flex align-items-center justify-content-center" id="pay-paging" style="height:80px;">
                             <nav aria-label="Page navigation">
-                                <ul th:object="${pageDTO}" class="pagination pagination-basic pagination-primary mg-b-0">
+                                <ul class="pagination pagination-basic pagination-primary mg-b-0">
 
 
                                     <!--이전 버튼-->
-                                    <li><a class="page-link" th:if="*{prev}" th:href="*{startPage - 1}">&lt;</a></li>
-
-                                    <!--페이지 번호-->
-                                    <th:block th:each="num:${#numbers.sequence(pageDTO.getStartPage(), pageDTO.getEndPage())}">
-                                        <li th:if="${pageDTO.criteria.getPageNum() == num}" th:text="${num}" class="page-item active" style="width:30px;margin-left:3px;"></li>
-                                        <li th:unless="${pageDTO.criteria.getPageNum() == num}" class="page-item active" style="width:30px;margin-left:3px;">
-                                            <a style="width:30px" class="page-link" th:href="${num}" th:text="${num}"></a>
+                                    <th:block th:if="${pageMaker.prev}">
+                                        <li>
+                                            <a class="page-link" href="javascript:void(0)" th:onlick="movePage([[${#request.requestURI}]], [[${pageMaker.paging.makeQueryString(pageMaker.pageStart -1)}]], [[${session.userNumber}]])">&lt;</a>
                                         </li>
                                     </th:block>
 
+                                    <!--페이지 번호-->
+                                    <th:block th:with="pageMaker = ${pageMaker}">
+                                        <th:block th:each="num:*{#numbers.sequence(pageMaker.pageStart, pageMaker.pageEnd)}">
+                                            <li th:classappend="${pageMaker.paging.pageNum == num} ? 'active' : ''" class="page-item active" style="width:30px;margin-left:3px;">
+                                                <a href="javascript:void(0)" th:text="${num}" th:onclick="movePage([[ ${#request.requestURI} ]],[[ ${pageMaker.paging.makeQueryString(num)} ]], [[${session.userNumber}]])" style="width:30px" class="page-link"></a>
+                                            </li>
+                                        </th:block>
+                                    </th:block>
+
                                     <!--다음 버튼-->
-                                    <li><a class="page-link" th:if="*{next}" th:href="*{endPage + 1}">&gt;</a></li>
+                                    <th:block th:if="${pageMaker.next}">
+                                        <li>
+                                            <a href="javascript:void(0)" th:onclick="movePage( [[ ${#request.requestURI} ]], [[ ${pageMaker.paging.makeQueryString(pageMaker.pageEnd + 1)} ]], [[${session.userNumber}]])"class="page-link">&gt;</a>
+                                        </li>
+                                    </th:block>
 
                                     </li>
-                                    <form action="/myLibrary/supportList" th:object="${criteria}" name="pageForm">
-                                        <input class="supportSponser" type="hidden" name="supportSponser" value="">
-                                        <input class="pageNum" type="hidden" th:field="*{pageNum}">
-                                        <input class="amount" type="hidden" th:field="*{amount}">
-                                    </form>
+<!--                                    <form action="/myLibrary/supportList" th:object="${criteria}" name="pageForm">-->
+<!--                                        <input class="supportSponser" type="hidden" name="supportSponser" value="">-->
+<!--                                        <input class="pageNum" type="hidden" th:field="*{pageNum}">-->
+<!--                                        <input class="amount" type="hidden" th:field="*{amount}">-->
+<!--                                    </form>-->
                                 </ul>
                             </nav>
                         </div>
@@ -170,9 +180,7 @@
 <script src="/assets/js/mypage/payment.js"></script>
 <script src="/assets/js/fix/header.js"></script>
 <script th:inline="javascript">
-    let pageInfo = [[${criteria.listLink}]];
-    let supportSponser = [[${session.userNumber}]]; //세션 userNumber
-    const userNumber = [[${session.userNumber}]];
+    const userNumber = [[${session.userNumber}]]; //세션 userNumber
     console.log("세션 유저 번호 : " + userNumber);
 
     //세션이 만료되었을때 로그인 페이지로 이동
@@ -184,18 +192,41 @@
 
     //결제 버튼 눌렀을 때 이동
     // $(".payment").prop('href', '/myLibrary/payList?userNumber=' + userNumber);
-    const pageNum = $(".pageNum").val();
-    const amount = $(".amount").val();
     // const userNumber = $(".userNumber").val();
 
     // $(".payment").prop('href', '/myLibrary/payList?userNumber=' + userNumber + "&pageNum=" + pageNum + "&amount=" + amount);
 
-    function goList(){
-        location.href = "/myLibrary/payList?userNumber=" + userNumber + "&pageNum=" + pageNum + "&amount=" + amount;
+    function goEditProfile(){
+        location.href = "/myPage/myPageEditProfile";
+    }
+    function goMyWork(){
+        location.href = "/myPage/myPageMyWork";
+    }
+    function goChangePw(){
+        location.href = "/myPage/myPageChangePw";
+    }
+    function goQuestion(){
+        location.href = "/myPage/myPageQuestion";
+    }
+    function goQuit(){
+        location.href = "/myPage/myPageQuit?userNumber=" + userNumber;
+    }
+    function goPayList(){
+        location.href = "/myLibrary/payList?userNumber=" + userNumber;
     }
 
     function goSupportList(){
-        location.href = "/myLibrary/supportList?supportSponser=" + supportSponser + "&pageNum=" + pageNum + "&amount=" + amount;
+        location.href = "/myLibrary/supportList?supportSponser=" + userNumber;
     }
+    //페이지 이동
+    /* ![CDATA[ */
+    function movePage(uri, queryString, session) {
+        console.log(uri);
+        console.log(queryString);
+        console.log(session);
+
+        location.href = uri + queryString + "&supportSponser=" + session;
+    }
+    /* ]]*/
 </script>
 </html>
