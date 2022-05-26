@@ -58,7 +58,7 @@ public class novelController {
 
     /*소설 수정페이지 이동*/
     @GetMapping("/novelModify")
-    public String novelModify(Long subNovelNumber,Model model) throws IOException{
+    public String novelModify(Long subNovelNumber,Long novelNumber,Model model) throws IOException{
         String getFilePath= novelFileService.getFilePathBySubNum(subNovelNumber).getNovelFileFilePath();
         String getFileName= novelFileService.getFilePathBySubNum(subNovelNumber).getNovelFileFileName();
         SubNovelVO subNovelVO = subNovelService.get(subNovelNumber);
@@ -83,6 +83,8 @@ public class novelController {
         model.addAttribute("subNovelVO",subNovelVO);
         model.addAttribute("modifyCheck",true);
         model.addAttribute("subNovelNumber",subNovelNumber);
+        model.addAttribute("novelNumber", novelNumber);
+
         return "novel/novelWrite";
     }
 
@@ -164,8 +166,11 @@ public class novelController {
     /*소설 등록*/
     @PostMapping("/novelRegister")
     public String novelRegister(NovelVO novelVO, HttpServletRequest request) {
+
         HttpSession session = request.getSession();
-        Long userNumber = (Long)session.getAttribute("userNumber");
+        log.info("_________________________________________________________________________________");
+        log.info("세션 유저넘버:"+session.getAttribute("userNumber"));
+        Long userNumber = Long.valueOf((Integer)session.getAttribute("userNumber"));
         novelVO.setUserVO(userService.get(userNumber));
         novelService.register(novelVO);
         return "novel/novelRegister";

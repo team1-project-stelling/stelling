@@ -58,8 +58,8 @@
 
     <div class="ments">
         <div style="display: flex;justify-content: space-between;">
-        <p class="p2">댓글 <span class="span2 mentSize"></span></p>
-        <button class="send" type="button" >전송</button>
+            <p class="p2">댓글 <span class="span2 mentSize"></span></p>
+            <button class="send" type="button" >전송</button>
         </div>
 
         <div class="writeMent">
@@ -76,6 +76,10 @@
                     <div class="grayCheck"><img src="/images/icon/체크그레이.png" class="img gray"/></div>
                     <div>TOTAL</div>
                 </div>
+
+            </div>
+            <div class="mentsWrap">
+
             </div>
 
         </div>
@@ -216,11 +220,10 @@
     <div class="coinModalWrap">
         <div class="coinModal">
             <div class="modalHeader">
-                <p style="text-align: center;">후원할 금액을 입력해주세요</p>
+                <p style="text-align: center;">내가 이세계 개발자 소설에</p>
             </div>
             <p class="currentCoin">[현재코인:1000코인]</p>
-            <img src="/images/icon/후원.gif" width="100px" style="margin-top: 10px;"/>
-            <p style="font-size: 24px; margin: 0px;">"<span style="font-size: 24px;background-color: #ffd80038;">일어나보니 내가 이세계 개발자</span>" 소설에</p>
+            <img src="/images/icon/후원.gif" width="100px" style="margin-top: 38px;"/>
             <div style="display: flex;justify-content: center;font-size: 24px;">
 
                 <input type="text" name="coinAmount" class="coinAmount">
@@ -258,12 +261,12 @@
 
     let subNovelNumber =[[${subNovelNumber}]]
     let novelNumber = [[${novelNumber}]]
-    let userNumber = 2;
+    let userNumber = [[${session.userNumber}]]
 
 
     console.log("subNovelNumber"+subNovelNumber);
 </script>
 <script src="/assets/js/novel/novelDetailView.js"></script>
-<script src="/assets/js/novel/novelReply.js"></script>
+<script src="/assets/js/novel/novelDetailReply.js"></script>
 
 </html>

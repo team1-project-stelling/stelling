@@ -50,7 +50,7 @@ $('div.ok').on("click", function () {
 /*수정 아이콘 눌렀을 때 */
 $('div.modify>img.modifyIcon').on("click",function () {
     let subnovelNumber=$(this).attr('id');
-    location.href="novelModify?subNovelNumber="+subnovelNumber;
+    location.href="novelModify?subNovelNumber="+subnovelNumber+"&novelNumber="+novelNumber;
 })
 
 
@@ -148,13 +148,14 @@ $('.Noveltt').on("click", function () {
 
 
 let href;
-let lockIcon;
-/*후원 버튼 모달*/
+let subNovelNum;
+/*소설회차 잠금 모달*/
 $('.locked2').on("click", function (e) {
     e.preventDefault();
     $('.modal_background').css('display', 'block');
     // lockIcon=$(this).children('img');
-   href=$(this).parent().attr('href');
+    href=$(this).parent().attr('href');
+    subNovelNum=$(this).parent().attr('name');
 
 })
 //후원 모달창 바깥영역 눌러서 닫기
@@ -179,14 +180,17 @@ $('.coinBtn2').on("click", function () {
 $('.coinBtn1').on("click", function () {
     $('.modal_background').css('display', 'none');
     $('.modal_background2').css('display', 'block');
-    // $('.locked>img').css('display', 'none');
-    //
-    // $.ajax({
-    //     type:"get",
-    //     url:"",
-    //     success:,
-    //     error:
-    // })
+
+    $.ajax({
+        type:"get",
+        url:"/buyChapter/checkBalanceAndBuy?novelNumber="+novelNumber+"&subNovelNumber="+subNovelNum+"&userNumber="+userNumber+"",
+        success:function (result) {
+            console.log(result);
+        },
+        error:function (error) {
+            console.log(error);
+        }
+    })
 })
 //결제 완료모달창 닫기
 $('.goToRead').on("click", function () {

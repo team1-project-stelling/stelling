@@ -53,9 +53,8 @@ public class novelRoundController {
     //저장된 소설 표지 가져오기
     @GetMapping("/novelRegisterImg")
     @ResponseBody
-    public byte[] getFile(@RequestParam("novelNumber") Long novelNumber) throws IOException{
-        NovelVO novelVO = novelService.get(novelNumber);
-        return FileCopyUtils.copyToByteArray(new File("C:/stelling/" +novelVO.getNovelUploadPath()+"/"+novelVO.getNovelFileName()));
+    public byte[] getFile(String fileName) throws IOException{
+        return FileCopyUtils.copyToByteArray(new File("C:/stelling/" + fileName));
     }
 //
 //    @GetMapping("/getNovelVO/{novelNumber}")

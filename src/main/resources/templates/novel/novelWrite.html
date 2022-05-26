@@ -21,74 +21,74 @@
         <form action="/novel/makeNovelFile" method="post" name="novelWriteForm">
     </th:block>
 
-        <div class="flex register">
-            <div><p class="p" style="color: #a5a5a5;">취소</p></div>
+    <div class="flex register">
+        <div><p class="p" style="color: #a5a5a5;">취소</p></div>
+        <th:block th:if="${modifyCheck==true}">
+            <div><h2>회차 수정</h2></div>
+        </th:block>
+        <th:block th:unless="${modifyCheck==true}">
+            <div><h2>새 회차 등록</h2></div>
+        </th:block>
+
+        <div>
+            <div class="inlineBox temporarySave" style="margin-right: 34px;margin-left: -110px;"><p class="p"style="color: #a5a5a5;">임시저장</p></div>
             <th:block th:if="${modifyCheck==true}">
-                <div><h2>회차 수정</h2></div>
+                <div class="inlineBox"><p class="p modifyEnter" style="color: #ef6e73; font-weight: bold;">수정완료</p></div>
             </th:block>
             <th:block th:unless="${modifyCheck==true}">
-                <div><h2>새 회차 등록</h2></div>
+                <div class="inlineBox"><p class="p enter" style="color: #ef6e73; font-weight: bold;">등록</p></div>
             </th:block>
 
-            <div>
-                <div class="inlineBox temporarySave" style="margin-right: 34px;margin-left: -110px;"><p class="p"style="color: #a5a5a5;">임시저장</p></div>
-                <th:block th:if="${modifyCheck==true}">
-                    <div class="inlineBox"><p class="p modifyEnter" style="color: #ef6e73; font-weight: bold;">수정완료</p></div>
-                </th:block>
-                <th:block th:unless="${modifyCheck==true}">
-                    <div class="inlineBox"><p class="p enter" style="color: #ef6e73; font-weight: bold;">등록</p></div>
-                </th:block>
-
-            </div>
         </div>
-        <div class="subMainWrab">
+    </div>
+    <div class="subMainWrab">
 
-            <div class="filebox">
-                <input class="upload-name" value="첨부파일" readonly >
-                <label for="file">파일찾기</label>
-                <input type="file" id="file" name="file" >
-            </div>
+        <div class="filebox">
+            <input class="upload-name" value="첨부파일" readonly >
+            <label for="file">파일찾기</label>
+            <input type="file" id="file" name="file" >
+        </div>
 
-            <div class="subWrab">
-                <th:block th:if="${modifyCheck==true}">
-                    <input type="text" placeholder="소제목을 입력하세요." class="sTitle" name="modify_sTitle" th:value="${subNovelVO.subNovelTitle}">
-                </th:block>
-                <th:block th:unless="${modifyCheck==true}">
-                    <input type="text" placeholder="소제목을 입력하세요." class="sTitle" name="subNovelTitle">
-                </th:block>
-            </div>
+        <div class="subWrab">
+            <th:block th:if="${modifyCheck==true}">
+                <input type="text" placeholder="소제목을 입력하세요." class="sTitle" name="modify_sTitle" th:value="${subNovelVO.subNovelTitle}">
+            </th:block>
+            <th:block th:unless="${modifyCheck==true}">
+                <input type="text" placeholder="소제목을 입력하세요." class="sTitle" name="subNovelTitle">
+            </th:block>
+        </div>
 
-            <div>
-                <th:block th:if="${modifyCheck==true}">
-                    <textarea name="modify_novelContent" class="text novelContent" placeholder="작품 내용을 입력해주세요."onkeyup="calc_length()" th:text="${novelContent}"></textarea>
-                </th:block>
-                <th:block th:unless="${modifyCheck==true}">
-                    <textarea name="novelContent" id="" class="text novelContent" placeholder="작품 내용을 입력해주세요."onkeyup="calc_length()"></textarea>
-                </th:block>
+        <div>
+            <th:block th:if="${modifyCheck==true}">
+                <textarea name="modify_novelContent" class="text novelContent" placeholder="작품 내용을 입력해주세요."onkeyup="calc_length()" th:text="${novelContent}"></textarea>
+            </th:block>
+            <th:block th:unless="${modifyCheck==true}">
+                <textarea name="novelContent" id="" class="text novelContent" placeholder="작품 내용을 입력해주세요."onkeyup="calc_length()"></textarea>
+            </th:block>
 
 
 
-                <div style="display: flex; justify-content: flex-end;">
+            <div style="display: flex; justify-content: flex-end;">
                 <p class="kb"><span class="box">0</span> KB / </p>
                 <p class="kb"><span class="box2">50</span> KB</p>
-                </div>
-            </div>
-
-        </div>
-        <div class="wrterReview">
-            <div>
-                <h2>작품 후기</h2>
-            </div>
-            <div style="width: 98%; margin: 0 auto; text-align: center;">
-                <th:block th:if="${modifyCheck==true}">
-                    <textarea name="modify_writerComment" class="text2" placeholder="작품 후기를 입력하세요." th:text="${subNovelVO.subNovelWriterComment}"></textarea>
-                </th:block>
-                <th:block th:unless="${modifyCheck==true}">
-                    <textarea name="subNovelWriterComment" id="subNovelWriterComment" class="text2" placeholder="작품 후기를 입력하세요."></textarea>
-                </th:block>
-
             </div>
         </div>
+
+    </div>
+    <div class="wrterReview">
+        <div>
+            <h2>작품 후기</h2>
+        </div>
+        <div style="width: 98%; margin: 0 auto; text-align: center;">
+            <th:block th:if="${modifyCheck==true}">
+                <textarea name="modify_writerComment" class="text2" placeholder="작품 후기를 입력하세요." th:text="${subNovelVO.subNovelWriterComment}"></textarea>
+            </th:block>
+            <th:block th:unless="${modifyCheck==true}">
+                <textarea name="subNovelWriterComment" id="subNovelWriterComment" class="text2" placeholder="작품 후기를 입력하세요."></textarea>
+            </th:block>
+
+        </div>
+    </div>
 
     <th:block th:if="${modifyCheck!=true}">
 
@@ -119,10 +119,10 @@
     <input type="hidden" name="novelNumber">
     <input type="hidden" name="userNumber">
     <input type="hidden" name="subNovelWriterComment">
-        <th:block th:if="${modifyCheck==true}">
-            <input type="hidden" name="modifyCheck" value="true">
-            <input type="hidden" name="subNovelNumber" th:value="${subNovelVO.subNovelNumber}">
-        </th:block>
+    <th:block th:if="${modifyCheck==true}">
+        <input type="hidden" name="modifyCheck" value="true">
+        <input type="hidden" name="subNovelNumber" th:value="${subNovelVO.subNovelNumber}">
+    </th:block>
     </form>
 
 
@@ -133,8 +133,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/fix/header.js"></script>
 <script th:inline="javascript">
-    const novelNumber = 109;
-    const userNumber = 2;
+    // const novelNumber = 109;
+    const novelNumber = [[${novelNumber}]]
+    const userNumber = [[${session.userNumber}]]
 
     let novelModify = [[${modifyCheck}]]
 

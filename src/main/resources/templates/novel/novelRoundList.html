@@ -25,7 +25,7 @@
                     <div class="x_xH">
                         <div class="x_ximg">
                             <th:block th:if="${novelImgSrc==null}">
-                                <img th:src="@{/novel/novelRegisterImg(novelNumber=${novelNumber})}">
+                                <img th:src="'/novel/novelRegisterImg?fileName='+${novelVO.novelUploadPath}+'/'+${novelVO.novelFileName}">
 
                             </th:block>
                             <th:block th:unless="${novelImgSrc==null}">
@@ -66,23 +66,28 @@
                             <div class="x_xContent">
 
                                 <div class="x_Desc_writer">
+                                    <th:block th:if="${novelVO.novelSerialsStatus==2}">
+                                        <p class="freeText">[자유연재]</p>
+                                    </th:block>
+                                    <th:block th:unless="${novelVO.novelSerialsStatus==2}">
+                                        <div class="days" th:object="${novelVO}">
+                                            <span class="d_day" th:if="*{novelMonday==0}">월</span>
+                                            <span class="d_day d_dayColor" th:unless="*{novelMonday==0}">월</span>
+                                            <span class="d_day" th:if="*{novelTuesDay==0}">화</span>
+                                            <span class="d_day d_dayColor" th:unless="*{novelTuesDay==0}">화</span>
+                                            <span class="d_day" th:if="*{novelWednesDay==0}">수</span>
+                                            <span class="d_day d_dayColor" th:unless="*{novelWednesDay==0}">수</span>
+                                            <span class="d_day" th:if="*{novelThursDay==0}">목</span>
+                                            <span class="d_day d_dayColor" th:unless="*{novelThursDay==0}">목</span>
+                                            <span class="d_day" th:if="*{novelFriDay==0}">금</span>
+                                            <span class="d_day d_dayColor" th:unless="*{novelFriDay==0}">금</span>
+                                            <span class="d_day" th:if="*{novelSaturDay==0}">토</span>
+                                            <span class="d_day d_dayColor" th:unless="*{novelSaturDay==0}">토</span>
+                                            <span class="d_day" th:if="*{novelSunDay==0}">일</span>
+                                            <span class="d_day d_dayColor" th:unless="*{novelSunDay==0}">일</span>
+                                        </div>
+                                    </th:block>
 
-                                    <div class="days">
-                                        <span class="d_day" th:if="${novelVO.novelMonday==0}">월</span>
-                                        <span class="d_day d_dayColor" th:unless="${novelVO.novelMonday==0}">월</span>
-                                        <span class="d_day" th:if="${novelVO.novelTuesDay==0}">화</span>
-                                        <span class="d_day d_dayColor" th:unless="${novelVO.novelTuesDay==0}">화</span>
-                                        <span class="d_day" th:if="${novelVO.novelWednesDay==0}">수</span>
-                                        <span class="d_day d_dayColor" th:unless="${novelVO.novelWednesDay==0}">수</span>
-                                        <span class="d_day" th:if="${novelVO.novelThursDay==0}">목</span>
-                                        <span class="d_day d_dayColor" th:unless="${novelVO.novelThursDay==0}">목</span>
-                                        <span class="d_day" th:if="${novelVO.novelFriDay==0}">금</span>
-                                        <span class="d_day d_dayColor" th:unless="${novelVO.novelFriDay==0}">금</span>
-                                        <span class="d_day" th:if="${novelVO.novelSaturDay==0}">토</span>
-                                        <span class="d_day d_dayColor" th:unless="${novelVO.novelSaturDay==0}">토</span>
-                                        <span class="d_day" th:if="${novelVO.novelSunDay==0}">일</span>
-                                        <span class="d_day d_dayColor" th:unless="${novelVO.novelSunDay==0}">일</span>
-                                    </div>
                                 </div>
 
 
@@ -105,82 +110,86 @@
                     <div class="hashtag">
                         <span>카테고리</span>
                         <!--해쉬태그-->
-                        <th:block th:each="hash:${#strings.arraySplit(novelVO.novelHashtag,' ')}">
+                        <th:block th:each="hash:${#strings.arraySplit(novelVO.novelHashtag,'&nbsp')}">
                             <span class="hashtagSpan" th:text="|#${hash}|"></span>
                         </th:block>
-                </div>
-
-
-                <div class="NovelList">
-
-
-
-
-
-                    <div class="Noveltotal">
-
-                        <span class="NoveltotalCnt" th:text="|전체(${listSize})개|"></span>
-                        <div class="change">
-                            <span class="modify">수정</span> |
-                            <span class="delete">삭제</span>
-                        </div>
-                        <div class="ok"><span>완료</span></div>
-                        <div class="cancle"><span>취소</span></div>
                     </div>
 
-                    <!--소설 회차 리스트-->
-                    <ul class="Novel" >
-                        <li class="Novelli"  th:each="subnovelVO, i:${subnovelVOList}">
-                            <div class="NovelImg">
-                                <th:block th:if="${novelImgSrc==null}">
-                                    <img th:src="@{/novel/novelRegisterImg(novelNumber=${subnovelVO.novelVO.novelNumber})}">
-                                </th:block>
-                                <th:block th:unless="${novelImgSrc==null}">
-                                    <img th:src="${novelImgSrc}" alt="">
-                                </th:block>
+
+                    <div class="NovelList">
+
+
+
+
+
+                        <div class="Noveltotal">
+
+                            <span class="NoveltotalCnt" th:text="|전체(${listSize})개|"></span>
+                            <div class="change">
+                                <span class="modify">수정</span> |
+                                <span class="delete">삭제</span>
                             </div>
-                            <div class="NovelDEC">
-                                <div class="NovelDECS">
-                                    <a class='goToView' th:href="@{/novel/novelDetailView(novelNumber=${subnovelVO.novelVO.novelNumber}, subNovelNumber=${subnovelVO.subNovelNumber}, count=${i.count})}">
-                                        <th:block th:if="${pageableDTO.pageNumber > 1}">
-                                            <div class="Noveltt" th:text="|${subnovelVO.novelVO.novelTitle} ${i.count+(pageableDTO.pageNumber-1)*10}화|"></div>
-                                        </th:block>
-                                        <th:block th:unless="${pageableDTO.pageNumber > 1}">
+                            <div class="ok"><span>완료</span></div>
+                            <div class="cancle"><span>취소</span></div>
+                        </div>
 
-                                            <div class="Noveltt" th:text="|${subnovelVO.novelVO.novelTitle} ${i.count}화 [무료]|"></div>
-
-
-                                        </th:block>
-
-                                    </a>
-                                    <div class="Novelday" th:text="${#strings.substring(subnovelVO.subNovelUploadDate,0,10)}"></div>
+                        <!--소설 회차 리스트-->
+                        <ul class="Novel" >
+                            <li class="Novelli"  th:each="subnovelVO, i:${subnovelVOList}">
+                                <div class="NovelImg">
+                                    <th:block th:if="${novelImgSrc==null}">
+                                        <img th:src="'/novel/novelRegisterImg?fileName='+${subnovelVO.novelVO.novelUploadPath}+'/'+${subnovelVO.novelVO.novelFileName}">
+                                    </th:block>
+                                    <th:block th:unless="${novelImgSrc==null}">
+                                        <img th:src="${novelImgSrc}" alt="">
+                                    </th:block>
                                 </div>
-                            </div>
-                            <div class="modify">
-                                <img src="/images/icon/수정.png" class="img modifyIcon" th:id="${subnovelVO.subNovelNumber}"/>
-                            </div>
-                            <div class="delete">
-                                <input type="checkbox" class="deleteCheckBox" th:id="${subnovelVO.subNovelNumber}">
-                            </div>
-                        </li>
-                    </ul>
-                    <!-- 페이징 -->
-                    <ul class="c_PagingList" >
-                        <!-- 이전 -->
-                        <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/novel/novelRoundList(page=${pageableDTO.startPage -2 }, novelNumber=${novelNumber})}" >&lt;&lt;</a></li>
-                        <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/novel/novelRoundList(page=${pageableDTO.previous},novelNumber=${novelNumber})}">&lt;</a></li>
+                                <div class="NovelDEC">
+                                    <div class="NovelDECS">
+                                        <a class='goToView' th:name="${subnovelVO.subNovelNumber}" th:href="@{/novel/novelDetailView(novelNumber=${subnovelVO.novelVO.novelNumber}, subNovelNumber=${subnovelVO.subNovelNumber}, count=${i.count})}">
+
+                                            <th:block th:if="${(pageableDTO.pageNumber==1) && (i.count<6)}">
+                                                <div style="display: flex;">
+                                                    <div class="Noveltt" th:text="|${subnovelVO.novelVO.novelTitle} ${i.count}화|"></div>
+                                                    <div class="freeButton">무료</div>
+                                                </div>
+                                            </th:block>
+                                            <th:block th:unless="${(pageableDTO.pageNumber==1) && (i.count<6)}">
+                                                <div style="display: flex;" class="locked locked2">
+                                                    <div class="Noveltt locked" th:text="|${subnovelVO.novelVO.novelTitle} ${i.count+(pageableDTO.pageNumber-1)*10}화|"></div>
+                                                    <img src="/images/icon/잠금.png" class="lock" th:data-lock="${subnovelVO.subNovelNumber}"/>
+                                                </div>
+                                            </th:block>
+
+                                        </a>
+                                        <div class="Novelday" th:text="${#strings.substring(subnovelVO.subNovelUploadDate,0,10)}"></div>
+                                    </div>
+                                </div>
+                                <div class="modify">
+                                    <img src="/images/icon/수정.png" class="img modifyIcon" th:id="${subnovelVO.subNovelNumber}"/>
+                                </div>
+                                <div class="delete">
+                                    <input type="checkbox" class="deleteCheckBox" th:id="${subnovelVO.subNovelNumber}">
+                                </div>
+                            </li>
+                        </ul>
+                        <!-- 페이징 -->
+                        <ul class="c_PagingList" >
+                            <!-- 이전 -->
+                            <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/novel/novelRoundList(page=${pageableDTO.startPage -2 }, novelNumber=${novelNumber})}" >&lt;&lt;</a></li>
+                            <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/novel/novelRoundList(page=${pageableDTO.previous},novelNumber=${novelNumber})}">&lt;</a></li>
 
 
-                        <th:block th:each="num:${#numbers.sequence(pageableDTO.startPage,pageableDTO.endPage)}">
-                            <li  th:if="${pageableDTO.pageNumber== num}" th:text="${num}" class="pageActive"></li>
-                            <li th:unless="${pageableDTO.pageNumber == num}" ><a th:text="${num}" th:href="@{/novel/novelRoundList(page=${num - 1},novelNumber=${novelNumber})}"></a></li>
-                        </th:block>
+                            <th:block th:each="num:${#numbers.sequence(pageableDTO.startPage,pageableDTO.endPage)}">
+                                <li  th:if="${pageableDTO.pageNumber== num}" th:text="${num}" class="pageActive"></li>
+                                <li th:unless="${pageableDTO.pageNumber == num}" ><a th:text="${num}" th:href="@{/novel/novelRoundList(page=${num - 1},novelNumber=${novelNumber})}"></a></li>
+                            </th:block>
 
-                        <!-- 다음 -->
-                        <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/novel/novelRoundList(page=${pageableDTO.next},novelNumber=${novelNumber})}">&gt;</a></li>
-                        <li th:if="${pageableDTO.hasNext}"><a th:href="@{/novel/novelRoundList(page=${pageableDTO.endPage},novelNumber=${novelNumber})}">&gt;&gt;</a></li>
-                    </ul>
-                </div>
+                            <!-- 다음 -->
+                            <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/novel/novelRoundList(page=${pageableDTO.next},novelNumber=${novelNumber})}">&gt;</a></li>
+                            <li th:if="${pageableDTO.hasNext}"><a th:href="@{/novel/novelRoundList(page=${pageableDTO.endPage},novelNumber=${novelNumber})}">&gt;&gt;</a></li>
+                        </ul>
+                    </div>
                     <!-- 페이징 종료-->
 
                 </div>
@@ -203,9 +212,9 @@
                     <div class="ReplyCmt">
 
                     </div>
-<!--                    <div class="replyPage">-->
+                    <!--                    <div class="replyPage">-->
 
-<!--                    </div>-->
+                    <!--                    </div>-->
 
 
                 </div>
@@ -254,6 +263,29 @@
 </div>
 
 
+<!--모달-->
+<div class="modal_background">
+    <div class="payQModal">
+        <p class="modalText">이 회차는 유료서비스입니다.</p>
+
+        <button type="button" class="coinBtn1">200코인 결제</button>
+        <button type="button" class="coinBtn2">안볼래요</button>
+    </div>
+</div>
+
+
+<!--모달-->
+<div class="modal_background2">
+    <div class="payQModal2">
+        <p class="payClear">200코인 결제가 완료되었습니다.</p>
+        <p class="balance">현재 잔액:1000코인</p>
+        <button class="goToRead">즉시 보러가기</button>
+    </div>
+</div>
+
+
+
+
 <th:block th:insert="/fix/footer.html :: footerFragment"/>
 
 
@@ -262,10 +294,11 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script th:inline="javascript">
     const novelNumber = [[${novelNumber}]]
-    const userNumber =2;
+    const userNumber =[[${session.userNumber}]]
     // let novelNumber = 101;
 </script>
 <script src="/assets/js/novel/data.js"></script>
 <script src="/assets/js/fix/header.js"></script>
 <script src="/assets/js/novel/novelRound.js"></script>
+<script src="/assets/js/novel/novelRoundReply.js"></script>
 </html>
