@@ -187,35 +187,41 @@ $('.btn').on("click", function () {
 
 
 
+$("input[type='file']").change(function(e){
+    /*소설 메인이미지 저장하기*/
+    let inputFile = $("input[type='file']");
+    let files = inputFile[0].files;
+    let formData = new FormData();
+    for(let i = 0; i < files.length; i++){
+        formData.append("uploadFile", files[i]);
+    }
+    /*formdata action으로 변경 */
+    $.ajax({
+        url: "/novel/uploadAjaxAction",
+        data: formData,
+        type: "POST",
+        // 현재 설정된 헤더 설정을 기본 방식으로 변경하지 못하도록 false로 설정
+        processData: false,
+        contentType: false,
+        success: function(result){
+            $(result).each(function (i, item) {
+                $('input[name="novelFileName"]').val(item.novelFileName);
+                $('input[name="novelUploadPath"]').val(item.novelUploadPath);
+                $('input[name="novelUUID"]').val(item.novelUUID);
+                console.log("등록됨");
+                console.log($('input[name="novelUploadPath"]').val());
+            });
+        },
+        error:function () {
+            alert("소설메인이미지 저장 실패");
+        }
+
+    });
+
+
+});
     /*form데이터 보내기*/
     $('#insertBtn').on("click", function () {
-
-        /*소설 메인이미지 저장하기*/
-        let inputFile = $("input[type='file']");
-        let files = inputFile[0].files;
-        let formData = new FormData();
-        for(let i = 0; i < files.length; i++){
-            formData.append("uploadFile", files[i]);
-        }
-        /*formdata action으로 변경 */
-        $.ajax({
-            url: "/novel/uploadAjaxAction",
-            data: formData,
-            type: "POST",
-            // 현재 설정된 헤더 설정을 기본 방식으로 변경하지 못하도록 false로 설정
-            processData: false,
-            contentType: false,
-            success: function(result){
-                $(result).each(function (i, item) {
-                    $('input[name="novelFileName"]').val(item.novelFileName);
-                    $('input[name="novelUploadPath"]').val(item.novelUploadPath);
-                    $('input[name="novelUUID"]').val(item.novelUUID);
-                    console.log("등록됨");
-                    console.log($('input[name="novelUploadPath"]').val());
-                });
-            }
-
-        });
 
 
         /*해쉬태그*/

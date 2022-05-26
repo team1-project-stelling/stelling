@@ -29,6 +29,6 @@ public class ReplyService{
     }
     public Page<ReplyVO> getReplyListByNovelNumber(Long novelNumber,Pageable pageable){return replyRepository.findAllByNovelVO_NovelNumber(novelNumber,pageable); }
     public List<ReplyVO> getReplyListByNovelNumber(Long novelNumber){return replyRepository.findAllByNovelVO_NovelNumber(novelNumber); }
-
-
+    public Page<ReplyVO> getReplyListBySubNovelNumber(Long subNovelNumber, Pageable pageable){return replyRepository.findAllBySubNovelVO_SubNovelNumber(subNovelNumber,pageable);}
+    public void removeReply(Long replyNumber){ replyRepository.deleteById(replyNumber);}
 }

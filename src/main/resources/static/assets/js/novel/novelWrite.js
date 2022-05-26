@@ -89,10 +89,10 @@ function getSession(){
 $('.enter').on("click",function () {
     sessionStorage.clear();
     $('input[name="content"]').val($('textarea[name="novelContent"]').val());
-    $('input[name="subNovelTitle"]').val($('input[name="subNovelTitle"]').val());
+    // $('input[name="subNovelTitle"]').val($('input[name="subNovelTitle"]').val());
     $('input[name="novelNumber"]').val(novelNumber);
     $('input[name="userNumber"]').val(userNumber);
-    $('input[name="subNovelWriterComment"]').val($("#subNovelWriterComment").val());
+    // $('input[name="subNovelWriterComment"]').val($("#subNovelWriterComment").val());
 
     $(novelWriteForm).submit();
 

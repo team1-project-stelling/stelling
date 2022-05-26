@@ -2,7 +2,6 @@
 textareaauto();
 
 
-
 function textareaauto() {
     console.log("텍스트조절");
     $('textarea').each(function () {
@@ -13,9 +12,7 @@ function textareaauto() {
     });
 }
 
-
-
-
+//소설 텍스트 커스텀마이징
 $('.colorDiv').on("click", function () {
     if ($(this).hasClass('cd1')) {
         $('body').css('background-color', 'white');
@@ -54,9 +51,6 @@ $('.colorDiv').on("click", function () {
         $('.ments').css('color', 'rgb(61,61,61)');
         $('.writerMent').css('color', 'rgb(61,61,61)');
     }
-
-
-
 });
 
 let count = 0;
@@ -182,62 +176,7 @@ $('#switch').on('click', function () {
 });
 
 
-/*댓글 BEST , TOTAL 클릭 이벤트*/
-$('.pink').on("click", function () {
-    $('.pink').attr('src', '/images/icon/체크핑크.png');
-    $('.gray').attr('src', '/images/icon/체크그레이.png');
-})
 
-$('.gray').on("click", function () {
-    $('.pink').attr('src', '/images/icon/체크그레이.png');
-    $('.gray').attr('src', '/images/icon/체크핑크.png');
-
-})
-
-
-/*댓글 좋아요 기능*/
-    $('.replyWrap').on("click", "button.mentBtns1",function () {
-        let replyNum=$(this).data("replynum");
-        if ($(this).children('img').attr('src') == '/images/icon/좋아요full.png') {
-            let $number = parseInt($(this).children('span').html());
-            $(this).css('border-color', '#cbcbcb');
-            $(this).css('color', '#cbcbcb');
-            $(this).children('img').attr('src', '/images/icon/좋아요.png');
-            $(this).children('span').html($number - 1);
-            replyUp({"replyNum":replyNum, "num":-1}, function(result){
-            });
-
-        } else {
-
-            let $number = parseInt($(this).children('span').html());
-            $(this).css('border-color', '#5A94FF');
-            $(this).css('color', '#5A94FF');
-            $(this).children('img').attr('src', '/images/icon/좋아요full.png');
-            $(this).children('span').html($number + 1);
-            replyUp({"replyNum":replyNum, "num":1},function(result) {
-            });
-        }
-
-    });
-/*댓글 좋아요기능 ajax*/
-function replyUp(reply, callback, error){
-
-$.ajax({
-    type: "GET",
-    url: "/reply/"+reply.replyNum+"/"+reply.num,
-    success: function(result, status, xhr){
-        if(callback){
-            callback(result);
-        }
-    },
-    error: function(xhr, status, er){
-        if(error){
-            error(er);
-        }
-    }
-
-});
-}
 
 /*소설 회차 좋아요기능*/
 function subNovelLikeCount(numbers, callback, error){
@@ -257,42 +196,6 @@ function subNovelLikeCount(numbers, callback, error){
     });
 }
 
-/*댓글 신고*/
-$('.replyWrap').on("click", "button.siren",function () {
-    Swal.fire({
-        title: '해당 댓글을 신고하시겠습니까?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#ef6e73',
-        cancelButtonColor: '#a8a8a8',
-        confirmButtonText: '네',
-        cancelButtonText: '아니요',
-        fontSize : 15,
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire({
-                confirmButtonColor: '#ef6e73',
-                title:'신고되었습니다.'
-            })
-            $.ajax({
-                type:"get",
-                url:"/novelDetail/siren?replyNumber="+$(this).attr('id'),
-                success:function (result) {
-                    console.log(result);
-                },
-                error:function (error) {
-                    alert("댓글 신고 실패");
-                    console.log(error);
-                }
-
-            })
-
-        }
-
-    })
-});
-
-
 
 /*후원 버튼 모달*/
 $('.coin').on("click", function () {
@@ -307,4 +210,5 @@ $(document).mouseup(function (e){
         container.css('display','none');
     }
 });
+
 

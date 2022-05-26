@@ -114,7 +114,7 @@
                     <div class="uploadImg">
                         <div class="filebox">
                             <label for="file">업로드</label>
-                            <input type="file" id="file" onchange="setThumbnail(event)" class="thum">
+                            <input type="file" id="file" onchange="setThumbnail(event)" class="thum" multiple>
 
                             <input class="upload-name" >
                         </div>
@@ -147,12 +147,11 @@
         <input type="hidden" name="novelFriDay" value="0">
         <input type="hidden" name="novelSaturDay" value="0">
         <input type="hidden" name="novelSunDay" value="0">
+
         <input type="hidden" name="novelFileName">
         <input type="hidden" name="novelUploadPath">
         <input type="hidden" name="novelUUID">
         <input type="hidden" name="novelTitle">
-
-
 
 
 
@@ -171,5 +170,8 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/fix/header.js"></script>
+<script th:inline="javascript">
+
+</script>
 <script src="/assets/js/novel/novelRegister.js"></script>
 </html>
