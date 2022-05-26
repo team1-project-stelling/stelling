@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.LinkedTransferQueue;
 
 public interface NovelRepository extends JpaRepository<NovelVO, Long> {
 
@@ -33,5 +34,6 @@ public interface NovelRepository extends JpaRepository<NovelVO, Long> {
 //    List<NovelVO> findTop50ByNovelHashtagContainingOrderByNovelLikeCountTotalDesc(String keyword);
 
     Page<NovelVO> findByUserVO_userNumber(Long userNumber, Pageable pageable);
+    List<NovelVO> findByUserVO(UserVO userVO);
     Page<NovelVO> findByNovelHashtagContainingOrNovelTitleContainingOrUserVO_UserNickNameContaining(String keyword1,String keyword2,String keyword3,Pageable pageable);
 }
