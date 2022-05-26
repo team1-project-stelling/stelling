@@ -55,7 +55,7 @@
             <div style="width: 80%; margin: 0 auto;" class="webSiteDiv">
                 <p class="p intro">Website</p>
                 <p class="p text1">
-                    <a th:href="@{'https://' + ${illustProfile.illustProfileWebSite}}" style="font-size: 13px;" th:text="*{illustProfileWebSite}"></a>
+                    <a th:href="@{'https://www.' + ${illustProfile.illustProfileWebSite}}" style="font-size: 13px;" th:text="*{illustProfileWebSite}"></a>
                 </p>
             </div>
             <hr class="hr">
@@ -91,7 +91,7 @@
                     <div class="column cellCss cell1">
                             <th:block th:if="${index.index} == 0 or ${index.index} % 3 == 0">
                                 <a th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
-                                    <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                                    <img th:src="@{/illust/illustImg(illustNumber=${illustNumber})}" class="testWidth" />
                                     <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
                                 </a>
                         </th:block>
@@ -103,7 +103,7 @@
                     <div class="column cellCss cell2">
                             <th:block th:if="${index.index} % 3 == 1">
                                 <a th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
-                                    <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                                    <img "@{/illust/illustImg(illustNumber=${illustNumber})}" class="testWidth" />
                                     <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
                                 </a>
                             </th:block>
@@ -115,7 +115,7 @@
                     <div class="column cellCss cell3">
                             <th:block th:if="${index.index} % 3 == 2">
                                 <a th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
-                                    <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                                    <img th:src="@{/illust/illustImg(illustNumber=${illustNumber})}" class="testWidth" />
                                     <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
                                 </a>
                             </th:block>
