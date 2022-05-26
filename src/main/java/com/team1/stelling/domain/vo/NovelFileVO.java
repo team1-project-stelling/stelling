@@ -14,7 +14,6 @@ import java.util.Date;
 @Component
 @Entity
 @Table(name ="TBL_NOVELFILE")
-@SequenceGenerator(name ="NOVELFILE_SEQ" , allocationSize = 1)
 @Getter
 @Setter
 @ToString(of = {"novelFileNumber","novelFileFilePath","novelFileOriginalUUID","novelFileFileName","novelFileUploadUpdate", "novelFileUpdateDate"})
@@ -22,10 +21,17 @@ import java.util.Date;
 @AllArgsConstructor
 public class NovelFileVO {
 
+<<<<<<< HEAD
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NOVELFILE_SEQ")
     @Column(name = "NOVELFILE_NUMBER")
     private Long novelFileNumber; //*파일번호, 소설원고*//*
+=======
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @Column(name = "NOVELFILE_NUMBER")
+   private Long novelFileNumber; //*파일번호, 소설원고*//*
+>>>>>>> 5182922b81afe035ccbba61fd76f0187126838fc
 
     @ManyToOne
     @JoinColumn(name = "SUBNOVEL_NUMBER")
@@ -38,6 +44,7 @@ public class NovelFileVO {
     @JoinColumn(name = "NOVEL_NUMBER")
     private NovelVO novelVO;  // 소설 번호 FK
 
+<<<<<<< HEAD
     @Column(name = "NOVELFILE_FILEPATH")
     private String novelFileFilePath; // 소설 파일 경로
     @Column(name ="NOVELFILE_UUID")
@@ -52,6 +59,26 @@ public class NovelFileVO {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "NOVELFILE_UPDATEDATE")
     private Date novelFileUpdateDate;  // 소설 수정시간
+=======
+   @Column(name = "NOVELFILE_FILEPATH")
+   private String novelFileFilePath; // 소설 파일 경로
+
+   @Column(name ="NOVELFILE_UUID")
+   private String novelFileOriginalUUID; // 소설 원본 파일 UUID
+
+   @Column(name ="NOVELFILE_FILENAME")
+   private String novelFileFileName;  // 소설 파일 이름
+
+   @Generated(GenerationTime.INSERT)
+   @Temporal(TemporalType.TIMESTAMP)
+   @Column(name = "NOVELFILE_UPLOADDATE",updatable = false)
+   private Date novelFileUploadUpdate;  // 소설 작성 시간
+
+   @Generated(GenerationTime.INSERT)
+   @Temporal(TemporalType.TIMESTAMP)
+   @Column(name = "NOVELFILE_UPDATEDATE")
+   private Date novelFileUpdateDate;  // 소설 수정시간
+>>>>>>> 5182922b81afe035ccbba61fd76f0187126838fc
 
     public void updateNovelFileFilePath(String novelFileFilePath) { this.novelFileFilePath = novelFileFilePath; }
 

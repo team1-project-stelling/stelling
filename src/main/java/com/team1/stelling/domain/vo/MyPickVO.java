@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Component
 @Entity
 @Table(name ="TBL_MYPICK")
-@SequenceGenerator(name ="MYPICK_SEQ" , allocationSize = 1)
 @Getter
 @Setter
 @ToString(of = {"myPickNumber","myPickPick"})
@@ -19,14 +18,17 @@ import javax.persistence.*;
 public class MyPickVO {
     /* 시퀀스 -> MYPICK_SEQ */
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MYPICK_SEQ")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MYPICK_NUMBER")
     private Long myPickNumber; // 번호
+
     @Column(name = "MYPICK_PICK")
     private int myPickPick; /*찜이면 1 아니면 0 ?*/
+
     @ManyToOne
     @JoinColumn(name = "USER_NUMBER")
     private UserVO userVO; /* 찜한 소설의 번호 FK  */
+
     @ManyToOne
     @JoinColumn(name = "NOVEL_NUMBER")
     private NovelVO novelVO; // 찜한 사용자  FK

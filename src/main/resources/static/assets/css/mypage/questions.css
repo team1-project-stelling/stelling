@@ -127,3 +127,9 @@ a{
     margin: 0 auto;
     margin-bottom: 40px;
 }
+.c_PagingList{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    letter-spacing: 10px;
+}

@@ -13,7 +13,6 @@ import java.util.Date;
 @Component
 @Entity
 @Table(name="TBL_REPLY")
-@SequenceGenerator(name ="REPLY_SEQ", allocationSize = 1)
 @ToString(of ={
         "replyNumber", "replyContent", "replyUploadDate", "replyUpdateDate", "replyUp", "replyReport"
 })
@@ -22,7 +21,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class ReplyVO {
    @Id
-   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "REPLY_SEQ")
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name="REPLY_NUMBER")
    Long replyNumber; // 댓글 번호 (DB상의 번호)
 

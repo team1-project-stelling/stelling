@@ -84,29 +84,47 @@
                 WorkList
             </div>
             <hr class="hr2">
-            <th:block th:each="illust:${list}">
-            <div class="flex2 wrap" th:object="${illust}">
+
+            <div class="flex2 wrap">
                 <div class="box">
-                    <div class="column cellCss">
-                        <img th:src="'/upload/display?fileName='+*{illustFilePath}+'/'+*{illustFileName}" class="testWidth" />
-                        <span class="heart">❤<span style="font-size: 12px;" th:text="*{illustLike}"></span></span>
+                    <th:block th:each="list, index:${list}">
+                    <div class="column cellCss cell1">
+                            <th:block th:if="${index.index} == 0 or ${index.index} % 3 == 0">
+                                <a th:href="@{'/illust/illustViewDetail&userNumber=' + ${list.userVO.userNumber} + '&illustNumber=' + ${list.illustNumber}}">
+                                    <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                                    <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
+                                </a>
+                        </th:block>
                     </div>
+                    </th:block>
                 </div>
                 <div class="box">
-                    <div class="column cellCss">
-                        <img th:src="'/upload/display?fileName='+*{illustFilePath}+'/'+*{illustFileName}" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;" th:text="*{illustLike}"></span></span>
+                    <th:block th:each="list, index:${list}">
+                    <div class="column cellCss cell2">
+                            <th:block th:if="${index.index} % 3 == 1">
+                                <a th:href="@{'/illust/illustViewDetail&userNumber=' + ${list.userVO.userNumber} + '&illustNumber=' + ${list.illustNumber}}">
+                                    <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                                    <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
+                                </a>
+                            </th:block>
                     </div>
+                    </th:block>
                 </div>
                 <div class="box">
-                    <div class="column cellCss">
-                        <img th:src="'/upload/display?fileName='+*{illustFilePath}+'/'+*{illustFileName}" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;" th:text="*{illustLike}"></span></span>
+                    <th:block th:each="list, index:${list}">
+                    <div class="column cellCss cell3">
+                            <th:block th:if="${index.index} % 3 == 2">
+                                <a th:href="@{'/illust/illustViewDetail&userNumber=' + ${list.userVO.userNumber} + '&illustNumber=' + ${list.illustNumber}}">
+                                    <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                                    <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
+                                </a>
+                            </th:block>
                     </div>
+                    </th:block>
                 </div>
 
             </div>
-            </th:block>
+
         </div>
 
     </div>
@@ -177,23 +195,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/fix/header.js"></script>
 <script src="/assets/js/illust/illustUserPage.js"></script>
-<script>
-    let number = [[${illust.illustNumber}]];
+<script src="/assets/js/illust/module.js"></script>
+<script th:inline="javascript">
 
-    showList();
-
-    function showList(e) {
-        let str="";
-
-        for(let i=0; i<list.length; i+3){
-            let fileCallPath = list[i].illustFilePath + "/" + list[i].illustFileName;
-            str += "<img src='/upload/display?fileName=" + fileCallPath + " class='testWidth' />";
-            str += "<span class='heart'>❤";
-            str += "<span list[i].illustLike style='font-size: 12px;'>";
-            str += "</span>";
-            str += "</span>";
-        }
-    }
 
 
 </script>
