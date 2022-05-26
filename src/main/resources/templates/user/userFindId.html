@@ -2,24 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <link href="/assets/css/fix/footer.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/fix/header.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/user/userFindId.css" rel="stylesheet" type="text/css">
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>FindId</title>
 </head>
 <body style="max-witdh:1200px ;">
 
 <!-- 헤더 시작 -->
-<th:block th:insert="/fix/header_word.html :: headFragment"/>
-
+<th:block th:insert="/fix/headerWord.html :: headFragment"/>
 <!--헤더 이미지-->
 <div id="headerImgWrap" >
     <img id="headerImg"src="/images/fix/headerImg_3.png" >
 </div>
 <!-- 헤더 종료 -->
-
 
 <!--Main-->
 <div class="mainbox">
@@ -28,10 +26,13 @@
             <h3 class="title_login">아이디 찾기</h3>
             <div class="formbox">
                 <form action="" name="loginform_check">
-                    <input autocomplete="off"; id="uid" class="inputbox" type="text" placeholder="닉네임을 입력해주세요">
-                    <input id="pwd" class="inputbox passwordbox" type="tel" placeholder="휴대폰 번호를 입력해주세요">
-                    <button type="button" onclick="location.href='user_join.html';" class="join_button" >
-                        <span class="">인증번호 받기</span>
+                    <input autocomplete="off"; id="userNick" class="inputbox" type="text" placeholder="닉네임을 입력해주세요">
+                    <input autocomplete="off"; id="phoneNum" class="inputbox passwordbox" type="tel" placeholder="휴대폰 번호를 입력해주세요">
+                    <button id="findIdBtn" type="button" class="findIdBtn">
+                        <span class="">아이디찾기</span>
+                    </button>
+                    <button type="button" onclick="location.href='http://localhost:8989/user/login';" class="join_button" >
+                        <span class="">로그인</span>
                     </button>
                 </form>
 
@@ -40,10 +41,35 @@
     </div>
 </div>
 <th:block th:insert="/fix/footer.html :: footerFragment"/>
-</body>
 <script src="/assets/js/fix/header.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script type="text/javascript">
+    $('#findIdBtn').click(function(){
+        const userNick = $("input[id='userNick']").val();
+        const phoneNum = $("input[id='phoneNum']").val();
 
+        $.ajax({
+            type: 'POST',
+            async: true,
+            url: "/user/userFindId",
+            data: {userNick: userNick, phoneNum: phoneNum},
+            success: function (data) {
+                if(data != 0) {
+                    Swal.fire({
+                        icon: 'success',
+                        text: userNick + '님의 아이디는 ' + data + ' 입니다.'
+                    });
+                }else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '요청 실패',
+                        text: '닉네임과 휴대폰 번호를 확인해주세요.'
+                    });
+                }
+            }
+        })
+    });
 </script>
 </html>

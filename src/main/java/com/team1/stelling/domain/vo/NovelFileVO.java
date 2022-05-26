@@ -20,22 +20,21 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NovelFileVO {
-
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "NOVELFILE_NUMBER")
    private Long novelFileNumber; //*파일번호, 소설원고*//*
 
-   @ManyToOne
-   @JoinColumn(name = "SUBNOVEL_NUMBER")
-   private SubNovelVO subNovelVO; //* FK *//*
-   @ManyToOne
-   @JoinColumn(name = "USER_NUMBER")
-   private UserVO userVO;  // 유저번호 FK
+    @ManyToOne
+    @JoinColumn(name = "SUBNOVEL_NUMBER")
+    private SubNovelVO subNovelVO; //* FK *//*
+    @ManyToOne
+    @JoinColumn(name = "USER_NUMBER")
+    private UserVO userVO;  // 유저번호 FK
 
-   @ManyToOne
-   @JoinColumn(name = "NOVEL_NUMBER")
-   private NovelVO novelVO;  // 소설 번호 FK
+    @ManyToOne
+    @JoinColumn(name = "NOVEL_NUMBER")
+    private NovelVO novelVO;  // 소설 번호 FK
 
    @Column(name = "NOVELFILE_FILEPATH")
    private String novelFileFilePath; // 소설 파일 경로
@@ -66,8 +65,8 @@ public class NovelFileVO {
     public void updateNovelFileUpdateDate() { this.novelFileUpdateDate = new Date();  }
 
     @Builder
-   public NovelFileVO(Long novelFileNumber, SubNovelVO subNovelVO, UserVO userVO, NovelVO novelVO, String novelFileFilePath, String novelFileOriginalUUID, String novelFileFileName, String novelFileUploadUpdate, String novelFileUpdateDate) {
-       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    public NovelFileVO(Long novelFileNumber, SubNovelVO subNovelVO, UserVO userVO, NovelVO novelVO, String novelFileFilePath, String novelFileOriginalUUID, String novelFileFileName, String novelFileUploadUpdate, String novelFileUpdateDate) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         this.novelFileNumber = novelFileNumber;
         this.subNovelVO = subNovelVO;
         this.userVO = userVO;
@@ -76,10 +75,10 @@ public class NovelFileVO {
         this.novelFileOriginalUUID = novelFileOriginalUUID;
         this.novelFileFileName = novelFileFileName;
 
-       try {
-           if(novelFileUploadUpdate != null) { this.novelFileUploadUpdate = sdf.parse(novelFileUploadUpdate); }
-           if(novelFileUpdateDate != null) { this.novelFileUpdateDate = sdf.parse(novelFileUpdateDate); }
-       } catch (ParseException e) { e.printStackTrace(); }
+        try {
+            if(novelFileUploadUpdate != null) { this.novelFileUploadUpdate = sdf.parse(novelFileUploadUpdate); }
+            if(novelFileUpdateDate != null) { this.novelFileUpdateDate = sdf.parse(novelFileUpdateDate); }
+        } catch (ParseException e) { e.printStackTrace(); }
 
-   }
+    }
 }

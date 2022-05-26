@@ -25,6 +25,7 @@ public class IllustProfileDTO {
     private String illustProfileCategory; // 주 활동 카테고리
     private String illustProfileWebSite; // 웹사이트 링크
 
+
     public IllustProfileDTO(String userNickName, String userFilePath, String userUuid, String userFileName, Long illustProfileNumber, Long userNumber, String illustProfileShortIntro, String illustProfileDetailIntro, String illustProfileCategory, String illustProfileWebSite) {
         this.userNickName = userNickName;
         this.userFilePath = userFilePath;

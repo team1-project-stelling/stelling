@@ -1,5 +1,6 @@
 package com.team1.stelling.service;
 
+import com.team1.stelling.domain.criteria.IllustCategoryCriteria;
 import com.team1.stelling.domain.repository.IllustRepository;
 import com.team1.stelling.domain.vo.IllustVO;
 import com.team1.stelling.domain.vo.SubNovelVO;
@@ -22,11 +23,11 @@ public class IllustService {
 
 
     public IllustVO get(Long illustNumber){
-        return illustRepository.findById(illustNumber).get();
+        return illustRepository.findById(illustNumber).orElseGet(null);
     }
     public List<IllustVO> getList (){return illustRepository.findAll();}
     public List<IllustVO> getSixList(Long userNumber){return illustRepository.findByUserVO_UserNumber(userNumber);}
-    public void register (IllustVO vo){illustRepository.save(vo);}
+    public void illustRegister (IllustVO vo){illustRepository.save(vo);}
     public void modify(IllustVO vo){
         vo.updateIllustUpdateDate();
         illustRepository.save(vo);
@@ -34,11 +35,26 @@ public class IllustService {
     public int getTotal(){return illustRepository.findByUserNumberTotal(1L);}
 
 
-    public Page<IllustVO> getUserIllustList(Pageable pageable, Long userNumber){return illustRepository.findByUserVO_UserNumber(pageable, userNumber);}
+    public Page<IllustVO> getUserIllustList(Pageable pageable, Long userNumber){
+        return illustRepository.findByUserVO_UserNumber(pageable, userNumber);
+    }
 
     @Transactional
     public Page<IllustVO> getList(Pageable pageable){
         return  illustRepository.findAll(pageable).map(objectEntity -> modelMapper.map(objectEntity, IllustVO.class));
+    }
+
+    public Page<IllustVO> CategoryList(String keyword, Pageable pageable){
+        return illustRepository.findByIllustHashTagContaining(keyword, pageable);
+    }
+
+    public int getLikeTotal(Long userNumber){
+        return illustRepository.findByIllustLikeTotal(userNumber);
+    }
+
+    @Transactional
+    public int updateViewCOunt(Long illustNumber){
+        return illustRepository.updateViewCOunt(illustNumber);
     }
     
 }

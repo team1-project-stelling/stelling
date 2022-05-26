@@ -62,9 +62,6 @@
                     <li class="optionItem">서스펜스</li>
                 </ul>
             </div>
-       <!-- <select name="" id="" class="categorySelect">
-            <option value="">카테고리</option>
-        </select>-->
         </div>
 
         <div class="subBox">작품의 장르가 어떤 장르인지 선택하는 메뉴입니다.</div>
@@ -80,7 +77,6 @@
         <div class="form-group">
             <input type="text" id="tag"  placeholder="엔터로 해시태그를 등록해주세요." class="tagInput"/>
         </div>
-<!--        <input type="text" placeholder="작품에 세부태그를 달아주세요" class="tagInput">-->
     </div>
     <div class="box">
         <div class="flex" style="align-items: center;">
@@ -118,7 +114,7 @@
                     <div class="uploadImg">
                         <div class="filebox">
                             <label for="file">업로드</label>
-                            <input type="file" id="file" onchange="setThumbnail(event)" class="thum">
+                            <input type="file" id="file" onchange="setThumbnail(event)" class="thum" multiple>
 
                             <input class="upload-name" >
                         </div>
@@ -151,12 +147,11 @@
         <input type="hidden" name="novelFriDay" value="0">
         <input type="hidden" name="novelSaturDay" value="0">
         <input type="hidden" name="novelSunDay" value="0">
+
         <input type="hidden" name="novelFileName">
         <input type="hidden" name="novelUploadPath">
         <input type="hidden" name="novelUUID">
         <input type="hidden" name="novelTitle">
-
-
 
 
 
@@ -175,5 +170,8 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/fix/header.js"></script>
+<script th:inline="javascript">
+
+</script>
 <script src="/assets/js/novel/novelRegister.js"></script>
 </html>

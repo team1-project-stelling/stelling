@@ -10,11 +10,8 @@
     <title>Login</title>
 </head>
 <body style="max-witdh:1200px ;">
-
 <!-- 헤더 시작 -->
-
 <th:block th:insert="/fix/headerWord.html :: headFragment"/>
-
 <!--헤더 이미지-->
 <div id="headerImgWrap" >
     <img id="headerImg"src="/images/fix/headerImg_3.png" >
@@ -32,15 +29,15 @@
                     <input id="userPw" name="userPw" class="inputbox passwordbox" type="password" placeholder="비밀번호를 입력해주세요">
                     <div>
                         <div class="login_search">
-                            <a class="find_button" href="/stelling/src/main/resources/templates/user/findId.html">아이디 찾기</a>
+                            <a class="find_button" href="/user/findId">아이디 찾기</a>
                             <span class="bar"></span>
-                            <a class="find_button" href="/stelling/src/main/resources/templates/user/findPw.html">비밀번호 찾기</a>
+                            <a class="find_button" href="/user/findPw">비밀번호 찾기</a>
                         </div>
                     </div>
                     <div>
                         <div class="social_logo">
                             <button class='btn-social-login' style='background:#1FC700'><i class="xi-3x xi-naver"></i></button>
-                            <button class='btn-social-login' style='background:#FFEB00'><i class="xi-3x xi-kakaotalk text-dark"></i></button>
+                            <button class='btn-social-login' onclick="window.open('https://kauth.kakao.com/oauth/authorize?client_id=427b7ad60b17680502910b084533fbaa&redirect_uri=http://localhost:8989/user/oauth&response_type=code');" style='background:#FFEB00'><i class="xi-3x xi-kakaotalk text-dark"></i></button>
                             <button class='btn-social-login' style='background:#4267B2'><i class="xi-3x xi-facebook"></i></button>
                             <button class='btn-social-login'><i class="xi-3x xi-apple text-dark"></i></button>
                         </div>

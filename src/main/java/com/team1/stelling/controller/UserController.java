@@ -2,24 +2,47 @@ package com.team1.stelling.controller;
 
 import com.team1.stelling.domain.vo.UserDTO;
 import com.team1.stelling.domain.vo.UserVO;
+import com.team1.stelling.service.CertifiedPhoneService;
+import com.team1.stelling.service.SendEmailService;
+import com.team1.stelling.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Random;
+
+//package com.team1.stelling.controller;
+
+import com.team1.stelling.domain.vo.UserDTO;
+import com.team1.stelling.domain.vo.UserVO;
+import com.team1.stelling.service.CertifiedPhoneService;
+import com.team1.stelling.service.SendEmailService;
 import com.team1.stelling.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.Random;
 
 @Controller
 @Slf4j
 @RequestMapping("/user/*")
 @RequiredArgsConstructor
 public class UserController {
+
+    private final UserService userService;
+    private final CertifiedPhoneService certifiedPhoneService;
+    private final SendEmailService sendEmailService;
 
     @GetMapping("/findId")
     public String findId() {
@@ -51,9 +74,6 @@ public class UserController {
         return "etc/privacy";
     }
 
-
-    private final UserService userService;
-
     @PostMapping("/joinUs.do")
     public String joinUs(UserVO vo, HttpServletRequest request) {
 //        HttpSession session = request.getSession();
@@ -70,9 +90,8 @@ public class UserController {
         HashMap<String, String> loginMap = new HashMap<>();
         loginMap.put("userId", dto.getUserId());
         loginMap.put("userPw", dto.getUserPw());
-        
-        //회원 정보가 없으면 null이 담긴다
-        userNumber = userService.login(loginMap); 
+
+        userNumber = userService.login(loginMap);
 
         if (userNumber == null) {
             log.info("========로그인 실패========");
@@ -81,14 +100,14 @@ public class UserController {
         } else {
             log.info("========로그인 성공========");
             session.setAttribute("userNumber", userNumber);
+            session.setAttribute("user", userService.get(Long.valueOf(userNumber)));
+
             return "redirect:/main/index";
         }
     }
 
-    /////////////////////////////////////////
-    // 아이디 중복확인
-    @ResponseBody // 값 변환을 위해 꼭 필요함
-    @PostMapping("/idCheck") // 아이디 중복확인을 위한 값으로 따로 매핑
+    @ResponseBody
+    @PostMapping("/idCheck")
     public int overlappedID(String userId){
         int count = 0;
         count = userService.idCheck(userId);
@@ -96,14 +115,41 @@ public class UserController {
         return count;
     }
 
-    /////////////////////////////////////////
-    // 이메일 중복확인
-    @ResponseBody // 값 변환을 위해 꼭 필요함
-    @PostMapping("/emailCheck") // 아이디 중복확인을 위한 값으로 따로 매핑
+    @ResponseBody
+    @PostMapping("/emailCheck")
     public int overlappedEmail(String userEmail){
         int count = 0;
         count = userService.idCheck(userEmail);
         log.info("#######################" + count);
         return count;
+    }
+    @GetMapping("/sendSMS")
+    public @ResponseBody String sendSMS (String phoneNumber) {
+        Random rand  = new Random();
+        String numStr = "";
+        for(int i=0; i<4; i++) {
+            String ran = Integer.toString(rand.nextInt(10));
+            numStr += ran;
+        }
+        certifiedPhoneService.certifiedPhoneNumber(phoneNumber,numStr);
+        return numStr;
+    }
+
+    @PostMapping("/userFindId")
+    @ResponseBody
+    public String userFindId(String userNick, String phoneNum){
+        String result = userService.getSearchId(userNick, phoneNum);
+        return result;
+    }
+
+    @PostMapping("/userFindPw")
+    @ResponseBody
+    public String sendEmail(String userId, String userEmail){
+        String result = userService.findPw(userId, userEmail);
+        if (result != "") {
+            sendEmailService.sendEmail(result, userEmail);
+            return result;
+        }
+        return result;
     }
 }
