@@ -36,7 +36,7 @@
                         <div style="display: flex;">
                             <p class="p postInfo">게시물 <span th:text="${total}"></span></p>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <p class="p postInfo">완료한 작업 <span>3</span></p>
+                            <p class="p postInfo">좋아요 <span th:text="${getLikeTotal}">3</span></p>
                         </div>
 
                     </div>
@@ -55,7 +55,7 @@
             <div style="width: 80%; margin: 0 auto;" class="webSiteDiv">
                 <p class="p intro">Website</p>
                 <p class="p text1">
-                    <a th:href="@{illustProfileWebSite}" style="font-size: 13px;" th:text="*{illustProfileWebSite}"></a>
+                    <a th:href="@{'https://' + ${illustProfile.illustProfileWebSite}}" style="font-size: 13px;" th:text="*{illustProfileWebSite}"></a>
                 </p>
             </div>
             <hr class="hr">
@@ -90,7 +90,7 @@
                     <th:block th:each="list, index:${list}">
                     <div class="column cellCss cell1">
                             <th:block th:if="${index.index} == 0 or ${index.index} % 3 == 0">
-                                <a th:href="@{'/illust/illustViewDetail&userNumber=' + ${list.userVO.userNumber} + '&illustNumber=' + ${list.illustNumber}}">
+                                <a th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
                                     <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
                                     <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
                                 </a>
@@ -102,7 +102,7 @@
                     <th:block th:each="list, index:${list}">
                     <div class="column cellCss cell2">
                             <th:block th:if="${index.index} % 3 == 1">
-                                <a th:href="@{'/illust/illustViewDetail&userNumber=' + ${list.userVO.userNumber} + '&illustNumber=' + ${list.illustNumber}}">
+                                <a th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
                                     <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
                                     <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
                                 </a>
@@ -114,7 +114,7 @@
                     <th:block th:each="list, index:${list}">
                     <div class="column cellCss cell3">
                             <th:block th:if="${index.index} % 3 == 2">
-                                <a th:href="@{'/illust/illustViewDetail&userNumber=' + ${list.userVO.userNumber} + '&illustNumber=' + ${list.illustNumber}}">
+                                <a th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
                                     <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
                                     <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
                                 </a>
@@ -140,7 +140,6 @@
         <div class="chat-top" style="position: relative">
             <p class="p">yewon_seo님 에게</p>
             <span class="x">X</span>
-
         </div>
         <div class="chat-middle">
             <div class="friend-chat">
@@ -180,7 +179,6 @@
                 </div>
             </label>
         </div>
-
     </div>
 
 
@@ -197,8 +195,9 @@
 <script src="/assets/js/illust/illustUserPage.js"></script>
 <script src="/assets/js/illust/module.js"></script>
 <script th:inline="javascript">
-
-
-
+    $("button.listBtn").click(function (e) {
+        e.preventDefault();
+        location.href = "/illust/illustList";
+    })
 </script>
 </html>

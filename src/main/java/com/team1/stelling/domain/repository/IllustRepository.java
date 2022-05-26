@@ -17,4 +17,8 @@ public interface IllustRepository extends JpaRepository<IllustVO, Long> {
 
     List<IllustVO> findByUserVO_UserNumber(Long userNumber);
 
+    Page<IllustVO> findByIllustHashTagContaining(String keyword, Pageable pageable);
+
+    @Query(value = "SELECT SUM(ILLUST_LIKE) FROM TBL_ILLUST WHERE USER_NUMBER = ?", nativeQuery = true)
+    int findByIllustLikeTotal(Long userNumber);
 }

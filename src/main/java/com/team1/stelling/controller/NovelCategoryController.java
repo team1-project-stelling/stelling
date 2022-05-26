@@ -32,7 +32,7 @@ public class NovelCategoryController {
     /* 모든 소설 ==========================================================================================*/
     // 기본정렬
     @LogStatus
-    @GetMapping("/novelCategory")
+    @GetMapping("novelCategory")
     public String novelCategory(@RequestParam(defaultValue="0") int categoryStatus, Model model, @PageableDefault(page = 0, size = 10, sort = "novelNumber" ,direction = Sort.Direction.DESC)Pageable pageable){
         Page<NovelCategoryDTO> list = null;
        if(categoryStatus == 1){
@@ -50,7 +50,6 @@ public class NovelCategoryController {
         PageableDTO pageableDTO = new PageableDTO((int) list.getTotalElements(), pageable);
         pageableDTO.setCategoryStatus(categoryStatus);
 
-        log.info("%%%%%%%%%"+categoryStatus);
 
         model.addAttribute( "list",list);
         model.addAttribute( "novelTotal", list.getTotalElements());
@@ -60,7 +59,7 @@ public class NovelCategoryController {
 
     // 좋아요 정렬
     @LogStatus
-    @GetMapping("/novelCategory/viewCount")
+    @GetMapping("novelCategory/viewCount")
     public String novelCategoryViewCount(@RequestParam(defaultValue="0") int categoryStatus, Model model, @PageableDefault(page = 0, size = 10, sort = "novelViewCountTotal" ,direction = Sort.Direction.DESC)Pageable pageable){
         Page<NovelCategoryDTO> list = null;
         if(categoryStatus == 1){
@@ -84,7 +83,7 @@ public class NovelCategoryController {
 
     // 좋아요 정렬
     @LogStatus
-    @GetMapping("/novelCategory/likeCount")
+    @GetMapping("novelCategory/likeCount")
     public String novelCategoryLikeCount(@RequestParam(defaultValue="0") int categoryStatus, Model model, @PageableDefault(page = 0, size = 10, sort = "novelLikeCountTotal" ,direction = Sort.Direction.DESC)Pageable pageable){
         Page<NovelCategoryDTO> list = null;
         if(categoryStatus == 1){
@@ -109,7 +108,7 @@ public class NovelCategoryController {
 
     /* 태그 검색 ===========================================================================================*/
     @LogStatus
-    @GetMapping("/novelSearch")
+    @GetMapping("novelSearch")
     public String novelSearch (@RequestParam(defaultValue="0") int categoryStatus, String keyword, Model model, @PageableDefault(page = 0, size = 10, sort = "novelNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
         Page<NovelCategoryDTO> searchList = null;
         if(categoryStatus == 1){
@@ -137,7 +136,7 @@ public class NovelCategoryController {
     }
 
     @LogStatus
-    @GetMapping("/novelSearch/viewCount")
+    @GetMapping("novelSearch/viewCount")
     public String novelSearchViewCount (@RequestParam(defaultValue="0") int categoryStatus, String keyword, Model model, @PageableDefault(page = 0, size = 10, sort = "novelViewCountTotal" ,direction = Sort.Direction.DESC) Pageable pageable){
         Page<NovelCategoryDTO> searchList = null;
         if(categoryStatus == 1){
@@ -165,7 +164,7 @@ public class NovelCategoryController {
     }
 
     @LogStatus
-    @GetMapping("/novelSearch/likeCount")
+    @GetMapping("novelSearch/likeCount")
     public String novelSearchViewCountLikeCount (@RequestParam(defaultValue="0") int categoryStatus, String keyword, Model model, @PageableDefault(page = 0, size = 10, sort = "novelLikeCountTotal" ,direction = Sort.Direction.DESC) Pageable pageable){
         Page<NovelCategoryDTO> searchList = null;
         if(categoryStatus == 1){
@@ -195,7 +194,7 @@ public class NovelCategoryController {
 
     /* 태그 검색(클릭) 시작===========================================================================================*/
     @LogStatus
-    @GetMapping("/novelFindToTag")
+    @GetMapping("novelFindToTag")
     public String novelFindToTag (@RequestParam(defaultValue="0") int categoryStatus, String keyword, Model model, @PageableDefault(page = 0, size = 10, sort = "novelNumber" ,direction = Sort.Direction.DESC)Pageable pageable){
         Page<NovelCategoryDTO> searchList = null;
         if(categoryStatus == 1){
@@ -223,7 +222,7 @@ public class NovelCategoryController {
     }
 
     @LogStatus
-    @GetMapping("/novelFindToTag/viewCount")
+    @GetMapping("novelFindToTag/viewCount")
     public String novelFindToTagViewCount (@RequestParam(defaultValue="0") int categoryStatus, String keyword, Model model, @PageableDefault(page = 0, size = 10, sort = "novelViewCountTotal" ,direction = Sort.Direction.DESC)Pageable pageable){
         Page<NovelCategoryDTO> searchList = null;
         if(categoryStatus == 1){
@@ -251,7 +250,7 @@ public class NovelCategoryController {
     }
 
     @LogStatus
-    @GetMapping("/novelFindToTag/likeCount")
+    @GetMapping("novelFindToTag/likeCount")
     public String novelFindToTagLikeCount (@RequestParam(defaultValue="0") int categoryStatus,String keyword, Model model, @PageableDefault(page = 0, size = 10, sort = "novelLikeCountTotal" ,direction = Sort.Direction.DESC)Pageable pageable){
         Page<NovelCategoryDTO> searchList = null;
         if(categoryStatus == 1){
@@ -280,7 +279,7 @@ public class NovelCategoryController {
     /* 태그 검색(클릭) 끝===========================================================================================*/
 
     // 완결 소설 파트 시작 ==================================================================================================================================
-    @GetMapping("/endNovel")
+    @GetMapping("endNovel")
     public String novelTest (@RequestParam(defaultValue="0") int categoryStatus,String keyword, Model model, @PageableDefault(page = 0, size = 10, sort = "novelNumber" ,direction = Sort.Direction.DESC)Pageable pageable){
         Page<NovelCategoryDTO> list =   novelService.getEndNovelList(pageable);
         PageableDTO pageableDTO = new PageableDTO( (int)list.getTotalElements(),pageable);
@@ -292,4 +291,27 @@ public class NovelCategoryController {
     }
     // 완결 소설 파트 종료 ==================================================================================================================================
 
+    @GetMapping("headerSearch")
+    public String headerSearch(@RequestParam(defaultValue="0") int categoryStatus,@RequestParam String keyword, @RequestParam String type, Model model,@PageableDefault(page = 0, size = 10, sort = "novelNumber" ,direction = Sort.Direction.DESC)Pageable pageable){
+        log.info("headerSearch k:"+keyword+"&&&  t :" + type);
+        String searchTagType = "tag";
+        String searchAllType = "all";
+        Page<NovelCategoryDTO> list = null;
+        if(type.equals(searchAllType)){
+            // 작성자, 제목, 태그 전체 검색
+            list =  novelService.getListSearchAll(keyword,pageable);
+        }else if(type.equals(searchTagType)){
+            // 태그로 검색
+            log.info("들어옴@@@@");
+            list =   novelService.search(keyword,pageable);
+        }
+
+
+        PageableDTO pageableDTO = new PageableDTO( (int)list.getTotalElements(),pageable);
+        pageableDTO.setCategoryStatus(categoryStatus);
+        model.addAttribute( "novelTotal", list.getTotalElements());
+        model.addAttribute( "list",list);
+        model.addAttribute("pageableDTO", pageableDTO);
+            return  "novel/category/novelCategory";
+    }
 }

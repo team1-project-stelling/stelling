@@ -33,4 +33,5 @@ public interface NovelRepository extends JpaRepository<NovelVO, Long> {
 //    List<NovelVO> findTop50ByNovelHashtagContainingOrderByNovelLikeCountTotalDesc(String keyword);
 
     Page<NovelVO> findByUserVO_userNumber(Long userNumber, Pageable pageable);
+    Page<NovelVO> findByNovelHashtagContainingOrNovelTitleContainingOrUserVO_UserNickNameContaining(String keyword1,String keyword2,String keyword3,Pageable pageable);
 }

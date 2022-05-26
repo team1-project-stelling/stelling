@@ -7,71 +7,88 @@
             <div id="headerInner">
                 <!--헤더 왼쪽-->
                 <div id="header_L_Wrap">
-                    <a id="logoImg" href="#"><img src="/images/fix/logoIcon_d.png"></a>
+                    <a id="logoImg" href="/illust/illustList"><img src="/images/fix/logoIcon_d.png"></a>
                     <ul class="navGroup web_header">
-                        <li><a class="headerActive" href="/test/category">마이포스트 </a></li>
+                        <li><a class="headerActive" href="/illust/illustUserPage">마이포스트 </a></li>
                         <li><a class="headerActive" href="/illust/chatForm">CHAT</a></li>
-                        <li><a class="headerActive" href="/test/category">소설</a></li>
+                        <li><a class="headerActive" href="/novel/category/novelCategory">소설</a></li>
                     </ul>
                 </div>
                 <!--헤더 오른쪽-->
                 <div id="header_R_Wrap">
-                    <div class="nav_searchFormWrap">
+<!--                    <div class="nav_searchFormWrap">
                         <form id="nav_searchForm" name="nav_searchForm">
                             <div id="search_all">
                                 <input name="keyword" id="nav_searchInput" class="illustSearchTag" maxlength="10" placeholder="일러스트를 찾아보세요!">
                                 <div class="nav_searchForm_btn"><img src="/images/fix/search_big_d.png"></div>
-                               <!-- <div class="nav_searchForm_btn"><img src="/images/fix/search_big_d.png"></div>-->
-                                <button id="illustSearchTag" type="button" onclick="hasTag()"></button>
-                                <input name="type" type="hidden" value="CTWG"> <!-- 검색 조건을 위한 태그 디폴트가 전체조회 -->
+                               &lt;!&ndash; <div class="nav_searchForm_btn"><img src="/images/fix/search_big_d.png"></div>&ndash;&gt;
+                                <button class="tagBtn" id="illustSearchTag" type="button" onclick="hashTag()()"></button>
+                                <input name="type" type="hidden" value="titleContent"> &lt;!&ndash; 검색 조건을 위한 태그 디폴트가 전체조회 &ndash;&gt;
                             </div>
                         </form>
-                    </div>
+                    </div>-->
     <!--                <div class="eventMenu"><a href="#"><img src="/images/fix/header_book.png"></a></div>
                     <div class="eventMenu"><a href="#"><img src="/images/fix/header_writeIcon.png"></a></div>-->
-                    <div class="eventMenu">
+                    <div class="eventMenu" >
+
                         <img src="/images/fix/mypageLineIcon.png" alt="메뉴">
                         <div class="menuArea">
-                            <div class="profileWrap">
-                                <div class="profileWrap_sub">
-                                    <img src="/images/fix/img_profile.png" alt="프로필사진">
-                                    <div><a href="#">용의분노</a>님</div>
-                                </div>
-                                <a class="menu_logout"  href="#">로그아웃</a>
-                            </div>
-                            <div class="header_pay">
-                                <div class="coinWrap">
-                                    <div class="coinImg">
-                                         <img src="/images/fix/coin.png" alt="코인">
+                            <div th:if="${session.user == null}">
+                                <div id="welcomeMenu">
+                                    <div>
+                                        <img src="/images/fix/menuLogin.png">
+                                        <a href="/user/login">로그인</a>
                                     </div>
                                     <div>
-                                        <span class="coinView"> 7,800</span>
+                                        <img src="/images/fix/menuJoin.png">
+                                        <a href="/user/join">회원가입</a>
                                     </div>
                                 </div>
-                                <a href="">충전</a>
                             </div>
-                            <div class="menu_word">
-                                <ul class="menu_word_list">
-                                    <li><img class="menu_icon" src="/images/fix/header_menu_page.png"><a href="#">신규 소설 등록</a></li>
-                                    <li><img class="menu_icon" src="/images/fix/header_menu_pencil.png"><a href="#">소설 작성</a></li>
-                                    <li><img class="menu_icon" src="/images/fix/header_menu_folder.png"><a href="#">내 작품 관리</a></li>
-                                </ul>
-                            </div>
-                            <div class="menu_illust">
-                                <ul class="menu_illust_list">
-                                    <li><img class="menu_icon" src="/images/fix/header_menu_palette.png"><a href="#">일러스트 등록</a></li>
-                                    <li><img class="menu_icon" src="/images/fix/header_menu_gallery.png"><a href="#">마이 포스트</a></li>
-                                </ul>
-                            </div>
-                            <div class="menu_my">
-                                <ul class="menu_my_list">
-                                    <li><img class="menu_icon" src="/images/fix/header_menu_people.png"><a href="#">마이페이지</a></li>
-                                    <li><img class="menu_icon" src="/images/fix/header_menu_graph.png"><a href="#">정산/통계</a></li>
-                                </ul>
-                            </div>
-                            <div class="menu_com">
-                                <img class="menu_icon" src="/images/fix/info_icon.png"><a class="menu_com_in" href="#">공지사항/고객센터</a>
-                            </div>
+                            <th:block th:unless="${session.user == null}">
+
+                                <div class="profileWrap">
+                                    <div class="profileWrap_sub">
+                                        <img src="/images/fix/img_profile.png" alt="프로필사진">
+                                        <div><a href="/myLibrary/myLibraryCollection/myPick" th:text="${session.user.userNickName}"></a>님</div>
+                                    </div>
+                                    <a class="menu_logout"  href="#">로그아웃</a>
+                                </div>
+                                <div class="header_pay">
+                                    <div class="coinWrap">
+                                        <div class="coinImg">
+                                            <img src="/images/fix/coin.png" alt="코인">
+                                        </div>
+                                        <div>
+                                            <span class="coinView" th:text="${session.user.userCoinBalance}"></span>
+                                        </div>
+                                    </div>
+                                    <a href="/myPage/myPagePayList">충전</a>
+                                </div>
+                                <div class="menu_word">
+                                    <ul class="menu_word_list">
+                                        <li><img class="menu_icon" src="/images/fix/header_menu_page.png"><a href="/novel/novelRegister">신규 소설 등록</a></li>
+                                        <!--<li><img class="menu_icon" src="/images/fix/header_menu_pencil.png"><a href="#">소설 작성</a></li>-->
+                                        <li><img class="menu_icon" src="/images/fix/header_menu_folder.png"><a href="/myPage/myPageMyWork">내 작품 관리</a></li>
+                                    </ul>
+                                </div>
+                                <div class="menu_illust">
+                                    <ul class="menu_illust_list">
+                                        <li><img class="menu_icon" src="/images/fix/header_menu_palette.png"><a href="/illust/register">일러스트 등록</a></li>
+                                        <li><img class="menu_icon" src="/images/fix/header_menu_gallery.png"><a href="/illust/illustUserPage">마이 포스트</a></li>
+                                    </ul>
+                                </div>
+                                <div class="menu_my">
+                                    <ul class="menu_my_list">
+                                        <!-- <li><img class="menu_icon" src="/images/fix/header_menu_people.png"><a th:href="@{/myPage/myPageEditProfile(userNumber=${session.userNumber})}">마이페이지</a></li> -->
+                                        <li><img class="menu_icon" src="/images/fix/header_menu_people.png"><a href="/myPage/myPageEditProfile">마이페이지</a></li>
+                                        <li><img class="menu_icon" src="/images/fix/header_menu_graph.png"><a href="/myPage/myPageMyWork">정산/통계</a></li>
+                                    </ul>
+                                </div>
+                                <div class="menu_com">
+                                    <img class="menu_icon" src="/images/fix/info_icon.png"><a class="menu_com_in" href="/myPage/myPageQuestion">공지사항/고객센터</a>
+                                </div>
+                            </th:block>
                         </div>
                     </div>
 
