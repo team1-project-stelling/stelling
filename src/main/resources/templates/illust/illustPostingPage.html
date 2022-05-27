@@ -18,45 +18,53 @@
 <!--</div>-->
 <!-- 헤더 종료 -->
 <div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 100px; padding-bottom: 100px;">
+    <form method="post" action="/illust/illustPostingPage" name="register" id="register" enctype="multipart/form-data">
+        <!--타이틀 입력란--------------------------------------------------------- -->
+        <div class="titleDiv">
+            <input type="text" name="illustTitle" placeholder="제목을 입력하세요." class="inputTitle">
 
-    <!--타이틀 입력란--------------------------------------------------------- -->
-    <div class="titleDiv">
-        <input type="text" placeholder="제목을 입력하세요." class="inputTitle">
-
-    </div>
-
-    <!--이미지 드롭존 --------------------------------------------------------- -->
-    <div class="drop-zone">
-
-        <span class="drop-zone__prompt span">Drop file here or click to upload</span>
-
-        <input type="file" name="myFile" class="drop-zone__input">
-
-    </div>
-
-
-    <div style="margin-top: 100px;">
-        <p class="hash"># 해시태그</p>
-
-
-        <div class="form-group">
-            <input type="text" id="tag"  placeholder="엔터로 해시태그를 등록해주세요.(최대 6개)" class="tag"/>
-        </div>
-<!--        <input type="text" placeholder="ex) #동화 #수채화 (최대 6개)" class="tag">-->
-        <p style="color:#ef6e73; font-size: 12px;">※ 작품을 나타내는 태그를 삽입해주세요.</p>
-        <div class="form-group">
-            <input type="hidden" value="" name="tag" id="rdTag" />
         </div>
 
-        <ul id="tag-list" style="padding: 0;"></ul>
-    </div>
+        <!--이미지 드롭존 --------------------------------------------------------- -->
+        <div class="drop-zone">
+
+            <span class="drop-zone__prompt span">Drop file here or click to upload</span>
+
+            <input type="file" name="myFile" class="drop-zone__input">
+
+        </div>
+
+
+        <div style="margin-top: 100px;" >
+            <p class="hash"># 해시태그</p>
+
+
+            <div class="form-group">
+                <input type="text" id="tag" placeholder="엔터로 해시태그를 등록해주세요.(최대 6개)" class="tag"/>
+            </div>
+            <!--        <input type="text" placeholder="ex) #동화 #수채화 (최대 6개)" class="tag">-->
+            <p style="color:#ef6e73; font-size: 12px;">※ 작품을 나타내는 태그를 삽입해주세요.</p>
+            <div class="form-group">
+                <input type="hidden" value=""id="rdTag" />
+            </div>
+
+            <ul id="tag-list" style="padding: 0;" ></ul>
+        </div>
+
+
+
+        <input type="hidden" name="illustHashTag">
+        <input type="hidden" name="illustFileName">
+        <input type="hidden" name="illustFilePath">
+        <input type="hidden" name="illustUuid">
+
+
+
+    </form>
 
     <div style="margin:100px auto; text-align: center;">
-        <button class="upBtn">업로드 하기</button>
+        <button class="upBtn" type="submit">업로드 하기</button>
     </div>
-
-
-
 
 
 

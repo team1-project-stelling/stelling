@@ -17,8 +17,7 @@ public interface UserRepository extends JpaRepository<UserVO, Long>{
     List<UserVO>  findByNumberList();
     @Query( value = "SELECT  N.NOVEL_TITLE FROM TBL_USER  U JOIN TBL_NOVEL N ON U.USER_NUMBER = N.USER_NUMBER ", nativeQuery = true)
     List<String>  findByNumberJoinList();
-
-    @Query( value = "SELECT COUNT(USER_NUMBER)FROM TBL_USER WHERE USER_ID = :userId AND USER_PW = :userPw ", nativeQuery = true)
-    int findByUser(@Param("userId") String userId, @Param("userPw") String userPw);
+    @Query( value = "SELECT  USER_ID FROM TBL_USER", nativeQuery = true)
+    List<String>  findByUserId();
 
 }

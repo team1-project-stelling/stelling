@@ -104,6 +104,7 @@
 <script src="/assets/js/fix/header.js"></script>
 <script th:inline="javascript">
     const userNumber = [[${session.userNumber}]];
+    console.log("세션 유저 번호 : " + userNumber);
 
     if(userNumber == null){
         alert("세션이 만료되어 로그인 페이지로 이동합니다");
@@ -126,7 +127,7 @@
         location.href = "/myPage/myPageQuit";
     }
     function goPayList(){
-        location.href = "/myLibrary/payList";
+        location.href = "/myLibrary/payList?userNumber="+ userNumber;
     }
 </script>
 </html>

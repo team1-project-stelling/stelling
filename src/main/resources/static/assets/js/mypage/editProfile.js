@@ -1,3 +1,4 @@
+
 // 썸네일
 document.addEventListener('DOMContentLoaded', function(){
     //이미지파일만 보이게 설정
@@ -27,8 +28,13 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     // 파일 선택 필드에 이벤트 리스너 등록
-    document.getElementById('imageSelector').addEventListener('change', function(e){
+    $("input[type='file']").change(function (e) {
+
+        console.log("js들어옴");
         let elem = e.target;
+        console.log(elem);
+        console.log(elem.files[0]);
+        console.log(elem.files[1]);
         if(validateType(elem.files[0])){
             let preview = document.querySelector('.thumb'); // 미리보기 썸네일 <img> 엘리먼트 얻기
             preview.src = URL.createObjectURL(elem.files[0]); //파일 객체에서 이미지 데이터 가져옴.
