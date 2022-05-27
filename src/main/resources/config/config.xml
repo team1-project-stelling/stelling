@@ -19,6 +19,8 @@
         <typeAlias type="com.team1.stelling.domain.vo.UserVO" alias="UserVO"/>
         <typeAlias type="com.team1.stelling.domain.vo.Paging" alias="Paging"/>
         <typeAlias type="com.team1.stelling.domain.dto.NewIllustDTO" alias="NewIllustDTO"/>
+        <typeAlias type="com.team1.stelling.domain.vo.ChatMessageVO" alias="chatMessageVO"/>
+        <typeAlias type="com.team1.stelling.domain.vo.ChatMessageMyBatisVO" alias="chatMessageMyBatisVO"/>
     </typeAliases>
 </configuration>
 
