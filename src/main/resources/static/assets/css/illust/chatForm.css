@@ -97,6 +97,7 @@
     font-weight: bold;
     padding: 7px;
     font-size: 19px;
+    margin-top: 18px;
 }
 .headerUserName{
     display: flex;
