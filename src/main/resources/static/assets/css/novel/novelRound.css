@@ -1265,3 +1265,50 @@ input[type="checkbox"]:checked::before {
   font-size: 16px;
   color: #aeaeae;
 }
+
+.xIcon{
+  width: 25px;
+  height: 25px;
+  margin-left: 50px;
+  cursor: pointer;
+}
+.modal_background3{
+  position: fixed;
+  top:0; left: 0; bottom: 0; right: 0;
+  background: rgba(175, 175, 175, 0.44);
+  z-index: 2;
+  display: none;
+}
+.x{
+  font-size: 32px;
+  text-align: right;
+  margin-right: 15px;
+  margin-top: -5px;
+  cursor: pointer;
+}
+
+.cashCancle{
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 6px;
+  font-size: 21px;
+  padding: 7px 27px;
+  font-family: 'Elice Digital Baeum';
+  margin-right: 14px;
+  cursor:pointer;
+}
+.gotoCharge{
+  background-color: #ef6e73;
+  border: 1px solid #ef6e73;
+  color: white;
+  border-radius: 6px;
+  font-size: 21px;
+  padding: 7px 27px;
+  font-family: 'Elice Digital Baeum';
+  cursor:pointer;
+}
+.cashMent{
+  margin-top: 11px;
+  margin-bottom: 30px;
+  font-size: 24px;
+}

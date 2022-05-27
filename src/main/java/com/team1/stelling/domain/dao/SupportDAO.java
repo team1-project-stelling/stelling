@@ -17,7 +17,8 @@ public class SupportDAO {
     
     //후원 내역
     public List<SupportVO> getSuppotList(Criteria criteria, Long supportSponser) {return supportMapper.getSuppotList(criteria, supportSponser);}
-
+    
+    //후원등록
     public void register(SupportVO supportVO) {supportMapper.insert(supportVO);}
 
     //검색한 결과의 총 개수(페이징 처리)
