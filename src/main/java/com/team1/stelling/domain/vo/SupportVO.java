@@ -20,5 +20,5 @@ public class SupportVO {
    private Date supportDateTime; /*후원 날짜*/
 
 
-
+     
 }
