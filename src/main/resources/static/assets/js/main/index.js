@@ -31,7 +31,7 @@ function set (){
 window.onload=()=>{
 //초기값 세팅
 removes()
-change()  
+change()
 
 //오토 시작
 auto ()
@@ -66,13 +66,13 @@ prev.addEventListener('click',function(){
  
 })
 
-function change(){
-   set ()
-   
-   mainslide.classList.add('addd');
-   Mslide.classList.add('leftadd')
-   Pslide.classList.add('rightadd')
-}
+// function change(){
+//    set ()
+//
+//    mainslide.classList.add('addd');
+//    Mslide.classList.add('leftadd')
+//    Pslide.classList.add('rightadd')
+// }
    
    
 //자동 슬라이드

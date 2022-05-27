@@ -16,13 +16,13 @@ public class SupportDAO {
     private final SupportMapper supportMapper;
     
     //후원 내역
-    public List<SupportVO> getSuppotList(Criteria criteria, Long supportSponser) {return supportMapper.getSuppotList(criteria, supportSponser);}
-    
-    //후원등록
+
+    public List<SupportVO> getSuppotList(Paging paging, Long supportSponser) {return supportMapper.getSuppotList(paging, supportSponser);}
+
     public void register(SupportVO supportVO) {supportMapper.insert(supportVO);}
 
     //검색한 결과의 총 개수(페이징 처리)
-    public int getSearchSupportTotal(Criteria criteria) {return supportMapper.getSearchSupportTotal(criteria);}
+    public int getSearchSupportTotal(Paging paging) {return supportMapper.getSearchSupportTotal(paging);}
 
     //후원한 코인 총 개수
     public SupportDTO getSupportCoinTotal(Long supportSponser){return supportMapper.getSupportCoinTotal(supportSponser);}

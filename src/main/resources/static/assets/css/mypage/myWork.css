@@ -136,10 +136,11 @@ a.btn-view{
 .my-item{
     position: relative;
     display: flex;
-    padding: 18px 0px 10px 12px;
+    padding: 18px 13px 10px 12px;
     border-bottom: 1px solid #eee;
     float: left;
     zoom: 0.81;
+    justify-content: center;
 }
 
 img.close, img.open{
@@ -244,7 +245,6 @@ div.minimalistBlack {
 
 img {
     align-items: center;
-    margin-left: 5px;
 }
 
 /*페이징 css*/

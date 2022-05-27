@@ -2,6 +2,7 @@ package com.team1.stelling.domain.dto;
 
 
 import com.team1.stelling.domain.vo.Criteria;
+import com.team1.stelling.domain.vo.Paging;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,11 +24,11 @@ public class PageDTO {
     private int pageCount;
 
 
-    public PageDTO(Criteria criteria, int total) {
-        this(criteria, total, 10);
+    public PageDTO(Paging paging, int total) {
+        this(paging, total, 10);
     }
 
-    public PageDTO(Criteria criteria, int total, int pageCount){
+    public PageDTO(Paging paging, int total, int pageCount){
         this.criteria = criteria;
         this.total = total;
         this.pageCount = pageCount;

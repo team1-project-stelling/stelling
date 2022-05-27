@@ -50,8 +50,8 @@ public class UserVO {
     private String userFilePath;  // 파일 경로
 
     @Column(name = "USER_UUID")
-
     private String userUuid;  // uuid
+
     @Column(name = "USER_FILENAME")
     private String userFileName;  // 파일 이름
 

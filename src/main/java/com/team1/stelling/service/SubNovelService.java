@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -24,6 +25,8 @@ public class SubNovelService {
         vo.updateSubNovelUpdateDate();
         subNovelRepository.save(vo);
     }
+    public List<SubNovelVO> getList(Long novelNumber){return subNovelRepository.findByNovelVO_NovelNumber(novelNumber);}
+    public List<SubNovelVO> orderBySubNovelList(Long novelNumber){return subNovelRepository.findAllByNovelVO_NovelNumberOrderBySubNovelNumber(novelNumber);}
     public Page<SubNovelVO> getListByNovelNumber(Long novelNumber,  Pageable pageable){return subNovelRepository.findAllByNovelVO_NovelNumber(novelNumber, pageable);}
     public List<SubNovelVO> getListByNovelNumber(Long novelNumber){return subNovelRepository.findAllByNovelVO_NovelNumberOrderBySubNovelUploadDate(novelNumber);}
 //    public void removeSubNovelVO(Long snNo){subNovelRepository.deleteSubNovelVOBySubNovelNumber(snNo);}

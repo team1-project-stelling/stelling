@@ -10,8 +10,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 
+
 @Service
 public class OauthService {
+
 
     public String getKakaoAccessToken(String code) {
         String access_Token = "";
@@ -95,8 +97,6 @@ public class OauthService {
 
             userInfo.put("nickname", nickname);
             userInfo.put("email", email);
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
