@@ -6,6 +6,7 @@ import com.team1.stelling.domain.vo.*;
 import com.team1.stelling.mapper.PayMapper;
 import com.team1.stelling.service.PayService;
 import com.team1.stelling.service.SupportService;
+import com.team1.stelling.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.HandlerMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -27,6 +29,8 @@ public class MyLibraryController {
 
     private final PayService payService;
     private final SupportService supportService;
+    private final UserService userService;
+
 
     @RequestMapping("")
     public void myLibrary(){
@@ -53,10 +57,11 @@ public class MyLibraryController {
         log.info("myLibraryPick");
         return "myLibrary/myLibraryPick";
     }
-
+    
+    //코인샵 이동
     @GetMapping("/coinShop")
     public String coinShop(){
-        log.info("coinShop");
+
         return "cash/coinShop";
     }
 
@@ -108,27 +113,5 @@ public class MyLibraryController {
         return "myPage/myPageSupportList";
     }
 
-    //후원 리스트(마이페이지)
-//    @GetMapping("/showList")
-//    public String showList(Long userNumber, Criteria criteria, Model model){
-//
-//    }
-
-//    @GetMapping("/payList/{userNumber}")
-//    public String payList(@PathVariable Long userNumber, String startDate, String endDate, Model model){
-//        if(startDate == null & endDate == null) {
-//            model.addAttribute("payList", payService.getList(userNumber));
-//        }
-//        return "myPage/myPagePayList";
-//    }
-    //날짜 검색(마이페이지)
-//    @GetMapping("/dateSelect")
-//    public void dateSelect(String startDate, String endDate)
-    //결제 내역 등록
-//    @PostMapping("/register/{userNumber}/{payCharge}/{payCoinCount}")
-//    public String register(@PathVariable Long userNumber, @PathVariable Long payCharge, @PathVariable Long payCoinCount){
-//        payService.register(userNumber, payCharge, payCoinCount);
-//        return "cash/coinShop";
-//    }
 
 }

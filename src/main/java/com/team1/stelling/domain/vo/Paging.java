@@ -22,6 +22,12 @@ public class Paging {
     /* 검색 키워드 */
     private String keyword;
 
+    /* 시작 날짜 */
+    private String StartDate;
+
+    /* 끝 날짜 */
+    private String endDate;
+
     /* Criteria 생성자 */
     public Paging(int pageNum, int amount) {
         this.pageNum = pageNum;
