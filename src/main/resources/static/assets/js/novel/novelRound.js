@@ -1,29 +1,21 @@
 function ModalHandler(){
-
     document.body.classList.add('preventscroll');
     document.querySelector('.Sponmodalwrap').style.display='block'
 }
-
 function ModalHandlerClose(){
-
     document.querySelector('.Sponmodalwrap').style.display='none'
     document.body.classList.remove('preventscroll');
 }
-
-
 function IntroModalHandler(){
     document.body.classList.add('preventscroll');
     document.querySelector('.intromodalwrap').style.display='block'
-
 }
-
 function IntroModalHandlerClose(){
     document.body.classList.remove('preventscroll');
     document.querySelector('.intromodalwrap').style.display='none'
-
 }
 
-/*수정,삭제 버튼*/
+//소설회차 수정버튼
 $('span.modify').on("click", function () {
     $('div.modify').css('display', 'block');
     $('div.delete').css('display', 'none');
@@ -31,7 +23,7 @@ $('span.modify').on("click", function () {
     $('div.ok').css('display', 'none');
     $('div.cancle').css('display', 'block');
 })
-
+//소설회차 삭제버튼
 $('span.delete').on("click", function () {
     $('div.delete').css('display', 'block');
     $('div.modify').css('display', 'none');
@@ -39,15 +31,14 @@ $('span.delete').on("click", function () {
     $('div.ok').css('display', 'block');
     $('div.cancle').css('display', 'none');
 })
+//소설회차 취소버튼
 $('div.cancle').on("click", function () {
     $('div.cancle').css('display', 'none');
     $('div.delete').css('display', 'none');
     $('div.modify').css('display', 'none');
     $('div.change').css('display', 'block');
-
-    // $('div.ok').css('display', 'none');
 })
-
+//소설회차 완료버튼
 $('div.ok').on("click", function () {
     $('div.change').css('display','block');
     $('div.ok').css('display', 'none');
@@ -57,90 +48,10 @@ $('div.ok').on("click", function () {
 })
 
 /*수정 아이콘 눌렀을 때 */
-
 $('div.modify>img.modifyIcon').on("click",function () {
     let subnovelNumber=$(this).attr('id');
-    location.href="novelModify?subNovelNumber="+subnovelNumber;
+    location.href="novelModify?subNovelNumber="+subnovelNumber+"&novelNumber="+novelNumber;
 })
-
-$('div.delete>input.deleteCheckBox').on("click", function () {
-    let subnovelNumber = $(this).attr('id');
-
-})
-
-
-let count=0;
-window.onscroll = function(e) {
-
-    if((window.innerHeight + window.scrollY+1) >= document.body.offsetHeight) {
-
-        const ReplyCmt =$(".ReplyCmt");
-        const ReplySize = $('.replySize');
-        console.log("이벤트 들어옴");
-        getReplyListPageing(novelNumber,count,function (replyVOList, userVOList) {
-            console.log(count);
-
-            let str = "";
-            let replyVO = replyVOList.content;
-            let userVO = userVOList.content;
-            ReplySize.html(replyVOList.totalElements+"개");
-
-            if(replyVOList.content.length== null || replyVOList.content.length == 0 && replyVOList.content[0].replyNumber!=undefined){
-                ReplyCmt.html("<p>등록된 댓글이 없습니다.</p>");
-                return;
-                }
-                for (let i=0; i<replyVO.length; i++){
-                    console.log("반복문");
-                    let replyUploadDate =replyVO[i].replyUpdateDate+"";
-                    str +="<div class='profilePlusText' style='position: relative;'>";
-                    str +="<div class='Best'>Best</div>";
-                    str +="<div>";
-                    str +="<div class='profile'><img src='"+userVO[i].userFilePath+"'class='img'/></div>";
-                    str +="</div>";
-                    str +="<div style='width: 678px;'>";
-                    str +="<div style='font-size: 12px;'>"+ userVO[i].userNickName +"</div>";
-                    str +="<div>"+replyVO[i].replyContent+"</div>";
-                    str +="</div>";
-                    str +="<div>";
-                    str +="<div style='text-align: right; display: flex;'>";
-                    str +="<button class='mentBtns mentBtns1' style='margin-right: 6px; border-color:#cbcbcb; color:#cbcbcb;' data-replynum ='"+replyVO[i].replyNumber+"' type='button'>";
-                    str +="<img src='/images/icon/좋아요.png' height='20' width='20' class='likeBtn'/>";
-                    str +="<span style='vertical-align: super;'>"+replyVO[i].replyUp+"</span>";
-                    str +="</button>";
-                    str +="<button class='mentBtns siren' style='border-color: #ef6e73;' id='"+replyVO[i].replyNumber+"'><img src='/images/icon/사이렌full.png' height='20' width='20'/></button>";
-                    str +="</div>";
-                    str +="<div class='date'>";
-                    str +=replyUploadDate.substring(0,10);
-                    str +="</div>";
-                    str +="</div>";
-                    str +="</div>";
-                 };
-                console.log("반복문한회차끝");
-            $('.ReplyCmt').append(str);
-        });
-        count++;
-    }
-
-}
-
-/*댓글+유저 VOLIST 불러오기 */
-function getReplyListPageing(novelNumber,page, callback, error) {
-
-    $.ajax({
-        type:"get",
-        url:"/reply/getReplyUserDTO?novelNumber="+novelNumber+"&page="+page,
-        success:function (ReplyUserDTO) {
-            if(callback){
-                callback(ReplyUserDTO.replyVOList, ReplyUserDTO.userVOList);
-            }
-        },
-        error:function (error) {
-            alert("댓글불러오기실패");
-        },
-    });
-}
-
-
 
 
 
@@ -173,7 +84,7 @@ function setStringNumber(count) {
 
 
 
-
+//삭제버튼(체크박스)눌렀을때 클래스 부여
 $('.deleteCheckBox').on("click",function(){
     if($(this).is(':checked')){
         $(this).addClass("checkDelete");
@@ -182,7 +93,7 @@ $('.deleteCheckBox').on("click",function(){
     }
 })
 
-/*삭제기능*/
+//삭제 완료 버튼
 $('.ok').on("click",function () {
     let array = new Array;
     $(".checkDelete").each(function(i, check){
@@ -206,17 +117,17 @@ $('.ok').on("click",function () {
 
 /*소설 찜하기*/
 $('.myPick').on("click", function () {
-    let num = 0;
+    let novelHeart = 0;
     if($(this).attr('src')=="/images/icon/소설하트.png"){
         $(this).attr('src',"/images/icon/소설하트full.png");
-        num=1;
+        novelHeart=1;
     }else{
         $(this).attr('src',"/images/icon/소설하트.png");
-        num=-1;
+        novelHeart=-1;
     }
 
     $.ajax({
-        url:"/novel/myPick?num="+num+"&novelNumber="+novelNumber+"&userNumber="+userNumber,
+        url:"/novel/myPick?num="+novelHeart+"&novelNumber="+novelNumber+"&userNumber="+userNumber,
         type:"get",
         success:function (result) {
             console.log(result);
@@ -229,88 +140,64 @@ $('.myPick').on("click", function () {
 
 });
 
+$('.Noveltt').on("click", function () {
+    if($(this).hasClass("locked")){
 
-/*댓글 좋아요 기능*/
-$('.ReplyCmt').on("click", "button.mentBtns1",function () {
-    let replyNum=$(this).data("replynum");
-    if ($(this).children('img').attr('src') == '/images/icon/좋아요full.png') {
-        let $number = parseInt($(this).children('span').html());
-        $(this).css('border-color', '#cbcbcb');
-        $(this).css('color', '#cbcbcb');
-        $(this).children('img').attr('src', '/images/icon/좋아요.png');
-        $(this).children('span').html($number - 1);
-        replyUp({"replyNum":replyNum, "num":-1}, function(result){
-        });
-
-    } else {
-
-        let $number = parseInt($(this).children('span').html());
-        $(this).css('border-color', '#5A94FF');
-        $(this).css('color', '#5A94FF');
-        $(this).children('img').attr('src', '/images/icon/좋아요full.png');
-        $(this).children('span').html($number + 1);
-        replyUp({"replyNum":replyNum, "num":1},function(result) {
-        });
     }
+})
 
+
+let href;
+let subNovelNum;
+/*소설회차 잠금 모달*/
+$('.locked2').on("click", function (e) {
+    e.preventDefault();
+    $('.modal_background').css('display', 'block');
+    // lockIcon=$(this).children('img');
+    href=$(this).parent().attr('href');
+    subNovelNum=$(this).parent().attr('name');
+
+})
+//후원 모달창 바깥영역 눌러서 닫기
+$(document).mouseup(function (e){
+    let container = $('.modal_background');
+    let container2 = $('.modal_background2');
+    if( container.has(e.target).length === 0){
+        container.css('display','none');
+    }
+    if(container2.has(e.target).length === 0){
+        container2.css('display','none');
+        // location.href=href;
+    }
 });
-/*댓글 좋아요기능 ajax*/
-function replyUp(reply, callback, error){
+
+//후원 모달창 '안볼래요'버튼 클릭시 닫기
+$('.coinBtn2').on("click", function () {
+    $('.modal_background').css('display','none');
+})
+
+//후원 코인 결제 눌렀을 때
+$('.coinBtn1').on("click", function () {
+    $('.modal_background').css('display', 'none');
+    $('.modal_background2').css('display', 'block');
 
     $.ajax({
-        type: "GET",
-        url: "/reply/"+reply.replyNum+"/"+reply.num,
-        success: function(result, status, xhr){
-            if(callback){
-                callback(result);
-            }
+        type:"get",
+        url:"/buyChapter/checkBalanceAndBuy?novelNumber="+novelNumber+"&subNovelNumber="+subNovelNum+"&userNumber="+userNumber+"",
+        success:function (result) {
+            console.log(result);
         },
-        error: function(xhr, status, er){
-            if(error){
-                error(er);
-            }
+        error:function (error) {
+            console.log(error);
         }
-
-    });
-}
-
-/*댓글 신고*/
-$('.ReplyCmt').on("click", "button.siren",function () {
-    Swal.fire({
-        title: '해당 댓글을 신고하시겠습니까?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#ef6e73',
-        cancelButtonColor: '#a8a8a8',
-        confirmButtonText: '네',
-        cancelButtonText: '아니요',
-        fontSize : 15,
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire({
-                confirmButtonColor: '#ef6e73',
-                title:'신고되었습니다.'
-            })
-            $.ajax({
-                type:"get",
-                url:"/novelDetail/siren?replyNumber="+$(this).attr('id'),
-                success:function (result) {
-                    console.log(result);
-                },
-                error:function (error) {
-                    alert("댓글 신고 실패");
-                    console.log(error);
-                }
-
-            })
-
-        }
-
     })
-});
+})
+//결제 완료모달창 닫기
+$('.goToRead').on("click", function () {
+    $('.modal_background2').css('display', 'none');
+    location.href=href;
 
-
-
+})
 
 
 

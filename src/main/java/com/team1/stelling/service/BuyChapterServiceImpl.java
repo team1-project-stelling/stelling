@@ -15,4 +15,6 @@ public class BuyChapterServiceImpl implements BuyChapterService{
     public BuyChapterVO get(Long userNumber) {
         return buyChapterDAO.get(userNumber);
     }
+
+    public void register(BuyChapterVO buyChapterVO){buyChapterDAO.register(buyChapterVO);}
 }

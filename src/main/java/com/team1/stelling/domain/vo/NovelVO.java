@@ -1,6 +1,7 @@
 package com.team1.stelling.domain.vo;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
@@ -27,9 +28,10 @@ public class NovelVO {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     @Column(name = "NOVEL_NUMBER")
-   private Long novelNumber;  // 노벨번호
+    private Long novelNumber;  // 노벨번호
 
    @ManyToOne
+   @JsonIgnore
    @JoinColumn(name ="USER_NUMBER")
    private UserVO userVO;
 

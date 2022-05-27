@@ -6,6 +6,7 @@ import com.team1.stelling.domain.vo.*;
 import com.team1.stelling.mapper.PayMapper;
 import com.team1.stelling.service.PayService;
 import com.team1.stelling.service.SupportService;
+import com.team1.stelling.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,8 @@ public class MyLibraryController {
 
     private final PayService payService;
     private final SupportService supportService;
+    private final UserService userService;
+
 
     @RequestMapping("")
     public void myLibrary(){
