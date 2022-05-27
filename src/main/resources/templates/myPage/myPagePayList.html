@@ -237,5 +237,11 @@
         location.href = uri + queryString + "&userNumber=" + session;
     }
     /* ]]*/
+
+    //날짜 검색
+    $("#btnSearch").click(function(e){
+        $(dateForm).find("input[name='userNumber']").val(userNumber);
+        $(dataForm).submit();
+    })
 </script>
 </html>
