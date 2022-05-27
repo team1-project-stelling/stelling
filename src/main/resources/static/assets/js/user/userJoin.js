@@ -1,4 +1,3 @@
-const check = false;
 const modal = document.querySelector('.modal');
 const btnOpenPopup1 = document.querySelector('.btn-open-popup1');
 const btnOpenPopup2 = document.querySelector('.btn-open-popup2');
@@ -105,6 +104,7 @@ window.onload = function(){
 };
 
 function joinform_check() {
+    let check = true;
     const uid = document.getElementById("userId");
     const pwd = document.getElementById("userPw");
     const repwd = document.getElementById("repwd");
@@ -112,73 +112,79 @@ function joinform_check() {
     const mobile = document.getElementById("userPhoneNum");
     const email_id = document.getElementById("userEmail");
 
-        if (uid.value == "") {
-           Swal.fire({
-               icon: 'warning',
-               text: '아이디를 확인해주세요.'
-           });
-            uid.focus();
-            return false;
-        };
-
-        if (pwd.value == "") {
-            Swal.fire({
-                icon: 'warning',
-                text: '비밀번호를 확인해주세요.'
-            });
-            pwd.focus();
-            return false;
-        };
-
-        const pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-        if (!pwdCheck.test(pwd.value)) {
-            Swal.fire({
-                icon: 'warning',
-                text: '비밀번호를 확인해주세요.'
-            });
-            pwd.focus();
-            return false;
-        };
-
-        if (repwd.value !== pwd.value) {
-            Swal.fire({
-                icon: 'warning',
-                text: '비밀번호가 일치하지 않습니다.'
-            });
-            repwd.focus();
-            return false;
-        };
-
-        if (uname.value == "") {
-            Swal.fire({
-                icon: 'warning',
-                text: '닉네임을 확인해주세요.'
-            });
-            uname.focus();
-            return false;
-        };
-
-        if (email_id.value == "") {
-            Swal.fire({
-                icon: 'warning',
-                text: '이메일 주소를 확인해주세요.'
-            });
-            email_id.focus();
-            return false;
-        }
-
-        const reg = /^[0-9]+/g;
-        if (!reg.test(mobile.value)) {
-            Swal.fire({
-                icon: 'warning',
-                text: '휴대폰번호를 확인해주세요.'
-            });
-            mobile.focus();
-            return false;
-        }
-        document.joinForm.submit();
-
+    if (uid.value == "") {
+        Swal.fire({
+            icon: 'warning',
+            text: '아이디를 확인해주세요.'
+        });
+        uid.focus();
+        check = false;
     }
+
+    if (pwd.value == "") {
+        Swal.fire({
+            icon: 'warning',
+            text: '비밀번호를 확인해주세요.'
+        });
+        pwd.focus();
+        check = false;
+    }
+
+    const pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+    if (!pwdCheck.test(pwd.value)) {
+        Swal.fire({
+            icon: 'warning',
+            text: '비밀번호를 확인해주세요.'
+        });
+        pwd.focus();
+        check = false;
+    }
+
+    if (repwd.value !== pwd.value) {
+        Swal.fire({
+            icon: 'warning',
+            text: '비밀번호가 일치하지 않습니다.'
+        });
+        repwd.focus();
+        check = false;
+    }
+
+    if (uname.value == "") {
+        Swal.fire({
+            icon: 'warning',
+            text: '닉네임을 확인해주세요.'
+        });
+        uname.focus();
+        check = false;
+    }
+
+    if (email_id.value == "") {
+        Swal.fire({
+            icon: 'warning',
+            text: '이메일 주소를 확인해주세요.'
+        });
+        email_id.focus();
+        check = false;
+    }
+
+    const reg = /^[0-9]+/g;
+    if (!reg.test(mobile.value)) {
+        Swal.fire({
+            icon: 'warning',
+            text: '휴대폰번호를 확인해주세요.'
+        });
+        mobile.focus();
+        check = false;
+    }
+
+    if (check == true) {
+        Swal.fire({
+            icon: 'scuccess',
+            text: '회원가입이 완료되었습니다.'
+        });
+        document.joinForm.submit();
+    }
+}
 
 
 
