@@ -19,5 +19,5 @@ public class SupportVO {
    private int supportCoin; /*후원 금액 = 차감 코인*/
    private Date supportDate; /*후원 날짜*/
 
-
+     
 }
