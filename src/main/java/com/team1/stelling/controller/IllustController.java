@@ -144,7 +144,7 @@ public class IllustController {
     public RedirectView illustRegister(IllustVO illustVO,HttpServletRequest request){
 
         HttpSession session = request.getSession();
-        Long userNumber = Long.valueOf((Integer)session.getAttribute("userNumber"));
+        Long userNumber = (Long) session.getAttribute("userNumber");
         illustVO.setUserVO(userService.get(userNumber));
         illustService.illustRegister(illustVO);
 
@@ -170,9 +170,9 @@ public class IllustController {
     public void illustUserInput(Long userNumber, Model model, HttpServletRequest request){
 
         HttpSession session = request.getSession();
-        Long.valueOf((Integer)session.getAttribute("userNumber"));
+        session.getAttribute("userNumber");
 
-        model.addAttribute("user", userService.get(Long.valueOf((Integer)session.getAttribute("userNumber"))));
+        model.addAttribute("user", userService.get((Long) session.getAttribute("userNumber")));
 
     }
 
@@ -226,18 +226,18 @@ public class IllustController {
     public String illustProfileCheck1(IllustVO illustVO,HttpServletRequest request, Model model){
 
         HttpSession session = request.getSession();
-        Long.valueOf((Integer)session.getAttribute("userNumber"));
+        session.getAttribute("userNumber");
 
-        if( illustProfileService.checkProfile(Long.valueOf((Integer)session.getAttribute("userNumber"))) != null){
+        if( illustProfileService.checkProfile(((Long) session.getAttribute("userNumber"))) != null){
 
-            illustVO.setUserVO(userService.get(Long.valueOf((Integer)session.getAttribute("userNumber"))));
+            illustVO.setUserVO(userService.get((Long) session.getAttribute("userNumber")));
             illustService.illustRegister(illustVO);
 
             return "illust/illustPostingPage";
 
         } else {
 
-            model.addAttribute("user", userService.get(Long.valueOf((Integer)session.getAttribute("userNumber"))));
+            model.addAttribute("user", userService.get((Long) session.getAttribute("userNumber")));
 
             return "illust/illustUserInput";
         }
@@ -249,16 +249,16 @@ public class IllustController {
 
 
         HttpSession session = request.getSession();
-        Long.valueOf((Integer)session.getAttribute("userNumber"));
+        session.getAttribute("userNumber");
 
-        if( illustProfileService.checkProfile(Long.valueOf((Integer)session.getAttribute("userNumber"))) != null){
+        if( illustProfileService.checkProfile((Long) session.getAttribute("userNumber")) != null){
 
-            Page<IllustVO> list = illustService.getUserIllustList(pageable, Long.valueOf((Integer)session.getAttribute("userNumber")));
+            Page<IllustVO> list = illustService.getUserIllustList(pageable, (Long) session.getAttribute("userNumber"));
             PageableDTO pageableDTO = new PageableDTO((int) list.getTotalElements(), pageable);
 
             model.addAttribute("illustNumber", illustNumber);
-            model.addAttribute("getLikeTotal", illustService.getLikeTotal(Long.valueOf((Integer)session.getAttribute("userNumber"))));
-            model.addAttribute("illustProfile", illustProfileService.getProfile(Long.valueOf((Integer)session.getAttribute("userNumber"))));
+            model.addAttribute("getLikeTotal", illustService.getLikeTotal((Long) session.getAttribute("userNumber")));
+            model.addAttribute("illustProfile", illustProfileService.getProfile((Long) session.getAttribute("userNumber")));
             model.addAttribute("total", list.getTotalElements());
             model.addAttribute("pageableDTO", pageableDTO);
             model.addAttribute("list", list);
@@ -268,7 +268,7 @@ public class IllustController {
         } else {
 
 
-            model.addAttribute("user", userService.get(Long.valueOf((Integer)session.getAttribute("userNumber"))));
+            model.addAttribute("user", userService.get((Long) session.getAttribute("userNumber")));
 
             return "illust/illustUserInput";
         }
