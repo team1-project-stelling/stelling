@@ -523,7 +523,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script>
+<script th:inline="javascript">
 
     // $("iamportPayment").data('no')
     /*
@@ -535,13 +535,11 @@
 
     const userNumber = 1; //임시 유저 넘버
 
+    // let userNumber = [[${session.userNumber}]];
+
     const IMP = window.IMP;
     const code = "imp64732675"; //가맹점 식별코드
     IMP.init(code);
-
-    // $(".iamportPayment").on("click", function(){
-    //
-    //     $(this).on("click", function(){
 
     $(".iamportPayment").on('click', function(){
         console.log('상품명' + ':' + $(this).data('tit'));
@@ -562,7 +560,7 @@
                 name : $(this).data('tit'), // 상품명
                 amount : $(this).data('price'),
                 buyer_email : 'skminy27@nate.com',
-                buyer_name : '신재민',
+                buyer_name : '재민',
                 buyer_tel : '01089087253',  //필수항목
                 // buyer_addr: "서울특별시 강남구 역삼동",
                 //결제완료후 이동할 페이지 kko나 kkopay는 생략 가능

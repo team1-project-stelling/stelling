@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NovelDTO {
+    private String userNickName;
     private String novelTitle;
     private String novelUploadPath;
     private String novelFileName;

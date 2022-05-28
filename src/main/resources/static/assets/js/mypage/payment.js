@@ -138,9 +138,6 @@ $(".mySupport").click(function(){
 //     $(pageForm).submit();
 // })
 //
-// $("#btnSearch").click(function(e){
-//     $(dateForm).find("input[name='userNumber']").val(userNumber);
-//     $(dataForm).submit();
-// })
+
 
 

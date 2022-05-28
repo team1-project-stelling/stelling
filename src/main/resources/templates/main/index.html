@@ -17,6 +17,11 @@
             display: flex;
             height: 135px;
         }
+        .M_tags{
+            text-decoration: none;
+            color: black;
+        }
+
     </style>
 </head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -71,16 +76,16 @@
     </h2>
     <div class="M_tags_area">
         <div class="M_tags" >
-            <span class="tagspan  clinkadd " value="all"  > <a class="M_tags"  value="28" > 전체</a></span>
-            <span class="tagspan " value="판타지" > <a class="M_tags"> 판타지</a></span>
-            <span class="tagspan " value="무협" > <a class="M_tags"> 무협</a></span>
-            <span class="tagspan " value="현대" > <a class="M_tags"> 현대</a></span>
-            <span class="tagspan " value="로멘스" > <a class="M_tags"> 로멘스</a></span>
-            <span class="tagspan " value="현대판타지" > <a class="M_tags"> 현대판타지</a></span>
-            <span class="tagspan " value="라이트노벨" > <a class="M_tags"> 라이트노벨</a></span>
-            <span class="tagspan " value="공포" > <a class="M_tags"> 공포</a></span>
-            <span class="tagspan " value="SF" > <a class="M_tags"> SF</a></span>
-            <span class="tagspan " value="스포츠" > <a class="M_tags"> 스포츠</a></span>
+            <a class="M_tags"  value="28" th:classappend="${mainCriteria.keyword== 'searchAll'} ? 'menuActive' : ''" href="searchAll"> <span class="tagspan  clinkadd " value="all"  > 전체</span></a>
+            <a class="M_tags" th:classappend="${mainCriteria.keyword== '판타지'} ? 'menuActive' : ''" href="판타지"><span class="tagspan " value="판타지" >  판타지</span></a>
+            <a class="M_tags" th:classappend="${mainCriteria.keyword== '무협'} ? 'menuActive' : ''" href="무협"> <span class="tagspan " value="무협" > 무협</span></a>
+            <a class="M_tags" th:classappend="${mainCriteria.keyword== '현대'} ? 'menuActive' : ''" href="현대"><span class="tagspan " value="현대" > 현대</span></a>
+            <a class="M_tags" th:classappend="${mainCriteria.keyword== '로맨스'} ? 'menuActive' : ''" href="로맨스"><span class="tagspan " value="로멘스" > 로맨스</span></a>
+            <a class="M_tags" th:classappend="${mainCriteria.keyword== '현대판타지'} ? 'menuActive' : ''" href="현대판타지"><span class="tagspan " value="현대판타지" >  현대판타지</span></a>
+            <a class="M_tags" th:classappend="${mainCriteria.keyword== '라이트노벨'} ? 'menuActive' : ''" href="라이트노벨"><span class="tagspan " value="라이트노벨" >  라이트노벨</span></a>
+            <a class="M_tags" th:classappend="${mainCriteria.keyword== '공포'} ? 'menuActive' : ''" href="공포"><span class="tagspan " value="공포" > 공포</span></a>
+            <a class="M_tags" th:classappend="${mainCriteria.keyword== 'SF'} ? 'menuActive' : ''" href="SF"><span class="tagspan " value="SF" > SF</span></a>
+            <a class="M_tags" th:classappend="${mainCriteria.keyword== '스포츠'} ? 'menuActive' : ''" href="스포츠"><span class="tagspan " value="스포츠" > 스포츠</span></a>
 
 
 
@@ -99,30 +104,16 @@
             </div>
             <div class="content-wrap">
             <ul>
-                <li class="live-hot">
-                    <img src="https://image.novelpia.com/imagebox/cover/bf0de9f85bcef128854633c0361708aa_476858_ori.file" style="width: 90px;">
+                <th:block th:each="viewCount,index:${viewCountList}">
+                <li class="live-hot" th:object="${viewCount}">
+                    <img th:src="'/upload/display?fileName='+*{novelUploadPath}+'/'+*{novelFileName}" style="width: 90px;">
                     <div style="margin-left: 15px; line-height: 1;">
-                        <p><b>1</b> 히어로가 집착하는 악당이 되었다.</p>
-                        <p>서은하</p>
-                        <p>#판타지 #현대 #착각 #후회 #집착 #피폐 #히어로</p>
+                        <b th:text="${index.count}"></b><span th:text="*{novelTitle}" style="margin-left: 8px;"></span>
+                        <p th:text="*{userNickName}">서은하</p>
+                        <p th:text="*{novelHashtag}">#판타지 #현대 #착각 #후회 #집착 #피폐 #히어로</p>
                     </div>
                 </li>
-                <li class="live-hot">
-                    <img src="https://image.novelpia.com/imagebox/cover/bf0de9f85bcef128854633c0361708aa_476858_ori.file" style="width: 90px;">
-                    <div style="margin-left: 15px; line-height: 1;">
-                        <p><b>1</b> 히어로가 집착하는 악당이 되었다.</p>
-                        <p>서은하</p>
-                        <p>#판타지 #현대 #착각 #후회 #집착 #피폐 #히어로</p>
-                    </div>
-                </li>
-                <li class="live-hot">
-                    <img src="https://image.novelpia.com/imagebox/cover/bf0de9f85bcef128854633c0361708aa_476858_ori.file" style="width: 90px;">
-                    <div style="margin-left: 15px; line-height: 1;">
-                        <p><b>1</b> 히어로가 집착하는 악당이 되었다.</p>
-                        <p>서은하</p>
-                        <p>#판타지 #현대 #착각 #후회 #집착 #피폐 #히어로</p>
-                    </div>
-                </li>
+                </th:block>
             </ul>
             </div>
             <div class="tags_container tags_left">
@@ -133,11 +124,25 @@
             <div class="tags_header">
                 <span>선호작수</span> <a href="#">더보기</a>
             </div>
-            <div class="tags_container tags_middle" ></div></div>
+            <div class="tags_container tags_middle" >
+                <ul>
+                    <th:block th:each="likeCount,index:${likeCountList}">
+                        <li class="live-hot" th:object="${likeCount}">
+                            <img th:src="'/upload/display?fileName='+*{novelUploadPath}+'/'+*{novelFileName}" style="width: 90px;">
+                            <div style="margin-left: 15px; line-height: 1;">
+                                <b th:text="${index.count}"></b><span th:text="*{novelTitle}" style="margin-left: 8px;"></span>
+                                <p th:text="*{userNickName}">서은하</p>
+                                <p th:text="*{novelHashtag}">#판타지 #현대 #착각 #후회 #집착 #피폐 #히어로</p>
+                            </div>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+        </div>
 
         <div class="tags_List">
             <div class="tags_header tags_middle">
-                <span>완결작</span> <a href="#">더보기</a></div>
+                <span>찜</span> <a href="#">더보기</a></div>
             <div class="tags_container tags_right" ></div></div>
 
     </div></div>
@@ -161,7 +166,7 @@
                             <li style="margin-right :20px;" th:object="${newWork}">
                                 <a href=""><img th:src="'/upload/display?fileName='+*{novelUploadPath}+'/'+*{novelFileName}" style="width: 175px;" alt="이미지 준비중"></a>
                                 <p style="margin: 0; font-size: 14px;" th:text="*{novelTitle}"></p>
-                                <p style="margin: 0; font-size: 14px;">작가이름</p>
+                                <p style="margin: 0; font-size: 14px;" th:text="*{userNickName}"></p>
                             </li>
                         </th:block>
                     </ul>
@@ -217,8 +222,9 @@
 <script src="/assets/js/main/index.js"></script>
 <script src="/assets/js/fix/header.js"></script>
 <script th:inline="javascript">
-    const userNumber = [[${session.userNumber}]];
+    let userNumber = [[${session.userNumber}]];
     console.log("세션 유저 번호 : " + userNumber);
+    let keyword = [[${mainCriteria.keyword}]];
     // const userNumber = [[${session.userNumber}]];
     // console.log(userNumber);
 
@@ -231,5 +237,11 @@
             location.href = "/myPage/myPageEditProfile?userNumber=" + userNumber;
         }
     }
+
+    $("a.M_tags").click(function(e){
+        e.preventDefault();
+        location.href = "/main/index?keyword=" +$(this).attr("href");
+    })
+
 </script>
 </html>

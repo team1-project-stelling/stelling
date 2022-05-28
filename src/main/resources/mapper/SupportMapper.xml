@@ -4,9 +4,9 @@
 
     <!--등록-->
     <insert id="insert">
-        INSERT INTO TBL_SUPPORT (SUPPORT_SPONSER, SUPPORT_RECEIVER, NOVEL_NUMBER, SUPPORT_COIN)
-        VALUES(#{supportSponser}, #{supportReceiver}, #{novelNumber}, #{supportCoin})
-
+        INSERT INTO TBL_SUPPORT
+        (USER_NUMBER, NOVEL_NUMBER, SUBNOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE)
+        VALUES(#{supportSponser}, #{novelNumber}, #{subNovelNumber}, #{supportCoin}, curdate());
     </insert>
 
     <!--삭제-->
@@ -30,7 +30,7 @@
         FROM TBL_SUPPORT
     </select>
 
-    <!--총 결제 금액-->
+    <!--총 후원 금액-->
     <select id="getSupportCoinTotal" resultType="SupportDTO">
         SELECT SUPPORT_SPONSER, SUM(SUPPORT_COIN) AS SUPPORT_TOTAL
         FROM TBL_SUPPORT

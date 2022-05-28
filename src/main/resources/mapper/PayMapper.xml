@@ -19,6 +19,11 @@
             SELECT PAY_NUMBER, USER_NUMBER, PAY_CHARGE, PAY_COINCOUNT, PAY_DATETIME, PAY_STATUS
             FROM TBL_PAY
             WHERE USER_NUMBER = #{userNumber}
+            <if test="paging.startDate != null and paging.endDate != null">
+                <trim prefix="AND">
+                    PAY_DATETIME BETWEEN #{paging.startDate} AND #{paging.endDate}
+                </trim>
+            </if>
             ORDER BY PAY_NUMBER DESC
             LIMIT #{paging.skip}, #{paging.amount}
     </select>

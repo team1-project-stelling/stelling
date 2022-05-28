@@ -206,9 +206,60 @@ $('.coin').on("click", function () {
 $(document).mouseup(function (e){
     $('.coin').attr('src', '/images/icon/후원코인.png');
     let container = $('.modal_background');
+    let container2 = $('.modal_background2');
+    let container3 = $('.modal_background3');
+
     if( container.has(e.target).length === 0){
         container.css('display','none');
     }
+    if( container2.has(e.target).length === 0){
+        container2.css('display','none');
+    }
+    if( container3.has(e.target).length === 0){
+        container3.css('display','none');
+    }
 });
 
+$('.x').on("click",function () {
+    $('.modal_background2').css("display", 'none');
+})
+$('.x2').on("click",function () {
+    $('.modal_background3').css("display", 'none');
+})
 
+//후원하기 버튼 눌렀을 때
+$('.coinEnter').on("click", function () {
+    $('.modal_background').css('display', 'none');
+
+    let coin = $('input[name="coinAmount"]').val();
+    supporting(novelNumber, subNovelNumber, userNumber, coin,function (result) {
+        if(result.status=='fail'){
+            $('.modal_background2').css('display', 'block');
+            $('.balance').html("현재 잔액:"+result.balance+"코인");
+            $('input[name="coinAmount"]').val("");
+
+        }else if(result.status=='success'){
+            $('.modal_background3').css('display', 'block');
+            $('.balance2').html("현재 잔액:"+result.balance+"코인");
+            $('.currentCoin').html("현재코인: "+result.balance+"코인");
+            $('input[name="coinAmount"]').val("");
+
+        }
+    });
+});
+
+function supporting(novelNumber, subNovelNumber, userNumber, coin, callback) {
+    $.ajax({
+        type:"get",
+        url:"/novelDetail/supporting?novelNumber="+novelNumber+"&SubNovelNumber="+subNovelNumber+"&userNumber="+userNumber+"&coin="+coin,
+        dataType:"json",
+        success:function (result) {
+            if(callback){
+                callback(result);
+            }
+        },
+        error:function (error) {
+            console.log(error);
+        }
+    });
+}

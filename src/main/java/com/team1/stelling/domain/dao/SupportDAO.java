@@ -16,6 +16,7 @@ public class SupportDAO {
     private final SupportMapper supportMapper;
     
     //후원 내역
+
     public List<SupportVO> getSuppotList(Paging paging, Long supportSponser) {return supportMapper.getSuppotList(paging, supportSponser);}
 
 
