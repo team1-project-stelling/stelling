@@ -31,4 +31,9 @@
         WHERE USER_ID = #{userId}
     </select>
 
+    <select id="findByUserNumber" resultType="UserVO">
+        SELECT USER_NUMBER, USER_NICKNAME, USER_EMAIL, USER_PHONENUM
+        FROM TBL_USER
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
 </mapper>

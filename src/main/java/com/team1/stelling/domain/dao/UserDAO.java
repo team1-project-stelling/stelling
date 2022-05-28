@@ -20,4 +20,5 @@ public class UserDAO {
     public String findPw(String userId, String userEmail) {return userMapper.findPw(userId, userEmail) ; }
     public UserVO findUserId(String userId) {return userMapper.findUserId(userId) ; }
     public UserVO findByUserId(String userId){return userMapper.findByUserId(userId);}
+    public UserVO findByUserNumber(Long userNumber){return userMapper.findByUserNumber(userNumber);}
 }

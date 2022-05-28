@@ -531,11 +531,10 @@
  * params : 전송 데이터 {'q':'a','s':'b','c':'d'...}으로 묶어서 배열 입력
  * method : 전송 방식(생략가능)
  */
+    let userNumber = [[${session.userNumber}]];
+    console.log("유저 세션 번호 : " + userNumber);
 
-
-    const userNumber = 1; //임시 유저 넘버
-
-    // let userNumber = [[${session.userNumber}]];
+    // const userNumber = 1; //임시 유저 넘버
 
     const IMP = window.IMP;
     const code = "imp64732675"; //가맹점 식별코드
@@ -559,9 +558,9 @@
                 merchant_uid : 'merchant_' + new Date().getTime(), //주문번호
                 name : $(this).data('tit'), // 상품명
                 amount : $(this).data('price'),
-                buyer_email : 'skminy27@nate.com',
-                buyer_name : '재민',
-                buyer_tel : '01089087253',  //필수항목
+                buyer_email : [[${userVO.userEmail}]],
+                buyer_name : [[${userVO.userNickName}]],
+                buyer_tel : [[${userVO.userPhoneNum}]],  //필수항목
                 // buyer_addr: "서울특별시 강남구 역삼동",
                 //결제완료후 이동할 페이지 kko나 kkopay는 생략 가능
                 //m_redirect_url : 'https://localhost:8080/payments/complete'

@@ -72,7 +72,8 @@ public class MyPageController {
     @GetMapping("/myPageEditProfile")
     public String myPageEditProfile(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        UserVO sessionUser = userRepository.findById(Long.valueOf((Integer) session.getAttribute("userNumber"))).get();
+        Long userNumber = (Long) session.getAttribute("userNumber");
+        UserVO sessionUser = userRepository.findById(userNumber).get();
         model.addAttribute("userVO", sessionUser);
         return "/myPage/myPageEditProfile";
     }

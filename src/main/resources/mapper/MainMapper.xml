@@ -59,10 +59,9 @@
         NOVEL_VIEWCOUNTTOTAL
         FROM TBL_NOVEL
         <if test="keyword != 'searchAll'.toString()">
-            <trim prefix="WHERE">
-                NOVEL_HASHTAG
-                LIKE '%'||#{keyword}||'%'
-            </trim>
+            WHERE
+            NOVEL_HASHTAG
+            LIKE CONCAT('%', #{keyword}, '%')
         </if>
         )  n JOIN TBL_USER u
         ON u.USER_NUMBER  = n.USER_NUMBER
@@ -112,17 +111,18 @@
         NOVEL_VIEWCOUNTTOTAL
         FROM TBL_NOVEL
         <if test="keyword != 'searchAll'.toString()">
-            <trim prefix="WHERE">
+            WHERE
                 NOVEL_HASHTAG
-                LIKE '%'||#{keyword}||'%'
-            </trim>
+                LIKE CONCAT('%', #{keyword}, '%')
         </if>
         )  n JOIN TBL_USER u
         ON u.USER_NUMBER  = n.USER_NUMBER
         ORDER BY
         NOVEL_LIKECOUNTTOTAL
         DESC
-        LIMIT 3 ;
+        LIMIT 3
     </select>
+
+    <select id=""></select>
 
 </mapper>
