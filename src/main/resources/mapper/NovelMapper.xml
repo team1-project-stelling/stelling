@@ -67,7 +67,8 @@
         <if test="keyword != 'searchAll'.toString()">
                 AND
                 NOVEL_HASHTAG
-         LIKE '%'||#{keyword}||'%'
+         LIKE  CONCAT('%', #{keyword}, '%')
+
         </if>
 
         )  n JOIN TBL_USER u
@@ -80,6 +81,7 @@
         DESC
         LIMIT 50 ;
     </select>
+
 
     <select id="rankingSearchOfDay" resultType="NovelRankingDTO">
         SELECT
@@ -132,7 +134,7 @@
         <if test="keyword != 'searchAll'.toString()">
             AND
             NOVEL_HASHTAG
-            LIKE '%'||#{keyword}||'%'
+            LIKE CONCAT('%', #{keyword}, '%')
         </if>
 
         )  n JOIN TBL_USER u

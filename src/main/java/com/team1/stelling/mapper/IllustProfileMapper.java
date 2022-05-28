@@ -24,4 +24,6 @@ public interface IllustProfileMapper {
     public IllustProfileDTO getProfile(Long userNumber);
 
     public List<IllustProfileDTO> list();
+
+    public IllustProfileDTO checkProfile(Long userNumber);
 }

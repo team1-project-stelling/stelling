@@ -36,9 +36,10 @@
 
 <!--        <img src="../../static/images/illustDetail/일러스트 상세 1.jpg" width="100%"/>-->
 
-        <img th:src="@{/illust/illustImg(illustNumber=${illust.illustNumber})}" width="100%" class="img"/>
+        <img th:src="'/illust/illustImg?fileName='+${illust.illustFilePath}+'/'+${illust.illustFileName}" width="100%" class="img"/>
 
 <!--        <img src="../../static/images/illustDetail/일러스트 상세2.jpg" width="100%"/>-->
+        <p class="p title" th:text="*{illustContent}" style="margin-top: 1em; margin-bottom: 1em;">relax time</p>
 </div>
 
 
@@ -46,12 +47,12 @@
         <div style="margin-right: 30px;">
 
             <img src="/images/icon/하트.png"  class="iconImages emptyheart img"/>
-            <span th:text="*{illustLike}">1,230</span>
+            <span th:text="*{illustLike}" style="margin-left: 10px;">1,230</span>
         </div>
         <div style="margin-right: 5px">
 
             <img src="/images/icon/눈.png" class="iconImages img"/>
-            <span th:text="*{illustViewCount}">2,342</span>
+            <span th:text="*{illustViewCount}" style="margin-left: 6px;">2,342</span>
         </div>
 
     </div>
@@ -72,7 +73,7 @@
         <div class="profileBox">
             <div class="profilepic">
 
-                <img th:src="'/upload/display?fileName='+*{userVO.userFilePath}+'/'+*{userVO.userFileName}" width="100%" height="100%" class="img"/>
+                <img th:src="'/illust/illustImg?fileName='+*{userVO.userFilePath}+'/'+*{userVO.userFileName}" width="100%" height="100%" class="img"/>
             </div>
             <div>
             <span class="userNick" th:text="*{userVO.userNickName}">yewon_s</span>
@@ -80,7 +81,7 @@
                     <span class="postSpan">Total Posts:</span>
                     <span class="postSpan2" th:text="${total}">11개</span></p>
                 <div class="tagBtns">
-                    <button class="tagBtn" th:text="*{illustHashTag}">#힐링</button>
+                    <button class="tagBtn" th:text="|#*{illustHashTag}|">#힐링</button>
                 </div>
 
             </div>
@@ -100,7 +101,7 @@
             <th:block th:each=" list, index : ${list}">
             <div class="post" th:if="${index.index} <= 2">
                 <a class="goRead" th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
-                    <img th:src="@{/illust/illustImg(illustNumber=${illust.illustNumber})}" width="100%" height="100%"  class="img"/>
+                    <img th:src="'/illust/illustImg?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" width="100%" height="100%"  class="img"/>
                     <div class="heart">❤ <p style="font-size: 12px;" class="p" th:text="${list.illustLike}"></p></div>
                 </a>
             </div>
@@ -110,7 +111,7 @@
             <th:block th:each=" list, index : ${list}">
             <div class="post" th:if="${index.index} > 2 and ${index.index} <= 5">
                 <a class="goRead" th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
-                    <img th:src="@{/illust/illustImg(illustNumber=${illust.illustNumber})}" width="100%" height="100%"  class="img"/>
+                    <img th:src="'/illust/illustImg?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" width="100%" height="100%"  class="img"/>
                     <div class="heart">❤ <p style="font-size: 12px;" class="p" th:text="${list.illustLike}"></p></div>
                 </a>
             </div>
@@ -136,13 +137,16 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    let illustHeart = 0;
     $emptyHeart = $('.emptyheart');
     $emptyHeart.on("click", function () {
-        if($emptyHeart.attr("src")=="/images/icon/하트.png"){
 
+        if($emptyHeart.attr("src")=="/images/icon/하트.png"){
             $emptyHeart.attr("src","/images/icon/색칠 된 하트.png");
+            illustHeart = 1;
         }else{
             $emptyHeart.attr("src","/images/icon/하트.png");
+            llustHeart = -1;
         }
     });
 </script>
