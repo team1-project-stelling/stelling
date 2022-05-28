@@ -4,8 +4,8 @@
 
     <!--등록-->
     <insert id="insert">
-        INSERT INTO TBL_SUPPORT (SUPPORT_NUMBER, SUPPORT_SPONSER, SUPPORT_RECEIVER, NOVEL_NUMBER, SUPPORT_COIN)
-        VALUES(SUPPORT_SEQ.NEXTVAL, #{supportSponser}, #{supportReceiver}, #{novelNumber}, #{supportCoin})
+        INSERT INTO TBL_SUPPORT (SUPPORT_SPONSER, SUPPORT_RECEIVER, NOVEL_NUMBER, SUPPORT_COIN)
+        VALUES(#{supportSponser}, #{supportReceiver}, #{novelNumber}, #{supportCoin})
 
     </insert>
 
@@ -40,7 +40,7 @@
 
     <!--노벨번호로 후원내역 가져오기-->
     <select id="getSupportListWithNovelNumber" resultType="supportVO">
-    SELECT SUPPORT_NUMBER, SUPPORT_SPONSER, SUPPORT_RECEIVER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE
+    SELECT SUPPORT_SPONSER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATETIME
     FROM TBL_SUPPORT
     WHERE NOVEL_NUMBER = #{novelNumber};
     </select>
