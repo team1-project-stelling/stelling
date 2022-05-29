@@ -121,7 +121,7 @@
                                     <th:block th:each="sup:${supportList}">
                                     <tr th:object="${sup}">
                                         <td class="td1" th:text="|*{supportCoin}코인|"></td>
-                                        <td class="td1" th:text="*{#dates.format(supportDateTime, 'yyyy-MM-dd')}"></td>
+                                        <td class="td1" th:text="*{#dates.format(supportDate, 'yyyy-MM-dd')}"></td>
                                     </tr>
                                     </th:block>
                                     </tbody>
