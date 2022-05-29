@@ -40,12 +40,10 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RequestMapping("/myPage/*")
 public class MyPageController {
-    private final UserService userService;
     private final UserRepository userRepository;
     private final InquiryService inquiryService;
     private final NovelService novelService;
     private final SubNovelService subNovelService;
-    private final SubNovelRepository subNovelRepository;
     private final NovelRepository novelRepository;
 
 
@@ -53,7 +51,9 @@ public class MyPageController {
     @PostMapping("/myPageEditProfile")
     public void modify(UserVO userVO, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        UserVO userProfile = userRepository.findById(Long.valueOf((Integer) session.getAttribute("userNumber"))).get();
+        Long userNumber = (Long) session.getAttribute("userNumber");
+
+        UserVO userProfile = userRepository.findById(userNumber).get();
         userProfile.setUserFileName(userVO.getUserFileName());
         userProfile.setUserFilePath(userVO.getUserFilePath());
         userProfile.setUserUuid(userVO.getUserUuid());
@@ -70,7 +70,8 @@ public class MyPageController {
     @GetMapping("/myPageEditProfile")
     public String myPageEditProfile(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        UserVO sessionUser = userRepository.findById(Long.valueOf((Integer) session.getAttribute("userNumber"))).get();
+        Long userNumber = (Long) session.getAttribute("userNumber");
+        UserVO sessionUser = userRepository.findById(userNumber).get();
         model.addAttribute("userVO", sessionUser);
         return "/myPage/myPageEditProfile";
     }
@@ -83,12 +84,12 @@ public class MyPageController {
     @GetMapping("/myPageMyWork")
     public String myPageMyWork(Model model, HttpServletRequest request, @PageableDefault(page = 0, size = 10, sort = "novelNumber", direction = Sort.Direction.DESC) Pageable pageable) {
         HttpSession session = request.getSession();
-        Long userNum = Long.valueOf((Integer) session.getAttribute("userNumber"));
-        NovelVO novelVO = novelRepository.getById(userNum);
+        Long userNumber = (Long) session.getAttribute("userNumber");
+        NovelVO novelVO = novelRepository.getById(userNumber);
         List<SubNovelVO> subNovelVOs = subNovelService.getList();
 
 
-        Page<NovelVO> list = novelService.getPageList(userNum, pageable);
+        Page<NovelVO> list = novelService.getPageList(userNumber, pageable);
         for (NovelVO novel : list) {
             if (novel.getNovelFileName().contains("sampleImg")) {
                 String novelImgSrc = "/images/" + novel.getNovelFileName();
@@ -97,7 +98,7 @@ public class MyPageController {
         }
 
 
-        UserVO uservo = userRepository.findById(Long.valueOf((Integer) session.getAttribute("userNumber"))).get();
+        UserVO uservo = userRepository.findById(userNumber).get();
         PageableDTO pageableDTO = new PageableDTO((int) list.getTotalElements(), pageable);
 
         model.addAttribute("subNovelVOs", subNovelVOs);
@@ -119,7 +120,8 @@ public class MyPageController {
     @PostMapping("/pwChangeForm")
     public RedirectView pwChangeForm(HttpServletRequest request, String userNewPw) {
         HttpSession session = request.getSession();
-        UserVO uservo = userRepository.findById(Long.valueOf((Integer) session.getAttribute("userNumber"))).get();
+        Long userNumber = (Long) session.getAttribute("userNumber");
+        UserVO uservo = userRepository.findById(userNumber).get();
         uservo.setUserPw(userNewPw);
         userRepository.save(uservo);
         return new RedirectView("myPage/myPageEditProfile/");
@@ -130,7 +132,8 @@ public class MyPageController {
     @ResponseBody
     public String pwCheck(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        String userPw = userRepository.findById(Long.valueOf((Integer) session.getAttribute("userNumber"))).get().getUserPw();
+        Long userNumber = (Long) session.getAttribute("userNumber");
+        String userPw = userRepository.findById(userNumber).get().getUserPw();
         return userPw;
     }
 
@@ -139,8 +142,9 @@ public class MyPageController {
     @GetMapping("/myPageQuestion")
     public String myPageQuestion(Model model, HttpServletRequest request, @PageableDefault(page = 0, size = 10, sort = "inquiryNumber", direction = Sort.Direction.DESC) Pageable pageable) {
         HttpSession session = request.getSession();
+        Long userNumber = (Long) session.getAttribute("userNumber");
 
-        Page<InquiryVO> list = inquiryService.getPageList(pageable, Long.valueOf((Integer) session.getAttribute("userNumber")));
+        Page<InquiryVO> list = inquiryService.getPageList(pageable, userNumber);
         PageableDTO pageableDTO = new PageableDTO((int) list.getTotalElements(), pageable);
         model.addAttribute("list", list);
         model.addAttribute("pageableDTO", pageableDTO);
@@ -152,7 +156,9 @@ public class MyPageController {
     @GetMapping("/withDraw")
     public String withDraw(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        UserVO uservo = userRepository.findById(Long.valueOf((Integer) session.getAttribute("userNumber"))).get();
+        Long userNumber = (Long) session.getAttribute("userNumber");
+
+        UserVO uservo = userRepository.findById(userNumber).get();
         uservo.setUserStatus(0);
         userRepository.save(uservo);
         return "main/index";
