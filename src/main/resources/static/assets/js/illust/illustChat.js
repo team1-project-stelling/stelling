@@ -52,13 +52,14 @@ if (chatList.length === 0) {
     document.getElementById('chatWrapSecond').innerHTML = "<div style='position: absolute;top: 40%;left: 40%;'>채팅을시작해보세요</div>"
 } else {
     chatList?.map((v) => {
-
+                console.log(v)
         chattingList.innerHTML += `<li class="nametd"  style="list-style: none; margin-left: 20px;font-size: 15px;font-weight: 500; margin-top: 20px;" > 
                             <a>${v.roomName}</a>  <span style="cursor: pointer" class="thischat">채팅시작 <input type="hidden" id="valuehidden" value="${v}"></span></li>`
         document.getElementById('chatWrapSecond').innerHTML = "<div style='position: absolute;top: 40%;left: 30%;'>채팅을시작하려면 상대방을 선택해주세요</div>"
 
     })
 }
+
 removesession(mysession)
 
 function removesession(mysession) {
@@ -89,7 +90,11 @@ const chatStart  = (mysession) =>{
         if (e.target.tagName === "LI") {
             let other = e.target.innerText.split(" ")[0]
             sessionStorage.setItem("other", other)
-            g(other)
+
+
+
+            roomNames= other+mysession
+            comm(roomNames)
         }
     })}
 
@@ -140,24 +145,44 @@ function g(other) {
     });
 }
 
-const makeRoom = (roomNames) => {
-    // $.ajax({
-    //     type: "POST",
-    //     url: ` /room/new `,
-    //     data: roomNames,
-    //     contentType: "application/json",
-    //     success: function () {
-    //
+
+
+const  comm = (roomNames) => {
     sessionStorage.setItem("roomNames", roomNames)
     $("#chatWrapSecond").load(`/rooms/${roomNames}`);
-    //window.open(`/rooms/${roomNames}`, "_blank", "채팅", "width:300px  height: 400px, top=10, left=10");
-    //     },
-    //     error: function () {
-    //
-    //         alert("실패");
-    //     }
-    // })
+
 }
+
+
+
+const makeRoom = (roomNames) => {
+    // 1. 서버가 시작되면 방을 무조건 새로 만들어야함
+    // 2. 근데 우리는 방을 두개만들어서 쌍방이안됨
+    // 솔루션
+    // 1. 한명이 방을 무조건 만들어야하고
+    // 2. 나머지 한명이 그방을 무조건 눌러들어가야함
+    //
+
+
+    $.ajax({
+        type: "POST",
+        url: ` /room/new `,
+        data: roomNames,
+        contentType: "application/json",
+        success: function () {
+
+            sessionStorage.setItem("roomNames", roomNames)
+            $("#chatWrapSecond").load(`/rooms/${roomNames}`);
+//    window.open(`/rooms/${roomNames}`, "_blank", "채팅", "width:300px  height: 400px, top=10, left=10");
+        },
+        error: function () {
+
+            alert("실패");
+        }
+    })
+}
+
+
 
 
 

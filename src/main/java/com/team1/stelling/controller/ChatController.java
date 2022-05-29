@@ -28,11 +28,10 @@ public class ChatController {
         return "home";
     }
 
-    @GetMapping("/rooms/{id}")
-    public String room(@PathVariable String id) {
-        chatRoomRepository.findRoomById(id);
-        log.info("++++++++++++++++++++++++++++++48++++++++++++++++");
-        log.info(id);
+    @GetMapping("/rooms/{name}")
+    public String room(@PathVariable String name) {
+        chatRoomRepository.findRoomById(name);
+
 
 
         return "chatroom";
