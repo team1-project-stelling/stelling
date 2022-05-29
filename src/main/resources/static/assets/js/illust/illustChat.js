@@ -1,5 +1,4 @@
-mysession = document.getElementById('hiddenuserNickName').value;
-console.log(mysession)
+let mysession = document.getElementById('hiddenuserNickName').value;
 
 sessionStorage.setItem("mySession", mysession)
 document.getElementById('ownUser').innerText = mysession
@@ -14,7 +13,7 @@ $.ajax({
     async: false,
     success: function (data) {
         findMembers = data
-        console.log(findMembers)
+
     },
     error: function () {
         alert("실패");
@@ -23,7 +22,7 @@ $.ajax({
 
 findMembers?.map((v) => {
     document.getElementById('dummyUl').innerHTML += `
-            <li style="margin-top: 10px; ">${v}         <span style="cursor: pointer" class="thischat">얘랑 채팅할랭 <input type="hidden" id="valuehidden" value="${v}"></span></li> 
+            <li style="margin-top: 10px; ">${v}         </li> 
         `
 })
 
@@ -37,7 +36,7 @@ $.ajax({
     async: false,
     success: function (data) {
         chatList = data
-        console.log(chatList)
+
 
 
     },
@@ -46,53 +45,69 @@ $.ajax({
     }
 });
 chatLists = document.getElementById('chatLists')
-
+let chattingList = document.getElementById('chattingList')
 
 if (chatList.length === 0) {
-    chatLists.innerHTML += '<li class="nametd" style="list-style: none; margin-left: 20px">채팅내역이 존재하지 않음</li>'
+    chattingList.innerHTML += '<li class="nametd" style="list-style: none; margin-left: 20px">채팅내역이 존재하지 않음</li>'
     document.getElementById('chatWrapSecond').innerHTML = "<div style='position: absolute;top: 40%;left: 40%;'>채팅을시작해보세요</div>"
 } else {
     chatList?.map((v) => {
-        console.log(v)
-        chatLists.innerHTML += `<li class="nametd"  style="list-style: none;    margin-left: 20px;font-size: 15px;font-weight: 500; margin-top: 20px; >  닉네임:${v.roomName} </li>`
+
+        chattingList.innerHTML += `<li class="nametd"  style="list-style: none; margin-left: 20px;font-size: 15px;font-weight: 500; margin-top: 20px;" > 
+                            <a>${v.roomName}</a>  <span style="cursor: pointer" class="thischat">채팅시작 <input type="hidden" id="valuehidden" value="${v}"></span></li>`
         document.getElementById('chatWrapSecond').innerHTML = "<div style='position: absolute;top: 40%;left: 30%;'>채팅을시작하려면 상대방을 선택해주세요</div>"
 
     })
 }
-removesession()
+removesession(mysession)
 
-function removesession() {
+function removesession(mysession) {
     let nametd = document.querySelectorAll('.nametd');
     //얘는 변수 바꿔도댐
     for (let i = 0; i < nametd.length; i++) {
         let receiverName = nametd[i].innerText
         let matchname = receiverName.match(mysession)
-        console.log(matchname)
         let finl = receiverName.replace(matchname, '');
-        console.log(finl)
-        nametd[i].innerText = finl
+
+        // console.log(finl.split(' '))
+        let final  =finl.split(' ')[0];
+
+        final===mysession? nametd[i].innerText ="나와의 채팅":nametd[i].innerText = finl
+
 
     }
 
 }
 
 let thischat = document.querySelectorAll(".thischat");
-let dummyUl = document.querySelector('#dummyUl')
-
-dummyUl.addEventListener('click', function (e) {
-    if (e.target.tagName === "SPAN") {
-
-        const other = e.target.lastChild.value
-        sessionStorage.setItem("other", other)
-        g(other)
-    }
-//    에이작스 시작
 
 
-})
+//기존채팅방 연결
+
+const chatStart  = (mysession) =>{
+    chattingList.addEventListener('click', function (e) {
+        if (e.target.tagName === "LI") {
+            let other = e.target.innerText.split(" ")[0]
+            sessionStorage.setItem("other", other)
+            g(other)
+        }
+    })}
+
+chatStart(mysession)
 
 
 //처음 대화 시작
+document.getElementById('dummyUl').addEventListener('click',function (e) {
+    if (e.target.tagName === "LI"){
+        let other = e.target.innerText
+        sessionStorage.setItem("other", other)
+        g(other)
+
+    }
+})
+
+
+
 function g(other) {
     $.ajax({
         type: "POST",
@@ -110,9 +125,7 @@ function g(other) {
                 success: function (data) {
                     result = data
                     let roomNames = result[0].roomName;
-                    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-                    console.log(roomNames)
-                    console.log(other)
+
 
                     makeRoom(roomNames);
                 },
@@ -120,6 +133,7 @@ function g(other) {
             });
         },
         error: function () {
+
             let roomNames = mysession + other
             makeRoom(roomNames);
         }
@@ -127,21 +141,22 @@ function g(other) {
 }
 
 const makeRoom = (roomNames) => {
-    $.ajax({
-        type: "POST",
-        url: ` /room/new `,
-        data: roomNames,
-        contentType: "application/json",
-        success: function () {
-            sessionStorage.setItem("roomNames", roomNames)
-            $("#chatWrapSecond").load(`/rooms/${roomNames}`);
-            //window.open(`/rooms/${roomNames}`, "_blank", "채팅", "width:300px  height: 400px, top=10, left=10");
-        },
-        error: function () {
-            console.log(roomNames)
-            alert("실패");
-        }
-    })
+    // $.ajax({
+    //     type: "POST",
+    //     url: ` /room/new `,
+    //     data: roomNames,
+    //     contentType: "application/json",
+    //     success: function () {
+    //
+    sessionStorage.setItem("roomNames", roomNames)
+    $("#chatWrapSecond").load(`/rooms/${roomNames}`);
+    //window.open(`/rooms/${roomNames}`, "_blank", "채팅", "width:300px  height: 400px, top=10, left=10");
+    //     },
+    //     error: function () {
+    //
+    //         alert("실패");
+    //     }
+    // })
 }
 
 
