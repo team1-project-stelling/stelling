@@ -66,7 +66,6 @@ public class NovelService {
     public int getTotal(){return novelRepository.findByIdTotal();}
 
     /*노벨 리스트 최신순으로가져오기*/
-    public List<NovelVO> getNovelListByUploadDate(){return novelRepository.findAllByNovelUploadDate();}
 
     /* search */
     @Transactional
