@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequestMapping("/novel/*")
 @RequiredArgsConstructor
-public class novelController {
+public class NovelController {
 
     private  final NovelService novelService;
     private final UserService userService;
@@ -189,7 +189,7 @@ public class novelController {
         Long userNumber = (Long)session.getAttribute("userNumber");
         novelVO.setUserVO(userService.get(userNumber));
         novelService.register(novelVO);
-        return "novel/novelRegister";
+        return "novel/novelRoundList";
     }
 
     /*소설 표지 이미지 저장*/
