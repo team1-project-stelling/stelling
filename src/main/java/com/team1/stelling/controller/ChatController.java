@@ -28,12 +28,11 @@ public class ChatController {
         return "home";
     }
 
-    @GetMapping("/rooms/{id}")
-    public String room(@PathVariable String id) {
-        ChatRoom room = chatRoomRepository.findRoomById(id);
-        log.info("++++++++++++++++++++++++++++++48++++++++++++++++");
-        log.info(id);
-        chatRoomRepository.createChatRoom(id);
+    @GetMapping("/rooms/{name}")
+    public String room(@PathVariable String name) {
+        chatRoomRepository.findRoomById(name);
+
+
 
         return "chatroom";
     }
@@ -59,9 +58,7 @@ public class ChatController {
     @ResponseBody
     public List<String> List(){
         List<String> list = userRepository.findAll().stream().map(UserVO::getUserNickName).collect(Collectors.toList());
-        log.info("@@@@@@@@닉네임 리스트@@@@@@@@@@@");
-        log.info(list.toString());
-        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
         return list;
     }
 }
