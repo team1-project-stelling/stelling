@@ -86,12 +86,15 @@ public class MyPageController {
 //        log.info("myWork");
 //    }
 
+    //내 작품 관리
     @GetMapping("/myPageMyWork")
     public String myPageMyWork(Model model, HttpServletRequest request, @PageableDefault(page = 0, size = 10, sort = "novelNumber", direction = Sort.Direction.DESC) Pageable pageable) {
         HttpSession session = request.getSession();
         Long userNum = Long.valueOf((Integer) session.getAttribute("userNumber"));
         Long novelNumber = novelRepository.getById(userNum).getNovelNumber();
         Long subNovelNum = subNovelRepository.getById(userNum).getSubNovelNumber();
+
+
 
         Page<NovelVO> list = novelService.getPageList(userNum, pageable);
         for (NovelVO novel : list) {

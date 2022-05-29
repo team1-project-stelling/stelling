@@ -18,193 +18,60 @@
     <img id="headerImg"src="/images/fix/headerImg_3.png" >
 </div>-->
 <!-- 헤더 종료 -->
+
+<input type="hidden" th:value="${session.user.userNickName}" id="hiddenuserNickName">
+<div class="dummyId" style="width: 350px;position: fixed;top: 20%;left: 2%;border: 1px solid;height: 700px;">
+    <ul id="dummyUl" style="list-style: none"></ul>
+
+
+</div>
+
+
+
+
+
+
+
 <div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 100px; padding-bottom: 100px; background-color: white;">
 
     <div class="chatWrap">
         <div class="chatWrapFirst">
             <div class="chatList1 chatlist1" style="text-align: center;height:11%;">
-                <p class="ownUser">
-                    yewon_seo
+                <p class="ownUser" id="ownUser">
+                    내닉네임
                 <div style="padding-top: 10px;" class="arrow">
                     <img src="/images/icon/화살표.png" height="18" width="18"/>
                 </div>
                 </p>
             </div>
-            <div class="chatList2 chatUserList">
+            <div class="chatList2 chatUserList" id="chatLists">
+                <ul id="chattingList"></ul>
                 <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
-                <div class="chatUser">
-                    <div class="profilePic">
-                        <img src="/images/profileSample/프사1.jpg" width="100%" height="100%"/>
-                    </div>
-                    <div class="userInfo">
-                        <div style="display: flex">
-                            <div class="userName">zzang_9</div>
-                            <img src="/images/icon/삭제.png" class="delete"/>
-                        </div>
+<!--                <div class="chatUser">-->
+<!--                    <div class="profilePic">-->
+<!--                        <img src="/images/profileSample/프사1.jpg" width="100%" height="100%"/>-->
+<!--                    </div>-->
+<!--                    <div class="userInfo">-->
+<!--                        <div style="display: flex">-->
+<!--                            <div class="userName">상대방닉네임</div>-->
+<!--                            <img src="/images/icon/삭제.png" class="delete"/>-->
+<!--                        </div>-->
 
-                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
-                    </div>
-                </div>
-                <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
-                <div class="chatUser">
-                    <div class="profilePic">
-                        <img src="/images/profileSample/프사4.jpg" width="100%" height="100%"/>
-                    </div>
-                    <div class="userInfo">
-                        <div style="display: flex">
-                            <div class="userName">dangdang</div>
-                            <img src="/images/icon/삭제.png" class="delete"/>
-                        </div>
-                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
+<!--                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                    </div>
-                </div>
-                <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
-                <div class="chatUser">
-                    <div class="profilePic">
-                        <img src="/images/profileSample/프사3.jpg" width="100%" height="100%"/>
-                    </div>
-                    <div class="userInfo">
-                        <div style="display: flex">
-                            <div class="userName">cat1234</div>
-                            <img src="/images/icon/삭제.png" class="delete"/>
-                        </div>
-                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
-                    </div>
-                </div>
-                <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
-                <div class="chatUser">
-                    <div class="profilePic">
-                        <img src="/images/profileSample/프사4.jpg" width="100%" height="100%"/>
-                    </div>
-                    <div class="userInfo">
-                        <div style="display: flex">
-                            <div class="userName">dangdang</div>
-                            <img src="/images/icon/삭제.png" class="delete"/>
-                        </div>
-
-                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
-                    </div>
-                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
-                <div class="chatUser">
-                    <div class="profilePic">
-                        <img src="/images/profileSample/프사4.jpg" width="100%" height="100%"/>
-                    </div>
-                    <div class="userInfo">
-                        <div style="display: flex">
-                            <div class="userName">dangdang</div>
-                            <img src="/images/icon/삭제.png" class="delete"/>
-                        </div>
-                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
-                    </div>
-                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
-                <div class="chatUser">
-                    <div class="profilePic">
-                        <img src="/images/profileSample/프사4.jpg" width="100%" height="100%"/>
-                    </div>
-                    <div class="userInfo">
-
-                        <div style="display: flex">
-                            <div class="userName">dangdang</div>
-                            <img src="/images/icon/삭제.png" class="delete"/>
-                        </div>
-                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
-                    </div>
-                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
-                <div class="chatUser">
-                    <div class="profilePic">
-                        <img src="/images/profileSample/프사4.jpg" width="100%" height="100%"/>
-                    </div>
-                    <div class="userInfo">
-                        <div style="display: flex">
-                            <div class="userName">dangdang</div>
-                            <img src="/images/icon/삭제.png" class="delete"/>
-                        </div>
-                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
-                    </div>
-                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
-                <div class="chatUser">
-                    <div class="profilePic">
-                        <img src="/images/profileSample/프사4.jpg" width="100%" height="100%"/>
-                    </div>
-                    <div class="userInfo">
-                        <div style="display: flex">
-                            <div class="userName">dangdang</div>
-                            <img src="/images/icon/삭제.png" class="delete"/>
-                        </div>
-                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
-                    </div>
-                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
-                <div class="chatUser">
-                    <div class="profilePic">
-                        <img src="/images/profileSample/프사4.jpg" width="100%" height="100%"/>
-                    </div>
-                    <div class="userInfo">
-                        <div style="display: flex">
-                            <div class="userName">dangdang</div>
-                            <img src="/images/icon/삭제.png" class="delete"/>
-                        </div>
-                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
-                    </div>
-                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
-                <div class="chatUser">
-                    <div class="profilePic">
-                        <img src="/images/profileSample/프사4.jpg" width="100%" height="100%"/>
-                    </div>
-                    <div class="userInfo">
-                        <div style="display: flex">
-                            <div class="userName">dangdang</div>
-                            <img src="/images/icon/삭제.png" class="delete"/>
-                        </div>
-                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
-                    </div>
-                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
-                <div class="chatUser">
-                    <div class="profilePic">
-                        <img src="/images/profileSample/프사4.jpg" width="100%" height="100%"/>
-                    </div>
-                    <div class="userInfo">
-                        <div style="display: flex">
-                            <div class="userName">dangdang</div>
-                            <img src="/images/icon/삭제.png" class="delete"/>
-                        </div>
-                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
-                    </div>
-                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
-                <div class="chatUser">
-                    <div class="profilePic">
-                        <img src="/images/profileSample/프사4.jpg" width="100%" height="100%"/>
-                    </div>
-                    <div class="userInfo">
-                        <div style="display: flex">
-                            <div class="userName">dangdang</div>
-                            <img src="/images/icon/삭제.png" class="delete"/>
-                        </div>
-                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
-                    </div>
-                </div> <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
-                <div class="chatUser">
-                    <div class="profilePic">
-                        <img src="/images/profileSample/프사4.jpg" width="100%" height="100%"/>
-                    </div>
-                    <div class="userInfo">
-                        <div style="display: flex">
-                            <div class="userName">dangdang</div>
-                            <img src="/images/icon/삭제.png" class="delete"/>
-                        </div>
-                        <div class="MessageAlarm">회원님에게 메세지를 보냈습니다.</div>
-                    </div>
-                </div>
                 <!---------------------------------------------------------------------------------------- -->
             </div>
         </div>
-        <div class="chatWrapSecond">
+
+        <div class="chatWrapSecond" id="chatWrapSecond">
             <div class="chatList1" style="margin-bottom: 15px;">
                 <div class="headerUserName">
                     <div class="profilePic2">
                         <img src="/images/profileSample/프사1.jpg" width="100%" height="100%"/>
                     </div>
-                    <p class="user">zzang_9님</p>
+                    <p class="user">상대방 닉네임</p>
                 </div>
             </div>
             <div class="chatList2 chatlist2">
@@ -226,40 +93,6 @@
                         </div>
                     </div>
 
-
-                    <div class="friend-chat">
-                        <img class="profilePic2 profilePic3" src="/images/profileSample/프사1.jpg"/>
-                        <div class="friend-chat-col">
-                            <span class="balloon">개미는 뚠뚠</span>
-                            <span class="balloon">오늘도 뚠뚠</span>
-                            <span class="balloon">열심히 일을 하네</span>
-                        </div>
-                    </div>
-
-                    <div class="me-chat">
-                        <div class="me-chat-col">
-                            <span class="balloon balloon2">식혜는 잔치집식혜</span>
-                            <span class="balloon balloon2">오늘 점심은</span>
-                            <span class="balloon balloon2">햄버거 떡볶이 마라탕</span>
-                        </div>
-                    </div>
-
-                    <div class="friend-chat">
-                        <img class="profilePic2 profilePic3" src="/images/profileSample/프사1.jpg"/>
-                        <div class="friend-chat-col">
-                            <span class="balloon">개미는 뚠뚠</span>
-                            <span class="balloon">오늘도 뚠뚠</span>
-                            <span class="balloon">열심히 일을 하네</span>
-                        </div>
-                    </div>
-
-                    <div class="me-chat">
-                        <div class="me-chat-col">
-                            <span class="balloon balloon2">식혜는 잔치집식혜</span>
-                            <span class="balloon balloon2">오늘 점심은</span>
-                            <span class="balloon balloon2">햄버거 떡볶이 마라탕</span>
-                        </div>
-                    </div>
 
 
 
@@ -302,6 +135,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src ="/assets/js/illust/chatForm.js"> </script>
+<script src="/assets/js/illust/illustChat.js"></script>
 <script src="/assets/js/fix/header.js"></script>
 
 </html>

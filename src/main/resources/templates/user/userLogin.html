@@ -10,15 +10,10 @@
     <title>Login</title>
 </head>
 <body style="max-witdh:1200px ;">
-<!-- 헤더 시작 -->
 <th:block th:insert="/fix/headerWord.html :: headFragment"/>
-<!--헤더 이미지-->
 <div id="headerImgWrap" >
     <img id="headerImg"src="/images/fix/headerImg_3.png" >
 </div>
-<!-- 헤더 종료 -->
-
-<!--Main-->
 <div class="mainbox">
     <div class="contentbox">
         <div class="section_login">
@@ -65,7 +60,6 @@
         const uid = document.getElementById("userId");
         const pwd = document.getElementById("userPw");
 
-        //아이디 입력 유무
         if (uid.value == "") {
             Swal.fire({
                 icon: 'warning',
@@ -75,7 +69,6 @@
             return false;
         };
 
-        //비밀번호 입력 유무
         if (pwd.value == "") {
             Swal.fire({
                 icon: 'warning',
@@ -84,7 +77,6 @@
             pwd.focus();
             return false;
         };
-
     });
 </script>
 </html>

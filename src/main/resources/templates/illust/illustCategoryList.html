@@ -40,7 +40,7 @@
             <th:block th:each="list, index:${list}" th:if="${index.index} == 0 or ${index.index} % 5 == 0">
                 <a class="goRead" th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
                     <div class="column cellCss">
-                        <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                        <img th:src="'/illust/illustImg?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
                         <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}">1,213</span></span>
                     </div>
                 </a>
@@ -52,7 +52,7 @@
             <th:block th:each="list, index:${list}" th:if="${index.index} % 5 == 1">
                 <a class="goRead" th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
                     <div class="column cellCss">
-                        <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                        <img th:src="'/illust/illustImg?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
                         <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}">1,213</span></span>
                     </div>
                 </a>
@@ -64,7 +64,7 @@
             <th:block th:each="list, index:${list}" th:if="${index.index} % 5 == 2">
                 <a class="goRead" th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
                     <div class="column cellCss">
-                        <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                        <img th:src="'/illust/illustImg?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
                         <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}">1,213</span></span>
                     </div>
                 </a>
@@ -76,7 +76,7 @@
             <th:block th:each="list, index:${list}" th:if="${index.index} % 5 == 3">
                 <a class="goRead" th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
                     <div class="column cellCss">
-                        <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                        <img th:src="'/illust/illustImg?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
                         <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}">1,213</span></span>
                     </div>
                 </a>
@@ -88,7 +88,7 @@
             <th:block th:each="list, index:${list}" th:if="${index.index} % 5 == 4">
                 <a class="goRead" th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
                     <div class="column cellCss">
-                        <img th:src="'/upload/display?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                        <img th:src="'/illust/illustImg?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
                         <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}">1,213</span></span>
                     </div>
                 </a>

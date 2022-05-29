@@ -29,14 +29,19 @@
         <div class="firstBox" th:object="${illustProfile}">
                 <div class="profile1">
                     <div class="profilePicture">
-                        <img th:src="'/upload/display?fileName='+*{userFilePath}+'/'+*{userFileName}" width="100%" height="100%"/>
+                        <img th:src="'/illust/illustImg?fileName='+*{userFilePath}+'/'+*{userFileName}" width="100%" height="100%"/>
                     </div>
                     <div>
                         <div><p class="p userNick" th:text="*{userNickName}"></p></div>
                         <div style="display: flex;">
                             <p class="p postInfo">게시물 <span th:text="${total}"></span></p>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <th:block th:if="${getLikeTotal} == null">
+                                <p class="p postInfo">좋아요 <span>0</span></p>
+                            </th:block>
+                            <th:block th:unless="${getLikeTotal} == null">
                             <p class="p postInfo">좋아요 <span th:text="${getLikeTotal}">3</span></p>
+                        </th:block>
                         </div>
 
                     </div>
@@ -91,7 +96,7 @@
                     <div class="column cellCss cell1">
                             <th:block th:if="${index.index} == 0 or ${index.index} % 3 == 0">
                                 <a th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
-                                    <img th:src="@{/illust/illustImg(illustNumber=${illustNumber})}" class="testWidth" />
+                                    <img th:src="'/illust/illustImg?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
                                     <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
                                 </a>
                         </th:block>
@@ -103,7 +108,7 @@
                     <div class="column cellCss cell2">
                             <th:block th:if="${index.index} % 3 == 1">
                                 <a th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
-                                    <img "@{/illust/illustImg(illustNumber=${illustNumber})}" class="testWidth" />
+                                    <img th:src="'/illust/illustImg?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
                                     <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
                                 </a>
                             </th:block>
@@ -115,7 +120,7 @@
                     <div class="column cellCss cell3">
                             <th:block th:if="${index.index} % 3 == 2">
                                 <a th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
-                                    <img th:src="@{/illust/illustImg(illustNumber=${illustNumber})}" class="testWidth" />
+                                    <img th:src="'/illust/illustImg?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
                                     <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
                                 </a>
                             </th:block>

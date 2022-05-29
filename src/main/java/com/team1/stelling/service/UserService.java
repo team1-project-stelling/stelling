@@ -40,10 +40,8 @@ public class UserService {
         }
         return userNickName;
     }
-    public UserVO findUserId(String userId){return userDAO.findUserId(userId) ; }
-    public String changeEncode(String userPw){
-        userPw = bCryptPasswordEncoder.encode(userPw);
-        return userPw;
-    }
     public UserVO getByUserId(String userId){return  userDAO.findByUserId(userId);}
+    public UserVO findUserEmail(String userEmail){
+        return userDAO.findUserEmail(userEmail);
+    }
 }

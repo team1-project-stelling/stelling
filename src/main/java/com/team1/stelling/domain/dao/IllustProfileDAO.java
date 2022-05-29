@@ -19,4 +19,5 @@ public class IllustProfileDAO {
     public IllustProfileDTO getProfile(Long userNumber) {return illustProfileMapper.getProfile(userNumber);}
     public void register(IllustProfileVO illustProfileVO) {illustProfileMapper.insert(illustProfileVO);}
     public List<IllustProfileDTO> list(){return illustProfileMapper.list();}
+    public IllustProfileDTO checkProfile(Long userNumber) {return illustProfileMapper.checkProfile(userNumber);}
 }
