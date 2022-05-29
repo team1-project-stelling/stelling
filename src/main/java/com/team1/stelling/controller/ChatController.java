@@ -59,9 +59,7 @@ public class ChatController {
     @ResponseBody
     public List<String> List(){
         List<String> list = userRepository.findAll().stream().map(UserVO::getUserNickName).collect(Collectors.toList());
-        log.info("@@@@@@@@닉네임 리스트@@@@@@@@@@@");
-        log.info(list.toString());
-        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
         return list;
     }
 }
