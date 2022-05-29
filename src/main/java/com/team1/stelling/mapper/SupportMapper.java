@@ -28,4 +28,5 @@ public interface SupportMapper {
     public SupportVO get(Long supportNumber);
 
     public List<SupportVO> getSupportListWithNovelNumber(Long novelNumber);
+
 }
