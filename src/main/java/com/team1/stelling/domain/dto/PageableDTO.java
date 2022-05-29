@@ -12,12 +12,6 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Slf4j
 public  class PageableDTO {
-    /*
-        model.addAttribute("keyword", keyword);
-        model.addAttribute("startPage", startPage);
-        model.addAttribute("endPage", endPage);
-    *
-    * */
     private String keyword;
     private int categoryStatus; // 0 - 전체, 1 - 신착, 2 - 완결
     private int startPage;
@@ -37,10 +31,6 @@ public  class PageableDTO {
     }
 
     public PageableDTO(Pageable pageable,int total, int pageCount,int amount){
-
-        //        int nowPage = searchList.getPageable().getPageNumber() + 1;
-    /*        int startPage = Math.max(nowPage - 4, 1);
-            int endPage = Math.min(nowPage + 5, searchList.getTotalPages());*/
 
 
         this.previous = pageable.previousOrFirst().getPageNumber();
