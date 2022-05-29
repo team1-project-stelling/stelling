@@ -179,7 +179,7 @@ public class IllustController {
     @GetMapping("/register") public void register(){}
 
     @PostMapping("/register")
-    public RedirectView register(Long userNumber, IllustProfileVO illustProfileVO, HttpServletRequest request, Model model){
+    public RedirectView register(IllustProfileVO illustProfileVO, HttpServletRequest request, Model model){
 
         HttpSession session = request.getSession();
         session.getAttribute("userNumber");
@@ -195,8 +195,9 @@ public class IllustController {
 
 
     @GetMapping("/illustUserPage")
-    public String illustUserPage(Long userNumber, Long illustNumber,  Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
-
+    public String illustUserPage(HttpServletRequest request, Long illustNumber,  Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
+        HttpSession session = request.getSession();
+        Long userNumber = (Long) session.getAttribute("userNumber");
 
         Page<IllustVO> list = illustService.getUserIllustList(pageable, userNumber);
         PageableDTO pageableDTO = new PageableDTO((int) list.getTotalElements(), pageable);
