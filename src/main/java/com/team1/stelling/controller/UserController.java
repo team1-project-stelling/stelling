@@ -66,7 +66,7 @@ public class UserController {
     }
 
     @PostMapping("loginCheck")
-    public String login(HttpServletRequest request, String userId, String userPw, Model model) {
+    public String login(HttpServletRequest request, String userId, String userPw) {
         UserVO userVO = userService.getByUserId(userId);
 
         if (!passwordEncoder.matches(userPw, userVO.getUserPw())) {
