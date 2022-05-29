@@ -105,19 +105,19 @@ RealTime.append(writer)
 document.querySelector('.RealTime').append(RealTime);
 
 }
-// 클릭했을때 색입히기
-let tagspan = document.querySelectorAll('.tagspan');
-
-function clickHandler() {  
-     for (var i = 0; i < tagspan.length; i++){
-        tagspan[i].classList.remove('clinkadd');    
-     }
-     this.classList.add('clinkadd');
-}
-
- for (var i = 0; i < tagspan.length; i++){
-    tagspan[i].addEventListener('click', clickHandler);
- }
+// // 클릭했을때 색입히기
+// let tagspan = document.querySelectorAll('.tagspan');
+//
+// function clickHandler() {
+//      for (var i = 0; i < tagspan.length; i++){
+//         tagspan[i].classList.remove('clinkadd');
+//      }
+//      this.classList.add('clinkadd');
+// }
+//
+//  for (var i = 0; i < tagspan.length; i++){
+//     tagspan[i].addEventListener('click', clickHandler);
+//  }
 
 // 
 

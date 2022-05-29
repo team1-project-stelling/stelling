@@ -18,6 +18,7 @@ public class UserDAO {
     public int idCheck(String userId) { return userMapper.idCheck(userId); }
     public String getSearchId(String userNick, String phoneNum) { return userMapper.getSearchId(userNick, phoneNum); }
     public String findPw(String userId, String userEmail) {return userMapper.findPw(userId, userEmail) ; }
+    public UserVO findUserId(String userId) {return userMapper.findUserId(userId) ; }
     public UserVO findByUserId(String userId){return userMapper.findByUserId(userId);}
-    public UserVO findUserEmail(String userEmail) {return userMapper.findUserEmail(userEmail) ; }
+    public UserVO findByUserNumber(Long userNumber){return userMapper.findByUserNumber(userNumber);}
 }

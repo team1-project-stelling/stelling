@@ -11,6 +11,7 @@ public interface UserMapper {
     public int idCheck(String userId);
     public String getSearchId(String userNick, String phoneNum);
     public String findPw(String userId, String userEmail);
+    public UserVO findUserId(String userId);
     public UserVO findByUserId(String userId);
-    public UserVO findUserEmail(String userEmail);
+    public UserVO findByUserNumber(Long userNumber);
 }
