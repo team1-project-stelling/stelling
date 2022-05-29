@@ -33,6 +33,8 @@ public class ChatController {
         ChatRoom room = chatRoomRepository.findRoomById(id);
         log.info("++++++++++++++++++++++++++++++48++++++++++++++++");
         log.info(id);
+        chatRoomRepository.createChatRoom(id);
+
         return "chatroom";
     }
 
@@ -47,10 +49,7 @@ public class ChatController {
     public String makeRoom(@RequestBody String name) {
 
         chatRoomRepository.createChatRoom(name);
-        log.info("*******************************************************");
-        log.info("방 만들기 컨트롤러 들어옴");
-        log.info(name);
-        log.info("*******************************************************");
+
 
         return "illust/illustChatPage";
     }
