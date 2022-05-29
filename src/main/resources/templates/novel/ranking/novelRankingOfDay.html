@@ -51,30 +51,13 @@
 <!-- 헤더 시작 -->
 <th:block th:insert="/fix/headerWord.html :: headFragment"/>
 
-<!--헤더 이미지-->
-<!--<div id="headerImgWrap" >
-    <img id="headerImg"src="/images/fix/rankingBanner2.png" >
-</div>-->
+
 <!-- 헤더 종료 -->
 <div style="max-width: 1200px; margin:0 auto;">
     <div class="top-tab-menu" style="max-width: 1200px; margin: 25px auto 0 auto;">
         <div class="mobile_hidden" style="position: relative; height: 20px; width: 100%;"></div>
         <div style="font-size: 50px;text-align: center;">TOP50</div>
-        <!--        <table class="menu_alarm mobile_hidden s_inv" style="width: 100%; max-width: 1200px; height: 60px; margin-top: 0px;">
-                    <tbody>
-                        <tr>
-                            <td class="tdmenu click-menu menu-select" onMouseOver="mouseOver(event)" onMouseOut="mouseOut(event)" style="width: 34.8%;">
-                                <a href="javascript:void(0);">전체</a>
-                            </td>
-                            <td class="tdmenu click-menu" onMouseOver="mouseOver(event)" onMouseOut="mouseOut(event)" style="width: 34.8%;">
-                                <a href="javascript:void(0);">자유</a>
-                            </td>
-                            <td class="tdmenu click-menu" onMouseOver="mouseOver(event)" onMouseOut="mouseOut(event)" style="width: 34.8%;">
-                                <a href="javascript:void(0);">완결</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>-->
+
     </div>
     <div style="float: right; margin-top: 51px;" class="mobile_hidden">
         <a href="javascript:void(0);">
@@ -95,11 +78,6 @@
                 <option th:selected="${#strings.equals(criteria.rankType,'view') }" selected value="view">조회순</option>
                 <option th:selected="${#strings.equals(criteria.rankType,'like') }" value="like">추천순</option>
             </select>
-            <!--            <select class="form-control select2" style="width: 90px; float: left; margin-right: 3px; margin-top: 4px;">
-                            <option selected value="today">24시간</option>
-                            <option value="weekly">7일</option>
-                            <option value="month">30일</option>
-                        </select>-->
 
             <select name="novelStatus" onchange="this.form.submit()" class="form-control select2" style="width: 90px; float: left; margin-right: 3px; margin-top: 4px;">
                 <option th:selected="${#strings.equals(criteria.novelStatus,'all') }" value="all">전체</option>
@@ -116,65 +94,6 @@
     <div class="mobile_category" style="position: relative; padding: 10px 5px; border-bottom: 1px solid #eee;">
         <div style="width: 100%; display: flex;align-items: center; gap: 10px;">
             <a href="-1" class="changeModelOfDay">태그랭킹보기</a>
-<!--            <div class="rankMenuDiv" onclick="location.href='/novel/ranking/novelRanking'" style=" width: 100px;height: 34px;display: flex; align-items: center; cursor: pointer;">태그랭킹보기</div>-->
-<!--
-            <div id="tagSearchRank">
-                <ul class="nav nav-pills flex-column flex-md-row genre-box" id="submenu_bar" role="tablist" style="padding-bottom: 0px; max-width: 100%; overflow-x:auto; white-space: no wrap; -ms-overflow-style:none; scrollbar-width: none; scroll-snap-align: center; font-size: 12px;">
-                    <li>
-                        <button type="button" class="btn_genre_search" id="genre_search_modal_btn" onclick="changeTagSearch()" style="cursor: pointer;">태그검색</button>
-                    </li>
-                    <div id="searchFormWrap">
-                        <form id="searchForm" method="get" action="/novel/ranking/novelRanking/tagSearch">
-                            <input name="keyword" id="searchFormInput" type="text" placeholder="#검색할 태그를 입력하세요" maxlength="16">
-                            <button class="searchFormWrapBtn">검색</button>
-                            <div class="cancelImg" onclick="changeTagSearch()">
-                                <img src="/images/category/cancelIcon.png">
-                            </div>
-                            <input type="hidden" name="novelStatus" th:value="${criteria.novelStatus}">
-                            <input type="hidden" name="day" th:value="${criteria.day}">
-                        </form>
-                    </div>
-                    <ul class="category_ul" style=" display: flex; list-style:none; max-width: 100%; overflow-x:auto; white-space: no wrap; -ms-overflow-style:none; scrollbar-width: none; scroll-snap-align: center; font-size: 12px;">
-                        <li>
-                            <a th:classappend="${criteria.keyword== 'all'} ? 'menuActive' : ''" class="nav-link" href="searchAll" role="tab">전체</a>
-                        </li>
-                        <li>
-                            <a th:classappend="${criteria.keyword== '판타지'} ? 'menuActive' : ''" class="nav-link" href="판타지" role="tab">판타지</a>
-                        </li>
-                        <li>
-                            <a th:classappend="${criteria.keyword== '무협'} ? 'menuActive' : ''" class="nav-link" href="무협" role="tab">무협</a>
-                        </li>
-                        <li>
-                            <a th:classappend="${criteria.keyword== '현대'} ? 'menuActive' : ''" class="nav-link" href="현대" role="tab">현대</a>
-                        </li>
-                        <li>
-                            <a th:classappend="${criteria.keyword== '로맨스'} ? 'menuActive' : ''" class="nav-link" href="로맨스" role="tab">로맨스</a>
-                        </li>
-                        <li>
-                            <a th:classappend="${criteria.keyword== '현대판타지'} ? 'menuActive' : ''" class="nav-link" href="현대판타지" role="tab">현대판타지</a>
-                        </li>
-                        <li>
-                            <a th:classappend="${criteria.keyword== '라이트노벨'} ? 'menuActive' : ''" class="nav-link" href="라이트노벨" role="tab">라이트노벨</a>
-                        </li>
-                        <li>
-                            <a th:classappend="${criteria.keyword== '공포'} ? 'menuActive' : ''" class="nav-link" href="공포" role="tab">공포</a>
-                        </li>
-                        <li>
-                            <a th:classappend="${criteria.keyword== 'SF'} ? 'menuActive' : ''" class="nav-link" href="SF" role="tab">SF</a>
-                        </li>
-                        <li>
-                            <a th:classappend="${criteria.keyword== '스포츠'} ? 'menuActive' : ''" class="nav-link" href="스포츠" role="tab">스포츠</a>
-                        </li>
-                        <li>
-                            <a th:classappend="${criteria.keyword== '대체역사'} ? 'menuActive' : ''" class="nav-link" href="대체역사" role="tab">대체역사</a>
-                        </li>
-                        <li>
-                            <a th:classappend="${criteria.keyword== '기타'} ? 'menuActive' : ''" class="nav-link" href="기타" role="tab">기타</a>
-                        </li>
-                    </ul>
-                </ul>
-            </div>
--->
             <div id="dayOfRank" >
                 <ul>
                     <li th:classappend="${criteria.day== 0} ? 'menuActive' : ''" class="changeDay"><a class="changeDay"href="0">월</a></li>
@@ -216,17 +135,7 @@
         </div>
         </th:block>
     </div>
-<!--    &lt;!&ndash;페이징&ndash;&gt;
-    <div class="pagenation-group pc-page">
-        <ul>
-            <li><a href="javascript:void(0);" class="page-select">1</a></li>
-            <li><a href="javascript:void(0);" class="page-select">2</a></li>
-            <li><a href="javascript:void(0);" class="page-select">3</a></li>
-            <li><a href="javascript:void(0);" class="page-select">4</a></li>
-            <li><a href="javascript:void(0);" class="page-select">5</a></li>
-        </ul>
-    </div>
-</div>-->
+
 </div>
 <th:block th:insert="/fix/footer.html :: footerFragment"/>
 </body>

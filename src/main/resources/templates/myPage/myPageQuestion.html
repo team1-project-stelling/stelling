@@ -50,7 +50,7 @@
                 <div class="">
                     <div class="profile_text"><strong>내 문의내역</strong></div>
                     <div class="writingWrap">
-                        <a href="" class="writingBtn">글쓰기</a>
+                        <a class="writingBtn" href="javascript:goQuestionWrite();">글쓰기</a>
                     </div>
                     <table class="questions_table">
                         <thead>
@@ -69,9 +69,6 @@
                         </tbody>
                     </table>
                     <div class="current">
-<!--                        <a class="question_paging" href="1">-->
-<!--                            <code>1</code>-->
-<!--                        </a>-->
                         <!-- 페이징 -->
                         <ul class="c_PagingList" >
                             <!-- 이전 -->
@@ -127,7 +124,10 @@
         location.href = "/myPage/myPageQuit";
     }
     function goPayList(){
-        location.href = "/myLibrary/payList?userNumber="+ userNumber;
+        location.href = "/myLibrary/payList";
+    }
+    function goQuestionWrite() {
+        location.href = "/inquiry/inquiryWrite";
     }
 </script>
 </html>

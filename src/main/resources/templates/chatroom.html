@@ -40,12 +40,13 @@
 <style>
     body {
         width: 100%;
-        min-height:100%;
+        min-height: 100%;
         margin: 0px;
-        padding-top:106px !important;
+        padding-top: 106px !important;
         /*    font-family: 'Noto Sans KR', sans-serif;*/
-        font-family: "Elice Digital Baeum",sans-serif;
+        font-family: "Elice Digital Baeum", sans-serif;
     }
+
     .chatinput {
         position: absolute;
         bottom: 0;
@@ -76,12 +77,24 @@
         width: 100%;
         display: block;
     }
-    #message{
+
+    #message {
         height: 70px;
         width: 500px;
-        font-size: 20px;
+        font-size: 18px;
+        border-radius: 10px;
+        padding: 5px;
+
     }
-    #send{    height: 70px;}
+
+    #send {
+        background: #ef6e73;
+        width: 80px;
+        border: none;
+        color: white;
+        border-radius: 10px;
+        height: 70px;
+    }
 
 
 </style>
@@ -102,36 +115,36 @@
     let minutes = today.getMinutes();  // 분
     let time = `${month}월${date}일 ${hours}:${minutes}`
 
-
+    let ttime = ` ${hours}:${minutes}`
     //채팅가져오기
-    let chatdata = "";
-    $.ajax({
-        url: `/messageList/${mySession}/${other}`,
-        dataType: "json",
-        type: "get",
-        async: false,
-        success: function (data) {
-            chatdata = data
-            console.log(chatdata)
+    function letdata() {
+        let chatdata = "";
+        $.ajax({
+            url: `/messageList/${mySession}/${other}`,
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                chatdata = data
 
-        },
-        error: function () {
-            alert("실패");
-        }
-    });
 
-    //채팅출력
-    chatdata?.map((c) => {
+            },
+            error: function () {
+                alert("실패");
+            }
+        });
+        //채팅출력
+        chatdata?.map((c) => {
 
-        let message = c.message;
-        let senderId = c.senderId;
+            let message = c.message;
+            let senderId = c.senderId;
 
-        mySession === senderId ? chatings.innerHTML += `
+            mySession === senderId ? chatings.innerHTML += `
          <div style="width:99%">
             <div style="text-align: right;    margin-top: 20px;">
-        <span style="line-height: 40px;    display: inline-block;    border: 1px solid;    border-radius: 10px;    padding: 0px 5px;    height: 45px;     font-size: 17px;" ><span style="font-size: 10px;">${time}</span> &nbsp;&nbsp;&nbsp; ${message}</span> <br/>
+        <span style="line-height: 40px;    display: inline-block;    border: 1px solid;    border-radius: 10px;    padding: 0px 5px;    height: 45px;     font-size: 17px;"  id="sender"><span style="font-size: 10px;">${time}</span> &nbsp;&nbsp;&nbsp; ${message}</span> <br/>
         </div></div>` :
-            chatings.innerHTML += `
+                chatings.innerHTML += `
             <div style="text-align:left; margin-top: 10px;
              border: 1px solid black;width: 45%;padding: 5px; border-radius: 10px;
              ">
@@ -141,12 +154,14 @@
             </div>`
 
 
-    })
+        })
+    }
+    letdata()
+
     //여기까지 완벽
     let webSocket;
     let nickname = mySession
     let roomId = roomid;
-
 
 
     $(document).ready(function () {
@@ -187,10 +202,6 @@
         }));
 
 
-
-
-
-
         let data = {
             message: msg,
             roomName: roomId,
@@ -198,7 +209,6 @@
             senderId: mySession,
             receiverId: other
         }
-
 
 
         let JSONData = JSON.stringify(data)
@@ -209,7 +219,7 @@
 
             contentType: "application/json",
             success: function () {
-             document.getElementById('message').value=""
+                document.getElementById('message').value = ""
 
             },
             error: function (err) {
@@ -221,39 +231,53 @@
         })
 
 
+
+
+
+
+
+
+
     }
 
     function onOpen() {
+
         webSocket.send(JSON.stringify({chatRoomId: roomId, type: 'ENTER', writer: nickname}));
 
 
     }
 
 
-
     function onMessage(e) {
-        console.log(e)
-        let data = e.data;
 
-        let dates = JSON.parse(data)
+            let data = e.data;
 
-        chatroom = document.getElementById("chatroom");
-        dates?.search(nickname)?
-            chatings.innerHTML +=`
-            <div style="text-align:left; margin-top: 10px;
-             border: 1px solid black;width: 45%;padding: 5px; border-radius: 10px;
-             ">
 
-            <span style="font-size: 17px;">${dates}</span>
+            let date = JSON.parse(data)
+            let dates = date.split(" ")
 
-            </div>`:
-            chatings.innerHTML += `
-         <div style="width:99%">
-            <div style="text-align: right;    margin-top: 20px;">
-        <span style="line-height: 40px;    display: inline-block;    border: 1px solid;    border-radius: 10px;    padding: 0px 5px;    height: 45px;     font-size: 17px;" > ${dates}</span> <br/>
-        </div></div>`
+         let datas =  (dates[2])
 
-        document.getElementById('chating').scrollTop = document.getElementById('chating').scrollHeight;
+
+
+            chatroom = document.getElementById("chatroom");
+        date?.search(nickname) ?
+                chatings.innerHTML += `
+                <div style="text-align:left; margin-top: 10px;
+                 border: 1px solid black;width: 45%;padding: 5px; border-radius: 10px;
+                 ">
+
+                <span style="font-size: 15px;">${date} <span>${ttime}</span></span>
+
+                </div>` :
+                chatings.innerHTML += `
+             <div style="width:99%">
+                <div style="text-align: right;    margin-top: 20px;">
+                <span>${ttime}</span>
+            <span style="line-height: 40px;    display: inline-block;         padding: 0px 5px;    height: 45px;     font-size: 17px;"  id="senderText">${datas}</span> <br/>
+            </div></div>`
+
+            document.getElementById('chating').scrollTop = document.getElementById('chating').scrollHeight;
 
 
     }

@@ -295,6 +295,7 @@
   background-color: #fff;
   color: #888;
   padding: 0px;
+  cursor: pointer;
 }
 
 .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_xBtn :last-child {
@@ -1362,6 +1363,7 @@ input[type="checkbox"]:checked::before {
     width: 80px !important;
     height: 42px !important;
     font-family: 'Elice Digital Baeum';
+    cursor: pointer;
   }
   .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_xBtn :last-child{
     background-color: white;

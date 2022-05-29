@@ -32,8 +32,6 @@ public class NovelRankingController {
     @GetMapping("novelRanking")
     public void novelRanking(NovelRankingCriteria novelRankingCriteria,Model model){
         List<NovelRankingDTO> rankingList = novelService.rankingSearch(novelRankingCriteria);
-        rankingList.forEach(e -> log.info("^^^^^"+e.toString()));
-        log.info("@@@@"+novelRankingCriteria.toString());
         model.addAttribute("rankingList",rankingList);
         model.addAttribute( "resultTotal", rankingList.size());
         model.addAttribute( "criteria", novelRankingCriteria);
@@ -43,21 +41,8 @@ public class NovelRankingController {
     @LogStatus
     @GetMapping("novelRanking/tagSearch")
     public String novelTagSearch(NovelRankingCriteria novelRankingCriteria,Model model){
-//        Page<NovelCategoryDTO> rankingList = novelService.getList(pageable);
         List<NovelRankingDTO> rankingList = novelService.rankingSearch(novelRankingCriteria);
-        rankingList.forEach(e -> log.info("^^^^^"+e.toString()));
-        log.info("@@@@"+novelRankingCriteria.toString());
 
-/*        List<NovelVO> rankingList = novelService.getTop50ByTag(novelRankingCriteria.getKeyword());*/
-/*
-        rankingList.forEach(e -> log.info("#########"+e.toString()));
-        log.info("###### total:"+ rankingList.size());
-        model.addAttribute("rankingList",rankingList);
-        model.addAttribute( "resultTotal", rankingList.size());
-        model.addAttribute( "criteria", novelRankingCriteria);*/
-
-
-//        model.addAttribute("pageableDTO",pageableDTO);
         model.addAttribute("rankingList",rankingList);
         model.addAttribute( "resultTotal", rankingList.size());
         model.addAttribute( "criteria", novelRankingCriteria);
@@ -67,21 +52,7 @@ public class NovelRankingController {
     @LogStatus
     @GetMapping("novelRanking/rankingSearchOfDay")
     public String rankingSearchOfDay(NovelRankingCriteria novelRankingCriteria,Model model){
-//        Page<NovelCategoryDTO> rankingList = novelService.getList(pageable);
         List<NovelRankingDTO> rankingList = novelService.rankingSearch(novelRankingCriteria);
-        rankingList.forEach(e -> log.info("^^^^^"+e.toString()));
-        log.info("@@@@"+novelRankingCriteria.toString());
-
-        /*        List<NovelVO> rankingList = novelService.getTop50ByTag(novelRankingCriteria.getKeyword());*/
-/*
-        rankingList.forEach(e -> log.info("#########"+e.toString()));
-        log.info("###### total:"+ rankingList.size());
-        model.addAttribute("rankingList",rankingList);
-        model.addAttribute( "resultTotal", rankingList.size());
-        model.addAttribute( "criteria", novelRankingCriteria);*/
-
-
-//        model.addAttribute("pageableDTO",pageableDTO);
         model.addAttribute("rankingList",rankingList);
         model.addAttribute( "resultTotal", rankingList.size());
         model.addAttribute( "criteria", novelRankingCriteria);
@@ -91,36 +62,12 @@ public class NovelRankingController {
     @LogStatus
     @GetMapping("novelRanking/changeModelOfDay")
     public String changeModelOfDay(NovelRankingCriteria novelRankingCriteria,Model model){
-//        Page<NovelCategoryDTO> rankingList = novelService.getList(pageable);
-        log.info("changeModelOfDay!!!!");
         List<NovelRankingDTO> rankingList = novelService.rankingSearch(novelRankingCriteria);
-        rankingList.forEach(e -> log.info("^^^^^"+e.toString()));
-        log.info("@@@@"+novelRankingCriteria.toString());
-
-        /*        List<NovelVO> rankingList = novelService.getTop50ByTag(novelRankingCriteria.getKeyword());*/
-/*
-        rankingList.forEach(e -> log.info("#########"+e.toString()));
-        log.info("###### total:"+ rankingList.size());
-        model.addAttribute("rankingList",rankingList);
-        model.addAttribute( "resultTotal", rankingList.size());
-        model.addAttribute( "criteria", novelRankingCriteria);*/
-
-
-//        model.addAttribute("pageableDTO",pageableDTO);
         model.addAttribute("rankingList",rankingList);
         model.addAttribute( "resultTotal", rankingList.size());
         model.addAttribute( "criteria", novelRankingCriteria);
         return "/novel/ranking/novelRankingOfDay";
     }
 
-/*    @LogStatus
-    @ResponseBody
-    @PostMapping( value =  {"/changeModelOfDay"}, consumes = "application/json")
-    public void modify(@RequestBody NovelRankingCriteria novelRankingCriteria,Model model){
-        log.info("changeModelOfDay.........." + novelRankingCriteria.toString());
-        novelRankingCriteria.setDay(-1);
-        log.info("@@@@@@@@@.........." + novelRankingCriteria.toString());
-        model.addAttribute( "criteria", novelRankingCriteria);
-    }*/
 
 }

@@ -1,14 +1,14 @@
 function search() {
 
-    let result= [];
+    let result= "";
     $.ajax({
-        url : "https://api.themoviedb.org/3/movie/popular?api_key=84681a7022280cff3021d07fe9117b39&language=ko-KR",
+        url : "/main/bannerImg",
 
         dataType: "json",
         type: "get",
         async: false,
         success: function(data) {
-            result= data.results
+            result= data
             console.log(result)
         },
         error: function (){alert("실패");}
@@ -17,18 +17,18 @@ function search() {
 
 }
 
- function ResCnt() { 
+ function illustImg() {
  
-    let result= [];
+    let result= "";
     $.ajax({
-      url : "dummy/Res.json",
+      url : "/main/illustImg",
      
       dataType: "json",	
       type: "get",
       async: false,
       success: function(data) {
          result= data
-         
+          console.log(result)
       },
         error: function (){alert("실패");}
     });

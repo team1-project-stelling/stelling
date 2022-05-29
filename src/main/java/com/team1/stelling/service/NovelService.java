@@ -45,35 +45,42 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class NovelService {
     private final NovelRepository novelRepository;
+
     private final NovelDAO novelDAO;
-//    private final NovelSearchRepository novelSearchRepository;
+
     private final ModelMapper modelMapper;
+
     static final int ENDNOVELSTAUTS = 2; // 완결 상태 값 2:
 
     public NovelVO get(Long nNO){ return novelRepository.findById(nNO).orElseGet(null);}
+
     public List<NovelVO> getList(){return novelRepository.findAll();}
+
     public void register(NovelVO novelVO){ novelRepository.save(novelVO);}
+
+    public Long registerReturnNovelNum(NovelVO novelVO){ return novelRepository.save(novelVO).getNovelNumber();}
+
     public void modify(NovelVO novelVO) {
         novelVO.updateNovelUpdateDate();
         novelRepository.save(novelVO);
     }
+
     public int getTotal(){return novelRepository.findByIdTotal();}
 
-
+    /*노벨 리스트 최신순으로가져오기*/
 
     /* search */
     @Transactional
     public Page<NovelCategoryDTO> search(String keyword, Pageable pageable) {
         return  novelRepository.findByNovelHashtagContaining(keyword,pageable).map(objectEntity -> modelMapper.map(objectEntity, NovelCategoryDTO.class));
     }
+
     /* 페이징처리 전체조회*/
     @Transactional
     public Page<NovelCategoryDTO> getList(Pageable pageable){
 //        novelRepository.findAll(pageable).map(objectEntity -> modelMapper.map(objectEntity, NovelCategoryDTO.class));
         return  novelRepository.findAll(pageable).map(objectEntity -> modelMapper.map(objectEntity, NovelCategoryDTO.class));
     }
-
-
     /* 완결 소설 조회*/
     public Page<NovelCategoryDTO> getEndNovelList(Pageable pageable){
         return  novelRepository.findByNovelStatus(ENDNOVELSTAUTS, pageable).map(objectEntity -> modelMapper.map(objectEntity, NovelCategoryDTO.class));
@@ -95,26 +102,9 @@ public class NovelService {
         return novelRepository.findTop50ByOrderByNovelLikeCountTotalDesc();
     }
 
-/*    public List<NovelVO> getTop50ByTag (String keyword) {
-        log.info("@@@@@SERVKEY:"+keyword);
-        novelRepository.findTop50ByNovelHashtagContainingOrderByNovelLikeCountTotalDesc(keyword).forEach(e -> log.info("@@@@@@lsit"+e.toString()));
-        return novelRepository.findTop50ByNovelHashtagContainingOrderByNovelLikeCountTotalDesc(keyword);
-    }*/
-
     public List<NovelRankingDTO> rankingSearch(NovelRankingCriteria novelRankingCriteria){
         return novelDAO.rankingSearch(novelRankingCriteria);
     }
-
-
-/*    *//* 노벨 VO 등록 *//*
-    @PostMapping("/novelRegister")
-    public void novelRegister(NovelVO novelVO) {
-        log.info("=============================================");
-        log.info(novelVO.toString());
-        log.info("=============================================");
-        novelRepository.save(novelVO);
-
-    }*/
 
     public Page<NovelVO> getPageList(Long userNumber, Pageable pageable){return novelRepository.findByUserVO_userNumber(userNumber, pageable);}
 

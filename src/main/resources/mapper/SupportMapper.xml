@@ -17,7 +17,7 @@
 
     <!--후원 내역-->
     <select id="getSuppotList" resultType="supportVO">
-            SELECT SUPPORT_NUMBER, SUPPORT_SPONSER, SUPPORT_RECEIVER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATETIME
+            SELECT SUPPORT_NUMBER, SUPPORT_SPONSER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE
             FROM TBL_SUPPORT
             WHERE SUPPORT_SPONSER = #{supportSponser}
             ORDER BY SUPPORT_NUMBER DESC
@@ -30,7 +30,7 @@
         FROM TBL_SUPPORT
     </select>
 
-    <!--총 후원 금액-->
+    <!--총 후원 코인-->
     <select id="getSupportCoinTotal" resultType="SupportDTO">
         SELECT SUPPORT_SPONSER, SUM(SUPPORT_COIN) AS SUPPORT_TOTAL
         FROM TBL_SUPPORT

@@ -98,7 +98,14 @@
 
                                 <div class="x_xBtn">
                                     <button onclick="IntroModalHandler()">작품소개</button>
-                                    <a th:href="@{/novel/novelDetailView(novelNumber=${novelNumber}, subNovelNumber=${firstSNumber}, count=1)}"><button type="button" class="goToFirst">첫편보기</button></a>
+                                    <th:block th:if="${session.userNumber==novelVO.userVO.userNumber}">
+                                        <a th:href="@{/novel/novelWrite(novelNumber=${novelNumber})}">
+                                    <button type="button" class="writeNovel" >소설등록</button>
+                                        </a>
+                                    </th:block>
+                                    <th:block th:unless="${session.userNumber==novelVO.userVO.userNumber}">
+                                        <a th:href="@{/novel/novelDetailView(novelNumber=${novelNumber}, subNovelNumber=${firstSNumber}, count=1)}"><button type="button" class="goToFirst">첫편보기</button></a>
+                                    </th:block>
                                 </div>
                             </div>
                         </div>

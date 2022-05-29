@@ -1,18 +1,18 @@
 
-// function getReply(novelNumber, callback , error) {
-//
-//    $.ajax({
-//      url : "/reply/getReplyLists/latest?novelNumber="+novelNumber,
-//      type: "get",
-//      success: function(replyDTO) {
-//         callback(replyDTO.replyVOList, replyDTO.userVOList);
-//         console.log(replyDTO.replyVOList);
-//
-//      },
-//        error: function (){alert("실패");}
-//    });
-//
-// }
+function getReply(novelNumber, callback , error) {
+
+   $.ajax({
+     url : "/reply/getReplyLists/latest?novelNumber="+novelNumber,
+     type: "get",
+     success: function(replyDTO) {
+        callback(replyDTO.replyVOList, replyDTO.userVOList);
+        console.log(replyDTO.replyVOList);
+
+     },
+       error: function (){alert("실패");}
+   });
+
+}
 //
 // function setStringNumber(count) {
 //     if(count >= 1000 && count < 10000){ //1k
