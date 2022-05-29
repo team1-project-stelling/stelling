@@ -8,6 +8,7 @@
     <link href="/assets/css/fix/footer.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/fix/header.css" rel="stylesheet" type="text/css">
     <title>Stelling</title>
+    <script src="/assets/js/fix/data.js"></script>
     <script src="../../static/assets/js/main/index.js"></script>
     <style>
         .live-hot{
@@ -21,11 +22,13 @@
             text-decoration: none;
             color: black;
         }
-
+        .menuActive{
+            background-color: #ef6e73;
+            color: white;
+        }
     </style>
 </head>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="/assets/js/novel/data.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <body>
 <!-- 헤더 시작 -->
 <th:block th:insert="/fix/headerWord.html :: headFragment"/>
@@ -41,18 +44,34 @@
         <script>
 
 
-            const img =search()
+            let img =search()
+
 
             img?.map((imgs,index)=>{
+                let fileCallpath = imgs.novelUploadPath + "/" + imgs.novelFileName;
                 let img= document.createElement('img');
-                img.src=`https://image.tmdb.org/t/p/w500${imgs.poster_path}`;
+                img.src=`/main/display?fileName=` + fileCallpath;
                 img.className=`banner_img${index} banner_img ${imgs.id} `
                 img.id=`imgss`
-                document.querySelector(".M_banner_list").appendChild(img)
+                document.querySelector(".M_banner_list").innerHTML += `<img src = /main/display?fileName=${fileCallpath} class="banner_img${index} banner_img" id="imgss">`;
 
             })
 
 
+        </script>
+
+        <script>
+            let img2 =illustImg()
+
+            img2?.map((imgs,index)=>{
+                let fileCallpath = imgs.illustImgFileFilePath + "/" + imgs.illustImgFileFileName;
+                let img= document.createElement('img');
+                // img.src=`/main/display?fileName=` + fileCallpath;
+                // img.className=`movemove${index} M_x_ fourList`
+                // img.id=`imgss`
+                document.querySelector(".illust_list").innerHTML += `<li><img src = /main/display?fileName=${fileCallpath} class="M_x_ .fourList" id="#fourList"></li>`;
+
+            })
         </script>
 
     </div>
@@ -76,16 +95,16 @@
     </h2>
     <div class="M_tags_area">
         <div class="M_tags" >
-            <a class="M_tags"  value="28" th:classappend="${mainCriteria.keyword== 'searchAll'} ? 'menuActive' : ''" href="searchAll"> <span class="tagspan  clinkadd " value="all"  > 전체</span></a>
-            <a class="M_tags" th:classappend="${mainCriteria.keyword== '판타지'} ? 'menuActive' : ''" href="판타지"><span class="tagspan " value="판타지" >  판타지</span></a>
-            <a class="M_tags" th:classappend="${mainCriteria.keyword== '무협'} ? 'menuActive' : ''" href="무협"> <span class="tagspan " value="무협" > 무협</span></a>
-            <a class="M_tags" th:classappend="${mainCriteria.keyword== '현대'} ? 'menuActive' : ''" href="현대"><span class="tagspan " value="현대" > 현대</span></a>
-            <a class="M_tags" th:classappend="${mainCriteria.keyword== '로맨스'} ? 'menuActive' : ''" href="로맨스"><span class="tagspan " value="로멘스" > 로맨스</span></a>
-            <a class="M_tags" th:classappend="${mainCriteria.keyword== '현대판타지'} ? 'menuActive' : ''" href="현대판타지"><span class="tagspan " value="현대판타지" >  현대판타지</span></a>
-            <a class="M_tags" th:classappend="${mainCriteria.keyword== '라이트노벨'} ? 'menuActive' : ''" href="라이트노벨"><span class="tagspan " value="라이트노벨" >  라이트노벨</span></a>
-            <a class="M_tags" th:classappend="${mainCriteria.keyword== '공포'} ? 'menuActive' : ''" href="공포"><span class="tagspan " value="공포" > 공포</span></a>
-            <a class="M_tags" th:classappend="${mainCriteria.keyword== 'SF'} ? 'menuActive' : ''" href="SF"><span class="tagspan " value="SF" > SF</span></a>
-            <a class="M_tags" th:classappend="${mainCriteria.keyword== '스포츠'} ? 'menuActive' : ''" href="스포츠"><span class="tagspan " value="스포츠" > 스포츠</span></a>
+            <a class="M_tags"  value="28" href="searchAll"> <span th:classappend="${mainCriteria.keyword== 'searchAll'} ? 'menuActive' : ''" class="tagspan" value="all"  > 전체</span></a>
+            <a class="M_tags" href="판타지"><span th:classappend="${mainCriteria.keyword== '판타지'} ? 'menuActive' : ''" class="tagspan " value="판타지" >  판타지</span></a>
+            <a class="M_tags" href="무협"> <span th:classappend="${mainCriteria.keyword== '무협'} ? 'menuActive' : ''" class="tagspan " value="무협" > 무협</span></a>
+            <a class="M_tags" href="현대"><span th:classappend="${mainCriteria.keyword== '현대'} ? 'menuActive' : ''" class="tagspan " value="현대" > 현대</span></a>
+            <a class="M_tags" href="로맨스"><span th:classappend="${mainCriteria.keyword== '로맨스'} ? 'menuActive' : ''" class="tagspan " value="로멘스" > 로맨스</span></a>
+            <a class="M_tags" href="현대판타지"><span th:classappend="${mainCriteria.keyword== '현대판타지'} ? 'menuActive' : ''" class="tagspan " value="현대판타지" >  현대판타지</span></a>
+            <a class="M_tags" href="라이트노벨"><span th:classappend="${mainCriteria.keyword== '라이트노벨'} ? 'menuActive' : ''" class="tagspan " value="라이트노벨" >  라이트노벨</span></a>
+            <a class="M_tags" href="공포"><span th:classappend="${mainCriteria.keyword== '공포'} ? 'menuActive' : ''" class="tagspan " value="공포" > 공포</span></a>
+            <a class="M_tags" href="SF"><span th:classappend="${mainCriteria.keyword== 'SF'} ? 'menuActive' : ''" class="tagspan " value="SF" > SF</span></a>
+            <a class="M_tags" href="스포츠"><span th:classappend="${mainCriteria.keyword== '스포츠'} ? 'menuActive' : ''" class="tagspan " value="스포츠" > 스포츠</span></a>
 
 
 
@@ -142,8 +161,22 @@
 
         <div class="tags_List">
             <div class="tags_header tags_middle">
-                <span>찜</span> <a href="#">더보기</a></div>
-            <div class="tags_container tags_right" ></div></div>
+                <span>회차수</span> <a href="#">더보기</a></div>
+            <div class="tags_container tags_right" >
+                <ul>
+                    <th:block th:each="roundCount,index:${roundCountList}">
+                        <li class="live-hot" th:object="${roundCount}">
+                            <img th:src="'/upload/display?fileName='+*{novelUploadPath}+'/'+*{novelFileName}" style="width: 90px;">
+                            <div style="margin-left: 15px; line-height: 1;">
+                                <b th:text="${index.count}"></b><span th:text="*{novelTitle}" style="margin-left: 8px;"></span>
+                                <p th:text="*{userNickName}">서은하</p>
+                                <p th:text="*{novelHashtag}">#판타지 #현대 #착각 #후회 #집착 #피폐 #히어로</p>
+                            </div>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+        </div>
 
     </div></div>
 
@@ -159,7 +192,7 @@
     <div class="M_x_W">
         <div class="M_x_">
             <div class="x_title">
-                <div>이번 주 신작은??
+                <div>뜨끈뜨끈한 신작은??
                     <span>NewFace의 반란!</span>
                     <ul style="list-style: none; display: flex;">
                         <th:block th:each="newWork:${newWorkList}">
@@ -179,10 +212,25 @@
 
     <div class="M_x_">
         <div class="x_title">
-            <div>이번 주 신작은??
-                <span>NewFace의 반란!</span>
-            </div></div>
+            <div>완결작!
+                <span>마지막 화 까지 정주행!</span>
+                <ul style="list-style: none; display: flex;">
+                    <th:block th:each="endNovel:${endNovelList}">
+                        <li style="margin-right :20px;" th:object="${endNovel}">
+                            <a href=""><img th:src="'/upload/display?fileName='+*{novelUploadPath}+'/'+*{novelFileName}" style="width: 175px;" alt="이미지 준비중"></a>
+                            <p style="margin: 0; font-size: 14px;" th:text="*{novelTitle}"></p>
+                            <p style="margin: 0; font-size: 14px;" th:text="*{userNickName}"></p>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+        </div>
         <div class="x_box secondList" ></div>
+    </div>
+
+    <div>
+        <ul class="testAjax" style="display: flex;">
+        </ul>
     </div>
 
 
@@ -191,13 +239,8 @@
             <div class="x_title">
                 <div>한번쯤은 보게될걸?
                     <span>Illustrator</span>
-                    <ul style="list-style: none; display: flex;">
-                        <th:block th:each="newIllust:${newIllustList}">
-                            <li style="margin-right :20px;" th:object="${newIllust}">
-                                <a href=""><img th:src="'/upload/display?fileName='+*{illustImgFileFilePath}+'/'+*{illustImgFileFileName}" style="width: 175px;" alt="이미지 준비중"></a>
-                                <p style="margin: 0; font-size: 14px;" th:text="*{userNickName}"></p>
-                            </li>
-                        </th:block>
+                    <ul style="list-style: none; display: flex;" class="illust_list">
+
                     </ul>
                 </div>
             <div class="x_box fourList movemove" id="fourList" ></div>
@@ -217,6 +260,7 @@
 
 
 </div>
+</div>
 </body>
 <th:block th:insert="/fix/footer.html :: footerFragment"/>
 <script src="/assets/js/main/index.js"></script>
@@ -225,18 +269,6 @@
     let userNumber = [[${session.userNumber}]];
     console.log("세션 유저 번호 : " + userNumber);
     let keyword = [[${mainCriteria.keyword}]];
-    // const userNumber = [[${session.userNumber}]];
-    // console.log(userNumber);
-
-    //로그인된 회원만 마이페이지 이동
-    function goMyPage(){
-        if(userNumber == null){
-            alert("로그인한 회원만 이용가능합니다.");
-            return;
-        } else{
-            location.href = "/myPage/myPageEditProfile?userNumber=" + userNumber;
-        }
-    }
 
     $("a.M_tags").click(function(e){
         e.preventDefault();

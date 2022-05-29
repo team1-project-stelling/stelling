@@ -91,7 +91,6 @@ public class MyLibraryCollectionController {
     @ResponseBody
     @DeleteMapping( value = "/myRecentView/delete/{recentViewNumber}")
     public String recentRemove(@PathVariable("recentViewNumber") Long recentViewNumber){
-        log.info("remove............" + recentViewNumber);
         return recentViewService.remove(recentViewNumber) ? "최근 본 작품 삭제 성공" : "최근 본 작품 삭제 실패";
     }
 }

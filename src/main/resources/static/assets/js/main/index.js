@@ -66,13 +66,13 @@ prev.addEventListener('click',function(){
  
 })
 
-// function change(){
-//    set ()
-//
-//    mainslide.classList.add('addd');
-//    Mslide.classList.add('leftadd')
-//    Pslide.classList.add('rightadd')
-// }
+function change(){
+   set ()
+
+   mainslide.classList.add('addd');
+   Mslide.classList.add('leftadd')
+   Pslide.classList.add('rightadd')
+}
    
    
 //자동 슬라이드

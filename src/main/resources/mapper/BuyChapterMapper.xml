@@ -4,9 +4,8 @@
 
     <!--등록-->
     <insert id="insert">
-        INSERT INTO tbl_buychapter
-        (NOVEL_NUMBER, SUBNOVEL_NUMBER, USER_NUMBER, BUYCHAPTER_COIN, BUYCHAPTER_DATETIME, BUYCHAPTER_STATUS)
-        VALUES(#{novelNumber},  #{subNovelNumber}, #{userNumber}, #{buyChapterCoin}, curdate(), 0);
+        INSERT INTO TBL_BUYCHAPTER (BUYCHAPTER_NUMBER, NOVEL_NUMBER, SUBNOVEL_NUMBER, USER_NUMBER, BUYCHAPTER_COIN)
+        VALUES(BUYCHAPTER_SEQ.NEXTVAL, #{novelNumber}, #{subNovelNumber}, #{userNumber}, #{buyChapterCoin})
     </insert>
 
     <!--삭제-->
@@ -25,12 +24,11 @@
         WHERE USER_NUMBER = #{userNumber}
     </select>
 
-    <!--노벨넘버로 서브노벨리스트가져오기-->
-    <select id="getSubNovelNumByNovelNum" resultType="long">
-        SELECT SUBNOVEL_NUMBER
+    <!--노벨넘버랑 유저넘버로 내역가져오기-->
+    <select id="getSubNovelNumByNovelNum" resultType="buyChapterVO">
+        SELECT BUYCHAPTER_NUMBER, NOVEL_NUMBER, SUBNOVEL_NUMBER, USER_NUMBER, BUYCHAPTER_COIN, BUYCHAPTER_DATETIME, BUYCHAPTER_STATUS
         FROM TBL_BUYCHAPTER
-        WHERE NOVEL_NUMBER =#{novelNumber}
-        AND USER_NUMBER =#{userNumber};
+        WHERE USER_NUMBER = #{userNumber} AND NOVEL_NUMBER=#{novelNumber}
     </select>
 
 </mapper>
