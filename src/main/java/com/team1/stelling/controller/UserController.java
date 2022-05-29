@@ -66,12 +66,8 @@ public class UserController {
     }
 
     @PostMapping("loginCheck")
-    public String login(HttpServletRequest request, String userId, String userPw) {
-        UserVO userVO = userService.getByUserId(userId); // 비밀번호를 찾는 메소드
-
-
-        log.info("아이디 :" + userId);
-        log.info("비밀번호 :" + userPw);
+    public String login(HttpServletRequest request, String userId, String userPw, Model model) {
+        UserVO userVO = userService.getByUserId(userId);
 
         if (!passwordEncoder.matches(userPw, userVO.getUserPw())) {
             return "user/userLogin";
@@ -79,7 +75,6 @@ public class UserController {
             HttpSession session = request.getSession();
             session.setAttribute("userNumber", userVO.getUserNumber());
             session.setAttribute("user",userService.get(userVO.getUserNumber()));
-            log.info("###########" +session.getAttribute("userNumber"));
             return "redirect:/main/index";
         }
     }
@@ -89,7 +84,6 @@ public class UserController {
     public int overlappedID(String userId){
         int count = 0;
         count = userService.idCheck(userId);
-        log.info("#######################" + count);
         return count;
     }
 
@@ -98,7 +92,6 @@ public class UserController {
     public int overlappedEmail(String userEmail){
         int count = 0;
         count = userService.idCheck(userEmail);
-        log.info("#######################" + count);
         return count;
     }
     @GetMapping("sendSMS")
