@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequestMapping("/novel/*")
 @RequiredArgsConstructor
-public class NovelController {
+public class novelController {
 
     private  final NovelService novelService;
     private final UserService userService;

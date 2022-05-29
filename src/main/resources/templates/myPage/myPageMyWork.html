@@ -97,7 +97,7 @@
                                             </div>
                                             <div class="item-button" style="margin-top: 3em;">
                                                 <ul class="tag-title">
-                                                    <li><a href="#" class="btn-view tag-list">업로드</a></li>
+                                                    <li><a class="btn-view tag-list"  href="javascript:goNobelRegister();">업로드</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -217,13 +217,16 @@
         location.href = "/myPage/myPageQuestion";
     }
     function goQuit(){
-        location.href = "/myPage/myPageQuit?userNumber=" + userNumber;
+        location.href = "/myPage/myPageQuit";
     }
     function goPayList(){
-        location.href = "/myLibrary/payList?userNumber=" + userNumber;
+        location.href = "/myLibrary/payList";
     }
     function goIllustUserPage(){
         location.href = "/illust/illustUserPage";
+    }
+    function goNobelRegister() {
+        location.href = "/novel/novelRegister";
     }
 
 
