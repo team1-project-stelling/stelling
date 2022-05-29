@@ -14,7 +14,6 @@ import com.team1.stelling.service.SubNovelService;
 import com.team1.stelling.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.jni.FileInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -27,7 +26,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
@@ -80,19 +78,14 @@ public class MyPageController {
 
     //---------
 
-//    @GetMapping("/myPageMyWork")
-//    public void myWork(){
-//        log.info("myWork");
-//    }
 
     //내 작품 관리
     @GetMapping("/myPageMyWork")
     public String myPageMyWork(Model model, HttpServletRequest request, @PageableDefault(page = 0, size = 10, sort = "novelNumber", direction = Sort.Direction.DESC) Pageable pageable) {
         HttpSession session = request.getSession();
         Long userNum = Long.valueOf((Integer) session.getAttribute("userNumber"));
-        Long novelNumber = novelRepository.getById(userNum).getNovelNumber();
-        Long subNovelNum = subNovelRepository.getById(userNum).getSubNovelNumber();
-
+        NovelVO novelVO = novelRepository.getById(userNum);
+        List<SubNovelVO> subNovelVOs = subNovelService.getList();
 
 
         Page<NovelVO> list = novelService.getPageList(userNum, pageable);
@@ -107,8 +100,8 @@ public class MyPageController {
         UserVO uservo = userRepository.findById(Long.valueOf((Integer) session.getAttribute("userNumber"))).get();
         PageableDTO pageableDTO = new PageableDTO((int) list.getTotalElements(), pageable);
 
-        model.addAttribute("subNovelNum", subNovelNum);
-        model.addAttribute("novelNumber", novelNumber);
+        model.addAttribute("subNovelVOs", subNovelVOs);
+        model.addAttribute("novelVO", novelVO);
         model.addAttribute("list", list);
         model.addAttribute("pageableDTO", pageableDTO);
         model.addAttribute("userVO", uservo);
@@ -212,7 +205,6 @@ public class MyPageController {
             try {
                 //설정한 경로에 해당 파일을 업로드한다.
                 file.transferTo(saveFile);
-//                InputStream in = new FileInputStream(saveFile);
 
 
                 fileList.add(userVO);
@@ -239,30 +231,4 @@ public class MyPageController {
         Date today = new Date();
         return sdf.format(today);
     }
-
-//    @GetMapping("/novelRoundList")
-//    public void getSubNovel(Long novelNumber, Model model) {
-//        NovelVO novelVO = novelService.get(novelNumber);
-//        int listSize = subNovelService.getList(novelNumber).size();
-//        String writerName = userService.get(Long.valueOf(novelVO.getUserVO().getUserNumber())).getUserNickName();
-//
-//        if (novelService.get(novelNumber).getNovelFileName().contains("sampleImg")) {
-//            String novelImgSrc = "/images/" + novelService.get(novelNumber).getNovelFileName();
-//            model.addAttribute("novelImgSrc", novelImgSrc);
-//        }
-//
-////        ArrayList<Long> sNumbers = new ArrayList<>();
-////        for (SubNovelVO sub : subNovelVOS){
-////            sNumbers.add(sub.getSubNovelNumber());
-////        }
-//
-//
-//        model.addAttribute("novelNumber", novelNumber);
-////        model.addAttribute("subnovelVOList",subNovelVOS);
-//        model.addAttribute("listSize", listSize);
-//        model.addAttribute("novelVO", novelVO);
-//        model.addAttribute("writerName", writerName);
-////        model.addAttribute("firstSNumber",  sNumbers.get(0));
-//
-//    }
 }

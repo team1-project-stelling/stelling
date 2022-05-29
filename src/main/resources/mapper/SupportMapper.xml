@@ -30,7 +30,7 @@
         FROM TBL_SUPPORT
     </select>
 
-    <!--총 결제 금액-->
+    <!--총 후원 결제 금액-->
     <select id="getSupportCoinTotal" resultType="SupportDTO">
         SELECT SUPPORT_SPONSER, SUM(SUPPORT_COIN) AS SUPPORT_TOTAL
         FROM TBL_SUPPORT

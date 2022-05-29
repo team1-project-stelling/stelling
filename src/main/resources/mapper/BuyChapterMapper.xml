@@ -23,4 +23,5 @@
         FROM TBL_BUYCHAPTER
         WHERE USER_NUMBER = #{userNumber}
     </select>
+
 </mapper>
