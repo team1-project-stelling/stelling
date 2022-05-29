@@ -24,9 +24,18 @@ public class MainDAO {
     //일러스트 신작 리스트
     public List<NewIllustDTO> getNewIllustList(){return mainMapper.getNewIllustList();}
 
+    //완결 소설 리스트
+    public List<NovelDTO> getEndNovelList(){return mainMapper.getEndNovelList();}
+
     //실시간 조회수 리스트
     public List<NovelRankingDTO> getViewCountSearch(MainCriteria mainCriteria){return mainMapper.getViewCountSearch(mainCriteria);}
 
     //실시간 좋아요 리스트
     public List<NovelRankingDTO> getLikeCountSearch(MainCriteria mainCriteria){return mainMapper.getLikeCountSearch(mainCriteria);}
+
+    //실시간 회차순 리스트
+    public List<NovelRankingDTO> getRoundCountSearch(MainCriteria mainCriteria){return mainMapper.getRoundCountSearch(mainCriteria);}
+
+    //배너 이미지
+    public List<NovelDTO> getBannerImg(){return mainMapper.getBannerImg();}
 }

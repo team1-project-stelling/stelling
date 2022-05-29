@@ -16,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +32,22 @@ public class MainController {
 
     private final MainService mainService;
 
+    @GetMapping("/bannerImg")
+    @ResponseBody
+    public List<NovelDTO> getBannerImg(){
+        List<NovelDTO> novelDTO = mainService.getBannerImg();
+
+        return novelDTO;
+    }
+
+    @GetMapping("/illustImg")
+    @ResponseBody
+    public List<NewIllustDTO> getIllustImg(){
+        List<NewIllustDTO> illustDTO = mainService.getNewIllustList();
+
+        return illustDTO;
+    }
+
     @GetMapping("/index")
     public void index(Model model, MainCriteria mainCriteria){
         //소설 신작
@@ -41,6 +59,10 @@ public class MainController {
         List<NewIllustDTO> newIllustList = mainService.getNewIllustList();
         model.addAttribute("newIllustList", newIllustList);
 
+        //완결 소설 리스트
+        List<NovelDTO> endNovelList = mainService.getEndNovelList();
+        model.addAttribute("endNovelList", endNovelList);
+
         //실시간 조회수 높은 작품
         List<NovelRankingDTO> viewCountList = mainService.getViewCountSearch(mainCriteria);
         model.addAttribute("viewCountList", viewCountList);
@@ -49,10 +71,12 @@ public class MainController {
         List<NovelRankingDTO> likeCountList = mainService.getLikeCountSearch(mainCriteria);
         model.addAttribute("likeCountList", likeCountList);
 
+        //실시간 회차수 높은 작품
+        List<NovelRankingDTO> roundCountList = mainService.getRoundCountSearch(mainCriteria);
+        model.addAttribute("roundCountList", roundCountList);
+
         model.addAttribute("mainCriteria", mainCriteria);
     }
-
-    //임시로 작업중인 메서드, 위 컨트롤러에 쓸 예정
 
     @GetMapping("/display")
     public ResponseEntity<byte[]> getImage(String fileName){

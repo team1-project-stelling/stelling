@@ -10,6 +10,16 @@
         LIMIT 6;
     </select>
 
+    <!--완결작 조회-->
+    <select id="getEndNovelList" resultType="NovelDTO">
+        SELECT USER_NICKNAME, NOVEL_TITLE, NOVEL_UPLOADPATH, NOVEL_FILENAME
+        FROM TBL_NOVEL
+        JOIN TBL_USER ON TBL_NOVEL.USER_NUMBER = TBL_USER.USER_NUMBER
+        WHERE NOVEL_STATUS = 2
+        ORDER BY NOVEL_UPLOADDATE DESC
+        LIMIT 6;
+    </select>
+
     <!--일러스트 조회-->
     <select id="getNewIllustList" resultType="NewIllustDTO">
         SELECT USER_NICKNAME, ILLUSTIMGFILE_FILEPATH, ILLUSTIMGFILE_FILENAME
@@ -18,6 +28,8 @@
         ORDER BY ILLUSTIMGFILE_UPLOADDATE DESC
         LIMIT 6;
     </select>
+
+
 
     <select id="getViewCountSearch" resultType="NovelRankingDTO">
         SELECT
@@ -123,6 +135,60 @@
         LIMIT 3
     </select>
 
-    <select id=""></select>
+    <select id="getRoundCountSearch" resultType="NovelRankingDTO">
+        SELECT
+        NOVEL_NUMBER ,
+        n.USER_NUMBER,
+        U.USER_NICKNAME,
+        NOVEL_TITLE ,
+        NOVEL_HASHTAG ,
+        NOVEL_UPLOADDATE ,
+        NOVEL_UPDATEDATE ,
+        NOVEL_CATEGORY ,
+        NOVEL_STATUS ,
+        NOVEL_SERIALSTATUS ,
+        NOVEL_INTRO ,
+        NOVEL_FILENAME ,
+        NOVEL_UPLOADPATH,
+        NOVEL_UUID ,
+        NOVEL_ROUNDABOUTTOTAL,
+        NOVEL_LIKECOUNTTOTAL ,
+        NOVEL_VIEWCOUNTTOTAL
+        FROM
+        (
+        SELECT
+        NOVEL_NUMBER ,
+        USER_NUMBER,
+        NOVEL_TITLE ,
+        NOVEL_HASHTAG ,
+        NOVEL_UPLOADDATE ,
+        NOVEL_UPDATEDATE ,
+        NOVEL_CATEGORY ,
+        NOVEL_STATUS ,
+        NOVEL_SERIALSTATUS ,
+        NOVEL_INTRO ,
+        NOVEL_FILENAME ,
+        NOVEL_UPLOADPATH,
+        NOVEL_UUID ,
+        NOVEL_ROUNDABOUTTOTAL,
+        NOVEL_LIKECOUNTTOTAL ,
+        NOVEL_VIEWCOUNTTOTAL
+        FROM TBL_NOVEL
+        <if test="keyword != 'searchAll'.toString()">
+            WHERE
+            NOVEL_HASHTAG
+            LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        )  n JOIN TBL_USER u
+        ON u.USER_NUMBER  = n.USER_NUMBER
+        ORDER BY
+        NOVEL_ROUNDABOUTTOTAL
+        DESC
+        LIMIT 3
+    </select>
 
+    <select id="getBannerImg" resultType="NovelDTO">
+        SELECT NOVEL_UPLOADPATH, NOVEL_FILENAME
+        FROM TBL_NOVEL
+    </select>
 </mapper>

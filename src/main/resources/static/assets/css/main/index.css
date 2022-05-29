@@ -22,8 +22,8 @@
   top: 50%;
   -webkit-transition: all 0.6s ease 0s;
   transition: all 0.6s ease 0s;
-  width: 1000px;
-  height: 550px;
+  width: 725px;
+  height: 725px;
   opacity: 0;
   z-index: 0;
   -webkit-transform: translate(-50%, -50%) scale(0.8);

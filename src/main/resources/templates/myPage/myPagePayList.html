@@ -141,7 +141,7 @@
                                     <!--페이지 번호-->
                                     <th:block th:with="pageMaker = ${pageMaker}">
                                         <th:block th:each="num:*{#numbers.sequence(pageMaker.pageStart, pageMaker.pageEnd)}">
-                                            <li th:classappend="${pageMaker.paging.pageNum == num} ? 'active' : ''" class="page-item active" style="width:30px;margin-left:3px;">
+                                            <li th:classappend="${pageMaker.paging.pageNum == num} ? 'active' : ''" class="page-item" style="width:30px;margin-left:3px;">
                                                 <a href="javascript:void(0)" th:text="${num}" th:onclick="movePage([[ ${#request.requestURI} ]], [[ ${pageMaker.paging.makeQueryString(num)} ]], [[${session.userNumber}]])" style="width:30px" class="page-link"></a>
                                             </li>
                                         </th:block>
@@ -181,23 +181,11 @@
     const userNumber = [[${session.userNumber}]]; //세션 userNumber
     console.log("세션 유저 번호 : " + userNumber);
 
-
-    function money_comma(num) {
-        num = Number(num);
-        num = num.replace(/[^\d]+/g, ''); //숫자만 남김
-        return num.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1, ');
-    }
     //세션이 만료되었을때 로그인 페이지로 이동
     if(userNumber == null){
         alert("세션이 만료되어 로그인 페이지로 이동합니다");
         location.href = '/user/login';
     }
-
-    //결제 버튼 눌렀을 때 이동
-    // $(".payment").prop('href', '/myLibrary/payList?userNumber=' + userNumber);
-    // const userNumber = $(".userNumber").val();
-
-    // $(".payment").prop('href', '/myLibrary/payList?userNumber=' + userNumber + "&pageNum=" + pageNum + "&amount=" + amount);
 
     function goEditProfile(){
         location.href = "/myPage/myPageEditProfile";
