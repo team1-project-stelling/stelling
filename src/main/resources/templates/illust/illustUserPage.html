@@ -36,7 +36,12 @@
                         <div style="display: flex;">
                             <p class="p postInfo">게시물 <span th:text="${total}"></span></p>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <th:block th:if="${getLikeTotal} == null">
+                                <p class="p postInfo">좋아요 <span>0</span></p>
+                            </th:block>
+                            <th:block th:unless="${getLikeTotal} == null">
                             <p class="p postInfo">좋아요 <span th:text="${getLikeTotal}">3</span></p>
+                        </th:block>
                         </div>
 
                     </div>

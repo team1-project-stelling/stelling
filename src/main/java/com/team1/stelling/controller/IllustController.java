@@ -179,9 +179,14 @@ public class IllustController {
     @GetMapping("/register") public void register(){}
 
     @PostMapping("/register")
-    public RedirectView register(Long userNumber, IllustProfileVO illustProfileVO, RedirectAttributes rttr){
+    public RedirectView register(Long userNumber, IllustProfileVO illustProfileVO, HttpServletRequest request, Model model){
 
-        illustProfileVO.setUserNumber(userNumber);
+        HttpSession session = request.getSession();
+        session.getAttribute("userNumber");
+
+        model.addAttribute("user", userService.get((Long) session.getAttribute("userNumber")));
+        illustProfileVO.setUserNumber((Long) session.getAttribute("userNumber"));
+
 
         illustProfileService.register(illustProfileVO);
 
@@ -256,8 +261,9 @@ public class IllustController {
             Page<IllustVO> list = illustService.getUserIllustList(pageable, (Long) session.getAttribute("userNumber"));
             PageableDTO pageableDTO = new PageableDTO((int) list.getTotalElements(), pageable);
 
+
             model.addAttribute("illustNumber", illustNumber);
-            model.addAttribute("getLikeTotal", illustService.getLikeTotal((Long) session.getAttribute("userNumber")));
+            model.addAttribute("getLikeTotal", illustService.getLikeTotal((long) session.getAttribute("userNumber")));
             model.addAttribute("illustProfile", illustProfileService.getProfile((Long) session.getAttribute("userNumber")));
             model.addAttribute("total", list.getTotalElements());
             model.addAttribute("pageableDTO", pageableDTO);
@@ -266,7 +272,6 @@ public class IllustController {
             return "illust/illustUserPage";
 
         } else {
-
 
             model.addAttribute("user", userService.get((Long) session.getAttribute("userNumber")));
 
