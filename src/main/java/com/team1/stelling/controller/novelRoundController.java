@@ -4,6 +4,7 @@ import com.team1.stelling.aspect.annotation.LogStatus;
 import com.team1.stelling.domain.dto.PageDTO;
 import com.team1.stelling.domain.dto.PageableDTO;
 import com.team1.stelling.domain.dto.SubNovelDeleteDTO;
+import com.team1.stelling.domain.dto.SupportUserDTO;
 import com.team1.stelling.domain.repository.NovelRepository;
 import com.team1.stelling.domain.repository.SubNovelRepository;
 import com.team1.stelling.domain.vo.*;
@@ -51,6 +52,7 @@ public class novelRoundController {
     private final UserService userService;
     private final MyPickService myPickService;
     private  final BuyChapterService buyChapterService;
+    private final SupportService supportService;
 
 
     //저장된 소설 표지 가져오기
@@ -70,8 +72,26 @@ public class novelRoundController {
         int listSize = subNovelService.getListByNovelNumber(novelNumber).size();
         String writerName = userService.get(novelVO.getUserVO().getUserNumber()).getUserNickName();
         HttpSession session = request.getSession();
+        List<SupportVO> supportVOList= supportService.getSupportListWithNovelNumber(novelNumber);
+        List<Long> userNums = supportVOList.stream().map(v->v.getUserNumber()).collect(Collectors.toList());
+        List<UserVO> userVOS =new ArrayList<>();
+
+        List<SupportUserDTO> supportUserDTOS = new ArrayList<>();
+        for(Long userNumber : userNums){
+            userVOS.add(userService.get(userNumber));
+        }
+        for (int i = 0; i<supportVOList.size(); i++){
+            SupportUserDTO supportUserDTO = new SupportUserDTO();
+            supportUserDTO.setCoin(supportVOList.get(i).getSupportCoin());
+            supportUserDTO.setUserNickName(userVOS.get(i).getUserNickName());
+            supportUserDTOS.add(supportUserDTO);
+        }
 
 
+        //조회수 올리기 
+        List<SubNovelVO> subNovelVOList = subNovelService.getListByNovelNumber(novelNumber);
+        novelVO.setNovelViewCountTotal(subNovelVOList.stream().map(v->v.getSubNovelViewCount()).mapToInt(v->v).sum());
+        novelService.register(novelVO);
 
 
         if(novelService.get(novelNumber).getNovelFileName()!=null){
@@ -89,7 +109,7 @@ public class novelRoundController {
 
         //결제한 subNovelNumber리스트
         if(session.getAttribute("userNumber")!=null){
-            Long userNumber = Long.valueOf((Integer)session.getAttribute("userNumber"));
+            Long userNumber = (Long)session.getAttribute("userNumber");
             List<Long> subNumList=buyChapterService.getSubNumByNovelNum(novelNumber, userNumber);
             MyPickVO myPickVO = myPickService.getByNovelNumAndUserNum(novelNumber, userNumber);
             if(myPickVO!=null){
@@ -108,6 +128,8 @@ public class novelRoundController {
         model.addAttribute("novelVO", novelVO);
         model.addAttribute("pageableDTO", pageableDTO);
         model.addAttribute("writerName", writerName);
+        model.addAttribute("supportUserDTOS", supportUserDTOS);
+
         if(sNumbers.size()!=0){
             model.addAttribute("firstSNumber",  sNumbers.get(0));
         }

@@ -10,8 +10,6 @@ import java.util.List;
 public interface SubNovelRepository extends JpaRepository<SubNovelVO, Long> {
   Page<SubNovelVO> findAllByNovelVO_NovelNumber(Long novelNumber,Pageable pageable);
   List<SubNovelVO> findAllByNovelVO_NovelNumberOrderBySubNovelUploadDate(Long novelNumber);
-//  void deleteBySubNovelNumber(Long subnovelNumber);
-  void deleteSubNovelVOBySubNovelNumber(Long subNovelNumber);
 
 
 }

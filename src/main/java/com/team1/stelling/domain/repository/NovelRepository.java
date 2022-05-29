@@ -2,6 +2,7 @@ package com.team1.stelling.domain.repository;
 
 import com.team1.stelling.domain.vo.InquiryVO;
 import com.team1.stelling.domain.vo.NovelVO;
+import com.team1.stelling.domain.vo.SubNovelVO;
 import com.team1.stelling.domain.vo.UserVO;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.data.domain.Page;

@@ -6,7 +6,7 @@
     <insert id="insert">
         INSERT INTO TBL_SUPPORT
         (USER_NUMBER, NOVEL_NUMBER, SUBNOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE)
-        VALUES(#{supportSponser}, #{novelNumber}, #{subNovelNumber}, #{supportCoin}, curdate());
+        VALUES(#{userNumber}, #{novelNumber}, #{subNovelNumber}, #{supportCoin}, curdate());
     </insert>
 
     <!--삭제-->
@@ -38,11 +38,14 @@
         GROUP BY SUPPORT_SPONSER
     </select>
 
-    <!--노벨번호로 후원내역 가져오기-->
+    <!--노벨번호로 후원내역 가져오기(코인금액순 정렬)-->
     <select id="getSupportListWithNovelNumber" resultType="supportVO">
-    SELECT SUPPORT_SPONSER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATETIME
+    SELECT SUPPORT_NUMBER, USER_NUMBER, NOVEL_NUMBER, SUBNOVEL_NUMBER,SUPPORT_COIN, SUPPORT_DATE
     FROM TBL_SUPPORT
-    WHERE NOVEL_NUMBER = #{novelNumber};
+    WHERE NOVEL_NUMBER = #{novelNumber}
+    ORDER BY SUPPORT_COIN DESC;
     </select>
+
+
 
 </mapper>

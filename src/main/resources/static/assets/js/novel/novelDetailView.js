@@ -3,7 +3,6 @@ textareaauto();
 
 
 function textareaauto() {
-    console.log("텍스트조절");
     $('textarea').each(function () {
         this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
     }).on('input', function () {
@@ -60,17 +59,12 @@ let lineHeight = parseInt($('.novelContent').css('line-height').replace('px', ''
 
 /*폰트 크기 조절*/
 $('.pmIcon').on("click", function () {
-
-    console.log(fontSize);
-
     if ($(this).hasClass('p')) {
-
         fontSize += 1;
         $('.novelContent').css('font-size', fontSize);
         count += 1;
         $('.count1').html(count);
     } else if ($(this).hasClass('m')) {
-
         fontSize -= 1;
         $('.novelContent').css('font-size', fontSize);
         count -= 1;
@@ -81,7 +75,6 @@ $('.pmIcon').on("click", function () {
 
 /*줄간격 조절*/
 $('.line').on("click", function () {
-    console.log(lineHeight)
     if ($(this).hasClass('p')) {
         lineHeight += 1;
         $('.novelContent').css('line-height', lineHeight + 'px');
@@ -98,7 +91,6 @@ $('.line').on("click", function () {
 /*글꼴선택*/
 function selectFunction() {
     let selected = $('.fontSelect option:selected').val();
-
     if (selected == 'alice') {
         $('.novelContent').css('font-family', 'Elice Digital Baeum');
     } else if (selected == 'dobbie') {
@@ -199,7 +191,6 @@ function subNovelLikeCount(numbers, callback, error){
 
 /*후원 버튼 모달*/
 $('.coin').on("click", function () {
-    console.log("눌림")
     $('.modal_background').css('display', 'block');
 })
 
