@@ -30,10 +30,10 @@ public class ChatController {
 
     @GetMapping("/rooms/{id}")
     public String room(@PathVariable String id) {
-        ChatRoom room = chatRoomRepository.findRoomById(id);
+        chatRoomRepository.findRoomById(id);
         log.info("++++++++++++++++++++++++++++++48++++++++++++++++");
         log.info(id);
-        chatRoomRepository.createChatRoom(id);
+
 
         return "chatroom";
     }
