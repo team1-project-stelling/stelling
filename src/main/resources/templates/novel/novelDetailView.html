@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <link href="/assets/css/novel/novelDetailView.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 <body>
@@ -91,8 +92,8 @@
 <div class="displayBottom">
 
     <div class="whiteLine"></div>
-    <div style="width: 100%; background-color: #f0f0f0; height: 46px;">
-        <div style="width: 44%; margin: 0 auto; line-height: 3; color: #adadad; display: flex; justify-content: space-between;">
+    <div style="width: 100%; background-color: #f0f0f0; height: 46px;" class="bottomWhiteBar">
+        <div class="bottomBar">
             <th:block th:text="|${novelVO.novelTitle} ${count}화|"></th:block>
             <div style="display: flex;">
                 <th:block th:if="${count-1!=0}">
@@ -268,13 +269,9 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" th:inline="javascript">
-
     let subNovelNumber =[[${subNovelNumber}]]
     let novelNumber = [[${novelNumber}]]
     let userNumber = [[${session.userNumber}]]
-
-
-    console.log("subNovelNumber"+subNovelNumber);
 </script>
 <script src="/assets/js/novel/novelDetailView.js"></script>
 <script src="/assets/js/novel/novelDetailReply.js"></script>

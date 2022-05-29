@@ -385,7 +385,7 @@ body {
     font-size: 13px;
     color: silver;
     text-align: right;
-    width: fit-content;
+    width:79px;
 }
 
 .writeMent{
@@ -674,4 +674,66 @@ body {
     width: 103px;
     right: 15px;
     top: 157px;
+}
+.bottomBar{
+    width: 44%;
+    margin: 0 auto;
+    line-height: 3;
+    color: #adadad;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media(max-width: 400px){
+    .menuBar{
+        width: 83%;
+        margin-left: 18px;
+    }
+
+    .novelContent{
+        width: 92.5%;
+        margin-left: 14px !important;
+    }
+    .bottomWhiteBar{
+        margin-left: -10px;
+    }
+    .bottomBar{
+        font-size: 13px !important;
+        width: 76%;
+        margin-left: 23px !important;
+    }
+    .heartIcon{
+        margin-right: 9px;
+    }
+    .icons2{
+        width: 81% !important;
+        margin-left: 18px !important;
+    }
+    .textIcon{
+        margin-right: -25px !important;
+    }
+    .ment{
+        margin-left: -1px !important;
+    }
+    .heart{
+        margin-right: -26px !important;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

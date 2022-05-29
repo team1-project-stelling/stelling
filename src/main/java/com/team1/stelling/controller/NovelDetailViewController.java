@@ -68,8 +68,11 @@ public class NovelDetailViewController {
             supportVO.setNovelNumber(novelNumber);
             supportVO.setSubNovelNumber(SubNovelNumber);
             supportVO.setSupportCoin(coin);
-            supportVO.setSupportSponser(userNumber);
+            supportVO.setUserNumber(userNumber);
             supportService.register(supportVO);
+
+            UserVO receiver= userService.get(novelService.get(novelNumber).getUserVO().getUserNumber());
+            receiver.setUserCoinBalance(receiver.getUserCoinBalance()+coin);
 
             status.put("balance",userService.get(userNumber).getUserCoinBalance());
             status.put("status", "success");
