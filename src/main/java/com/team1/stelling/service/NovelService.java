@@ -58,6 +58,8 @@ public class NovelService {
 
     public void register(NovelVO novelVO){ novelRepository.save(novelVO);}
 
+    public Long registerReturnNovelNum(NovelVO novelVO){ return novelRepository.save(novelVO).getNovelNumber();}
+
     public void modify(NovelVO novelVO) {
         novelVO.updateNovelUpdateDate();
         novelRepository.save(novelVO);

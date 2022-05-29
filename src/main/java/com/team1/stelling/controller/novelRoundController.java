@@ -122,6 +122,7 @@ public class novelRoundController {
 
         }
 
+
         model.addAttribute("novelNumber", novelNumber);
         model.addAttribute("subnovelVOList",subNovelVOS);
         model.addAttribute("listSize",listSize);
