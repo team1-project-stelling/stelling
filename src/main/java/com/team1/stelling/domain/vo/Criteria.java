@@ -19,12 +19,12 @@ public class Criteria { /*Criteria : 검색의 기준*/
     @NonNull private int pageNum;
     @NonNull private int amount;
     private String type;
-    private String keyword;
     private String startDate;
     private String endDate;
 
     //    롬복을 통해 생성된 초기화 생성자를 기본 생성자에서 기본 값을 설정한 뒤 호출해준다.
-    public Criteria() {this(1, 10);}
+    public Criteria() {
+        this(1, 10);}
 
 //    public Criteria(@NonNull int pageNum, @NonNull int amount, String type, String keyword) {
 //        this.pageNum = pageNum;

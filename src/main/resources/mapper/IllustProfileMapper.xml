@@ -25,4 +25,10 @@
        ORDER BY SUM(ti.ILLUST_LIKE) DESC
     </select>
 
+    <select id="checkProfile" resultType="illustProfileDTO">
+        SELECT ILLUSTPROFILE_NUMBER
+        FROM TBL_ILLUSTPROFILE
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+
 </mapper>

@@ -47,6 +47,7 @@ public class novelController {
     private final NovelFileService novelFileService;
 
 
+
     @GetMapping("/novelRegister")
     public void ViewDetail(){
     }
@@ -106,7 +107,7 @@ public class novelController {
 
     /*소설상세보기 페이지*/
     @GetMapping("/novelDetailView")
-    public void ViewDetail(Long novelNumber,Long subNovelNumber,int count, Model model) throws IOException {
+    public void ViewDetail(Long novelNumber,Long subNovelNumber,int count, HttpServletRequest request, Model model) throws IOException {
         String getFilePath= novelFileService.getFilePathBySubNum(subNovelNumber).getNovelFileFilePath();
         String getFileName= novelFileService.getFilePathBySubNum(subNovelNumber).getNovelFileFileName();
         SubNovelVO subNovelVO = subNovelService.get(subNovelNumber);
@@ -115,6 +116,8 @@ public class novelController {
         BufferedReader br = null;
         String line = null;
         String result = "";
+        HttpSession session = request.getSession();
+        Long userNumber =Long.valueOf((Integer)session.getAttribute("userNumber"));
         try {
             br = new BufferedReader(new FileReader("C:/stelling/"+getFilePath+"/"+getFileName+".txt"));
             while((line = br.readLine()) != null){
@@ -127,6 +130,12 @@ public class novelController {
                 br.close();
             }
         }
+
+        if(userNumber!=null){
+            UserVO userVO=userService.get(userNumber);
+            model.addAttribute("balance", userVO.getUserCoinBalance());
+        }
+
         model.addAttribute("novelContent",result);
         model.addAttribute("novelNumber",novelNumber);
         model.addAttribute("subNovelVO",subNovelVO);
