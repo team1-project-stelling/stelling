@@ -164,8 +164,6 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-
-
         <!--        웹소켓-->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -177,14 +175,6 @@
             <artifactId>spring-messaging</artifactId>
             <version>5.2.2.RELEASE</version>
         </dependency>
-
-
-
-
-
-
-
-
 
     </dependencies>
 
