@@ -33,6 +33,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -111,13 +112,19 @@ public class novelController {
         String getFilePath= novelFileService.getFilePathBySubNum(subNovelNumber).getNovelFileFilePath();
         String getFileName= novelFileService.getFilePathBySubNum(subNovelNumber).getNovelFileFileName();
         SubNovelVO subNovelVO = subNovelService.get(subNovelNumber);
-        List<SubNovelVO> subNovelVOList = subNovelService.getListByNovelNumber(novelNumber);
+        subNovelVO.updateSubNovelViewCount();
+        subNovelService.register(subNovelVO);
+
         NovelVO novelVo = subNovelVO.getNovelVO();
+        List<SubNovelVO> subNovelVOList = subNovelService.getListByNovelNumber(novelNumber);
+
+
         BufferedReader br = null;
         String line = null;
         String result = "";
         HttpSession session = request.getSession();
-        Long userNumber =Long.valueOf((Integer)session.getAttribute("userNumber"));
+        Long userNumber =(Long)session.getAttribute("userNumber");
+
         try {
             br = new BufferedReader(new FileReader("C:/stelling/"+getFilePath+"/"+getFileName+".txt"));
             while((line = br.readLine()) != null){
@@ -179,7 +186,7 @@ public class novelController {
         HttpSession session = request.getSession();
         log.info("_________________________________________________________________________________");
         log.info("세션 유저넘버:"+session.getAttribute("userNumber"));
-        Long userNumber = Long.valueOf((Integer)session.getAttribute("userNumber"));
+        Long userNumber = (Long)session.getAttribute("userNumber");
         novelVO.setUserVO(userService.get(userNumber));
         novelService.register(novelVO);
         return "novel/novelRegister";

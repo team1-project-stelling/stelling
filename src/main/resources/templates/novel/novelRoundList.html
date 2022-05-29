@@ -98,7 +98,7 @@
 
                                 <div class="x_xBtn">
                                     <button onclick="IntroModalHandler()">작품소개</button>
-                                    <a th:href="@{/novel/novelDetailView(novelNumber=${novelNumber}, subNovelNumber=${firstSNumber}, count=1)}"><button type="button">첫편보기</button></a>
+                                    <a th:href="@{/novel/novelDetailView(novelNumber=${novelNumber}, subNovelNumber=${firstSNumber}, count=1)}"><button type="button" class="goToFirst">첫편보기</button></a>
                                 </div>
                             </div>
                         </div>
@@ -107,9 +107,18 @@
 
                     <div class="x_xF">
                         <button>
-                            <div class="ResRank">
-                            </div>
-                            <div onclick="ModalHandler()" class="modaldiv"><img src="https://static-page.kakao.com/static/common/ic-same-novel.svg?b923ffbeb7a7a8a2e2e3091b1ff9e4f6" alt=""></div>
+                                <MARQUEE scrollamount="3">
+                                    <th:block th:each="supportUserDTO, i:${supportUserDTOS}" >
+                                        <span style="color: #ef6e73;">
+                                            ❤
+                                            <span style="color:gray" th:text="|${i.count}위. ${supportUserDTO.userNickName}님 ${supportUserDTO.coin}코인|"></span>
+                                        </span>
+
+                                    </th:block>
+                                </MARQUEE>
+
+
+                           <div onclick="ModalHandler()" class="modaldiv"><img src="https://static-page.kakao.com/static/common/ic-same-novel.svg?b923ffbeb7a7a8a2e2e3091b1ff9e4f6" alt=""></div>
                         </button>
                     </div>
                     <div class="hashtag">
@@ -146,7 +155,7 @@
                                         <img th:src="'/novel/novelRegisterImg?fileName='+${subnovelVO.novelVO.novelUploadPath}+'/'+${subnovelVO.novelVO.novelFileName}">
                                     </th:block>
                                     <th:block th:unless="${novelImgSrc==null}">
-                                        <img th:src="${novelImgSrc}" alt="">
+                                        <img th:src="${novelImgSrc}">
                                     </th:block>
                                 </div>
                                 <div class="NovelDEC">
@@ -248,12 +257,21 @@
 
         <div class="sponbody">
             <table style="width: 100%" class="table">
-                <tbody><tr>
+                <tbody>
+                <tr>
                     <th style="width: 33%">순위</th>
                     <th style="width: 33%;text-align: left">아이디</th>
                     <th style="width: 33%">후원 개수</th>
                 </tr>
-                </tbody></table>
+                <th:block th:each="supportUserDTO, i:${supportUserDTOS} ">
+                   <tr>
+                       <td class="rank" th:text="|${i.count}위|"></td>
+                       <td class="rank-id" style="text-align: left;" th:text="${supportUserDTO.userNickName}"></td>
+                       <td class="rank-number" th:text="|${supportUserDTO.coin}코인|"></td>
+                   </tr>
+                </th:block>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -318,7 +336,6 @@
 <script th:inline="javascript">
     const novelNumber = [[${novelNumber}]]
     const userNumber =[[${session.userNumber}]]
-    console.log([[${subNumList}]])
 </script>
 <script src="/assets/js/novel/data.js"></script>
 <script src="/assets/js/fix/header.js"></script>

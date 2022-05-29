@@ -39,7 +39,6 @@ const handleSelect = (item) => {
     label.parentNode.classList.remove('active');
     label.innerHTML = item.textContent;
     $(label).val(item.textContent);
-    // console.log($(label).val());
 }
 // 옵션 클릭시 클릭한 옵션을 넘김
 
@@ -103,9 +102,6 @@ $('.imgs').on("click", function () {
 
 /*input[type=file] 썸네일만들기*/
 function setThumbnail(event) {
-    console.log(event);
-    console.log(event.target.files[0].name);
-
     let reader = new FileReader();
     reader.onload = function(event) {
         let img = document.createElement("img");
@@ -122,8 +118,7 @@ function setThumbnail(event) {
 
 
 
-
-
+//해쉬태그
 $(document).ready(function () {
     let tag = {};
     let counter = 0;
@@ -208,8 +203,6 @@ $("input[type='file']").change(function(e){
                 $('input[name="novelFileName"]').val(item.novelFileName);
                 $('input[name="novelUploadPath"]').val(item.novelUploadPath);
                 $('input[name="novelUUID"]').val(item.novelUUID);
-                console.log("등록됨");
-                console.log($('input[name="novelUploadPath"]').val());
             });
         },
         error:function () {
