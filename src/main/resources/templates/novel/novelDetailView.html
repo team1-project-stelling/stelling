@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <link href="/assets/css/novel/novelDetailView.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 <body>
@@ -91,8 +92,8 @@
 <div class="displayBottom">
 
     <div class="whiteLine"></div>
-    <div style="width: 100%; background-color: #f0f0f0; height: 46px;">
-        <div style="width: 44%; margin: 0 auto; line-height: 3; color: #adadad; display: flex; justify-content: space-between;">
+    <div style="width: 100%; background-color: #f0f0f0; height: 46px;" class="bottomWhiteBar">
+        <div class="bottomBar">
             <th:block th:text="|${novelVO.novelTitle} ${count}화|"></th:block>
             <div style="display: flex;">
                 <th:block th:if="${count-1!=0}">
@@ -220,9 +221,9 @@
     <div class="coinModalWrap">
         <div class="coinModal">
             <div class="modalHeader">
-                <p style="text-align: center;">내가 이세계 개발자 소설에</p>
+                <p style="text-align: center;" th:text="|${novelVO.novelTitle} 에|"></p>
             </div>
-            <p class="currentCoin">[현재코인:1000코인]</p>
+            <p class="currentCoin" th:if="${balance!=null}" th:text="|현재코인: ${balance}코인|"></p>
             <img src="/images/icon/후원.gif" width="100px" style="margin-top: 38px;"/>
             <div style="display: flex;justify-content: center;font-size: 24px;">
 
@@ -237,15 +238,14 @@
     </div>
 </div>
 
+
 <!--코인 충전모달-->
 <div class="modal_background2">
-    <div class="cashCharge">
-        <div class="cashHeader"><span class="x">X</span></div>
+    <div class="coinModal2" style="height: 248px;">
+        <div class="x">x</div>
         <div class="cash">
             <p class="cashMent">앗! 이런, 코인이 부족하네요</p>
-            <img src="/images/icon/사이렌 (2).png" width="100" class="cirenIcon"/>
-            <img src="/images/icon/코인충전.png" width="100" class="cashChargeIcon"/>
-
+            <p class="balance" th:if="${balance!=null}" th:text="|현재 잔액: ${balance}코인|"></p>
             <div class="modalBtns">
                 <button type="button" class="cashCancle">취소하기</button>
                 <button type="button" class="gotoCharge">충전하러 가기</button>
@@ -254,17 +254,24 @@
     </div>
 </div>
 
+<!--후원 완료 모달-->
+<div class="modal_background3">
+    <div class="coinModal3">
+        <p class="x2">x</p>
+        <img src="/images/icon/폭죽.png" class="fireworkIcon"/>
+        <p class="modal-title" th:text="${novelVO.novelTitle}"></p>
+        <p class="cashMent2">소설에 후원이 완료되었습니다.</p>
+        <p class="balance2">현재잔액 코인</p>
+    </div>
+</div>
+
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" th:inline="javascript">
-
     let subNovelNumber =[[${subNovelNumber}]]
     let novelNumber = [[${novelNumber}]]
     let userNumber = [[${session.userNumber}]]
-
-
-    console.log("subNovelNumber"+subNovelNumber);
 </script>
 <script src="/assets/js/novel/novelDetailView.js"></script>
 <script src="/assets/js/novel/novelDetailReply.js"></script>

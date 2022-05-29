@@ -4,6 +4,7 @@ import com.team1.stelling.aspect.annotation.LogStatus;
 import com.team1.stelling.domain.dto.PageDTO;
 import com.team1.stelling.domain.dto.PageableDTO;
 import com.team1.stelling.domain.dto.SubNovelDeleteDTO;
+import com.team1.stelling.domain.dto.SupportUserDTO;
 import com.team1.stelling.domain.repository.NovelRepository;
 import com.team1.stelling.domain.repository.SubNovelRepository;
 import com.team1.stelling.domain.vo.*;
@@ -27,6 +28,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -48,6 +51,8 @@ public class novelRoundController {
     private final ReplyService replyService;
     private final UserService userService;
     private final MyPickService myPickService;
+    private  final BuyChapterService buyChapterService;
+    private final SupportService supportService;
 
 
     //저장된 소설 표지 가져오기
@@ -56,35 +61,66 @@ public class novelRoundController {
     public byte[] getFile(String fileName) throws IOException{
         return FileCopyUtils.copyToByteArray(new File("C:/stelling/" + fileName));
     }
-//
-//    @GetMapping("/getNovelVO/{novelNumber}")
-//    @ResponseBody
-//    public NovelVO getNovelVO(@PathVariable("novelNumber") Long novelNumber){
-//        NovelVO novelVO = novelService.get(novelNumber);
-//        return novelVO;
-//    }
 
 
 
     @GetMapping("/novelRoundList")
-    public void getSubNovel(Long novelNumber, @PageableDefault(page = 0, size = 10, sort = "subNovelNumber" ,direction = Sort.Direction.ASC) Pageable pageable, Model model){
+    public void getSubNovel(Long novelNumber, @PageableDefault(page = 0, size = 10, sort = "subNovelNumber" ,direction = Sort.Direction.ASC) Pageable pageable, HttpServletRequest request, Model model){
         NovelVO novelVO = novelService.get(novelNumber);
         Page<SubNovelVO> subNovelVOS = subNovelService.getListByNovelNumber(novelNumber,pageable);
+        PageableDTO pageableDTO = new PageableDTO((int)subNovelVOS.getTotalElements(), pageable);
         int listSize = subNovelService.getListByNovelNumber(novelNumber).size();
         String writerName = userService.get(novelVO.getUserVO().getUserNumber()).getUserNickName();
-        PageableDTO pageableDTO = new PageableDTO((int)subNovelVOS.getTotalElements(), pageable);
+        HttpSession session = request.getSession();
+        List<SupportVO> supportVOList= supportService.getSupportListWithNovelNumber(novelNumber);
+        List<Long> userNums = supportVOList.stream().map(v->v.getUserNumber()).collect(Collectors.toList());
+        List<UserVO> userVOS =new ArrayList<>();
+
+        List<SupportUserDTO> supportUserDTOS = new ArrayList<>();
+        for(Long userNumber : userNums){
+            userVOS.add(userService.get(userNumber));
+        }
+        for (int i = 0; i<supportVOList.size(); i++){
+            SupportUserDTO supportUserDTO = new SupportUserDTO();
+            supportUserDTO.setCoin(supportVOList.get(i).getSupportCoin());
+            supportUserDTO.setUserNickName(userVOS.get(i).getUserNickName());
+            supportUserDTOS.add(supportUserDTO);
+        }
+
+
+        //조회수 올리기 
+        List<SubNovelVO> subNovelVOList = subNovelService.getListByNovelNumber(novelNumber);
+        novelVO.setNovelViewCountTotal(subNovelVOList.stream().map(v->v.getSubNovelViewCount()).mapToInt(v->v).sum());
+        novelService.register(novelVO);
+
 
         if(novelService.get(novelNumber).getNovelFileName()!=null){
+            //샘플이미지일 때
             if(novelService.get(novelNumber).getNovelFileName().contains("sampleImg")){
                 String novelImgSrc = "/images/"+novelService.get(novelNumber).getNovelFileName();
                 model.addAttribute("novelImgSrc", novelImgSrc);
             }
         }
+
         ArrayList<Long> sNumbers = new ArrayList<>();
         for (SubNovelVO sub : subNovelVOS){
             sNumbers.add(sub.getSubNovelNumber());
         }
 
+        //결제한 subNovelNumber리스트
+        if(session.getAttribute("userNumber")!=null){
+            Long userNumber = (Long)session.getAttribute("userNumber");
+            List<Long> subNumList=buyChapterService.getSubNumByNovelNum(novelNumber, userNumber);
+            MyPickVO myPickVO = myPickService.getByNovelNumAndUserNum(novelNumber, userNumber);
+            if(myPickVO!=null){
+                int myPickStatus = myPickVO.getMyPickPick();
+                model.addAttribute("myPickStatus",myPickStatus);
+            }
+
+            model.addAttribute("subNumList",subNumList);
+
+
+        }
 
         model.addAttribute("novelNumber", novelNumber);
         model.addAttribute("subnovelVOList",subNovelVOS);
@@ -92,6 +128,8 @@ public class novelRoundController {
         model.addAttribute("novelVO", novelVO);
         model.addAttribute("pageableDTO", pageableDTO);
         model.addAttribute("writerName", writerName);
+        model.addAttribute("supportUserDTOS", supportUserDTOS);
+
         if(sNumbers.size()!=0){
             model.addAttribute("firstSNumber",  sNumbers.get(0));
         }

@@ -16,7 +16,9 @@ public class SupportDAO {
     private final SupportMapper supportMapper;
     
     //후원 내역
+
     public List<SupportVO> getSuppotList(Paging paging, Long supportSponser) {return supportMapper.getSuppotList(paging, supportSponser);}
+
 
     public void register(SupportVO supportVO) {supportMapper.insert(supportVO);}
 
@@ -26,4 +28,5 @@ public class SupportDAO {
     //후원한 코인 총 개수
     public SupportDTO getSupportCoinTotal(Long supportSponser){return supportMapper.getSupportCoinTotal(supportSponser);}
     public List<SupportVO> getSupportListWithNovelNumber(Long novelNumber){return supportMapper.getSupportListWithNovelNumber(novelNumber);}
+
 }

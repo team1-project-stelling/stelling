@@ -4,9 +4,9 @@
 
     <!--등록-->
     <insert id="insert">
-        INSERT INTO TBL_SUPPORT (SUPPORT_NUMBER, SUPPORT_SPONSER, SUPPORT_RECEIVER, NOVEL_NUMBER, SUPPORT_COIN)
-        VALUES(SUPPORT_SEQ.NEXTVAL, #{supportSponser}, #{supportReceiver}, #{novelNumber}, #{supportCoin})
-
+        INSERT INTO TBL_SUPPORT
+        (USER_NUMBER, NOVEL_NUMBER, SUBNOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE)
+        VALUES(#{userNumber}, #{novelNumber}, #{subNovelNumber}, #{supportCoin}, curdate());
     </insert>
 
     <!--삭제-->
@@ -30,7 +30,7 @@
         FROM TBL_SUPPORT
     </select>
 
-    <!--총 결제 금액-->
+    <!--총 후원 금액-->
     <select id="getSupportCoinTotal" resultType="SupportDTO">
         SELECT SUPPORT_SPONSER, SUM(SUPPORT_COIN) AS SUPPORT_TOTAL
         FROM TBL_SUPPORT
@@ -38,11 +38,14 @@
         GROUP BY SUPPORT_SPONSER
     </select>
 
-    <!--노벨번호로 후원내역 가져오기-->
+    <!--노벨번호로 후원내역 가져오기(코인금액순 정렬)-->
     <select id="getSupportListWithNovelNumber" resultType="supportVO">
-    SELECT SUPPORT_NUMBER, SUPPORT_SPONSER, SUPPORT_RECEIVER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE
+    SELECT SUPPORT_NUMBER, USER_NUMBER, NOVEL_NUMBER, SUBNOVEL_NUMBER,SUPPORT_COIN, SUPPORT_DATE
     FROM TBL_SUPPORT
-    WHERE NOVEL_NUMBER = #{novelNumber};
+    WHERE NOVEL_NUMBER = #{novelNumber}
+    ORDER BY SUPPORT_COIN DESC;
     </select>
+
+
 
 </mapper>

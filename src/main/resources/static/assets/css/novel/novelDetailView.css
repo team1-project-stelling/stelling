@@ -385,7 +385,7 @@ body {
     font-size: 13px;
     color: silver;
     text-align: right;
-    width: fit-content;
+    width:79px;
 }
 
 .writeMent{
@@ -581,14 +581,11 @@ body {
     border-radius: 16px;
     overflow: hidden;
 }
-.cash{
 
-}
 .cashMent{
-    padding-top: 29px;
-    font-size: 26px;
-    margin-left: 15px;
-    font-weight: bold;
+    margin-top: 11px;
+    margin-bottom: -9px;
+    font-size: 24px;
 }
 .cashCancle{
     background-color: white;
@@ -596,8 +593,9 @@ body {
     font-size: 24px;
     border-radius: 10px;
     padding: 5px 13px;
-    margin-right: 30px;
+    margin-right: 7px;
     color: gray;
+    cursor: pointer;
 }
 .gotoCharge{
     background-color: rgba(255, 191, 0, 0.8);
@@ -606,39 +604,16 @@ body {
     border-radius: 10px;
     padding: 5px 13px;
     color: white;
+    cursor: pointer;
 }
-.modal_background2{
+.modal_background2, .modal_background3{
      position: fixed;
      top:0; left: 0; bottom: 0; right: 0;
      background: rgba(175, 175, 175, 0.44);
      display: none;
  }
-.cirenIcon{
-    position: absolute;
-    z-index: -1;
-    top: 47px;
-    left: 27px;
-}
-.cashChargeIcon{
-    position: absolute;
-    top: 73px;
-    right: 18px;
-    z-index: -1;
-}
-.modalBtns{
-    padding-top: 27px;
-}
-.cashHeader{
-    height: 40px;
-    background-color: rgba(255, 191, 0, 0.8);
-    color: white;
-    font-size: 25px;
-    text-align: right;
-    padding-right: 15px;
-}
-.x{
-    font-weight: bold;
-}
+
+
 .a{
     text-decoration: none;
 }
@@ -647,4 +622,118 @@ body {
     height: 25px;
     margin-left: 50px;
     cursor: pointer;
+}
+.coinModal2, .coinModal3{
+    width: 450px;
+    height: 271px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 16px;
+    overflow: hidden;
+    z-index: 3;
+}
+.x{
+    font-size: 32px;
+    text-align: right;
+    margin-right: 15px;
+    margin-top: -5px;
+    cursor: pointer;
+    color: #808080a3;
+}
+.balance{
+    font-size: 16px;
+    color: #aeaeae;
+    margin-bottom: 35px;
+}
+.x2{
+    font-size: 29px;
+    margin: 0;
+    text-align: right;
+    margin-right: 16px;
+}
+.modal-title{
+    font-size: 22px;
+    margin-top: 43px;
+    color: #ef6e73;
+}
+.cashMent2{
+    font-size: 21px;
+    margin-top: -21px;
+}
+.balance2{
+    color: #80808096;
+}
+
+.fireworkIcon{
+    position: absolute;
+    z-index: -1;
+    width: 103px;
+    right: 15px;
+    top: 157px;
+}
+.bottomBar{
+    width: 44%;
+    margin: 0 auto;
+    line-height: 3;
+    color: #adadad;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media(max-width: 400px){
+    .menuBar{
+        width: 83%;
+        margin-left: 18px;
+    }
+
+    .novelContent{
+        width: 92.5%;
+        margin-left: 14px !important;
+    }
+    .bottomWhiteBar{
+        margin-left: -10px;
+    }
+    .bottomBar{
+        font-size: 13px !important;
+        width: 76%;
+        margin-left: 23px !important;
+    }
+    .heartIcon{
+        margin-right: 9px;
+    }
+    .icons2{
+        width: 81% !important;
+        margin-left: 18px !important;
+    }
+    .textIcon{
+        margin-right: -25px !important;
+    }
+    .ment{
+        margin-left: -1px !important;
+    }
+    .heart{
+        margin-right: -26px !important;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

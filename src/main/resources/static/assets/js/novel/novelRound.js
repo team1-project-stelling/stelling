@@ -149,24 +149,29 @@ $('.Noveltt').on("click", function () {
 
 let href;
 let subNovelNum;
+
 /*소설회차 잠금 모달*/
-$('.locked2').on("click", function (e) {
+$('.lockRow').on("click", function (e) {
     e.preventDefault();
     $('.modal_background').css('display', 'block');
     // lockIcon=$(this).children('img');
-    href=$(this).parent().attr('href');
+    href=$(this).parent().parent().attr('href');
     subNovelNum=$(this).parent().attr('name');
-
 })
 //후원 모달창 바깥영역 눌러서 닫기
 $(document).mouseup(function (e){
     let container = $('.modal_background');
     let container2 = $('.modal_background2');
+    let container3 = $('.modal_background3');
     if( container.has(e.target).length === 0){
         container.css('display','none');
     }
     if(container2.has(e.target).length === 0){
         container2.css('display','none');
+        // location.href=href;
+    }
+    if(container3.has(e.target).length === 0){
+        container3.css('display','none');
         // location.href=href;
     }
 });
@@ -179,26 +184,55 @@ $('.coinBtn2').on("click", function () {
 //후원 코인 결제 눌렀을 때
 $('.coinBtn1').on("click", function () {
     $('.modal_background').css('display', 'none');
-    $('.modal_background2').css('display', 'block');
 
+    checkBalanceAndBuy(novelNumber, subNovelNum, userNumber,function (result) {
+        if(result.msg=='fail'){
+            console.log("실패");
+            $('.modal_background3').css('display', 'block');
+            $('.balance2').html("현재 잔액:"+result.balance+"코인");
+
+        }else if(result.msg=='success'){
+            console.log('성공');
+            $('.modal_background2').css('display', 'block');
+            $('.balance').html("현재 잔액:"+result.balance+"코인");
+        }
+    })
+
+});
+
+function checkBalanceAndBuy(novelNumber, subNovelNum, userNumber, callback){
     $.ajax({
         type:"get",
         url:"/buyChapter/checkBalanceAndBuy?novelNumber="+novelNumber+"&subNovelNumber="+subNovelNum+"&userNumber="+userNumber+"",
+        dataType:"json",
         success:function (result) {
-            console.log(result);
+          if(callback){
+              callback(result);
+          }
+
         },
         error:function (error) {
             console.log(error);
         }
-    })
-})
+    });
+}
+
+
+
+
 //결제 완료모달창 닫기
 $('.goToRead').on("click", function () {
     $('.modal_background2').css('display', 'none');
     location.href=href;
+});
 
+//코인 충전모달창 닫기
+$('.x').on("click", function () {
+    $('.modal_background3').css('display', 'none');
+});
+$('.cashCancle').on("click",function () {
+    $('.modal_background3').css('display', 'none');
 })
-
 
 
 

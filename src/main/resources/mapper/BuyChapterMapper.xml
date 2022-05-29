@@ -4,8 +4,9 @@
 
     <!--등록-->
     <insert id="insert">
-        INSERT INTO TBL_BUYCHAPTER (BUYCHAPTER_NUMBER, NOVEL_NUMBER, SUBNOVEL_NUMBER, USER_NUMBER, BUYCHAPTER_COIN)
-        VALUES(BUYCHAPTER_SEQ.NEXTVAL, #{novelNumber}, #{subNovelNumber}, #{userNumber}, #{buyChapterCoin})
+        INSERT INTO tbl_buychapter
+        (NOVEL_NUMBER, SUBNOVEL_NUMBER, USER_NUMBER, BUYCHAPTER_COIN, BUYCHAPTER_DATETIME, BUYCHAPTER_STATUS)
+        VALUES(#{novelNumber},  #{subNovelNumber}, #{userNumber}, #{buyChapterCoin}, curdate(), 0);
     </insert>
 
     <!--삭제-->
@@ -19,8 +20,17 @@
 
     <!--특정 내역 가져오기-->
     <select id="get" resultType="buyChapterVO">
-        SELECT BUYCHAPTER_NUMBER, NOVEL_NUMBER, SUBNOVEL_NUMBER, USER_NUMBER, BUYCHAPTER_COIN, BUYCHAPTER_DATE, BUYCHAPTER_STATUS
+        SELECT BUYCHAPTER_NUMBER, NOVEL_NUMBER, SUBNOVEL_NUMBER, USER_NUMBER, BUYCHAPTER_COIN, BUYCHAPTER_DATETIME, BUYCHAPTER_STATUS
         FROM TBL_BUYCHAPTER
         WHERE USER_NUMBER = #{userNumber}
     </select>
+
+    <!--노벨넘버로 서브노벨리스트가져오기-->
+    <select id="getSubNovelNumByNovelNum" resultType="long">
+        SELECT SUBNOVEL_NUMBER
+        FROM TBL_BUYCHAPTER
+        WHERE NOVEL_NUMBER =#{novelNumber}
+        AND USER_NUMBER =#{userNumber};
+    </select>
+
 </mapper>

@@ -116,12 +116,13 @@ public class IllustController {
 
         UUID uuid = UUID.randomUUID();
         String uploadFileName = null;
-
         String uploadFolderPath = getPath();
         File uploadPath = new File(uploadFolder, uploadFolderPath);
+
         if (!uploadPath.exists()) {
             uploadPath.mkdirs();
         }
+
         for (MultipartFile file : uploadFile) {
 
             uploadFileName = uuid.toString() + "_" + file.getOriginalFilename();
@@ -133,33 +134,21 @@ public class IllustController {
                 fileList.add(IllustVO.builder().illustFileName(uploadFileName).illustUuid(uuid.toString()).illustFilePath(uploadFolderPath).build());
 
             } catch (IOException e) {;}
-
         }
-
-        log.info("------------------------------------");
-        log.info(fileList.toString());
-        log.info(uploadFolder);
-        log.info(uploadPath.toString());
-        log.info(uuid.toString());
-        log.info(uploadFileName);
-        log.info("------------------------------------");
         return fileList;
-
-
-
-
     }
 
     @GetMapping("/illustPostingPage") public void illustRegister(){}
 
     @PostMapping("/illustPostingPage")
-    public void illustRegister(IllustVO illustVO,HttpServletRequest request){
+    public RedirectView illustRegister(IllustVO illustVO,HttpServletRequest request){
 
         HttpSession session = request.getSession();
-        Long userNumber = Long.valueOf((Integer)session.getAttribute("userNumber"));
+        Long userNumber = (Long) session.getAttribute("userNumber");
         illustVO.setUserVO(userService.get(userNumber));
         illustService.illustRegister(illustVO);
 
+        return new RedirectView("illustList");
     }
 
     /*파일저장경로(당일 날짜로)*/
@@ -172,28 +161,34 @@ public class IllustController {
     //저장된 이미지 가져오기
     @GetMapping("/illustImg")
     @ResponseBody
-    public byte[] getFile(@RequestParam("illustNumber") Long illustNumber) throws IOException{
-        IllustVO illustVO = illustService.get(illustNumber);
-        return FileCopyUtils.copyToByteArray(new File("C:/stelling/" +illustVO.getIllustFilePath()+"/"+illustVO.getIllustFileName()));
+    public byte[] getFile(String fileName) throws IOException{
+        return FileCopyUtils.copyToByteArray(new File("C:/stelling/" + fileName));
 
     }
 
     @GetMapping("/illustUserInput")
-    public void illustUserInput(Long userNumber, Model model){
+    public void illustUserInput(Long userNumber, Model model, HttpServletRequest request){
 
-        model.addAttribute("user", userService.get(userNumber));
+        HttpSession session = request.getSession();
+        session.getAttribute("userNumber");
+
+        model.addAttribute("user", userService.get((Long) session.getAttribute("userNumber")));
+
     }
 
     @GetMapping("/register") public void register(){}
 
     @PostMapping("/register")
-    public RedirectView register(Long userNumber, IllustProfileVO illustProfileVO, RedirectAttributes rttr){
+    public RedirectView register(Long userNumber, IllustProfileVO illustProfileVO, HttpServletRequest request, Model model){
 
-        illustProfileVO.setUserNumber(userNumber);
+        HttpSession session = request.getSession();
+        session.getAttribute("userNumber");
+
+        model.addAttribute("user", userService.get((Long) session.getAttribute("userNumber")));
+        illustProfileVO.setUserNumber((Long) session.getAttribute("userNumber"));
+
 
         illustProfileService.register(illustProfileVO);
-
-//        rttr.addFlashAttribute("userNumber", illustProfileVO.getUserNumber());
 
         return new RedirectView("illustList");
     }
@@ -232,7 +227,58 @@ public class IllustController {
         return "illust/illustViewDetail";
     }
 
+    @GetMapping("/illust/illustProfileCheck1")
+    public String illustProfileCheck1(IllustVO illustVO,HttpServletRequest request, Model model){
 
+        HttpSession session = request.getSession();
+        session.getAttribute("userNumber");
+
+        if( illustProfileService.checkProfile(((Long) session.getAttribute("userNumber"))) != null){
+
+            illustVO.setUserVO(userService.get((Long) session.getAttribute("userNumber")));
+            illustService.illustRegister(illustVO);
+
+            return "illust/illustPostingPage";
+
+        } else {
+
+            model.addAttribute("user", userService.get((Long) session.getAttribute("userNumber")));
+
+            return "illust/illustUserInput";
+        }
+
+    }
+
+    @GetMapping("/illust/illustProfileCheck2")
+    public String illustProfileCheck2(Long userNumber, Long illustNumber,  Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable, HttpServletRequest request){
+
+
+        HttpSession session = request.getSession();
+        session.getAttribute("userNumber");
+
+        if( illustProfileService.checkProfile((Long) session.getAttribute("userNumber")) != null){
+
+            Page<IllustVO> list = illustService.getUserIllustList(pageable, (Long) session.getAttribute("userNumber"));
+            PageableDTO pageableDTO = new PageableDTO((int) list.getTotalElements(), pageable);
+
+
+            model.addAttribute("illustNumber", illustNumber);
+            model.addAttribute("getLikeTotal", illustService.getLikeTotal((long) session.getAttribute("userNumber")));
+            model.addAttribute("illustProfile", illustProfileService.getProfile((Long) session.getAttribute("userNumber")));
+            model.addAttribute("total", list.getTotalElements());
+            model.addAttribute("pageableDTO", pageableDTO);
+            model.addAttribute("list", list);
+
+            return "illust/illustUserPage";
+
+        } else {
+
+            model.addAttribute("user", userService.get((Long) session.getAttribute("userNumber")));
+
+            return "illust/illustUserInput";
+        }
+
+    }
 
 
 //    @GetMapping("/uploadTest")

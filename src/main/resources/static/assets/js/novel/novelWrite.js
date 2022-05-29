@@ -17,7 +17,6 @@ function calc_length()
 function modal_close() {
     $('.modal').css('display', 'none');
 }
-
 function showfile(){
     $('.filebox').css('display', 'block');
 }
@@ -32,7 +31,6 @@ $("input[name='file']").on('change',function(){
         var fileName = $("#file").val();
         $(".upload-name").val(fileName);
         let formData = new FormData()
-        console.log($("input[type='file']")[0].files[0])
         formData.enctype="multipart/form-data";
         formData.method='POST';
         formData.action='/novel/novelFileUpload';
@@ -86,18 +84,17 @@ function getSession(){
 
 }
 
+//form태그 보내기
 $('.enter').on("click",function () {
     sessionStorage.clear();
     $('input[name="content"]').val($('textarea[name="novelContent"]').val());
-    // $('input[name="subNovelTitle"]').val($('input[name="subNovelTitle"]').val());
     $('input[name="novelNumber"]').val(novelNumber);
     $('input[name="userNumber"]').val(userNumber);
-    // $('input[name="subNovelWriterComment"]').val($("#subNovelWriterComment").val());
 
     $(novelWriteForm).submit();
-
 })
 
+//수정 form태그 보내기
 $('.modifyEnter').on("click", function () {
     sessionStorage.clear();
     $('input[name="content"]').val($('textarea[name="modify_novelContent"]').val());

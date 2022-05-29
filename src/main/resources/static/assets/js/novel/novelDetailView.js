@@ -3,7 +3,6 @@ textareaauto();
 
 
 function textareaauto() {
-    console.log("텍스트조절");
     $('textarea').each(function () {
         this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
     }).on('input', function () {
@@ -60,17 +59,12 @@ let lineHeight = parseInt($('.novelContent').css('line-height').replace('px', ''
 
 /*폰트 크기 조절*/
 $('.pmIcon').on("click", function () {
-
-    console.log(fontSize);
-
     if ($(this).hasClass('p')) {
-
         fontSize += 1;
         $('.novelContent').css('font-size', fontSize);
         count += 1;
         $('.count1').html(count);
     } else if ($(this).hasClass('m')) {
-
         fontSize -= 1;
         $('.novelContent').css('font-size', fontSize);
         count -= 1;
@@ -81,7 +75,6 @@ $('.pmIcon').on("click", function () {
 
 /*줄간격 조절*/
 $('.line').on("click", function () {
-    console.log(lineHeight)
     if ($(this).hasClass('p')) {
         lineHeight += 1;
         $('.novelContent').css('line-height', lineHeight + 'px');
@@ -98,7 +91,6 @@ $('.line').on("click", function () {
 /*글꼴선택*/
 function selectFunction() {
     let selected = $('.fontSelect option:selected').val();
-
     if (selected == 'alice') {
         $('.novelContent').css('font-family', 'Elice Digital Baeum');
     } else if (selected == 'dobbie') {
@@ -199,16 +191,66 @@ function subNovelLikeCount(numbers, callback, error){
 
 /*후원 버튼 모달*/
 $('.coin').on("click", function () {
-    console.log("눌림")
     $('.modal_background').css('display', 'block');
 })
 
 $(document).mouseup(function (e){
     $('.coin').attr('src', '/images/icon/후원코인.png');
     let container = $('.modal_background');
+    let container2 = $('.modal_background2');
+    let container3 = $('.modal_background3');
+
     if( container.has(e.target).length === 0){
         container.css('display','none');
     }
+    if( container2.has(e.target).length === 0){
+        container2.css('display','none');
+    }
+    if( container3.has(e.target).length === 0){
+        container3.css('display','none');
+    }
 });
 
+$('.x').on("click",function () {
+    $('.modal_background2').css("display", 'none');
+})
+$('.x2').on("click",function () {
+    $('.modal_background3').css("display", 'none');
+})
 
+//후원하기 버튼 눌렀을 때
+$('.coinEnter').on("click", function () {
+    $('.modal_background').css('display', 'none');
+
+    let coin = $('input[name="coinAmount"]').val();
+    supporting(novelNumber, subNovelNumber, userNumber, coin,function (result) {
+        if(result.status=='fail'){
+            $('.modal_background2').css('display', 'block');
+            $('.balance').html("현재 잔액:"+result.balance+"코인");
+            $('input[name="coinAmount"]').val("");
+
+        }else if(result.status=='success'){
+            $('.modal_background3').css('display', 'block');
+            $('.balance2').html("현재 잔액:"+result.balance+"코인");
+            $('.currentCoin').html("현재코인: "+result.balance+"코인");
+            $('input[name="coinAmount"]').val("");
+
+        }
+    });
+});
+
+function supporting(novelNumber, subNovelNumber, userNumber, coin, callback) {
+    $.ajax({
+        type:"get",
+        url:"/novelDetail/supporting?novelNumber="+novelNumber+"&SubNovelNumber="+subNovelNumber+"&userNumber="+userNumber+"&coin="+coin,
+        dataType:"json",
+        success:function (result) {
+            if(callback){
+                callback(result);
+            }
+        },
+        error:function (error) {
+            console.log(error);
+        }
+    });
+}

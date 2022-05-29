@@ -1,5 +1,8 @@
 package com.team1.stelling.controller;
 
+import com.team1.stelling.domain.dto.PageDTO;
+import com.team1.stelling.domain.repository.UserRepository;
+import com.team1.stelling.domain.vo.*;
 import com.team1.stelling.domain.dto.PageableDTO;
 import com.team1.stelling.domain.dto.PagingDTO;
 import com.team1.stelling.domain.vo.*;
@@ -57,10 +60,11 @@ public class MyLibraryController {
         log.info("myLibraryPick");
         return "myLibrary/myLibraryPick";
     }
-
+    
+    //코인샵 이동
     @GetMapping("/coinShop")
     public String coinShop(){
-        log.info("coinShop");
+
         return "cash/coinShop";
     }
 
@@ -112,27 +116,5 @@ public class MyLibraryController {
         return "myPage/myPageSupportList";
     }
 
-    //후원 리스트(마이페이지)
-//    @GetMapping("/showList")
-//    public String showList(Long userNumber, Criteria criteria, Model model){
-//
-//    }
-
-//    @GetMapping("/payList/{userNumber}")
-//    public String payList(@PathVariable Long userNumber, String startDate, String endDate, Model model){
-//        if(startDate == null & endDate == null) {
-//            model.addAttribute("payList", payService.getList(userNumber));
-//        }
-//        return "myPage/myPagePayList";
-//    }
-    //날짜 검색(마이페이지)
-//    @GetMapping("/dateSelect")
-//    public void dateSelect(String startDate, String endDate)
-    //결제 내역 등록
-//    @PostMapping("/register/{userNumber}/{payCharge}/{payCoinCount}")
-//    public String register(@PathVariable Long userNumber, @PathVariable Long payCharge, @PathVariable Long payCoinCount){
-//        payService.register(userNumber, payCharge, payCoinCount);
-//        return "cash/coinShop";
-//    }
 
 }

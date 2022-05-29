@@ -127,154 +127,154 @@
                     <!-- 페이징 종료-->
 
 
-                <div class="right_block">
-                    <!-- 통계 테이블-->
-                    <div id="tableWrap">
-                        <div class="divTable minimalistBlack">
-                            <div class="divTableHeading">
-                                <div class="divTableRow">
-                                    <div class="divTableHead" style="width: 227.5px;">소설명</div>
-                                    <div class="divTableHead" style="width: 131.5px;">작가</div>
-                                    <div class="divTableHead" style="width: 118px;">회차 수</div>
-                                    <div class="divTableHead">총 결제 코인</div>
-                                    <div class="divTableHead">총 후원 코인</div>
+                    <div class="right_block">
+                        <!-- 통계 테이블-->
+                        <div id="tableWrap">
+                            <div class="divTable minimalistBlack">
+                                <div class="divTableHeading">
+                                    <div class="divTableRow">
+                                        <div class="divTableHead" style="width: 227.5px;">소설명</div>
+                                        <div class="divTableHead" style="width: 131.5px;">작가</div>
+                                        <div class="divTableHead">총 결제 코인</div>
+                                        <div class="divTableHead">총 후원 코인</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!--리스트 테이블-->
-                        <div class="list" >
-                            <!--소설 정보 테이블-->
-                            <div class="divTable minimalistBlack">
-                                <div class="divTableBody">
-                                    <th:block th:each="list:${list}">
+                            <!--리스트 테이블-->
+                            <div class="list" >
+                                <!--소설 정보 테이블-->
+                                <div class="divTable minimalistBlack">
+                                    <div class="divTableBody">
+                                            <div class="divTableRow">
+                                                <div><img src="/images/close.png" class="close"><img src="/images/open.png" class="open" style="display: none"></div>
+                                                <div class="divTableCell" style="width: 207px;" >소설명</div>
+                                                <div class="divTableCell" style="width: 135px;" th:text="${userVO.userNickName}">작가</div>
+                                                <div class="divTableCell">총결제 코인c</div>
+                                                <div class="divTableCell">총후원 받은 코인c</div>
+                                            </div>
+                                    </div>
+                                </div>
+
+                                <!--소설 정보 테이블 끝-->
+
+                                <!--디테일 테이블-->
+                                <div class="divTable minimalistBlack novel-detail" style="display: none;">
+                                    <div class="divTableHeading">
                                         <div class="divTableRow">
-                                            <div><img src="/images/close.png" class="close"><img src="/images/open.png" class="open" style="display: none"></div>
-                                            <div class="divTableCell" style="width: 207px;" th:text="${list.novelTitle}"></div>
-                                            <div class="divTableCell" style="width: 135px;" th:text="${userVO.userNickName}" >나나나</div>
-                                            <div class="divTableCell" style="width: 120px;" >308회</div>
-                                            <div class="divTableCell">2,500,000c</div>
-                                            <div class="divTableCell">4,000,000c</div>
+                                            <div class="divTableHead">회차</div>
+                                            <div class="divTableHead">조회수</div>
+                                            <div class="divTableHead">결제 코인</div>
+                                            <div class="divTableHead">후원 코인</div>
                                         </div>
-                                    </th:block>
+                                    </div>
+                                    <div class="divTableBody">
+                                        <div class="divTableRow">
+                                            <div class="divTableCell">308회</div>
+                                            <div class="divTableCell">3,000,000회</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                        </div>
+                                    </div>
+                                    <div class="divTableBody">
+                                        <div class="divTableRow">
+                                            <div class="divTableCell">307회</div>
+                                            <div class="divTableCell">3,000,000회</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                        </div>
+                                    </div>
+                                    <div class="divTableBody">
+                                        <div class="divTableRow">
+                                            <div class="divTableCell">306회</div>
+                                            <div class="divTableCell">3,000,000회</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                        </div>
+                                    </div>
+                                    <div class="divTableBody">
+                                        <div class="divTableRow">
+                                            <div class="divTableCell">305회</div>
+                                            <div class="divTableCell">3,000,000회</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                            <div class="divTableCell">1,000,000c</div>
+                                        </div>
+                                    </div>
                                 </div>
+                                <!--디테일 테이블 끝-->
                             </div>
+                            <!-- 리스트 테이블 끝-->
 
-                            <!--소설 정보 테이블 끝-->
 
-                            <!--디테일 테이블-->
-                            <div class="divTable minimalistBlack novel-detail" style="display: none;">
-                                <div class="divTableHeading">
-                                    <div class="divTableRow">
-                                        <div class="divTableHead">회차</div>
-                                        <div class="divTableHead">조회수</div>
-                                        <div class="divTableHead">결제 코인</div>
-                                        <div class="divTableHead">후원 코인</div>
-                                    </div>
-                                </div>
-                                <div class="divTableBody">
-                                    <div class="divTableRow">
-                                        <div class="divTableCell">308회</div>
-                                        <div class="divTableCell">3,000,000회</div>
-                                        <div class="divTableCell">1,000,000c</div>
-                                        <div class="divTableCell">1,000,000c</div>
-                                    </div>
-                                </div>
-                                <div class="divTableBody">
-                                    <div class="divTableRow">
-                                        <div class="divTableCell">307회</div>
-                                        <div class="divTableCell">3,000,000회</div>
-                                        <div class="divTableCell">1,000,000c</div>
-                                        <div class="divTableCell">1,000,000c</div>
-                                    </div>
-                                </div>
-                                <div class="divTableBody">
-                                    <div class="divTableRow">
-                                        <div class="divTableCell">306회</div>
-                                        <div class="divTableCell">3,000,000회</div>
-                                        <div class="divTableCell">1,000,000c</div>
-                                        <div class="divTableCell">1,000,000c</div>
-                                    </div>
-                                </div>
-                                <div class="divTableBody">
-                                    <div class="divTableRow">
-                                        <div class="divTableCell">305회</div>
-                                        <div class="divTableCell">3,000,000회</div>
-                                        <div class="divTableCell">1,000,000c</div>
-                                        <div class="divTableCell">1,000,000c</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--디테일 테이블 끝-->
-                        </div>
-                        <!-- 리스트 테이블 끝-->
+<!--                            &lt;!&ndash;리스트 테이블&ndash;&gt;-->
+<!--                            <div class="list" >-->
+<!--                                &lt;!&ndash;소설 정보 테이블&ndash;&gt;-->
+<!--                                <div class="divTable minimalistBlack">-->
+<!--                                    <div class="divTableBody">-->
+<!--&lt;!&ndash;                                        <th:block th:each="list:${list}">&ndash;&gt;-->
+<!--                                            <div class="divTableRow">-->
+<!--                                                <div><img src="/images/close.png" class="close"><img src="/images/open.png" class="open" style="display: none"></div>-->
+<!--                                                <div class="divTableCell" style="width: 207px;" >바보세상</div>-->
+<!--                                                <div class="divTableCell" style="width: 135px;" >나나나</div>-->
+<!--                                                <div class="divTableCell">2,500,000c</div>-->
+<!--                                                <div class="divTableCell">4,000,000c</div>-->
+<!--                                            </div>-->
+<!--&lt;!&ndash;                                        </th:block>&ndash;&gt;-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
-                        <!--리스트 테이블-->
-                        <div class="list" >
-                            <!--소설 정보 테이블-->
-                            <div class="divTable minimalistBlack">
-                                <div class="divTableBody">
-                                    <div class="divTableRow">
-                                        <div><img src="/images/close.png" class="close"><img src="/images/open.png" class="open" style="display: none"></div>
-                                        <div class="divTableCell" style="width: 207px;">로맨스로맨스몲</div>
-                                        <div class="divTableCell" style="width: 135px;">나나나</div>
-                                        <div class="divTableCell" style="width: 120px;">308회</div>
-                                        <div class="divTableCell">2,500,000c</div>
-                                        <div class="divTableCell">4,000,000c</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--소설 정보 테이블 끝-->
+<!--                                &lt;!&ndash;소설 정보 테이블 끝&ndash;&gt;-->
 
-                            <!--디테일 테이블-->
-                            <div class="divTable minimalistBlack novel-detail" style="display: none;">
-                                <div class="divTableHeading">
-                                    <div class="divTableRow">
-                                        <div class="divTableHead">회차</div>
-                                        <div class="divTableHead">조회수</div>
-                                        <div class="divTableHead">결제 코인</div>
-                                        <div class="divTableHead">후원 코인</div>
-                                    </div>
-                                </div>
-                                <div class="divTableBody">
-                                    <div class="divTableRow">
-                                        <div class="divTableCell">308회</div>
-                                        <div class="divTableCell">3,000,000회</div>
-                                        <div class="divTableCell">1,000,000c</div>
-                                        <div class="divTableCell">1,000,000c</div>
-                                    </div>
-                                </div>
-                                <div class="divTableBody">
-                                    <div class="divTableRow">
-                                        <div class="divTableCell">307회</div>
-                                        <div class="divTableCell">3,000,000회</div>
-                                        <div class="divTableCell">1,000,000c</div>
-                                        <div class="divTableCell">1,000,000c</div>
-                                    </div>
-                                </div>
-                                <div class="divTableBody">
-                                    <div class="divTableRow">
-                                        <div class="divTableCell">306회</div>
-                                        <div class="divTableCell">3,000,000회</div>
-                                        <div class="divTableCell">1,000,000c</div>
-                                        <div class="divTableCell">1,000,000c</div>
-                                    </div>
-                                </div>
-                                <div class="divTableBody">
-                                    <div class="divTableRow">
-                                        <div class="divTableCell">305회</div>
-                                        <div class="divTableCell">3,000,000회</div>
-                                        <div class="divTableCell">1,000,000c</div>
-                                        <div class="divTableCell">1,000,000c</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--디테일 테이블 끝-->
-                        </div>
+<!--                                &lt;!&ndash;디테일 테이블&ndash;&gt;-->
+<!--                                <div class="divTable minimalistBlack novel-detail" style="display: none;">-->
+<!--                                    <div class="divTableHeading">-->
+<!--                                        <div class="divTableRow">-->
+<!--                                            <div class="divTableHead">회차</div>-->
+<!--                                            <div class="divTableHead">조회수</div>-->
+<!--                                            <div class="divTableHead">결제 코인</div>-->
+<!--                                            <div class="divTableHead">후원 코인</div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="divTableBody">-->
+<!--                                        <div class="divTableRow">-->
+<!--                                            <div class="divTableCell">308회</div>-->
+<!--                                            <div class="divTableCell">3,000,000회</div>-->
+<!--                                            <div class="divTableCell">1,000,000c</div>-->
+<!--                                            <div class="divTableCell">1,000,000c</div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="divTableBody">-->
+<!--                                        <div class="divTableRow">-->
+<!--                                            <div class="divTableCell">307회</div>-->
+<!--                                            <div class="divTableCell">3,000,000회</div>-->
+<!--                                            <div class="divTableCell">1,000,000c</div>-->
+<!--                                            <div class="divTableCell">1,000,000c</div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="divTableBody">-->
+<!--                                        <div class="divTableRow">-->
+<!--                                            <div class="divTableCell">306회</div>-->
+<!--                                            <div class="divTableCell">3,000,000회</div>-->
+<!--                                            <div class="divTableCell">1,000,000c</div>-->
+<!--                                            <div class="divTableCell">1,000,000c</div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="divTableBody">-->
+<!--                                        <div class="divTableRow">-->
+<!--                                            <div class="divTableCell">305회</div>-->
+<!--                                            <div class="divTableCell">3,000,000회</div>-->
+<!--                                            <div class="divTableCell">1,000,000c</div>-->
+<!--                                            <div class="divTableCell">1,000,000c</div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash;디테일 테이블 끝&ndash;&gt;-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; 리스트 테이블 끝&ndash;&gt;-->
+
+
                     </div>
-                    <!-- 리스트 테이블 끝-->
                 </div>
-            </div>
             </div>
         </div>
     </div>

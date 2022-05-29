@@ -1265,3 +1265,154 @@ input[type="checkbox"]:checked::before {
   font-size: 16px;
   color: #aeaeae;
 }
+
+.xIcon{
+  width: 25px;
+  height: 25px;
+  margin-left: 50px;
+  cursor: pointer;
+}
+.modal_background3{
+  position: fixed;
+  top:0; left: 0; bottom: 0; right: 0;
+  background: rgba(175, 175, 175, 0.44);
+  z-index: 2;
+  display: none;
+}
+.x{
+  font-size: 32px;
+  text-align: right;
+  margin-right: 15px;
+  margin-top: -5px;
+  cursor: pointer;
+}
+
+.cashCancle{
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 6px;
+  font-size: 21px;
+  padding: 7px 27px;
+  font-family: 'Elice Digital Baeum';
+  margin-right: 14px;
+  cursor:pointer;
+}
+.gotoCharge{
+  background-color: #ef6e73;
+  border: 1px solid #ef6e73;
+  color: white;
+  border-radius: 6px;
+  font-size: 21px;
+  padding: 7px 27px;
+  font-family: 'Elice Digital Baeum';
+  cursor:pointer;
+}
+.cashMent{
+  margin-top: 11px;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+@media(max-width: 400px){
+  .MainHeader, .MainContain, .backcolor, .Contain{
+    width: 400px !important;
+    max-width: 400px !important;
+    min-width: 400px !important;
+
+  }
+  .MainContain .Contain .content{
+    padding: 0px !important;
+  }
+  .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_Desc_title :last-child{
+    font-size: 18px !important;
+  }
+
+  .MainContain .Contain .content .x_x .x_xH .x_ximg{
+    width: 90px !important;
+    height: 136px !important;
+  }
+
+  .writer{
+    margin-bottom: 5px !important;
+    margin-top: 8px !important;
+  }
+  .x_xContent{
+    display: block;
+  }
+  .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_Desc_writer div span{
+    width: 14px;
+    font-size: 14px;
+    height: 14px;
+    line-height: 1;
+  }
+
+
+  .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_Desc_pepole{
+    margin-top: 9px !important;
+    margin-bottom: 3px;
+  }
+
+  .backcolor{
+    height: 120px !important;
+  }
+
+  .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_xBtn button{
+    margin-top: 16px !important;
+    font-size: 14px !important;
+    width: 80px !important;
+    height: 42px !important;
+    font-family: 'Elice Digital Baeum';
+  }
+  .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_xBtn :last-child{
+    background-color: white;
+    border: none !important;
+  }
+  .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_xBtn .goToFirst{
+    border: 1px solid #fdc324 !important;
+    background-color: #fdc324;
+    color: white !important;
+    font-family: 'Elice Digital Baeum';
+  }
+  .MainContain .Contain .content .x_x .x_xH .x_xDesc .x_xBtn{
+    margin-left: 77px;
+  }
+
+  .myPick{
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .hashtagSpan{
+    font-size: 10px;
+  }
+
+  .NovelList .Noveltotal{
+    font-size: 13px;
+  }
+  .NovelList .Novel li .NovelDEC .NovelDECS .Noveltt{
+    font-size: 14px;
+  }
+  .freeButton{
+    margin-top: 1px;
+    font-size: 10px;
+    height: 16px;
+    width: 30px;
+  }
+  .lock{
+    width: 19px !important;
+    margin-top: -0.6px !important;
+  }
+  .profilePlusText{
+    width: 356px !important;
+  }
+  .ListReply .ReplyHeader{
+    font-size: 13px;
+    padding-right: 32px;
+  }
+  .x_xF .modaldiv{
+    right: 12px;
+  }
+  .x_xF button{
+    width: 322px;
+  }
+}
