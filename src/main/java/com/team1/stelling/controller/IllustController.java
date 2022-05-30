@@ -27,10 +27,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @Slf4j
@@ -277,7 +274,7 @@ public class IllustController {
         HttpSession session = request.getSession();
         session.getAttribute("userNumber");
 
-        if( illustProfileService.checkProfile((Long) session.getAttribute("userNumber")) != null){
+        if(illustProfileService.checkProfile((Long) session.getAttribute("userNumber")) != null){
 
             Page<IllustVO> list = illustService.getUserIllustList(pageable, (Long) session.getAttribute("userNumber"));
             PageableDTO pageableDTO = new PageableDTO((int) list.getTotalElements(), pageable);
@@ -293,6 +290,9 @@ public class IllustController {
             return "illust/illustUserPage";
 
         } else {
+
+
+
 
             model.addAttribute("user", userService.get((Long) session.getAttribute("userNumber")));
 

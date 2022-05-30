@@ -14,6 +14,8 @@ public interface ChatMessageService {
     public List<ChatMessageVO> getMyChatList(String senderId, String receiverId);
     public List<ChatMessageVO> getConnectRoomName(String senderId, String receiverId);
     public boolean getChatHistory(String senderId, String receiverId);
+    public void deleteChat(String roomName);
+
 
 
 

@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequestMapping("/novel/*")
 @RequiredArgsConstructor
-public class novelController {
+public class NovelController {
 
     private  final NovelService novelService;
     private final UserService userService;
@@ -181,22 +181,21 @@ public class novelController {
 
     /*소설 등록*/
     @PostMapping("/novelRegister")
-    public String novelRegister(NovelVO novelVO, HttpServletRequest request) {
+    public RedirectView novelRegister(NovelVO novelVO, HttpServletRequest request, RedirectAttributes rttr) {
 
         HttpSession session = request.getSession();
-        log.info("_________________________________________________________________________________");
-        log.info("세션 유저넘버:"+session.getAttribute("userNumber"));
         Long userNumber = (Long)session.getAttribute("userNumber");
         novelVO.setUserVO(userService.get(userNumber));
-        novelService.register(novelVO);
-        return "novel/novelRoundList";
+        Long novelNumber = novelService.registerReturnNovelNum(novelVO);
+        rttr.addAttribute("novelNumber",novelNumber);
+        return new RedirectView("novelRoundList");
     }
 
     /*소설 표지 이미지 저장*/
     @PostMapping("/uploadAjaxAction")
     @ResponseBody
     public List<NovelVO> uploadAjaxPost(MultipartFile[] uploadFile) {
-        String uploadFolder = "/home/ubuntu/stelling/upload/";
+        String uploadFolder = "C:/stelling";
         List<NovelVO> fileList = new ArrayList<>();
 
         UUID uuid = UUID.randomUUID();
@@ -262,7 +261,7 @@ public class novelController {
         subNovelService.register(subNovelVO);
 
         String title = novelVO.getNovelTitle();
-        String uploadFolder = "/home/ubuntu/stelling/upload/";
+        String uploadFolder = "C:/stelling";
         UUID uuid = UUID.randomUUID();
         String uploadFolderPath = novelVO.getNovelNumber()+"_"+title+"/"+getPath();
         String uploadFileName = uuid.toString() + "_" + novelFileDTO.getSubNovelTitle();
@@ -298,7 +297,7 @@ public class novelController {
                 .novelVO(novelService.get(novelFileDTO.getNovelNumber()))
                 .build());
         NovelFileVO novelFileVO = novelFileService.getFilePathBySubNum(novelFileDTO.getSubNovelNumber());
-        String uploadPath="/home/ubuntu/stelling/upload/"+novelFileVO.getNovelFileFilePath();
+        String uploadPath="C:/stelling/"+novelFileVO.getNovelFileFilePath();
         String uploadFileName = novelFileVO.getNovelFileFileName();
 
         BufferedWriter bw = new BufferedWriter(new FileWriter(new File(uploadPath+"/"+uploadFileName+".txt")));

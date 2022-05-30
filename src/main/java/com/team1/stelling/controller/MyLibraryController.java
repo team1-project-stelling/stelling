@@ -69,6 +69,7 @@ public class MyLibraryController {
         log.info("유저 세션 번호 : " + String.valueOf(userNumber) + "******************");
         UserVO userVO = userService.findByUserNumber(userNumber);
 
+        model.addAttribute("userNumber", userNumber);
         model.addAttribute("userVO", userVO);
         return "cash/coinShop";
     }
@@ -110,16 +111,16 @@ public class MyLibraryController {
     @GetMapping("/supportList")
     public String supportList(Paging paging, Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
-        Long supportSponser = (Long) session.getAttribute("userNumber");
+        Long userNumber = (Long) session.getAttribute("userNumber");
         NumberFormat numberFormat = NumberFormat.getInstance();
-        String supportCoinTotal = numberFormat.format(supportService.getSupportCoinTotal(supportSponser).getSupportTotal());
+        String supportCoinTotal = numberFormat.format(supportService.getSupportCoinTotal(userNumber).getSupportTotal());
         log.info("총 후원 코인" + supportCoinTotal);
 
         int total = supportService.getSearchSupportTotal(paging);
 
         PagingDTO pageMaker = new PagingDTO(paging, total);
 
-        model.addAttribute("supportList", supportService.getSupportList(paging, supportSponser));
+        model.addAttribute("supportList", supportService.getSupportList(paging, userNumber));
         model.addAttribute("pageMaker", pageMaker);
         model.addAttribute("supportCoinTotal", supportCoinTotal);
 //        model.addAttribute("pageDTO", new PageDTO(criteria, supportService.getSearchSupportTotal(criteria)));
