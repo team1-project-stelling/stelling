@@ -48,7 +48,7 @@ public class IllustService {
         return illustRepository.findByIllustHashTagContaining(keyword, pageable);
     }
 
-    public int getLikeTotal(Long userNumber){
+    public Long getLikeTotal(Long userNumber){
         return illustRepository.findByIllustLikeTotal(userNumber);
     }
 
