@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,6 +31,8 @@ public class SubNovelService {
     public Page<SubNovelVO> getListByNovelNumber(Long novelNumber,  Pageable pageable){return subNovelRepository.findAllByNovelVO_NovelNumber(novelNumber, pageable);}
 
     public List<SubNovelVO> getListByNovelNumber(Long novelNumber){return subNovelRepository.findAllByNovelVO_NovelNumberOrderBySubNovelUploadDate(novelNumber);}
+
+    public List<SubNovelVO> getListByNovelNumOrderSubNum(Long novelNumber){return subNovelRepository.findAllByNovelVO_NovelNumberOrderBySubNovelNumberAsc(novelNumber);}
 
     public void removeSubNovelVO(Long snNo){subNovelRepository.deleteById(snNo);}
 }
