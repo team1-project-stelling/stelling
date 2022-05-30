@@ -1,6 +1,7 @@
 package com.team1.stelling.service;
 
 import com.team1.stelling.domain.dao.SupportDAO;
+import com.team1.stelling.domain.dto.PaymentDTO;
 import com.team1.stelling.domain.dto.SupportDTO;
 import com.team1.stelling.domain.vo.Criteria;
 import com.team1.stelling.domain.vo.Paging;
@@ -30,4 +31,5 @@ public class SupportService{
     public SupportDTO getSupportCoinTotal(Long supportSponser){return supportDAO.getSupportCoinTotal(supportSponser);}
     public List<SupportVO> getSupportListWithNovelNumber(Long novelNumber){return supportDAO.getSupportListWithNovelNumber(novelNumber);}
 
+    public PaymentDTO getPaymentSum(Long subNovelNumber){return supportDAO.getPaymentSum(subNovelNumber);}
 }

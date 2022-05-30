@@ -12,5 +12,5 @@ import java.util.List;
     public interface BuyChapterService {
 
         public BuyChapterVO get(Long userNumber);
-        public List<Long> getSubNumByNovelNum(Long novelNumber, Long userNubmer);
+//        public List<Long> getSubNumByNovelNum(Long novelNumber, Long userNumber);
     }

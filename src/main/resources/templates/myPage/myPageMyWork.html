@@ -150,8 +150,8 @@
                                                 <div><img src="/images/close.png" class="close"><img src="/images/open.png" class="open" style="display: none"></div>
                                                 <div class="divTableCell" style="width: 207px;" th:text="${novelVO.novelTitle}">소설명</div>
                                                 <div class="divTableCell" style="width: 135px;" th:text="${userVO.userNickName}">작가</div>
-                                                <div class="divTableCell">총결제 코인c</div>
-                                                <div class="divTableCell">총후원 받은 코인c</div>
+                                                <div class="divTableCell" th:each="paymentDTOList : ${paymentDTOList}">총 결제받은 코인c</div>
+                                                <div class="divTableCell" >총후원 받은 코인c</div>
                                             </div>
                                     </div>
                                 </div>

@@ -1,5 +1,6 @@
 package com.team1.stelling.mapper;
 
+import com.team1.stelling.domain.dto.PaymentDTO;
 import com.team1.stelling.domain.dto.SupportDTO;
 import com.team1.stelling.domain.vo.Criteria;
 import com.team1.stelling.domain.vo.Paging;
@@ -28,5 +29,7 @@ public interface SupportMapper {
     public SupportVO get(Long supportNumber);
 
     public List<SupportVO> getSupportListWithNovelNumber(Long novelNumber);
+
+    public PaymentDTO getPaymentSum(Long subNovelNumber);
 
 }
