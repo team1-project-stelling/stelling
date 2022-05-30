@@ -139,7 +139,7 @@
         });
         ///채팅출력
         chatdata?.map((c) => {
-            console.log(c)
+
             let message = c.message;
             let senderId = c.senderId;
 
@@ -245,8 +245,7 @@
             },
             error: function (err) {
                 alert("실패")
-                console.log(err)
-                console.log(this.url);
+
             }
 
         })

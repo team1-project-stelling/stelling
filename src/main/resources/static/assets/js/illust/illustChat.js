@@ -33,7 +33,7 @@ if (chatList.length === 0) {
     document.getElementById('chatWrapSecond').innerHTML = "<div style='position: absolute;top: 40%;left: 40%;'>채팅을시작해보세요</div>"
 } else {
     chatList?.map((v) => {
-        console.log(v)
+
         chattingList.innerHTML += `<div style="  height: 50px;   width: 100%;display: flex;align-items: center;justify-content: space-around;"><li data-room=${v.roomName} class="nametd"  style="    width: 100px;list-style: none;font-size: 15px;font-weight: 500;" > 
                              <a>${v.roomName}</a>    </li> 
                          <div style="    width: 100px;text-align: right;"><span style="cursor: pointer" class="thischat" data-room=${v.roomName}>채팅</span></div></div>
@@ -47,15 +47,15 @@ if (chatList.length === 0) {
 
 //처음 대화 시작
 
-
-document.getElementById('dummyUl').addEventListener('click', function (e) {
-    if (e.target.tagName === "LI") {
-        let other = e.target.innerText
-        처음대화(mysession,other)
-
-
-    }
-})
+//
+// document.getElementById('dummyUl').addEventListener('click', function (e) {
+//     if (e.target.tagName === "LI") {
+//         let other = e.target.innerText
+//         처음대화(mysession,other)
+//
+//
+//     }
+// })
 
 $(document).ready(function () {
     채팅방연결(mysession)
@@ -98,7 +98,7 @@ const 기존방연결 = (roomNames) => {
     let other = roomNames.split("&")[0]
     sessionStorage.setItem("other", other)
     sessionStorage.setItem("roomNames", roomNames)
-    console.log(roomNames)
+
     $("#chatWrapSecond").load(`/rooms/${roomNames}`);
 
 }
@@ -151,7 +151,7 @@ const 처음대화 = (mysession,other) => {
 
                     result = data
                     let roomNames = result[0].roomName;
-                        console.log(roomNames)
+
 
                     방만들기(roomNames);
                 },
@@ -160,7 +160,7 @@ const 처음대화 = (mysession,other) => {
         },
         error: function () {
             let roomNames = mysession +"&"+ other
-            console.log(roomNames+"에러타입")
+
             방만들기(roomNames);
         }
     })};
