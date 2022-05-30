@@ -17,7 +17,7 @@
 
     <!--후원 내역-->
     <select id="getSuppotList" resultType="supportVO">
-            SELECT USER_NUMBER, USER_NUMBER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE
+            SELECT SUPPORT_NUMBER, USER_NUMBER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE
             FROM TBL_SUPPORT
             WHERE USER_NUMBER = #{userNumber}
             ORDER BY USER_NUMBER DESC
