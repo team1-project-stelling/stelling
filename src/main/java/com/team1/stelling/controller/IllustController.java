@@ -106,6 +106,18 @@ public class IllustController {
         return "illust/illustCategoryList";
     }
 
+    @GetMapping("/illustPostingPage") public void illustList(){}
+
+    @PostMapping("/illustPostingPage")
+    public RedirectView illustRegister(IllustVO illustVO,HttpServletRequest request){
+
+        HttpSession session = request.getSession();
+        Long userNumber = (Long) session.getAttribute("userNumber");
+        illustVO.setUserVO(userService.get(userNumber));
+        illustService.illustRegister(illustVO);
+
+        return new RedirectView("illustList");
+    }
 
     /*이미지 저장*/
     @PostMapping("/uploadAjaxAction")
@@ -138,18 +150,7 @@ public class IllustController {
         return fileList;
     }
 
-    @GetMapping("/illustPostingPage") public void illustRegister(){}
 
-    @PostMapping("/illustPostingPage")
-    public RedirectView illustRegister(IllustVO illustVO,HttpServletRequest request){
-
-        HttpSession session = request.getSession();
-        Long userNumber = (Long) session.getAttribute("userNumber");
-        illustVO.setUserVO(userService.get(userNumber));
-        illustService.illustRegister(illustVO);
-
-        return new RedirectView("illustList");
-    }
 
     /*파일저장경로(당일 날짜로)*/
     private String getPath() {
@@ -218,7 +219,7 @@ public class IllustController {
 
         List<IllustVO> list = illustService.getSixList(userNumber);
 
-        illustService.updateViewCOunt(illustNumber);
+        illustService.updateViewCount(illustNumber);
 
         model.addAttribute("illustNumber", illustNumber);
         model.addAttribute("illust", illustService.get(illustNumber));
@@ -227,6 +228,16 @@ public class IllustController {
 
         return "illust/illustViewDetail";
     }
+
+    @ResponseBody
+    @GetMapping("/{illustNumber}/{num}")
+    public int illustLike(@PathVariable("illustNumber")Long illustNumber, @PathVariable("num")int num){
+        IllustVO illustVO = illustService.get(illustNumber);
+        illustVO.updateIllustLike(num);
+        illustService.illustRegister(illustVO);
+        return illustVO.getIllustLike();
+    }
+
 
     @GetMapping("/illust/illustProfileCheck1")
     public String illustProfileCheck1(IllustVO illustVO,HttpServletRequest request, Model model){
@@ -237,7 +248,6 @@ public class IllustController {
         if( illustProfileService.checkProfile(((Long) session.getAttribute("userNumber"))) != null){
 
             illustVO.setUserVO(userService.get((Long) session.getAttribute("userNumber")));
-            illustService.illustRegister(illustVO);
 
             return "illust/illustPostingPage";
 

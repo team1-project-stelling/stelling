@@ -26,5 +26,7 @@ public interface IllustRepository extends JpaRepository<IllustVO, Long> {
 
     @Modifying
     @Query(value = "update TBL_Illust set ILLUST_VIEWCOUNT = ILLUST_VIEWCOUNT + 1 where ILLUST_NUMBER = ?", nativeQuery = true)
-    int updateViewCOunt(Long illustNumber);
+    int updateViewCount(Long illustNumber);
+
+
 }
