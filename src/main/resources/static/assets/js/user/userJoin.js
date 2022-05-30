@@ -1,8 +1,22 @@
 const modal = document.querySelector('.modal');
 const btnOpenPopup1 = document.querySelector('.btn-open-popup1');
 const btnOpenPopup2 = document.querySelector('.btn-open-popup2');
+
 const closeBtn = modal.querySelector(".btn_close");
 const closeOk = modal.querySelector(".btn_ok");
+
+const guidebox_1 = document.querySelector('.text_guide_1');
+const guidebox_2 = document.querySelector('.text_guide_2');
+const guidebox_3 = document.querySelector('.text_guide_3');
+const guidebox_4 = document.querySelector('.text_guide_4');
+
+const inputbox_1 = document.querySelector('#userId');
+const inputbox_2 = document.querySelector('#userPw');
+const inputbox_3 = document.querySelector('#repwd');
+const inputbox_4 = document.querySelector('#userEmail');
+
+const phonecheck = document.querySelector('.phone_input');
+const phoneBtn = document.querySelector('#phoneBtn');
 
 btnOpenPopup1.addEventListener('click', (e) => {
     e.preventDefault();
@@ -35,15 +49,6 @@ modal.addEventListener("click", e => {
     };
 });
 
-const guidebox_1 = document.querySelector('.text_guide_1');
-const guidebox_2 = document.querySelector('.text_guide_2');
-const guidebox_3 = document.querySelector('.text_guide_3');
-const guidebox_4 = document.querySelector('.text_guide_4');
-const inputbox_1 = document.querySelector('#userId');
-const inputbox_2 = document.querySelector('#userPw');
-const inputbox_3 = document.querySelector('#repwd');
-const inputbox_4 = document.querySelector('#userEmail');
-
 inputbox_1.addEventListener("click", e => {
     e.preventDefault();
     guidebox_1.style.display = "block";
@@ -63,9 +68,6 @@ inputbox_4.addEventListener("click", e => {
     e.preventDefault();
     guidebox_4.style.display = "block";
 });
-
-const phonecheck = document.querySelector('.phone_input');
-const phoneBtn = document.querySelector('#phoneBtn');
 
 phoneBtn.addEventListener("click", e => {
     e.preventDefault();
@@ -104,7 +106,6 @@ window.onload = function(){
 };
 
 function joinform_check() {
-    let check = true;
     const uid = document.getElementById("userId");
     const pwd = document.getElementById("userPw");
     const repwd = document.getElementById("repwd");
@@ -176,9 +177,7 @@ function joinform_check() {
         mobile.focus();
         return false;
     }
-
         document.joinForm.submit();
-
 }
 
 
