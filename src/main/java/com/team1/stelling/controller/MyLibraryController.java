@@ -89,7 +89,9 @@ public class MyLibraryController {
         log.info("userNumber + " + userNumber + "********");
         NumberFormat numberFormat = NumberFormat.getInstance();
         String payChargeTotal = null;
-        payChargeTotal = numberFormat.format(payService.getTotal(userNumber).getChargeTotal());
+        Long result = payService.getTotal(userNumber).getChargeTotal();
+        if(request == null){result = 0L;}
+        payChargeTotal = numberFormat.format(result);
         log.info("총 결제 금액" + payChargeTotal);
         log.info(paging.toString());
 

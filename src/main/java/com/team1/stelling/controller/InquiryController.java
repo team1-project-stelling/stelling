@@ -42,7 +42,7 @@ public class InquiryController {
         log.info("유저번호 ;"+ userNumber);
         String userNickName = userService.findUserNickName(userNumber);
         model.addAttribute("userNickName", userNickName);
-        return "inquiry/inquiryWrite";
+        return "/main/index";
     }
     @PostMapping("inquiryWrite")
     public String inquiryRegister(InquiryVO inquiryVO, HttpServletResponse response,HttpServletRequest request) throws IOException {
