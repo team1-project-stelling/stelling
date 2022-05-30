@@ -18,7 +18,7 @@ public class SupportDAO {
 
     //후원 내역
 
-    public List<SupportVO> getSuppotList(Paging paging, Long supportSponser) {return supportMapper.getSuppotList(paging, supportSponser);}
+    public List<SupportVO> getSuppotList(Paging paging, Long userNumber) {return supportMapper.getSuppotList(paging, userNumber);}
 
 
     public void register(SupportVO supportVO) {supportMapper.insert(supportVO);}
@@ -27,7 +27,7 @@ public class SupportDAO {
     public int getSearchSupportTotal(Paging paging) {return supportMapper.getSearchSupportTotal(paging);}
 
     //후원한 코인 총 개수
-    public SupportDTO getSupportCoinTotal(Long supportSponser){return supportMapper.getSupportCoinTotal(supportSponser);}
+    public SupportDTO getSupportCoinTotal(Long userNumber){return supportMapper.getSupportCoinTotal(userNumber);}
     public List<SupportVO> getSupportListWithNovelNumber(Long novelNumber){return supportMapper.getSupportListWithNovelNumber(novelNumber);}
 
     public PaymentDTO getPaymentSum(Long subNovelNumber){return supportMapper.getPaymentSum(subNovelNumber);}

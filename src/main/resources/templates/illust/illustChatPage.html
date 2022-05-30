@@ -20,8 +20,6 @@
 <!-- 헤더 종료 -->
 
 <input type="hidden" th:value="${session.user.userNickName}" id="hiddenuserNickName">
-<div class="dummyId" style="width: 350px;position: fixed;top: 20%;left: 2%;border: 1px solid;height: 700px;">
-    <ul id="dummyUl" style="list-style: none"></ul>
 
 
 </div>
@@ -45,7 +43,7 @@
                 </p>
             </div>
             <div class="chatList2 chatUserList" id="chatLists">
-                <ul id="chattingList"></ul>
+                <ul id="chattingList" style="padding: 0"></ul>
                 <!--채팅 신청 유저 정보---------------------------------------------------------------------- -->
 <!--                <div class="chatUser">-->
 <!--                    <div class="profilePic">-->

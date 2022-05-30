@@ -60,19 +60,6 @@
 
         </script>
 
-        <script>
-            let img2 =illustImg()
-
-            img2?.map((imgs,index)=>{
-                let fileCallpath = imgs.illustImgFileFilePath + "/" + imgs.illustImgFileFileName;
-                let img= document.createElement('img');
-                // img.src=`/main/display?fileName=` + fileCallpath;
-                // img.className=`movemove${index} M_x_ fourList`
-                // img.id=`imgss`
-                document.querySelector(".illust_list").innerHTML += `<li><img src = /main/display?fileName=${fileCallpath} class="M_x_ .fourList" id="#fourList"></li>`;
-
-            })
-        </script>
 
     </div>
 
@@ -119,13 +106,13 @@
     <div class="M_tags_List">
         <div class="tags_List">
             <div class="tags_header">
-                <span>조회수</span> <a href="#">더보기</a>
+                <span>조회수</span>
             </div>
             <div class="content-wrap">
             <ul>
                 <th:block th:each="viewCount,index:${viewCountList}">
                 <li class="live-hot" th:object="${viewCount}">
-                    <img th:src="'/upload/display?fileName='+*{novelUploadPath}+'/'+*{novelFileName}" style="width: 90px;">
+                    <a th:href="@{/novel/novelRoundList(novelNumber=*{novelNumber})}"><img th:src="'/upload/display?fileName='+*{novelUploadPath}+'/'+*{novelFileName}" style="width: 90px;"></a>
                     <div style="margin-left: 15px; line-height: 1;">
                         <b th:text="${index.count}"></b><span th:text="*{novelTitle}" style="margin-left: 8px;"></span>
                         <p th:text="*{userNickName}">서은하</p>
@@ -141,13 +128,13 @@
 
         <div class="tags_List">
             <div class="tags_header">
-                <span>선호작수</span> <a href="#">더보기</a>
+                <span>선호작수</span>
             </div>
             <div class="tags_container tags_middle" >
                 <ul>
                     <th:block th:each="likeCount,index:${likeCountList}">
                         <li class="live-hot" th:object="${likeCount}">
-                            <img th:src="'/upload/display?fileName='+*{novelUploadPath}+'/'+*{novelFileName}" style="width: 90px;">
+                            <a th:href="@{/novel/novelRoundList(novelNumber=*{novelNumber})}"><img th:src="'/upload/display?fileName='+*{novelUploadPath}+'/'+*{novelFileName}" style="width: 90px;"></a>
                             <div style="margin-left: 15px; line-height: 1;">
                                 <b th:text="${index.count}"></b><span th:text="*{novelTitle}" style="margin-left: 8px;"></span>
                                 <p th:text="*{userNickName}">서은하</p>
@@ -161,12 +148,12 @@
 
         <div class="tags_List">
             <div class="tags_header tags_middle">
-                <span>회차수</span> <a href="#">더보기</a></div>
+                <span>회차수</span></div>
             <div class="tags_container tags_right" >
                 <ul>
                     <th:block th:each="roundCount,index:${roundCountList}">
                         <li class="live-hot" th:object="${roundCount}">
-                            <img th:src="'/upload/display?fileName='+*{novelUploadPath}+'/'+*{novelFileName}" style="width: 90px;">
+                            <a th:href="@{/novel/novelRoundList(novelNumber=*{novelNumber})}"><img th:src="'/upload/display?fileName='+*{novelUploadPath}+'/'+*{novelFileName}" style="width: 90px;"></a>
                             <div style="margin-left: 15px; line-height: 1;">
                                 <b th:text="${index.count}"></b><span th:text="*{novelTitle}" style="margin-left: 8px;"></span>
                                 <p th:text="*{userNickName}">서은하</p>
@@ -192,12 +179,14 @@
     <div class="M_x_W">
         <div class="M_x_">
             <div class="x_title">
-                <div>뜨끈뜨끈한 신작은??
-                    <span>NewFace의 반란!</span>
+                <div>
+                    <div style="margin-right: 695px;">뜨끈뜨끈한 신작은??
+                        <span>NewFace의 반란!</span>
+                    </div>
                     <ul style="list-style: none; display: flex;">
                         <th:block th:each="newWork:${newWorkList}">
                             <li style="margin-right :20px;" th:object="${newWork}">
-                                <a href=""><img th:src="'/upload/display?fileName='+*{novelUploadPath}+'/'+*{novelFileName}" style="width: 175px;" alt="이미지 준비중"></a>
+                                <a th:href="@{/novel/novelRoundList(novelNumber=*{novelNumber})}"><img th:src="'/upload/display?fileName='+*{novelUploadPath}+'/'+*{novelFileName}" style="width: 175px;" alt="이미지 준비중"></a>
                                 <p style="margin: 0; font-size: 14px;" th:text="*{novelTitle}"></p>
                                 <p style="margin: 0; font-size: 14px;" th:text="*{userNickName}"></p>
                             </li>
@@ -212,12 +201,14 @@
 
     <div class="M_x_">
         <div class="x_title">
-            <div>완결작!
-                <span>마지막 화 까지 정주행!</span>
+            <div>
+                <div style="margin-right: 797px;">완결작!
+                    <span>마지막 화 까지 정주행!</span>
+                </div>
                 <ul style="list-style: none; display: flex;">
                     <th:block th:each="endNovel:${endNovelList}">
-                        <li style="margin-right :20px;" th:object="${endNovel}">
-                            <a href=""><img th:src="'/upload/display?fileName='+*{novelUploadPath}+'/'+*{novelFileName}" style="width: 175px;" alt="이미지 준비중"></a>
+                        <li id="getData" style="margin-right :20px;" th:object="${endNovel}">
+                            <a th:href="@{/novel/novelRoundList(novelNumber=*{novelNumber})}"><img th:src="'/upload/display?fileName='+*{novelUploadPath}+'/'+*{novelFileName}" style="width: 175px;"></a>
                             <p style="margin: 0; font-size: 14px;" th:text="*{novelTitle}"></p>
                             <p style="margin: 0; font-size: 14px;" th:text="*{userNickName}"></p>
                         </li>
@@ -225,35 +216,20 @@
                 </ul>
             </div>
         </div>
-        <div class="x_box secondList" ></div>
-    </div>
-
-    <div>
-        <ul class="testAjax" style="display: flex;">
-        </ul>
     </div>
 
 
     <div style="background-color: beige">
         <div class="M_x_">
             <div class="x_title">
-                <div>한번쯤은 보게될걸?
-                    <span>Illustrator</span>
-                    <ul style="list-style: none; display: flex;" class="illust_list">
-
-                    </ul>
+                <div style="position: absolute; top: 23px;">한번쯤은 보게될걸?
+                        <span>Illustrator</span>
                 </div>
+                <!--일러스트 슬라이드-->
             <div class="x_box fourList movemove" id="fourList" ></div>
         </div>
     </div>
 
-    <div class="M_x_">
-        <div class="x_title">
-            <div>이번 주 신작은??
-                <span>NewFace의 반란!</span>
-            </div></div>
-        <div class="x_box thirdList" ></div>
-    </div>
 
 
 
@@ -266,8 +242,6 @@
 <script src="/assets/js/main/index.js"></script>
 <script src="/assets/js/fix/header.js"></script>
 <script th:inline="javascript">
-    let userNumber = [[${session.userNumber}]];
-    console.log("세션 유저 번호 : " + userNumber);
     let keyword = [[${mainCriteria.keyword}]];
 
     $("a.M_tags").click(function(e){
@@ -275,5 +249,70 @@
         location.href = "/main/index?keyword=" +$(this).attr("href");
     })
 
+
+    let img2 =illustImg()
+    console.log(img2);
+
+    img2?.map((imgs,index)=>{
+        let fileCallpath = imgs.illustImgFileFilePath + "/" + imgs.illustImgFileFileName;
+        const x_item =document.createElement('div')
+        x_item.className="x_item"
+        const x_item_img=document.createElement('div')
+        x_item_img.className="x_item_img"
+        const img = document.createElement('img')
+        img.className="ximg"
+        img.src=`/main/display?fileName=`+ fileCallpath;
+
+
+
+        x_item.appendChild(x_item_img)
+        x_item_img.appendChild(img)
+
+        document.getElementById('fourList').appendChild(x_item)
+    })
+
+    img.slice(0,6)?.map((v)=>{
+        const sectionList  = document.querySelector('.fisrtList')
+        main_sectionList(v,sectionList);
+    })
+    img.slice(1,7)?.map((v)=>{
+        const sectionList  = document.querySelector('.secondList')
+        main_sectionList(v,sectionList);
+    })
+    img.slice(2,8)?.map((v)=>{
+        const sectionList  = document.querySelector('.thirdList')
+        main_sectionList(v,sectionList);
+    })
+    img.slice(0,6).map((v)=>{
+        const sectionList  = document.querySelector('.fourList')
+        main_sectionList(v,sectionList);
+
+    })
+
+    //일러스트 슬라이드
+    function Illustrator(){
+        const lisls = document.querySelectorAll('#fourList div.x_item')
+        const lisl = document.querySelector('.fourList')
+        const lastli = lisl.lastElementChild.cloneNode(true);
+        let M_x= document.querySelectorAll('.M_x_');
+
+        //요소복사
+        const clone = () =>{
+            let cloneslie = lisl.cloneNode(true)
+            let moves = document.querySelector('.movemove')
+            cloneslie.classList.remove('movemove')
+            lisl.append(cloneslie)
+
+        }
+
+        //요소복사
+        clone();
+
+
+    }
+
+    // $(".ximg").click(function(){
+    //     location.href = "/user/login";
+    // })
 </script>
 </html>

@@ -88,11 +88,11 @@
                                             </p>
                                             <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
                                                 <img class="people" src="/images/people.png" style="width: 12px;">
-                                                <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;" th:text="${list.novelViewCountTotal}">90만+</span>
+                                                <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;" th:text="${list.novelViewCountTotal}" >90만+</span>
                                                 <span class="writer" th:text="${userVO.userNickName}">웹티, 올코</span>
                                             </div>
                                             <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
-                                                <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;" <!--th:text="|총 편수 : ${#lists.size(subNovelVOs.subNovelNumber)}|"--> >총 편수 : 308</span>
+                                                <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;" <!--th:text="|총 편수 : ${#lists.size(subNovelVOs.subNovelNumber)}|"-->>총 편수 : 308</span>
                                                 <span  th:text="|최근 등록일 : ${#dates.format(list.novelUploadDate, 'yyyy-MM-dd')}|">최근 등록일 : 2022-05-01</span>
                                             </div>
                                             <div class="item-button" style="margin-top: 3em;">
@@ -150,7 +150,7 @@
                                                 <div><img src="/images/close.png" class="close"><img src="/images/open.png" class="open" style="display: none"></div>
                                                 <div class="divTableCell" style="width: 207px;" th:text="${novelVO.novelTitle}">소설명</div>
                                                 <div class="divTableCell" style="width: 135px;" th:text="${userVO.userNickName}">작가</div>
-                                                <div class="divTableCell" th:each="paymentDTOList : ${paymentDTOList}">총 결제받은 코인c</div>
+                                                <div class="divTableCell" th:text="${paymentDTOList}">총 결제받은 코인c</div>
                                                 <div class="divTableCell" >총후원 받은 코인c</div>
                                             </div>
                                     </div>
@@ -181,10 +181,10 @@
                                         <div class="divTableRow">
                                             <div class="divTableCell" th:text="${subNovelVOs.subNovelNumber}">회차</div>
                                             <div class="divTableCell" th:text="|${subNovelVOs.subNovelViewCount} 회|">조회수</div>
-                                            <th:block th:each="paymentDTOList :${paymentDTOList}">
+<!--                                            <th:block th:each="paymentDTOList :${paymentDTOList}">-->
                                                 <div class="divTableCell" th:text="${paymentDTOList.coinSum}">결제 받은 코인</div>
                                                 <div class="divTableCell" >후원 받은 코인</div>
-                                            </th:block>
+<!--                                            </th:block>-->
                                         </div>
                                     </div>
                                 </th:block>
@@ -206,6 +206,7 @@
 <script src="/assets/js/mypage/myWork.js"></script>
 <script src="/assets/js/fix/header.js"></script>
 <script th:inline="javascript">
+    const novelViewCountTotal = [[${list.novelViewCountTotal]];
     const userNumber = [[${session.userNumber}]];
     console.log("세션 유저 번호 : " + userNumber);
 

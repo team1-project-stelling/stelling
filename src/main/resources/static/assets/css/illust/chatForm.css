@@ -59,9 +59,7 @@
 }
 .chatUserList{
     padding-top: 10px;
-    height: 86.9%;
-    overflow: scroll;
-    overflow-x: hidden;
+
 }
 .profilePic{
     width: 63px;
@@ -248,4 +246,11 @@ form[name="chatform"]{
     display: none;
 }
 
-
+.deleteRooms{
+    color: red;
+    font-weight:bold ;
+}
+.thischat{
+    color: black;
+    font-weight:bold ;
+}
