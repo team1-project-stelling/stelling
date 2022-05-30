@@ -206,9 +206,10 @@ function cccc(){
 
 ///메인컨테이너
 
+
 function main_sectionList(v,sectionList){
-   
-    
+
+
     const x_item =document.createElement('div')
     x_item.className="x_item"
     x_item.onclick=ff
