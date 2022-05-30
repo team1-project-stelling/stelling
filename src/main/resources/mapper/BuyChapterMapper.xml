@@ -24,11 +24,19 @@
         WHERE USER_NUMBER = #{userNumber}
     </select>
 
+<<<<<<< HEAD
+    <!--subNovelNumber로 buyChapter리스트 가져오기-->
+    <select id="getBuyChapterListBySubNum" resultType="buyChapterVO">
+SELECT BUYCHAPTER_NUMBER, NOVEL_NUMBER, SUBNOVEL_NUMBER, USER_NUMBER, BUYCHAPTER_COIN, BUYCHAPTER_DATETIME, BUYCHAPTER_STATUS
+        FROM TBL_BUYCHAPTER
+        WHERE USER_NUMBER = #{userNumber}
+=======
     <!--노벨넘버랑 유저넘버로 내역가져오기-->
     <select id="getSubNovelNumByNovelNum" resultType="buyChapterVO">
         SELECT BUYCHAPTER_NUMBER, NOVEL_NUMBER, SUBNOVEL_NUMBER, USER_NUMBER, BUYCHAPTER_COIN, BUYCHAPTER_DATETIME, BUYCHAPTER_STATUS
         FROM TBL_BUYCHAPTER
         WHERE USER_NUMBER = #{userNumber} AND NOVEL_NUMBER=#{novelNumber}
+>>>>>>> upstream/develop
     </select>
 
 </mapper>
