@@ -69,6 +69,7 @@ public class MyLibraryController {
         log.info("유저 세션 번호 : " + String.valueOf(userNumber) + "******************");
         UserVO userVO = userService.findByUserNumber(userNumber);
 
+        model.addAttribute("userNumber", userNumber);
         model.addAttribute("userVO", userVO);
         return "cash/coinShop";
     }

@@ -179,7 +179,7 @@ $("input[type='file']").change(function(e){
     });
 })
 /*form데이터 보내기*/
-$('.upBtn').on("click", function () {
+$('#upBtn').on("click", function () {
 
     let hashtag = $('#tag-list').text();
     hashtag = hashtag.replace(/x/gi, "");

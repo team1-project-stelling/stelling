@@ -34,6 +34,11 @@ public class UserController {
         return "user/userFindId";
     }
 
+    @GetMapping("userLoginFail")
+    public String loginFail() {
+        return "user/userLoginFail";
+    }
+
     @GetMapping("findPw")
     public String findPw() {
         return "user/userFindPw";
@@ -68,9 +73,14 @@ public class UserController {
     @PostMapping("loginCheck")
     public String login(HttpServletRequest request, String userId, String userPw) {
         UserVO userVO = userService.getByUserId(userId);
+        int idCheck = userService.idCheck(userId);
+
+        if (idCheck == 0) {
+            return "user/userLoginFail";
+        }
 
         if (!passwordEncoder.matches(userPw, userVO.getUserPw())) {
-            return "user/userLogin";
+            return "user/userLoginFail";
         }else {
             HttpSession session = request.getSession();
             session.setAttribute("userNumber", userVO.getUserNumber());
@@ -91,7 +101,7 @@ public class UserController {
     @PostMapping("emailCheck")
     public int overlappedEmail(String userEmail){
         int count = 0;
-        count = userService.idCheck(userEmail);
+        count = userService.emailCheck(userEmail);
         return count;
     }
     @GetMapping("sendSMS")

@@ -215,7 +215,14 @@ $("input[type='file']").change(function(e){
 });
     /*form데이터 보내기*/
     $('#insertBtn').on("click", function () {
-
+        if(!$('.titleInput').val()){
+            alert("작품명을 입력해주세요");
+            return;
+        }
+        if(!$('textarea[name="novelIntro"]').val()){
+            alert("작품소개를 입력해주세요");
+            return;
+        }
 
         /*해쉬태그*/
         let hashtag = $('#tag-list').text();

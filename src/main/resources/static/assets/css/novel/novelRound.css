@@ -1065,6 +1065,7 @@ span.modify, span.delete{
 .img{
   width: 100% !important;
   cursor: pointer;
+  height: 100% !important;
 }
 .deleteCheckBox{
   width: 37px !important;

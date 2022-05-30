@@ -176,7 +176,7 @@
                                                 </div>
                                             </th:block>
                                             <th:block th:unless="${(pageableDTO.pageNumber==1) && (i.count<6)}">
-                                                <div style="display: flex;" class="locked locked2" th:name="${subnovelVO.subNovelNumber}">
+                                                <div style="display: flex;" class="locked locked2" onclick="checkUserNum()" th:name="${subnovelVO.subNovelNumber}">
                                                     <th:block th:if="${subNumList!=null}">
                                                             <th:block th:if="${#strings.contains(subNumList,subnovelVO.subNovelNumber)==true}">
                                                                 <div class="Noveltt" th:text="|${subnovelVO.novelVO.novelTitle} ${i.count+(pageableDTO.pageNumber-1)*10}화|"></div>
