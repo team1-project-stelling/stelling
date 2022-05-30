@@ -16,7 +16,7 @@
     <update id="update"></update>
 
     <!--후원 내역-->
-    <select id="getSuppotList" resultType="supportVO">
+    <select id="getSupportList" resultType="supportVO">
             SELECT SUPPORT_NUMBER, SUPPORT_SPONSER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE
             FROM TBL_SUPPORT
             WHERE SUPPORT_SPONSER = #{supportSponser}
@@ -37,6 +37,9 @@
         WHERE SUPPORT_SPONSER = #{supportSponser}
         GROUP BY SUPPORT_SPONSER
     </select>
-
+    <select id="getSupportListWithNovelNumber" resultType="supportVO">
+     select SUPPORT_NUMBER,USER_NUMBER, NOVEL_NUMBER,SUBNOVEL_NUMBER,SUPPORT_COIN,SUPPORT_DATE from TBL_SUPPORT
+    where NOVEL_NUMBER = #{novelNumber};
+    </select>
 
 </mapper>

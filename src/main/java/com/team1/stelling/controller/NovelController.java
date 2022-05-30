@@ -46,7 +46,8 @@ public class NovelController {
     private final UserService userService;
     private final SubNovelService subNovelService;
     private final NovelFileService novelFileService;
- 
+    private final RecentViewService recentViewService;
+
 
 
     @GetMapping("novelRegister")
@@ -118,12 +119,17 @@ public class NovelController {
         NovelVO novelVo = subNovelVO.getNovelVO();
         List<SubNovelVO> subNovelVOList = subNovelService.getListByNovelNumber(novelNumber);
 
+        HttpSession session = request.getSession();
+        Long userNumber = (Long) session.getAttribute("userNumber");
+        if(!recentViewService.findRecentView(novelNumber)){
+            RecentViewVO recentViewVO = RecentViewVO.builder().userVO(userService.get(userNumber)).novelVO(novelService.get(novelNumber)).build();
+            recentViewService.register(recentViewVO);
+        }
 
         BufferedReader br = null;
         String line = null;
         String result = "";
-        HttpSession session = request.getSession();
-        Long userNumber =(Long)session.getAttribute("userNumber");
+
 
         try {
             br = new BufferedReader(new FileReader("/home/ubuntu/stelling/upload/"+getFilePath+"/"+getFileName+".txt"));
@@ -186,6 +192,9 @@ public class NovelController {
         HttpSession session = request.getSession();
         Long userNumber = (Long)session.getAttribute("userNumber");
         novelVO.setUserVO(userService.get(userNumber));
+
+            String[] result = novelVO.getNovelHashtag().split(" ");
+            novelVO.setNovelCategory(result[0]);
         Long novelNumber = novelService.registerReturnNovelNum(novelVO);
         rttr.addAttribute("novelNumber",novelNumber);
         return new RedirectView("novelRoundList");
@@ -195,7 +204,7 @@ public class NovelController {
     @PostMapping("uploadAjaxAction")
     @ResponseBody
     public List<NovelVO> uploadAjaxPost(MultipartFile[] uploadFile) {
-        String uploadFolder = "C:/stelling";
+        String uploadFolder = "/home/ubuntu/stelling/upload/";
         List<NovelVO> fileList = new ArrayList<>();
 
         UUID uuid = UUID.randomUUID();
@@ -259,9 +268,10 @@ public class NovelController {
                 .subNovelStatus(1).build();
 
         subNovelService.register(subNovelVO);
-
+        novelVO.setNovelRoundAboutTotal(novelVO.getNovelRoundAboutTotal()+1);
+        novelService.modify(novelVO);
         String title = novelVO.getNovelTitle();
-        String uploadFolder = "C:/stelling";
+        String uploadFolder = "/home/ubuntu/stelling/upload/";
         UUID uuid = UUID.randomUUID();
         String uploadFolderPath = novelVO.getNovelNumber()+"_"+title+"/"+getPath();
         String uploadFileName = uuid.toString() + "_" + novelFileDTO.getSubNovelTitle();
@@ -297,7 +307,7 @@ public class NovelController {
                 .novelVO(novelService.get(novelFileDTO.getNovelNumber()))
                 .build());
         NovelFileVO novelFileVO = novelFileService.getFilePathBySubNum(novelFileDTO.getSubNovelNumber());
-        String uploadPath="C:/stelling/"+novelFileVO.getNovelFileFilePath();
+        String uploadPath="/home/ubuntu/stelling/upload/"+novelFileVO.getNovelFileFilePath();
         String uploadFileName = novelFileVO.getNovelFileFileName();
 
         BufferedWriter bw = new BufferedWriter(new FileWriter(new File(uploadPath+"/"+uploadFileName+".txt")));

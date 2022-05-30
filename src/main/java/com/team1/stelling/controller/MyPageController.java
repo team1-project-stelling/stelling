@@ -62,7 +62,7 @@ public class MyPageController {
         Long userNumber = (Long) session.getAttribute("userNumber");
         UserVO sessionUser = userRepository.findById(userNumber).get();
         model.addAttribute("userVO", sessionUser);
-        return "/myPage/myPageEditProfile";
+        return "myPage/myPageEditProfile";
     }
 
 
@@ -167,7 +167,7 @@ public class MyPageController {
     @PostMapping("uploadAjaxAction")
     @ResponseBody //비동기를 처리하는 경우
     public List<UserVO> uploadAjaxPost(MultipartFile[] uploadFile) {
-        String uploadFolder = "C:/stelling";
+        String uploadFolder = "/home/ubuntu/stelling/upload/";
         List<UserVO> fileList = new ArrayList<>();
 
         UUID uuid = UUID.randomUUID();
@@ -214,7 +214,7 @@ public class MyPageController {
     @GetMapping("display")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File("C:/stelling/" + fileName));
+        return FileCopyUtils.copyToByteArray(new File("/home/ubuntu/stelling/upload/" + fileName));
     }
 
 

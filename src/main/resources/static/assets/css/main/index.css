@@ -484,3 +484,10 @@ div.tags_container ul li a img{
   -webkit-animation-play-state: paused;
           animation-play-state: paused;
 }
+
+div.content-wrap ul li a img {
+  width: 90px;
+  height: 130px;
+}
+
+
