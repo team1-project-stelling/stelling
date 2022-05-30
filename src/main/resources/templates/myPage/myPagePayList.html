@@ -63,21 +63,21 @@
 
                         <div class="payTableWrap">
                             <th:block th:if="${payChargeTotal != null}">
-                            <div class="paymentWrap">
-                                <div th:text="'총 결제 금액 :' + ${payChargeTotal} + '원'"></div>
-                                <div>
-                                    <form name="dateForm" action="/myLibrary/payList">
-                                        <div id="dateType" >
-                                            <input class="userNumber" type="hidden" name="userNumber" value="">
-                                            <input type="date" id="dateFrom" name="startDate">
-                                            ~ <input type="date" id="dateTo" name="endDate">
-                                        </div>
-                                        <div class="searchWrap">
-                                            <button type="submit" class="btn btn-sm" id="btnSearch">검색</button>
-                                        </div>
-                                    </form>
+                                <div class="paymentWrap">
+                                    <div th:text="'총 결제 금액 :' + ${payChargeTotal} + '원'"></div>
+                                    <div>
+                                        <form name="dateForm" action="/myLibrary/payList">
+                                            <div id="dateType" >
+                                                <input class="userNumber" type="hidden" name="userNumber" value="">
+                                                <input type="date" id="dateFrom" name="startDate">
+                                                ~ <input type="date" id="dateTo" name="endDate">
+                                            </div>
+                                            <div class="searchWrap">
+                                                <button type="submit" class="btn btn-sm" id="btnSearch">검색</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
                             </th:block>
                             <table class="pointTable">
                                 <tbody>
@@ -94,37 +94,6 @@
                                 </tbody>
                             </table>
                         </div>
-
-<!--                        <div class="payTableWrap2">-->
-<!--                            <div class="paymentWrap">-->
-<!--                                <div>총 후원 금액 (금액)원</div>-->
-<!--                                <div>-->
-<!--                                    <form>-->
-<!--                                        <div id="dateType" >-->
-<!--                                            <input type="date" id="dateFrom" name="form">-->
-<!--                                            ~ <input type="date" id="dateTo" name="to">-->
-<!--                                        </div>-->
-<!--                                        <div class="searchWrap">-->
-<!--                                            <button class="btn btn-sm" id="btnSearch" name="btnSearch">검색</button>-->
-<!--                                        </div>-->
-<!--                                    </form>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <table class="pointTable">-->
-<!--                                <tbody>-->
-<!--                                <tr>-->
-<!--                                    <th>후원한 코인</th>-->
-<!--                                    <th>후원한 날짜</th>-->
-<!--                                </tr>-->
-<!--                                <th:block th:each="sup:${supportList}">-->
-<!--                                <tr>-->
-<!--                                    <td class="td1" th:text="|${sup.getSupportCoin()}코인|"></td>-->
-<!--                                    <td class="td1" th:text="${#dates.format(sup.getSupportDate(), 'yyyy-MM-dd')}"></td>-->
-<!--                                </tr>-->
-<!--                                </th:block>-->
-<!--                                </tbody>-->
-<!--                            </table>-->
-<!--                        </div>-->
                         <!--결제 내역 페이징-->
                         <div class=" d-flex align-items-center justify-content-center" id="pay-paging" style="height:80px;">
                             <nav aria-label="Page navigation">
@@ -132,11 +101,11 @@
 
 
                                     <!--이전 버튼-->
-                                <th:block th:if="${pageMaker.prev}">
-                                    <li>
-                                        <a class="page-link" href="javascript:void(0)" th:onlick="movePage([[${#request.requestURI}]], [[${pageMaker.paging.makeQueryString(pageMaker.pageStart -1)}]], [[${session.userNumber}]])">&lt;</a>
-                                    </li>
-                                </th:block>
+                                    <th:block th:if="${pageMaker.prev}">
+                                        <li>
+                                            <a class="page-link" href="javascript:void(0)" th:onlick="movePage([[${#request.requestURI}]], [[${pageMaker.paging.makeQueryString(pageMaker.pageStart -1)}]], [[${session.userNumber}]])">&lt;</a>
+                                        </li>
+                                    </th:block>
 
                                     <!--페이지 번호-->
                                     <th:block th:with="pageMaker = ${pageMaker}">
@@ -155,11 +124,6 @@
                                     </th:block>
 
                                     </li>
-<!--                                    <form action="/myLibrary/payList" th:object="${criteria}" name="pageForm">-->
-<!--                                        <input class="userNumber" type="hidden" name="userNumber" value="">-->
-<!--                                        <input class="pageNum" type="hidden" th:field="*{pageNum}">-->
-<!--                                        <input class="amount" type="hidden" th:field="*{amount}">-->
-<!--                                    </form>-->
                                 </ul>
                             </nav>
                         </div>

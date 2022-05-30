@@ -1,28 +1,3 @@
-let active = document.getElementsByClassName("active");
-
-// function handleClick(event) {
-//     console.log(event.target);
-//     console.log(event.target.classList);
-//
-//     active[0].classList.remove("clicked");
-//     if (event.target.classList[1] === "clicked") {
-//         event.target.classList.remove("clicked");
-//     } else {
-//         for (var i = 0; i < active.length; i++) {
-//             active[i].classList.remove("clicked");
-//         }
-//
-//         event.target.classList.add("clicked");
-//     }
-// }
-// function init() {
-//     active[0].classList.add("clicked");
-//     for (var i = 0; i < active.length; i++) {
-//         active[i].addEventListener("click", handleClick);
-//     }
-// }
-// init();
-
 
 //left_block
 let left = document.getElementsByClassName("left");
@@ -99,25 +74,6 @@ $('#btnSearch').click(function () {
     }
 }); //click() end
 
-
-//내 포인트 / 내 후원 내역 이동
-// document.querySelector('.payTableWrap2').style.display = 'none';
-// document.querySelector('.myPoint').addEventListener('click',function(){
-//     clickchange1 ()
-// })
-// document.querySelector('.mySupport').addEventListener('click',function(){
-//     clickchange2 ()
-// })
-//
-// function clickchange1() {
-//     document.querySelector('.payTableWrap2').style.display = 'none';
-//     document.querySelector('.payTableWrap').style.display = "block";
-// }
-//
-// function clickchange2() {
-//     document.querySelector('.payTableWrap').style.display = 'none';
-//     document.querySelector('.payTableWrap2').style.display = 'block';
-// }
 
 $(".myPoint").click(function(){
     location.href = "/myLibrary/payList?userNumber=" + userNumber;
