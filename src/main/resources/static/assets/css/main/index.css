@@ -391,7 +391,7 @@
   -ms-flex-preferred-size: 180px;
       flex-basis: 180px;
   min-width: 0;
-  margin-right: 175px;
+  margin-right: 20px;
 }
 
 .main_section .M_x_ .x_box .x_item .x_item_img {
@@ -428,7 +428,6 @@
 
 
   display: inline-flex;
-  overflow: hidden;
   margin-top: 60px;
 }
 
