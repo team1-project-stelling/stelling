@@ -4,27 +4,7 @@ sessionStorage.setItem("mySession", mysession)
 document.getElementById('ownUser').innerText = mysession
 
 
-//회원목록
-let findMembers = "";
-$.ajax({
-    url: "/list",
-    dataType: "json",
-    type: "get",
-    async: false,
-    success: function (data) {
-        findMembers = data
 
-    },
-    error: function () {
-        alert("실패");
-    }
-})
-
-findMembers?.map((v) => {
-    document.getElementById('dummyUl').innerHTML += `
-            <li style="margin-top: 10px; ">${v}         </li> 
-        `
-})
 
 //************************시작***************************************************
 //채팅내역
@@ -66,6 +46,8 @@ if (chatList.length === 0) {
 
 
 //처음 대화 시작
+
+
 document.getElementById('dummyUl').addEventListener('click', function (e) {
     if (e.target.tagName === "LI") {
         let other = e.target.innerText

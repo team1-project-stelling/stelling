@@ -112,70 +112,70 @@ function joinform_check() {
     const mobile = document.getElementById("userPhoneNum");
     const email_id = document.getElementById("userEmail");
 
-    if (uid.value == "") {
-        Swal.fire({
-            icon: 'warning',
-            text: '아이디를 확인해주세요.'
-        });
-        uid.focus();
-        return false;
-    }
-
-    if (pwd.value == "") {
-        Swal.fire({
-            icon: 'warning',
-            text: '비밀번호를 확인해주세요.'
-        });
-        pwd.focus();
-        return false;
-    }
-
-    const pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-    if (!pwdCheck.test(pwd.value)) {
-        Swal.fire({
-            icon: 'warning',
-            text: '비밀번호를 확인해주세요.'
-        });
-        pwd.focus();
-        return false;
-    }
-
-    if (repwd.value !== pwd.value) {
-        Swal.fire({
-            icon: 'warning',
-            text: '비밀번호가 일치하지 않습니다.'
-        });
-        repwd.focus();
-        return false;
-    }
-
-    if (uname.value == "") {
-        Swal.fire({
-            icon: 'warning',
-            text: '닉네임을 확인해주세요.'
-        });
-        uname.focus();
-        return false;
-    }
-
-    if (email_id.value == "") {
-        Swal.fire({
-            icon: 'warning',
-            text: '이메일 주소를 확인해주세요.'
-        });
-        email_id.focus();
-        return false;
-    }
-
-    const reg = /^[0-9]+/g;
-    if (!reg.test(mobile.value)) {
-        Swal.fire({
-            icon: 'warning',
-            text: '휴대폰번호를 확인해주세요.'
-        });
-        mobile.focus();
-        return false;
-    }
+    // if (uid.value == "") {
+    //     Swal.fire({
+    //         icon: 'warning',
+    //         text: '아이디를 확인해주세요.'
+    //     });
+    //     uid.focus();
+    //     return false;
+    // }
+    //
+    // if (pwd.value == "") {
+    //     Swal.fire({
+    //         icon: 'warning',
+    //         text: '비밀번호를 확인해주세요.'
+    //     });
+    //     pwd.focus();
+    //     return false;
+    // }
+    //
+    // const pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+    // if (!pwdCheck.test(pwd.value)) {
+    //     Swal.fire({
+    //         icon: 'warning',
+    //         text: '비밀번호를 확인해주세요.'
+    //     });
+    //     pwd.focus();
+    //     return false;
+    // }
+    //
+    // if (repwd.value !== pwd.value) {
+    //     Swal.fire({
+    //         icon: 'warning',
+    //         text: '비밀번호가 일치하지 않습니다.'
+    //     });
+    //     repwd.focus();
+    //     return false;
+    // }
+    //
+    // if (uname.value == "") {
+    //     Swal.fire({
+    //         icon: 'warning',
+    //         text: '닉네임을 확인해주세요.'
+    //     });
+    //     uname.focus();
+    //     return false;
+    // }
+    //
+    // if (email_id.value == "") {
+    //     Swal.fire({
+    //         icon: 'warning',
+    //         text: '이메일 주소를 확인해주세요.'
+    //     });
+    //     email_id.focus();
+    //     return false;
+    // }
+    //
+    // const reg = /^[0-9]+/g;
+    // if (!reg.test(mobile.value)) {
+    //     Swal.fire({
+    //         icon: 'warning',
+    //         text: '휴대폰번호를 확인해주세요.'
+    //     });
+    //     mobile.focus();
+    //     return false;
+    // }
 
         document.joinForm.submit();
 

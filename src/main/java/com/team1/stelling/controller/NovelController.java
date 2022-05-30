@@ -42,6 +42,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class NovelController {
 
+
     private  final NovelService novelService;
     private final UserService userService;
     private final SubNovelService subNovelService;
