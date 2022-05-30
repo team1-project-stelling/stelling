@@ -1,3 +1,7 @@
+
+let href;
+let subNovelNum;
+
 function ModalHandler(){
     document.body.classList.add('preventscroll');
     document.querySelector('.Sponmodalwrap').style.display='block'
@@ -142,13 +146,9 @@ $('.myPick').on("click", function () {
 
 $('.Noveltt').on("click", function () {
     if($(this).hasClass("locked")){
-
     }
 })
 
-
-let href;
-let subNovelNum;
 
 /*소설회차 잠금 모달*/
 $('.lockRow').on("click", function (e) {
@@ -235,3 +235,9 @@ $('.cashCancle').on("click",function () {
 })
 
 
+function checkUserNum() {
+ if(userNumber==null){
+     alert("로그인 후 이용가능한 서비스입니다.");
+     location.href="/user/login";
+ }
+}
