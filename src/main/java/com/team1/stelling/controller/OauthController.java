@@ -10,6 +10,7 @@ import com.team1.stelling.domain.vo.UserVO;
 import com.team1.stelling.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -18,8 +19,10 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.UUID;
@@ -30,10 +33,13 @@ import java.util.UUID;
 @Slf4j
 public class OauthController {
 
+    //    @Autowired
     private final UserService userService;
 
+
     @GetMapping("/oauth")
-    public @ResponseBody String kakaoCallback(HttpServletRequest request, String code) throws IOException {
+    public @ResponseBody
+    RedirectView kakaoCallback(String code, HttpServletRequest request) throws IOException {
 
         String grant_type = "authorization_code";
         String client = "427b7ad60b17680502910b084533fbaa";
@@ -51,7 +57,7 @@ public class OauthController {
 
         HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = new HttpEntity<>(params,headers);
 
-        ResponseEntity response = rt.exchange(
+        ResponseEntity<String> response = rt.exchange(
                 "https://kauth.kakao.com/oauth/token",
                 HttpMethod.POST,
                 kakaoTokenRequest,
@@ -77,13 +83,13 @@ public class OauthController {
         //ObjectMapper
         ObjectMapper objectMapper = new ObjectMapper();
         OauthToken oauthToken = null;
-//        try {
-//            oauthToken = objectMapper.readValue(response.getBody(), OauthToken.class);
-//        } catch (JsonMappingException e) {
-//            e.printStackTrace();
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            oauthToken = objectMapper.readValue(response.getBody(), OauthToken.class);
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
 
 
         RestTemplate rt2 = new RestTemplate();
@@ -92,28 +98,37 @@ public class OauthController {
         headers2.add("Authorization", "Bearer " + oauthToken.getAccess_token());
         headers2.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
-        HttpEntity<MultiValueMap<String, String>> kakaoProfileRequest2 = new HttpEntity<>(headers2);
+        HttpEntity<MultiValueMap<String,String>> kakaoProfileRequest = new HttpEntity<>(headers2);
 
-        ResponseEntity response2 = rt2.exchange(
+        ResponseEntity<String> response2 = rt2.exchange(
                 "https://kapi.kakao.com/v2/user/me",
                 HttpMethod.POST,
-                kakaoProfileRequest2,
+                kakaoProfileRequest,
                 String.class
         );
 
-        KakaoProfile kakaoProfile = null;
         ObjectMapper objectMapper2 = new ObjectMapper();
-//        try {
-//            kakaoProfile = objectMapper2.readValue(response2.getBody(), KakaoProfile.class);
-//        } catch (JsonMappingException e) {
-//            e.printStackTrace();
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//        }
+        KakaoProfile kakaoProfile = null;
+        try {
+            kakaoProfile = objectMapper2.readValue(response2.getBody(), KakaoProfile.class);
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        System.out.println("################################# : :" + response);
+        System.out.println("################################# :" + response2);
+
+
+        String userId = "sdfsdfds";
 
         UUID garbagePassword = UUID.randomUUID();
 
         UserVO kakaoUser = UserVO.builder()
+                .userId(kakaoProfile.getKakao_account().getEmail())
                 .userNickName(kakaoProfile.getKakao_account().getEmail() + "_" + kakaoProfile.getId())
                 .userPw(garbagePassword.toString())
                 .userEmail(kakaoProfile.getKakao_account().getEmail())
@@ -127,24 +142,25 @@ public class OauthController {
                 .userFileName("profile.png")
                 .build();
 
-        UserVO originUser = userService.findUserEmail(kakaoUser.getUserEmail());
+        int originUser = userService.findUserEmail(kakaoUser.getUserEmail());
 
-        if (originUser == null) {
+        if (originUser == 0) {
             userService.joinUser(kakaoUser);
             HttpSession session = request.getSession();
-            session.setAttribute("userNumber", kakaoUser.getUserNumber());
-            session.setAttribute("user",userService.get(kakaoUser.getUserNumber()));
+            session.setAttribute("userNumber", userService.findUserNumberByEmail(kakaoUser.getUserEmail()));
+            session.setAttribute("user",userService.get(userService.findUserNumberByEmail(kakaoUser.getUserEmail())));
             log.info("###########" +session.getAttribute("userNumber"));
-            return "redirect:/main/index";
+            return new RedirectView ("/main/index");
         }
 
         HttpSession session = request.getSession();
-        session.setAttribute("userNumber", kakaoUser.getUserNumber());
-        session.setAttribute("user",userService.get(kakaoUser.getUserNumber()));
+        session.setAttribute("userNumber", userService.findUserNumberByEmail(kakaoUser.getUserEmail()));
+        session.setAttribute("user",userService.get(userService.findUserNumberByEmail(kakaoUser.getUserEmail())));
         log.info("###########" +session.getAttribute("userNumber"));
-        return "redirect:/main/index";
+        return new RedirectView ("/main/index");
 
     }
+
 }
 
 
