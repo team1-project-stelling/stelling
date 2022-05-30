@@ -89,9 +89,11 @@ public class MyPageController {
             List<Long> subNums = subNovelService.getListByNovelNumOrderSubNum(novelNum).stream().map(v -> v.getSubNovelNumber()).collect(Collectors.toList());
             for (Long subNum : subNums) {
                 PaymentDTO paymentDTO = supportService.getPaymentSum(subNum);
-                log.info("######################################################################");
-                log.info("pamentDTO : " + paymentDTO.toString());
-                        paymentDTOList.add(paymentDTO);
+                if(paymentDTO != null) {
+                    log.info("######################################################################");
+                    log.info("pamentDTO : " + paymentDTO.toString());
+                    paymentDTOList.add(paymentDTO);
+                }
                     }
                 }
 
@@ -237,7 +239,7 @@ public class MyPageController {
     @GetMapping("/display")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File("C:/stelling/" + fileName));
+        return FileCopyUtils.copyToByteArray(new File("/home/ubuntu/stelling/upload/" + fileName));
     }
 
 

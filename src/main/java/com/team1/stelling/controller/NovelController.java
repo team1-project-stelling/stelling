@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequestMapping("/novel/*")
 @RequiredArgsConstructor
-public class novelController {
+public class NovelController {
 
     private  final NovelService novelService;
     private final UserService userService;
@@ -181,15 +181,14 @@ public class novelController {
 
     /*소설 등록*/
     @PostMapping("/novelRegister")
-    public String novelRegister(NovelVO novelVO, HttpServletRequest request) {
+    public RedirectView novelRegister(NovelVO novelVO, HttpServletRequest request, RedirectAttributes rttr) {
 
         HttpSession session = request.getSession();
-        log.info("_________________________________________________________________________________");
-        log.info("세션 유저넘버:"+session.getAttribute("userNumber"));
         Long userNumber = (Long)session.getAttribute("userNumber");
         novelVO.setUserVO(userService.get(userNumber));
-        novelService.register(novelVO);
-        return "novel/novelRoundList";
+        Long novelNumber = novelService.registerReturnNovelNum(novelVO);
+        rttr.addAttribute("novelNumber",novelNumber);
+        return new RedirectView("novelRoundList");
     }
 
     /*소설 표지 이미지 저장*/
