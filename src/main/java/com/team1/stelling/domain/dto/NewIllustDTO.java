@@ -9,9 +9,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class NewIllustDTO {
+    private Long illustNumber;
     private String userNickName;
     private String illustImgFileFilePath;
     private String illustImgFileFileName;

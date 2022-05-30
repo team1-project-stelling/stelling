@@ -25,6 +25,7 @@ public class UserService {
     public void modify(UserVO vo){ userRepository.save(vo);}
     public Long login(Map<String, String> loginMap) {return userDAO.login(loginMap);}
     public int idCheck(String userId) { return userDAO.idCheck(userId); }
+    public int emailCheck(String userEmail) {return userDAO.emailCheck(userEmail);}
     public String getSearchId(String userNick, String phoneNum){ return userDAO.getSearchId(userNick, phoneNum) ; }
     public String findPw(String userId, String userEmail) { return userDAO.findPw(userId,userEmail) ; }
     public UserVO findByUserNumber(Long userNumber){return userDAO.findByUserNumber(userNumber);}
@@ -36,12 +37,12 @@ public class UserService {
     public String findUserNickName(Long userNum){
         String userNickName = userRepository.findById(userNum).orElse(null).getUserNickName();
         if(Objects.isNull(userNickName)){
-            log.info("없는 사용자");
         }
         return userNickName;
     }
-    public UserVO getByUserId(String userId){return  userDAO.findByUserId(userId);}
-    public UserVO findUserEmail(String userEmail){
+    public UserVO getByUserId(String userId){return userDAO.findByUserId(userId);}
+    public int findUserEmail(String userEmail){
         return userDAO.findUserEmail(userEmail);
     }
+    public Long findUserNumberByEmail(String userEmail) {return userDAO.findUserNumberByEmail(userEmail) ; }
 }

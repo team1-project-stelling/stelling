@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class KakaoProfile {
 
-    public Integer id;
+    public Long id;
     public String connected_at;
     public Properties properties;
     public KakaoAccount kakao_account;
@@ -19,7 +19,7 @@ public class KakaoProfile {
 
     @Data
     public class KakaoAccount {
-
+        public Boolean profile_nickname_needs_agreement;
         public Boolean profile_needs_agreement;
         public Profile profile;
         public Boolean has_email;

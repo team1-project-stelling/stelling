@@ -1,17 +1,11 @@
 package com.team1.stelling.controller;
 
 import com.team1.stelling.domain.dto.PageableDTO;
+import com.team1.stelling.domain.dto.PaymentDTO;
 import com.team1.stelling.domain.repository.NovelRepository;
-import com.team1.stelling.domain.repository.SubNovelRepository;
 import com.team1.stelling.domain.repository.UserRepository;
-import com.team1.stelling.domain.vo.InquiryVO;
-import com.team1.stelling.domain.vo.NovelVO;
-import com.team1.stelling.domain.vo.SubNovelVO;
-import com.team1.stelling.domain.vo.UserVO;
-import com.team1.stelling.service.InquiryService;
-import com.team1.stelling.service.NovelService;
-import com.team1.stelling.service.SubNovelService;
-import com.team1.stelling.service.UserService;
+import com.team1.stelling.domain.vo.*;
+import com.team1.stelling.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -30,10 +24,8 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @Slf4j
@@ -45,6 +37,8 @@ public class MyPageController {
     private final NovelService novelService;
     private final SubNovelService subNovelService;
     private final NovelRepository novelRepository;
+    private final SupportService supportService;
+    private final BuyChapterServiceImpl buyChapterService;
 
 
     //프로필수정
@@ -87,27 +81,44 @@ public class MyPageController {
         Long userNumber = (Long) session.getAttribute("userNumber");
         NovelVO novelVO = novelRepository.getById(userNumber);
         List<SubNovelVO> subNovelVOs = subNovelService.getList();
+        List<Long> novelNumList = novelService.getNovelListByUserNumber(userNumber).stream().map(v -> v.getNovelNumber()).collect(Collectors.toList());
+        List<PaymentDTO> paymentDTOList = new ArrayList<>();
+        for (Long novelNum : novelNumList) {
+            log.info("######################################################################");
+            log.info("novelNum : " + novelNum);
+            List<Long> subNums = subNovelService.getListByNovelNumOrderSubNum(novelNum).stream().map(v -> v.getSubNovelNumber()).collect(Collectors.toList());
+            for (Long subNum : subNums) {
+                PaymentDTO paymentDTO = supportService.getPaymentSum(subNum);
+                if(paymentDTO != null) {
+                    log.info("######################################################################");
+                    log.info("pamentDTO : " + paymentDTO.toString());
+                    paymentDTOList.add(paymentDTO);
+                }
+                    }
+                }
 
 
-        Page<NovelVO> list = novelService.getPageList(userNumber, pageable);
-        for (NovelVO novel : list) {
-            if (novel.getNovelFileName().contains("sampleImg")) {
-                String novelImgSrc = "/images/" + novel.getNovelFileName();
-                novel.setNovelFileName(novelImgSrc);
+                Page<NovelVO> list = novelService.getPageList(userNumber, pageable);
+                for (NovelVO novel : list) {
+                    if (novel.getNovelFileName().contains("sampleImg")) {
+                        String novelImgSrc = "/images/" + novel.getNovelFileName();
+                        novel.setNovelFileName(novelImgSrc);
+                    }
+                }
+                log.info("@@@@@@@@@@@@@@@@@@" + paymentDTOList.toString());
+
+                UserVO uservo = userRepository.findById(userNumber).get();
+                PageableDTO pageableDTO = new PageableDTO((int) list.getTotalElements(), pageable);
+
+                model.addAttribute("paymentDTOList", paymentDTOList);
+                model.addAttribute("subNovelVOs", subNovelVOs);
+                model.addAttribute("novelVO", novelVO);
+                model.addAttribute("paymentDTOList", paymentDTOList);
+                model.addAttribute("list", list);
+                model.addAttribute("pageableDTO", pageableDTO);
+                model.addAttribute("userVO", uservo);
+                return "myPage/myPageMyWork";
             }
-        }
-
-
-        UserVO uservo = userRepository.findById(userNumber).get();
-        PageableDTO pageableDTO = new PageableDTO((int) list.getTotalElements(), pageable);
-
-        model.addAttribute("subNovelVOs", subNovelVOs);
-        model.addAttribute("novelVO", novelVO);
-        model.addAttribute("list", list);
-        model.addAttribute("pageableDTO", pageableDTO);
-        model.addAttribute("userVO", uservo);
-        return "myPage/myPageMyWork";
-    }
     //--------------------
 
     //비밀번호 변경----------------
@@ -228,7 +239,7 @@ public class MyPageController {
     @GetMapping("/display")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File("C:/stelling/" + fileName));
+        return FileCopyUtils.copyToByteArray(new File("/home/ubuntu/stelling/upload/" + fileName));
     }
 
 

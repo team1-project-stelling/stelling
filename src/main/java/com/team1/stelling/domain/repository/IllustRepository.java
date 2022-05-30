@@ -22,9 +22,11 @@ public interface IllustRepository extends JpaRepository<IllustVO, Long> {
     Page<IllustVO> findByIllustHashTagContaining(String keyword, Pageable pageable);
 
     @Query(value = "SELECT SUM(ILLUST_LIKE) FROM TBL_ILLUST WHERE USER_NUMBER = ?", nativeQuery = true)
-    int findByIllustLikeTotal(Long userNumber);
+    Long findByIllustLikeTotal(Long userNumber);
 
     @Modifying
     @Query(value = "update TBL_Illust set ILLUST_VIEWCOUNT = ILLUST_VIEWCOUNT + 1 where ILLUST_NUMBER = ?", nativeQuery = true)
-    int updateViewCOunt(Long illustNumber);
+    int updateViewCount(Long illustNumber);
+
+
 }

@@ -17,10 +17,10 @@
 
     <!--후원 내역-->
     <select id="getSuppotList" resultType="supportVO">
-            SELECT SUPPORT_NUMBER, SUPPORT_SPONSER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE
+            SELECT SUPPORT_NUMBER, USER_NUMBER, NOVEL_NUMBER, SUPPORT_COIN, SUPPORT_DATE, SUBNOVEL_NUMBER
             FROM TBL_SUPPORT
-            WHERE SUPPORT_SPONSER = #{supportSponser}
-            ORDER BY SUPPORT_NUMBER DESC
+            WHERE USER_NUMBER = #{userNumber}
+            ORDER BY USER_NUMBER DESC
             LIMIT #{paging.skip}, #{paging.amount}
     </select>
 
@@ -32,13 +32,13 @@
 
     <!--총 후원 코인-->
     <select id="getSupportCoinTotal" resultType="SupportDTO">
-        SELECT SUPPORT_SPONSER, SUM(SUPPORT_COIN) AS SUPPORT_TOTAL
+        SELECT USER_NUMBER, SUM(SUPPORT_COIN) AS SUPPORT_TOTAL
         FROM TBL_SUPPORT
-        WHERE SUPPORT_SPONSER = #{supportSponser}
-        GROUP BY SUPPORT_SPONSER
+        WHERE USER_NUMBER = #{userNumber}
+        GROUP BY USER_NUMBER
     </select>
 
-    <!--노벨번호로 후원내역 가져오기(코인금액순 정렬)-->
+    <!--노벨번호로 후원내역 가져오기-->
     <select id="getSupportListWithNovelNumber" resultType="supportVO">
     SELECT SUPPORT_NUMBER, USER_NUMBER, NOVEL_NUMBER, SUBNOVEL_NUMBER,SUPPORT_COIN, SUPPORT_DATE
     FROM TBL_SUPPORT
@@ -46,6 +46,13 @@
     ORDER BY SUPPORT_COIN DESC;
     </select>
 
-
+    <!--결제총액, 후원총액 가져오기 -->
+    <select id="getPaymentSum" resultType="paymentDTO">
+        SELECT SUM(S.SUPPORT_COIN), SUM(B.BUYCHAPTER_COIN)
+        FROM TBL_SUPPORT S
+        JOIN TBL_BUYCHAPTER B
+        ON S.SUBNOVEL_NUMBER = B.SUBNOVEL_NUMBER
+        WHERE S.SUBNOVEL_NUMBER = #{subNovelNumber}
+    </select>
 
 </mapper>

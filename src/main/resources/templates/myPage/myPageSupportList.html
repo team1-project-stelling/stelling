@@ -202,14 +202,14 @@
         location.href = "/myPage/myPageQuestion";
     }
     function goQuit(){
-        location.href = "/myPage/myPageQuit?userNumber=" + userNumber;
+        location.href = "/myPage/myPageQuit"
     }
     function goPayList(){
-        location.href = "/myLibrary/payList?userNumber=" + userNumber;
+        location.href = "/myLibrary/payList"
     }
 
     function goSupportList(){
-        location.href = "/myLibrary/supportList?supportSponser=" + userNumber;
+        location.href = "/myLibrary/supportList"
     }
     //페이지 이동
     /* ![CDATA[ */
@@ -218,7 +218,7 @@
         console.log(queryString);
         console.log(session);
 
-        location.href = uri + queryString + "&supportSponser=" + session;
+        location.href = uri + queryString + "&userNumber=" + session;
     }
     /* ]]*/
 </script>

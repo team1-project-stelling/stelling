@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NovelDTO {
+    private Long novelNumber;
     private String userNickName;
     private String novelTitle;
     private String novelUploadPath;

@@ -76,7 +76,7 @@ public class IllustVO {
 
     public void updateIllustViewCount() { this.illustViewCount++; }// 조회수는 한개씩 증가한다
 
-    public void updateIllustLike() { this.illustLike++; } // 좋아요는 한개씩 증가한다
+    public void updateIllustLike(int num) { this.illustLike+=num; } // 좋아요는 한개씩 증가한다
 
     public void updateIllustShortIntro(String illustShortIntro) { this.illustShortIntro = illustShortIntro; }
 

@@ -1,8 +1,22 @@
 const modal = document.querySelector('.modal');
 const btnOpenPopup1 = document.querySelector('.btn-open-popup1');
 const btnOpenPopup2 = document.querySelector('.btn-open-popup2');
+
 const closeBtn = modal.querySelector(".btn_close");
 const closeOk = modal.querySelector(".btn_ok");
+
+const guidebox_1 = document.querySelector('.text_guide_1');
+const guidebox_2 = document.querySelector('.text_guide_2');
+const guidebox_3 = document.querySelector('.text_guide_3');
+const guidebox_4 = document.querySelector('.text_guide_4');
+
+const inputbox_1 = document.querySelector('#userId');
+const inputbox_2 = document.querySelector('#userPw');
+const inputbox_3 = document.querySelector('#repwd');
+const inputbox_4 = document.querySelector('#userEmail');
+
+const phonecheck = document.querySelector('.phone_input');
+const phoneBtn = document.querySelector('#phoneBtn');
 
 btnOpenPopup1.addEventListener('click', (e) => {
     e.preventDefault();
@@ -35,15 +49,6 @@ modal.addEventListener("click", e => {
     };
 });
 
-const guidebox_1 = document.querySelector('.text_guide_1');
-const guidebox_2 = document.querySelector('.text_guide_2');
-const guidebox_3 = document.querySelector('.text_guide_3');
-const guidebox_4 = document.querySelector('.text_guide_4');
-const inputbox_1 = document.querySelector('#userId');
-const inputbox_2 = document.querySelector('#userPw');
-const inputbox_3 = document.querySelector('#repwd');
-const inputbox_4 = document.querySelector('#userEmail');
-
 inputbox_1.addEventListener("click", e => {
     e.preventDefault();
     guidebox_1.style.display = "block";
@@ -63,9 +68,6 @@ inputbox_4.addEventListener("click", e => {
     e.preventDefault();
     guidebox_4.style.display = "block";
 });
-
-const phonecheck = document.querySelector('.phone_input');
-const phoneBtn = document.querySelector('#phoneBtn');
 
 phoneBtn.addEventListener("click", e => {
     e.preventDefault();
@@ -104,7 +106,6 @@ window.onload = function(){
 };
 
 function joinform_check() {
-    let check = true;
     const uid = document.getElementById("userId");
     const pwd = document.getElementById("userPw");
     const repwd = document.getElementById("repwd");
@@ -118,7 +119,7 @@ function joinform_check() {
             text: '아이디를 확인해주세요.'
         });
         uid.focus();
-        check = false;
+        return false;
     }
 
     if (pwd.value == "") {
@@ -127,7 +128,7 @@ function joinform_check() {
             text: '비밀번호를 확인해주세요.'
         });
         pwd.focus();
-        check = false;
+        return false;
     }
 
     const pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
@@ -137,7 +138,7 @@ function joinform_check() {
             text: '비밀번호를 확인해주세요.'
         });
         pwd.focus();
-        check = false;
+        return false;
     }
 
     if (repwd.value !== pwd.value) {
@@ -146,7 +147,7 @@ function joinform_check() {
             text: '비밀번호가 일치하지 않습니다.'
         });
         repwd.focus();
-        check = false;
+        return false;
     }
 
     if (uname.value == "") {
@@ -155,7 +156,7 @@ function joinform_check() {
             text: '닉네임을 확인해주세요.'
         });
         uname.focus();
-        check = false;
+        return false;
     }
 
     if (email_id.value == "") {
@@ -164,7 +165,7 @@ function joinform_check() {
             text: '이메일 주소를 확인해주세요.'
         });
         email_id.focus();
-        check = false;
+        return false;
     }
 
     const reg = /^[0-9]+/g;
@@ -174,16 +175,9 @@ function joinform_check() {
             text: '휴대폰번호를 확인해주세요.'
         });
         mobile.focus();
-        check = false;
+        return false;
     }
-
-    if (check == true) {
-        Swal.fire({
-            icon: 'scuccess',
-            text: '회원가입이 완료되었습니다.'
-        });
         document.joinForm.submit();
-    }
 }
 
 

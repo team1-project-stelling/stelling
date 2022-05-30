@@ -9,10 +9,12 @@ import java.util.Map;
 public interface UserMapper {
     public Long login(Map<String, String> loginMap);
     public int idCheck(String userId);
+    public int emailCheck(String userEmail);
     public String getSearchId(String userNick, String phoneNum);
     public String findPw(String userId, String userEmail);
     public UserVO findUserId(String userId);
     public UserVO findByUserId(String userId);
     public UserVO findByUserNumber(Long userNumber);
-    public UserVO findUserEmail(String userEmail);
+    public int findUserEmail(String userEmail);
+    public Long findUserNumberByEmail(String userEmail);
 }

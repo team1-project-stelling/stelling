@@ -55,7 +55,7 @@ public class ChatMessageController {
     @PostMapping("/chatHistory/{senderId}/{receiverId}")
     public ResponseEntity chatHistory(@PathVariable("senderId") String senderId, @PathVariable("receiverId") String receiverId) {
         if (chatMessageService.getChatHistory(senderId, receiverId)) {
-            log.info("대화 이력 있음");
+
             return new ResponseEntity(HttpStatus.OK);
         } else {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -68,6 +68,13 @@ public class ChatMessageController {
     public List<ChatMessageMyBatisVO> messageList(ChatMessageVO chatMessageVO, @PathVariable("senderId") String senderId, @PathVariable("receiverId") String receiverId) {
 
         return chatMessageService.getChatList(senderId, receiverId);
+    }
+
+    //룸네임으로 채팅 삭제
+    @ResponseBody
+    @GetMapping("/deleteChat/{roomName}")
+    public void deleteChat(@PathVariable("roomName") String roomName){
+        chatMessageService.deleteChat(roomName);
     }
 
 

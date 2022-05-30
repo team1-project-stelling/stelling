@@ -9,7 +9,7 @@ function search() {
         async: false,
         success: function(data) {
             result= data
-            console.log(result)
+            // console.log(result)
         },
         error: function (){alert("실패");}
     });
@@ -18,22 +18,22 @@ function search() {
 }
 
  function illustImg() {
- 
+
     let result= "";
     $.ajax({
       url : "/main/illustImg",
-     
-      dataType: "json",	
+
+      dataType: "json",
       type: "get",
       async: false,
       success: function(data) {
          result= data
-          console.log(result)
+          console.log(result);
       },
         error: function (){alert("실패");}
     });
     return result;
- 
+
  }
 
 

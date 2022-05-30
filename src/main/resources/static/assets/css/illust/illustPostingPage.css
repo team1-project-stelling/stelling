@@ -120,6 +120,7 @@ input.tag:focus{
         border-radius: 10px;
         border: 1px solid gray;
     }
-    input.inputContent:focus{
+    input.inputContent:focus {
         outline: none;
+
     }
