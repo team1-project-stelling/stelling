@@ -53,8 +53,10 @@ public class IllustService {
     }
 
     @Transactional
-    public int updateViewCOunt(Long illustNumber){
-        return illustRepository.updateViewCOunt(illustNumber);
+    public int updateViewCount(Long illustNumber){
+        return illustRepository.updateViewCount(illustNumber);
     }
+
+
     
 }
