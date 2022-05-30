@@ -38,21 +38,23 @@ public class InquiryController {
     public String writeInquiry(Model model,HttpServletRequest request) {
 
         HttpSession session =  request.getSession();
-        log.info("유저번호 ;"+Long.valueOf((Integer)session.getAttribute("userNumber")));
-        String userNickName = userService.findUserNickName(Long.valueOf((Integer)session.getAttribute("userNumber")));
+        Long userNumber = (Long) session.getAttribute("userNumber");
+        log.info("유저번호 ;"+ userNumber);
+        String userNickName = userService.findUserNickName(userNumber);
         model.addAttribute("userNickName", userNickName);
         return "inquiry/inquiryWrite";
     }
     @PostMapping("/inquiryWrite")
     public String inquiryRegister(InquiryVO inquiryVO, HttpServletResponse response,HttpServletRequest request) throws IOException {
         HttpSession session =  request.getSession();
+        Long userNumber = (Long) session.getAttribute("userNumber");
 
         log.info(inquiryVO.toString());
         response.setContentType("text/html; charset=euc-kr");
 
         PrintWriter out = response.getWriter();
 
-        inquiryVO.setUserVO(userService.get(Long.valueOf((Integer)session.getAttribute("userNumber"))));
+        inquiryVO.setUserVO(userService.get(userNumber));
         inquiryService.register(inquiryVO);
 
 

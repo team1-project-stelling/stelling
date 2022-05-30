@@ -58,6 +58,8 @@ public class NovelService {
 
     public void register(NovelVO novelVO){ novelRepository.save(novelVO);}
 
+    public Long registerReturnNovelNum(NovelVO novelVO){ return novelRepository.save(novelVO).getNovelNumber();}
+
     public void modify(NovelVO novelVO) {
         novelVO.updateNovelUpdateDate();
         novelRepository.save(novelVO);
@@ -66,7 +68,6 @@ public class NovelService {
     public int getTotal(){return novelRepository.findByIdTotal();}
 
     /*노벨 리스트 최신순으로가져오기*/
-    public List<NovelVO> getNovelListByUploadDate(){return novelRepository.findAllByNovelUploadDate();}
 
     /* search */
     @Transactional

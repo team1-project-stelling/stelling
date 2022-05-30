@@ -25,15 +25,7 @@ public class ChatRoom {
         chatRoom.roomId = name;
         chatRoom.name = name;
         return chatRoom;
-
     }
-
-
-
-
-
-
-
 
     public void handleMessage(WebSocketSession session, ChatMessage chatMessage,
                               ObjectMapper objectMapper) throws IOException {

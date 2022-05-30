@@ -68,13 +68,6 @@
                     <img src="/images/category/fileIcon.png" alt="파일아이콘">
                     <span th:text="|총 ${total}개 작품|"></span>
                 </div>
-                <!--                <div id="totalR_side" >
-                                    <div id="totalOption">
-                                        <div class="OptionChange"><img src="/images/category/checkIcon.png" alt="체크아이콘">최신순</div>
-                                        <div class="OptionChange"><img src="/images/category/optionPointIcon.png" alt="체크아이콘">조회순</div>
-                                        <div class="OptionChange"><img src="/images/category/optionPointIcon.png" alt="체크아이콘">편수 순</div>
-                                    </div>
-                                </div>-->
             </div>
             <div id="tagSearchWrap" class="giveMaxWidth">
                 <div class="tagInner">
@@ -121,8 +114,6 @@
                             <span th:text="${recent.novelVO.novelTitle}">던전리셋</span>
                         </p>
                         <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
-<!--                            <img class="people" src="/images/people.png">
-                            <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;">5천+</span>-->
                             <span class="writer" th:text="${recent.userVO.userNickName}"></span>
                         </div>
                         <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">

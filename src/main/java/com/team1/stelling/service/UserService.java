@@ -27,6 +27,7 @@ public class UserService {
     public int idCheck(String userId) { return userDAO.idCheck(userId); }
     public String getSearchId(String userNick, String phoneNum){ return userDAO.getSearchId(userNick, phoneNum) ; }
     public String findPw(String userId, String userEmail) { return userDAO.findPw(userId,userEmail) ; }
+    public UserVO findByUserNumber(Long userNumber){return userDAO.findByUserNumber(userNumber);}
     public void joinUser(UserVO vo) {
         String encodedPassword = bCryptPasswordEncoder.encode(vo.getUserPw());
         vo.setUserPw(encodedPassword);
