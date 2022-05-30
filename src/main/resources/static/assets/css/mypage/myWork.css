@@ -136,11 +136,10 @@ a.btn-view{
 .my-item{
     position: relative;
     display: flex;
-    padding: 18px 13px 10px 12px;
+    padding: 18px 9px 10px 12px;
     border-bottom: 1px solid #eee;
     float: left;
     zoom: 0.81;
-    justify-content: center;
 }
 
 img.close, img.open{
@@ -149,7 +148,7 @@ img.close, img.open{
 
 span.tag-update{
     position: absolute;
-    margin-left: 24.8em;
+    margin-left: 22.8em;
     background: #00AAFF;
     color: #fff;
     width: 36px;

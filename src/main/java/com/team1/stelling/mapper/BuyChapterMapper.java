@@ -24,5 +24,4 @@ public interface BuyChapterMapper {
     //소설넘버로 서브노벨넘버리스트 가져오기
     public List<Long> getSubNovelNumByNovelNum(Long novelNumber, Long userNumber);
 
-    public List<BuyChapterVO> getBuyChapterListBySubNum(Long subNovelNumber);
 }

@@ -1,11 +1,8 @@
 package com.team1.stelling.service;
 
 import com.team1.stelling.domain.dao.SupportDAO;
-import com.team1.stelling.domain.dto.PaymentDTO;
 import com.team1.stelling.domain.dto.SupportDTO;
-import com.team1.stelling.domain.vo.Criteria;
 import com.team1.stelling.domain.vo.Paging;
-import com.team1.stelling.domain.vo.PayDTO;
 import com.team1.stelling.domain.vo.SupportVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,5 +28,4 @@ public class SupportService{
     public SupportDTO getSupportCoinTotal(Long userNumber){return supportDAO.getSupportCoinTotal(userNumber);}
     public List<SupportVO> getSupportListWithNovelNumber(Long novelNumber){return supportDAO.getSupportListWithNovelNumber(novelNumber);}
 
-    public PaymentDTO getPaymentSum(Long subNovelNumber){return supportDAO.getPaymentSum(subNovelNumber);}
 }
