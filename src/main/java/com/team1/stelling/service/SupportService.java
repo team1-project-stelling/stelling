@@ -20,7 +20,7 @@ public class SupportService{
     private final SupportDAO supportDAO;
 
     //후원 내역
-    public List<SupportVO> getSupportList(Paging paging, Long supportSponser) {return supportDAO.getSuppotList(paging, supportSponser);}
+    public List<SupportVO> getSupportList(Paging paging, Long userNumber) {return supportDAO.getSuppotList(paging, userNumber);}
 
     public void register(SupportVO supportVO) {supportDAO.register(supportVO);}
 
@@ -28,7 +28,7 @@ public class SupportService{
     public int getSearchSupportTotal(Paging paging){return supportDAO.getSearchSupportTotal(paging);}
 
     //후원한 코인 총 개수
-    public SupportDTO getSupportCoinTotal(Long supportSponser){return supportDAO.getSupportCoinTotal(supportSponser);}
+    public SupportDTO getSupportCoinTotal(Long userNumber){return supportDAO.getSupportCoinTotal(userNumber);}
     public List<SupportVO> getSupportListWithNovelNumber(Long novelNumber){return supportDAO.getSupportListWithNovelNumber(novelNumber);}
 
     public PaymentDTO getPaymentSum(Long subNovelNumber){return supportDAO.getPaymentSum(subNovelNumber);}
