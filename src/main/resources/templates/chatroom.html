@@ -3,15 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>채팅 서비스</title>
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-    <!-- 부가적인 테마 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
 
 </head>
 <body>
@@ -26,9 +17,9 @@
     <div class="chatinput" id="chatinput">
         <script>
             document.getElementById('chatinput').innerHTML = `
-             <input type="text" class="chattext" id="message" placeholder="대화를 입력">
+             <input type="text" class="chattext" id="message"  placeholder="대화를 입력">
 
-                    <button id="send">전송하기</button>`
+                    <button id="send" >전송하기</button>`
         </script>
 
     </div>
@@ -101,9 +92,9 @@
 
 <script>
     const chatings = document.querySelector('.chating');
-    let other = sessionStorage.getItem("other")
-    let mySession = sessionStorage.getItem("mySession")
-    let roomid = sessionStorage.getItem("roomNames")
+    const other = sessionStorage.getItem("other")
+    const mySession = sessionStorage.getItem("mySession")
+    const roomid = sessionStorage.getItem("roomNames")
 
 
     let today = new Date();
@@ -116,6 +107,7 @@
     let time = `${month}월${date}일 ${hours}:${minutes}`
 
     let ttime = ` ${hours}:${minutes}`
+
 
     //채팅가져오기
     function letdata() {
@@ -136,21 +128,21 @@
         });
         //채팅출력
         chatdata?.map((c) => {
-
+            console.log(c)
             let message = c.message;
             let senderId = c.senderId;
 
             mySession === senderId ? chatings.innerHTML += `
          <div style="width:99%">
             <div style="text-align: right;    margin-top: 20px;">
-        <span style="line-height: 40px;    display: inline-block; width: 55%;   padding: 0px 5px;    height: 45px;     font-size: 17px;"  id="sender"><span style="font-size: 10px;">${time}</span> &nbsp;&nbsp;&nbsp; ${message}</span> <br/>
+        <span style="line-height: 40px;    display: inline-block; width: 55%;   padding: 0px 5px;    height: 45px;     font-size: 17px;"  id="sender"><span style="font-size: 10px;">${c.chatTime}</span> &nbsp;&nbsp;&nbsp; ${message}</span> <br/>
         </div></div>` :
                 chatings.innerHTML += `
             <div style="text-align:left; margin-top: 10px;
            width: 55%;padding: 5px;
              ">
             <span style="font-size: 17px;font-weight: bold ">${senderId}</span> <br/>
-            <span style="font-size: 17px;">${message}</span>&nbsp;&nbsp;<br><span style="font-size:10px;">${time}</span>
+            <span style="font-size: 17px;">${message}</span>&nbsp;&nbsp;<br><span style="font-size:10px;">${c.chatTime}</span>
 
             </div>`
 
@@ -170,6 +162,15 @@
         connect();
 
         document.getElementById('chating').scrollTop = document.getElementById('chating').scrollHeight;
+        document.getElementById('message').focus()
+
+        document.getElementById('message').addEventListener('keyup', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                send();
+            }
+        })
+
 
     })
 
@@ -194,6 +195,13 @@
 
     function send() {
         msg = document.getElementById("message").value;
+
+        if (!msg) {
+            alert("내용을 입력해주세요")
+            return false;
+
+        }
+
         webSocket.send(JSON.stringify({
             chatRoomId: roomId,
             type: 'CHAT',
@@ -249,9 +257,8 @@
 
 
         let date = JSON.parse(data)
-        console.log(date.split("&")[1])
 
-        datas=date.split(":")[1]
+        datas = date.split(":")[1]
 
         chatroom = document.getElementById("chatroom");
         date?.search(nickname) ?
@@ -265,7 +272,7 @@
                 </div>` :
             chatings.innerHTML += `
              <div style="width:99%">
-                <div style="text-align: right;  width: 60%;   margin-top: 10px;">
+                <div style="text-align: right;  width: 100%;   margin-top: 10px;">
                 <span>${ttime}</span>
             <span style="line-height: 40px;    display: inline-block;         padding: 0px 5px;    height: 45px;     font-size: 17px;"  id="senderText">${datas}</span> <br/>
             </div></div>`

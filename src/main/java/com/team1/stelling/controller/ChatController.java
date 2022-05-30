@@ -31,8 +31,6 @@ public class ChatController {
     @GetMapping("/rooms/{id}")
     public String room(@PathVariable String id) {
         ChatRoom room = chatRoomRepository.findRoomById(id);
-        log.info("++++++++++++++++++++++++++++++48++++++++++++++++");
-        log.info(id);
 
 
         return "chatroom";
@@ -59,9 +57,7 @@ public class ChatController {
     @ResponseBody
     public List<String> List(){
         List<String> list = userRepository.findAll().stream().map(UserVO::getUserNickName).collect(Collectors.toList());
-        log.info("@@@@@@@@닉네임 리스트@@@@@@@@@@@");
-        log.info(list.toString());
-        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
         return list;
     }
 }
