@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link href="/assets/css/fix/footer.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/fix/header.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/user/userLoginFail.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>FindId</title>
+</head>
+<body style="max-witdh:1200px ;">
+<th:block th:insert="/fix/headerWord.html :: headFragment"/>
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+
+<div class="mainbox">
+    <div class="contentbox">
+        <div class="section_login">
+            <h3 class="title_login">로그인 실패</h3>
+            <h5 style="font-size: 20px;">아이디나 비밀번호를 다시 확인해주세요.</h5>
+            <div class="formbox">
+                    <button onclick="location.href='http://localhost:8989/user/login';" id="findIdBtn" type="button" class="findIdBtn">
+                        <span class="">다시 로그인</span>
+                    </button>
+                    <button type="button" onclick="location.href='http://localhost:8989/user/join';" class="join_button" >
+                        <span class="">회원가입</span>
+                    </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
+<script src="/assets/js/fix/header.js"></script>
+</body>
+</html>
