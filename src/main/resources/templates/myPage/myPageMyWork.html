@@ -168,16 +168,26 @@
                                             <div class="divTableHead">후원받은 코인</div>
                                         </div>
                                     </div>
-                                    <th:block th:each="subNovelVOs :${subNovelVOs}">
+<!--                                    <div class="divTableBody">-->
+<!--                                        <div class="divTableRow">-->
+<!--                                            <div class="divTableCell">회차</div>-->
+<!--                                            <div class="divTableCell">조회수</div>-->
+<!--                                            <div class="divTableCell">1,000,000c</div>-->
+<!--                                            <div class="divTableCell">1,000,000c</div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                <th:block th:each="subNovelVOs :${subNovelVOs}">
                                     <div class="divTableBody">
                                         <div class="divTableRow">
                                             <div class="divTableCell" th:text="${subNovelVOs.subNovelNumber}">회차</div>
                                             <div class="divTableCell" th:text="|${subNovelVOs.subNovelViewCount} 회|">조회수</div>
-                                            <div class="divTableCell">1,000,000c</div>
-                                            <div class="divTableCell">1,000,000c</div>
+                                            <th:block th:each="paymentDTOList :${paymentDTOList}">
+                                                <div class="divTableCell" th:text="${paymentDTOList.coinSum}">결제 받은 코인</div>
+                                                <div class="divTableCell" >후원 받은 코인</div>
+                                            </th:block>
                                         </div>
                                     </div>
-                                    </th:block>
+                                </th:block>
                                 </div>
                                 <!--디테일 테이블 끝-->
                             </div>

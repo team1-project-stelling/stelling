@@ -58,8 +58,6 @@ public class NovelService {
 
     public void register(NovelVO novelVO){ novelRepository.save(novelVO);}
 
-    public Long registerReturnNovelNum(NovelVO novelVO){ return novelRepository.save(novelVO).getNovelNumber();}
-
     public void modify(NovelVO novelVO) {
         novelVO.updateNovelUpdateDate();
         novelRepository.save(novelVO);
@@ -111,4 +109,6 @@ public class NovelService {
     public Page<NovelCategoryDTO> getListSearchAll(String keyword, Pageable pageable){
         return novelRepository.findByNovelHashtagContainingOrNovelTitleContainingOrUserVO_UserNickNameContaining(keyword,keyword,keyword,pageable).map(objectEntity -> modelMapper.map(objectEntity, NovelCategoryDTO.class));
     }
+
+    public List<NovelVO> getNovelListByUserNumber(Long userNumber){ return novelRepository.findAllByUserVO_UserNumber(userNumber);}
 }
