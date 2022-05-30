@@ -47,7 +47,7 @@
         <div style="margin-right: 30px;">
 
             <img src="/images/icon/하트.png"  class="iconImages emptyheart img"/>
-            <span th:text="*{illustLike}" style="margin-left: 10px;">1,230</span>
+            <span th:text="*{illustLike}" class="illustLike" style="margin-left: 10px;">1,230</span>
         </div>
         <div style="margin-right: 5px">
 
@@ -136,17 +136,41 @@
 <th:block th:insert="/fix/footer.html :: footerFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    let illustHeart = 0;
+<script th:inline="javascript">
+
+    let illustNumber = [[${illustNumber}]]
+
+    function illustLike(numbers, callback, error){
+        $.ajax({
+            type: "GET",
+            url: "/illust/"+numbers.illustNumber+"/"+ numbers.num,
+            success: function(result){
+                if(callback){
+                    callback(result);
+                }
+            },
+            error: function(xhr, status, er){
+                if(error){
+                }
+            }
+
+        });
+    }
+
     $emptyHeart = $('.emptyheart');
     $emptyHeart.on("click", function () {
 
         if($emptyHeart.attr("src")=="/images/icon/하트.png"){
             $emptyHeart.attr("src","/images/icon/색칠 된 하트.png");
-            illustHeart = 1;
+            illustLike({"illustNumber":illustNumber, "num":1}, function (likeCount) {
+                $('.illustLike').html(likeCount);
+            })
+
         }else{
             $emptyHeart.attr("src","/images/icon/하트.png");
-            llustHeart = -1;
+            illustLike({"illustNumber":illustNumber, "num":-1}, function (likeCount) {
+                $('.illustLike').html(likeCount);
+            })
         }
     });
 </script>

@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class BuyChapterServiceImpl implements BuyChapterService{
+public class BuyChapterServiceImpl implements BuyChapterService {
 
     private final BuyChapterDAO buyChapterDAO;
 
@@ -18,7 +18,12 @@ public class BuyChapterServiceImpl implements BuyChapterService{
         return buyChapterDAO.get(userNumber);
     }
 
-    public void register(BuyChapterVO buyChapterVO){buyChapterDAO.register(buyChapterVO);}
+    public void register(BuyChapterVO buyChapterVO) {
+        buyChapterDAO.register(buyChapterVO);
+    }
 
-    public List<Long> getSubNumByNovelNum(Long novelNumber, Long userNumber){return buyChapterDAO.getSubNovelNumByNovelNum(novelNumber, userNumber);}
+    public List<Long> getSubNumByNovelNum(Long novelNumber, Long userNumber) {
+        return buyChapterDAO.getSubNovelNumByNovelNum(novelNumber, userNumber);
+    }
+
 }

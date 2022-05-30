@@ -1,6 +1,7 @@
 package com.team1.stelling.service;
 
 import com.team1.stelling.domain.dao.SupportDAO;
+import com.team1.stelling.domain.dto.PaymentDTO;
 import com.team1.stelling.domain.dto.SupportDTO;
 import com.team1.stelling.domain.vo.Criteria;
 import com.team1.stelling.domain.vo.Paging;
@@ -17,7 +18,7 @@ import java.util.List;
 @Slf4j
 public class SupportService{
     private final SupportDAO supportDAO;
-    
+
     //후원 내역
     public List<SupportVO> getSupportList(Paging paging, Long supportSponser) {return supportDAO.getSuppotList(paging, supportSponser);}
 
@@ -25,9 +26,10 @@ public class SupportService{
 
     //검색한 결과의 총 개수(페이징 처리)
     public int getSearchSupportTotal(Paging paging){return supportDAO.getSearchSupportTotal(paging);}
-    
+
     //후원한 코인 총 개수
     public SupportDTO getSupportCoinTotal(Long supportSponser){return supportDAO.getSupportCoinTotal(supportSponser);}
     public List<SupportVO> getSupportListWithNovelNumber(Long novelNumber){return supportDAO.getSupportListWithNovelNumber(novelNumber);}
 
+    public PaymentDTO getPaymentSum(Long subNovelNumber){return supportDAO.getPaymentSum(subNovelNumber);}
 }
