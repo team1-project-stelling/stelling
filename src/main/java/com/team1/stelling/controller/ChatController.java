@@ -33,7 +33,7 @@ public class ChatController {
         ChatRoom room = chatRoomRepository.findRoomById(id);
         log.info("++++++++++++++++++++++++++++++48++++++++++++++++");
         log.info(id);
-        chatRoomRepository.createChatRoom(id);
+
 
         return "chatroom";
     }
@@ -51,7 +51,7 @@ public class ChatController {
         chatRoomRepository.createChatRoom(name);
 
 
-        return "illust/illustChatPage";
+        return "chatroom";
     }
 
     //user목록 가져오기

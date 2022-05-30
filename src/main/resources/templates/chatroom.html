@@ -116,6 +116,7 @@
     let time = `${month}월${date}일 ${hours}:${minutes}`
 
     let ttime = ` ${hours}:${minutes}`
+
     //채팅가져오기
     function letdata() {
         let chatdata = "";
@@ -142,20 +143,21 @@
             mySession === senderId ? chatings.innerHTML += `
          <div style="width:99%">
             <div style="text-align: right;    margin-top: 20px;">
-        <span style="line-height: 40px;    display: inline-block;    border: 1px solid;    border-radius: 10px;    padding: 0px 5px;    height: 45px;     font-size: 17px;"  id="sender"><span style="font-size: 10px;">${time}</span> &nbsp;&nbsp;&nbsp; ${message}</span> <br/>
+        <span style="line-height: 40px;    display: inline-block; width: 55%;   padding: 0px 5px;    height: 45px;     font-size: 17px;"  id="sender"><span style="font-size: 10px;">${time}</span> &nbsp;&nbsp;&nbsp; ${message}</span> <br/>
         </div></div>` :
                 chatings.innerHTML += `
             <div style="text-align:left; margin-top: 10px;
-             border: 1px solid black;width: 45%;padding: 5px; border-radius: 10px;
+           width: 55%;padding: 5px;
              ">
             <span style="font-size: 17px;font-weight: bold ">${senderId}</span> <br/>
-            <span style="font-size: 17px;">${message}</span>&nbsp;&nbsp;&nbsp;<span style="font-size:10px;">${time}</span>
+            <span style="font-size: 17px;">${message}</span>&nbsp;&nbsp;<br><span style="font-size:10px;">${time}</span>
 
             </div>`
 
 
         })
     }
+
     letdata()
 
     //여기까지 완벽
@@ -231,13 +233,6 @@
         })
 
 
-
-
-
-
-
-
-
     }
 
     function onOpen() {
@@ -250,34 +245,32 @@
 
     function onMessage(e) {
 
-            let data = e.data;
+        let data = e.data;
 
 
-            let date = JSON.parse(data)
-            let dates = date.split(" ")
+        let date = JSON.parse(data)
+        console.log(date.split("&")[1])
 
-         let datas =  (dates[2])
+        datas=date.split(":")[1]
 
-
-
-            chatroom = document.getElementById("chatroom");
+        chatroom = document.getElementById("chatroom");
         date?.search(nickname) ?
-                chatings.innerHTML += `
+            chatings.innerHTML += `
                 <div style="text-align:left; margin-top: 10px;
-                 border: 1px solid black;width: 45%;padding: 5px; border-radius: 10px;
+                padding: 5px; width: 60%;
                  ">
 
                 <span style="font-size: 15px;">${date} <span>${ttime}</span></span>
 
                 </div>` :
-                chatings.innerHTML += `
+            chatings.innerHTML += `
              <div style="width:99%">
-                <div style="text-align: right;    margin-top: 20px;">
+                <div style="text-align: right;  width: 60%;   margin-top: 10px;">
                 <span>${ttime}</span>
             <span style="line-height: 40px;    display: inline-block;         padding: 0px 5px;    height: 45px;     font-size: 17px;"  id="senderText">${datas}</span> <br/>
             </div></div>`
 
-            document.getElementById('chating').scrollTop = document.getElementById('chating').scrollHeight;
+        document.getElementById('chating').scrollTop = document.getElementById('chating').scrollHeight;
 
 
     }

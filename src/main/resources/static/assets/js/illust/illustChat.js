@@ -26,7 +26,7 @@ findMembers?.map((v) => {
         `
 })
 
-
+//************************시작***************************************************
 //채팅내역
 let chatList = [];
 $.ajax({
@@ -38,12 +38,13 @@ $.ajax({
         chatList = data
 
 
-
     },
     error: function () {
         alert("실패");
     }
 });
+
+
 chatLists = document.getElementById('chatLists')
 let chattingList = document.getElementById('chattingList')
 
@@ -53,68 +54,100 @@ if (chatList.length === 0) {
 } else {
     chatList?.map((v) => {
         console.log(v)
-        chattingList.innerHTML += `<li class="nametd"  style="list-style: none; margin-left: 20px;font-size: 15px;font-weight: 500; margin-top: 20px;" > 
-                            <a>${v.roomName}</a>  <span style="cursor: pointer" class="thischat">채팅시작 <input type="hidden" id="valuehidden" value="${v}"></span></li>`
+        chattingList.innerHTML += `<li data-room=${v.roomName} class="nametd"  style="list-style: none; margin-left: 20px;font-size: 15px;font-weight: 500; margin-top: 20px;" > 
+                            <a>${v.roomName}</a>  <span style="cursor: pointer" class="thischat">채팅시작 <input type="hidden" id="valuehidden" value="${v.roomName}"></span></li>`
         document.getElementById('chatWrapSecond').innerHTML = "<div style='position: absolute;top: 40%;left: 30%;'>채팅을시작하려면 상대방을 선택해주세요</div>"
 
     })
 }
 
-removesession(mysession)
 
-function removesession(mysession) {
+//처음 대화 시작
+document.getElementById('dummyUl').addEventListener('click', function (e) {
+    if (e.target.tagName === "LI") {
+        let other = e.target.innerText
+        처음대화(mysession,other)
+
+
+    }
+})
+
+$(document).ready(function () {
+    채팅방연결(mysession)
+    채팅방내이름지우기(mysession)
+
+})
+
+
+
+
+const 채팅방연결 =(mysession) => {
+
+
+    chattingList.addEventListener('click', function (e) {
+        if (e.target.tagName === "LI") {
+            roomNames = e.target.dataset.room
+            roomNames.split("&")[0] === mysession ? 방만들기(roomNames) : 기존방연결(roomNames)
+        }
+    })
+}
+
+const 채팅방내이름지우기 =(mysession) => {
     let nametd = document.querySelectorAll('.nametd');
     //얘는 변수 바꿔도댐
     for (let i = 0; i < nametd.length; i++) {
         let receiverName = nametd[i].innerText
         let matchname = receiverName.match(mysession)
         let finl = receiverName.replace(matchname, '');
-
-        // console.log(finl.split(' '))
-        let final  =finl.split(' ')[0];
-
-        final===mysession? nametd[i].innerText ="나와의 채팅":nametd[i].innerText = finl
-
-
+        let endremove = finl.match("&")
+        let endfinal = finl.replace(endremove, '');
+        let final = finl.split(' ')[0];
+        final === mysession ? nametd[i].innerText = "나와의 채팅" : nametd[i].innerText = endfinal
     }
+}
+
+
+const 기존방연결 = (roomNames) => {
+
+    other = roomNames.split("&")[0]
+    sessionStorage.setItem("other", other)
+    sessionStorage.setItem("roomNames", roomNames)
+    console.log(roomNames)
+    $("#chatWrapSecond").load(`/rooms/${roomNames}`);
 
 }
 
-let thischat = document.querySelectorAll(".thischat");
 
+const 방만들기 = (roomNames) => {
 
-//기존채팅방 연결
-
-const chatStart  = (mysession) =>{
-    chattingList.addEventListener('click', function (e) {
-        if (e.target.tagName === "LI") {
-            let other = e.target.innerText.split(" ")[0]
-            sessionStorage.setItem("other", other)
-
-
-
-            roomNames= other+mysession
-            comm(roomNames)
-        }
-    })}
-
-chatStart(mysession)
-
-
-//처음 대화 시작
-document.getElementById('dummyUl').addEventListener('click',function (e) {
-    if (e.target.tagName === "LI"){
-        let other = e.target.innerText
-        sessionStorage.setItem("other", other)
-        g(other)
-
-    }
-})
-
-
-
-function g(other) {
     $.ajax({
+        type: "POST",
+        url: ` /room/new `,
+        data: roomNames,
+        contentType: "application/json",
+        success: function () {
+
+
+            let endremove = roomNames.match("&")
+            let endfinal = roomNames.replace(endremove, '');
+            let others = endfinal.match(mysession)
+            let other = endfinal.replace(mysession, '');
+
+            sessionStorage.setItem("other", other)
+            sessionStorage.setItem("roomNames", roomNames)
+            $("#chatWrapSecond").load(`/rooms/${roomNames}`);
+        },
+        error: function () {
+
+            alert("방생성 실패 ");
+        }
+    })
+}
+
+
+const 처음대화 = (mysession,other) => {
+
+      $.ajax({
         type: "POST",
         url: `/chatHistory/${mysession}/${other}`,
         contentType: "application/json",
@@ -128,61 +161,22 @@ function g(other) {
                 type: "get",
                 async: false,
                 success: function (data) {
+
+
                     result = data
                     let roomNames = result[0].roomName;
+                        console.log(roomNames)
 
-
-                    makeRoom(roomNames);
+                    방만들기(roomNames);
                 },
 
             });
         },
         error: function () {
-
-            let roomNames = mysession + other
-            makeRoom(roomNames);
+            let roomNames = mysession +"&"+ other
+            console.log(roomNames+"에러타입")
+            방만들기(roomNames);
         }
-    });
-}
-
-
-
-const  comm = (roomNames) => {
-    sessionStorage.setItem("roomNames", roomNames)
-    $("#chatWrapSecond").load(`/rooms/${roomNames}`);
-
-}
-
-
-
-const makeRoom = (roomNames) => {
-    // 1. 서버가 시작되면 방을 무조건 새로 만들어야함
-    // 2. 근데 우리는 방을 두개만들어서 쌍방이안됨
-    // 솔루션
-    // 1. 한명이 방을 무조건 만들어야하고
-    // 2. 나머지 한명이 그방을 무조건 눌러들어가야함
-    //
-
-
-    $.ajax({
-        type: "POST",
-        url: ` /room/new `,
-        data: roomNames,
-        contentType: "application/json",
-        success: function () {
-
-            sessionStorage.setItem("roomNames", roomNames)
-            $("#chatWrapSecond").load(`/rooms/${roomNames}`);
-//    window.open(`/rooms/${roomNames}`, "_blank", "채팅", "width:300px  height: 400px, top=10, left=10");
-        },
-        error: function () {
-
-            alert("실패");
-        }
-    })
-}
-
-
-
+    })};
 
 

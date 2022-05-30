@@ -1,6 +1,7 @@
 package com.team1.stelling.service;
 
 import com.team1.stelling.domain.dao.ChatMessageDAO;
+import com.team1.stelling.domain.repository.ChatMessageRepository;
 import com.team1.stelling.domain.vo.ChatMessageMyBatisVO;
 import com.team1.stelling.domain.vo.ChatMessageVO;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import java.util.List;
 public class ChatMessageServiceImpl implements ChatMessageService {
 
     public final ChatMessageDAO chatMessageDAO;
+    public final ChatMessageRepository chatMessageRepository;
 
 
     @Override
@@ -42,6 +44,10 @@ public class ChatMessageServiceImpl implements ChatMessageService {
         return chatMessageDAO.getChatHistory(senderId, receiverId);
     }
 
+    @Override
+    public void deleteChat(String roomName) {
+        chatMessageRepository.deleteChat(roomName);
+    }
 
 
 }
