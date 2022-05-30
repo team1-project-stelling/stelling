@@ -101,7 +101,7 @@ public class OauthController {
 
         UserVO kakaoUser = UserVO.builder()
                 .userId(kakaoProfile.getKakao_account().getEmail())
-                .userNickName(kakaoProfile.getKakao_account().getEmail() + "_" + kakaoProfile.getId())
+                .userNickName(kakaoProfile.getKakao_account().getEmail())
                 .userPw(garbagePassword.toString())
                 .userEmail(kakaoProfile.getKakao_account().getEmail())
                 .userGender(0)
