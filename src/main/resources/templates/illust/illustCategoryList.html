@@ -97,7 +97,23 @@
     </div>
 </div>
 
+    <!-- 페이징 -->
+    <ul class="c_PagingList" >
+        <!-- 이전 -->
+        <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/illust/illustCategory(page=${pageableDTO.startPage -2 })}" >&lt;&lt;</a></li>
+        <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/illust/illustCategorypage=${pageableDTO.previous})}">&lt;</a></li>
 
+
+        <th:block th:each="num:${#numbers.sequence(pageableDTO.startPage,pageableDTO.endPage)}">
+            <li  th:if="${pageableDTO.pageNumber== num}" th:text="${num}" class="pageActive"></li>
+            <li th:unless="${pageableDTO.pageNumber == num}" ><a th:text="${num}" th:href="@{/illust/illustCategory(page=${num - 1})}"></a></li>
+        </th:block>
+
+
+        <!-- 다음 -->
+        <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/illust/illustCategory(page=${pageableDTO.next})}">&gt;</a></li>
+        <li th:if="${pageableDTO.hasNext}"><a th:href="@{/illust/illustCategory(page=${pageableDTO.endPage)}">&gt;&gt;</a></li>
+    </ul>
 
 </div>
 <th:block th:insert="/fix/footer.html :: footerFragment"/>

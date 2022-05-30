@@ -6,8 +6,6 @@ import com.team1.stelling.domain.dto.IllustProfileDTO;
 import com.team1.stelling.domain.dto.PageableDTO;
 import com.team1.stelling.domain.vo.IllustProfileVO;
 import com.team1.stelling.domain.vo.IllustVO;
-import com.team1.stelling.domain.vo.NovelVO;
-import com.team1.stelling.domain.vo.UserVO;
 import com.team1.stelling.service.IllustProfileService;
 import com.team1.stelling.service.IllustService;
 import com.team1.stelling.service.UserService;
@@ -22,7 +20,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,7 +42,7 @@ public class IllustController {
     private final IllustService illustService;
     private final UserService userService;
 
-    @LogStatus
+//  일러스트 리스트 페이지 ----------------------------
     @GetMapping("/illustList")
     public void illustList(Long illustNumber, Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC)Pageable pageable){
 
@@ -89,10 +86,14 @@ public class IllustController {
         return "illust/illustListLike";
     }
 
+    // ---------------------------------
+
+//  채팅 페이지
     @GetMapping("/illustChatPage")
     public void chatForm(){
     }
 
+//  일러스트 카테고리
     @GetMapping("/illustCategoryList")
     public String illustCategoryList(Long illustNumber, String keyword, Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC)Pageable pageable){
         Page<IllustVO> list = illustService.CategoryList(keyword, pageable);
@@ -106,12 +107,28 @@ public class IllustController {
         return "illust/illustCategoryList";
     }
 
+//  작품 등록---------------------------
+    @GetMapping("/illustPostingPage") public void illustList(){}
+
+    @PostMapping("/illustPostingPage")
+    public RedirectView illustRegister(IllustVO illustVO,HttpServletRequest request){
+
+        HttpSession session = request.getSession();
+        Long userNumber = (Long) session.getAttribute("userNumber");
+        illustVO.setUserVO(userService.get(userNumber));
+        illustService.illustRegister(illustVO);
+
+        return new RedirectView("illustList");
+    }
+//    ----------------------------------
+
+//    이미지 파일 관련----------------------------------
 
     /*이미지 저장*/
     @PostMapping("/uploadAjaxAction")
     @ResponseBody
     public List<IllustVO> uploadAjaxPost(MultipartFile[] uploadFile) {
-        String uploadFolder = "C:/stelling";
+        String uploadFolder = "/home/ubuntu/stelling/upload/";
         List<IllustVO> fileList = new ArrayList<>();
 
         UUID uuid = UUID.randomUUID();
@@ -138,18 +155,7 @@ public class IllustController {
         return fileList;
     }
 
-    @GetMapping("/illustPostingPage") public void illustRegister(){}
 
-    @PostMapping("/illustPostingPage")
-    public RedirectView illustRegister(IllustVO illustVO,HttpServletRequest request){
-
-        HttpSession session = request.getSession();
-        Long userNumber = (Long) session.getAttribute("userNumber");
-        illustVO.setUserVO(userService.get(userNumber));
-        illustService.illustRegister(illustVO);
-
-        return new RedirectView("illustList");
-    }
 
     /*파일저장경로(당일 날짜로)*/
     private String getPath() {
@@ -162,10 +168,12 @@ public class IllustController {
     @GetMapping("/illustImg")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException{
-        return FileCopyUtils.copyToByteArray(new File("C:/stelling/" + fileName));
+        return FileCopyUtils.copyToByteArray(new File("/home/ubuntu/stelling/upload/" + fileName));
 
     }
+//    ------------------------------------
 
+//  프로필 등록 --------
     @GetMapping("/illustUserInput")
     public void illustUserInput(Long userNumber, Model model, HttpServletRequest request){
 
@@ -192,12 +200,12 @@ public class IllustController {
 
         return new RedirectView("illustList");
     }
+//    --------
 
-
+//  유저 프로필 페이지
     @GetMapping("/illustUserPage")
-    public String illustUserPage(HttpServletRequest request, Long illustNumber,  Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
-        HttpSession session = request.getSession();
-        Long userNumber = (Long) session.getAttribute("userNumber");
+    public String illustUserPage(Long userNumber , Long illustNumber,  Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
+
 
         Page<IllustVO> list = illustService.getUserIllustList(pageable, userNumber);
         PageableDTO pageableDTO = new PageableDTO((int) list.getTotalElements(), pageable);
@@ -212,13 +220,14 @@ public class IllustController {
         return "illust/illustUserPage";
     }
 
+//  작품 상세보기
     @LogStatus
     @GetMapping("/illustViewDetail")
     public String read(Long illustNumber, Long userNumber, Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
 
         List<IllustVO> list = illustService.getSixList(userNumber);
 
-        illustService.updateViewCOunt(illustNumber);
+        illustService.updateViewCount(illustNumber);
 
         model.addAttribute("illustNumber", illustNumber);
         model.addAttribute("illust", illustService.get(illustNumber));
@@ -228,6 +237,18 @@ public class IllustController {
         return "illust/illustViewDetail";
     }
 
+//  좋아요(하트)
+    @ResponseBody
+    @GetMapping("/{illustNumber}/{num}")
+    public int illustLike(@PathVariable("illustNumber")Long illustNumber, @PathVariable("num")int num){
+        IllustVO illustVO = illustService.get(illustNumber);
+        illustVO.updateIllustLike(num);
+        illustService.illustRegister(illustVO);
+        return illustVO.getIllustLike();
+    }
+
+
+//  프로필 유무 검사1 -> 작품 등록
     @GetMapping("/illust/illustProfileCheck1")
     public String illustProfileCheck1(IllustVO illustVO,HttpServletRequest request, Model model){
 
@@ -237,7 +258,6 @@ public class IllustController {
         if( illustProfileService.checkProfile(((Long) session.getAttribute("userNumber"))) != null){
 
             illustVO.setUserVO(userService.get((Long) session.getAttribute("userNumber")));
-            illustService.illustRegister(illustVO);
 
             return "illust/illustPostingPage";
 
@@ -247,9 +267,9 @@ public class IllustController {
 
             return "illust/illustUserInput";
         }
-
     }
 
+//  프로필 유무 검사2 -> 본인 프로필 페이지
     @GetMapping("/illust/illustProfileCheck2")
     public String illustProfileCheck2(Long userNumber, Long illustNumber,  Model model, @PageableDefault(page = 0, size = 10, sort = "illustNumber" ,direction = Sort.Direction.DESC) Pageable pageable, HttpServletRequest request){
 
@@ -278,52 +298,5 @@ public class IllustController {
 
             return "illust/illustUserInput";
         }
-
     }
-
-
-//    @GetMapping("/uploadTest")
-//    public String readFile() {
-//        return "upload/uploadTest";
-//    }
-
-
-/*
-    @PostMapping("/uploadTest")
-    public String uploadTest(@RequestParam("file") MultipartFile mfile, Model model) throws IOException, TikaException, SAXException {
-        log.info("========file들어옴======");
-*/
-/*        try{
-            InputStream fileStream  =  mfile.getInputStream();
-
-        //버퍼 선언
-        byte[] readBuffer = new byte[fileStream.available()];
-        while (fileStream.read( readBuffer ) != -1){}
-        log.info(new String(readBuffer)); //출력
-
-        fileStream.close(); //스트림 닫기
-    } catch (Exception e) {
-       log.info(e.getMessage());
-    }*//*
-
-
-        String result = null;
-        BodyContentHandler handler = new BodyContentHandler();
-        AutoDetectParser parser = new AutoDetectParser();
-        Metadata metadata = new Metadata();
-        InputStream fileStream  =  mfile.getInputStream();
-        try (InputStream stream = fileStream)
-        {
-        parser.parse(stream, handler, metadata);
-//        log.info(handler.toString());
-        result =handler.toString();
-        }
-
-
-        return result;
-    }
-*/
-
-
-
 }

@@ -103,14 +103,6 @@ public class NovelReplyController {
         ReplyUserDTO replyUserDTO= new ReplyUserDTO(replyVOS, userVOS, pageable);
         return replyUserDTO;
     }
-//    //소설번호로 가져온 댓글 추천순
-//    @GetMapping("/getReplyUserDTOBySubNum")
-//    public ReplyUserDTO getReplyUserDTOBySubNum(Long subNovelNumber, @PageableDefault(page=0, size = 5, sort ="replyUp", direction = Sort.Direction.DESC) Pageable pageable){
-//        Page<ReplyVO> replyVOS = replyService.getReplyListBySubNovelNumber(subNovelNumber, pageable);
-//        Page<UserVO> userVOS = replyVOS.map(v->v.getUserVO());
-//        ReplyUserDTO replyUserDTO= new ReplyUserDTO(replyVOS, userVOS, pageable);
-//        return replyUserDTO;
-//    }
 
     @GetMapping("/deleteReply")
     public void deleteReply(Long replyNumber){
