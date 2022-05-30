@@ -51,7 +51,7 @@
 </head>
 <body>
 <!-- 헤더 시작 -->
-<th:block th:insert="/fix/headerWord.html :: headFragment"/>
+<th:block th:insert="fix/headerWord.html :: headFragment"/>
 
 
 <!-- 헤더 종료 -->
@@ -61,7 +61,7 @@
         <div style="font-size: 50px;text-align: center;">TOP50</div>
     </div>
     <div style="float: right; margin-top: 51px;" class="mobile_hidden">
-        <a href="javascript:void(0);">
+        <a href="/novel/novelRegister">
             <img src="https://novelpia.com/img/new/mybook/btn_novel_write.png?tmp=1" style="height: 43px;">
         </a>
     </div>
@@ -183,7 +183,7 @@
     </div>
 
 </div>
-<th:block th:insert="/fix/footer.html :: footerFragment"/>
+<th:block th:insert="fix/footer.html :: footerFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/fix/header.js"></script>

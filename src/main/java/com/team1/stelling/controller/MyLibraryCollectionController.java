@@ -30,7 +30,7 @@ public class MyLibraryCollectionController {
     @GetMapping("/myPick")
     public String myLibraryCollectionMyPick(Model model, @PageableDefault(page = 0, size = 10, sort = "myPickNumber" ,direction = Sort.Direction.DESC) Pageable pageable, HttpServletRequest request){
         HttpSession session =  request.getSession();
-        Long userNum =Long.valueOf((Integer)session.getAttribute("userNumber"));
+        Long userNum = (Long)session.getAttribute("userNumber");
         Page<MyPickVO> list = myLibraryService.getMyPickList(userNum,pageable);
         PageableDTO pageableDTO = new PageableDTO( (int)list.getTotalElements(),pageable);
         model.addAttribute("list",list);
@@ -42,7 +42,7 @@ public class MyLibraryCollectionController {
     @GetMapping("/myPick/search")
     public String myLibraryCollectionMyPickSearch(String keyword,Model model, @PageableDefault(page = 0, size = 10, sort = "myPickNumber" ,direction = Sort.Direction.DESC) Pageable pageable,HttpServletRequest request){
         HttpSession session =  request.getSession();
-        Long userNum =Long.valueOf((Integer)session.getAttribute("userNumber"));
+        Long userNum = (Long)session.getAttribute("userNumber");
         Page<MyPickVO> searchList = myLibraryService.getMyPickTagSearch(userNum,keyword,pageable);
         PageableDTO  pageableDTO = new PageableDTO( (int)searchList.getTotalElements(),pageable);
         pageableDTO.setKeyword(keyword);
@@ -64,7 +64,7 @@ public class MyLibraryCollectionController {
     @GetMapping("/myRecentView")
     public String myRecentView(Model model, @PageableDefault(page = 0, size = 10, sort = "recentViewNumber" ,direction = Sort.Direction.DESC) Pageable pageable,HttpServletRequest request){
         HttpSession session =  request.getSession();
-        Long userNum =Long.valueOf((Integer)session.getAttribute("userNumber"));
+        Long userNum = (Long)session.getAttribute("userNumber");
         Page<RecentViewVO> list = recentViewService.getMyView(userNum,pageable);
         PageableDTO  pageableDTO = new PageableDTO( (int)list.getTotalElements(),pageable);
         model.addAttribute("list",list);
@@ -76,7 +76,7 @@ public class MyLibraryCollectionController {
     @GetMapping("/myRecentView/search")
     public String myRecentViewSearch(String keyword,Model model, @PageableDefault(page = 0, size = 10, sort = "recentViewNumber" ,direction = Sort.Direction.DESC) Pageable pageable,HttpServletRequest request){
         HttpSession session =  request.getSession();
-        Long userNum =Long.valueOf((Integer)session.getAttribute("userNumber"));
+        Long userNum = (Long)session.getAttribute("userNumber");
         Page<RecentViewVO> list = recentViewService.getMyViewSearch(userNum,keyword,pageable);
         PageableDTO  pageableDTO = new PageableDTO( (int)list.getTotalElements(),pageable);
         pageableDTO.setKeyword(keyword);

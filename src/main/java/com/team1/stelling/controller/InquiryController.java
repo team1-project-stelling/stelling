@@ -49,7 +49,6 @@ public class InquiryController {
         HttpSession session =  request.getSession();
         Long userNumber = (Long) session.getAttribute("userNumber");
 
-        log.info(inquiryVO.toString());
         response.setContentType("text/html; charset=euc-kr");
 
         PrintWriter out = response.getWriter();
