@@ -19,6 +19,7 @@
     <img id="headerImg"src="/images/fix/headerImg_3.png" >
 </div>
 <!-- 헤더 종료 -->
+<div></div>
 <div id="qwer">
     <div id="allWrap" style=" margin:0 auto; padding-top: 20px; padding-bottom: 100px; zoom: 1.2;">
         <div class="profileWrap1">
@@ -47,19 +48,16 @@
                 </div>
 
                 <div class="right_block">
-                    <div class="">
+                    <div>
                         <div class="profile_text"><strong>내 작품 관리</strong></div>
                         <table class="listWrap">
                             <tbody>
                             <tr>
                                 <td class="active1 one" style="width: 25%">
-                                    <div class="active"><a href="javascript:goIllustUserPage();">내 그림</a></div>
+                                    <div class="active"><a class="goIllustUserPage" href="javascript:goIllustUserPage();">내 그림</a></div>
                                 </td>
                                 <td class="active1" style="width: 25%">
                                     <div class="active myNovel"> 내 소설</div>
-                                </td>
-                                <td class="active1" style="width: 25%">
-                                    <div class="active novelStatistics">소설 통계</div>
                                 </td>
                             </tr>
                             </tbody>
@@ -88,11 +86,11 @@
                                             </p>
                                             <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
                                                 <img class="people" src="/images/people.png" style="width: 12px;">
-                                                <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;" th:text="${list.novelViewCountTotal}" >90만+</span>
+                                                <span class="view" style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;" th:text="${list.novelViewCountTotal}">90만+</span>
                                                 <span class="writer" th:text="${userVO.userNickName}">웹티, 올코</span>
                                             </div>
                                             <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
-                                                <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;" <!--th:text="|총 편수 : ${#lists.size(subNovelVOs.subNovelNumber)}|"-->>총 편수 : 308</span>
+                                                <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;" >총 편수 : 308</span>
                                                 <span  th:text="|최근 등록일 : ${#dates.format(list.novelUploadDate, 'yyyy-MM-dd')}|">최근 등록일 : 2022-05-01</span>
                                             </div>
                                             <div class="item-button" style="margin-top: 3em;">
@@ -106,7 +104,6 @@
                             </th:block>
                         </div>
                     </div>
-
                     <!-- 페이징 -->
                     <div class="pagingWrap" style="text-align: center">
                         <div style="display: inline-block">
@@ -125,78 +122,11 @@
                         </div>
                     </div>
                     <!-- 페이징 종료-->
-
-
-                    <div class="right_block">
-                        <!-- 통계 테이블-->
-                        <div id="tableWrap">
-                            <div class="divTable minimalistBlack">
-                                <div class="divTableHeading">
-                                    <div class="divTableRow">
-                                        <div class="divTableHead" style="width: 227.5px;">소설명</div>
-                                        <div class="divTableHead" style="width: 131.5px;">작가</div>
-                                        <div class="divTableHead">총 결제 코인</div>
-                                        <div class="divTableHead">총 후원 코인</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--리스트 테이블-->
-                            <div class="list" >
-                                <!--소설 정보 테이블-->
-                                <div class="divTable minimalistBlack">
-                                    <div class="divTableBody">
-                                            <div class="divTableRow">
-                                                <div><img src="/images/close.png" class="close"><img src="/images/open.png" class="open" style="display: none"></div>
-                                                <div class="divTableCell" style="width: 207px;" th:text="${novelVO.novelTitle}">소설명</div>
-                                                <div class="divTableCell" style="width: 135px;" th:text="${userVO.userNickName}">작가</div>
-                                                <div class="divTableCell" th:text="${paymentDTOList}">총 결제받은 코인c</div>
-                                                <div class="divTableCell" >총후원 받은 코인c</div>
-                                            </div>
-                                    </div>
-                                </div>
-
-                                <!--소설 정보 테이블 끝-->
-
-                                <!--디테일 테이블-->
-                                <div class="divTable minimalistBlack novel-detail" style="display: none;">
-                                    <div class="divTableHeading">
-                                        <div class="divTableRow">
-                                            <div class="divTableHead">회차</div>
-                                            <div class="divTableHead">조회수</div>
-                                            <div class="divTableHead">결제받은 코인</div>
-                                            <div class="divTableHead">후원받은 코인</div>
-                                        </div>
-                                    </div>
-<!--                                    <div class="divTableBody">-->
-<!--                                        <div class="divTableRow">-->
-<!--                                            <div class="divTableCell">회차</div>-->
-<!--                                            <div class="divTableCell">조회수</div>-->
-<!--                                            <div class="divTableCell">1,000,000c</div>-->
-<!--                                            <div class="divTableCell">1,000,000c</div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-                                <th:block th:each="subNovelVOs :${subNovelVOs}">
-                                    <div class="divTableBody">
-                                        <div class="divTableRow">
-                                            <div class="divTableCell" th:text="${subNovelVOs.subNovelNumber}">회차</div>
-                                            <div class="divTableCell" th:text="|${subNovelVOs.subNovelViewCount} 회|">조회수</div>
-<!--                                            <th:block th:each="paymentDTOList :${paymentDTOList}">-->
-                                                <div class="divTableCell" th:text="${paymentDTOList.coinSum}">결제 받은 코인</div>
-                                                <div class="divTableCell" >후원 받은 코인</div>
-<!--                                            </th:block>-->
-                                        </div>
-                                    </div>
-                                </th:block>
-                                </div>
-                                <!--디테일 테이블 끝-->
-                            </div>
-                            <!-- 리스트 테이블 끝-->
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 </body>
@@ -206,7 +136,6 @@
 <script src="/assets/js/mypage/myWork.js"></script>
 <script src="/assets/js/fix/header.js"></script>
 <script th:inline="javascript">
-    const novelViewCountTotal = [[${list.novelViewCountTotal]];
     const userNumber = [[${session.userNumber}]];
     console.log("세션 유저 번호 : " + userNumber);
 
@@ -234,7 +163,7 @@
         location.href = "/myLibrary/payList";
     }
     function goIllustUserPage(){
-        location.href = "/illust/illustUserPage";
+        location.href = "/illust/illustProfileCheck2";
     }
     function goNobelRegister() {
         location.href = "/novel/novelRegister";

@@ -37,8 +37,15 @@
         WHERE USER_NUMBER = #{userNumber}
     </select>
 
-    <select id="findUserEmail" resultType="UserVO">
-        SELECT USER_EMAIL FROM TBL_USER
+    <select id="findUserEmail" resultType="_int">
+        SELECT COUNT(USER_EMAIL) FROM TBL_USER
         WHERE USER_EMAIL = #{userEmail}
     </select>
+
+    <select id="findUserNumberByEmail" resultType="long">
+        SELECT USER_NUMBER FROM TBL_USER
+        WHERE USER_EMAIL = #{userEmail}
+    </select>
+
+
 </mapper>

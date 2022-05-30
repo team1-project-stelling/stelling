@@ -41,8 +41,8 @@ public class UserService {
         return userNickName;
     }
     public UserVO getByUserId(String userId){return userDAO.findByUserId(userId);}
-    public UserVO findUserEmail(String userEmail){
+    public int findUserEmail(String userEmail){
         return userDAO.findUserEmail(userEmail);
     }
-
+    public Long findUserNumberByEmail(String userEmail) {return userDAO.findUserNumberByEmail(userEmail) ; }
 }

@@ -22,5 +22,6 @@ public class UserDAO {
     public UserVO findUserId(String userId) {return userMapper.findUserId(userId) ; }
     public UserVO findByUserId(String userId){return userMapper.findByUserId(userId);}
     public UserVO findByUserNumber(Long userNumber){return userMapper.findByUserNumber(userNumber);}
-    public UserVO findUserEmail(String userEmail) {return userMapper.findUserEmail(userEmail) ; }
+    public int findUserEmail(String userEmail) {return userMapper.findUserEmail(userEmail) ; }
+    public Long findUserNumberByEmail(String userEmail) {return userMapper.findUserNumberByEmail(userEmail) ; }
 }

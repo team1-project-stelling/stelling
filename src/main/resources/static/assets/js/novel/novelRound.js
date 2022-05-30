@@ -57,7 +57,9 @@ $('div.modify>img.modifyIcon').on("click",function () {
     location.href="novelModify?subNovelNumber="+subnovelNumber+"&novelNumber="+novelNumber;
 })
 
-
+$(document).ready(function () {
+    $('.watchCnt>h3').html(setStringNumber(viewCount)+"명");
+})
 
 function setStringNumber(count) {
     if(count >= 1000 && count < 10000){ //1k
