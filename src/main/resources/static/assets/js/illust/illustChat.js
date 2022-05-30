@@ -54,8 +54,11 @@ if (chatList.length === 0) {
 } else {
     chatList?.map((v) => {
         console.log(v)
-        chattingList.innerHTML += `<li data-room=${v.roomName} class="nametd"  style="list-style: none; margin-left: 20px;font-size: 15px;font-weight: 500; margin-top: 20px;" > 
-                            <a>${v.roomName}</a>  <span style="cursor: pointer" class="thischat">채팅시작 <input type="hidden" id="valuehidden" value="${v.roomName}"></span></li>`
+        chattingList.innerHTML += `<div style="  height: 50px;   width: 100%;display: flex;align-items: center;justify-content: space-around;"><li data-room=${v.roomName} class="nametd"  style="    width: 100px;list-style: none;font-size: 15px;font-weight: 500;" > 
+                             <a>${v.roomName}</a>    </li> 
+                         <div style="    width: 100px;text-align: right;"><span style="cursor: pointer" class="thischat" data-room=${v.roomName}>채팅</span></div></div>
+                            <hr style="text-align: center;width: 80%;">
+                            `
         document.getElementById('chatWrapSecond').innerHTML = "<div style='position: absolute;top: 40%;left: 30%;'>채팅을시작하려면 상대방을 선택해주세요</div>"
 
     })
@@ -85,7 +88,8 @@ const 채팅방연결 =(mysession) => {
 
 
     chattingList.addEventListener('click', function (e) {
-        if (e.target.tagName === "LI") {
+        if (e.target.tagName === "SPAN") {
+
             roomNames = e.target.dataset.room
             roomNames.split("&")[0] === mysession ? 방만들기(roomNames) : 기존방연결(roomNames)
         }
@@ -178,5 +182,7 @@ const 처음대화 = (mysession,other) => {
             방만들기(roomNames);
         }
     })};
+
+
 
 

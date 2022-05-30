@@ -8,6 +8,7 @@
 <body>
 
 <div class="chatingRoom" id="chatingRoom">
+    <div id="other" style="border-bottom: 1px solid #cccccc;height: 37px;text-align: center;font-weight: bold;padding: 20px;font-size: 19px;"> </div>
     <div class="chating" id="chating">
 
 
@@ -17,9 +18,9 @@
     <div class="chatinput" id="chatinput">
         <script>
             document.getElementById('chatinput').innerHTML = `
-             <input type="text" class="chattext" id="message"  placeholder="대화를 입력">
+             <input type="text" class="chattext" id="message" autocomplete="off" placeholder="대화를 입력">
 
-                    <button id="send" >전송하기</button>`
+                    <button id="send" >전송</button>`
         </script>
 
     </div>
@@ -39,7 +40,9 @@
     }
 
     .chatinput {
-        position: absolute;
+        height: 110px;
+        /* margin-top: 35px; */
+        /* position: absolute; */
         bottom: 0;
         left: 0;
         width: 100%;
@@ -49,10 +52,11 @@
         align-items: flex-end;
         justify-content: space-between;
         background-color: #fff;
+
     }
 
     .chating {
-        height: 500px;
+        height: 490px;
         position: relative;
         overflow-x: hidden;
         overflow-y: auto;
@@ -71,10 +75,14 @@
 
     #message {
         height: 70px;
-        width: 500px;
+        width: 470px;
         font-size: 18px;
         border-radius: 10px;
-        padding: 5px;
+        border: 1px solid #cccccc;
+        font-family: "Elice Digital Baeum", sans-serif;
+        padding: 0 20px;
+        outline: none;
+
 
     }
 
@@ -82,9 +90,12 @@
         background: #ef6e73;
         width: 80px;
         border: none;
+        font-size: 20px;
+        font-weight: 500;
         color: white;
         border-radius: 10px;
         height: 70px;
+        font-family: "Elice Digital Baeum", sans-serif;
     }
 
 
@@ -108,7 +119,7 @@
 
     let ttime = ` ${hours}:${minutes}`
 
-
+    document.getElementById('other').innerText=other
     //채팅가져오기
     function letdata() {
         let chatdata = "";

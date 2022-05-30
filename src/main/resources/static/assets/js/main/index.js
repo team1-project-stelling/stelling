@@ -211,19 +211,13 @@ function main_sectionList(v,sectionList){
     
     const x_item =document.createElement('div')
     x_item.className="x_item"
-    x_item.onclick=ff
+
     const x_item_img=document.createElement('div')
     x_item_img.className="x_item_img"
     const img = document.createElement('img')
     img.className="ximg"
     img.src=`https://image.tmdb.org/t/p/w500${v.poster_path}`;
-    const h3= document.createElement('h3')
-    const p = document.createElement('p')
-    h3text = document.createTextNode(`${v.original_title}`)
-    ptext=document.createTextNode(`${v.title}`)
 
-    
-    
     x_item.appendChild(x_item_img)
     x_item_img.appendChild(img)
     x_item.appendChild(h3)
@@ -232,11 +226,7 @@ function main_sectionList(v,sectionList){
     p.appendChild(ptext)
 
     sectionList.appendChild(x_item)
-    //페이지 지동
-    function ff(){
-        location.href=`./novel/round.html?v=`+v.id;
-    }
-        
+
 
 
 }

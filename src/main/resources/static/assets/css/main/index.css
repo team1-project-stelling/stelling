@@ -422,8 +422,8 @@
 }
 
 .main_section #fourList {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
+
+
   display: inline-flex;
   overflow: hidden;
 }
