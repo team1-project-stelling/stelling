@@ -111,6 +111,5 @@ public class NovelService {
     public Page<NovelCategoryDTO> getListSearchAll(String keyword, Pageable pageable){
         return novelRepository.findByNovelHashtagContainingOrNovelTitleContainingOrUserVO_UserNickNameContaining(keyword,keyword,keyword,pageable).map(objectEntity -> modelMapper.map(objectEntity, NovelCategoryDTO.class));
     }
-
     public List<NovelVO> getNovelListByUserNumber(Long userNumber){ return novelRepository.findAllByUserVO_UserNumber(userNumber);}
 }
