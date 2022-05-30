@@ -27,14 +27,14 @@ public class InquiryController {
     private final UserService userService;
     private final InquiryService inquiryService;
 
-    @GetMapping("/inquiryDetail")
+    @GetMapping("inquiryDetail")
     public String inquiryDetail (Long inquiryNumber,Model model) {
         InquiryVO inquiryVO = inquiryService.get(inquiryNumber);
         model.addAttribute("inquiry", inquiryVO);
         return "inquiry/inquiryDetail";
     }
 
-    @GetMapping("/inquiryWrite")
+    @GetMapping("inquiryWrite")
     public String writeInquiry(Model model,HttpServletRequest request) {
 
         HttpSession session =  request.getSession();
@@ -44,7 +44,7 @@ public class InquiryController {
         model.addAttribute("userNickName", userNickName);
         return "inquiry/inquiryWrite";
     }
-    @PostMapping("/inquiryWrite")
+    @PostMapping("inquiryWrite")
     public String inquiryRegister(InquiryVO inquiryVO, HttpServletResponse response,HttpServletRequest request) throws IOException {
         HttpSession session =  request.getSession();
         Long userNumber = (Long) session.getAttribute("userNumber");

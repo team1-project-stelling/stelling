@@ -41,28 +41,28 @@ public class MyLibraryController {
     }
 
     // 소장함 -> 결제
-    @GetMapping("/myLibraryCollection")
+    @GetMapping("myLibraryCollection")
     public String myBook(){
         log.info("myLibraryCollection");
         return "myLibrary/myLibraryCollection";
     }
 
     // 최근 본 작품
-    @GetMapping("/myLibraryRecentView")
+    @GetMapping("myLibraryRecentView")
     public String myLibraryRecentView(){
         log.info("myLibraryRecentView");
         return "myLibrary/myLibraryRecentView";
     }
     
     // 찜목록 -> 그냥찜
-    @GetMapping("/myLibraryPick")
+    @GetMapping("myLibraryPick")
     public String myLibraryPick(){
         log.info("myLibraryPick");
         return "myLibrary/myLibraryPick";
     }
     
     //코인샵 이동
-    @GetMapping("/coinShop")
+    @GetMapping("coinShop")
     public String coinShop(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         Long userNumber = (Long)session.getAttribute("userNumber");
@@ -75,14 +75,14 @@ public class MyLibraryController {
     }
 
     //결제 내역 등록
-    @PostMapping("/coinShop")
+    @PostMapping("coinShop")
     public String register(PayVO payVO){
         payService.register(payVO);
         return "cash/coinShop";
     }
 
     //결제 리스트(마이페이지)
-    @GetMapping("/payList")
+    @GetMapping("payList")
     public String payList(Paging paging, Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
         Long userNumber = (Long) session.getAttribute("userNumber");
@@ -108,7 +108,7 @@ public class MyLibraryController {
         return "/myPage/myPagePayList";
     }
 
-    @GetMapping("/supportList")
+    @GetMapping("supportList")
     public String supportList(Paging paging, Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
         Long userNumber = (Long) session.getAttribute("userNumber");

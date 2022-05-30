@@ -27,7 +27,7 @@ public class MyLibraryCollectionController {
     private final MyLibraryService myLibraryService;
     private final RecentViewService recentViewService;
 
-    @GetMapping("/myPick")
+    @GetMapping("myPick")
     public String myLibraryCollectionMyPick(Model model, @PageableDefault(page = 0, size = 10, sort = "myPickNumber" ,direction = Sort.Direction.DESC) Pageable pageable, HttpServletRequest request){
         HttpSession session =  request.getSession();
         Long userNum = (Long)session.getAttribute("userNumber");
@@ -39,7 +39,7 @@ public class MyLibraryCollectionController {
         return "myLibrary/myLibraryCollection";
     }
 
-    @GetMapping("/myPick/search")
+    @GetMapping("myPick/search")
     public String myLibraryCollectionMyPickSearch(String keyword,Model model, @PageableDefault(page = 0, size = 10, sort = "myPickNumber" ,direction = Sort.Direction.DESC) Pageable pageable,HttpServletRequest request){
         HttpSession session =  request.getSession();
         Long userNum = (Long)session.getAttribute("userNumber");
@@ -61,7 +61,7 @@ public class MyLibraryCollectionController {
     }
 
 
-    @GetMapping("/myRecentView")
+    @GetMapping("myRecentView")
     public String myRecentView(Model model, @PageableDefault(page = 0, size = 10, sort = "recentViewNumber" ,direction = Sort.Direction.DESC) Pageable pageable,HttpServletRequest request){
         HttpSession session =  request.getSession();
         Long userNum = (Long)session.getAttribute("userNumber");
@@ -73,7 +73,7 @@ public class MyLibraryCollectionController {
         return "myLibrary/myLibraryRecentView";
     }
 
-    @GetMapping("/myRecentView/search")
+    @GetMapping("myRecentView/search")
     public String myRecentViewSearch(String keyword,Model model, @PageableDefault(page = 0, size = 10, sort = "recentViewNumber" ,direction = Sort.Direction.DESC) Pageable pageable,HttpServletRequest request){
         HttpSession session =  request.getSession();
         Long userNum = (Long)session.getAttribute("userNumber");

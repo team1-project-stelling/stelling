@@ -49,17 +49,17 @@ public class NovelController {
  
 
 
-    @GetMapping("/novelRegister")
+    @GetMapping("novelRegister")
     public void ViewDetail(){
     }
 
-    @GetMapping("/novelWrite")
+    @GetMapping("novelWrite")
     public void novelWrite(Long novelNumber, Model model){
         model.addAttribute("novelNumber", novelNumber);
     }
 
     /*소설 수정페이지 이동*/
-    @GetMapping("/novelModify")
+    @GetMapping("novelModify")
     public String novelModify(Long subNovelNumber,Long novelNumber,Model model) throws IOException{
         String getFilePath= novelFileService.getFilePathBySubNum(subNovelNumber).getNovelFileFilePath();
         String getFileName= novelFileService.getFilePathBySubNum(subNovelNumber).getNovelFileFileName();
@@ -91,7 +91,7 @@ public class NovelController {
     }
 
     @LogStatus
-    @GetMapping("/novelCategory")
+    @GetMapping("novelCategory")
     public void novelCategory(Model model, @PageableDefault(page = 0, size = 10, sort = "novelNumber" ,direction = Sort.Direction.DESC)Pageable pageable){
         Page<NovelCategoryDTO> list = novelService.getList(pageable);
         PageableDTO pageableDTO = new PageableDTO( (int)list.getTotalElements(),pageable);
@@ -101,13 +101,13 @@ public class NovelController {
     }
 
 
-    @GetMapping("/novelRanking")
+    @GetMapping("novelRanking")
     public void novelRanking(){
     }
 
 
     /*소설상세보기 페이지*/
-    @GetMapping("/novelDetailView")
+    @GetMapping("novelDetailView")
     public void ViewDetail(Long novelNumber,Long subNovelNumber,int count, HttpServletRequest request, Model model) throws IOException {
         String getFilePath= novelFileService.getFilePathBySubNum(subNovelNumber).getNovelFileFilePath();
         String getFileName= novelFileService.getFilePathBySubNum(subNovelNumber).getNovelFileFileName();
@@ -153,7 +153,7 @@ public class NovelController {
 
     }
 
-    @GetMapping("/nextPrevNovelDetailView")
+    @GetMapping("nextPrevNovelDetailView")
     public RedirectView nextPrevNovelDetailView(Long novelNumber, Long subNovelNumber, int num, int count,RedirectAttributes rttr){
         List<SubNovelVO> subNovelVOList=subNovelService.getListByNovelNumber(novelNumber);
         int currentIndexNum = subNovelVOList.indexOf(subNovelService.get(subNovelNumber));
@@ -167,7 +167,7 @@ public class NovelController {
 
 
     @LogStatus
-    @GetMapping("/novelSearch")
+    @GetMapping("novelSearch")
     public String novelSearch (String keyword, Model model, @PageableDefault(page = 0, size = 10, sort = "novelNumber" ,direction = Sort.Direction.DESC)Pageable pageable){
         Page<NovelCategoryDTO> searchList = novelService.search(keyword, pageable);
         PageableDTO pageableDTO = new PageableDTO( (int)searchList.getTotalElements(),pageable);
@@ -180,7 +180,7 @@ public class NovelController {
     }
 
     /*소설 등록*/
-    @PostMapping("/novelRegister")
+    @PostMapping("novelRegister")
     public RedirectView novelRegister(NovelVO novelVO, HttpServletRequest request, RedirectAttributes rttr) {
 
         HttpSession session = request.getSession();
@@ -192,7 +192,7 @@ public class NovelController {
     }
 
     /*소설 표지 이미지 저장*/
-    @PostMapping("/uploadAjaxAction")
+    @PostMapping("uploadAjaxAction")
     @ResponseBody
     public List<NovelVO> uploadAjaxPost(MultipartFile[] uploadFile) {
         String uploadFolder = "C:/stelling";
@@ -245,7 +245,7 @@ public class NovelController {
 
 
     /*소설회차 원고파일 생성*/
-    @PostMapping("/makeNovelFile")
+    @PostMapping("makeNovelFile")
     public RedirectView novelBufferedWrite(NovelFileDTO novelFileDTO) throws IOException {
 
         NovelVO novelVO =novelService.get(novelFileDTO.getNovelNumber());
@@ -284,7 +284,7 @@ public class NovelController {
     }
 
     /*수정된 파일 DB저장, 파일 저장*/
-    @PostMapping("/modifyNovelFile")
+    @PostMapping("modifyNovelFile")
     public RedirectView modifyNovelFile(NovelFileDTO novelFileDTO, RedirectAttributes rttr) throws IOException{
         DateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
