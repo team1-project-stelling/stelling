@@ -196,7 +196,7 @@ public class novelController {
     @PostMapping("/uploadAjaxAction")
     @ResponseBody
     public List<NovelVO> uploadAjaxPost(MultipartFile[] uploadFile) {
-        String uploadFolder = "C:/stelling";
+        String uploadFolder = "/home/ubuntu/stelling/upload/";
         List<NovelVO> fileList = new ArrayList<>();
 
         UUID uuid = UUID.randomUUID();
@@ -262,7 +262,7 @@ public class novelController {
         subNovelService.register(subNovelVO);
 
         String title = novelVO.getNovelTitle();
-        String uploadFolder = "C:/stelling";
+        String uploadFolder = "/home/ubuntu/stelling/upload/";
         UUID uuid = UUID.randomUUID();
         String uploadFolderPath = novelVO.getNovelNumber()+"_"+title+"/"+getPath();
         String uploadFileName = uuid.toString() + "_" + novelFileDTO.getSubNovelTitle();
@@ -298,7 +298,7 @@ public class novelController {
                 .novelVO(novelService.get(novelFileDTO.getNovelNumber()))
                 .build());
         NovelFileVO novelFileVO = novelFileService.getFilePathBySubNum(novelFileDTO.getSubNovelNumber());
-        String uploadPath="C:/stelling/"+novelFileVO.getNovelFileFilePath();
+        String uploadPath="/home/ubuntu/stelling/upload/"+novelFileVO.getNovelFileFilePath();
         String uploadFileName = novelFileVO.getNovelFileFileName();
 
         BufferedWriter bw = new BufferedWriter(new FileWriter(new File(uploadPath+"/"+uploadFileName+".txt")));
