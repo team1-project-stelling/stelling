@@ -249,26 +249,6 @@
         location.href = "/main/index?keyword=" +$(this).attr("href");
     })
 
-    // function showIllustImg(){
-    //     $.ajax({
-    //         type: "GET",
-    //         url: "/main/illustImg",
-    //         dataType: "json",
-    //         success: function(result){
-    //             console.log("일러스트 출력" + result);
-    //             let str = "";
-    //             $.each(result, function (index, item){
-    //             let fileCallpath = item.illustImgFileFilePath + "/" + item.illustImgFileFileName;
-    //             str += "<li>";
-    //             str += "<img style='width: 175px;' src='/main/display?fileName=" + fileCallpath + "'>";
-    //             str += "</li>";
-    //             });
-    //             $(".illust_list").html(str);
-    //         }
-    //     });
-    // }
-    //
-    // showIllustImg();
 
     let img2 =illustImg()
     console.log(img2);
@@ -290,5 +270,49 @@
 
         document.getElementById('fourList').appendChild(x_item)
     })
+
+    img.slice(0,6)?.map((v)=>{
+        const sectionList  = document.querySelector('.fisrtList')
+        main_sectionList(v,sectionList);
+    })
+    img.slice(1,7)?.map((v)=>{
+        const sectionList  = document.querySelector('.secondList')
+        main_sectionList(v,sectionList);
+    })
+    img.slice(2,8)?.map((v)=>{
+        const sectionList  = document.querySelector('.thirdList')
+        main_sectionList(v,sectionList);
+    })
+    img.slice(0,6).map((v)=>{
+        const sectionList  = document.querySelector('.fourList')
+        main_sectionList(v,sectionList);
+
+    })
+
+    //일러스트 슬라이드
+    function Illustrator(){
+        const lisls = document.querySelectorAll('#fourList div.x_item')
+        const lisl = document.querySelector('.fourList')
+        const lastli = lisl.lastElementChild.cloneNode(true);
+        let M_x= document.querySelectorAll('.M_x_');
+
+        //요소복사
+        const clone = () =>{
+            let cloneslie = lisl.cloneNode(true)
+            let moves = document.querySelector('.movemove')
+            cloneslie.classList.remove('movemove')
+            lisl.append(cloneslie)
+
+        }
+
+        //요소복사
+        clone();
+
+
+    }
+
+    // $(".ximg").click(function(){
+    //     location.href = "/user/login";
+    // })
 </script>
 </html>
