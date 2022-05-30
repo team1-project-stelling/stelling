@@ -46,7 +46,7 @@ public class NovelController {
     private final UserService userService;
     private final SubNovelService subNovelService;
     private final NovelFileService novelFileService;
-
+ 
 
 
     @GetMapping("/novelRegister")
@@ -69,7 +69,7 @@ public class NovelController {
         String line = null;
         String novelContent = "";
         try {
-            br = new BufferedReader(new FileReader("C:/stelling/"+getFilePath+"/"+getFileName+".txt"));
+            br = new BufferedReader(new FileReader("/home/ubuntu/stelling/upload/"+getFilePath+"/"+getFileName+".txt"));
 
             while((line = br.readLine()) != null){
                 novelContent+=line+"\n";
@@ -126,7 +126,7 @@ public class NovelController {
         Long userNumber =(Long)session.getAttribute("userNumber");
 
         try {
-            br = new BufferedReader(new FileReader("C:/stelling/"+getFilePath+"/"+getFileName+".txt"));
+            br = new BufferedReader(new FileReader("/home/ubuntu/stelling/upload/"+getFilePath+"/"+getFileName+".txt"));
             while((line = br.readLine()) != null){
                 result+=line+"\n";
             }

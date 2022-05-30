@@ -53,7 +53,7 @@
                             <div class="x_Desc_pepole">
                                 <div>
                                     <img src="https://static-page.kakao.com/static/common/ico-workhome-person.svg?41e74cfb5cb9084198b21f6b2c7899c2" alt="">
-                                    <div class="watchCnt"><h3 th:text="|${novelVO.novelViewCountTotal}명|"></h3></div>
+                                    <div class="watchCnt"><h3></h3></div>
                                 </div>
 
                                 <div>
@@ -343,6 +343,7 @@
 <script th:inline="javascript">
     const novelNumber = [[${novelNumber}]]
     const userNumber =[[${session.userNumber}]]
+    const viewCount=[[${novelVO.novelViewCountTotal}]]
 </script>
 <script src="/assets/js/novel/data.js"></script>
 <script src="/assets/js/fix/header.js"></script>
