@@ -49,15 +49,13 @@ chatLists = document.getElementById('chatLists')
 let chattingList = document.getElementById('chattingList')
 
 if (chatList.length === 0) {
-    chattingList.innerHTML += '<li class="nametd" style="list-style: none; margin-left: 20px">채팅내역이 존재하지 않음</li>'
+    chattingList.innerHTML += '<li class="nametd" style="list-style: none; margin-left: 20px;cursor: pointer">채팅내역이 존재하지 않음</li>'
     document.getElementById('chatWrapSecond').innerHTML = "<div style='position: absolute;top: 40%;left: 40%;'>채팅을시작해보세요</div>"
 } else {
     chatList?.map((v) => {
-
-        chattingList.innerHTML +=`<div style="display: flex;justify-content: space-between" data-room='+${v.roomName}+' class="nametd"  style="list-style: none; margin-left: 20px;font-size: 15px;font-weight: 500; margin-top: 20px;" >
-${v.roomName} <div style="cursor: pointer" class="thischat">채팅시작</div>
-`
-
+        console.log(v)
+        chattingList.innerHTML += `<li data-room=${v.roomName} class="nametd"  style="list-style: none; margin-left: 20px;font-size: 15px;font-weight: 500; margin-top: 20px;" > 
+                            <a>${v.roomName}</a>  <span style="cursor: pointer" class="thischat">채팅시작 <input type="hidden" id="valuehidden" value="${v.roomName}"></span></li>`
         document.getElementById('chatWrapSecond').innerHTML = "<div style='position: absolute;top: 40%;left: 30%;'>채팅을시작하려면 상대방을 선택해주세요</div>"
 
     })
