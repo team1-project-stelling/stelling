@@ -247,7 +247,7 @@ public class novelController {
     /*소설회차 원고파일 생성*/
     @PostMapping("/makeNovelFile")
     public RedirectView novelBufferedWrite(NovelFileDTO novelFileDTO) throws IOException {
-        
+
         NovelVO novelVO =novelService.get(novelFileDTO.getNovelNumber());
         UserVO userVO =userService.get(novelFileDTO.getUserNumber());
 
@@ -272,11 +272,11 @@ public class novelController {
         }
 
         novelFileService.register(NovelFileVO.builder().novelFileFileName(uploadFileName)
-                    .novelFileFilePath(uploadFolderPath)
-                    .novelFileOriginalUUID(uuid.toString())
-                    .subNovelVO(subNovelVO)
-                    .novelVO(novelVO)
-                    .userVO(userVO).build());
+                .novelFileFilePath(uploadFolderPath)
+                .novelFileOriginalUUID(uuid.toString())
+                .subNovelVO(subNovelVO)
+                .novelVO(novelVO)
+                .userVO(userVO).build());
         BufferedWriter bw = new BufferedWriter(new FileWriter(new File(uploadPath+"/"+uploadFileName+".txt")));
         bw.write(novelFileDTO.getContent());
         bw.close();
@@ -304,8 +304,8 @@ public class novelController {
         bw.write(novelFileDTO.getContent());
         bw.close();
 
-       List<SubNovelVO> subNovelVOList = subNovelService.getListByNovelNumber(novelFileDTO.getNovelNumber());
-       int index=subNovelVOList.indexOf(subNovelService.get(novelFileDTO.getSubNovelNumber()));
+        List<SubNovelVO> subNovelVOList = subNovelService.getListByNovelNumber(novelFileDTO.getNovelNumber());
+        int index=subNovelVOList.indexOf(subNovelService.get(novelFileDTO.getSubNovelNumber()));
 
         rttr.addAttribute("novelNumber",novelFileDTO.getNovelNumber());
         rttr.addAttribute("subNovelNumber",novelFileDTO.getSubNovelNumber());
