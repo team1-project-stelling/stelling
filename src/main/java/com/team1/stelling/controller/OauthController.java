@@ -36,7 +36,6 @@ public class OauthController {
     //    @Autowired
     private final UserService userService;
 
-
     @GetMapping("/oauth")
     public @ResponseBody
     RedirectView kakaoCallback(String code, HttpServletRequest request) throws IOException {
@@ -54,9 +53,7 @@ public class OauthController {
         params.add("client_id", client);
         params.add("redirect_uri", redirect_uri);
         params.add("code", code);
-
         HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = new HttpEntity<>(params,headers);
-
         ResponseEntity<String> response = rt.exchange(
                 "https://kauth.kakao.com/oauth/token",
                 HttpMethod.POST,
@@ -64,23 +61,6 @@ public class OauthController {
                 String.class
         );
 
-        System.out.println("카카오 엑세스 토큰 :" + response.getBody());
-
-        //Json 데이터 Java 객체로 가져오기 (OauthToken.class) (60~82)
-        //GSON, Json Simple, ObjectMapper
-
-//        //GSON
-//        JsonParser parser = new JsonParser();
-//        JsonElement element = parser.parse(String.valueOf(response));
-//
-//        String access_Token = "";
-//        access_Token = element.getAsJsonObject().get("access_token").getAsString();
-//
-//        oauthToken.setAccess_token(access_Token);
-//
-//        System.out.println("카카오 엑세스 토큰 :" + oauthToken.getAccess_token());
-
-        //ObjectMapper
         ObjectMapper objectMapper = new ObjectMapper();
         OauthToken oauthToken = null;
         try {
@@ -91,13 +71,10 @@ public class OauthController {
             e.printStackTrace();
         }
 
-
         RestTemplate rt2 = new RestTemplate();
-
         HttpHeaders headers2 = new HttpHeaders();
         headers2.add("Authorization", "Bearer " + oauthToken.getAccess_token());
         headers2.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-
         HttpEntity<MultiValueMap<String,String>> kakaoProfileRequest = new HttpEntity<>(headers2);
 
         ResponseEntity<String> response2 = rt2.exchange(
@@ -119,12 +96,7 @@ public class OauthController {
             e.printStackTrace();
         }
 
-        System.out.println("################################# : :" + response);
-        System.out.println("################################# :" + response2);
-
-
         String userId = "sdfsdfds";
-
         UUID garbagePassword = UUID.randomUUID();
 
         UserVO kakaoUser = UserVO.builder()
@@ -149,18 +121,14 @@ public class OauthController {
             HttpSession session = request.getSession();
             session.setAttribute("userNumber", userService.findUserNumberByEmail(kakaoUser.getUserEmail()));
             session.setAttribute("user",userService.get(userService.findUserNumberByEmail(kakaoUser.getUserEmail())));
-            log.info("###########" +session.getAttribute("userNumber"));
             return new RedirectView ("/main/index");
         }
 
         HttpSession session = request.getSession();
         session.setAttribute("userNumber", userService.findUserNumberByEmail(kakaoUser.getUserEmail()));
         session.setAttribute("user",userService.get(userService.findUserNumberByEmail(kakaoUser.getUserEmail())));
-        log.info("###########" +session.getAttribute("userNumber"));
         return new RedirectView ("/main/index");
-
     }
-
 }
 
 
