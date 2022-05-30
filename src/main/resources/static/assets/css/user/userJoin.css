@@ -124,6 +124,10 @@
         vertical-align: top !important;
         text-align: left !important;
     }
+
+    .reg_agree th {
+        border-bottom: 1px solid #f4f4f4;
+    }
 }
 
 
@@ -512,6 +516,12 @@ input[type='radio'] {
 .text_case1 {
     font-size: 12px;
     color: #ef6e73;
+    display: block;
+}
+
+.text_case2 {
+    font-size: 12px;
+    color: currentcolor;
     display: block;
 }
 

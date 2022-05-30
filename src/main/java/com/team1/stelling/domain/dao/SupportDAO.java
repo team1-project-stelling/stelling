@@ -1,5 +1,6 @@
 package com.team1.stelling.domain.dao;
 
+import com.team1.stelling.domain.dto.PaymentDTO;
 import com.team1.stelling.domain.dto.SupportDTO;
 import com.team1.stelling.domain.vo.*;
 import com.team1.stelling.mapper.SupportMapper;
@@ -14,7 +15,7 @@ import java.util.List;
 @Slf4j
 public class SupportDAO {
     private final SupportMapper supportMapper;
-    
+
     //후원 내역
 
     public List<SupportVO> getSuppotList(Paging paging, Long userNumber) {return supportMapper.getSuppotList(paging, userNumber);}
@@ -29,4 +30,5 @@ public class SupportDAO {
     public SupportDTO getSupportCoinTotal(Long userNumber){return supportMapper.getSupportCoinTotal(userNumber);}
     public List<SupportVO> getSupportListWithNovelNumber(Long novelNumber){return supportMapper.getSupportListWithNovelNumber(novelNumber);}
 
+    public PaymentDTO getPaymentSum(Long subNovelNumber){return supportMapper.getPaymentSum(subNovelNumber);}
 }

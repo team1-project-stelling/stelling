@@ -48,13 +48,15 @@ public class IllustService {
         return illustRepository.findByIllustHashTagContaining(keyword, pageable);
     }
 
-    public int getLikeTotal(Long userNumber){
+    public Long getLikeTotal(Long userNumber){
         return illustRepository.findByIllustLikeTotal(userNumber);
     }
 
     @Transactional
-    public int updateViewCOunt(Long illustNumber){
-        return illustRepository.updateViewCOunt(illustNumber);
+    public int updateViewCount(Long illustNumber){
+        return illustRepository.updateViewCount(illustNumber);
     }
+
+
     
 }

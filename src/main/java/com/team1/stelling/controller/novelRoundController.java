@@ -48,7 +48,6 @@ import java.util.stream.LongStream;
 public class novelRoundController {
     private final SubNovelService subNovelService;
     private final NovelService novelService;
-    private final ReplyService replyService;
     private final UserService userService;
     private final MyPickService myPickService;
     private  final BuyChapterService buyChapterService;
@@ -59,7 +58,7 @@ public class novelRoundController {
     @GetMapping("/novelRegisterImg")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException{
-        return FileCopyUtils.copyToByteArray(new File("C:/stelling/" + fileName));
+        return FileCopyUtils.copyToByteArray(new File("/home/ubuntu/stelling/upload/" + fileName));
     }
 
 
@@ -121,6 +120,7 @@ public class novelRoundController {
 
 
         }
+
 
         model.addAttribute("novelNumber", novelNumber);
         model.addAttribute("subnovelVOList",subNovelVOS);

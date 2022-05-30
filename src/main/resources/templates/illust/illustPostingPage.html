@@ -18,7 +18,7 @@
 <!--</div>-->
 <!-- 헤더 종료 -->
 <div style="width : 100%;   max-width:1200px ; margin:0 auto; padding-top: 100px; padding-bottom: 100px;">
-    <form method="post" action="/illust/illustPostingPage" name="register" id="register" enctype="multipart/form-data">
+    <form method="post" action="/illust/illustPostingPage" name="register" id="register">
         <!--타이틀 입력란--------------------------------------------------------- -->
         <div class="titleDiv">
             <input type="text" name="illustTitle" placeholder="제목을 입력하세요." class="inputTitle">
@@ -69,7 +69,7 @@
     </form>
 
     <div style="margin:100px auto; text-align: center;">
-        <button class="upBtn" type="submit">업로드 하기</button>
+        <button class="upBtn" type="button" id="upBtn">업로드 하기</button>
     </div>
 
 

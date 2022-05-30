@@ -14,6 +14,7 @@
 <div id="headerImgWrap" >
     <img id="headerImg"src="/images/fix/headerImg_3.png" >
 </div>
+
 <div class="mainbox">
     <div class="contentbox">
         <div class="section_login">
@@ -63,7 +64,7 @@
         if (uid.value == "") {
             Swal.fire({
                 icon: 'warning',
-                text: '아이디를 확인해주세요.'
+                text: '아이디를 입력해주세요.'
             });
             uid.focus();
             return false;
@@ -72,7 +73,7 @@
         if (pwd.value == "") {
             Swal.fire({
                 icon: 'warning',
-                text: '비밀번호를 확인해주세요.'
+                text: '비밀번호를 입력해주세요.'
             });
             pwd.focus();
             return false;
