@@ -272,7 +272,10 @@ public class IllustController {
 
 
         HttpSession session = request.getSession();
-        session.getAttribute("userNumber");
+        if(Objects.isNull(session.getAttribute("userNumber"))){
+            return "redirect:/user/userLogin";
+        };
+
 
         if(illustProfileService.checkProfile((Long) session.getAttribute("userNumber")) != null){
 
