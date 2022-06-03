@@ -131,7 +131,7 @@
                 <a th:href="@{/illust/illustUserPage(userNumber=${profile.userNumber})}">
                     <div class="center cre">
                         <div class="illustratorProfile">
-                            <img th:src="'/illust/illustImg?fileName='+${profile.userFilePath}+'/'+${profile.userFileName}"/>
+                            <img th:src="'/upload/display?fileName='+${profile.userFilePath}+'/'+${profile.userUuid}+'_'+${profile.userFileName}"/>
                         </div>
                         <p th:text="${profile.userNickName}">zzang_9</p>
                     </div>

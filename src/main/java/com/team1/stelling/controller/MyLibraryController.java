@@ -111,7 +111,7 @@ public class MyLibraryController {
         model.addAttribute("pageMaker", pageMaker);
         model.addAttribute("payChargeTotal", payChargeTotal);
 //        model.addAttribute("pageDTO", new PageDTO(paging, payService.getSearchTotal(paging)));
-        return "/myPage/myPagePayList";
+        return "myPage/myPagePayList";
     }
 
     @GetMapping("supportList")
