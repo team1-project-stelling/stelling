@@ -55,5 +55,5 @@
     - 결제 API
     - DB
 
-- ERD
+# ERD
 ![ERD](https://user-images.githubusercontent.com/96901629/171799546-f2a4bb15-f7db-4408-bf4b-f9cd2de36ec4.png)
