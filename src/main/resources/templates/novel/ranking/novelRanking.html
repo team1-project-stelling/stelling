@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>랭킹 페이지</title>
+    <link rel="stylesheet" href="/assets/css/novel/novelRanking.css">
+    <link href="//font.elice.io/EliceDigitalBaeum.css" rel="stylesheet">
+    <link href="/assets/css/fix/footer.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/fix/header.css" rel="stylesheet" type="text/css">
+    <script src='http://code.jquery.com/jquery-3.6.0.js'></script>
+    <style>
+        @import url(//font.elice.io/EliceDigitalBaeum.css);
+
+        html, body {
+            font-family: "Elice Digital Baeum",sans-serif;
+        }
+        .rankMenuDiv:hover{color: #ef6e73}
+        .rankMenuDiv{color: #0d6efd}
+        div#dayOfRank ul {
+            display: flex;
+            list-style: none;
+            font-size: 14px;
+            align-items: center;
+            padding: 0;
+        }
+        div#dayOfRank ul li {
+            padding: 4.8px 12.2px;
+        }
+        div#dayOfRank ul li a{
+            color: #495057;
+            padding: 4.8px 12.2px;
+        }
+        .menuActive{
+            background-color: #ef6e73;
+            color: white;
+        }
+        button.searchFormWrapBtn{
+            width: 55px;
+            height: 28px;
+            border: none;
+            font-size: 14px;
+            background: #ef6e73;
+            background-size: 16px;
+            color: white;
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+<body>
+<!-- 헤더 시작 -->
+<th:block th:insert="fix/headerWord.html :: headFragment"/>
+
+
+<!-- 헤더 종료 -->
+<div style="max-width: 1200px; margin:0 auto;">
+    <div class="top-tab-menu" style="max-width: 1200px; margin: 25px auto 0 auto;">
+        <div class="mobile_hidden" style="position: relative; height: 20px; width: 100%;"></div>
+        <div style="font-size: 50px;text-align: center;">TOP50</div>
+    </div>
+    <div style="float: right; margin-top: 51px;" class="mobile_hidden">
+        <a href="/novel/novelRegister">
+            <img src="https://novelpia.com/img/new/mybook/btn_novel_write.png?tmp=1" style="height: 43px;">
+        </a>
+    </div>
+    <div class="mobile_hidden" style="position: relative; height: 30px; width: 100%; margin-top: 15px;"></div>
+    <!--카테고리 -->
+    <div class="mobile_hidden" style="border-bottom:2px solid #000;height: 50px;  line-height: 50px;">
+        <form id="selectForm" method="get" action="/novel/ranking/novelRanking/tagSearch">
+        <span style="font-size: 16px; font-weight: 600;">
+            <i class="icon ion-document"><img src="/images/document.png" style="width: 20px;"></i>
+            <span th:text="|총 ${resultTotal}개 작품|"></span>
+        </span>
+        <!--항목별 검색-->
+        <div class="s_inv" style="float: right; margin-right: 20px;">
+            <select  name="rankType" onchange="this.form.submit()" class="form-control select2" style="width: 90px; float: left; margin-right: 3px; margin-top: 4px;">
+                <option th:selected="${#strings.equals(criteria.rankType,'view') }" selected value="view">조회순</option>
+                <option th:selected="${#strings.equals(criteria.rankType,'like') }" value="like">추천순</option>
+            </select>
+
+            <select name="novelStatus" onchange="this.form.submit()" class="form-control select2" style="width: 90px; float: left; margin-right: 3px; margin-top: 4px;">
+                <option th:selected="${#strings.equals(criteria.novelStatus,'all') }" value="all">전체</option>
+                <option th:selected="${#strings.equals(criteria.novelStatus,'free') }" value="free">자유</option>
+                <option th:selected="${#strings.equals(criteria.novelStatus,'end') }" value="end">완결</option>
+            </select>
+
+        </div>
+            <input type="hidden" name="keyword" th:value="${criteria.keyword}">
+            <input type="hidden" name="day" th:value="${criteria.day}">
+        </form>
+    </div>
+    <!--태그 검색-->
+    <div class="mobile_category" style="position: relative; padding: 10px 5px; border-bottom: 1px solid #eee;">
+        <div style="width: 100%; display: flex;align-items: center; gap: 10px;">
+            <a href="0" class="changeModelOfDay">요일랭킹보기</a>
+            <div id="tagSearchRank" >
+                <ul class="nav nav-pills flex-column flex-md-row genre-box" id="submenu_bar" role="tablist" style="padding-bottom: 0px; max-width: 100%; overflow-x:auto; white-space: no wrap; -ms-overflow-style:none; scrollbar-width: none; scroll-snap-align: center; font-size: 12px;">
+                    <li>
+                        <button type="button" class="btn_genre_search" id="genre_search_modal_btn" onclick="changeTagSearch()" style="cursor: pointer;">태그검색</button>
+                    </li>
+                    <div id="searchFormWrap">
+                        <form id="searchForm" method="get" action="/novel/ranking/novelRanking/tagSearch">
+                            <input name="keyword" id="searchFormInput" type="text" placeholder="#검색할 태그를 입력하세요" maxlength="16">
+                            <button class="searchFormWrapBtn">검색</button>
+                            <div class="cancelImg" onclick="changeTagSearch()">
+                                <img src="/images/category/cancelIcon.png">
+                            </div>
+                            <input type="hidden" name="novelStatus" th:value="${criteria.novelStatus}">
+                            <input type="hidden" name="day" th:value="${criteria.day}">
+                        </form>
+                    </div>
+                    <ul class="category_ul" style=" display: flex; list-style:none; max-width: 100%; overflow-x:auto; white-space: no wrap; -ms-overflow-style:none; scrollbar-width: none; scroll-snap-align: center; font-size: 12px;">
+                        <li>
+                            <a th:classappend="${criteria.keyword== 'searchAll'} ? 'menuActive' : ''" class="nav-link" href="searchAll" role="tab">전체</a>
+                        </li>
+                        <li>
+                            <a th:classappend="${criteria.keyword== '판타지'} ? 'menuActive' : ''" class="nav-link" href="판타지" role="tab">판타지</a>
+                        </li>
+                        <li>
+                            <a th:classappend="${criteria.keyword== '무협'} ? 'menuActive' : ''" class="nav-link" href="무협" role="tab">무협</a>
+                        </li>
+                        <li>
+                            <a th:classappend="${criteria.keyword== '현대'} ? 'menuActive' : ''" class="nav-link" href="현대" role="tab">현대</a>
+                        </li>
+                        <li>
+                            <a th:classappend="${criteria.keyword== '로맨스'} ? 'menuActive' : ''" class="nav-link" href="로맨스" role="tab">로맨스</a>
+                        </li>
+                        <li>
+                            <a th:classappend="${criteria.keyword== '현대판타지'} ? 'menuActive' : ''" class="nav-link" href="현대판타지" role="tab">현대판타지</a>
+                        </li>
+                        <li>
+                            <a th:classappend="${criteria.keyword== '라이트노벨'} ? 'menuActive' : ''" class="nav-link" href="라이트노벨" role="tab">라이트노벨</a>
+                        </li>
+                        <li>
+                            <a th:classappend="${criteria.keyword== '공포'} ? 'menuActive' : ''" class="nav-link" href="공포" role="tab">공포</a>
+                        </li>
+                        <li>
+                            <a th:classappend="${criteria.keyword== 'SF'} ? 'menuActive' : ''" class="nav-link" href="SF" role="tab">SF</a>
+                        </li>
+                        <li>
+                            <a th:classappend="${criteria.keyword== '스포츠'} ? 'menuActive' : ''" class="nav-link" href="스포츠" role="tab">스포츠</a>
+                        </li>
+                        <li>
+                            <a th:classappend="${criteria.keyword== '대체역사'} ? 'menuActive' : ''" class="nav-link" href="대체역사" role="tab">대체역사</a>
+                        </li>
+                        <li>
+                            <a th:classappend="${criteria.keyword== '기타'} ? 'menuActive' : ''" class="nav-link" href="기타" role="tab">기타</a>
+                        </li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--랭킹 목록-->
+    <div class="row" style="padding: 5px;">
+        <th:block  th:each="rankItem,index:${rankingList}">
+        <div class="novelBox" style="position: relative; float: left;">
+            <div class="novel" style="cursor: pointer; padding: 20px 0px; border-bottom: 1px soild #dddddd;">
+                <table style="width: 100%">
+                    <tbody>
+                    <tr>
+                        <td style="width: 120px;">
+                            <div th:onclick="'location.href=\''+ @{/novel/novelRoundList(novelNumber=${rankItem.novelNumber})} +'\'' " style="position:relative;overflow:hidden;box-shadow: 2px 0px 3px 0px rgba(0,0,0,0.3);border-radius: 0px 30px 0px 0px;">
+                                <img th:src="'/upload/display?fileName='+${rankItem.novelUploadPath}+'/'+${rankItem.novelFileName}"  class="scale" style="height:280px;width:190px;background-position:center;">
+                            </div>
+                            <div class="thumb_s1" th:text="${index.count}"></div>
+                        </td>
+                    </tr>
+                    <tr class="border-bottom">
+                        <td style="color:#333;padding:15px 10px 0px 0px;line-height:22px;" valign="top">
+                            <b class="cut_line_one" style="letter-spacing: -2px;font-size: 14px;" th:text="${rankItem.novelTitle}"></b>
+                            <p class="writer" style="font-size:12px;color:#666;font-weight:400;" th:text="${rankItem.userNickName}"></p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        </th:block>
+    </div>
+
+</div>
+<th:block th:insert="fix/footer.html :: footerFragment"/>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/fix/header.js"></script>
+<script src="/assets/js/novel/novelRanking.js"></script>
+<script th:inline="javascript">
+    let pageInfo = [[${criteria.listLink}]];
+    let rankType = [[${criteria.rankType}]];
+    let novelStatus = [[${criteria.novelStatus}]];
+    let keyword = [[${criteria.keyword}]];
+    let day = [[${criteria.day}]];
+
+
+    $("a.changeModelOfDay").click(function (e) {
+        e.preventDefault();
+        location.href = "/novel/ranking/novelRanking/changeModelOfDay?day=" + $(this).attr("href")+"&rankType="+rankType+"&novelStatus="+novelStatus+"&keyword="+"searchAll";
+    })
+
+
+    var param = {"rankType":rankType, "novelStatus":novelStatus,"keyword":keyword,"day":day}
+
+
+
+    $("a.changeDay").click(function (e) {
+        e.preventDefault();
+        location.href = "/novel/ranking/novelRanking?day=" + $(this).attr("href")+"&rankType="+rankType+"&novelStatus="+novelStatus+"&keyword="+keyword;
+    })
+    $("a.nav-link").click(function (e) {
+        e.preventDefault();
+        location.href = "/novel/ranking/novelRanking?keyword=" + $(this).attr("href")+"&rankType="+rankType+"&novelStatus="+novelStatus+"&day="+day;
+    })
+
+    let menuFlag = false;
+    function rankingMenuChange(){
+        if(menuFlag) {
+            $.ajax({
+                type: "POST",
+                data: JSON.stringify(param),
+                url: "/novel/ranking/changeModelOfDay",
+                contentType: "application/json; charset=utf-8",
+                success: function(result, status, xhr){
+                    $('.rankMenuDiv').text('요일랭킹보기')
+                    $('#tagSearchRank').show();
+                    $('#dayOfRank').hide();
+                },
+                error: function(xhr, status, er){
+                    if(error){
+                        error(xhr);
+                        error(status);
+                        error(er);
+                    }
+                }
+            });
+            menuFlag = false;
+        }else if(!menuFlag){
+            $('.rankMenuDiv').text('태그랭킹보기')
+            $('#tagSearchRank').hide();
+            $('#dayOfRank').show();
+
+            menuFlag = true;
+        }
+
+    }
+
+
+
+</script>
+</html>

@@ -31,7 +31,7 @@ function set (){
 window.onload=()=>{
 //초기값 세팅
 removes()
-change()  
+change()
 
 //오토 시작
 auto ()
@@ -68,7 +68,7 @@ prev.addEventListener('click',function(){
 
 function change(){
    set ()
-   
+
    mainslide.classList.add('addd');
    Mslide.classList.add('leftadd')
    Pslide.classList.add('rightadd')
@@ -88,7 +88,7 @@ function auto (){
 }
 
 //hot 옆에 시간 
-RealTime()
+// RealTime()
 function RealTime (){
 let today = new Date()
 let hour = today.getHours()
@@ -206,77 +206,42 @@ function cccc(){
 
 ///메인컨테이너
 
-function main_sectionList(v,sectionList){
-   
-    
-    const x_item =document.createElement('div')
-    x_item.className="x_item"
-    x_item.onclick=ff
-    const x_item_img=document.createElement('div')
-    x_item_img.className="x_item_img"
-    const img = document.createElement('img')
-    img.className="ximg"
-    img.src=`https://image.tmdb.org/t/p/w500${v.poster_path}`;
-    const h3= document.createElement('h3')
-    const p = document.createElement('p')
-    h3text = document.createTextNode(`${v.original_title}`)
-    ptext=document.createTextNode(`${v.title}`)
+// function main_sectionList(v,sectionList){
+//
+//
+//     const x_item =document.createElement('div')
+//     x_item.className="x_item"
+//     x_item.onclick=ff
+//     const x_item_img=document.createElement('div')
+//     x_item_img.className="x_item_img"
+//     const img = document.createElement('img')
+//     img.className="ximg"
+//     img.src=`https://image.tmdb.org/t/p/w500${v.poster_path}`;
+//     const h3= document.createElement('h3')
+//     const p = document.createElement('p')
+//     h3text = document.createTextNode(`${v.original_title}`)
+//     ptext=document.createTextNode(`${v.title}`)
+//
+//
+//
+//     x_item.appendChild(x_item_img)
+//     x_item_img.appendChild(img)
+//     x_item.appendChild(h3)
+//     x_item.appendChild(p)
+//     h3.appendChild(h3text)
+//     p.appendChild(ptext)
+//
+//     sectionList.appendChild(x_item)
+//     //페이지 지동
+//     function ff(){
+//         location.href=`./novel/round.html?v=`+v.id;
+//     }
+//
+//
+//
+// }
 
-    
-    
-    x_item.appendChild(x_item_img)
-    x_item_img.appendChild(img)
-    x_item.appendChild(h3)
-    x_item.appendChild(p)
-    h3.appendChild(h3text)
-    p.appendChild(ptext)
-
-    sectionList.appendChild(x_item)
-    //페이지 지동
-    function ff(){
-        location.href=`./novel/round.html?v=`+v.id;
-    }
-        
 
 
-}
 
-img.slice(0,6)?.map((v)=>{
-    const sectionList  = document.querySelector('.fisrtList')
-    main_sectionList(v,sectionList);
-})  
-img.slice(1,7)?.map((v)=>{
-    const sectionList  = document.querySelector('.secondList')
-    main_sectionList(v,sectionList);
-})  
-img.slice(2,8)?.map((v)=>{
-    const sectionList  = document.querySelector('.thirdList')
-    main_sectionList(v,sectionList);
-})  
-img.slice(0,6).map((v)=>{
-    const sectionList  = document.querySelector('.fourList')
-    main_sectionList(v,sectionList);
-    
-})  
 
-//일러스트 슬라이드
-function Illustrator(){
-    const lisls = document.querySelectorAll('#fourList div.x_item')
-    const lisl = document.querySelector('.fourList')
-    const lastli = lisl.lastElementChild.cloneNode(true);
-    let M_x= document.querySelectorAll('.M_x_');
-    
-    //요소복사
-    const clone = () =>{
-        let cloneslie = lisl.cloneNode(true)
-        let moves = document.querySelector('.movemove')
-        cloneslie.classList.remove('movemove')
-        lisl.append(cloneslie)
-       
-    }
-    
-    //요소복사
-     clone();
-    
-
-}

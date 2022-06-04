@@ -1,6 +1,8 @@
 package com.team1.stelling.service;
 
 import com.team1.stelling.domain.dao.PayDAO;
+import com.team1.stelling.domain.vo.Criteria;
+import com.team1.stelling.domain.vo.Paging;
 import com.team1.stelling.domain.vo.PayDTO;
 import com.team1.stelling.domain.vo.PayVO;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +19,16 @@ public class PayService{
 
 //    public PayVO get(Long payNumber) {return payDAO.get(payNumber);}
     //결제 내역
-    public List<PayVO> getList(Long userNumber) {return payDAO.getList(userNumber);}
+    public List<PayVO> getList(Paging paging, Long userNumber) {return payDAO.getList(paging, userNumber);}
+
     //총 결제 금액
     public PayDTO getTotal(Long userNumber) {return payDAO.getTotal(userNumber);}
+
+    public List<PayVO> getPayCharge(Long userNumber) {return payDAO.getPayCharge(userNumber);}
+
+    //검색한 결과의 총 개수(페이징 처리를 위함)
+    public int getSearchTotal(Paging paging) {return payDAO.getSearchTotal(paging);}
+
 //    public void register(Long userNumber, Long payCharge, Long payCoinCount) {payDAO.register(userNumber, payCharge, payCoinCount);}
     public void register(PayVO payVO) {payDAO.register(payVO);}
 }

@@ -50,38 +50,3 @@ function test() {
     }
 }
 test();
-
-
-//내소설 소설통계 이동
-document.querySelector('#tableWrap').style.display = 'none';
-document.querySelector('.myNovel').addEventListener('click',function(){
-    clickchange1 ()
-})
-document.querySelector('.novelStatistics').addEventListener('click',function(){
-    clickchange2 ()
-})
-
-function clickchange1() {
-    document.querySelector('#tableWrap').style.display = 'none';
-    document.querySelector('.myNovelList').style.display = "block";
-}
-
-function clickchange2() {
-    document.querySelector('.myNovelList').style.display = 'none';
-    document.querySelector('#tableWrap').style.display = 'block';
-}
-//---------------------
-
-//소설 통계 상세보기
-$(".list").on("click", function () {
-    if($(this).find(".novel-detail").is(":visible")){
-        $(this).find(".novel-detail").css("display", "none")
-        $(this).find(".open").css("display", "none")
-        $(this).find(".close").css("display", "block")
-    }else{
-        $(this).find(".novel-detail").css("display", "table")
-        $(this).find(".open").css("display", "block")
-        $(this).find(".close").css("display", "none")
-    }
-});
-//------------------

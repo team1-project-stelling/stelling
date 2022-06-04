@@ -12,7 +12,7 @@
 
 <body>
 <!-- 헤더 시작 -->
-<th:block th:insert="/fix/headerWordIllust.html :: headIllustFragment"/>
+<th:block th:insert="fix/headerWordIllust.html :: headIllustFragment"/>
 
 <!--헤더 이미지-->
 <!--<div id="headerImgWrap" >-->
@@ -26,17 +26,22 @@
 
 <div class="userPage">
     <div style="display: flex;" class="userInfo">
-        <div class="firstBox">
+        <div class="firstBox" th:object="${illustProfile}">
                 <div class="profile1">
                     <div class="profilePicture">
-                        <img src="/images/프사.jpg" width="100%" height="100%"/>
+                        <img th:src="'/upload/display?fileName='+*{userFilePath}+'/'+*{userUuid}+'_'+*{userFileName}"  width="100%" height="100%"/>
                     </div>
                     <div>
-                        <div><p class="p userNick">yewon_seo</p></div>
+                        <div><p class="p userNick" th:text="*{userNickName}"></p></div>
                         <div style="display: flex;">
-                            <p class="p postInfo">게시물 <span>6</span></p>
+                            <p class="p postInfo">게시물 <span th:text="${total}"></span></p>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <p class="p postInfo">완료한 작업 <span>3</span></p>
+                            <th:block th:if="${getLikeTotal} == null">
+                                <p class="p postInfo">좋아요 <span>0</span></p>
+                            </th:block>
+                            <th:block th:unless="${getLikeTotal} == null">
+                            <p class="p postInfo">좋아요 <span th:text="${getLikeTotal}">3</span></p>
+                        </th:block>
                         </div>
 
                     </div>
@@ -49,19 +54,19 @@
             <hr class="hr">
                 <div style="width: 80%; margin: 0 auto;  " class="introduceDiv">
                     <p class="p intro">Introduce</p>
-                    <p class="p text1">끄어어어ㅓ...졸려죽겠다..🦉</p>
+                    <p class="p text1" th:text="*{illustProfileShortIntro}"></p>
                 </div>
             <hr class="hr">
             <div style="width: 80%; margin: 0 auto;" class="webSiteDiv">
                 <p class="p intro">Website</p>
                 <p class="p text1">
-                    <a href="https://www.instagram.com/yewon.seo_/" style="font-size: 13px;">www.instagram.com/yewon.seo_/</a>
+                    <a th:href="@{'https://www.' + ${illustProfile.illustProfileWebSite}}" style="font-size: 13px;" th:text="*{illustProfileWebSite}"></a>
                 </p>
             </div>
             <hr class="hr">
                 <div style="width: 80%; margin: 0 auto;" class="activeDiv">
                     <p class="p intro">주 활동영역</p>
-                    <button class="cateBtn">디즈니 감성</button>
+                    <button class="cateBtn" th:text="*{illustProfileCategory}"></button>
 <!--                    <p class="p text1">디즈니 감성</p>-->
 
                 </div>
@@ -69,14 +74,7 @@
             <div style="width: 80%; margin: 0 auto;">
                 <p class="p intro">Profile</p>
                 <p class="p intro"></p>
-                <p class="p text2">
-                    2020년 5월 TMG 의류 삽화
-                    <br>
-                    2021년 2월 소르르 Sweater 음원 삽화
-                    <br>
-                    2021년 7월 KB 손해보험 ESG 지원사업 일러스트 협업
-                    <br>
-                    2021년 8월 한국 공항 공사 일러스트 제작</p>
+                <p class="p text2" th:text="*{illustProfileDetailIntro}"></p>
             </div>
 
 
@@ -91,52 +89,44 @@
                 WorkList
             </div>
             <hr class="hr2">
-            <div class="flex2 wrap" >
-                <div class="box">
-                    <div class="column cellCss" >
-                        <img src="/images/일러스트 1.jpg" class="testWidth" />
-                        <span class="heart">❤<span style="font-size: 12px;">1,213</span></span>
 
+            <div class="flex2 wrap">
+                <div class="box">
+                    <th:block th:each="list, index:${list}">
+                    <div class="column cellCss cell1">
+                            <th:block th:if="${index.index} == 0 or ${index.index} % 3 == 0">
+                                <a th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
+                                    <img th:src="'/illust/illustImg?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                                    <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
+                                </a>
+                        </th:block>
                     </div>
-                    <div class="column cellCss">
-                        <img src="/images/illustDetail/일러스트 상세2.jpg" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;">1,043</span></span>
-                    </div>
-                    <div class="column cellCss">
-                        <img src="/images/일러스트 3.jpg" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;">987</span></span>
-                    </div>
+                    </th:block>
                 </div>
                 <div class="box">
-                    <div class="column cellCss">
-                        <img src="/images/일러스트 2.jpg" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;">1,002</span></span>
+                    <th:block th:each="list, index:${list}">
+                    <div class="column cellCss cell2">
+                            <th:block th:if="${index.index} % 3 == 1">
+                                <a th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
+                                    <img th:src="'/illust/illustImg?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                                    <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
+                                </a>
+                            </th:block>
                     </div>
-                    <div class="column cellCss">
-                        <img src="/images/illustDetail/일러스트 상세보기.jpg" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;">23</span></span>
-                    </div>
-                    <div class="column cellCss">
-                        <img src="/images/illustDetail/일러스트 상세4.jpg" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;">101</span></span>
-                    </div>
+                    </th:block>
                 </div>
                 <div class="box">
-                    <div class="column cellCss">
-                        <img src="/images/일러스트 7.jpg" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;">42</span></span>
+                    <th:block th:each="list, index:${list}">
+                    <div class="column cellCss cell3">
+                            <th:block th:if="${index.index} % 3 == 2">
+                                <a th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
+                                    <img th:src="'/illust/illustImg?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" class="testWidth" />
+                                    <span class="heart">❤<span style="font-size: 12px;" th:text="${list.illustLike}"></span></span>
+                                </a>
+                            </th:block>
                     </div>
-                    <div class="column cellCss">
-                        <img src="/images/일러스트 6.jpg" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;">1,231</span></span>
-                    </div>
-                    <div class="column cellCss">
-                        <img src="/images/일러스트 9.jpg" class="testWidth">
-                        <span class="heart">❤<span style="font-size: 12px;">22</span></span>
-                    </div>
+                    </th:block>
                 </div>
-
-
 
             </div>
 
@@ -155,7 +145,6 @@
         <div class="chat-top" style="position: relative">
             <p class="p">yewon_seo님 에게</p>
             <span class="x">X</span>
-
         </div>
         <div class="chat-middle">
             <div class="friend-chat">
@@ -195,7 +184,6 @@
                 </div>
             </label>
         </div>
-
     </div>
 
 
@@ -205,9 +193,16 @@
 </div>
 
 
-<th:block th:insert="/fix/footer.html :: footerFragment"/>
+<th:block th:insert="fix/footer.html :: footerFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/fix/header.js"></script>
 <script src="/assets/js/illust/illustUserPage.js"></script>
+<script src="/assets/js/illust/module.js"></script>
+<script th:inline="javascript">
+    $("button.listBtn").click(function (e) {
+        e.preventDefault();
+        location.href = "/illust/illustList";
+    })
+</script>
 </html>

@@ -16,4 +16,5 @@ public class ReplyDAO {
         log.info("reply register...." + replyVO);
         return replyMapper.insert(replyVO);
     }
+
 }

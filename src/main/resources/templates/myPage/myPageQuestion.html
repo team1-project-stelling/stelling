@@ -12,7 +12,7 @@
 </head>
 <body>
 <!-- 헤더 시작 -->
-<th:block th:insert="/fix/headerWord.html :: headFragment"/>
+<th:block th:insert="fix/headerWord.html :: headFragment"/>
 
 
 <!--헤더 이미지-->
@@ -26,23 +26,23 @@
         <div class="group">
             <div class="left_block">
                 <ul class="liWrap">
-                    <li class="li_top letf">
-                        <a class="menu" href="myPageEditProfile.html">프로필 수정</a>
+                    <li class="li_top left">
+                        <a class="menu" href="javascript:goEditProfile();">프로필 수정</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPageMyWork.html">내 작품 관리</a>
+                        <a class="menu" href="javascript:goMyWork();">내 작품 관리</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPageChangePw.html">비밀번호 변경</a>
+                        <a class="menu" href="javascript:goChangePw();">비밀번호 변경</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPageQuestion.html">내 문의 내역</a>
+                        <a class="menu" href="javascript:goQuestion();">내 문의 내역</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPageQuit.html">탈퇴 하기</a>
+                        <a class="menu" href="javascript:goQuit();">탈퇴 하기</a>
                     </li>
                     <li class="left">
-                        <a class="menu" href="myPagePayList.html">결제</a>
+                        <a class="menu" href="javascript:goPayList();">결제</a>
                     </li>
                 </ul>
             </div>
@@ -50,7 +50,7 @@
                 <div class="">
                     <div class="profile_text"><strong>내 문의내역</strong></div>
                     <div class="writingWrap">
-                        <a href="" class="writingBtn">글쓰기</a>
+                        <a class="writingBtn" href="javascript:goQuestionWrite();">글쓰기</a>
                     </div>
                     <table class="questions_table">
                         <thead>
@@ -60,18 +60,32 @@
                             <th class="th_end">답변상태</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td><a href="">쉽지 않네</a></td>
-                                <td>2022-04-30</td>
-                                <td class="td_end">진행중</td>
+                            <tr th:each="list:${list}">
+                                <td th:text="${list.inquiryNumber}"></td>
+                                <td th:text="${list.inquiryTitle}"></td>
+                                <td th:text="${#dates.format(list.inquiryDate, 'yyyy-MM-dd')}"></td>
+                                <td th:text="${list.inquiryStatus} == 0 ? 진행중 : 완료"></td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="current">
-                        <a class="question_paging" href="1">
-                            <code>1</code>
-                        </a>
+                        <!-- 페이징 -->
+                        <ul class="c_PagingList" >
+                            <!-- 이전 -->
+                            <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/myPage/myPageQuestion(page=${pageableDTO.startPage -2 }, userNumer=1)}" >&lt;&lt;</a></li>
+                            <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/myPage/myPageQuestion(page=${pageableDTO.previous}, userNumer=1)}">&lt;</a></li>
+
+
+                            <th:block th:each="num:${#numbers.sequence(pageableDTO.startPage,pageableDTO.endPage)}">
+                                <li  th:if="${pageableDTO.pageNumber== num}" th:text="${num}" class="pageActive"></li>
+                                <li th:unless="${pageableDTO.pageNumber == num}" ><a th:text="${num}" th:href="@{/myPage/myPageQuestion(page=${num - 1}, userNumer=1)}"></a></li>
+                            </th:block>
+
+                            <!-- 다음 -->
+                            <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/myPage/myPageQuestion(page=${pageableDTO.next}, userNumer=1)}">&gt;</a></li>
+                            <li th:if="${pageableDTO.hasNext}"><a th:href="@{/myPage/myPageQuestion(page=${pageableDTO.endPage})}">&gt;&gt;</a></li>
+                        </ul>
+                    <!-- 페이징 종료-->
                     </div>
                 </div>
             </div>
@@ -79,10 +93,41 @@
     </div>
 </div>
 </div>
-<th:block th:insert="/fix/footer.html :: footerFragment"/>
+<th:block th:insert="fix/footer.html :: footerFragment"/>
 </body>
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/mypage/questions.js"></script>
 <script src="/assets/js/fix/header.js"></script>
+<script th:inline="javascript">
+    const userNumber = [[${session.userNumber}]];
+    console.log("세션 유저 번호 : " + userNumber);
+
+    if(userNumber == null){
+        alert("세션이 만료되어 로그인 페이지로 이동합니다");
+        location.href = '/user/login';
+    }
+
+    function goEditProfile(){
+        location.href = "/myPage/myPageEditProfile";
+    }
+    function goMyWork(){
+        location.href = "/myPage/myPageMyWork";
+    }
+    function goChangePw(){
+        location.href = "/myPage/myPageChangePw";
+    }
+    function goQuestion(){
+        location.href = "/myPage/myPageQuestion";
+    }
+    function goQuit(){
+        location.href = "/myPage/myPageQuit";
+    }
+    function goPayList(){
+        location.href = "/myLibrary/payList";
+    }
+    function goQuestionWrite() {
+        location.href = "/inquiry/inquiryWrite";
+    }
+</script>
 </html>

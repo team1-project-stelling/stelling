@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>내서재</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css"/>
+    <link href="/assets/css/fix/footer.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/fix/header.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/myLibrary/myBook.css" rel="stylesheet" type="text/css">
+</head>
+<style>
+    #searchForm button#pickFormBtn{
+        width: 55px;
+        height: 28px;
+        border: none;
+        font-size: 14px;
+        background: #ef6e73;
+        background-size: 16px;
+        color: white;
+        cursor: pointer;
+        padding: 0;
+    }
+    div.cancelImg{margin-left: 10px;}
+    a.recentRemove{
+        width: 25px;
+        height: 25px;
+        float: right;
+    }
+    a.recentRemove img{
+        width: 25px;
+        height: 25px;
+    }
+    div.item-info{
+        width: 100%;
+    }
+</style>
+<body class="is-preload">
+<!-- 헤더 시작 -->
+<th:block th:insert="fix/headerWord.html :: headFragment"/>
+
+<!--헤더 이미지-->
+<div id="headerImgWrap" >
+    <img id="headerImg"src="/images/fix/headerImg_3.png" >
+</div>
+<!-- 헤더 종료 -->
+
+<!-- Main -->
+<div id="main">
+    <div id="categoryWrap" class="giveMaxWidth">
+        <section id="categorySection" class="giveMaxWidth">
+            <div id="categoryMenu" class="giveMaxWidth">
+                <table class="giveMaxWidth">
+                    <tbody>
+                    <tr>
+                        <td><a href="/myLibrary/myLibraryCollection/myPick" class="categoryMenuItem">찜목록</a></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ef6e73;">
+                        <td><a href="/myLibrary/myLibraryCollection/myRecentView" class="categoryMenuItem">최근 본 작품</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="totalWrap"class="giveMaxWidth">
+                <div class="totalWordWork">
+                    <img src="/images/category/fileIcon.png" alt="파일아이콘">
+                    <span th:text="|총 ${total}개 작품|"></span>
+                </div>
+            </div>
+            <div id="tagSearchWrap" class="giveMaxWidth">
+                <div class="tagInner">
+                    <button class="tagBtn" onclick="changeTagSearch()">태그검색</button>
+                    <div id="searchFormWrap">
+                        <form id="searchForm" action="/myLibrary/myLibraryCollection/myRecentView/search">
+                            <input name="keyword" type="text" placeholder="#검색할 태그를 입력하세요" maxlength="16">
+                            <button id="pickFormBtn">검색</button>
+                            <div class="cancelImg" onclick="changeTagSearch()">
+                                <img src="/images/category/cancelIcon.png" style="width: 25px;margin-top: 0.1em;margin-left: -0.8em;">
+                            </div>
+                        </form>
+                    </div>
+                    <ul id="tagSearchList">
+                        <li><a href="/myLibrary/myLibraryCollection/myRecentView">전체</a></li>
+                        <li class="pickSearch"th:classappend="${pageableDTO.keyword== '판타지'} ? 'active' : ''"><a href="판타지">판타지</a></li>
+                        <li class="pickSearch"th:classappend="${pageableDTO.keyword== '무협'} ? 'active' : ''"><a href="무협">무협</a></li>
+                        <li class="pickSearch"th:classappend="${pageableDTO.keyword== '현대'} ? 'active' : ''"><a href="현대">현대</a></li>
+                        <li class="pickSearch"th:classappend="${pageableDTO.keyword== '로맨스'} ? 'active' : ''"><a href="로맨스">로맨스</a></li>
+                        <li class="pickSearch"th:classappend="${pageableDTO.keyword== '현대판타지'} ? 'active' : ''"><a href="현대판타지">현대판타지</a></li>
+                        <li class="pickSearch"th:classappend="${pageableDTO.keyword== '라이트노벨'} ? 'active' : ''"><a href="라이트노벨">라이트노벨</a></li>
+                        <li class="pickSearch"th:classappend="${pageableDTO.keyword== '공포'} ? 'active' : ''"><a href="공포">공포</a></li>
+                        <li class="pickSearch"th:classappend="${pageableDTO.keyword== 'SF'} ? 'active' : ''"><a href="SF">SF</a></li>
+                        <li class="pickSearch"th:classappend="${pageableDTO.keyword== '스포츠'} ? 'active' : ''"><a href="스포츠">스포츠</a></li>
+                        <li class="pickSearch"th:classappend="${pageableDTO.keyword== '대체역사'} ? 'active' : ''"><a href="대체역사">대체역사</a></li>
+                        <li class="pickSearch"th:classappend="${pageableDTO.keyword== '기타'} ? 'active' : ''"><a href="기타">기타</a></li>
+                        <li class="pickSearch"th:classappend="${pageableDTO.keyword== '패러디'} ? 'active' : ''"><a href="패러디">패러디</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="my-item-list">
+                <th:block th:each="recent:${list}">
+                    <div class="my-item">
+                        <!--<span class="tag-update">UP</span>-->
+                        <div class="item-img btn-num">
+                            <picture class="">
+                                <img th:src="'/upload/display?fileName='+${recent.novelVO.novelUploadPath}+'/'+${recent.novelVO.novelFileName}" class="fade-in" alt="표지사진" style="max-width: 100%;"> <!--추후 UUID추가-->
+                            </picture>
+                        </div>
+                        <!-- //item-img -->
+                        <div class="item-info" style="margin-left: 12px;padding: 8px;">
+                            <p class="item-title" onclick="" style="font-size: 18px;margin: 0 auto; font-weight: bold; color: #434343">
+                                <span class="genre" style="color: #ef6e73" th:text="'['+${recent.novelVO.novelCategory}+']'">[판타지]</span>
+                                <span th:text="${recent.novelVO.novelTitle}">던전리셋</span>
+                            </p>
+                            <div class="item-detail1" style="display: flex; align-items: center; justify-content: flex-start; padding-top: 10px; font-size: 15px; color: #434343;">
+                                <span class="writer" th:text="${recent.userVO.userNickName}"></span>
+                            </div>
+                            <div class="item-detail2" style="display: flex; align-items: center; justify-content: flex-start; font-size: 15px; color: #434343;">
+                                <span style="border-right: 1px solid #bbb; margin-right: 5px; padding-right: 5px;" th:text="|총 편수: ${recent.novelVO.novelRoundAboutTotal}|"></span>
+                                <span th:text="|최근 등록일 : ${#calendars.format(recent.novelVO.novelUpdateDate,'yyyy-MM-dd')}|"></span>
+
+                            </div>
+                            <div class="item-button" style="margin-top: 3em;">
+                                <ul class="tag-title">
+                                    <li><a th:href="@{/novel/novelRoundList(novelNumber=${recent.novelVO.novelNumber})}" class="btn-view tag-list">보러가기</a></li>
+                                </ul>
+                            </div>
+                            <a class="recentRemove" th:href="${recent.recentViewNumber}"><img src="/images/휴지통.png"></a>
+                        </div>
+
+                    </div>
+
+                </th:block>
+            </div>
+            <!-- 페이징 시작-->
+            <div class="categoryPaging giveMaxWidth">
+                <!-- 페이징 -->
+                <ul class="c_PagingList" >
+                    <!-- 이전 -->
+                    <li th:if="${pageableDTO.hasPrev}"><a th:href="@{/myLibrary/myLibraryCollection/myRecentView/search(page=${pageableDTO.startPage -2 },keyword=${pageableDTO.keyword})}" >&lt;&lt;</a></li>
+                    <li th:if="${pageableDTO.pageNumber > 1}"><a th:href="@{/myLibrary/myLibraryCollection/myRecentView/search(page=${pageableDTO.previous},keyword=${pageableDTO.keyword})}">&lt;</a></li>
+
+
+                    <th:block th:each="num:${#numbers.sequence(pageableDTO.startPage,pageableDTO.endPage)}">
+                        <li  th:if="${pageableDTO.pageNumber== num}" th:text="${num}" class="pageActive"></li>
+                        <li th:unless="${pageableDTO.pageNumber == num}" ><a th:text="${num}" th:href="@{/myLibrary/myLibraryCollection/myRecentView/search(page=${num - 1},keyword=${pageableDTO.keyword})}"></a></li>
+                    </th:block>
+
+
+
+
+
+                    <!-- 다음 -->
+                    <li th:if="${pageableDTO.pageNumber < pageableDTO.realEnd}"><a class="novelChangePage" th:href="@{/myLibrary/myLibraryCollection/myRecentView/search(page=${pageableDTO.next},keyword=${pageableDTO.keyword})}">&gt;</a></li>
+                    <li th:if="${pageableDTO.hasNext}"><a th:href="@{/myLibrary/myLibraryCollection/myRecentView/search(page=${pageableDTO.endPage},keyword=${pageableDTO.keyword})}">&gt;&gt;</a></li>
+                </ul>
+            </div>
+            <!-- 페이징 종료-->
+        </section>
+    </div>
+</div>
+<th:block th:insert="fix/footer.html :: footerFragment"/>
+
+
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script th:inline="javascript">
+    $("li.pickSearch a").click(function (e) {
+        e.preventDefault();
+        location.href = "/myLibrary/myLibraryCollection/myRecentView/search?keyword=" + $(this).attr("href");
+    })
+
+    $("a.recentRemove").click(function (e) {
+        e.preventDefault();
+        let recentViewNumber =  $(this).attr("href");
+        $.ajax({
+            type: "DELETE",
+            url: "/myLibrary/myLibraryCollection/myRecentView/delete/" +recentViewNumber,
+            success: function(result, status, xhr){
+                alert(result);
+                location.href = '/myLibrary/myLibraryCollection/myRecentView/'
+            },
+            error: function(xhr, status, er){
+                if(error){
+                    error(er);
+                }
+            }
+        });
+    })
+</script>
+<script src="/assets/js/browser.min.js"></script>
+<script src="/assets/js/breakpoints.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/fix/header.js"></script>
+<script src="/assets/js/myLibrary/myBook.js"></script>
+
+</body>
+</html>

@@ -4,7 +4,8 @@
     .section_login{
         width: 700px;
         margin: 0 auto;
-        padding-top: 140px;
+        padding-top: 57px;
+        padding-bottom: 190px;
     }
 
     .title_login {
@@ -110,7 +111,9 @@
 .section_login{
     width: 340px;
     margin: 0 auto;
-    padding-top: 140px;
+    padding-top: 57px;
+    padding-bottom: 190px;
+
 }
 
 .formbox {

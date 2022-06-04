@@ -1,77 +1,40 @@
-function search() { 
 
-    let result= [];
-    $.ajax({
-      url : "https://api.themoviedb.org/3/movie/popular?api_key=84681a7022280cff3021d07fe9117b39&language=ko-KR",
-     
-      dataType: "json",
-      type: "get",
-      async: false,
-      success: function(data) {
-         result= data.results
-         console.log(result)
-      },
-        error: function (){alert("실패");}
-    });
-    return result;
+function getReply(novelNumber, callback , error) {
 
- }
-
-
- function ResCnt() { 
- 
-    let result= [];
-    $.ajax({
-      url : "/dummy/Res.json",
-     
-      dataType: "json",
-      type: "get",
-      async: false,
-      success: function(data) {
-         result= data
-         
-      },
-        error: function (){alert("실패");}
-    });
-    return result;
- 
- }
-
-
-
- function write() { 
- 
-   let result= [];
    $.ajax({
-     url : "/dummy/writeDummy.json",
-    
-     dataType: "json",
+     url : "/reply/getReplyLists/latest?novelNumber="+novelNumber,
      type: "get",
-     async: false,
-     success: function(data) {
-        result= data
-      
+     success: function(replyDTO) {
+        callback(replyDTO.replyVOList, replyDTO.userVOList);
+        console.log(replyDTO.replyVOList);
+
      },
        error: function (){alert("실패");}
    });
-   return result;
 
 }
-function reply() { 
- 
-   let result= [];
-   $.ajax({
-     url : "https://dummyjson.com/comments",
-    
-     dataType: "json",
-     type: "get",
-     async: false,
-     success: function(data) {
-        result= data.comments
-      
-     },
-       error: function (){alert("실패");}
-   });
-   return result;
-
-}
+//
+// function setStringNumber(count) {
+//     if(count >= 1000 && count < 10000){ //1k
+//         return (count / 1000) + "." + Math.round(count%1000/100) + "K";
+//     }
+//     else if(count >= 10000 && count < 100000){ //10k
+//         return (count / 1000) + "." + Math.round(count%1000/100) + "K";
+//     }
+//     else if(count >= 100000 && count < 1000000){ //100k
+//         return (count / 1000) + "." + Math.round(count%1000/100) + "K";
+//     }
+//     else if(count >= 1000000 && count < 10000000){ //1M
+//         return (count / 1000000) + "." + Math.round(count%1000000/100000) + "M";
+//     }
+//     else if(count >= 10000000 && count < 100000000){ //10M
+//         return (count / 1000000) + "." + Math.round(count%1000000/100000) + "M";
+//     }
+//     else if(count >= 100000000 && count < 1000000000){ //100M
+//         return (count / 1000000) + "." + Math.round(count%1000000/100000) + "M";
+//     }
+//     else if(count >= 1000000000){ //1B
+//         return (count / 1000000000) + "B";
+//     }
+//     return count+"";
+// }

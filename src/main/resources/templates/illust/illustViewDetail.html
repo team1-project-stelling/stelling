@@ -10,7 +10,7 @@
 </head>
 <body>
 <!-- 헤더 시작 -->
-<th:block th:insert="/fix/headerWordIllust.html :: headIllustFragment"/>
+<th:block th:insert="fix/headerWordIllust.html :: headIllustFragment"/>
 
 <!--헤더 이미지-->
 <!--<div id="headerImgWrap" >
@@ -20,14 +20,14 @@
 <div style="width : 100%;   max-width:1200px ; margin:0 auto; background-color: #fafafa; padding-top: 100px; padding-bottom: 100px; margin-bottom: 100px;">
 
 
-
+<th:block th:object="${illust}">
     <!--이미지 상세보기---------------------------------------------------------------------------------- -->
     <div class="mainBox titleBox">
-        <p class="p title">relax time</p>
+        <p class="p title" th:text="*{illustTitle}">relax time</p>
         <p class="p titleInfo">
             <span style="font-style: italic">by </span>
-            <span style="font-weight: bold">yewon_seo</span> &nbsp;
-            <span style="font-size: 13px">2022년 04월 30일</span>
+            <span style="font-weight: bold" th:text="*{userVO.userNickName}">yewon_seo</span> &nbsp;
+            <span style="font-size: 13px" th:text="*{#dates.format(illustUploadDate, 'yyyy-MM-dd')}">2022년 04월 30일</span>
             <span></span>
         </p>
     </div>
@@ -36,9 +36,10 @@
 
 <!--        <img src="../../static/images/illustDetail/일러스트 상세 1.jpg" width="100%"/>-->
 
-        <img src="/images/illustDetail/일러스트 상세보기.jpg" width="100%" class="img"/>
+        <img th:src="'/illust/illustImg?fileName='+${illust.illustFilePath}+'/'+${illust.illustFileName}" width="100%" class="img"/>
 
 <!--        <img src="../../static/images/illustDetail/일러스트 상세2.jpg" width="100%"/>-->
+        <p class="p title" th:text="*{illustContent}" style="margin-top: 1em; margin-bottom: 1em;">relax time</p>
 </div>
 
 
@@ -46,12 +47,12 @@
         <div style="margin-right: 30px;">
 
             <img src="/images/icon/하트.png"  class="iconImages emptyheart img"/>
-            <span>1,230</span>
+            <span th:text="*{illustLike}" class="illustLike" style="margin-left: 10px;">1,230</span>
         </div>
         <div style="margin-right: 5px">
 
             <img src="/images/icon/눈.png" class="iconImages img"/>
-            <span>2,342</span>
+            <span th:text="*{illustViewCount}" style="margin-left: 6px;">2,342</span>
         </div>
 
     </div>
@@ -72,70 +73,49 @@
         <div class="profileBox">
             <div class="profilepic">
 
-                <img src="/images/프사.jpg" width="100%" height="100%" class="img"/>
+                <img th:src="'/upload/display?fileName='+*{userVO.userFilePath}+'/'+*{userVO.userUuid}+'_'+*{userVO.userFileName}"  width="100%" height="100%" class="img"/>
             </div>
             <div>
-            <span class="userNick">yewon_s</span>
+            <span class="userNick" th:text="*{userVO.userNickName}">yewon_s</span>
                 <p class="p" style="margin: 8px 0px;">
                     <span class="postSpan">Total Posts:</span>
-                    <span class="postSpan2">11개</span></p>
+                    <span class="postSpan2" th:text="${total}">11개</span></p>
                 <div class="tagBtns">
-                    <button class="tagBtn">#힐링</button>
-                    <button class="tagBtn">#자연</button>
-                    <button class="tagBtn">#mood</button>
-                    <button class="tagBtn">#relax</button>
+                    <button class="tagBtn" th:text="|#*{illustHashTag}|">#힐링</button>
                 </div>
 
             </div>
         </div>
             <div style="margin-right: 25px;">
-                <button class="chatBtn">PROFILE</button>
+                <button class="chatBtn" th:href="${illust.userVO.userNumber}">PROFILE</button>
                 <button class="lookBtn">LIST</button>
             </div>
         </div>
+
         <hr>
         <!--게시물 더보기란------------------------------------------------------------------------------- -->
 
-        <p class="p postText"><span class="userId2">yewon_seo</span>님의 게시물 더 보기</p>
+        <p class="p postText"><span class="userId2" th:text="*{userVO.userNickName}">yewon_seo</span>님의 게시물 더 보기</p>
 
         <div class="posts">
-        <div class="post">
-
-            <img src="/images/illustDetail/일러스트 상세 1.jpg" width="100%" height="100%"  class="img"/>
-            <div class="heart">❤ <p style="font-size: 12px;" class="p">1,213</p></div>
+            <th:block th:each=" list, index : ${list}">
+            <div class="post" th:if="${index.index} <= 2">
+                <a class="goRead" th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
+                    <img th:src="'/illust/illustImg?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" width="100%" height="100%"  class="img"/>
+                    <div class="heart">❤ <p style="font-size: 12px;" class="p" th:text="${list.illustLike}"></p></div>
+                </a>
+            </div>
+            </th:block>
         </div>
-        <div class="post">
-
-            <img src="/images/illustDetail/일러스트 상세2.jpg" width="100%" height="100%"  class="img"/>
-            <div class="heart">❤ <p style="font-size: 12px;" class="p">543</p></div>
-        </div>
-        <div class="post">
-
-            <img src="/images/illustDetail/일러스트 상세 3.jpg" width="100%" height="100%"  class="img"/>
-            <div class="heart">❤ <p style="font-size: 12px;" class="p">1,011</p></div>
-        </div>
-
-
-        </div>
-
         <div class="posts">
-
-            <div class="post">
-
-                <img src="/images/illustDetail/일러스트 상세4.jpg" width="100%" height="100%"  class="img"/>
-                <div class="heart">❤ <p style="font-size: 12px;" class="p">23</p></div>
+            <th:block th:each=" list, index : ${list}">
+            <div class="post" th:if="${index.index} > 2 and ${index.index} <= 5">
+                <a class="goRead" th:href="@{/illust/illustViewDetail(userNumber=${list.userVO.userNumber}, illustNumber=${list.illustNumber})}">
+                    <img th:src="'/illust/illustImg?fileName='+${list.illustFilePath}+'/'+${list.illustFileName}" width="100%" height="100%"  class="img"/>
+                    <div class="heart">❤ <p style="font-size: 12px;" class="p" th:text="${list.illustLike}"></p></div>
+                </a>
             </div>
-            <div class="post">
-
-                <img src="/images/illustDetail/일러스트 상세5.jpg" width="100%" height="100%"  class="img"/>
-                <div class="heart">❤ <p style="font-size: 12px;" class="p">192</p></div>
-            </div>
-            <div class="post">
-
-                <img src="/images/illustDetail/일러스트 상세6.jpg" width="100%" height="100%"  class="img"/>
-                <div class="heart">❤ <p style="font-size: 12px;" class="p">0</p></div>
-            </div>
-
+            </th:block>
         </div>
 
     </div>
@@ -148,24 +128,62 @@
         </div>
     </div>
 
-
+</th:block>
 
 
 
 </div>
-<th:block th:insert="/fix/footer.html :: footerFragment"/>
+<th:block th:insert="fix/footer.html :: footerFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+<script th:inline="javascript">
+
+    let illustNumber = [[${illustNumber}]]
+
+    function illustLike(numbers, callback, error){
+        $.ajax({
+            type: "GET",
+            url: "/illust/"+numbers.illustNumber+"/"+ numbers.num,
+            success: function(result){
+                if(callback){
+                    callback(result);
+                }
+            },
+            error: function(xhr, status, er){
+                if(error){
+                }
+            }
+
+        });
+    }
+
     $emptyHeart = $('.emptyheart');
     $emptyHeart.on("click", function () {
-        if($emptyHeart.attr("src")=="/images/icon/하트.png"){
 
+        if($emptyHeart.attr("src")=="/images/icon/하트.png"){
             $emptyHeart.attr("src","/images/icon/색칠 된 하트.png");
+            illustLike({"illustNumber":illustNumber, "num":1}, function (likeCount) {
+                $('.illustLike').html(likeCount);
+            })
+
         }else{
             $emptyHeart.attr("src","/images/icon/하트.png");
+            illustLike({"illustNumber":illustNumber, "num":-1}, function (likeCount) {
+                $('.illustLike').html(likeCount);
+            })
         }
     });
+</script>
+<script th:inline="javascript">
+    $("button.lookBtn").click(function (e) {
+        e.preventDefault();
+        location.href = "/illust/illustList";
+    })
+
+    $("button.chatBtn").click(function (e) {
+        e.preventDefault();
+        location.href = "/illust/illustUserPage?userNumber=" + $(this).attr("href");
+    })
 </script>
 <script src="/assets/js/fix/header.js"></script>
 </html>

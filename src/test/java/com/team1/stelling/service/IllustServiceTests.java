@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
-
 
 @SpringBootTest
 @Slf4j
@@ -41,15 +39,15 @@ public class IllustServiceTests {
 
         illustService.register(illustVO);
     }*/
-
-    @Test
-    public void modifyTest(){
-        IllustVO illustVO = illustService.get(2L);
-        illustVO.updateIllustContent("내용수정테스트");
-        illustVO.updateIllustLike();
-        illustVO.updateIllustViewCount();
-        illustVO.updateIllustTitle("제목수정테스트");
-        illustService.modify(illustVO);
-    }
+//
+//    @Test
+//    public void modifyTest(){
+//        IllustVO illustVO = illustService.get(2L);
+//        illustVO.updateIllustContent("내용수정테스트");
+//        illustVO.updateIllustLike();
+//        illustVO.updateIllustViewCount();
+//        illustVO.updateIllustTitle("제목수정테스트");
+//        illustService.modify(illustVO);
+//    }
 
 }

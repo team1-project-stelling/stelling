@@ -1,4 +1,6 @@
+
 textareaauto();
+
 
 function textareaauto() {
     $('textarea').each(function () {
@@ -9,15 +11,15 @@ function textareaauto() {
     });
 }
 
+//소설 텍스트 커스텀마이징
 $('.colorDiv').on("click", function () {
-    console.log($(this));
-    console.log($(this).hasClass());
     if ($(this).hasClass('cd1')) {
         $('body').css('background-color', 'white');
         $('.novelContent').css('background-color', 'white');
         $('.whiteLine').css('background-color', 'white');
         $('.ments').css('color', 'black');
         $('.writerMent').css('color', 'black');
+
     } else if ($(this).hasClass('cd2')) {
         $('body').css('background-color', 'wheat');
         $('.novelContent').css('background-color', 'wheat');
@@ -48,9 +50,6 @@ $('.colorDiv').on("click", function () {
         $('.ments').css('color', 'rgb(61,61,61)');
         $('.writerMent').css('color', 'rgb(61,61,61)');
     }
-
-
-
 });
 
 let count = 0;
@@ -58,18 +57,14 @@ let count2 = 0;
 let fontSize = parseInt($('.novelContent').css('font-size').replace('px', ''));
 let lineHeight = parseInt($('.novelContent').css('line-height').replace('px', ''));
 
+/*폰트 크기 조절*/
 $('.pmIcon').on("click", function () {
-
-    console.log(fontSize);
-
     if ($(this).hasClass('p')) {
-
         fontSize += 1;
         $('.novelContent').css('font-size', fontSize);
         count += 1;
         $('.count1').html(count);
     } else if ($(this).hasClass('m')) {
-
         fontSize -= 1;
         $('.novelContent').css('font-size', fontSize);
         count -= 1;
@@ -78,8 +73,8 @@ $('.pmIcon').on("click", function () {
 
 });
 
+/*줄간격 조절*/
 $('.line').on("click", function () {
-    console.log(lineHeight)
     if ($(this).hasClass('p')) {
         lineHeight += 1;
         $('.novelContent').css('line-height', lineHeight + 'px');
@@ -91,13 +86,11 @@ $('.line').on("click", function () {
         count2 -= 1;
         $('.count2').html(count2);
     }
-
 })
 
-
+/*글꼴선택*/
 function selectFunction() {
     let selected = $('.fontSelect option:selected').val();
-
     if (selected == 'alice') {
         $('.novelContent').css('font-family', 'Elice Digital Baeum');
     } else if (selected == 'dobbie') {
@@ -105,10 +98,9 @@ function selectFunction() {
     } else if (selected == 'noto') {
         $('.novelContent').css('font-family', 'Noto Sans KR');
     }
-
 }
 
-
+/*텍스트 모달*/
 $('.textimg').on("click", function () {
     if ($('.textModal').css('display') == 'none') {
         $('.textModal').css('display', 'block');
@@ -117,17 +109,9 @@ $('.textimg').on("click", function () {
     }
 })
 
-$('.listIcon').on("click", function () {
-    console.log($('.sidebar').css('right'));
-    // $('.sidebar').animate({width:'toggle'});
 
-})
-
-
+/*목록 사이드바*/
 $(".listIcon").click(function () {
-
-    // $(this).toggleClass("div-close");
-
     if ($(this).hasClass('open')) {
         $(".slide-div").animate({right: "-400px"}, 500);
         $(this).removeClass('open');
@@ -139,24 +123,29 @@ $(".listIcon").click(function () {
 
 $('.topheart').on("click", function () {
     if ($(this).attr('src') == '/images/icon/소설하트.png') {
-        $(this).attr('src', '/images/icon/소설하트full.png');
+        $('.topheart').attr('src', '/images/icon/소설하트full.png');
+        subNovelLikeCount({"subNovelNumber":subNovelNumber, "num":1}, function (likeCount) {
+            $('.showLikeNum').html(likeCount);
+        })
     } else {
-        $(this).attr('src', '/images/icon/소설하트.png');
+        subNovelLikeCount({"subNovelNumber":subNovelNumber, "num":-1}, function (likeCount) {
+            $('.showLikeNum').html(likeCount);
+            $('.topheart').attr('src', "/images/icon/소설하트.png");
+        })
     }
 })
 
 $('.topbell').on("click", function () {
-    if ($(this).attr('src') == '/images/icon/종알림.png') {
-        $(this).attr('src', '/images/icon/종알림full.png');
+    if ($(this).attr('src') == '/images/icon/후원코인.png') {
+        $(this).attr('src', '/images/icon/후원코인full.png');
     } else {
-        $(this).attr('src', '/images/icon/종알림.png');
+        $(this).attr('src', '/images/icon/후원코인.png');
     }
 })
 
 
-
+/*댓글 아이콘 클릭시 댓글 쪽으로 스크롤 내리기*/
 $('.mentIcon').on('click', function () {
-    // console.log($('.ments').scrollHeight);
     var location = document.querySelector(".ments").offsetTop;
     window.scrollTo({top:location, behavior:'smooth'});
 })
@@ -165,9 +154,8 @@ $('.switch_label').select(function () {
     $('.ments').css('display', 'none');
 })
 
-
+/*댓글 숨기기*/
 $('#switch').on('click', function () {
-    console.log($('#switch:checked').css('background'));
     if($('#switch:checked').css('background')!=undefined){
         $('.ments').css('display', 'none');
         $('.writerMent').css('margin-bottom', '225px');
@@ -180,38 +168,89 @@ $('#switch').on('click', function () {
 });
 
 
-$('.pink').on("click", function () {
-    $('.pink').attr('src', '/images/icon/체크핑크.png');
-    $('.gray').attr('src', '/images/icon/체크그레이.png');
+
+
+/*소설 회차 좋아요기능*/
+function subNovelLikeCount(numbers, callback, error){
+    $.ajax({
+        type: "GET",
+        url: "/novelDetail/"+numbers.subNovelNumber+"/"+ numbers.num,
+        success: function(result){
+            if(callback){
+                callback(result);
+            }
+        },
+        error: function(xhr, status, er){
+            if(error){
+            }
+        }
+
+    });
+}
+
+
+/*후원 버튼 모달*/
+$('.coin').on("click", function () {
+    $('.modal_background').css('display', 'block');
 })
 
-$('.gray').on("click", function () {
-    $('.pink').attr('src', '/images/icon/체크그레이.png');
-    $('.gray').attr('src', '/images/icon/체크핑크.png');
+$(document).mouseup(function (e){
+    $('.coin').attr('src', '/images/icon/후원코인.png');
+    let container = $('.modal_background');
+    let container2 = $('.modal_background2');
+    let container3 = $('.modal_background3');
 
-})
-
-
-
-$('.mentBtns1').on("click", function () {
-    console.log($(this).children('img').attr('src'));
-
-
-    if($(this).children('img').attr('src')=='/images/icon/좋아요full.png'){
-        let $number = parseInt($(this).children('span').html());
-        $(this).css('border-color','#cbcbcb');
-        $(this).css('color','#cbcbcb');
-        $(this).children('img').attr('src', '/images/icon/좋아요.png');
-        $(this).children('span').html($number -1);
-
-    }else {
-
-        let $number = parseInt($(this).children('span').html());
-        $(this).css('border-color', '#5A94FF');
-        $(this).css('color', '#5A94FF');
-        $(this).children('img').attr('src', '/images/icon/좋아요full.png');
-        $(this).children('span').html($number + 1);
-
+    if( container.has(e.target).length === 0){
+        container.css('display','none');
+    }
+    if( container2.has(e.target).length === 0){
+        container2.css('display','none');
+    }
+    if( container3.has(e.target).length === 0){
+        container3.css('display','none');
     }
 });
 
+$('.x').on("click",function () {
+    $('.modal_background2').css("display", 'none');
+})
+$('.x2').on("click",function () {
+    $('.modal_background3').css("display", 'none');
+})
+
+//후원하기 버튼 눌렀을 때
+$('.coinEnter').on("click", function () {
+    $('.modal_background').css('display', 'none');
+
+    let coin = $('input[name="coinAmount"]').val();
+    supporting(novelNumber, subNovelNumber, userNumber, coin,function (result) {
+        if(result.status=='fail'){
+            $('.modal_background2').css('display', 'block');
+            $('.balance').html("현재 잔액:"+result.balance+"코인");
+            $('input[name="coinAmount"]').val("");
+
+        }else if(result.status=='success'){
+            $('.modal_background3').css('display', 'block');
+            $('.balance2').html("현재 잔액:"+result.balance+"코인");
+            $('.currentCoin').html("현재코인: "+result.balance+"코인");
+            $('input[name="coinAmount"]').val("");
+
+        }
+    });
+});
+
+function supporting(novelNumber, subNovelNumber, userNumber, coin, callback) {
+    $.ajax({
+        type:"get",
+        url:"/novelDetail/supporting?novelNumber="+novelNumber+"&SubNovelNumber="+subNovelNumber+"&userNumber="+userNumber+"&coin="+coin,
+        dataType:"json",
+        success:function (result) {
+            if(callback){
+                callback(result);
+            }
+        },
+        error:function (error) {
+            console.log(error);
+        }
+    });
+}

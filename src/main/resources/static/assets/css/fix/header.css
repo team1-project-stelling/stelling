@@ -152,6 +152,18 @@ div.eventMenu div.menuArea{
     top: 3px;
     right: 0px;
     width: 22px;
+    height: 22px;
+}
+.nav_searchForm_btn button#searchNavFormBtn{
+    background: url( "/images/fix/search_big.png" ) no-repeat;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    position: relative;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+
 }
 div.profileWrap{
     width: 88%;
@@ -234,8 +246,8 @@ ul.menu_illust_list,ul.menu_my_list,ul.menu_word_list{
     font-size: 14px;
     gap: 20px;
 }
-ul.menu_illust_list li a,ul.menu_my_list li a,ul.menu_word_list li a{    text-decoration: none;}
-ul.menu_illust_list li a:visited,ul.menu_my_list li a:visited,ul.menu_word_list li a:visited,.menu_com a:visited{    color: #434343; }
+ul.menu_illust_list li a,ul.menu_my_list li a,ul.menu_word_list li a,#welcomeMenu a{    text-decoration: none;}
+ul.menu_illust_list li a:visited,ul.menu_my_list li a:visited,ul.menu_word_list li a:visited,.menu_com a:visited,#welcomeMenu div a:visited{    color: #434343; }
 div.eventMenu img.menu_icon{
     width: 23px;
     height: 23px;}
@@ -263,6 +275,23 @@ img#headerImg{
 }
 div.mobile_header{display: none;}
 
+#welcomeMenu{
+    padding: 15px 20px;
+}
+#welcomeMenu div{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+#welcomeMenu div img {
+    width: 23px;
+    height: 23px;
+}
+#welcomeMenu div:first-child {
+    margin-bottom: 15px;
+}
+
+.menu_my_list li a, a.menu_logout {color: #434343; }
 
 /* 반응형*/
 

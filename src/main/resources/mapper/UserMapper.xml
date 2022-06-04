@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team1.stelling.mapper.UserMapper">
+    <select id="login" parameterType="map" resultType="_long">
+      SELECT USER_NUMBER FROM TBL_USER WHERE USER_ID=#{userId} AND USER_PW =#{userPw}
+   </select>
+    <select id="idCheck" resultType="_int">
+		SELECT COUNT(USER_ID) FROM TBL_USER WHERE USER_ID=#{userId}
+	</select>
+    <select id="emailCheck" resultType="_int">
+		SELECT COUNT(USER_EMAIL) FROM TBL_USER WHERE USER_EMAIL=#{userEmail}
+	</select>
+    <select id="getSearchId" resultType="String">
+		SELECT USER_ID FROM TBL_USER
+        WHERE USER_NICKNAME = #{userNick} AND USER_PHONENUM = #{phoneNum}
+	</select>
+    <select id="getSearchPw" resultType="String">
+		SELECT USER_PW FROM TBL_USER
+        WHERE USER_ID = #{userId} AND USER_EMAIL = #{userEmail}
+	</select>
+    <select id="findPw" resultType="String">
+		SELECT USER_PW FROM TBL_USER
+        WHERE USER_ID = #{userId} AND USER_EMAIL = #{userEmail}
+	</select>
+    <select id="findUserId" resultType="UserVO">
+		SELECT USER_PW FROM TBL_USER
+        WHERE USER_ID = #{userId}
+	</select>
+    <select id="findByUserId" resultType="UserVO">
+        SELECT USER_NUMBER, USER_ID,USER_PW ,USER_NICKNAME,USER_EMAIL,USER_GENDER,USER_PHONENUM,USER_STATUS,USER_COINBALANCE,USER_ACCESSTOKEN,USER_FILEPATH,USER_UUID,USER_FILENAME FROM TBL_USER
+        WHERE USER_ID = #{userId}
+    </select>
+
+    <select id="findByUserNumber" resultType="UserVO">
+        SELECT USER_NUMBER, USER_NICKNAME, USER_EMAIL, USER_PHONENUM
+        FROM TBL_USER
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+
+    <select id="findUserEmail" resultType="_int">
+        SELECT COUNT(USER_EMAIL) FROM TBL_USER
+        WHERE USER_EMAIL = #{userEmail}
+    </select>
+
+    <select id="findUserNumberByEmail" resultType="long">
+        SELECT USER_NUMBER FROM TBL_USER
+        WHERE USER_EMAIL = #{userEmail}
+    </select>
+
+
+</mapper>

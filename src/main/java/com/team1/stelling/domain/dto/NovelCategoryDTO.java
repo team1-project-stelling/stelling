@@ -3,16 +3,19 @@ package com.team1.stelling.domain.dto;
 import com.team1.stelling.domain.vo.UserVO;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.Objects;
-
+@Component
 @Getter
 
 public class NovelCategoryDTO {
+    private Long novelNumber; // 소설 번호
     private UserVO userVO;
     private String novelTitle;  // 소설제목
     private String[] novelHashtag; /*예) #로맨스 #메카물 #마법사*/
+    private Date novelUploadDate; // 등록 시간
     private Date novelUpdateDate; // 수정 시간
     private int novelStatus;  /*작품 상태 0휴재, 1연재, 2완결, 3 숨김*/
     private int novelSerialsStatus; /*정기연재 OR 자유연재 상태*/
@@ -31,13 +34,15 @@ public class NovelCategoryDTO {
 
     public void setNovelHashtag(String novelHashtag) {
         if(!Objects.isNull(novelHashtag)){
-            this.novelHashtag = novelHashtag.split(",");
+            this.novelHashtag = novelHashtag.split(" ");
         }else {
             this.novelHashtag =null;
         }
     }
 
     public void setNovelUpdateDate(Date novelUpdateDate) { this.novelUpdateDate = novelUpdateDate; }
+
+    public void setNovelUploadDate(Date novelUploadDate) { this.novelUploadDate = novelUploadDate; }
 
     public void setNovelStatus(int novelStatus) { this.novelStatus = novelStatus; }
 
@@ -56,6 +61,8 @@ public class NovelCategoryDTO {
     public void setNovelLikeCountTotal(int novelLikeCountTotal) { this.novelLikeCountTotal = setStringNumber(novelLikeCountTotal); }
 
     public void setNovelViewCountTotal(int novelViewCountTotal) { this.novelViewCountTotal = setStringNumber(novelViewCountTotal); }
+
+    public void setNovelNumber(Long novelNumber) { this.novelNumber = novelNumber;}
 
     public static String setStringNumber(int count) {
         if(count >= 1000 && count < 10000){ //1k

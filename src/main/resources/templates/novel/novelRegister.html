@@ -10,7 +10,7 @@
 
 <body>
 <!-- 헤더 시작 -->
-<th:block th:insert="/fix/headerWord.html :: headFragment"/>
+<th:block th:insert="fix/headerWord.html :: headFragment"/>
 
 <!--헤더 이미지-->
 <div id="headerImgWrap" >
@@ -62,9 +62,6 @@
                     <li class="optionItem">서스펜스</li>
                 </ul>
             </div>
-       <!-- <select name="" id="" class="categorySelect">
-            <option value="">카테고리</option>
-        </select>-->
         </div>
 
         <div class="subBox">작품의 장르가 어떤 장르인지 선택하는 메뉴입니다.</div>
@@ -80,20 +77,19 @@
         <div class="form-group">
             <input type="text" id="tag"  placeholder="엔터로 해시태그를 등록해주세요." class="tagInput"/>
         </div>
-<!--        <input type="text" placeholder="작품에 세부태그를 달아주세요" class="tagInput">-->
     </div>
     <div class="box">
         <div class="flex" style="align-items: center;">
             <div>
         <p style="margin-bottom: 0px;">*작품 명</p>
             </div>
-            <input type="text" class="titleInput" name="novelTitle">
+            <input type="text" class="titleInput"  >
         </div>
     </div>
     <div class="box">
         <div class="flex">
             <div style="margin-right: 1.8px; width: 112px;">
-        <p class="p">작품 소개</p>
+        <p class="p">*작품 소개</p>
             <p clas="p" style="font-size: 13px; color: gray;font-weight: 400;margin-top: 2px;">(줄거리)</p>
             </div>
             <textarea name="novelIntro" id=""class="textarea"></textarea>
@@ -118,7 +114,7 @@
                     <div class="uploadImg">
                         <div class="filebox">
                             <label for="file">업로드</label>
-                            <input type="file" id="file" onchange="setThumbnail(event)" class="thum">
+                            <input type="file" id="file" onchange="setThumbnail(event)" class="thum" multiple>
 
                             <input class="upload-name" >
                         </div>
@@ -151,11 +147,11 @@
         <input type="hidden" name="novelFriDay" value="0">
         <input type="hidden" name="novelSaturDay" value="0">
         <input type="hidden" name="novelSunDay" value="0">
+
         <input type="hidden" name="novelFileName">
         <input type="hidden" name="novelUploadPath">
         <input type="hidden" name="novelUUID">
-
-
+        <input type="hidden" name="novelTitle">
 
 
 
@@ -170,9 +166,20 @@
 
 
 
-<th:block th:insert="/fix/footer.html :: footerFragment"/>
+<th:block th:insert="fix/footer.html :: footerFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/assets/js/fix/header.js"></script>
+<script th:inline="javascript">
+    let userNumber = [[${session.userNumber}]];
+    console.log('test'+userNumber)
+    loginCk()
+    function loginCk() {
+        if(!userNumber){
+            alert('로그인후 이용 가능한 서비스 입니다.')
+            location.href = '/user/login/';
+        }
+    }
+</script>
 <script src="/assets/js/novel/novelRegister.js"></script>
 </html>

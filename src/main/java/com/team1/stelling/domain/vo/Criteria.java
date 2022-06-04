@@ -1,10 +1,15 @@
 package com.team1.stelling.domain.vo;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Component
 @Data
@@ -14,17 +19,20 @@ public class Criteria { /*Criteria : 검색의 기준*/
     @NonNull private int pageNum;
     @NonNull private int amount;
     private String type;
-    private String keyword;
+    private String startDate;
+    private String endDate;
 
     //    롬복을 통해 생성된 초기화 생성자를 기본 생성자에서 기본 값을 설정한 뒤 호출해준다.
-    public Criteria() {this(1, 10);}
+    public Criteria() {
+        this(1, 10);}
 
-    public Criteria(@NonNull int pageNum, @NonNull int amount, String type, String keyword) {
-        this.pageNum = pageNum;
-        this.amount = amount;
-        this.type = type;
-        this.keyword = keyword;
-    }
+//    public Criteria(@NonNull int pageNum, @NonNull int amount, String type, String keyword) {
+//        this.pageNum = pageNum;
+//        this.amount = amount;
+//
+//        this.type = type;
+//        this.keyword = keyword;
+//    }
 
     //    "경로1/경로2?KEY=VALUE&KEY=VALUE"
 //    위와 같이 여러 개의 파라미터를 GET방식으로 전달할 때 사용되는 문법을 쿼리 스트링이라고 한다.
@@ -36,9 +44,7 @@ public class Criteria { /*Criteria : 검색의 기준*/
     public String getListLink(){
         UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
                 .queryParam("pageNum", this.pageNum)
-                .queryParam("amount", this.amount)
-                .queryParam("type", this.type)
-                .queryParam("keyword", this.keyword);
+                .queryParam("amount", this.amount);
         return builder.toUriString();
     }
 
