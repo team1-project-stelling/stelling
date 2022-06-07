@@ -189,16 +189,13 @@ function subNovelLikeCount(numbers, callback, error){
 }
 
 
-/*후원 버튼 모달*/
-$('.coin').on("click", function () {
-    $('.modal_background').css('display', 'block');
-})
 
 $(document).mouseup(function (e){
     $('.coin').attr('src', '/images/icon/후원코인.png');
     let container = $('.modal_background');
     let container2 = $('.modal_background2');
     let container3 = $('.modal_background3');
+    let container4 = $('.modal_background4');
 
     if( container.has(e.target).length === 0){
         container.css('display','none');
@@ -209,6 +206,9 @@ $(document).mouseup(function (e){
     if( container3.has(e.target).length === 0){
         container3.css('display','none');
     }
+    if( container4.has(e.target).length === 0){
+        container4.css('display','none');
+    }
 });
 
 $('.x').on("click",function () {
@@ -217,13 +217,19 @@ $('.x').on("click",function () {
 $('.x2').on("click",function () {
     $('.modal_background3').css("display", 'none');
 })
+$('.x3').on("click",function () {
+    $('.modal_background4').css("display", 'none');
+})
+$('.cancleBtn2').on("click",function () {
+    $('.modal_background4').css("display", 'none');
+})
 
 //후원하기 버튼 눌렀을 때
 $('.coinEnter').on("click", function () {
     $('.modal_background').css('display', 'none');
 
     let coin = $('input[name="coinAmount"]').val();
-    supporting(novelNumber, subNovelNumber, userNumber, coin,function (result) {
+    supporting(novelNumber, subNovelNumber, coin,function (result) {
         if(result.status=='fail'){
             $('.modal_background2').css('display', 'block');
             $('.balance').html("현재 잔액:"+result.balance+"코인");
@@ -239,10 +245,10 @@ $('.coinEnter').on("click", function () {
     });
 });
 
-function supporting(novelNumber, subNovelNumber, userNumber, coin, callback) {
+function supporting(novelNumber, subNovelNumber, coin, callback) {
     $.ajax({
         type:"get",
-        url:"/novelDetail/supporting?novelNumber="+novelNumber+"&SubNovelNumber="+subNovelNumber+"&userNumber="+userNumber+"&coin="+coin,
+        url:"/novelDetail/supporting?novelNumber="+novelNumber+"&SubNovelNumber="+subNovelNumber+"&coin="+coin,
         dataType:"json",
         success:function (result) {
             if(callback){
@@ -254,3 +260,19 @@ function supporting(novelNumber, subNovelNumber, userNumber, coin, callback) {
         }
     });
 }
+
+//로그인모달창
+function writeContent() {
+    if(userNumber==null){
+        $('.modal_background4').css('display', 'block');
+    }
+
+}
+/*후원 버튼 모달*/
+$('.coin').on("click", function () {
+    if(userNumber==null){
+        $('.modal_background4').css('display', 'block');
+    }else {
+        $('.modal_background').css('display', 'block');
+    }
+});

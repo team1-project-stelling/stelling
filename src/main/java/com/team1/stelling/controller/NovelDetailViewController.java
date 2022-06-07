@@ -33,7 +33,7 @@ public class NovelDetailViewController {
 
 
     /*소설 회차 좋아요*/
-    @GetMapping("/{subNovelNumber}/{num}")
+    @GetMapping("{subNovelNumber}/{num}")
     public int subNovelLikeCounting(@PathVariable("subNovelNumber")Long subNovelNumber, @PathVariable("num") int num){
        SubNovelVO subNovelVO = subNovelService.get(subNovelNumber);
        subNovelVO.updateSubNovelLickCount(num);
@@ -42,7 +42,7 @@ public class NovelDetailViewController {
     }
 
     /*댓글 신고*/
-    @GetMapping("/siren")
+    @GetMapping("siren")
     public String report(Long replyNumber){
         ReplyVO replyVO= replyService.get(replyNumber);
         replyVO.updatereplyReport();
@@ -51,20 +51,19 @@ public class NovelDetailViewController {
     }
 
     /*후원하기*/
-    @GetMapping("/supporting")
-    public HashMap<String, Object> supporting(Long novelNumber, Long SubNovelNumber, Long userNumber,int coin, HttpServletRequest request){
+    @GetMapping("supporting")
+    public HashMap<String, Object> supporting(Long novelNumber, Long SubNovelNumber,int coin, HttpServletRequest request){
         HashMap<String, Object> status = new HashMap<>();
-        UserVO userVO = userService.get(userNumber);
-        int userCoinBalance=userVO.getUserCoinBalance();
         HttpSession session = request.getSession();
+        Long userNumber=(Long)session.getAttribute("userNumber");
+        UserVO userVO = userService.get(userNumber);
+        SupportVO supportVO = new SupportVO();
 
-
-
-        if(userCoinBalance >= coin){
-            userVO.setUserCoinBalance(userCoinBalance-coin);
+        if(userVO.getUserCoinBalance() >= coin){
+            userVO.setUserCoinBalance(userVO.getUserCoinBalance()-coin);
             userService.register(userVO);
 
-            SupportVO supportVO = new SupportVO();
+
             supportVO.setNovelNumber(novelNumber);
             supportVO.setSubNovelNumber(SubNovelNumber);
             supportVO.setSupportCoin(coin);
@@ -73,6 +72,7 @@ public class NovelDetailViewController {
 
             UserVO receiver= userService.get(novelService.get(novelNumber).getUserVO().getUserNumber());
             receiver.setUserCoinBalance(receiver.getUserCoinBalance()+coin);
+            userService.register(receiver);
 
             status.put("balance",userService.get(userNumber).getUserCoinBalance());
             status.put("status", "success");

@@ -1,6 +1,7 @@
 package com.team1.stelling.domain.vo;
 
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,9 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class ReplyVO {
+
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name="REPLY_NUMBER")
@@ -63,7 +66,7 @@ public class ReplyVO {
 
    @Builder
    public ReplyVO(Long replyNumber, UserVO userVO, NovelVO novelVO, SubNovelVO subNovelVO, String replyContent, String replyUploadDate, String replyUpdateDate, int replyUp, int replyReport) {
-      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
       this.replyNumber = replyNumber;
       this.userVO = userVO;
       this.novelVO = novelVO;

@@ -4,8 +4,8 @@
 
     <!--등록-->
     <insert id="insert">
-        INSERT INTO TBL_BUYCHAPTER (BUYCHAPTER_NUMBER, NOVEL_NUMBER, SUBNOVEL_NUMBER, USER_NUMBER, BUYCHAPTER_COIN)
-        VALUES(BUYCHAPTER_SEQ.NEXTVAL, #{novelNumber}, #{subNovelNumber}, #{userNumber}, #{buyChapterCoin})
+        INSERT INTO TBL_BUYCHAPTER (NOVEL_NUMBER, SUBNOVEL_NUMBER, USER_NUMBER, BUYCHAPTER_COIN)
+        VALUES(#{novelNumber}, #{subNovelNumber}, #{userNumber}, #{buyChapterCoin})
     </insert>
 
     <!--삭제-->
