@@ -1,7 +1,3 @@
-
-let href;
-let subNovelNum;
-
 function ModalHandler(){
     document.body.classList.add('preventscroll');
     document.querySelector('.Sponmodalwrap').style.display='block'
@@ -57,9 +53,7 @@ $('div.modify>img.modifyIcon').on("click",function () {
     location.href="novelModify?subNovelNumber="+subnovelNumber+"&novelNumber="+novelNumber;
 })
 
-$(document).ready(function () {
-    $('.watchCnt>h3').html(setStringNumber(viewCount)+"명");
-})
+
 
 function setStringNumber(count) {
     if(count >= 1000 && count < 10000){ //1k
@@ -87,7 +81,10 @@ function setStringNumber(count) {
 }
 
 
-
+$('.goToReply').on("click", function () {
+        let location = document.querySelector(".ReplyToTal").offsetTop;
+        window.scrollTo({top:location, behavior:'smooth'});
+})
 
 
 //삭제버튼(체크박스)눌렀을때 클래스 부여
@@ -136,7 +133,6 @@ $('.myPick').on("click", function () {
         url:"/novel/myPick?num="+novelHeart+"&novelNumber="+novelNumber+"&userNumber="+userNumber,
         type:"get",
         success:function (result) {
-            console.log(result);
         },
         error:function (error) {
             alert("찜하기 실패");
@@ -148,9 +144,13 @@ $('.myPick').on("click", function () {
 
 $('.Noveltt').on("click", function () {
     if($(this).hasClass("locked")){
+
     }
 })
 
+
+let href;
+let subNovelNum;
 
 /*소설회차 잠금 모달*/
 $('.lockRow').on("click", function (e) {
@@ -165,6 +165,7 @@ $(document).mouseup(function (e){
     let container = $('.modal_background');
     let container2 = $('.modal_background2');
     let container3 = $('.modal_background3');
+    let container4 = $('.modal_background4');
     if( container.has(e.target).length === 0){
         container.css('display','none');
     }
@@ -174,6 +175,10 @@ $(document).mouseup(function (e){
     }
     if(container3.has(e.target).length === 0){
         container3.css('display','none');
+        // location.href=href;
+    }
+    if(container4.has(e.target).length === 0){
+        container4.css('display','none');
         // location.href=href;
     }
 });
@@ -186,40 +191,40 @@ $('.coinBtn2').on("click", function () {
 //후원 코인 결제 눌렀을 때
 $('.coinBtn1').on("click", function () {
     $('.modal_background').css('display', 'none');
+    if(userNumber !=null){
+        checkBalanceAndBuy(novelNumber, subNovelNum,function (result) {
+            if(result.msg=='fail'){
+                $('.modal_background3').css('display', 'block');
+                $('.balance2').html("현재 잔액:"+result.balance+"코인");
 
-    checkBalanceAndBuy(novelNumber, subNovelNum, userNumber,function (result) {
-        if(result.msg=='fail'){
-            console.log("실패");
-            $('.modal_background3').css('display', 'block');
-            $('.balance2').html("현재 잔액:"+result.balance+"코인");
+            }else if(result.msg=='success'){
+                $('.modal_background2').css('display', 'block');
+                $('.balance').html("현재 잔액:"+result.balance+"코인");
+            }
+        })
+    }else{
+        $('.modal_background4').css("display",'block');
+    }
 
-        }else if(result.msg=='success'){
-            console.log('성공');
-            $('.modal_background2').css('display', 'block');
-            $('.balance').html("현재 잔액:"+result.balance+"코인");
-        }
-    })
+
 
 });
 
-function checkBalanceAndBuy(novelNumber, subNovelNum, userNumber, callback){
+function checkBalanceAndBuy(novelNumber, subNovelNum, callback){
     $.ajax({
         type:"get",
-        url:"/buyChapter/checkBalanceAndBuy?novelNumber="+novelNumber+"&subNovelNumber="+subNovelNum+"&userNumber="+userNumber+"",
+        url:"/buyChapter/checkBalanceAndBuy?novelNumber="+novelNumber+"&subNovelNumber="+subNovelNum,
         dataType:"json",
         success:function (result) {
-          if(callback){
-              callback(result);
-          }
-
+            if(callback){
+                callback(result);
+            }
         },
         error:function (error) {
             console.log(error);
         }
     });
 }
-
-
 
 
 //결제 완료모달창 닫기
@@ -235,11 +240,11 @@ $('.x').on("click", function () {
 $('.cashCancle').on("click",function () {
     $('.modal_background3').css('display', 'none');
 })
+//로그인 모달창 닫기
+$('.x2').on("click", function () {
+    $('.modal_background4').css('display', 'none');
+});
+$('.cancleBtn2').on("click",function () {
+    $('.modal_background4').css('display', 'none');
+})
 
-
-function checkUserNum() {
- if(userNumber==null){
-     alert("로그인 후 이용가능한 서비스입니다.");
-     location.href="/user/login";
- }
-}

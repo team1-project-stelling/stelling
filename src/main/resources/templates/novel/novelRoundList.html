@@ -13,7 +13,7 @@
 </head>
 <body>
 <!-- 헤더 시작 -->
-<th:block th:insert="fix/headerWord.html :: headFragment"/>
+<th:block th:insert="/fix/headerWord.html :: headFragment"/>
 
 <div class="MainHeader">
 
@@ -29,7 +29,7 @@
 
                             </th:block>
                             <th:block th:unless="${novelImgSrc==null}">
-                                <img th:src="${novelImgSrc}" alt="">
+                                <img th:src="${novelImgSrc}">
                             </th:block>
                         </div>
                         <div class="x_xDesc">
@@ -52,7 +52,7 @@
                             </div>
                             <div class="x_Desc_pepole">
                                 <div>
-                                    <img src="https://static-page.kakao.com/static/common/ico-workhome-person.svg?41e74cfb5cb9084198b21f6b2c7899c2" alt="">
+                                    <img src="https://static-page.kakao.com/static/common/ico-workhome-person.svg?41e74cfb5cb9084198b21f6b2c7899c2">
                                     <div class="watchCnt"><h3 th:text="|${novelVO.novelViewCountTotal}명|"></h3></div>
                                 </div>
 
@@ -60,7 +60,7 @@
 
                                     <img src="https://static-page.kakao.com/static/common/ico-workhome-comment.svg?eaf3ebfe59b36ae76144c6626928ed14" class="kakaoimg">
                                     <div class="replySize"></div>
-                                    <img src="https://static-page.kakao.com/static/common/ic-more-gray.svg?639494b81c8127013d0e627243aee94e">
+                                    <p style="cursor: pointer; font-size: 19px;" class="goToReply"> &gt;</p>
                                 </div>
                             </div>
 
@@ -98,7 +98,14 @@
 
                                 <div class="x_xBtn">
                                     <button onclick="IntroModalHandler()">작품소개</button>
-                                    <a th:href="@{/novel/novelDetailView(novelNumber=${novelNumber}, subNovelNumber=${firstSNumber}, count=1)}"><button type="button" class="goToFirst">첫편보기</button></a>
+                                    <th:block th:if="${session.userNumber==novelVO.userVO.userNumber}">
+                                        <a th:href="@{/novel/novelWrite(novelNumber=${novelNumber})}"><button type="button" class="goToFirst">회차작성</button></a>
+                                    </th:block>
+                                    <th:block th:unless="${session.userNumber==novelVO.userVO.userNumber}">
+                                        <a th:href="@{/novel/novelDetailView(novelNumber=${novelNumber}, subNovelNumber=${firstSNumber}, count=1)}"><button type="button" class="goToFirst">첫편보기</button></a>
+                                    </th:block>
+
+
                                 </div>
                             </div>
                         </div>
@@ -118,7 +125,7 @@
                             </MARQUEE>
 
 
-                            <div onclick="ModalHandler()" class="modaldiv"><img src="https://static-page.kakao.com/static/common/ic-same-novel.svg?b923ffbeb7a7a8a2e2e3091b1ff9e4f6" alt=""></div>
+                            <div onclick="ModalHandler()" class="modaldiv" style="cursor:pointer;"><img src="https://static-page.kakao.com/static/common/ic-same-novel.svg?b923ffbeb7a7a8a2e2e3091b1ff9e4f6" alt=""></div>
                         </button>
                     </div>
                     <div class="hashtag">
@@ -131,11 +138,7 @@
 
 
                     <div class="NovelList">
-
-
-
-
-
+                    <th:block th:if="${session.userNumber==novelVO.userVO.userNumber}">
                         <div class="Noveltotal">
 
                             <span class="NoveltotalCnt" th:text="|전체(${listSize})개|"></span>
@@ -146,6 +149,7 @@
                             <div class="ok"><span>완료</span></div>
                             <div class="cancle"><span>취소</span></div>
                         </div>
+                    </th:block>
 
                         <!--소설 회차 리스트-->
                         <ul class="Novel" >
@@ -305,7 +309,7 @@
 <div class="modal_background2">
     <div class="payQModal2">
         <p class="payClear">200코인 결제가 완료되었습니다.</p>
-        <p class="balance">현재 잔액:1000코인</p>
+        <p class="balance"></p>
         <button class="goToRead">즉시 보러가기</button>
     </div>
 </div>
@@ -316,18 +320,28 @@
         <div class="x">x</div>
         <div class="cash">
             <p class="cashMent">앗! 이런, 코인이 부족하네요</p>
-            <p class="balance2">현재 잔액:1000코인</p>
+            <p class="balance2"></p>
             <div class="modalBtns">
                 <button type="button" class="cashCancle">취소하기</button>
-                <button type="button" class="gotoCharge">충전하러 가기</button>
+                <button type="button" class="gotoCharge" onclick="location.href='/myLibrary/coinShop'">충전하러 가기</button>
             </div>
         </div>
     </div>
 </div>
 
+<!--로그인모달-->
+<div class="modal_background4">
+    <div class="payQModal2">
+        <p class="x2">X</p>
+      <p class="login_AfterService">로그인 후 이용가능한 서비스입니다.</p>
+        <button type="button" class="cancleBtn2">취소</button>
+        <button type="button" class="loginBtn" onclick="location.href='/user/login'">로그인</button>
+    </div>
+</div>
 
 
-<th:block th:insert="fix/footer.html :: footerFragment"/>
+
+<th:block th:insert="/fix/footer.html :: footerFragment"/>
 
 
 </body>
