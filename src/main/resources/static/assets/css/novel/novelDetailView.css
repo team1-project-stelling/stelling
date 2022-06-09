@@ -781,15 +781,58 @@ body {
         margin-right: -26px !important;
     }
 
+    .writerMent{
+        width: 82.5%;
+        height: fit-content;
+        margin-left: 8px;
+        padding-bottom: 45px;
+    }
+    .writeMentarea{
+        width: 74.5%;
+        margin-left: 59px;
+    }
 
+    .send{
+        margin-right: 13px;
+    }
 
+    .replyWrapDivs{
+        margin-left: 61px;
+        margin-bottom: 17px;
+    }
 
+    .writerMentP{
+        margin-top: 5px;
+        margin-bottom: -5px;
+    }
+    .profilePlusText{
+        width: 82%;
+        margin-left: 46px;
+        padding-left: 16px;
+    }
+    .Best{
+        left: 8px;
+        width: 28px;
+        height: 13px;
+        font-size: 10px;
+        line-height: 1.3;
+    }
 
+    .ments{
+        margin-bottom: 115px;
+    }
 
+    .novelContentwrap{
+        overflow: hidden;
+    }
 
-
-
-
+    .bottomNav{
+        padding-left: 16px;
+        padding-top: 8px;
+    }
+    .whiteLine{
+        height: 17px;
+    }
 
 
 
