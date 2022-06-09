@@ -22,6 +22,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,10 +41,15 @@ public class NovelReplyController {
     //댓글 추가하기
     @PostMapping(value = "/add", consumes = "application/json", produces = "text/plain; charset=utf-8")
     public String replyRegister(@RequestBody ReplyDTO replyDTO){
-        replyService.register(ReplyVO.builder().novelVO(novelService.get(replyDTO.getNovelNumber()))
+
+
+        replyService.register(ReplyVO.builder()
+                .novelVO(novelService.get(replyDTO.getNovelNumber()))
                 .subNovelVO(subNovelService.get(replyDTO.getSubNovelNumber()))
                 .userVO(userService.get(replyDTO.getUserNumber()))
                 .replyContent(replyDTO.getReplyContent()).build());
+
+
         return "등록완료";
     }
 
@@ -70,7 +77,7 @@ public class NovelReplyController {
 
     //댓글 최신순
     @GetMapping("getReplyUserDTO")
-    public ReplyUserDTO getreplys(Long novelNumber, @PageableDefault(page =0 ,size =5 ,sort ="replyUploadDate" ,direction = Sort.Direction.DESC) Pageable pageable){
+    public ReplyUserDTO getreplys(Long novelNumber, @PageableDefault(page =0 ,size =5 ,sort ="replyNumber" ,direction = Sort.Direction.DESC) Pageable pageable){
         Page<ReplyVO> replyVOS = replyService.getReplyListByNovelNumber(novelNumber,pageable);
         Page<UserVO> userVOS = replyVOS.map(v->v.getUserVO());
         ReplyUserDTO replyUserDTO= new ReplyUserDTO(replyVOS, userVOS, pageable);
@@ -88,7 +95,7 @@ public class NovelReplyController {
 
     //소설번호로 가져온 댓글 최신순
     @GetMapping("getReplyUserDTOBySubNum")
-    public ReplyUserDTO getReplyUserDTOBySubNum(Long subNovelNumber, @PageableDefault(page=0, size = 5, sort ="replyUploadDate", direction = Sort.Direction.DESC) Pageable pageable){
+    public ReplyUserDTO getReplyUserDTOBySubNum(Long subNovelNumber, @PageableDefault(page=0, size = 5, sort ="replyNumber", direction = Sort.Direction.DESC) Pageable pageable){
         Page<ReplyVO> replyVOS = replyService.getReplyListBySubNovelNumber(subNovelNumber, pageable);
         Page<UserVO> userVOS = replyVOS.map(v->v.getUserVO());
         ReplyUserDTO replyUserDTO= new ReplyUserDTO(replyVOS, userVOS, pageable);

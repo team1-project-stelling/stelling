@@ -684,6 +684,68 @@ body {
     justify-content: space-between;
 }
 
+.modal_background4{
+    position: fixed;
+    top:0; left: 0; bottom: 0; right: 0;
+    background: rgba(175, 175, 175, 0.44);
+    z-index: 2;
+    display: none;
+}
+.login_AfterService{
+    font-size: 24px;
+    margin-top: 79px;
+}
+.cancleBtn2{
+    background-color: white;
+    border: 1px solid gray;
+    font-size: 20px;
+    color: gray;
+    padding: 8px 20px;
+    border-radius: 7px;
+    width: 164px;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-top: 13px;
+    cursor: pointer;
+}
+.loginBtn{
+    color:white;
+    background-color: #ef6e73;
+    border: 1px solid #ef6e73;
+    font-size: 20px;
+    padding: 8px 20px;
+    border-radius: 7px;
+    width: 164px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.x3{
+    font-size: 22px;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 17px;
+    margin-top: 11px;
+    margin-bottom: -46px;
+    transform: scaleY(0.8);
+    cursor:pointer;
+}
+
+.payQModal2{
+    width: 450px;
+    height: 271px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 16px;
+    overflow: hidden;
+    z-index: 3;
+
+}
 @media(max-width: 400px){
     .menuBar{
         width: 83%;
@@ -719,15 +781,58 @@ body {
         margin-right: -26px !important;
     }
 
+    .writerMent{
+        width: 82.5%;
+        height: fit-content;
+        margin-left: 8px;
+        padding-bottom: 45px;
+    }
+    .writeMentarea{
+        width: 74.5%;
+        margin-left: 59px;
+    }
 
+    .send{
+        margin-right: 13px;
+    }
 
+    .replyWrapDivs{
+        margin-left: 61px;
+        margin-bottom: 17px;
+    }
 
+    .writerMentP{
+        margin-top: 5px;
+        margin-bottom: -5px;
+    }
+    .profilePlusText{
+        width: 82%;
+        margin-left: 46px;
+        padding-left: 16px;
+    }
+    .Best{
+        left: 8px;
+        width: 28px;
+        height: 13px;
+        font-size: 10px;
+        line-height: 1.3;
+    }
 
+    .ments{
+        margin-bottom: 115px;
+    }
 
+    .novelContentwrap{
+        overflow: hidden;
+    }
 
-
-
-
+    .bottomNav{
+        padding-left: 16px;
+        padding-top: 8px;
+    }
+    .whiteLine{
+        height: 17px;
+    }
 
 
 

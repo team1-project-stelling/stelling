@@ -32,11 +32,11 @@ public class BuyChapterController {
 
     @GetMapping("checkBalanceAndBuy")
     @ResponseBody
-    public HashMap<String, Object> checkBalanceAndBuy(Long novelNumber, Long subNovelNumber,Long userNumber,HttpServletRequest request){
+    public HashMap<String, Object> checkBalanceAndBuy(Long novelNumber, Long subNovelNumber,HttpServletRequest request){
         HashMap<String, Object> status=new HashMap<>();
         HttpSession session = request.getSession();
 
-        UserVO userVO = userService.get(userNumber);
+        UserVO userVO = userService.get((Long)session.getAttribute("userNumber"));
         int userCoinBalance=userVO.getUserCoinBalance();
 
         if(userCoinBalance>=200){
@@ -46,7 +46,7 @@ public class BuyChapterController {
             BuyChapterVO buyChapterVO = new BuyChapterVO();
             buyChapterVO.setBuyChapterCoin(200);
             buyChapterVO.setNovelNumber(novelNumber);
-            buyChapterVO.setUserNumber(userNumber);
+            buyChapterVO.setUserNumber((Long)session.getAttribute("userNumber"));
             buyChapterVO.setSubNovelNumber(subNovelNumber);
             buyChapterService.register(buyChapterVO);
             status.put("balance",userVO.getUserCoinBalance());

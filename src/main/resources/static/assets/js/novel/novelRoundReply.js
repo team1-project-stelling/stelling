@@ -33,13 +33,12 @@ function showList(novelNumber){
             let userVO = userVOList.content;
             ReplySize.html(replyVOList.totalElements + "개");
             if (replyVO.totalElements == 0) {
-                ReplyCmt.html("<p>등록된 댓글이 없습니다.</p>");
+                ReplyCmt.html("등록된 댓글이 없습니다.");
                 return;
             }
             for (let i = 0; i < replyVO.length; i++) {
-                let replyUploadDate = replyVO[i].replyUpdateDate + "";
+                let replyUploadDate = replyVO[i].replyUploadDate + "";
                 str += "<div class='profilePlusText' style='position: relative;'>";
-                // str += "<div class='Best'>Best</div>";
                 str += "<div>";
                 str += "<div class='profile'><img src='/myPage/display?fileName="+ userVO[i].userFilePath+"/"+userVO[i].userUuid + "_"+userVO[i].userFileName+"' class='img'/></div>";
                 str += "</div>";
@@ -78,13 +77,12 @@ function showList(novelNumber){
             let userVO = userVOList.content;
 
             if (replyVO.totalElements == 0) {
-                ReplyCmt.html("<p>등록된 댓글이 없습니다.</p>");
+                ReplyCmt.html("등록된 댓글이 없습니다.");
                 return;
             }
             for (let i = 0; i < replyVO.length; i++) {
-                let replyUploadDate = replyVO[i].replyUpdateDate + "";
+                let replyUploadDate = replyVO[i].replyUploadDate + "";
                 str += "<div class='profilePlusText' style='position: relative;'>";
-
                 str += "<div class='Best'>Best</div>";
                 str += "<div>";
                 str += "<div class='profile'><img src='/myPage/display?fileName="+ userVO[i].userFilePath+"/"+userVO[i].userUuid + "_"+userVO[i].userFileName+"' class='img'/></div>";
@@ -163,6 +161,7 @@ $('.ReplyCmt').on("click", "div.xIcon",function () {
 window.onscroll = function(e) {
 
     if((window.innerHeight + window.scrollY+1) >= document.body.offsetHeight) {
+
         const ReplyCmt = $(".ReplyCmt");
 
         //만약 댓글 최신순이라면
@@ -177,9 +176,8 @@ window.onscroll = function(e) {
                     return;
                 }
                 for (let i = 0; i < replyVO.length; i++) {
-                    let replyUploadDate = replyVO[i].replyUpdateDate + "";
+                    let replyUploadDate = replyVO[i].replyUploadDate + "";
                     str += "<div class='profilePlusText' style='position: relative;'>";
-                    // str += "<div class='Best'>Best</div>";
                     str += "<div>";
                     str += "<div class='profile'><img src='/myPage/display?fileName="+ userVO[i].userFilePath+"/"+userVO[i].userUuid + "_"+userVO[i].userFileName+"' class='img'/></div>";
                     str += "</div>";
@@ -210,9 +208,9 @@ window.onscroll = function(e) {
                 ReplyCmt.append(str);
             });
             count++;
-
             //댓글 추천순이라면
         }else{
+
             bestReplyListPageing(novelNumber, count, function (replyVOList, userVOList) {
                 let str = "";
                 let replyVO = replyVOList.content;
@@ -223,9 +221,8 @@ window.onscroll = function(e) {
                     return;
                 }
                 for (let i = 0; i < replyVO.length; i++) {
-                    let replyUploadDate = replyVO[i].replyUpdateDate + "";
+                    let replyUploadDate = replyVO[i].replyUploadDate + "";
                     str += "<div class='profilePlusText' style='position: relative;'>";
-                    // str += "<div class='Best'>Best</div>";
                     str += "<div>";
                     str += "<div class='profile'><img src='/myPage/display?fileName="+ userVO[i].userFilePath+"/"+userVO[i].userUuid + "_"+userVO[i].userFileName+"' class='img'/></div>";
                     str += "</div>";
@@ -360,7 +357,6 @@ $('.ReplyCmt').on("click", "button.siren",function () {
                 type:"get",
                 url:"/novelDetail/siren?replyNumber="+$(this).attr('id'),
                 success:function (result) {
-                    console.log(result);
                 },
                 error:function (error) {
                     alert("댓글 신고 실패");

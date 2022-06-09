@@ -30,7 +30,6 @@ $('.send').on("click", function () {
 
     add({"novelNumber": novelNumber, "subNovelNumber": subNovelNumber,"replyContent": replyContent, "userNumber":userNumber},
         function (result) {
-            console.log(result);
             showList(subNovelNumber);
             startPage=1;
         })
@@ -40,7 +39,6 @@ $('.send').on("click", function () {
 
 //댓글 추가
 function add(reply, callback, error) {
-    console.log("reply add 실행")
     $.ajax({
         type: "POST",
         url: "/reply/add",
@@ -73,9 +71,8 @@ function showList(subNovelNumber){
                 return;
             }
             for (let i=0; i<replyVO.length; i++){
-                let replyUploadDate =replyVO[i].replyUpdateDate+"";
+                let replyUploadDate =replyVO[i].replyUploadDate+"";
                 str += "<div class='profilePlusText' style='position: relative;'>";
-                // str += "<div class='Best'>Best</div>";
                 str += "<div>";
                 str += "<div class='profile'><img src='/myPage/display?fileName="+ userVO[i].userFilePath+"/"+userVO[i].userUuid + "_"+userVO[i].userFileName+"' class='img'/></div>";
                 str += "</div>";
@@ -117,9 +114,8 @@ function showList(subNovelNumber){
                 return;
             }
             for (let i = 0; i < replyVO.length; i++) {
-                let replyUploadDate = replyVO[i].replyUpdateDate + "";
+                let replyUploadDate = replyVO[i].replyUploadDate + "";
                 str += "<div class='profilePlusText' style='position: relative;'>";
-
                 str += "<div class='Best'>Best</div>";
                 str += "<div>";
                 str += "<div class='profile'><img src='/myPage/display?fileName="+ userVO[i].userFilePath+"/"+userVO[i].userUuid + "_"+userVO[i].userFileName+"' class='img'/></div>";
@@ -256,7 +252,6 @@ $('.replyWrap').on("click", "button.siren",function () {
                 type:"get",
                 url:"/novelDetail/siren?replyNumber="+$(this).attr('id'),
                 success:function (result) {
-                    console.log(result);
                 },
                 error:function (error) {
                     alert("댓글 신고 실패");
@@ -290,9 +285,8 @@ $(window).scroll(function () {
                     return;
                 }
                 for (let i=0; i<replyVO.length; i++){
-                    let replyUploadDate =replyVO[i].replyUpdateDate+"";
+                    let replyUploadDate =replyVO[i].replyUploadDate+"";
                     str += "<div class='profilePlusText' style='position: relative;'>";
-                    // str += "<div class='Best'>Best</div>";
                     str += "<div>";
                     str += "<div class='profile'><img src='/myPage/display?fileName="+ userVO[i].userFilePath+"/"+userVO[i].userUuid + "_"+userVO[i].userFileName+"' class='img'/></div>";
                     str += "</div>";
@@ -327,8 +321,6 @@ $(window).scroll(function () {
         }else{
             bestReplyListPageing(subNovelNumber, startPage, function (replyVOList, userVOList) {
 
-                console.log("메소드2");
-                console.log(startPage);
                 let str = "";
                 let replyVO = replyVOList.content;
                 let userVO = userVOList.content;
@@ -338,9 +330,8 @@ $(window).scroll(function () {
                     return;
                 }
                 for (let i = 0; i < replyVO.length; i++) {
-                    let replyUploadDate = replyVO[i].replyUpdateDate + "";
+                    let replyUploadDate = replyVO[i].replyUploadDate + "";
                     str += "<div class='profilePlusText' style='position: relative;'>";
-                    // str += "<div class='Best'>Best</div>";
                     str += "<div>";
                     str += "<div class='profile'><img src='/myPage/display?fileName="+ userVO[i].userFilePath+"/"+userVO[i].userUuid + "_"+userVO[i].userFileName+"' class='img'/></div>";
                     str += "</div>";

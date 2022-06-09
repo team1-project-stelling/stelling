@@ -47,7 +47,7 @@
 
     <div class="writerMent">
         <div>
-            <p>작가의 말</p>
+            <p class="writerMentP">작가의 말</p>
             <hr class="hr">
             <div class="writerComment" th:text="${subNovelVO.subNovelWriterComment}">
 
@@ -64,11 +64,11 @@
         </div>
 
         <div class="writeMent">
-            <textarea name="replyContent" id="replyContent" class="writeMentarea"></textarea>
+            <textarea name="replyContent" id="replyContent" class="writeMentarea" onclick="writeContent()"></textarea>
         </div>
 
         <div class="replyWrap">
-            <div class="flex" style="margin-bottom: 49px;">
+            <div class="flex replyWrapDivs">
                 <div class="flex pink" style="margin-right: 15px;">
                     <div class="pinkCheck"><img src="/images/icon/체크핑크.png" class="img pink"/></div>
                     <div>BEST</div>
@@ -257,14 +257,22 @@
 <!--후원 완료 모달-->
 <div class="modal_background3">
     <div class="coinModal3">
-        <p class="x2">x</p>
+        <p class="x3">x</p>
         <img src="/images/icon/폭죽.png" class="fireworkIcon"/>
         <p class="modal-title" th:text="${novelVO.novelTitle}"></p>
         <p class="cashMent2">소설에 후원이 완료되었습니다.</p>
         <p class="balance2">현재잔액 코인</p>
     </div>
 </div>
-
+<!--로그인모달-->
+<div class="modal_background4">
+    <div class="payQModal2">
+        <p class="x3">X</p>
+        <p class="login_AfterService">로그인 후 이용가능한 서비스입니다.</p>
+        <button type="button" class="cancleBtn2">취소</button>
+        <button type="button" class="loginBtn" onclick="location.href='/user/login'">로그인</button>
+    </div>
+</div>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
